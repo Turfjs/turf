@@ -1,9 +1,9 @@
 import {
     BBox, CollectionTypes, Feature, FeatureCollection,
-    GeoJSONObject, Geometries, Geometry, GeometryCollection, GeometryObject, GeometryTypes,
-    Id, LineString, MultiLineString, MultiPoint,
+    GeoJsonGeometryTypes as GeometryTypes, GeoJsonObject as GeoJSONObject, GeoJsonProperties as Properties,
+    GeoJsonTypes as Types, Geometries, Geometry, GeometryCollection,
+    GeometryObject, Id, LineString, MultiLineString, MultiPoint,
     MultiPolygon, Point, Polygon, Position,
-    Properties, Types,
 } from "./lib/geojson";
 export {
     Id, Properties, BBox, Position,
@@ -128,7 +128,7 @@ export let areaFactors: any = {
  *
  * //=feature
  */
-export function feature<G = Geometry, P = Properties>(
+export function feature<G extends Geometry | null = Geometry, P = Properties>(
     geom: G,
     properties?: P,
     options: {bbox?: BBox, id?: Id} = {},
@@ -376,7 +376,7 @@ export function lineStrings<P = Properties>(
  *
  * //=collection
  */
-export function featureCollection<G = Geometry, P = Properties>(
+export function featureCollection<G extends Geometry | null = Geometry, P = Properties>(
     features: Array<Feature<G, P>>,
     options: {bbox?: BBox, id?: Id} = {},
 ): FeatureCollection<G, P> {

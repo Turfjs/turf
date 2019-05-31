@@ -1,5 +1,5 @@
-import { BBox, CollectionTypes, Feature, FeatureCollection, GeoJSONObject, Geometries, Geometry, GeometryCollection, GeometryObject, GeometryTypes, Id, LineString, MultiLineString, MultiPoint, MultiPolygon, Point, Polygon, Position, Properties, Types } from "./lib/geojson";
-export { Id, Properties, BBox, Position, Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, GeometryObject, GeoJSONObject, GeometryCollection, Geometry, GeometryTypes, Types, CollectionTypes, Geometries, Feature, FeatureCollection };
+import { BBox, CollectionTypes, Feature, FeatureCollection, GeoJsonObject as GeoJSONObject, Geometries, Geometry, GeometryCollection, GeometryObject, GeoJsonGeometryTypes as GeometryTypes, Id, LineString, MultiLineString, MultiPoint, MultiPolygon, Point, Polygon, Position, GeoJsonProperties as Properties, GeoJsonTypes as Types } from "./lib/geojson";
+export { Id, Properties, BBox, Position, Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, GeometryObject, GeoJSONObject, GeometryCollection, Geometry, GeometryTypes, Types, CollectionTypes, Geometries, Feature, FeatureCollection, };
 export declare type Coord = Feature<Point> | Point | Position;
 export declare type Units = "meters" | "millimeters" | "centimeters" | "kilometers" | "acres" | "miles" | "nauticalmiles" | "inches" | "yards" | "feet" | "radians" | "degrees";
 export declare type Grid = "point" | "square" | "hex" | "triangle";
@@ -61,7 +61,7 @@ export declare let areaFactors: any;
  *
  * //=feature
  */
-export declare function feature<G = Geometry, P = Properties>(geom: G, properties?: P, options?: {
+export declare function feature<G extends Geometry | null = Geometry, P = Properties>(geom: G, properties?: P, options?: {
     bbox?: BBox;
     id?: Id;
 }): Feature<G, P>;
@@ -80,7 +80,7 @@ export declare function feature<G = Geometry, P = Properties>(geom: G, propertie
  * var geometry = turf.geometry(type, coordinates);
  * // => geometry
  */
-export declare function geometry(type: "Point" | "LineString" | "Polygon" | "MultiPoint" | "MultiLineString" | "MultiPolygon", coordinates: any[], options?: {}): Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon;
+export declare function geometry(type: "Point" | "LineString" | "Polygon" | "MultiPoint" | "MultiLineString" | "MultiPolygon", coordinates: any[], options?: {}): Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon;
 /**
  * Creates a {@link Point} {@link Feature} from a Position.
  *
@@ -231,7 +231,7 @@ export declare function lineStrings<P = Properties>(coordinates: Position[][], p
  *
  * //=collection
  */
-export declare function featureCollection<G = Geometry, P = Properties>(features: Array<Feature<G, P>>, options?: {
+export declare function featureCollection<G extends Geometry | null = Geometry, P = Properties>(features: Array<Feature<G, P>>, options?: {
     bbox?: BBox;
     id?: Id;
 }): FeatureCollection<G, P>;
