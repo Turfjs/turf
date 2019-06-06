@@ -14,7 +14,7 @@ const cdt2d = require('cdt2d');
  * and `c` representing its value at each of the points that represent the corners of the
  * triangle.
  *
- * @name tin
+ * @name constrainedTin
  * @param {FeatureCollection<Point>} points input points
  * @param {Array<Array<number>>} [edges] list of edges
  * @param {Object} [options] option switches

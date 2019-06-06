@@ -1,5 +1,5 @@
 {
-  "name": "@turf/tin",
+  "name": "@turf/constrainedTin",
   "version": "6.0.2",
   "description": "turf constrained tin module",
   "main": "index",
@@ -24,6 +24,7 @@
     "tin",
     "triangulate"
   ],
+  "contributors": "Kohei Otsuka <@kochizufan>",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
