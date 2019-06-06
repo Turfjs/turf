@@ -7,4 +7,4 @@ const points = featureCollection([
   point([30, 30], {elevation: 50}),
 ]);
 constrainedTin(points);
-constrainedTin(points, [],"elevation");
+constrainedTin(points, [],{z: "elevation"});
