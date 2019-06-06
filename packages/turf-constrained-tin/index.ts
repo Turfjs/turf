@@ -76,9 +76,9 @@ export default function constrainedTin(
     const cdt2dResult: number[][] = cdt2d(pointsForCdt2d[0] as number[][], edges, options);
 
     return featureCollection(cdt2dResult.map((triangle) => {
-        const a = Object.assign([], pointsForCdt2d[0][triangle[0]]);
-        const b = Object.assign([], pointsForCdt2d[0][triangle[1]]);
-        const c = Object.assign([], pointsForCdt2d[0][triangle[2]]);
+        const a = (Object as any).assign([], pointsForCdt2d[0][triangle[0]]);
+        const b = (Object as any).assign([], pointsForCdt2d[0][triangle[1]]);
+        const c = (Object as any).assign([], pointsForCdt2d[0][triangle[2]]);
         let properties = {};
 
         // Add z coordinates to triangle points if user passed
