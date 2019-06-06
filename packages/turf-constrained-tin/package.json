@@ -24,7 +24,9 @@
     "tin",
     "triangulate"
   ],
-  "contributors": ["Kohei Otsuka <@kochizufan>"],
+  "contributors": [
+    "Kohei Otsuka <@kochizufan>"
+  ],
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

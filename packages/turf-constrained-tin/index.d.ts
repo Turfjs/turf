@@ -15,9 +15,9 @@ import { FeatureCollection, Point, Polygon } from "@turf/helpers";
  * @param {Object} [options] option switches
  *   {boolean} [delaunay]: if this flag is set to true, then the resulting triangulation is converted to a Delaunay triangulation by edge flipping.
  *   Otherwise if it is false, then an arbitrary triangulation is returned. (Default true)
- *   {boolean} [interior]: if set, only return interior faces. See note. (Default true)
- *   {boolean} [exterior]: if set, only return exterior faces. See note. (Default true)
- *   {boolean} [infinity]: if set, then the triangulation is augmented with a point at infinity represented by the index -1. (Default false)
+ *   {boolean} [interior]: (Default true) if it is false, interior faces are not output.
+ *   {boolean} [exterior]: (Default true) if it is false, exterior faces are not output.
+ *   {boolean} [infinity]: if it is true, then the triangulation is augmented with a point at infinity represented by the index -1. (Default false)
  *   {String} [z]: name of the property from which to pull z values
  *   This is optional: if not given, then there will be no extra data added to the derived triangles.
  * @returns {FeatureCollection<Polygon>} TIN output
