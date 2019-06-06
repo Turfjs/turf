@@ -1,17 +1,7 @@
 import { FeatureCollection, Point, Polygon } from "@turf/helpers";
-export interface Pt {
-    x: number;
-    y: number;
-    z?: number;
-    __sentinel?: boolean;
-}
-export interface Vertice {
-    x: number;
-    y: number;
-}
 /**
  * Takes a set of {@link Point|points} and creates a
- * [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
+ * constrained [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
  * or a TIN for short, returned as a collection of Polygons. These are often used
  * for developing elevation contour maps or stepped heat visualizations.
  *
@@ -21,8 +11,15 @@ export interface Vertice {
  *
  * @name tin
  * @param {FeatureCollection<Point>} points input points
- * @param {String} [z] name of the property from which to pull z values
- * This is optional: if not given, then there will be no extra data added to the derived triangles.
+ * @param {Array<Array<number>>} [edges] list of edges
+ * @param {Object} [options] option switches
+ *   {boolean} [delaunay]: if this flag is set to true, then the resulting triangulation is converted to a Delaunay triangulation by edge flipping.
+ *   Otherwise if it is false, then an arbitrary triangulation is returned. (Default true)
+ *   {boolean} [interior]: if set, only return interior faces. See note. (Default true)
+ *   {boolean} [exterior]: if set, only return exterior faces. See note. (Default true)
+ *   {boolean} [infinity]: if set, then the triangulation is augmented with a point at infinity represented by the index -1. (Default false)
+ *   {String} [z]: name of the property from which to pull z values
+ *   This is optional: if not given, then there will be no extra data added to the derived triangles.
  * @returns {FeatureCollection<Polygon>} TIN output
  * @example
  * // generate some random point data
@@ -32,7 +29,7 @@ export interface Vertice {
  * for (var i = 0; i < points.features.length; i++) {
  *   points.features[i].properties.z = ~~(Math.random() * 9);
  * }
- * var tin = turf.tin(points, 'z');
+ * var tin = turf.constrainedTin(points, [], {z: 'z'});
  *
  * //addToMap
  * var addToMap = [tin, points]
@@ -41,4 +38,10 @@ export interface Vertice {
  *   properties.fill = '#' + properties.a + properties.b + properties.c;
  * }
  */
-export default function tin(points: FeatureCollection<Point, any>, z?: string): FeatureCollection<Polygon>;
+export default function constrainedTin(points: FeatureCollection<Point, any>, edges?: number[][], options?: {
+    delaunay?: boolean;
+    interior?: boolean;
+    exterior?: boolean;
+    infinity?: boolean;
+    z?: string;
+}): FeatureCollection<Polygon>;

@@ -1,12 +1,12 @@
 // http://en.wikipedia.org/wiki/Delaunay_triangulation
-// https://github.com/ironwallaby/delaunay
+// https://github.com/mikolalysenko/cdt2d
 import { featureCollection, polygon } from "@turf/helpers";
 import { Feature, FeatureCollection, Point, Polygon } from "@turf/helpers";
 const cdt2d = require('cdt2d');
 
 /**
  * Takes a set of {@link Point|points} and creates a
- * [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
+ * constrained [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
  * or a TIN for short, returned as a collection of Polygons. These are often used
  * for developing elevation contour maps or stepped heat visualizations.
  *
@@ -16,8 +16,15 @@ const cdt2d = require('cdt2d');
  *
  * @name tin
  * @param {FeatureCollection<Point>} points input points
- * @param {String} [z] name of the property from which to pull z values
- * This is optional: if not given, then there will be no extra data added to the derived triangles.
+ * @param {Array<Array<number>>} [edges] list of edges
+ * @param {Object} [options] option switches
+ *   {boolean} [delaunay]: if this flag is set to true, then the resulting triangulation is converted to a Delaunay triangulation by edge flipping.
+ *   Otherwise if it is false, then an arbitrary triangulation is returned. (Default true)
+ *   {boolean} [interior]: if set, only return interior faces. See note. (Default true)
+ *   {boolean} [exterior]: if set, only return exterior faces. See note. (Default true)
+ *   {boolean} [infinity]: if set, then the triangulation is augmented with a point at infinity represented by the index -1. (Default false)
+ *   {String} [z]: name of the property from which to pull z values
+ *   This is optional: if not given, then there will be no extra data added to the derived triangles.
  * @returns {FeatureCollection<Polygon>} TIN output
  * @example
  * // generate some random point data
@@ -27,7 +34,7 @@ const cdt2d = require('cdt2d');
  * for (var i = 0; i < points.features.length; i++) {
  *   points.features[i].properties.z = ~~(Math.random() * 9);
  * }
- * var tin = turf.tin(points, 'z');
+ * var tin = turf.constrainedTin(points, [], {z: 'z'});
  *
  * //addToMap
  * var addToMap = [tin, points]
@@ -38,35 +45,37 @@ const cdt2d = require('cdt2d');
  */
 export default function constrainedTin(
     points: FeatureCollection<Point, any>,
-    edges: number[][],
+    edges: number[][] = [],
     options: {
         delaunay?: boolean,
-        interior? : boolean,
+        interior?: boolean,
         exterior?: boolean,
-        infinity? :boolean,
+        infinity?: boolean,
         z?: string
-    }
+    } = {}
 ): FeatureCollection<Polygon> {
     let isPointZ = false;
     const pointsForCdt2d = points.features.reduce((prev, p) => {
-        const xy = [
+        const xy: number[] = [
             p.geometry.coordinates[0],
             p.geometry.coordinates[1]
         ];
-        let z;
+        let z: string = "";
         if (options.z) {
             z = p.properties[options.z];
         } else if (p.geometry.coordinates.length === 3) {
             isPointZ = true;
-            z = p.geometry.coordinates[2];
+            z = "" + p.geometry.coordinates[2];
         }
         prev[0].push(xy);
         prev[1].push(z);
         return prev;
-    }, [[],[]]);
+    }, [[] as any, [] as any]);
     delete options.z;
 
-    return featureCollection(cdt2d(pointsForCdt2d[0], edges, options).map((triangle) => {
+    const cdt2dResult: number[][] = cdt2d(pointsForCdt2d[0] as number[][], edges, options);
+
+    return featureCollection(cdt2dResult.map((triangle) => {
         const a = Object.assign([], pointsForCdt2d[0][triangle[0]]);
         const b = Object.assign([], pointsForCdt2d[0][triangle[1]]);
         const c = Object.assign([], pointsForCdt2d[0][triangle[2]]);
