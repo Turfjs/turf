@@ -3,6 +3,7 @@ const path = require('path');
 const Benchmark = require('benchmark');
 const constrainedTin = require('./').default;
 const tin = require('@turf/tin').default;
+const newTin = require('./newLogic');
 
 const points = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'Points.json')));
 
@@ -21,12 +22,18 @@ const points = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'Points.j
 const suite = new Benchmark.Suite('turf-constrained-tin');
 [[0, 10], [2, 6], [3, 4]].reduce(function(edges, edge, index, array) {
     edges.push(edge);
-    let name = 'constrained Tin ' + edges.length + ' edge' + (edges.length > 1 ? 's' : '');
+    let name = 'constrained Tin (cdt2d) ' + edges.length + ' edge' + (edges.length > 1 ? 's' : '');
 
     console.time(name);
     constrainedTin(points, edges);
     console.timeEnd(name);
     suite.add(name, () => constrainedTin(points, edges));
+
+    name = 'new constrained Tin (cdt-js) ' + edges.length + ' edge' + (edges.length > 1 ? 's' : '');
+    console.time(name);
+    newTin(points, edges);
+    console.timeEnd(name);
+    suite.add(name, () => newTin(points, edges));
 
     if (index == array.length-1) {
         name = 'normal Tin (as reference)';

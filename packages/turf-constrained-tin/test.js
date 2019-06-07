@@ -10,7 +10,8 @@ const points_grid = require(path.join(__dirname,  'test', 'Points_grid.json'));
 test('tin - z property', t => {
     const expected = require(path.join(__dirname,  'test', 'Tin.json'));
     const tinned = constrainedTin(points, [[2, 12]], {z:'elevation'});
-    newTin(points, [[2, 12]]);
+    const newResult = newTin(points, [[2, 12]]);
+    fs.writeFileSync(path.join(__dirname, 'test', 'newTin.json'), JSON.stringify(newResult, null, 2));
     t.equal(tinned.features[0].geometry.type, 'Polygon');
     t.equal(tinned.features.length, 24);
     t.deepEqual(tinned, expected, 'tinned polygons match');
