@@ -71,11 +71,12 @@ export default function constrainedTin(
         prev[1].push(z);
         return prev;
     }, [[] as any, [] as any]);
-    delete options.z;
+    const copyOptions = (Object as any).assign({}, options);
+    delete copyOptions.z;
 
     let cdt2dResult: number[][];
     try {
-        cdt2dResult = cdt2d(pointsForCdt2d[0] as number[][], edges, options);
+        cdt2dResult = cdt2d(pointsForCdt2d[0] as number[][], edges, copyOptions);
     } catch(err) {
         throw 'Something wrong with arguments: Check length of points, edge crossing, etc.';
     }

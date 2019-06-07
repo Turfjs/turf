@@ -34,11 +34,12 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
+    "@turf/tin": "^6.0.2",
+    "@types/tape": "*",
     "benchmark": "*",
-    "typescript": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
     "@turf/helpers": "6.x",
