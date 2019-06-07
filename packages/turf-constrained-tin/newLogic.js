@@ -352,3 +352,21 @@ function findEnclosingTriangle(target_vertex, meshData, ind_tri_cur)
 
     return [ind_tri_cur, (nhops-1)];
 }
+
+function getPointOrientation(edge, p)
+{
+    const vec_edge01 = edge[1].sub(edge[0]);
+    const vec_edge0_to_p = p.sub(edge[0]);
+    return cross(vec_edge01, vec_edge0_to_p);
+    // if (area > 0)
+    //   return 1;
+    // else if (area < 0)
+    //   return -1;
+    // else
+    //   return 0;
+}
+
+function cross(vec0, vec1)
+{
+    return (vec0.x*vec1.y - vec0.y*vec1.x);
+}
