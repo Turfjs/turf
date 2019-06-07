@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const test = require('tape');
 const constrainedTin = require('./').default;
+const newTin = require('./newLogic');
 
 const points = require(path.join(__dirname,  'test', 'Points.json'));
 const points_grid = require(path.join(__dirname,  'test', 'Points_grid.json'));
@@ -9,6 +10,7 @@ const points_grid = require(path.join(__dirname,  'test', 'Points_grid.json'));
 test('tin - z property', t => {
     const expected = require(path.join(__dirname,  'test', 'Tin.json'));
     const tinned = constrainedTin(points, [[2, 12]], {z:'elevation'});
+    newTin(points, [[2, 12]]);
     t.equal(tinned.features[0].geometry.type, 'Polygon');
     t.equal(tinned.features.length, 24);
     t.deepEqual(tinned, expected, 'tinned polygons match');
