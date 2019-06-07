@@ -3,11 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "a": "",
-        "b": "",
-        "c": ""
-      },
+      "properties": {},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -34,46 +30,15 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "a": "",
-        "b": "",
-        "c": ""
-      },
+      "properties": {},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              10,
-              0
-            ],
-            [
-              20,
-              0
-            ],
-            [
-              10,
+              0,
               10
             ],
-            [
-              10,
-              0
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "a": "",
-        "b": "",
-        "c": ""
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
             [
               10,
               0
@@ -85,10 +50,6 @@
             [
               0,
               10
-            ],
-            [
-              10,
-              0
             ]
           ]
         ]
@@ -96,17 +57,44 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "a": "",
-        "b": "",
-        "c": ""
-      },
+      "properties": {},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
               20,
+              10
+            ],
+            [
+              10,
+              0
+            ],
+            [
+              20,
+              0
+            ],
+            [
+              20,
+              10
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10,
+              10
+            ],
+            [
+              10,
               0
             ],
             [
@@ -116,10 +104,6 @@
             [
               10,
               10
-            ],
-            [
-              20,
-              0
             ]
           ]
         ]
@@ -127,11 +111,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "a": "",
-        "b": "",
-        "c": ""
-      },
+      "properties": {},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -158,46 +138,15 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "a": "",
-        "b": "",
-        "c": ""
-      },
+      "properties": {},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              10,
-              10
-            ],
-            [
-              20,
-              10
-            ],
-            [
-              10,
+              0,
               20
             ],
-            [
-              10,
-              10
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "a": "",
-        "b": "",
-        "c": ""
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
             [
               10,
               10
@@ -209,10 +158,6 @@
             [
               0,
               20
-            ],
-            [
-              10,
-              10
             ]
           ]
         ]
@@ -220,17 +165,44 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "a": "",
-        "b": "",
-        "c": ""
-      },
+      "properties": {},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
               20,
+              20
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              20,
+              10
+            ],
+            [
+              20,
+              20
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10,
+              20
+            ],
+            [
+              10,
               10
             ],
             [
@@ -240,10 +212,6 @@
             [
               10,
               20
-            ],
-            [
-              20,
-              10
             ]
           ]
         ]

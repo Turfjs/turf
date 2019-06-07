@@ -9,6 +9,7 @@ module.exports = function(points, edges) {
         con_edge: edges
     };
     delaunay(ret);
+    constrainEdges(ret);
     return helper.featureCollection(ret.tri.map(function(indices) {
         const coords = indices.map(function(index) {
             return [ret.vert[index].x, ret.vert[index].y];
@@ -77,11 +78,9 @@ function getPointOrientation(edge, p)
 
 //Some variables for rendering
 
-var min_coord = new Point(0,0);
-
-var screenL = 1.0;
-
-var boundingL = 1000.0;
+var min_coord = new Point(-16000000, -16000000);
+var screenL = 32000000;
+var boundingL = 1000000000;
 
 function binSorter(a, b)
 {
@@ -90,6 +89,61 @@ function binSorter(a, b)
     } else {
         return a.bin < b.bin ? -1 : 1;
     }
+}
+
+function isQuadConvex(p0, p1, p2, p3)
+{
+    var diag0 = [p0, p2];
+    var diag1 = [p1, p3];
+
+    return isEdgeIntersecting(diag0, diag1);
+}
+
+function isSameEdge(edge0, edge1)
+{
+    return ((edge0[0] == edge1[0] && edge0[1] == edge1[1]) ||
+        (edge0[1] == edge1[0] && edge0[0] == edge1[1]))
+}
+
+function isEdgeIntersecting(edgeA, edgeB)
+{
+    var vecA0A1 = edgeA[1].sub(edgeA[0]);
+    var vecA0B0 = edgeB[0].sub(edgeA[0]);
+    var vecA0B1 = edgeB[1].sub(edgeA[0]);
+
+    var AxB0 = cross(vecA0A1, vecA0B0);
+    var AxB1 = cross(vecA0A1, vecA0B1);
+
+    //Check if the endpoints of edgeB are on the same side of edgeA
+    if ((AxB0 > 0 && AxB1 > 0) || (AxB0 < 0 && AxB1 < 0))
+        return false;
+
+    var vecB0B1 = edgeB[1].sub(edgeB[0]);
+    var vecB0A0 = edgeA[0].sub(edgeB[0]);
+    var vecB0A1 = edgeA[1].sub(edgeB[0]);
+
+    var BxA0 = cross(vecB0B1, vecB0A0);
+    var BxA1 = cross(vecB0B1, vecB0A1);
+
+    //Check if the endpoints of edgeA are on the same side of edgeB
+    if ((BxA0 > 0 && BxA1 > 0) || (BxA0 < 0 && BxA1 < 0))
+        return false;
+
+    //Special case of colinear edges
+    if (Math.abs(AxB0) < 1e-14 && Math.abs(AxB1) < 1e-14)
+    {
+        //Separated in x
+        if ( (Math.max(edgeB[0].x, edgeB[1].x) < Math.min(edgeA[0].x, edgeA[1].x)) ||
+            (Math.min(edgeB[0].x, edgeB[1].x) > Math.max(edgeA[0].x, edgeA[1].x)) )
+            return false;
+
+        //Separated in y
+        if ( (Math.max(edgeB[0].y, edgeB[1].y) < Math.min(edgeA[0].y, edgeA[1].y)) ||
+            (Math.min(edgeB[0].y, edgeB[1].y) > Math.max(edgeA[0].y, edgeA[1].y)) )
+            return false;
+    }
+
+    return true;
 }
 
 function setupDelaunay(meshData)
@@ -479,4 +533,265 @@ function isDelaunay2(v_tri, p)
         return false;
     else
         return true;
+}
+
+function constrainEdges(meshData)
+{
+    if (meshData.con_edge.length == 0)
+        return;
+
+    buildVertexConnectivity(meshData);
+
+    var con_edges = meshData.con_edge;
+    var triangles = meshData.tri;
+    var verts = meshData.scaled_vert;
+    var adjacency = meshData.adj;
+    var vert2tri = meshData.vert_to_tri;
+
+    var newEdgeList = [];
+
+    for (let iedge = 0; iedge < con_edges.length; iedge++)
+    {
+        let intersections = getEdgeIntersections(meshData, iedge);
+
+        let iter = 0;
+        const maxIter = Math.max(intersections.length, 1);
+        while (intersections.length > 0 && iter < maxIter)
+        {
+            fixEdgeIntersections(meshData, intersections, iedge, newEdgeList);
+            intersections = getEdgeIntersections(meshData, iedge);
+            iter++;
+        }
+
+        if (intersections.length > 0)
+            throw "Could not add edge " + iedge + " to triangulation after " + maxIter + " iterations!";
+
+    } //loop over constrained edges
+
+
+    //Restore Delaunay
+    while (true)
+    {
+        let num_diagonal_swaps = 0;
+        for (let iedge = 0; iedge < newEdgeList.length; iedge++)
+        {
+            const new_edge_nodes = newEdgeList[iedge];
+
+            //Check if the new edge is a constrained edge
+            let is_con_edge = false
+            for (let jedge = 0; jedge < con_edges.length; jedge++)
+            {
+                if (isSameEdge(new_edge_nodes, con_edges[jedge]))
+                {
+                    is_con_edge = true;
+                    break;
+                };
+            }
+
+            if (is_con_edge)
+                continue; //cannot change this edge if it's constrained
+
+            const tri_around_v0 = vert2tri[new_edge_nodes[0]];
+            let tri_count = 0;
+            let tri_ind_pair = [-1, -1]; //indices of the triangles on either side of this edge
+            for (let itri = 0; itri < tri_around_v0.length; itri++)
+            {
+                const cur_tri = triangles[tri_around_v0[itri]];
+                if (cur_tri[0] == new_edge_nodes[1] || cur_tri[1] == new_edge_nodes[1] || cur_tri[2] == new_edge_nodes[1])
+                {
+                    tri_ind_pair[tri_count] = tri_around_v0[itri];
+                    tri_count++;
+
+                    if (tri_count == 2)
+                        break; //found both neighboring triangles
+                }
+            }
+
+            if (tri_ind_pair[0] == -1)
+                continue; //this edge no longer exists, so nothing to do.
+
+            const triA_verts = [verts[triangles[tri_ind_pair[0]][0]],
+                verts[triangles[tri_ind_pair[0]][1]],
+                verts[triangles[tri_ind_pair[0]][2]]];
+
+            const outer_nodeB_ind = adjacency[tri_ind_pair[1]].indexOf(tri_ind_pair[0]);
+            const triB_vert = verts[triangles[tri_ind_pair[1]][outer_nodeB_ind]];
+
+            if (!isDelaunay2(triA_verts, triB_vert))
+            {
+                const outer_nodeA_ind = adjacency[tri_ind_pair[0]].indexOf(tri_ind_pair[1]);
+
+                //Swap the diagonal between the pair of triangles
+                swapDiagonal(meshData, tri_ind_pair[0], tri_ind_pair[1]);
+                num_diagonal_swaps++;
+
+                //Replace current new edge with the new diagonal
+                newEdgeList[iedge] = [triangles[tri_ind_pair[0]][outer_nodeA_ind],
+                    triangles[tri_ind_pair[1]][outer_nodeB_ind]];
+            }
+
+        } //loop over new edges
+
+        if (num_diagonal_swaps == 0)
+            break; //no further swaps, we're done.
+    }
+}
+
+function buildVertexConnectivity(meshData)
+{
+    var triangles = meshData.tri;
+    meshData.vert_to_tri = [];
+    var vConnectivity = meshData.vert_to_tri;
+
+    for (let itri = 0; itri < triangles.length; itri++)
+    {
+        for (let node = 0; node < 3; node++)
+        {
+            if (vConnectivity[triangles[itri][node]] == undefined)
+                vConnectivity[triangles[itri][node]] = [itri];
+            else
+                vConnectivity[triangles[itri][node]].push(itri);
+        }
+    }
+}
+
+function getEdgeIntersections(meshData, iedge)
+{
+    var triangles = meshData.tri;
+    var verts = meshData.scaled_vert;
+    var adjacency = meshData.adj;
+    var con_edges = meshData.con_edge;
+    var vert2tri = meshData.vert_to_tri;
+
+    const edge_v0_ind = con_edges[iedge][0];
+    const edge_v1_ind = con_edges[iedge][1];
+    const edge_coords = [verts[edge_v0_ind], verts[edge_v1_ind]];
+
+    const tri_around_v0 = vert2tri[edge_v0_ind];
+
+    let edge_in_triangulation = false;
+
+    //stores the index of tri that intersects current edge,
+    //and the edge-index of intersecting edge in triangle
+    let intersections = [];
+
+    for (let itri = 0; itri < tri_around_v0.length; itri++)
+    {
+        const cur_tri = triangles[tri_around_v0[itri]];
+        const v0_node = cur_tri.indexOf(edge_v0_ind);
+        const v0p1_node = (v0_node+1) % 3;
+        const v0p2_node = (v0_node+2) % 3;
+
+        if ( edge_v1_ind == cur_tri[v0p1_node] )
+        {
+            //constrained edge is an edge of the current tri (node v0_node to v0_node+1)
+            edge_in_triangulation = true;
+            break;
+        }
+        else if ( edge_v1_ind == cur_tri[v0p2_node] )
+        {
+            //constrained edge is an edge of the current tri (node v0_node to v0_node+2)
+            edge_in_triangulation = true;
+            break;
+        }
+
+        const opposite_edge_coords = [verts[cur_tri[v0p1_node]], verts[cur_tri[v0p2_node]]];
+        if (isEdgeIntersecting(edge_coords, opposite_edge_coords))
+        {
+            intersections.push([tri_around_v0[itri], v0_node]);
+            break;
+        }
+    }
+
+    if (!edge_in_triangulation)
+    {
+        if (intersections.length == 0)
+            throw "Cannot have no intersections!";
+
+        while (true)
+        {
+            const prev_intersection = intersections[intersections.length - 1]; //[tri ind][node ind for edge]
+            const tri_ind = adjacency[prev_intersection[0]][prev_intersection[1]];
+
+            if ( triangles[tri_ind][0] == edge_v1_ind ||
+                triangles[tri_ind][1] == edge_v1_ind ||
+                triangles[tri_ind][2] == edge_v1_ind )
+            {
+                break; //found the end node of the edge
+            }
+
+            //Find the index of the edge from which we came into this triangle
+            let prev_edge_ind = adjacency[tri_ind].indexOf(prev_intersection[0]);
+            if (prev_edge_ind == -1)
+                throw "Could not find edge!";
+
+            const cur_tri = triangles[tri_ind];
+
+            //Loop over the other two edges in this triangle,
+            //and check if they intersect the constrained edge
+            for (let offset = 1; offset < 3; offset++)
+            {
+                const v0_node = (prev_edge_ind+offset+1) % 3;
+                const v1_node = (prev_edge_ind+offset+2) % 3;
+                const cur_edge_coords = [verts[cur_tri[v0_node]], verts[cur_tri[v1_node]]];
+
+                if (isEdgeIntersecting(edge_coords, cur_edge_coords))
+                {
+                    intersections.push([tri_ind, (prev_edge_ind+offset) % 3]);
+                    break;
+                }
+            }
+
+        } //while intersections not found
+    } //if edge not in triangulation
+
+    return intersections;
+}
+
+function fixEdgeIntersections(meshData, intersectionList, con_edge_ind, newEdgeList)
+{
+    var triangles = meshData.tri;
+    var verts = meshData.scaled_vert;
+    var adjacency = meshData.adj;
+    var con_edges = meshData.con_edge;
+
+    //Node indices and endpoint coords of current constrained edge
+    var con_edge_nodes = con_edges[con_edge_ind];
+    var cur_con_edge_coords = [verts[con_edge_nodes[0]], verts[con_edge_nodes[1]]];
+
+    var nIntersections = intersectionList.length;
+    for (let i = 0; i < nIntersections; i++)
+    {
+        //Looping in reverse order is important since then the
+        //indices in intersectionList remain unaffected by any diagonal swaps
+        const tri0_ind = intersectionList[nIntersections - 1 - i][0];
+        const tri0_node = intersectionList[nIntersections - 1 - i][1];
+
+        const tri1_ind = adjacency[tri0_ind][tri0_node];
+        const tri1_node = adjacency[tri1_ind].indexOf(tri0_ind);
+
+        const quad_v0 = verts[triangles[tri0_ind][tri0_node]];
+        const quad_v1 = verts[triangles[tri0_ind][(tri0_node + 1) % 3]];
+        const quad_v2 = verts[triangles[tri1_ind][tri1_node]];
+        const quad_v3 = verts[triangles[tri0_ind][(tri0_node + 2) % 3]];
+
+        const isConvex = isQuadConvex(quad_v0, quad_v1, quad_v2, quad_v3);
+
+        if (isConvex)
+        {
+            swapDiagonal(meshData, tri0_ind, tri1_ind);
+
+            const newDiagonal_nodes = [triangles[tri0_ind][tri0_node], triangles[tri1_ind][tri1_node]];
+
+            const newDiagonal_coords = [quad_v0, quad_v2];
+            const hasCommonNode = (newDiagonal_nodes[0] == con_edge_nodes[0] || newDiagonal_nodes[0] == con_edge_nodes[1] ||
+                newDiagonal_nodes[1] == con_edge_nodes[0] || newDiagonal_nodes[1] == con_edge_nodes[1]);
+            if (hasCommonNode || !isEdgeIntersecting(cur_con_edge_coords, newDiagonal_coords))
+            {
+                newEdgeList.push([newDiagonal_nodes[0], newDiagonal_nodes[1]]);
+            }
+
+        } //is convex
+
+    } //loop over intersections
 }
