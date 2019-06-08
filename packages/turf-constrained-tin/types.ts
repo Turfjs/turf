@@ -1,5 +1,5 @@
 import {featureCollection, point} from "@turf/helpers";
-import constrainedTin from "./";
+import constrainedTin from "./oldLogic";
 
 const points = featureCollection([
   point([0, 0], {elevation: 20}),

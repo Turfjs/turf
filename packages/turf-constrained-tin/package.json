@@ -3,10 +3,11 @@
   "version": "6.0.2",
   "description": "turf constrained tin module",
   "main": "index",
-  "types": "index.d.ts",
+  "types": "oldLogic.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "oldLogic.js",
+    "oldLogic.d.ts"
   ],
   "scripts": {
     "prepare": "tsc",

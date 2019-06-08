@@ -1,21 +1,78 @@
+// A fast algorithm for generating constrained delaunay triangulations
+// https://www.sciencedirect.com/science/article/pii/004579499390239A
+// A robust efficient algorithm for point location in triangulations
+// https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-728.pdf
+// https://savithru-j.github.io/cdt-js/
 const helper = require('@turf/helpers');
 
-module.exports = function(points, edges) {
-    var ret = {
+/**
+ * Takes a set of {@link Point|points} and creates a
+ * constrained [Triangulated Irregular Network](http://en.wikipedia.org/wiki/Triangulated_irregular_network),
+ * or a TIN for short, returned as a collection of Polygons. These are often used
+ * for developing elevation contour maps or stepped heat visualizations.
+ *
+ * If an optional z-value property is provided then it is added as properties called `a`, `b`,
+ * and `c` representing its value at each of the points that represent the corners of the
+ * triangle.
+ *
+ * @name constrainedTin
+ * @param {FeatureCollection<Point>} points input points
+ * @param {Array<Array<number>>} [edges] list of edges
+ * @param {String} [z] name of the property from which to pull z values
+ * This is optional: if not given, then there will be no extra data added to the derived triangles.
+ * @returns {FeatureCollection<Polygon>} TIN output
+ * @example
+ * // generate some random point data
+ * var points = turf.randomPoint(30, {bbox: [50, 30, 70, 50]});
+ *
+ * // add a random property to each point between 0 and 9
+ * for (var i = 0; i < points.features.length; i++) {
+ *   points.features[i].properties.z = ~~(Math.random() * 9);
+ * }
+ * var tin = turf.constrainedTin(points, [], 'z');
+ *
+ * //addToMap
+ * var addToMap = [tin, points]
+ * for (var i = 0; i < tin.features.length; i++) {
+ *   var properties  = tin.features[i].properties;
+ *   properties.fill = '#' + properties.a + properties.b + properties.c;
+ * }
+ */
+module.exports = function(points, edges, z) {
+    let isPointZ = false;
+    const ret = {
         vert: points.features.map(function(point) {
             const xy = point.geometry.coordinates;
             return new Point(xy[0], xy[1]);
         }),
-        con_edge: edges
+        z: points.features.map(function(point) {
+            if (z) {
+                return point.properties[z];
+            } else if (point.geometry.coordinates.length === 3) {
+                isPointZ = true;
+                return point.geometry.coordinates[2];
+            }
+        })
     };
+    loadEdges(ret, edges)
     delaunay(ret);
     constrainEdges(ret);
+    const keys = ['a', 'b', 'c'];
     return helper.featureCollection(ret.tri.map(function(indices) {
-        const coords = indices.map(function(index) {
-            return [ret.vert[index].x, ret.vert[index].y];
+        const properties = {};
+        const coords = indices.map(function(index, i) {
+            const coord = [ret.vert[index].x, ret.vert[index].y];
+            if (ret.z[index] !== undefined) {
+                if (isPointZ) {
+                    coord[2] = ret.z[index];
+                } else {
+                    properties[keys[i]] = ret.z[index];
+                }
+            }
+            return coord; 
         })
         coords[3] = coords[0];
-        return helper.polygon([coords]);
+        return helper.polygon([coords], properties);
     }));
 };
 
@@ -794,4 +851,63 @@ function fixEdgeIntersections(meshData, intersectionList, con_edge_ind, newEdgeL
         } //is convex
 
     } //loop over intersections
+}
+
+function loadEdges(meshData, edges)
+{
+    var nVertex = meshData.vert.length;
+
+    meshData.con_edge = [];
+
+    for(let i = 0; i < edges.length; i++)
+    {
+        const edge = edges[i];
+
+        if (edge[0] < 0 || edge[0] >= nVertex ||
+            edge[1] < 0 || edge[1] >= nVertex)
+        {
+            throw ("Vertex indices of edge " + i + " need to be non-negative and less than the number of input vertices.");
+            meshData.con_edge = [];
+            break;
+        }
+
+        if (edge[0] === edge[1])
+        {
+            throw("Edge " + i + " is degenerate!");
+            meshData.con_edge = [];
+            break;
+        }
+
+        if (!isEdgeValid(edge, meshData.con_edge, meshData.vert))
+        {
+            throw("Edge " + i + " already exists or intersects with an existing edge!");
+            meshData.con_edge = [];
+            break;
+        }
+
+        meshData.con_edge.push([edge[0], edge[1]]);
+    }
+}
+
+function isEdgeValid(newEdge, edgeList, vertices)
+{
+    var new_edge_verts = [vertices[newEdge[0]], vertices[newEdge[1]]];
+
+    for (let i = 0; i < edgeList.length; i++)
+    {
+        //Not valid if edge already exists
+        if ( (edgeList[i][0] == newEdge[0] && edgeList[i][1] == newEdge[1]) ||
+            (edgeList[i][0] == newEdge[1] && edgeList[i][1] == newEdge[0]) )
+            return false;
+
+        let hasCommonNode = (edgeList[i][0] == newEdge[0] || edgeList[i][0] == newEdge[1] ||
+            edgeList[i][1] == newEdge[0] || edgeList[i][1] == newEdge[1]);
+
+        let edge_verts = [vertices[edgeList[i][0]], vertices[edgeList[i][1]]];
+
+        if (!hasCommonNode && isEdgeIntersecting(edge_verts, new_edge_verts))
+            return false;
+    }
+
+    return true;
 }
