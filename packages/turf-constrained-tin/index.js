@@ -6,6 +6,7 @@
 // Copyright 2018 Savithru Jayasinghe
 // Licensed under the MIT License
 var helper = require('@turf/helpers');
+var fs = require('fs');
 
 /**
  * Takes a set of {@link Point|points} and creates a
@@ -42,11 +43,41 @@ var helper = require('@turf/helpers');
  */
 module.exports = function(points, edges, z) {
     var isPointZ = false;
+    // Caluculating scale factor
+    // Original cdt-js not working well with coordinates between (0,0)-(1,1)
+    // So points must be normalized
+    var pointsBuffer = {};
+    var scaleValues = points.features.reduce(function(prev, point, index, arr) {
+        var xy = point.geometry.coordinates;
+        if (!prev) return [xy[0], xy[0], xy[1], xy[1]];
+        var prev = [
+            Math.min(prev[0], xy[0]),
+            Math.max(prev[1], xy[0]),
+            Math.min(prev[2], xy[1]),
+            Math.max(prev[3], xy[1])
+        ];
+        if (index !== arr.length - 1) return prev;
+
+        var xDiff = prev[1] - prev[0];
+        var xCenter = (prev[0] + prev[1]) / 2.0;
+        var yDiff = prev[3] - prev[2];
+        var yCenter = (prev[2] + prev[3]) / 2.0;
+        var maxDiff = Math.max(xDiff, yDiff) * 1.1;
+        return [xCenter - maxDiff / 2.0, yCenter - maxDiff / 2.0, maxDiff];
+    }, null);
+    // Normalize points
+    var normPoints = points.features.map(function(point) {
+        var xy = point.geometry.coordinates;
+        normXy = [
+            (xy[0] - scaleValues[0]) / scaleValues[2] + 0.5,
+            (xy[1] - scaleValues[1]) / scaleValues[2] + 0.5
+        ];
+        pointsBuffer[normXy[0] + ':' + normXy[1]] = xy;
+        //console.log(normXy);
+        return new Point(normXy[0], normXy[1]);
+    });
     var ret = {
-        vert: points.features.map(function(point) {
-            var xy = point.geometry.coordinates;
-            return new Point(xy[0], xy[1]);
-        }),
+        vert: normPoints,
         z: points.features.map(function(point) {
             if (z) {
                 return point.properties[z];
@@ -63,7 +94,8 @@ module.exports = function(points, edges, z) {
     return helper.featureCollection(ret.tri.map(function(indices) {
         var properties = {};
         var coords = indices.map(function(index, i) {
-            var coord = [ret.vert[index].x, ret.vert[index].y];
+            var normCoord = [ret.vert[index].x, ret.vert[index].y];
+            var coord = pointsBuffer[normCoord[0] + ':' + normCoord[1]];
             if (ret.z[index] !== undefined) {
                 if (isPointZ) {
                     coord[2] = ret.z[index];
@@ -119,9 +151,9 @@ function getPointOrientation(edge, p)
 
 //Some variables for rendering
 
-var min_coord = new Point(-16000000, -16000000);
-var screenL = 32000000;
-var boundingL = 1000000000;
+var min_coord = new Point(0.0, 0.0);//new Point(-16000000, -16000000);
+var screenL = 1.0;//32000000;
+var boundingL = 1000;//1000000000;
 
 function binSorter(a, b)
 {

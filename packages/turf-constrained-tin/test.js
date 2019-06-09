@@ -6,6 +6,9 @@ const constrainedTin = require('./');
 const points = require(path.join(__dirname,  'test', 'Points.json'));
 const points_grid = require(path.join(__dirname,  'test', 'Points_grid.json'));
 const mercator = require(path.join(__dirname,  'test', 'mercator.json'));
+const e_mercator = require(path.join(__dirname,  'test', 'error_mercator.json'));
+
+const tinned = constrainedTin(e_mercator, []);
 
 test('tin - z property', t => {
     const expected = require(path.join(__dirname,  'test', 'Tin.json'));
@@ -13,7 +16,7 @@ test('tin - z property', t => {
     t.equal(tinned.features[0].geometry.type, 'Polygon');
     t.equal(tinned.features.length, 24);
     t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin.json'), JSON.stringify(tinned, null, 2));
+    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin_tmp.json'), JSON.stringify(tinned, null, 2));
     t.end();
 });
 
@@ -23,7 +26,7 @@ test('tin - z coordinate', t => {
     t.equal(tinned.features[0].geometry.type, 'Polygon');
     t.equal(tinned.features.length, 24);
     t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin-z.json'), JSON.stringify(tinned, null, 2));
+    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin-z_tmp.json'), JSON.stringify(tinned, null, 2));
     t.end();
 });
 
@@ -33,7 +36,7 @@ test('Mercator case', t => {
     t.equal(tinned.features[0].geometry.type, 'Polygon');
     t.equal(tinned.features.length, 542);
     t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'TinMercator.json'), JSON.stringify(tinned, null, 2));
+    //fs.writeFileSync(path.join(__dirname, 'test', 'TinMercator_tmp.json'), JSON.stringify(tinned, null, 2));
     t.end();
 });
 
@@ -43,7 +46,7 @@ test('tin - grid without edges', t => {
     t.equal(tinned.features[0].geometry.type, 'Polygon');
     t.equal(tinned.features.length, 8);
     t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin-Grid_1.json'), JSON.stringify(tinned, null, 2));
+    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin-Grid_1_tmp.json'), JSON.stringify(tinned, null, 2));
     t.end();
 });
 
@@ -53,7 +56,7 @@ test('tin - grid with 1 edge', t => {
     t.equal(tinned.features[0].geometry.type, 'Polygon');
     t.equal(tinned.features.length, 8);
     t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin-Grid_2.json'), JSON.stringify(tinned, null, 2));
+    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin-Grid_2_tmp.json'), JSON.stringify(tinned, null, 2));
     t.end();
 });
 
@@ -63,7 +66,7 @@ test('tin - grid with 2 edges', t => {
     t.equal(tinned.features[0].geometry.type, 'Polygon');
     t.equal(tinned.features.length, 8);
     t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin-Grid_3.json'), JSON.stringify(tinned, null, 2));
+    //fs.writeFileSync(path.join(__dirname, 'test', 'Tin-Grid_3_tmp.json'), JSON.stringify(tinned, null, 2));
     t.end();
 });
 
