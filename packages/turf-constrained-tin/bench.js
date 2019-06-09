@@ -19,6 +19,8 @@ const points = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'Points.j
  * normal Tin (as reference, no constrained) x 19,826 ops/sec ±2.74% (75 runs sampled)
  */
 const suite = new Benchmark.Suite('turf-constrained-tin');
+constrainedTin(points);
+tin(points);
 [[0, 10], [2, 6], [3, 4]].reduce(function(edges, edge, index, array) {
     edges.push(edge);
     let name = 'constrained Tin (cdt-js) with ' + edges.length + ' edge' + (edges.length > 1 ? 's' : '');
