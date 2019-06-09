@@ -5,10 +5,8 @@ const constrainedTin = require('./');
 
 const points = require(path.join(__dirname,  'test', 'Points.json'));
 const points_grid = require(path.join(__dirname,  'test', 'Points_grid.json'));
-const mercator = require(path.join(__dirname,  'test', 'mercator.json'));
-const e_mercator = require(path.join(__dirname,  'test', 'error_mercator.json'));
-
-const tinned = constrainedTin(e_mercator, []);
+const mercator1 = require(path.join(__dirname,  'test', 'mercator_1.json'));
+const mercator2 = require(path.join(__dirname,  'test', 'mercator_2.json'));
 
 test('tin - z property', t => {
     const expected = require(path.join(__dirname,  'test', 'Tin.json'));
@@ -30,13 +28,23 @@ test('tin - z coordinate', t => {
     t.end();
 });
 
-test('Mercator case', t => {
-    const expected = require(path.join(__dirname,  'test', 'TinMercator.json'));
-    const tinned = constrainedTin(mercator, [[2, 12]]);
+test('Mercator case 1', t => {
+    const expected = require(path.join(__dirname,  'test', 'TinMercator1.json'));
+    const tinned = constrainedTin(mercator1, [[2, 12]]);
     t.equal(tinned.features[0].geometry.type, 'Polygon');
     t.equal(tinned.features.length, 542);
     t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'TinMercator_tmp.json'), JSON.stringify(tinned, null, 2));
+    //fs.writeFileSync(path.join(__dirname, 'test', 'TinMercator1_tmp.json'), JSON.stringify(tinned, null, 2));
+    t.end();
+});
+
+test('Mercator case 2', t => {
+    const expected = require(path.join(__dirname,  'test', 'TinMercator2.json'));
+    const tinned = constrainedTin(mercator2, [[2, 12]]);
+    t.equal(tinned.features[0].geometry.type, 'Polygon');
+    t.equal(tinned.features.length, 997);
+    t.deepEqual(tinned, expected, 'tinned polygons match');
+    //fs.writeFileSync(path.join(__dirname, 'test', 'TinMercator2_tmp.json'), JSON.stringify(tinned, null, 2));
     t.end();
 });
 

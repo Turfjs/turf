@@ -46,46 +46,38 @@ module.exports = function(points, edges, z) {
     // Caluculating scale factor
     // Original cdt-js not working well with coordinates between (0,0)-(1,1)
     // So points must be normalized
-    var pointsBuffer = {};
-    var scaleValues = points.features.reduce(function(prev, point, index, arr) {
+    var xyzs = points.features.reduce(function(prev, point) {
         var xy = point.geometry.coordinates;
-        if (!prev) return [xy[0], xy[0], xy[1], xy[1]];
-        var prev = [
-            Math.min(prev[0], xy[0]),
-            Math.max(prev[1], xy[0]),
-            Math.min(prev[2], xy[1]),
-            Math.max(prev[3], xy[1])
-        ];
-        if (index !== arr.length - 1) return prev;
-
-        var xDiff = prev[1] - prev[0];
-        var xCenter = (prev[0] + prev[1]) / 2.0;
-        var yDiff = prev[3] - prev[2];
-        var yCenter = (prev[2] + prev[3]) / 2.0;
-        var maxDiff = Math.max(xDiff, yDiff) * 1.1;
-        return [xCenter - maxDiff / 2.0, yCenter - maxDiff / 2.0, maxDiff];
-    }, null);
+        prev[0].push(xy[0]);
+        prev[1].push(xy[1]);
+        if (z) {
+            prev[2].push(point.properties[z]);
+        } else if (xy.length === 3) {
+            isPointZ = true;
+            prev[2].push(point.geometry.coordinates[2]);
+        }
+        return prev;
+    }, [[], [], []]);
+    var xMax = Math.max.apply(null, xyzs[0]);
+    var xMin = Math.min.apply(null, xyzs[0]);
+    var yMax = Math.max.apply(null, xyzs[1]);
+    var yMin = Math.min.apply(null, xyzs[1]);
+    var xDiff = xMax - xMin;
+    var xCenter = (xMax + xMin) / 2.0;
+    var yDiff = yMax - yMin;
+    var yCenter = (yMax + yMin) / 2.0;
+    var maxDiff = Math.max(xDiff, yDiff) * 1.1;
     // Normalize points
     var normPoints = points.features.map(function(point) {
         var xy = point.geometry.coordinates;
         normXy = [
-            (xy[0] - scaleValues[0]) / scaleValues[2] + 0.5,
-            (xy[1] - scaleValues[1]) / scaleValues[2] + 0.5
+            (xy[0] - xCenter) / maxDiff + 0.5,
+            (xy[1] - yCenter) / maxDiff + 0.5
         ];
-        pointsBuffer[normXy[0] + ':' + normXy[1]] = xy;
-        //console.log(normXy);
         return new Point(normXy[0], normXy[1]);
     });
     var ret = {
-        vert: normPoints,
-        z: points.features.map(function(point) {
-            if (z) {
-                return point.properties[z];
-            } else if (point.geometry.coordinates.length === 3) {
-                isPointZ = true;
-                return point.geometry.coordinates[2];
-            }
-        })
+        vert: normPoints
     };
     loadEdges(ret, edges)
     delaunay(ret);
@@ -94,13 +86,12 @@ module.exports = function(points, edges, z) {
     return helper.featureCollection(ret.tri.map(function(indices) {
         var properties = {};
         var coords = indices.map(function(index, i) {
-            var normCoord = [ret.vert[index].x, ret.vert[index].y];
-            var coord = pointsBuffer[normCoord[0] + ':' + normCoord[1]];
-            if (ret.z[index] !== undefined) {
+            var coord = [xyzs[0][index], xyzs[1][index]];
+            if (xyzs[2][index] !== undefined) {
                 if (isPointZ) {
-                    coord[2] = ret.z[index];
+                    coord[2] = xyzs[2][index];
                 } else {
-                    properties[keys[i]] = ret.z[index];
+                    properties[keys[i]] = xyzs[2][index];
                 }
             }
             return coord; 
