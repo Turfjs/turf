@@ -1,5 +1,9 @@
   { 
     "type": "FeatureCollection",
+    "properties": {
+      "z": "elevation",
+      "edges": [[1, 11]]
+    },
     "features": [
       { "type": "Feature",
         "geometry": {"type": "Point", "coordinates": [-75.833, 39.284, 25]},

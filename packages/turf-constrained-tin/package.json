@@ -32,7 +32,9 @@
   "devDependencies": {
     "@turf/tin": "^6.0.2",
     "benchmark": "*",
-    "tape": "*"
+    "load-json-file": "^6.0.0",
+    "tape": "*",
+    "write-json-file": "^4.1.0"
   },
   "dependencies": {
     "@turf/helpers": "6.x"

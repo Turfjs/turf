@@ -1,72 +1,44 @@
 const fs = require('fs');
 const path = require('path');
 const test = require('tape');
+const load = require('load-json-file');
+const write = require('write-json-file');
 const constrainedTin = require('./');
 
-const points = require(path.join(__dirname,  'test', 'in', 'Points.json'));
-const points_grid = require(path.join(__dirname,  'test', 'in', 'Points_grid.json'));
-const mercator1 = require(path.join(__dirname,  'test', 'in', 'mercator_1.json'));
-const mercator2 = require(path.join(__dirname,  'test', 'in', 'mercator_2.json'));
+const directories = {
+    in: path.join(__dirname, 'test', 'in') + path.sep,
+    out: path.join(__dirname, 'test', 'out') + path.sep
+};
 
-test('tin - z property', t => {
-    const expected = require(path.join(__dirname,  'test', 'out', 'Tin.json'));
-    const tinned = constrainedTin(points, [[2, 12]], 'elevation');
-    t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'out', 'Tin_tmp.json'), JSON.stringify(tinned, null, 2));
-    t.end();
+const fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        filename: filename,
+        name: path.parse(filename).name,
+        geojson: load.sync(directories.in + filename)
+    };
 });
+let grid_case;
+test('turf-constrained-tin', t => {
+    fixtures.forEach(fixture => {
+        const filename = fixture.filename;
+        const name = fixture.name;
+        const geojson = fixture.geojson;
+        if (filename === 'Grid_no_edges.json') grid_case = geojson;
+        const properties = geojson.properties || {};
+        const edges = properties.edges;
+        const z = properties.z;
 
-test('tin - z coordinate', t => {
-    const expected = require(path.join(__dirname,  'test', 'out', 'Tin-z.json'));
-    const tinned = constrainedTin(points, [[1, 11]]);
-    t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'out', 'Tin-z_tmp.json'), JSON.stringify(tinned, null, 2));
-    t.end();
-});
+        const results = constrainedTin(geojson, edges, z);
 
-test('Mercator case 1', t => {
-    const expected = require(path.join(__dirname,  'test', 'out', 'TinMercator1.json'));
-    const tinned = constrainedTin(mercator1, [[2, 12]]);
-    t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'out', 'TinMercator1_tmp.json'), JSON.stringify(tinned, null, 2));
-    t.end();
-});
-
-test('Mercator case 2', t => {
-    const expected = require(path.join(__dirname,  'test', 'out', 'TinMercator2.json'));
-    const tinned = constrainedTin(mercator2, [[2, 12]]);
-    t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'out', 'TinMercator2_tmp.json'), JSON.stringify(tinned, null, 2));
-    t.end();
-});
-
-test('tin - grid without edges', t => {
-    const expected = require(path.join(__dirname,  'test', 'out', 'Tin-Grid_1.json'));
-    const tinned = constrainedTin(points_grid, []);
-    t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'out', 'Tin-Grid_1_tmp.json'), JSON.stringify(tinned, null, 2));
-    t.end();
-});
-
-test('tin - grid with 1 edge', t => {
-    const expected = require(path.join(__dirname,  'test', 'out', 'Tin-Grid_2.json'));
-    const tinned = constrainedTin(points_grid, [[0, 5]]);
-    t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'out', 'Tin-Grid_2_tmp.json'), JSON.stringify(tinned, null, 2));
-    t.end();
-});
-
-test('tin - grid with 2 edges', t => {
-    const expected = require(path.join(__dirname,  'test', 'out', 'Tin-Grid_3.json'));
-    const tinned = constrainedTin(points_grid, [[0, 5], [5, 6]]);
-    t.deepEqual(tinned, expected, 'tinned polygons match');
-    //fs.writeFileSync(path.join(__dirname, 'test', 'out', 'Tin-Grid_3_tmp.json'), JSON.stringify(tinned, null, 2));
+        if (process.env.REGEN) write.sync(directories.out + filename, results);
+        t.deepEquals(results, load.sync(directories.out + filename), name);
+    });
     t.end();
 });
 
 test('tin - error case', t => {
-    t.throws(() => constrainedTin(points_grid, [[0, 100],[5, 6]]), /Vertex indices of edge 0/, 'Too big edge index');
-    t.throws(() => constrainedTin(points_grid, [[0, 5],[1, 4]]), /Edge 1 already exists or intersects/, 'Edge intersecting');
-    t.throws(() => constrainedTin(points_grid, [[1, 1]]), /Edge 0 is degenerate/, 'Same vertex edge');
+    t.throws(() => constrainedTin(grid_case, [[0, 100],[5, 6]]), /Vertex indices of edge 0/, 'Too big edge index');
+    t.throws(() => constrainedTin(grid_case, [[0, 5],[1, 4]]), /Edge 1 already exists or intersects/, 'Edge intersecting');
+    t.throws(() => constrainedTin(grid_case, [[1, 1]]), /Edge 0 is degenerate/, 'Same vertex edge');
     t.end();
 });

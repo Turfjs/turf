@@ -1,5 +1,8 @@
   { 
     "type": "FeatureCollection",
+    "properties": {
+      "edges": [[0, 5]]
+    },
     "features": [
       { "type": "Feature",
         "geometry": {"type": "Point", "coordinates": [0, 0]}
