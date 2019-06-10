@@ -37,6 +37,9 @@ var cdtJs = require('./cdt-js');
  */
 module.exports = function(points, edges, z) {
     if (!edges) edges = [];
+    if (typeof points !== "object" || points.type !== "FeatureCollection") throw "Argument points must be FeatureCollection";
+    if (!Array.isArray(edges)) throw "Argument points must be Array of Array";
+    if (z && typeof z !== "string") throw "Argument z must be string";
     var isPointZ = false;
     // Caluculating scale factor
     // Original cdt-js not working well with coordinates between (0,0)-(1,1)

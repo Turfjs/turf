@@ -37,6 +37,9 @@ test('turf-constrained-tin', t => {
 });
 
 test('tin - error case', t => {
+    t.throws(() => constrainedTin([]), /Argument points must be/, 'Points type check');
+    t.throws(() => constrainedTin(grid_case, "edges"), /Argument points must be/, 'Edges type check');
+    t.throws(() => constrainedTin(grid_case, [[1, 2]], []), /Argument z must be/, 'Z type check');
     t.throws(() => constrainedTin(grid_case, [[0, 100],[5, 6]]), /Vertex indices of edge 0/, 'Too big edge index');
     t.throws(() => constrainedTin(grid_case, [[0, 5],[1, 4]]), /Edge 1 already exists or intersects/, 'Edge intersecting');
     t.throws(() => constrainedTin(grid_case, [[1, 1]]), /Edge 0 is degenerate/, 'Same vertex edge');

@@ -4,7 +4,7 @@ const Benchmark = require('benchmark');
 const tin = require('@turf/tin').default;
 const constrainedTin = require('./');
 
-const points = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'in', 'Points.json')));
+const points = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'in', 'Points_z_properties.json')));
 
 /**
  * Benchmark Results
