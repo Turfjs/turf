@@ -94,8 +94,7 @@ class EdgeRing {
      * @returns {boolean} - Validity of the EdgeRing
      */
     isValid() {
-    // TODO: stub
-        return true;
+        return this.edges.length === 0 || this.edges.length >= 4;
     }
 
     /**
