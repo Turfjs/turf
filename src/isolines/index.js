@@ -7,7 +7,7 @@ import gridToMatrix from './lib/grid-to-matrix';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
- * value breaks and generates [isolines](http://en.wikipedia.org/wiki/Isoline).
+ * value breaks and generates [isolines](https://en.wikipedia.org/wiki/Contour_line).
  *
  * @name isolines
  * @param {FeatureCollection<Point>} pointGrid input points
