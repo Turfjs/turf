@@ -314,18 +314,20 @@ class Graph {
     _findEdgeRing(startEdge) {
         let edge = startEdge;
         const edgeRing = new EdgeRing();
-        const vertexSet = new Set();
+        const vertexSet = {};
         if (edge.from) {
-            vertexSet.add(edge.from.id);
+            vertexSet[edge.from.id] = 1;
         }
         do {
             const toVertex = edge.to;
             edgeRing.push(edge);
             edge.ring = edgeRing;
             edge = edge.next;
-            if (toVertex && !vertexSet.has(toVertex.id)) {
-                vertexSet.add(toVertex.id);
+            if (toVertex && !vertexSet[toVertex.id]) {
+                vertexSet[toVertex.id] = 1;
             } else {
+                // we have come back to an existing point,
+                // therefore our loop is over
                 break;
             }
         } while (!startEdge.isEqual(edge));
