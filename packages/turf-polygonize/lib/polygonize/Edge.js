@@ -5,6 +5,10 @@ import {orientationIndex} from './util';
  * This class is inspired by GEOS's geos::operation::polygonize::PolygonizeDirectedEdge
  */
 class Edge {
+    static buildId(from, to) {
+        return [from.id, to.id].join('-');
+    }
+
     /**
      * Creates or get the symetric Edge.
      *
@@ -26,7 +30,7 @@ class Edge {
     constructor(from, to) {
         this.from = from; //< start
         this.to = to; //< End
-
+        this.id = Edge.buildId(from, to);
         this.next = undefined; //< The edge to be computed after
         this.label = undefined; //< Used in order to detect Cut Edges (Bridges)
         this.symetric = undefined; //< The symetric edge of this
@@ -53,7 +57,7 @@ class Edge {
      * @returns {boolean} - True if Edges are equal, False otherwise
      */
     isEqual(edge) {
-        return this.from.id === edge.from.id && this.to.id === edge.to.id;
+        return this.id === edge.id;
     }
 
     toString() {

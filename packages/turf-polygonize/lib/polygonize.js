@@ -1,7 +1,7 @@
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import { featureCollection, lineString, multiPoint, point, polygon } from '@turf/helpers';
+import { point, lineString, multiPoint, polygon, featureCollection } from '@turf/helpers';
 import envelope from '@turf/envelope';
-import { coordReduce, flattenEach } from '@turf/meta';
+import { flattenEach, coordReduce } from '@turf/meta';
 import { featureOf } from '@turf/invariant';
 
 /**
@@ -180,7 +180,7 @@ Node.prototype.addInnerEdge = function addInnerEdge (edge) {
 var Edge = function Edge(from, to) {
     this.from = from; //< start
     this.to = to; //< End
-
+    this.id = Edge.buildId(from, to);
     this.next = undefined; //< The edge to be computed after
     this.label = undefined; //< Used in order to detect Cut Edges (Bridges)
     this.symetric = undefined; //< The symetric edge of this
@@ -192,6 +192,15 @@ var Edge = function Edge(from, to) {
 
 /**
  * Removes edge from from and to nodes.
+ */
+Edge.buildId = function buildId (from, to) {
+    return [from.id, to.id].join('-');
+};
+
+/**
+ * Creates or get the symetric Edge.
+ *
+ * @returns {Edge} - Symetric Edge.
  */
 Edge.prototype.getSymetric = function getSymetric () {
     if (!this.symetric) {
@@ -216,7 +225,7 @@ Edge.prototype.deleteEdge = function deleteEdge () {
  * @returns {boolean} - True if Edges are equal, False otherwise
  */
 Edge.prototype.isEqual = function isEqual (edge) {
-    return this.from.id === edge.from.id && this.to.id === edge.to.id;
+    return this.id === edge.id;
 };
 
 Edge.prototype.toString = function toString () {
@@ -338,8 +347,8 @@ EdgeRing.prototype.some = function some (f) {
  * @returns {boolean} - Validity of the EdgeRing
  */
 EdgeRing.prototype.isValid = function isValid () {
-// TODO: stub
-    return true;
+    return this.edges.length === 0 || this.edges.length >= 3;
+    // return true;
 };
 
 /**
@@ -485,7 +494,8 @@ function validateGeoJson(geoJson) {
  */
 var Graph = function Graph() {
     this.edges = []; //< {Edge[]} dirEdges
-
+    this.edgeIds = new Set();
+        
     // The key is the `id` of the Node (ie: coordinates.join(','))
     this.nodes = {};
 };
@@ -538,11 +548,17 @@ Graph.prototype.getNode = function getNode (coordinates) {
  * @param {Node} to - Node which ends the Edge
  */
 Graph.prototype.addEdge = function addEdge (from, to) {
-    var edge = new Edge(from, to),
-        symetricEdge = edge.getSymetric();
-
-    this.edges.push(edge);
-    this.edges.push(symetricEdge);
+    var edgeId = Edge.buildId(from, to);
+    if (!this.edgeIds.has(edgeId)) {
+        var edge = new Edge(from, to);
+        var symetricEdge = edge.getSymetric();
+        this.edgeIds.add(edge.id);
+        this.edgeIds.add(symetricEdge.id);
+        this.edges.push(edge);
+        this.edges.push(symetricEdge);
+    } else {
+        console.log('duplicate found, ', from.id, to.id);
+    }
 };
 
 Graph.prototype.deleteDangles = function deleteDangles () {
@@ -564,7 +580,9 @@ Graph.prototype._removeIfDangle = function _removeIfDangle (node) {
         var this$1 = this;
 
 // As edges are directed and symetrical, we count only innerEdges
-    if (node.innerEdges.length <= 1) {
+    console.log('node: ', node.id, node.innerEdges.length, node.outerEdges.length);
+    if (node.innerEdges.length <= 1 && node.outerEdges.length < 1) {
+        console.log('cutting:', node.id);
         var outerNodes = node.getOuterEdges().map(function (e) { return e.to; });
         this.removeNode(node);
         outerNodes.forEach(function (n) { return this$1._removeIfDangle(n); });
@@ -587,6 +605,7 @@ Graph.prototype.deleteCutEdges = function deleteCutEdges () {
     // Cut-edges (bridges) are edges where both edges have the same label
     this.edges.forEach(function (edge) {
         if (edge.label === edge.symetric.label) {
+            console.log('cut edges with same labels: ', edge.id, edge.symetric.id);
             this$1.removeEdge(edge.symetric);
             this$1.removeEdge(edge);
         }
@@ -765,11 +784,20 @@ Graph.prototype._findIntersectionNodes = function _findIntersectionNodes (startE
 Graph.prototype._findEdgeRing = function _findEdgeRing (startEdge) {
     var edge = startEdge;
     var edgeRing = new EdgeRing();
-
+    var vertexSet = new Set();
+    if (edge.from) {
+        vertexSet.add(edge.from.id);
+    }
     do {
+        var toVertex = edge.to;
         edgeRing.push(edge);
         edge.ring = edgeRing;
         edge = edge.next;
+        if (toVertex && !vertexSet.has(toVertex.id)) {
+            vertexSet.add(toVertex.id);
+        } else {
+            break;
+        }
     } while (!startEdge.isEqual(edge));
 
     return edgeRing;
@@ -784,6 +812,7 @@ Graph.prototype._findEdgeRing = function _findEdgeRing (startEdge) {
 Graph.prototype.removeNode = function removeNode (node) {
         var this$1 = this;
 
+    console.log('removing node: ', node.id);
     node.getOuterEdges().forEach(function (edge) { return this$1.removeEdge(edge); });
     node.innerEdges.forEach(function (edge) { return this$1.removeEdge(edge); });
     delete this.nodes[node.id];
@@ -797,6 +826,7 @@ Graph.prototype.removeNode = function removeNode (node) {
 Graph.prototype.removeEdge = function removeEdge (edge) {
     this.edges = this.edges.filter(function (e) { return !e.isEqual(edge); });
     edge.deleteEdge();
+    this.edgeIds.delete(edge.id);
 };
 
 /**
@@ -830,7 +860,9 @@ function polygonize(geoJson) {
     var holes = [],
         shells = [];
 
-    graph.getEdgeRings()
+    var edgeRings = graph.getEdgeRings();
+    console.log('the edgeRings are: ', JSON.stringify(edgeRings.map(function (er) { return er.edges.map(function (e) { return e.id; }); })));
+    edgeRings
         .filter(function (edgeRing) { return edgeRing.isValid(); })
         .forEach(function (edgeRing) {
             if (edgeRing.isHole())
