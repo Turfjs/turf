@@ -495,7 +495,7 @@ function validateGeoJson(geoJson) {
  */
 var Graph = function Graph() {
     this.edges = []; //< {Edge[]} dirEdges
-    this.edgeIds = new Set();
+    this.edgeIds = {};
         
     // The key is the `id` of the Node (ie: coordinates.join(','))
     this.nodes = {};
@@ -550,11 +550,11 @@ Graph.prototype.getNode = function getNode (coordinates) {
  */
 Graph.prototype.addEdge = function addEdge (from, to) {
     var edgeId = Edge.buildId(from, to);
-    if (!this.edgeIds.has(edgeId)) {
+    if (!this.edgeIds[edgeId]) {
         var edge = new Edge(from, to);
         var symetricEdge = edge.getSymetric();
-        this.edgeIds.add(edge.id);
-        this.edgeIds.add(symetricEdge.id);
+        this.edgeIds[edge.id] = 1;
+        this.edgeIds[symetricEdge.id] = 1;
         this.edges.push(edge);
         this.edges.push(symetricEdge);
     }
@@ -781,18 +781,20 @@ Graph.prototype._findIntersectionNodes = function _findIntersectionNodes (startE
 Graph.prototype._findEdgeRing = function _findEdgeRing (startEdge) {
     var edge = startEdge;
     var edgeRing = new EdgeRing();
-    var vertexSet = new Set();
+    var vertexSet = {};
     if (edge.from) {
-        vertexSet.add(edge.from.id);
+        vertexSet[edge.from.id] = 1;
     }
     do {
         var toVertex = edge.to;
         edgeRing.push(edge);
         edge.ring = edgeRing;
         edge = edge.next;
-        if (toVertex && !vertexSet.has(toVertex.id)) {
-            vertexSet.add(toVertex.id);
+        if (toVertex && !vertexSet[toVertex.id]) {
+            vertexSet[toVertex.id] = 1;
         } else {
+            // we have come back to an existing point,
+            // therefore our loop is over
             break;
         }
     } while (!startEdge.isEqual(edge));
@@ -822,7 +824,7 @@ Graph.prototype.removeNode = function removeNode (node) {
 Graph.prototype.removeEdge = function removeEdge (edge) {
     this.edges = this.edges.filter(function (e) { return !e.isEqual(edge); });
     edge.deleteEdge();
-    this.edgeIds.delete(edge.id);
+    delete this.edgeIds[edge.id];
 };
 
 /**
