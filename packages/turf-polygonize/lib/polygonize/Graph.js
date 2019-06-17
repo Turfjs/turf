@@ -86,11 +86,11 @@ class Graph {
      */
     addEdge(from, to) {
         const edgeId = Edge.buildId(from, to);
-        if (!this.edgeIds.has(edgeId)) {
+        if (!this.edgeIds[edgeId]) {
             const edge = new Edge(from, to);
             const symetricEdge = edge.getSymetric();
-            this.edgeIds.add(edge.id);
-            this.edgeIds.add(symetricEdge.id);
+            this.edgeIds[edge.id] = 1;
+            this.edgeIds[symetricEdge.id] = 1;
             this.edges.push(edge);
             this.edges.push(symetricEdge);
         }
@@ -98,7 +98,7 @@ class Graph {
 
     constructor() {
         this.edges = []; //< {Edge[]} dirEdges
-        this.edgeIds = new Set();
+        this.edgeIds = {};
         
         // The key is the `id` of the Node (ie: coordinates.join(','))
         this.nodes = {};
@@ -353,7 +353,7 @@ class Graph {
     removeEdge(edge) {
         this.edges = this.edges.filter(e => !e.isEqual(edge));
         edge.deleteEdge();
-        this.edgeIds.delete(edge.id);
+        delete this.edgeIds[edge.id];
     }
 }
 

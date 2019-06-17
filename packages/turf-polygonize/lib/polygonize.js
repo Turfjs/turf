@@ -339,16 +339,17 @@ EdgeRing.prototype.some = function some (f) {
 /**
  * Check if the ring is valid in geomtry terms.
  *
- * A ring must have either 0 or 4 or more points. The first and the last must be
- * equal (in 2D)
+ * A ring must have either 0 or 3 or more points.
+ *
  * geos::geom::LinearRing::validateConstruction
  *
  * @memberof EdgeRing
  * @returns {boolean} - Validity of the EdgeRing
  */
 EdgeRing.prototype.isValid = function isValid () {
+    // this implementation does not repeat the first point at the end
+    // for the EdgeRing, so a polygon of 3 points is valid
     return this.edges.length === 0 || this.edges.length >= 3;
-    // return true;
 };
 
 /**
@@ -556,8 +557,6 @@ Graph.prototype.addEdge = function addEdge (from, to) {
         this.edgeIds.add(symetricEdge.id);
         this.edges.push(edge);
         this.edges.push(symetricEdge);
-    } else {
-        console.log('duplicate found, ', from.id, to.id);
     }
 };
 
@@ -579,10 +578,9 @@ Graph.prototype.deleteDangles = function deleteDangles () {
 Graph.prototype._removeIfDangle = function _removeIfDangle (node) {
         var this$1 = this;
 
-// As edges are directed and symetrical, we count only innerEdges
-    console.log('node: ', node.id, node.innerEdges.length, node.outerEdges.length);
-    if (node.innerEdges.length <= 1 && node.outerEdges.length < 1) {
-        console.log('cutting:', node.id);
+    // do not delete nodes if they form an entire link.
+    // check if it has outer edges, then this isn't the end of the line
+    if (node.innerEdges.length <= 1 && node.outerEdges.length  === 0) {
         var outerNodes = node.getOuterEdges().map(function (e) { return e.to; });
         this.removeNode(node);
         outerNodes.forEach(function (n) { return this$1._removeIfDangle(n); });
@@ -605,7 +603,6 @@ Graph.prototype.deleteCutEdges = function deleteCutEdges () {
     // Cut-edges (bridges) are edges where both edges have the same label
     this.edges.forEach(function (edge) {
         if (edge.label === edge.symetric.label) {
-            console.log('cut edges with same labels: ', edge.id, edge.symetric.id);
             this$1.removeEdge(edge.symetric);
             this$1.removeEdge(edge);
         }
@@ -812,7 +809,6 @@ Graph.prototype._findEdgeRing = function _findEdgeRing (startEdge) {
 Graph.prototype.removeNode = function removeNode (node) {
         var this$1 = this;
 
-    console.log('removing node: ', node.id);
     node.getOuterEdges().forEach(function (edge) { return this$1.removeEdge(edge); });
     node.innerEdges.forEach(function (edge) { return this$1.removeEdge(edge); });
     delete this.nodes[node.id];
@@ -860,9 +856,7 @@ function polygonize(geoJson) {
     var holes = [],
         shells = [];
 
-    var edgeRings = graph.getEdgeRings();
-    console.log('the edgeRings are: ', JSON.stringify(edgeRings.map(function (er) { return er.edges.map(function (e) { return e.id; }); })));
-    edgeRings
+    graph.getEdgeRings()
         .filter(function (edgeRing) { return edgeRing.isValid(); })
         .forEach(function (edgeRing) {
             if (edgeRing.isHole())
