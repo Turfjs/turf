@@ -11,7 +11,7 @@ import {
  * This lessens the effect of small islands and artifacts when calculating the centroid of a set of polygons.
  *
  * @name centroid
- * @param {GeoJSON} GeoJSON to be centered
+ * @param {GeoJSON} geojson to be centered
  * @param {Properties} an Object that is used as the Feature's properties
  * @returns {Feature<Point>} the centroid of the input features
  * @example
@@ -19,6 +19,6 @@ import {
  *
  * var centroid = turf.centroid(polygon);
  */
-declare function centroid(geojson: AllGeoJSON, properties?: Properties): Feature<Point, Properties>;
+declare function centroid<P = Properties>(geojson: AllGeoJSON, properties?: P): Feature<Point, P>;
 
 export default centroid;
