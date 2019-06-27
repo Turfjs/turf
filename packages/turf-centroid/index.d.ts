@@ -19,6 +19,6 @@ import {
  *
  * var centroid = turf.centroid(polygon);
  */
-declare function centroid(geojson: AllGeoJSON, properties?: Properties): Feature<Point>;
+declare function centroid(geojson: AllGeoJSON, properties?: Properties): Feature<Point, Record<string, any>>;
 
 export default centroid;
