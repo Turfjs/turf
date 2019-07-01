@@ -1,10 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var circle_1 = __importDefault(require("@turf/circle"));
-var destination_1 = __importDefault(require("@turf/destination"));
+var circle_1 = require("@turf/circle");
+var destination_1 = require("@turf/destination");
 var helpers_1 = require("@turf/helpers");
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
