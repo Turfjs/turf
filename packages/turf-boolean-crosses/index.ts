@@ -115,10 +115,10 @@ function doLineStringAndPolygonCross(lineString, polygon: Polygon) {
 function doesMultiPointCrossPoly(multiPoint, polygon) {
     var foundIntPoint = false;
     var foundExtPoint = false;
-    var pointLength = multiPoint.coordinates[0].length;
+    var pointLength = multiPoint.coordinates.length;
     var i = 0;
-    while (i < pointLength && foundIntPoint && foundExtPoint) {
-        if (booleanPointInPolygon(point(multiPoint.coordinates[0][i]), polygon)) {
+    while (i < pointLength && (!foundIntPoint || !foundExtPoint)) {
+        if (booleanPointInPolygon(point(multiPoint.coordinates[i]), polygon)) {
             foundIntPoint = true;
         } else {
             foundExtPoint = true;
@@ -126,7 +126,7 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
         i++;
     }
 
-    return foundExtPoint && foundExtPoint;
+    return foundIntPoint && foundExtPoint;
 }
 
 /**
