@@ -49,7 +49,7 @@
     "@types/tape": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "6.0.0",
+    "@turf/clean-coords": "6.0.1",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "geojson-equality": "0.1.6"
