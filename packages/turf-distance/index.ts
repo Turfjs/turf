@@ -1,6 +1,6 @@
 import { getCoord } from '@turf/invariant';
 import {
-    radiansToLength, isObject, degreesToRadians,
+    radiansToLength, degreesToRadians,
     Coord, Units
 } from '@turf/helpers';
 
