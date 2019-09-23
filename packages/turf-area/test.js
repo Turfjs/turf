@@ -28,3 +28,12 @@ test('turf-area', t => {
     }
     t.end();
 });
+
+test('turf-area -- throws', t => {
+    t.throws(() => area(), /expected a valid GeoJSON Feature, FeatureCollection or Geometry/);
+    t.throws(() => area(null), /expected a valid GeoJSON Feature, FeatureCollection or Geometry/);
+    t.throws(() => area({}), /expected a valid GeoJSON Feature, FeatureCollection or Geometry/);
+    t.throws(() => area('string'), /expected a valid GeoJSON Feature, FeatureCollection or Geometry/);
+    t.throws(() => area(2000), /expected a valid GeoJSON Feature, FeatureCollection or Geometry/);
+    t.end();
+});

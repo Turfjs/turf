@@ -10,6 +10,7 @@ const RADIUS = 6378137;
  * @name area
  * @param {GeoJSON} geojson input GeoJSON feature(s)
  * @returns {number} area in square meters
+ * @throws {Error} Error if argument is not GeoJSON
  * @example
  * var polygon = turf.polygon([[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]);
  *
@@ -20,6 +21,9 @@ const RADIUS = 6378137;
  * polygon.properties.area = area
  */
 export default function area(geojson: Feature<any> | FeatureCollection<any> | Geometry) {
+    if (!geojson || !geojson.type) {
+        throw new Error(`@turf/area expected a valid GeoJSON Feature, FeatureCollection or Geometry, received: ${geojson}` )
+    }
     return geomReduce(geojson, (value, geom) => {
         return value + calculateArea(geom);
     }, 0);

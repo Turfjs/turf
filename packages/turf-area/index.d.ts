@@ -5,6 +5,7 @@ import { Feature, FeatureCollection, Geometry } from "@turf/helpers";
  * @name area
  * @param {GeoJSON} geojson input GeoJSON feature(s)
  * @returns {number} area in square meters
+ * @throws {Error} Error if argument is not GeoJSON
  * @example
  * var polygon = turf.polygon([[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]);
  *
