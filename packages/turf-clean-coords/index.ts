@@ -115,7 +115,8 @@ function cleanLine(line) {
     newPoints.push(points[points.length - 1]);
 
     newPointsLength = newPoints.length;
-    if (equals(points[0], points[points.length - 1]) && newPointsLength < 4) throw new Error('invalid polygon');
+    var type = getType(line)
+    if (type && type.indexOf('Polygon') > -1 && equals(points[0], points[points.length - 1]) && newPointsLength < 4) throw new Error('invalid polygon');
     if (isPointOnLineSegment(newPoints[newPointsLength - 3], newPoints[newPointsLength - 1], newPoints[newPointsLength - 2])) newPoints.splice(newPoints.length - 2, 1);
 
     return newPoints;
