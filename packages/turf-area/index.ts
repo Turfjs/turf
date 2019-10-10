@@ -39,7 +39,7 @@ function calculateArea(geom: Geometry): number {
     case "Polygon":
         return polygonArea(geom.coordinates);
     case "MultiPolygon":
-        for (i = 0; i < geom.coordinates.length; i++) {
+        for (var i = 0; i < geom.coordinates.length; i++) {
             total += polygonArea(geom.coordinates[i]);
         }
         return total;
@@ -88,7 +88,7 @@ function ringArea(coords: number[][]) {
     const coordsLength = coords.length;
 
     if (coordsLength > 2) {
-        for (i = 0; i < coordsLength; i++) {
+        for (var i = 0; i < coordsLength; i++) {
             if (i === coordsLength - 2) { // i = N-2
                 lowerIndex = coordsLength - 2;
                 middleIndex = coordsLength - 1;
