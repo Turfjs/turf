@@ -48,7 +48,10 @@ function lineSlice(startPt, stopPt, line) {
     for (var i = ends[0].properties.index + 1; i < ends[1].properties.index + 1; i++) {
         clipCoords.push(coords[i]);
     }
-    clipCoords.push(ends[1].geometry.coordinates);
+    // fix: when stopPt equals to ends[1], return two same coodinates
+    if(stopPt.geometry.coordinates.toString() !== ends[1].geometry.coordinates.toString()){
+        clipCoords.push(ends[1].geometry.coordinates);
+    }
     return linestring(clipCoords, line.properties);
 }
 
