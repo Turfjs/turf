@@ -60,6 +60,18 @@ test('clusters-kmeans -- translate properties', t => {
     t.end();
 });
 
+const duplicatePoints = featureCollection([
+    point([0, 0], { foo: 'bar' }),
+    point([0, 0], { foo: 'bar' }),
+    point([2, 4], { foo: 'bar' }),
+    point([3, 6], { foo: 'bar' })
+])
+
+test('clusters-kmeans -- ignores duplicate initial centroids', t => {
+    t.equal(clustersKmeans(points, { numberOfClusters: 2 }).features.length, 2);
+    t.end();
+});
+
 // style result
 function styleResult(clustered) {
     const count = clusterReduce(clustered, 'cluster', i => i + 1, 0);

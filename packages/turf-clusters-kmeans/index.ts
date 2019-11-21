@@ -1,11 +1,22 @@
 import clone from '@turf/clone';
 import { coordAll, featureEach } from '@turf/meta';
-import { FeatureCollection, Feature, Point, Properties } from '@turf/helpers';
+import { FeatureCollection, Coord, Point, Properties } from '@turf/helpers';
 import * as skmeans from 'skmeans';
 
 export interface KmeansProps extends Properties {
     cluster?: number;
     centroid?: [number, number];
+}
+
+function getInitialCentroids(coordinates: Coord[], count: number) {
+    const results: { [name: string]: Coord } = {};
+    const clen = coordinates.length;
+    for (let i = 0; i < clen; ++i) {
+        const coord = coordinates[i];
+        results[`${coord[0]},${coord[1]}`] = coord;
+        if (Object.keys(results).length == count) break;
+    }
+    return Object.keys(results).map(k => results[k]);
 }
 
 /**
@@ -37,10 +48,6 @@ function clustersKmeans(points: FeatureCollection<Point>, options: {
     var count = points.features.length;
     options.numberOfClusters = options.numberOfClusters || Math.round(Math.sqrt(count / 2));
 
-    // numberOfClusters can't be greater than the number of points
-    // fallbacks to count
-    if (options.numberOfClusters > count) options.numberOfClusters = count;
-
     // Clone points to prevent any mutations (enabled by default)
     if (options.mutate !== true) points = clone(points);
 
@@ -48,7 +55,8 @@ function clustersKmeans(points: FeatureCollection<Point>, options: {
     var data = coordAll(points);
 
     // create seed to avoid skmeans to drift
-    var initialCentroids = data.slice(0, options.numberOfClusters);
+    var initialCentroids = getInitialCentroids(data, options.numberOfClusters);
+    options.numberOfClusters = initialCentroids.length;
 
     // create skmeans clusters
     var skmeansResult = skmeans(data, options.numberOfClusters, initialCentroids);
