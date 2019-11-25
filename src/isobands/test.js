@@ -50,6 +50,16 @@ test('isobands', t => {
     t.end();
 });
 
+test('isobands -- flat data', t => {
+    const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5, {
+        properties: {elevation: 1}
+    });
+
+    const lines = isobands(points, [0, 2]);
+    t.assert(lines.features[0].geometry.coordinates.length > 4);
+    t.end();
+});
+
 test('isobands -- throws', t => {
     const points = pointGrid([-70.823364, -33.553984, -70.473175, -33.302986], 5);
 
