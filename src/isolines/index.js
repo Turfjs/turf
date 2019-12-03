@@ -2,7 +2,7 @@ import bbox from '../bbox';
 import { coordEach } from '../meta';
 import { collectionOf } from '../invariant';
 import { multiLineString, featureCollection, isObject } from '../helpers';
-import isoContours from './lib/marchingsquares-isocontours';
+import {isoContours} from 'marchingsquares';
 import gridToMatrix from './lib/grid-to-matrix';
 
 /**

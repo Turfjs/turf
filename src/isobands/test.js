@@ -56,7 +56,7 @@ test('isobands -- flat data', t => {
     });
 
     const lines = isobands(points, [0, 2]);
-    t.assert(lines.features[0].geometry.coordinates.length > 4);
+    t.assert(lines.features[0].geometry.coordinates[0][0].length > 4);
     t.end();
 });
 

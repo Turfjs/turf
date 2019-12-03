@@ -5,7 +5,7 @@ import explode from '../explode';
 import { collectionOf } from '../invariant';
 import { polygon, multiPolygon, featureCollection, isObject } from '../helpers';
 import gridToMatrix from './lib/grid-to-matrix';
-import isoBands from './lib/marchingsquares-isobands';
+import {isoBands} from 'marchingsquares';
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of

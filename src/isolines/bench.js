@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import matrixToGrid from 'matrix-to-grid';
+import matrixToGrid from './lib/matrix-to-grid';
 import isolines from './';
 
 // Define Fixtures

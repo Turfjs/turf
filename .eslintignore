@@ -5,7 +5,6 @@ bench.js
 dist/turf.js
 dist/turf.es.js
 dist/turf.min.js
-marchingsquares-isobands.js
 rollup.config.js
 simplepolygon.js
 types.js
