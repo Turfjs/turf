@@ -147,31 +147,17 @@ function rescaleContours(contours, matrix, points) {
  * @returns {Array} array of the input LineString ordered by area
  */
 function orderByArea(ringsCoords) {
-    var ringsWithArea = [];
-    var areas = [];
-    ringsCoords.forEach(function (coords) {
-        // var poly = polygon([points]);
-        var ringArea = area(polygon([coords]));
-        // create an array of areas value
-        areas.push(ringArea);
+    const ringsWithArea = ringsCoords.map(function (coords) {
         // associate each lineRing with its area
-        ringsWithArea.push({ring: coords, area: ringArea});
+        return {ring: coords, area: area(polygon([coords]))};
     });
-    areas.sort(function (a, b) { // bigger --> smaller
-        return b - a;
+    ringsWithArea.sort(function (a, b) { // bigger --> smaller
+        return b.area - a.area;
     });
     // create a new array of linearRings coordinates ordered by their area
-    var orderedByArea = [];
-    areas.forEach(function (area) {
-        for (var lr = 0; lr < ringsWithArea.length; lr++) {
-            if (ringsWithArea[lr].area === area) {
-                orderedByArea.push(ringsWithArea[lr].ring);
-                ringsWithArea.splice(lr, 1);
-                break;
-            }
-        }
+    return ringsWithArea.map(function (x) {
+        return x.ring;
     });
-    return orderedByArea;
 }
 
 /**
