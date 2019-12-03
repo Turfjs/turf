@@ -119,20 +119,15 @@ function rescaleContours(contours, matrix, points) {
     var scaleX = originalWidth / matrixWidth;
     var scaleY = originalHeigth / matrixHeight;
 
-    var resize = function (point) {
-        point[0] = point[0] * scaleX + x0;
-        point[1] = point[1] * scaleY + y0;
-    };
-
     // resize and shift each point/line of the isobands
-    contours.forEach(function (contour) {
-        contour.groupedRings.forEach(function (lineRingSet) {
-            lineRingSet.forEach(function (lineRing) {
-                lineRing.forEach(resize);
+    return contours.map(function (contour) {
+        contour.groupedRings = contour.groupedRings.map(function (lineRingSet) {
+            return lineRingSet.map(function (lineRing) {
+                return lineRing.map(point => [point[0] * scaleX + x0, point[1] * scaleY + y0]);
             });
         });
+        return contour;
     });
-    return contours;
 }
 
 
