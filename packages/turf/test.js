@@ -106,7 +106,7 @@ test('turf -- external files must be in the lib folder', t => {
             case 'main.es.js':
             case 'index.js':
             case 'index.ts':
-            case 'index.mjs':
+            case 'index.es.js':
             case 'index.d.ts':
             case 'lib':
                 break;

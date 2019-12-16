@@ -3,7 +3,7 @@ import commonjs from 'rollup-plugin-commonjs'
 import uglify from 'rollup-plugin-uglify'
 
 const pckg = require('./package')
-const input = 'index.mjs'
+const input = 'index.es.js'
 
 export default [{
     input,

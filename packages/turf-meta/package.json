@@ -3,15 +3,15 @@
   "version": "6.0.1",
   "description": "turf meta module",
   "main": "index",
-  "module": "index.mjs",
+  "module": "index.es.js",
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.mjs",
+    "index.es.js",
     "index.d.ts"
   ],
   "scripts": {
-    "pretest": "rollup -f cjs -o index.js index.mjs",
+    "pretest": "rollup -f cjs -o index.js index.es.js",
     "test": "node test.js",
     "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
