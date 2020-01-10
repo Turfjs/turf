@@ -6,7 +6,7 @@ import { geomEach } from '../meta';
  * Takes two or more {@link Polygon|polygons} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
  * @name union
- * @param {Feature<Polygon|MultiPolygon>} fc a FeatureCollection containting polygons or multipolygons to union
+ * @param {...Feature<Polygon|MultiPolygon>} features FeatureCollections containing polygons or multipolygons to union
  * @returns {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
  * @example
  * var poly1 = turf.polygon([[
@@ -29,12 +29,16 @@ import { geomEach } from '../meta';
  * //addToMap
  * var addToMap = [poly1, poly2, union];
  */
-function union(fc) {
+function union(...features) {
     const args = [];
-    geomEach(fc, function (geom) {
-        if (geom.type === 'MultiPolygon') args.push(geom.coordinates);
-        if (geom.type === 'Polygon') args.push([geom.coordinates]);
-    });
+
+    for (const fc of features) {
+        geomEach(fc, function (geom) {
+            if (geom.type === 'MultiPolygon') args.push(geom.coordinates);
+            if (geom.type === 'Polygon') args.push([geom.coordinates]);
+        });
+    }
+
     const unioned = polygonClipping.union(...args);
     if (unioned.length === 0) return null;
     else return multiPolygon(unioned);
