@@ -43,6 +43,8 @@ test('polygon', t => {
     }, /Each LinearRing of a Polygon must have 4 or more Positions/, 'invalid ring - too few positions');
     const noProperties = polygon([[[5, 10], [20, 40], [40, 0], [5, 10]]]);
     t.deepEqual(noProperties.properties, {});
+    t.throws(() => { t.equal(polygon([]).message) }, /Polygon must have 1 or more LinearRings/);
+    t.throws(() => { t.equal(polygon(null).message) }, /Polygon must have 1 or more LinearRings/);
     t.end();
 });
 

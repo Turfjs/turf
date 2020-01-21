@@ -249,6 +249,10 @@ export function polygon<P = Properties>(
     properties?: P,
     options: {bbox?: BBox, id?: Id} = {},
 ): Feature<Polygon, P> {
+    if (!Array.isArray(coordinates) || coordinates.length === 0) {
+        throw new Error("Polygon must have 1 or more LinearRings");
+    }
+
     for (const ring of coordinates) {
         if (ring.length < 4) {
             throw new Error("Each LinearRing of a Polygon must have 4 or more Positions.");
