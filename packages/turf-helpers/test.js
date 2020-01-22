@@ -36,6 +36,22 @@ test('polygon', t => {
     t.equal(poly.properties.name, 'test polygon');
     t.equal(poly.geometry.type, 'Polygon');
     t.throws(() => {
+        t.equal(polygon([[
+            [1, 2, 3],
+            [4, 5],
+            [6, 7],
+            [1, 2]
+        ]]).message);
+    }, /First and last Position are not equivalent/);
+    t.throws(() => {
+        t.equal(polygon([[
+            [1, 2],
+            [4, 5],
+            [6, 7],
+            [1, 2, 3]
+        ]]).message);
+    }, /First and last Position are not equivalent/);
+    t.throws(() => {
         t.equal(polygon([[[20.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]]).message);
     }, /First and last Position are not equivalent/, 'invalid ring - not wrapped');
     t.throws(() => {

@@ -253,11 +253,10 @@ export function polygon<P = Properties>(
         if (ring.length < 4) {
             throw new Error("Each LinearRing of a Polygon must have 4 or more Positions.");
         }
-        for (let j = 0; j < ring[ring.length - 1].length; j++) {
-            // Check if first point of Polygon contains two numbers
-            if (ring[ring.length - 1][j] !== ring[0][j]) {
-                throw new Error("First and last Position are not equivalent.");
-            }
+
+        // Check that `The first and last positions are equivalent and their representation SHOULD also be identical`
+        if (String(ring[0]) !== String(ring[ring.length - 1])) {
+            throw new Error("First and last Position are not equivalent.");
         }
     }
     const geom: Polygon = {
