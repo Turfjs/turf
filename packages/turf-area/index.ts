@@ -105,7 +105,7 @@ function ringArea(coords: number[][]) {
             p1 = coords[lowerIndex];
             p2 = coords[middleIndex];
             p3 = coords[upperIndex];
-            total += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
+            total += (rad(p3[1]) - rad(p1[1])) * Math.sin(rad(p2[0]));
         }
 
         total = total * RADIUS * RADIUS / 2;
