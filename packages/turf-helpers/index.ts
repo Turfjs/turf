@@ -59,7 +59,7 @@ export let factors: {[key: string]: number} = {
     millimetres: earthRadius * 1000,
     nauticalmiles: earthRadius / 1852,
     radians: 1,
-    yards: earthRadius / 1.0936,
+    yards: earthRadius * 1.0936,
 };
 
 /**
@@ -83,7 +83,7 @@ export let unitsFactors: {[key: string]: number} = {
     millimetres: 1000,
     nauticalmiles: 1 / 1852,
     radians: 1 / earthRadius,
-    yards: 1 / 1.0936,
+    yards: 1.0936,
 };
 
 /**
