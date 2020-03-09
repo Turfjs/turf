@@ -9,7 +9,7 @@ import {
     Feature,
     FeatureCollection
 } from '@turf/helpers'
-import lineToPolygon from './'
+import lineToPolygon from './dist/js/index'
 
 // Fixtures
 const coords = [[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]];
