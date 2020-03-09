@@ -8,7 +8,7 @@ import {
     featureCollection, isObject,
     FeatureCollection, Feature, LineString, MultiLineString, Polygon, MultiPolygon,
 } from '@turf/helpers';
-import * as equal from 'deep-equal';
+import equal from 'deep-equal';
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.

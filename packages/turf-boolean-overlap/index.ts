@@ -2,7 +2,7 @@ import { coordAll, segmentEach } from '@turf/meta';
 import { getGeom } from '@turf/invariant';
 import lineOverlap from '@turf/line-overlap';
 import lineIntersect from '@turf/line-intersect';
-import * as GeojsonEquality from 'geojson-equality';
+import GeojsonEquality from 'geojson-equality';
 import { Feature, LineString, MultiLineString, Polygon, MultiPolygon, Geometry } from '@turf/helpers';
 
 /**

@@ -1,7 +1,7 @@
 import clone from '@turf/clone';
 import { coordAll, featureEach } from '@turf/meta';
 import { FeatureCollection, Feature, Point, Properties } from '@turf/helpers';
-import * as skmeans from 'skmeans';
+import skmeans from 'skmeans';
 
 export interface KmeansProps extends Properties {
     cluster?: number;

@@ -4,7 +4,6 @@
     "packages/*"
   ],
   "scripts": {
-    "prelint": "tsc",
     "lint": "echo 'eslint will be moved to TSLint'",
     "postlint": "documentation lint packages/turf-*/index.js",
     "pretest": "lerna bootstrap --use-workspaces && npm run lint",

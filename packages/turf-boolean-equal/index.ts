@@ -1,4 +1,4 @@
-import * as GeojsonEquality from 'geojson-equality';
+import GeojsonEquality from 'geojson-equality';
 import cleanCoords from '@turf/clean-coords';
 import { getGeom } from '@turf/invariant';
 import { Feature, Geometry } from '@turf/helpers';
