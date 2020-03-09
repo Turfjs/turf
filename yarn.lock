@@ -12,10 +12,6 @@
     vfile "2.0.0"
     vfile-reporter "3.0.0"
 
-"@std/esm@*", "@std/esm@0.21.x":
-  version "0.21.7"
-  resolved "https://registry.yarnpkg.com/@std/esm/-/esm-0.21.7.tgz#492d7931aed03e91a133deac4d9062fbfce5fd6b"
-
 "@turf/area@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/area/-/area-5.1.5.tgz#efd899bfd260cdbd1541b2a3c155f8a5d2eefa1d"
@@ -2323,6 +2319,11 @@ eslint@*:
     strip-json-comments "~2.0.1"
     table "^4.0.1"
     text-table "~0.2.0"
+
+esm@^3.2.25:
+  version "3.2.25"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
+  integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
 
 espree@^3.5.2:
   version "3.5.3"
