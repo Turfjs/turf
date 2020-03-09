@@ -159,6 +159,13 @@
   dependencies:
     "@turf/helpers" "^5.1.5"
 
+"@turf/kinks@5.1.x", "@turf/kinks@^5.1.5":
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/@turf/kinks/-/kinks-5.1.5.tgz#8abb6961d9bb0107213baddf2c2c2640d0256980"
+  integrity sha1-irtpYdm7AQchO63fLCwmQNAlaYA=
+  dependencies:
+    "@turf/helpers" "^5.1.5"
+
 "@turf/line-arc@5.1.x", "@turf/line-arc@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/line-arc/-/line-arc-5.1.5.tgz#0078a7447835a12ae414a211f9a64d1186150e15"
@@ -3812,9 +3819,10 @@ markdown-table@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.1.tgz#4b3dd3a133d1518b8ef0dbc709bf2a1b4824bc8c"
 
-martinez-polygon-clipping@*:
+martinez-polygon-clipping@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/martinez-polygon-clipping/-/martinez-polygon-clipping-0.4.3.tgz#a3971ddf1da147104b5d0fbbf68f728bb62885c1"
+  integrity sha512-3ZNS0ksKhWTLsmCUkNf+/UimndZ5U2cVOS0I+IjiwF+M23E77TmeOZSmbRJbfCoQUog/vcQ42s3DXrhgOhgPqw==
   dependencies:
     splaytree "^0.1.4"
     tinyqueue "^1.2.0"
