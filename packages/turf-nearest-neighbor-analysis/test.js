@@ -7,7 +7,7 @@ const truncate = require('@turf/truncate').default;
 const centroid = require('@turf/centroid').default;
 const { featureEach } = require('@turf/meta');
 const { featureCollection } = require('@turf/helpers');
-const nearestNeighborAnalysis = require('.').default;
+const nearestNeighborAnalysis = require('./dist/js/index.js').default;
 
 
 

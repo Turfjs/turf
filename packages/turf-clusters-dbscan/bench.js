@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const clustersDbscan = require('./').default;
+const clustersDbscan = require('./dist/js/index.js').default;
 
 // Define Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;

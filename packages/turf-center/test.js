@@ -8,7 +8,7 @@ const bboxPolygon = require('@turf/bbox-polygon').default;
 const bbox = require('@turf/bbox').default;
 const { featureEach, coordEach } = require('@turf/meta');
 const { lineString, featureCollection } = require('@turf/helpers');
-const center = require('./').default;
+const center = require('./dist/js/index.js').default;
 
 test('turf-center', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {

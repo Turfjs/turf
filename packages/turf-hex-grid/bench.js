@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const grid = require('./').default;
+const grid = require('./dist/js/index.js').default;
 
 var bbox = [
     -96.6357421875,

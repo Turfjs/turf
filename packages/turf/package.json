@@ -2,7 +2,7 @@
   "name": "@turf/turf",
   "version": "6.0.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
-  "main": "turf",
+  "main": "index.js",
   "module": "turf.mjs",
   "browser": "turf.min.js",
   "types": "index.d.ts",

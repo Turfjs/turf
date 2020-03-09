@@ -12,11 +12,18 @@ let modules = [];
 for (const name of fs.readdirSync(directory)) {
     if (!name.includes('turf')) continue;
     const pckgPath = path.join(directory, name, 'package.json');
-    const index = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
-    const test = fs.readFileSync(path.join(directory, name, 'index.js'), 'utf8');
 
     if (!fs.existsSync(pckgPath)) continue;
     const pckg = JSON.parse(fs.readFileSync(pckgPath));
+
+    let mainFile = path.join(directory, name, pckg.main);
+    if (!fs.existsSync(mainFile)) {
+        mainFile += ".js";
+    }
+
+    const index = fs.readFileSync(mainFile, 'utf8');
+    const test = fs.readFileSync(path.join(directory, name, 'test.js'), 'utf8');
+
     modules.push({
         name,
         pckg,
@@ -159,9 +166,7 @@ test('turf -- pre-defined attributes in package.json', t => {
 });
 
 test('turf -- parsing dependencies from index.js', t => {
-    for (const {name, dir, dependencies} of modules) {
-        const index = fs.readFileSync(path.join(dir, 'index.js'), 'utf8');
-
+    for (const {name, dependencies, index} of modules) {
         // Read Depedencies from index.js
         const dependenciesUsed = new Set();
         for (const dependency of index.match(/(require\(|from )'[@/a-z-\d]+'/gi) || []) {

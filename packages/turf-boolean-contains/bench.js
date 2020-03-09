@@ -3,7 +3,7 @@ import glob from 'glob';
 import Benchmark from 'benchmark';
 import load from 'load-json-file';
 import bbox from '@turf/bbox';
-import contains from './';
+import contains from require('./dist/js/index.js').default;
 
 /**
  * Benchmark Results

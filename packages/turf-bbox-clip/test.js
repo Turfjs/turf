@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const { point, feature, featureCollection } = require('@turf/helpers');
 const turfBBox = require('@turf/bbox').default;
-const bboxClip = require('./').default;
+const bboxClip = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

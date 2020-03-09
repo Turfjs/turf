@@ -1,16 +1,7 @@
-'use strict';
-
-module.exports = lineclip;
-module.exports.default = lineclip;
-
-lineclip.polyline = lineclip;
-lineclip.polygon = polygonclip;
-
-
 // Cohen-Sutherland line clippign algorithm, adapted to efficiently
 // handle polylines rather than just segments
 
-function lineclip(points, bbox, result) {
+export function lineclip(points, bbox, result) {
 
     var len = points.length,
         codeA = bitCode(points[0], bbox),
@@ -64,7 +55,7 @@ function lineclip(points, bbox, result) {
 
 // Sutherland-Hodgeman polygon clipping algorithm
 
-function polygonclip(points, bbox) {
+export function polygonclip(points, bbox) {
 
     var result, edge, prev, prevInside, i, p, inside;
 

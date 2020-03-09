@@ -7,7 +7,7 @@ const {
     multiPolygon,
     multiLineString,
     featureCollection } = require('@turf/helpers')
-const bbox = require('./').default;
+const bbox = require('./dist/js/index.js').default;
 
 // Fixtures
 const pt  = point([102.0, 0.5]);

@@ -3,7 +3,7 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const shapely = require('boolean-shapely');
-const disjoint = require('./').default;
+const disjoint = require('./dist/js/index.js').default;
 
 test('turf-boolean-disjoint', t => {
     // True Fixtures

@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate').default;
 const { featureCollection, geometryCollection, lineString, polygon } = require('@turf/helpers');
-const lineIntersect = require('./').default;
+const lineIntersect = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

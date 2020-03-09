@@ -7,7 +7,7 @@ const {
     geometryCollection,
  } = require('@turf/helpers');
 const { coordEach } = require('@turf/meta');
-const clone = require('./').default;
+const clone = require('./dist/js/index.js').default;
 
 
 test('turf-clone', t => {

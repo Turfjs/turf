@@ -2,11 +2,10 @@
   "name": "@turf/along",
   "version": "6.1.0",
   "description": "turf along module",
-  "main": "index",
-  "types": "index.d.ts",
+  "main": "dist/js/index.js",
+  "types": "dist/js/index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
     "prepare": "tsc",

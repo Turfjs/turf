@@ -6,7 +6,7 @@ const write = require('write-json-file');
 const { getCoords } = require('@turf/invariant');
 const { lineString, featureCollection, round } = require('@turf/helpers');
 const truncate = require('@turf/truncate').default;
-const destination = require('./').default;
+const destination = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

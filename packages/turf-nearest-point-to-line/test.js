@@ -6,7 +6,7 @@ const write = require('write-json-file');
 const circle = require('@turf/circle').default;
 const truncate = require('@turf/truncate').default;
 const { geometryCollection, featureCollection, point, lineString, round } = require('@turf/helpers');
-const nearestPointToLine = require('./').default;
+const nearestPointToLine = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

@@ -2,11 +2,10 @@
   "name": "@turf/bbox",
   "version": "6.0.1",
   "description": "turf bbox module",
-  "main": "index",
-  "types": "index.d.ts",
+  "main": "dist/js/index.js",
+  "types": "dist/js/index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
     "prepare": "tsc",
