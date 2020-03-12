@@ -786,7 +786,7 @@ export function segmentEach(geojson, callback) {
  *   //= featureIndex
  *   //= multiFeatureIndex
  *   //= geometryIndex
- *   //= segmentInex
+ *   //= segmentIndex
  *   return currentSegment
  * });
  *
