@@ -5,5 +5,5 @@ import { FeatureCollection, BBox, Point, Polygon } from '@turf/helpers';
  */
 export default function voronoi(
     points: FeatureCollection<Point>,
-    bbox: BBox
+    options: {bbox: BBox}
 ): FeatureCollection<Polygon>;
