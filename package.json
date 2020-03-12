@@ -21,6 +21,7 @@
     "documentation": "*",
     "eslint": "*",
     "eslint-config-mourner": "*",
+    "esm": "^3.2.25",
     "fs-extra": "*",
     "lerna": "2.8.0",
     "load-json-file": "*",
