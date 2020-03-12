@@ -8,6 +8,7 @@
     "postlint": "documentation lint packages/turf-*/index.js",
     "pretest": "lerna bootstrap --use-workspaces && npm run lint",
     "test": "lerna run test --use-workspaces",
+    "posttest": "lerna run --scope @turf/turf last-checks",
     "docs": "node ./scripts/generate-readmes",
     "postinstall": "opencollective postinstall"
   },
