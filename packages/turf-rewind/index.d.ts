@@ -6,7 +6,7 @@ import { AllGeoJSON } from '@turf/helpers';
 export default function rewind<T extends AllGeoJSON>(
     geojson: T,
     options?: {
-        reversed?: boolean,
+        reverse?: boolean,
         mutate?: boolean
     }
 ): T;
