@@ -1,14 +1,16 @@
 {
   "private": true,
   "name": "create-react-app",
-  "main": "src/index.js",
   "scripts": {
-    "test": "react-scripts build"
-  },
-  "devDependencies": {
-    "react-scripts": "*"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-scripts": "*",
     "@turf/turf": "*"
   }
 }
