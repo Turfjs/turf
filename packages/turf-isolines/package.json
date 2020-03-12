@@ -14,8 +14,8 @@
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "bench": "node -r @std/esm bench.js",
+    "test": "node -r esm test.js",
+    "bench": "node -r esm bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {
@@ -40,7 +40,6 @@
   },
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "0.21.x",
     "@turf/envelope": "^5.1.5",
     "@turf/point-grid": "6.x",
     "@turf/random": "6.x",
@@ -59,9 +58,5 @@
     "@turf/invariant": "6.x",
     "@turf/meta": "6.x",
     "object-assign": "*"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }
