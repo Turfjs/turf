@@ -38,7 +38,6 @@
   "devDependencies": {
     "@turf/bbox-polygon": "*",
     "@turf/truncate": "*",
-    "@std/esm": "*",
     "benchmark": "*",
     "rollup": "*",
     "write-json-file": "*",
