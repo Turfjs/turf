@@ -13,8 +13,9 @@
     "test": "npm-run-all test:tape test:types",
     "test:tape": "node -r esm test.js",
     "test:types": "tsc --noEmit types.ts",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+    "bench": "npm-run-all prepare bench:run",
+    "docs": "node ../../scripts/generate-readmes",
+    "bench:run": "node bench.js"
   },
   "repository": {
     "type": "git",

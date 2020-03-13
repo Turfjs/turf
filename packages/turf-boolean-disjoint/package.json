@@ -11,8 +11,9 @@
     "prepare": "tsc",
     "pretest": "tsc",
     "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+    "bench": "npm-run-all prepare bench:run",
+    "docs": "node ../../scripts/generate-readmes",
+    "bench:run": "node bench.js"
   },
   "repository": {
     "type": "git",
