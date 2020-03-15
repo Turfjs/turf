@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import pointToLineDistance from './index';
+import pointToLineDistance from './dist/js/index.js';
 
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;

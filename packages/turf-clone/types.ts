@@ -1,5 +1,5 @@
 import {Feature, lineString, LineString, point, Point} from "@turf/helpers";
-import clone from "./";
+import clone from "./dist/js/index";
 
 const pt = point([0, 20]);
 const ptCloned: Feature<Point> = clone(pt);

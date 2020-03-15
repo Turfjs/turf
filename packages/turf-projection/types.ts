@@ -1,5 +1,5 @@
-import * as projection from './'
-import { toMercator, toWgs84 } from './'
+import * as projection from './dist/js/index'
+import { toMercator, toWgs84 } from './dist/js/index'
 import { point } from '@turf/helpers'
 
 // Types test

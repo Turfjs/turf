@@ -4,7 +4,7 @@ const test = require('tape');
 const load = require('load-json-file');
 const shapely = require('boolean-shapely');
 const booleanJSTS = require('boolean-jsts');
-const within = require('./').default;
+const within = require('./dist/js/index.js').default;
 
 test('turf-boolean-within', t => {
     // True Fixtures

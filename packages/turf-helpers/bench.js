@@ -4,7 +4,7 @@ const {
     multiPoint, multiLineString, multiPolygon,
     featureCollection, geometryCollection,
     round
-} = require('./');
+} = require('./dist/js/index.js');
 
 /**
  * Benchmark Results

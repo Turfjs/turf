@@ -3,7 +3,7 @@ import {
     multiLineString, MultiLineString, multiPolygon, MultiPolygon, polygon, Polygon, Properties,
 } from "@turf/helpers";
 import { getCoords, getGeom } from "@turf/invariant";
-import * as lineclip from "./lib/lineclip";
+import {lineclip, polygonclip} from "./lib/lineclip";
 
 /**
  * Takes a {@link Feature} and a bbox and clips the feature to the bbox using
@@ -38,7 +38,7 @@ export default function bboxClip<G extends Polygon | MultiPolygon | LineString |
         const lines: any[] = [];
         if (type === "LineString") { coords = [coords]; }
         coords.forEach((line) => {
-            lineclip.polyline(line, bbox, lines);
+            lineclip(line, bbox, lines);
         });
         if (lines.length === 1) { return lineString(lines[0], properties); }
         return multiLineString(lines, properties);
@@ -56,7 +56,7 @@ export default function bboxClip<G extends Polygon | MultiPolygon | LineString |
 function clipPolygon(rings: any[], bbox: BBox) {
     const outRings = [];
     for (const ring of rings) {
-        const clipped: any = lineclip.polygon(ring, bbox);
+        const clipped: any = polygonclip(ring, bbox);
         if (clipped.length > 0) {
             if (clipped[0][0] !== clipped[clipped.length - 1][0] || clipped[0][1] !== clipped[clipped.length - 1][1]) {
                 clipped.push(clipped[0]);

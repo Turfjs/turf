@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const Benchmark = require('benchmark');
 const load = require('load-json-file');
-const nearestPoint = require('./').default;
+const nearestPoint = require('./dist/js/index.js').default;
 
 
 const pts = load.sync(path.join(__dirname, 'test', 'in', 'points.json'));

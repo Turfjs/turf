@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const distance = require('@turf/distance').default;
 const { point, round } = require('@turf/helpers');
-const rhumbDistance = require('./').default;
+const rhumbDistance = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

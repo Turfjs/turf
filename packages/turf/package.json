@@ -2,7 +2,7 @@
   "name": "@turf/turf",
   "version": "6.0.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
-  "main": "turf",
+  "main": "index.js",
   "module": "turf.mjs",
   "browser": "turf.min.js",
   "types": "index.d.ts",
@@ -17,8 +17,10 @@
   "scripts": {
     "prepare": "rollup -c rollup.config.js",
     "pretest": "rollup -f cjs -o index.js index.mjs",
-    "test": "node test.js",
-    "posttest": "node test.example.js"
+    "test": "echo '@turf/turf tests run in the last-checks step'",
+    "last-checks": "npm-run-all last-checks:testjs last-checks:example",
+    "last-checks:testjs": "node test.js",
+    "last-checks:example": "node test.example.js"
   },
   "repository": {
     "type": "git",

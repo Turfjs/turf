@@ -2,18 +2,18 @@
   "name": "@turf/polygon-to-line",
   "version": "6.0.3",
   "description": "turf polygon-to-line module",
-  "main": "index",
-  "types": "index.d.ts",
+  "main": "dist/js/index.js",
+  "types": "dist/js/index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
     "prepare": "tsc",
     "pretest": "tsc",
     "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+    "bench": "npm-run-all prepare bench:run",
+    "docs": "node ../../scripts/generate-readmes",
+    "bench:run": "node bench.js"
   },
   "repository": {
     "type": "git",

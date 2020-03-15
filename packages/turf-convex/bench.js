@@ -2,7 +2,7 @@ const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const convex = require('./').default;
+const convex = require('./dist/js/index.js').default;
 
 const suite = new Benchmark.Suite('turf-convex');
 

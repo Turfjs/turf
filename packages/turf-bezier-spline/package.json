@@ -2,19 +2,17 @@
   "name": "@turf/bezier-spline",
   "version": "6.0.3",
   "description": "turf bezier-spline module",
-  "main": "index",
-  "types": "index.d.ts",
+  "main": "dist/js/index.js",
+  "types": "dist/js/index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts",
-    "lib/spline.js",
-    "lib/spline.d.ts"
+    "dist"
   ],
   "scripts": {
     "prepare": "tsc",
     "pretest": "tsc",
     "test": "node test.js",
-    "bench": "node bench.js",
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
     "docs": "node ../../scripts/generate-readmes"
   },
   "repository": {

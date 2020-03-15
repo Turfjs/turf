@@ -1,6 +1,6 @@
 const Benchmark = require('benchmark');
 const helpers = require('@turf/helpers');
-const invariant = require('./');
+const invariant = require('./dist/js/index.js');
 
 const pt = helpers.point([-75, 40]);
 const line = helpers.lineString([[-75, 40], [-70, 50]]);

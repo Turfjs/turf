@@ -1,6 +1,6 @@
 const Benchmark = require('benchmark');
 const { polygon, featureCollection, point } = require('@turf/helpers');
-const collect = require('./').default;
+const collect = require('./dist/js/index.js').default;
 
 var poly1 = polygon([[[0, 0], [10, 0], [0, 10], [0, 10], [0, 0]]]);
 var poly2 = polygon([[[10, 0], [20, 10], [20, 20], [20, 0], [10, 0]]]);

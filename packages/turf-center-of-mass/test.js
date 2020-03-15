@@ -10,7 +10,7 @@ const {
     polygon,
     featureCollection,
  } = require('@turf/helpers');
-const centerOfMass = require('./').default;
+const centerOfMass = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

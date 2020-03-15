@@ -6,7 +6,7 @@ const write = require('write-json-file');
 const truncate = require('@turf/truncate').default;
 const { featureCollection } = require('@turf/helpers');
 const geojsonhint = require('@mapbox/geojsonhint');
-const circle = require('./').default;
+const circle = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

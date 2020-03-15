@@ -8,7 +8,7 @@ const distance = require('@turf/distance').default;
 const truncate = require('@turf/truncate').default;
 const length = require('@turf/length').default;
 const { lineString, multiLineString, point, featureCollection, round } = require('@turf/helpers');
-const nearestPointOnLine = require('./').default;
+const nearestPointOnLine = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

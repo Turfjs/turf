@@ -3,7 +3,7 @@ import path from 'path';
 import glob from 'glob';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import centerOfMass from './';
+import centerOfMass from './dist/js/index.js';
 
 const fixtures = glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).map(input => {
     return {

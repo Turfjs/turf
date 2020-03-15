@@ -13,7 +13,9 @@
   ],
   "scripts": {
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r esm test.js",
+    "test": "npm-run-all test:tape test:types",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts",
     "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
     "bench": "node -r esm bench.js",
     "docs": "node ../../scripts/generate-readmes"

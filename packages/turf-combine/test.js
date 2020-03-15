@@ -1,6 +1,6 @@
 const test = require('tape');
 const { point, multiPoint, polygon, multiPolygon, lineString, multiLineString, featureCollection, feature } = require('@turf/helpers');
-const combine = require('./').default;
+const combine = require('./dist/js/index.js').default;
 
 test('combine -- points', t => {
     // MultiPoint

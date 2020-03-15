@@ -2,7 +2,7 @@ import path from 'path';
 import glob from 'glob';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import nearestPointToLine from './';
+import nearestPointToLine from './dist/js/index.js';
 
 /**
  * Benchmark Results
