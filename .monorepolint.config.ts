@@ -32,6 +32,34 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach(pk => {
 
 module.exports = {
   rules: {
-    ":alphabetical-scripts": {}
+    ":alphabetical-scripts": {},
+
+    ":package-entry": [
+      {
+        options: {
+          entries: {
+            main: "dist/js/index.js",
+            types: "dist/js/index.d.ts",
+            files: ["dist"]
+          }
+        },
+        includePackages: TS_PACKAGES
+      }
+    ],
+
+    ":package-script": [
+      {
+        options: {
+          scripts: {
+            bench: "npm-run-all prepare bench:run",
+            "bench:run": "node bench.js",
+            docs: "node ../../scripts/generate-readmes",
+            prepare: "tsc",
+            pretest: "tsc"
+          }
+        },
+        includePackages: TS_PACKAGES
+      }
+    ]
   }
 };
