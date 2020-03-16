@@ -8,12 +8,12 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "node test.js",
     "bench": "npm-run-all prepare bench:run",
     "bench:run": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "tsc",
+    "pretest": "tsc",
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",

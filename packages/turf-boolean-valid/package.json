@@ -9,12 +9,12 @@
     "dist/js/index.d.ts"
   ],
   "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
     "prepare": "tsc",
     "pretest": "tsc",
-    "test": "node test.js",
-    "bench": "npm-run-all prepare bench:run",
-    "docs": "node ../../scripts/generate-readmes",
-    "bench:run": "node bench.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
