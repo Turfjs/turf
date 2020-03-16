@@ -44,7 +44,7 @@
     "rollup": "*",
     "rollup-plugin-typescript": "*",
     "tape": "*",
-    "typescript": "*",
+    "typescript": "^3.8.3",
     "yamljs": "*"
   },
   "dependencies": {
