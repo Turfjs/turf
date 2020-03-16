@@ -8,14 +8,14 @@
     "dist"
   ],
   "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
     "prepare": "tsc",
     "pretest": "tsc",
     "test": "npm-run-all test:tape test:types",
     "test:tape": "node -r esm test.js",
-    "test:types": "tsc --noEmit types.ts",
-    "bench": "npm-run-all prepare bench:run",
-    "docs": "node ../../scripts/generate-readmes",
-    "bench:run": "node bench.js"
+    "test:types": "tsc --noEmit types.ts"
   },
   "repository": {
     "type": "git",

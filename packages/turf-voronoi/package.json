@@ -12,11 +12,11 @@
     "main.es.js"
   ],
   "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r esm test.js",
-    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
     "bench": "node -r esm bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "node -r esm test.js"
   },
   "repository": {
     "type": "git",

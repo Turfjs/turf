@@ -15,12 +15,12 @@
     "turf.min.js"
   ],
   "scripts": {
+    "last-checks": "npm-run-all last-checks:testjs last-checks:example",
+    "last-checks:example": "node test.example.js",
+    "last-checks:testjs": "node test.js",
     "prepare": "rollup -c rollup.config.js",
     "pretest": "rollup -f cjs -o index.js index.mjs",
-    "test": "echo '@turf/turf tests run in the last-checks step'",
-    "last-checks": "npm-run-all last-checks:testjs last-checks:example",
-    "last-checks:testjs": "node test.js",
-    "last-checks:example": "node test.example.js"
+    "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "repository": {
     "type": "git",
