@@ -35,12 +35,12 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  */
 const suite = new Benchmark.Suite('turf-interpolate');
 for (const {name, geojson} of fixtures) {
-    const {property, cellSize, outputType, units, weight} = geojson.properties;
-
+    const options = geojson.properties;
+    const cellSize = options.cellSize;
     console.time(name);
-    interpolate(geojson, cellSize, outputType, property, units, weight);
+    interpolate(geojson, cellSize, options);
     console.timeEnd(name);
-    suite.add(name, () => interpolate(geojson, cellSize, outputType, property, units, weight));
+    suite.add(name, () => interpolate(geojson, cellSize, options));
 }
 
 suite

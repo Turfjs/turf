@@ -11,24 +11,16 @@ const directories = {
     out: path.join(__dirname, 'test', 'out') + path.sep
 };
 
-let fixtures = fs.readdirSync(directories.in).map(folder => {
-    const files = {folder};
-    fs.readdirSync(path.join(directories.in, folder)).forEach(filename => {
-        const name = path.parse(filename).name;
-        files[name] = load.sync(path.join(directories.in, folder, filename));
-    });
-    return files;
+let fixtures = fs.readdirSync(directories.in).map(filename => {
+    return {
+        name: path.parse(filename).name,
+        geojson: load.sync(path.join(directories.in, filename))
+    };
 });
-// const include = [
-//     'basic',
-//     // 'overlapping',
-//     // 'feature-collection',
-//     // 'multipolygon'
-// ];
-// fixtures = fixtures.filter(fixture => include.indexOf(fixture.folder) !== -1);
 
-for (const {folder, polygon, mask} of fixtures) {
-    suite.add(folder, () => turfMask(polygon, mask));
+for (const {name, geojson} of fixtures) {
+    const [polygon, masking] = geojson.features;
+    suite.add(name, () => turfMask(polygon, masking));
 }
 
 suite
