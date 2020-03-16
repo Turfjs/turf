@@ -33,7 +33,7 @@ for (const {name, geojson} of fixtures) {
     tolerance = tolerance || 0.01;
     highQuality = highQuality || false;
     console.time(name);
-    simplify(geojson, tolerance, highQuality);
+    simplify(geojson, {tolerance, highQuality});
     console.timeEnd(name);
 }
 
@@ -58,7 +58,7 @@ for (const {name, geojson} of fixtures) {
     let {tolerance, highQuality} = geojson.properties || {};
     tolerance = tolerance || 0.01;
     highQuality = highQuality || false;
-    suite.add(name, () => simplify(geojson, tolerance, highQuality));
+    suite.add(name, () => simplify(geojson, {tolerance, highQuality}));
 }
 
 suite
