@@ -1,6 +1,6 @@
 const Benchmark = require('benchmark');
 const { polygon } = require('@turf/helpers');
-const grid = require('./dist/js/index.js');
+const grid = require('./dist/js/index.js').default;
 
 var bbox = [-95, 30, -85, 40];
 var mask = polygon([[[6.5, 44.6 ], [ 9.2, 44.8 ], [ 8.3, 46.4 ], [ 6.5, 44.6 ]]]);

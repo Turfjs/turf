@@ -28,7 +28,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 for (const {name, geojson} of fixtures) {
     const {distance, direction, units, zTranslation} = geojson.properties || {};
     console.time(name);
-    translate(geojson, distance, direction, units, zTranslation, true);
+    translate(geojson, distance, direction, {units, zTranslation, mutate: true});
     console.timeEnd(name);
 }
 
@@ -48,7 +48,7 @@ for (const {name, geojson} of fixtures) {
 const suite = new Benchmark.Suite('turf-transform-translate');
 for (const {name, geojson} of fixtures) {
     const {distance, direction, units, zTranslation} = geojson.properties || {};
-    suite.add(name, () => translate(geojson, distance, direction, units, zTranslation));
+    suite.add(name, () => translate(geojson, distance, direction, {units, zTranslation}));
 }
 
 suite
