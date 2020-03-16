@@ -12,6 +12,16 @@
     "docs": "node ./scripts/generate-readmes",
     "postinstall": "opencollective postinstall"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/package.json": [
+      "mrl check --paths"
+    ]
+  },
   "devDependencies": {
     "@types/geojson": "*",
     "@types/node": "*",
@@ -23,9 +33,12 @@
     "eslint-config-mourner": "*",
     "esm": "^3.2.25",
     "fs-extra": "*",
+    "husky": "^4.2.3",
     "lerna": "2.8.0",
+    "lint-staged": "^10.0.8",
     "load-json-file": "*",
     "meow": "*",
+    "monorepolint": "^0.5.0-alpha.17",
     "npm-run-all": "^4.1.5",
     "progress": "*",
     "rollup": "*",
