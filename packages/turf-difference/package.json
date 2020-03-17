@@ -2,18 +2,18 @@
   "name": "@turf/difference",
   "version": "6.0.0",
   "description": "turf difference module",
-  "main": "index",
-  "module": "index.mjs",
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
   "types": "index.d.ts",
   "files": [
-    "index.js",
-    "index.mjs",
+    "dist",
     "index.d.ts"
   ],
   "scripts": {
     "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes",
-    "pretest": "rollup -f cjs -o index.js index.mjs",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "pretest": "rollup -c ../../rollup.config.js",
     "test": "node test.js"
   },
   "repository": {

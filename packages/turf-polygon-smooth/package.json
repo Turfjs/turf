@@ -2,14 +2,12 @@
   "name": "@turf/polygon-smooth",
   "version": "5.0.1",
   "description": "turf polygon smooth module",
-  "main": "main.js",
-  "module": "main.es.js",
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
   "types": "index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts",
-    "main.js",
-    "main.es.js"
+    "dist",
+    "index.d.ts"
   ],
   "scripts": {
     "bench": "node -r esm bench.js",

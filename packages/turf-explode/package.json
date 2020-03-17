@@ -2,14 +2,12 @@
   "name": "@turf/explode",
   "version": "5.1.5",
   "description": "turf explode module",
-  "main": "main.js",
-  "module": "main.es.js",
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
   "types": "index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts",
-    "main.js",
-    "main.es.js"
+    "dist",
+    "index.d.ts"
   ],
   "scripts": {
     "bench": "node -r esm bench.js",
