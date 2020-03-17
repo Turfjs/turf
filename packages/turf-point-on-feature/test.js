@@ -7,7 +7,7 @@ import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import { featureEach } from '@turf/meta';
 import { featureCollection } from '@turf/helpers';
-import pointOnFeature from '.';
+import pointOnFeature from './dist/js/index.js';
 
 test('turf-point-on-feature', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {

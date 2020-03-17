@@ -2,22 +2,20 @@
   "name": "@turf/dissolve",
   "version": "5.1.5",
   "description": "turf dissolve module",
-  "main": "main.js",
-  "module": "main.es.js",
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
   "types": "index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts",
-    "main.js",
-    "lib",
-    "main.es.js"
+    "dist",
+    "index.d.ts"
   ],
   "scripts": {
     "bench": "node -r esm bench.js",
     "docs": "node ../../scripts/generate-readmes",
     "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r esm test.js"
+    "test": "npm-run-all test:*",
+    "test:tape": "node -r esm test.js"
   },
   "repository": {
     "type": "git",

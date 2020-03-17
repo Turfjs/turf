@@ -2,19 +2,19 @@
   "name": "@turf/meta",
   "version": "6.0.1",
   "description": "turf meta module",
-  "main": "index",
-  "module": "index.mjs",
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
   "types": "index.d.ts",
   "files": [
-    "index.js",
-    "index.mjs",
+    "dist",
     "index.d.ts"
   ],
   "scripts": {
     "bench": "node bench.js",
     "docs": "node ../../scripts/generate-readmes",
-    "pretest": "rollup -f cjs -o index.js index.mjs",
-    "test": "npm-run-all test:tape test:types",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "pretest": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js",
     "test:types": "tsc --noEmit types.ts"
   },

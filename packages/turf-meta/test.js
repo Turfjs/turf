@@ -13,7 +13,7 @@ const {
     lineStrings,
     polygons
 } = require('@turf/helpers');
-const meta = require('./');
+const meta = require('./dist/js/index.js');
 
 const pt = point([0, 0], {a: 1});
 const pt2 = point([1, 1]);

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import turfMask from '.';
+import turfMask from './dist/js/index.js';
 
 const suite = new Benchmark.Suite('turf-mask');
 

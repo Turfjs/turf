@@ -5,8 +5,7 @@
   "main": "dist/js/index.js",
   "types": "dist/js/index.d.ts",
   "files": [
-    "dist/js/index.js",
-    "dist/js/index.d.ts"
+    "dist"
   ],
   "scripts": {
     "bench": "npm-run-all prepare bench:run",
@@ -14,7 +13,8 @@
     "docs": "node ../../scripts/generate-readmes",
     "prepare": "tsc",
     "pretest": "tsc",
-    "test": "node test.js"
+    "test": "npm-run-all test:*",
+    "test:tape": "node -r esm test.js"
   },
   "repository": {
     "type": "git",

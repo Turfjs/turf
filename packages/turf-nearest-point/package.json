@@ -13,7 +13,9 @@
     "docs": "node ../../scripts/generate-readmes",
     "prepare": "tsc",
     "pretest": "tsc",
-    "test": "node test.js"
+    "test": "npm-run-all test:*",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts"
   },
   "repository": {
     "type": "git",

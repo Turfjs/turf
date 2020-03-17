@@ -7,7 +7,7 @@ import truncate from '@turf/truncate';
 import { brightness } from 'chromatism';
 import { round, featureCollection, point } from '@turf/helpers';
 import { featureEach, propEach } from '@turf/meta';
-import interpolate from '.';
+import interpolate from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

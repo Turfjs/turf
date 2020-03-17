@@ -1,6 +1,6 @@
 import Benchmark from 'benchmark';
 import { point } from '@turf/helpers';
-import greatCircle from './';
+import greatCircle from './dist/js/index.js';
 
 const point1 = point([-75, 45]);
 const point2 = point([30, 45]);

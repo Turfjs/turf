@@ -13,7 +13,7 @@
     "docs": "node ../../scripts/generate-readmes",
     "prepare": "tsc",
     "pretest": "tsc",
-    "test": "npm-run-all test:tape test:types",
+    "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js",
     "test:types": "tsc --noEmit types.ts"
   },

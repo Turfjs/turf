@@ -32,6 +32,78 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach(pk => {
 
 module.exports = {
   rules: {
-    ":alphabetical-scripts": {}
+    ":alphabetical-scripts": {},
+
+    ":package-entry": [
+      {
+        options: {
+          entries: {
+            main: "dist/js/index.js",
+            types: "dist/js/index.d.ts",
+            files: ["dist"]
+          }
+        },
+        includePackages: TS_PACKAGES
+      },
+      {
+        options: {
+          entries: {
+            main: "dist/js/index.js",
+            module: "dist/es/index.js",
+            types: "index.d.ts",
+            files: ["dist", "index.d.ts"]
+          }
+        },
+        includePackages: JS_PACKAGES
+      }
+    ],
+
+    ":package-script": [
+      {
+        options: {
+          scripts: {
+            bench: "npm-run-all prepare bench:run",
+            "bench:run": "node bench.js",
+            docs: "node ../../scripts/generate-readmes",
+            prepare: "tsc",
+            pretest: "tsc"
+          }
+        },
+        includePackages: TS_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            pretest: "rollup -c ../../rollup.config.js",
+            posttest: "node -r esm ../../scripts/validate-es5-dependencies.js"
+          }
+        },
+        includePackages: JS_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            "test:tape": "node -r esm test.js"
+          }
+        },
+        includePackages: TAPE_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            "test:types": "tsc --noEmit types.ts"
+          }
+        },
+        includePackages: TYPES_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            test: "npm-run-all test:*"
+          }
+        },
+        excludePackages: [MAIN_PACKAGE]
+      }
+    ]
   }
 };

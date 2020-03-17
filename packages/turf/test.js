@@ -4,7 +4,7 @@ const glob = require('glob');
 const test = require('tape');
 const camelcase = require('camelcase');
 const documentation = require('documentation');
-const turf = require('./');
+const turf = require('./dist/js/index.js');
 
 // Helpers
 const directory = path.join(__dirname, '..');
@@ -200,7 +200,7 @@ test('turf -- parsing dependencies from index.js', t => {
 test('turf -- missing modules', t => {
     const files = {
         typescript: fs.readFileSync(path.join(__dirname, 'index.d.ts')),
-        modules: fs.readFileSync(path.join(__dirname, 'index.js'))
+        modules: fs.readFileSync(path.join(__dirname, 'dist/js/index.js'))
     };
 
     modules.forEach(({name}) => {
@@ -297,7 +297,7 @@ const turfTypescriptPath = path.join(__dirname, '..', 'turf-*', 'index.d.ts');
 
 // Test Strings
 const requireString = `const test = require('tape');
-const turf = require('./index');
+const turf = require('./dist/js/index.js');
 `;
 
 /**
