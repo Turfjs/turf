@@ -15,6 +15,7 @@
     "last-checks:example": "node test.example.js",
     "last-checks:testjs": "node test.js",
     "prepare": "rollup -c rollup.config.js",
+    "pretest": "npm-run-all prepare",
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "repository": {
