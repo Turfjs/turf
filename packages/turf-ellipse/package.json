@@ -14,7 +14,8 @@
     "docs": "node ../../scripts/generate-readmes",
     "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
     "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r esm test.js"
+    "test": "npm-run-all test:*",
+    "test:tape": "node -r esm test.js"
   },
   "repository": {
     "type": "git",
