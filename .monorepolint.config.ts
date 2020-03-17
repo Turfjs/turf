@@ -79,6 +79,30 @@ module.exports = {
           }
         },
         includePackages: JS_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            "test:tape": "node -r esm test.js"
+          }
+        },
+        includePackages: TAPE_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            "test:types": "tsc --noEmit types.ts"
+          }
+        },
+        includePackages: TYPES_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            test: "npm-run-all test:*"
+          }
+        },
+        excludePackages: [MAIN_PACKAGE]
       }
     ]
   }
