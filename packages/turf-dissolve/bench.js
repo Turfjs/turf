@@ -1,7 +1,7 @@
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import dissolve from '.';
+import dissolve from './dist/js/index.js';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {

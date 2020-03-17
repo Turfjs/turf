@@ -4,7 +4,7 @@ import path from 'path';
 import glob from 'glob';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import polygonSmooth from '.';
+import polygonSmooth from './dist/js/index.js';
 
 test('turf-polygon-smooth', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {

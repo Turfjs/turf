@@ -4,7 +4,7 @@ const glob = require('glob');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const { featureCollection, polygon } = require('@turf/helpers');
-const difference = require('./');
+const difference = require('./dist/js/index.js');
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

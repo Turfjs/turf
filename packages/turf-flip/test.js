@@ -4,7 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import { point } from '@turf/helpers';
-import flip from '.';
+import flip from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

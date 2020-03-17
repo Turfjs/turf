@@ -1,6 +1,6 @@
 import fs from 'fs';
 import Benchmark from 'benchmark';
-import tag from './';
+import tag from './dist/js/index.js';
 
 var points = JSON.parse(fs.readFileSync('./test/tagPoints.geojson'));
 var polygons = JSON.parse(fs.readFileSync('./test/tagPolygons.geojson'));

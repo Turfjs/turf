@@ -3,7 +3,7 @@ import path from 'path';
 import glob from 'glob';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import pointOnFeature from './';
+import pointOnFeature from './dist/js/index.js';
 
 /**
  * Benchmark Results

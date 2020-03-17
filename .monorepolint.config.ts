@@ -44,6 +44,17 @@ module.exports = {
           }
         },
         includePackages: TS_PACKAGES
+      },
+      {
+        options: {
+          entries: {
+            main: "dist/js/index.js",
+            module: "dist/es/index.js",
+            types: "index.d.ts",
+            files: ["dist", "index.d.ts"]
+          }
+        },
+        includePackages: JS_PACKAGES
       }
     ],
 
@@ -59,6 +70,15 @@ module.exports = {
           }
         },
         includePackages: TS_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            pretest: "rollup -c ../../rollup.config.js",
+            posttest: "node -r esm ../../scripts/validate-es5-dependencies.js"
+          }
+        },
+        includePackages: JS_PACKAGES
       }
     ]
   }

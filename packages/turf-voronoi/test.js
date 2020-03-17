@@ -4,7 +4,7 @@ import glob from 'glob';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import voronoi from '.';
+import voronoi from './dist/js/index.js';
 
 test('turf-voronoi', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
