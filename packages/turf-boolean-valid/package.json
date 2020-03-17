@@ -5,8 +5,7 @@
   "main": "dist/js/index.js",
   "types": "dist/js/index.d.ts",
   "files": [
-    "dist/js/index.js",
-    "dist/js/index.d.ts"
+    "dist"
   ],
   "scripts": {
     "bench": "npm-run-all prepare bench:run",
