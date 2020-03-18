@@ -4275,11 +4275,12 @@ markdown-table@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.1.tgz#4b3dd3a133d1518b8ef0dbc709bf2a1b4824bc8c"
 
-martinez-polygon-clipping@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/martinez-polygon-clipping/-/martinez-polygon-clipping-0.4.3.tgz#a3971ddf1da147104b5d0fbbf68f728bb62885c1"
-  integrity sha512-3ZNS0ksKhWTLsmCUkNf+/UimndZ5U2cVOS0I+IjiwF+M23E77TmeOZSmbRJbfCoQUog/vcQ42s3DXrhgOhgPqw==
+martinez-polygon-clipping@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.npmjs.org/martinez-polygon-clipping/-/martinez-polygon-clipping-0.6.2.tgz#4b228660312c42b8dd21e2609fbfcab3dc835e90"
+  integrity sha512-uHDcTSLK/2jMEF13LhzmmZwSHuyoLkjh+JmhbgMyYwHDyQJdcTvUYMOkyVEz4Hc0vCEN+qxyUt3GH0S0BorofA==
   dependencies:
+    robust-predicates "^2.0.4"
     splaytree "^0.1.4"
     tinyqueue "^1.2.0"
 
@@ -5719,6 +5720,11 @@ robust-orientation@^1.1.3:
     robust-subtract "^1.0.0"
     robust-sum "^1.0.0"
     two-product "^1.0.2"
+
+robust-predicates@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/robust-predicates/-/robust-predicates-2.0.4.tgz#0a2367a93abd99676d075981707f29cfb402248b"
+  integrity sha512-l4NwboJM74Ilm4VKfbAtFeGq7aEjWL+5kVFcmgFA2MrdnQWx9iE/tUGvxY5HyMI7o/WpSIUFLbC5fbeaHgSCYg==
 
 robust-scale@^1.0.2:
   version "1.0.2"
