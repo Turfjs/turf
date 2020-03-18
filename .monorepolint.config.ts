@@ -32,6 +32,36 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach(pk => {
 
 module.exports = {
   rules: {
+    ":package-order": {
+      options: {
+        order: [
+          "name",
+          "version",
+          "private",
+          "description",
+          "workspaces",
+          "author",
+          "contributors",
+          "license",
+          "bugs",
+          "homepage",
+          "repository",
+          "keywords",
+          "main",
+          "module",
+          "types",
+          "sideEffects",
+          "files",
+          "scripts",
+          "husky",
+          "lint-staged",
+          "devDependencies",
+          "dependencies"
+        ]
+      },
+      includeWorkspaceRoot: true
+    },
+
     ":alphabetical-scripts": {},
 
     ":package-entry": [
@@ -39,6 +69,15 @@ module.exports = {
         options: {
           entries: {
             main: "dist/js/index.js",
+            module: "dist/es/index.js",
+            sideEffects: false
+          }
+        },
+        includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES]
+      },
+      {
+        options: {
+          entries: {
             types: "dist/js/index.d.ts",
             files: ["dist"]
           }
@@ -48,13 +87,11 @@ module.exports = {
       {
         options: {
           entries: {
-            main: "dist/js/index.js",
-            module: "dist/es/index.js",
             types: "index.d.ts",
             files: ["dist", "index.d.ts"]
           }
         },
-        includePackages: JS_PACKAGES
+        includePackages: [MAIN_PACKAGE, ...JS_PACKAGES]
       }
     ],
 
@@ -65,8 +102,18 @@ module.exports = {
             bench: "npm-run-all prepare bench:run",
             "bench:run": "node bench.js",
             docs: "node ../../scripts/generate-readmes",
-            prepare: "tsc",
-            pretest: "tsc"
+            test: "npm-run-all prepare test:*"
+          }
+        },
+        excludePackages: [MAIN_PACKAGE]
+      },
+      {
+        options: {
+          scripts: {
+            prepare: "npm-run-all prepare:*",
+            "prepare:js": "tsc",
+            "prepare:es":
+              "tsc --outDir dist/es --module esnext --declaration false"
           }
         },
         includePackages: TS_PACKAGES
@@ -74,7 +121,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            pretest: "rollup -c ../../rollup.config.js",
+            prepare: "rollup -c ../../rollup.config.js",
             posttest: "node -r esm ../../scripts/validate-es5-dependencies.js"
           }
         },
@@ -95,14 +142,6 @@ module.exports = {
           }
         },
         includePackages: TYPES_PACKAGES
-      },
-      {
-        options: {
-          scripts: {
-            test: "npm-run-all test:*"
-          }
-        },
-        excludePackages: [MAIN_PACKAGE]
       }
     ]
   }
