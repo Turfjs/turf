@@ -2,21 +2,12 @@
   "name": "@turf/midpoint",
   "version": "5.1.5",
   "description": "turf midpoint module",
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
-  "types": "index.d.ts",
-  "files": [
-    "dist",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "bench": "node -r esm bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js"
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
@@ -28,12 +19,23 @@
     "geojson",
     "line"
   ],
-  "author": "Turf Authors",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "prepare": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "*",
     "rollup": "*",

@@ -2,20 +2,15 @@
   "name": "@turf/boolean-parallel",
   "version": "6.0.1",
   "description": "turf boolean-parallel module",
-  "main": "dist/js/index.js",
-  "types": "dist/js/index.d.ts",
-  "files": [
-    "dist"
+  "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>"
   ],
-  "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
@@ -26,15 +21,23 @@
     "boolean",
     "boolean-parallel"
   ],
-  "author": "Turf Authors",
-  "contributors": [
-    "Stefano Borghi <@stebogit>"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
   ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "*",
     "load-json-file": "*",

@@ -2,8 +2,20 @@
   "name": "@turf/nearest-point-on-line",
   "version": "6.0.2",
   "description": "turf nearest-point-on-line module",
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
   "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
   "types": "dist/js/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -11,22 +23,13 @@
     "bench": "npm-run-all prepare bench:run",
     "bench:run": "node bench.js",
     "docs": "node ../../scripts/generate-readmes",
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "npm-run-all test:*",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
     "test:tape": "node -r esm test.js",
     "test:types": "tsc --noEmit types.ts"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "author": "Turf Authors",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
-  },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/along": "*",
     "@turf/length": "*",

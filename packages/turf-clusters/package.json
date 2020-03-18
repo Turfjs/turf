@@ -2,21 +2,15 @@
   "name": "@turf/clusters",
   "version": "6.0.1",
   "description": "turf clusters module",
-  "main": "dist/js/index.js",
-  "types": "dist/js/index.d.ts",
-  "files": [
-    "dist"
+  "author": "Turf Authors",
+  "contributors": [
+    "Denis Carriere <@DenisCarriere>"
   ],
-  "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js",
-    "test:types": "tsc --noEmit types.ts"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
@@ -28,15 +22,24 @@
     "clusters",
     "clustering"
   ],
-  "author": "Turf Authors",
-  "contributors": [
-    "Denis Carriere <@DenisCarriere>"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
   ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "benchmark": "*",
     "typescript": "*",
