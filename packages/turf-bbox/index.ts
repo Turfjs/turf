@@ -15,7 +15,7 @@ import { coordEach } from "@turf/meta";
  * //addToMap
  * var addToMap = [line, bboxPolygon]
  */
-function bbox(geojson: any): BBox {
+export default function bbox(geojson: any): BBox {
     const result: BBox = [Infinity, Infinity, -Infinity, -Infinity];
     coordEach(geojson, (coord) => {
         if (result[0] > coord[0]) { result[0] = coord[0]; }
@@ -25,6 +25,3 @@ function bbox(geojson: any): BBox {
     });
     return result;
 }
-
-bbox.default = bbox;
-export default bbox;
