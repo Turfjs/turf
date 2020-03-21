@@ -6,6 +6,8 @@ import write from 'write-json-file';
 import {polygon, point, featureCollection} from '@turf/helpers';
 import dissolve from './dist/js/index.js';
 
+const SKIP = ["hexagons-issue#742.geojson", "polysByProperty.geojson", "polysWithoutProperty.geojson", "simplified-issue.geojson"];
+
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
     out: path.join(__dirname, 'test', 'out') + path.sep
@@ -22,6 +24,9 @@ const fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-dissolve', t => {
     for (const {filename, name, geojson}  of fixtures) {
+        if (-1 !== SKIP.indexOf(filename)) {
+            continue;
+        }
         const propertyName = geojson.propertyName;
         const results = dissolve(geojson, {propertyName});
 

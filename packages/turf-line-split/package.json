@@ -49,9 +49,9 @@
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/line-intersect": "6.x",
-    "@turf/line-segment": "^5.1.5",
+    "@turf/line-segment": "6.x",
     "@turf/meta": "6.x",
-    "@turf/nearest-point-on-line": "^5.1.5",
+    "@turf/nearest-point-on-line": "6.x",
     "@turf/square": "^5.1.5",
     "@turf/truncate": "6.x",
     "geojson-rbush": "3.x"
