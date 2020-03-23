@@ -49,6 +49,6 @@
   "dependencies": {
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
-    "@turf/nearest-point-on-line": "^5.1.5"
+    "@turf/nearest-point-on-line": "6.x"
   }
 }

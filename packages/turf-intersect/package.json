@@ -48,6 +48,6 @@
   "dependencies": {
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
-    "martinez-polygon-clipping": "^0.4.3"
+    "martinez-polygon-clipping": "^0.6.2"
   }
 }

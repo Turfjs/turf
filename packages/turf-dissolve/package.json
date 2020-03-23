@@ -44,13 +44,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-overlap": "^5.1.5",
+    "@turf/boolean-overlap": "^6.x",
     "@turf/clone": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/line-intersect": "6.x",
     "@turf/meta": "6.x",
-    "@turf/union": "^5.1.5",
+    "@turf/union": "6.x",
     "geojson-rbush": "3.x",
     "get-closest": "*"
   }

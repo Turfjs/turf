@@ -38,7 +38,7 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/kinks": "^5.1.5",
+    "@turf/kinks": "6.x",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",

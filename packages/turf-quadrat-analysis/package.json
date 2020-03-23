@@ -54,7 +54,7 @@
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
     "@turf/point-grid": "6.x",
-    "@turf/random": "5.x",
+    "@turf/random": "6.x",
     "@turf/square-grid": "6.x"
   }
 }

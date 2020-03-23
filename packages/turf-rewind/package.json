@@ -50,7 +50,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-clockwise": "^5.1.5",
+    "@turf/boolean-clockwise": "6.x",
     "@turf/clone": "6.x",
     "@turf/helpers": "6.x",
     "@turf/invariant": "6.x",
