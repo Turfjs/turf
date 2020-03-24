@@ -2,30 +2,6 @@
   "name": "@turf/point-to-line-distance",
   "version": "6.0.0",
   "description": "turf point-to-line-distance module",
-  "main": "dist/js/index.js",
-  "types": "dist/js/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js",
-    "test:types": "tsc --noEmit types.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "point-to-line-distance",
-    "distance"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Stefano Borghi <@stebogit>"
@@ -35,6 +11,33 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "keywords": [
+    "turf",
+    "point-to-line-distance",
+    "distance"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts"
+  },
   "devDependencies": {
     "@turf/circle": "*",
     "benchmark": "*",

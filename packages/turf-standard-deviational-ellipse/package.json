@@ -2,22 +2,15 @@
   "name": "@turf/standard-deviational-ellipse",
   "version": "5.1.5",
   "description": "turf standard-deviational-ellipse module",
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
-  "types": "index.d.ts",
-  "files": [
-    "dist",
-    "index.d.ts"
+  "author": "Turf Authors",
+  "contributors": [
+    "Moacir P. de Sá Pereira <@muziejus>"
   ],
-  "scripts": {
-    "bench": "node -r esm bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js",
-    "test:types": "tsc --noEmit types.ts"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
@@ -28,15 +21,24 @@
     "geostatistics",
     "directional distribution"
   ],
-  "author": "Turf Authors",
-  "contributors": [
-    "Moacir P. de Sá Pereira <@muziejus>"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
   ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "prepare": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@turf/random": "6.x",
     "@turf/truncate": "6.x",
