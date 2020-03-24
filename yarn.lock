@@ -5344,7 +5344,7 @@ lead@^1.0.0:
   dependencies:
     flush-write-stream "^1.0.2"
 
-lerna@3.20.2:
+lerna@^3.20.2:
   version "3.20.2"
   resolved "https://registry.npmjs.org/lerna/-/lerna-3.20.2.tgz#abf84e73055fe84ee21b46e64baf37b496c24864"
   integrity sha512-bjdL7hPLpU3Y8CBnw/1ys3ynQMUjiK6l9iDWnEGwFtDy48Xh5JboR9ZJwmKGCz9A/sarVVIGwf1tlRNKUG9etA==

@@ -7,7 +7,7 @@
     "lint": "echo 'eslint will be moved to TSLint'",
     "postlint": "documentation lint packages/turf-*/index.js",
     "pretest": "lerna bootstrap --use-workspaces && npm run lint",
-    "test": "lerna run test --use-workspaces",
+    "test": "lerna run test",
     "posttest": "lerna run --scope @turf/turf last-checks",
     "docs": "node ./scripts/generate-readmes",
     "postinstall": "opencollective postinstall"
@@ -34,7 +34,7 @@
     "esm": "^3.2.25",
     "fs-extra": "*",
     "husky": "^4.2.3",
-    "lerna": "3.20.2",
+    "lerna": "^3.20.2",
     "lint-staged": "^10.0.8",
     "load-json-file": "*",
     "meow": "*",
