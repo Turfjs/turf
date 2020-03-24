@@ -34,7 +34,7 @@
     "esm": "^3.2.25",
     "fs-extra": "*",
     "husky": "^4.2.3",
-    "lerna": "2.8.0",
+    "lerna": "3.20.2",
     "lint-staged": "^10.0.8",
     "load-json-file": "*",
     "meow": "*",
