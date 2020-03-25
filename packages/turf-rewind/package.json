@@ -1,6 +1,6 @@
 {
   "name": "@turf/rewind",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.0",
   "description": "turf rewind module",
   "author": "Turf Authors",
   "contributors": [
@@ -50,10 +50,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-clockwise": "6.x",
-    "@turf/clone": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x",
-    "@turf/meta": "6.x"
+    "@turf/boolean-clockwise": "^6.2.0-alpha.0",
+    "@turf/clone": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/invariant": "^6.2.0-alpha.0",
+    "@turf/meta": "^6.2.0-alpha.0"
   }
 }

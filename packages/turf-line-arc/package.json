@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-arc",
-  "version": "6.0.0",
+  "version": "6.2.0-alpha.0",
   "description": "turf line-arc module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -35,16 +35,16 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "*",
+    "@turf/truncate": "^6.2.0-alpha.0",
     "benchmark": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
+    "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/circle": "6.x",
-    "@turf/destination": "6.x",
-    "@turf/helpers": "6.x"
+    "@turf/circle": "^6.2.0-alpha.0",
+    "@turf/destination": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0"
   }
 }

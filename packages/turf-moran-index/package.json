@@ -1,6 +1,6 @@
 {
   "name": "@turf/moran-index",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.0",
   "description": "turf moran-index module",
   "author": "Turf Authors",
   "contributors": [
@@ -37,17 +37,17 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
-    "write-json-file": "*",
     "load-json-file": "*",
     "tape": "*",
-    "typescript": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/distance-weight": "6.x",
-    "@turf/meta": "6.x"
+    "@turf/distance-weight": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/meta": "^6.2.0-alpha.0"
   }
 }

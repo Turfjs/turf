@@ -1,6 +1,6 @@
 {
   "name": "@turf/random",
-  "version": "6.0.2",
+  "version": "6.2.0-alpha.0",
   "description": "turf random module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -34,14 +34,14 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
-    "typescript": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x"
+    "@turf/helpers": "^6.2.0-alpha.0"
   }
 }

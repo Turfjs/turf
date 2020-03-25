@@ -1,6 +1,6 @@
 {
   "name": "@turf/interpolate",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.0",
   "description": "turf interpolate module",
   "author": "Turf Authors",
   "contributors": [
@@ -39,7 +39,7 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "6.x",
+    "@turf/truncate": "^6.2.0-alpha.0",
     "benchmark": "*",
     "chromatism": "*",
     "load-json-file": "*",
@@ -48,16 +48,16 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "6.x",
-    "@turf/centroid": "6.x",
-    "@turf/clone": "6.x",
-    "@turf/distance": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/hex-grid": "^6.x",
-    "@turf/invariant": "6.x",
-    "@turf/meta": "6.x",
-    "@turf/point-grid": "6.x",
-    "@turf/square-grid": "6.x",
-    "@turf/triangle-grid": "6.x"
+    "@turf/bbox": "^6.2.0-alpha.0",
+    "@turf/centroid": "^6.2.0-alpha.0",
+    "@turf/clone": "^6.2.0-alpha.0",
+    "@turf/distance": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/hex-grid": "^6.2.0-alpha.0",
+    "@turf/invariant": "^6.2.0-alpha.0",
+    "@turf/meta": "^6.2.0-alpha.0",
+    "@turf/point-grid": "^6.2.0-alpha.0",
+    "@turf/square-grid": "^6.2.0-alpha.0",
+    "@turf/triangle-grid": "^6.2.0-alpha.0"
   }
 }

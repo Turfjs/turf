@@ -1,6 +1,6 @@
 {
   "name": "@turf/quadrat-analysis",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.0",
   "description": "turf quadrat-analysis module",
   "author": "Turf Authors",
   "contributors": [
@@ -37,24 +37,24 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
+    "@turf/nearest-neighbor-analysis": "^6.2.0-alpha.0",
     "@types/tape": "*",
-    "@turf/nearest-neighbor-analysis": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "typescript": "*",
-    "tslint": "*",
     "tape": "*",
+    "tslint": "*",
+    "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "6.x",
-    "@turf/bbox": "6.x",
-    "@turf/bbox-polygon": "6.x",
-    "@turf/centroid": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x",
-    "@turf/point-grid": "6.x",
-    "@turf/random": "6.x",
-    "@turf/square-grid": "6.x"
+    "@turf/area": "^6.2.0-alpha.0",
+    "@turf/bbox": "^6.2.0-alpha.0",
+    "@turf/bbox-polygon": "^6.2.0-alpha.0",
+    "@turf/centroid": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/invariant": "^6.2.0-alpha.0",
+    "@turf/point-grid": "^6.2.0-alpha.0",
+    "@turf/random": "^6.2.0-alpha.0",
+    "@turf/square-grid": "^6.2.0-alpha.0"
   }
 }

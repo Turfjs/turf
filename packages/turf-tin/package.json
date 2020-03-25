@@ -1,6 +1,6 @@
 {
   "name": "@turf/tin",
-  "version": "6.0.2",
+  "version": "6.2.0-alpha.0",
   "description": "turf tin module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -36,13 +36,13 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
-    "typescript": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x"
+    "@turf/helpers": "^6.2.0-alpha.0"
   }
 }

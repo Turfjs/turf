@@ -1,6 +1,6 @@
 {
   "name": "@turf/tesselate",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.0",
   "description": "turf tesselate module",
   "author": "Turf Authors",
   "contributors": [
@@ -49,7 +49,7 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
+    "@turf/helpers": "^6.2.0-alpha.0",
     "earcut": "^2.0.0"
   }
 }

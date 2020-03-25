@@ -1,6 +1,6 @@
 {
   "name": "@turf/center",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.0",
   "description": "turf center module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -39,19 +39,19 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "*",
-    "@turf/meta": "*",
+    "@turf/bbox-polygon": "^6.2.0-alpha.0",
+    "@turf/meta": "^6.2.0-alpha.0",
+    "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
-    "write-json-file": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "6.x",
-    "@turf/helpers": "6.x"
+    "@turf/bbox": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0"
   }
 }
