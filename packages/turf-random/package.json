@@ -1,6 +1,6 @@
 {
   "name": "@turf/random",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf random module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -45,6 +45,6 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.0"
+    "@turf/helpers": "^6.2.0-alpha.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/difference",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf difference module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -45,10 +45,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0",
-    "@turf/meta": "^6.2.0-alpha.0",
+    "@turf/area": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1",
     "martinez-polygon-clipping": "^0.6.2"
   }
 }

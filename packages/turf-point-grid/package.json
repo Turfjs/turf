@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-grid",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf point-grid module",
   "author": "Turf Authors",
   "contributors": [
@@ -44,8 +44,8 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "^6.2.0-alpha.0",
-    "@turf/truncate": "^6.2.0-alpha.0",
+    "@turf/bbox-polygon": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -55,9 +55,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-within": "^6.2.0-alpha.0",
-    "@turf/distance": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0"
+    "@turf/boolean-within": "^6.2.0-alpha.1",
+    "@turf/distance": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1"
   }
 }

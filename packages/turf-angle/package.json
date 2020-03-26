@@ -1,6 +1,6 @@
 {
   "name": "@turf/angle",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf angle module",
   "author": "Turf Authors",
   "contributors": [
@@ -40,9 +40,9 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/distance": "^6.2.0-alpha.0",
-    "@turf/sector": "^6.2.0-alpha.0",
-    "@turf/truncate": "^6.2.0-alpha.0",
+    "@turf/distance": "^6.2.0-alpha.1",
+    "@turf/sector": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
     "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
@@ -53,9 +53,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0",
-    "@turf/rhumb-bearing": "^6.2.0-alpha.0"
+    "@turf/bearing": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/rhumb-bearing": "^6.2.0-alpha.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-point-on-line",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf nearest-point-on-line module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -34,9 +34,9 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/along": "^6.2.0-alpha.0",
-    "@turf/length": "^6.2.0-alpha.0",
-    "@turf/truncate": "^6.2.0-alpha.0",
+    "@turf/along": "^6.2.0-alpha.1",
+    "@turf/length": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -46,12 +46,12 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^6.2.0-alpha.0",
-    "@turf/destination": "^6.2.0-alpha.0",
-    "@turf/distance": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0",
-    "@turf/line-intersect": "^6.2.0-alpha.0",
-    "@turf/meta": "^6.2.0-alpha.0"
+    "@turf/bearing": "^6.2.0-alpha.1",
+    "@turf/destination": "^6.2.0-alpha.1",
+    "@turf/distance": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/line-intersect": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1"
   }
 }
