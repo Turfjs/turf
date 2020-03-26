@@ -46,6 +46,7 @@ module.exports = {
           "bugs",
           "homepage",
           "repository",
+          "publishConfig",
           "keywords",
           "main",
           "module",
@@ -70,7 +71,10 @@ module.exports = {
           entries: {
             main: "dist/js/index.js",
             module: "dist/es/index.js",
-            sideEffects: false
+            sideEffects: false,
+            publishConfig: {
+              access: "public"
+            }
           }
         },
         includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES]
