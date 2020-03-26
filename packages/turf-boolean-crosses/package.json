@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-crosses",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf boolean-crosses module",
   "author": "Turf Authors",
   "contributors": [
@@ -53,10 +53,10 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0",
-    "@turf/line-intersect": "^6.2.0-alpha.0",
-    "@turf/polygon-to-line": "^6.2.0-alpha.0"
+    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/line-intersect": "^6.2.0-alpha.1",
+    "@turf/polygon-to-line": "^6.2.0-alpha.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/mask",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf mask module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -47,10 +47,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/meta": "^6.2.0-alpha.0",
-    "@turf/union": "^6.2.0-alpha.0",
+    "@turf/bbox": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1",
+    "@turf/union": "^6.2.0-alpha.1",
     "rbush": "^2.0.1"
   }
 }

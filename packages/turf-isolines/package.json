@@ -1,6 +1,6 @@
 {
   "name": "@turf/isolines",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf isolines module",
   "author": "Turf Authors",
   "contributors": [
@@ -45,11 +45,11 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/envelope": "^6.2.0-alpha.0",
-    "@turf/point-grid": "^6.2.0-alpha.0",
-    "@turf/random": "^6.2.0-alpha.0",
-    "@turf/rhumb-destination": "^6.2.0-alpha.0",
-    "@turf/truncate": "^6.2.0-alpha.0",
+    "@turf/envelope": "^6.2.0-alpha.1",
+    "@turf/point-grid": "^6.2.0-alpha.1",
+    "@turf/random": "^6.2.0-alpha.1",
+    "@turf/rhumb-destination": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
     "benchmark": "*",
     "load-json-file": "*",
     "matrix-to-grid": "*",
@@ -58,10 +58,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0",
-    "@turf/meta": "^6.2.0-alpha.0",
+    "@turf/bbox": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1",
     "object-assign": "*"
   }
 }

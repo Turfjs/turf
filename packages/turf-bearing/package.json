@@ -1,6 +1,6 @@
 {
   "name": "@turf/bearing",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf bearing module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/destination": "^6.2.0-alpha.0",
+    "@turf/destination": "^6.2.0-alpha.1",
     "@types/tape": "*",
     "benchmark": "*",
     "tape": "*",
@@ -46,7 +46,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0"
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1"
   }
 }
