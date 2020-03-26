@@ -1,4 +1,4 @@
-# 6.2.0-alpha.0
+# 6.2.0-alpha.1
 
 After a bit of hiatus, TurfJS is resuming releases.
 
@@ -6,6 +6,24 @@ After a bit of hiatus, TurfJS is resuming releases.
 
 - ES Modules available for all packages
 - Tree shaking should significantly reduce import size of @turf/turf
+
+## New Modules
+
+### [`@turf/boolean-touches`][boolean-touches]
+
+Determines if two features touch but do not intersect
+
+### [`@turf/boolean-valid`][boolean-valid]
+
+Checks if the geometry is a valid according to the OGC Simple Feature Specification
+
+### [`@turf/quadrat-analysis`][quadrat-analysis]
+
+Performs a quadrat analysis on a set of points
+
+### [`@turf/rectangle-grid`][rectangle-grid]
+
+Creates a grid of rectangles from a bounding box
 
 ## [`@turf/voroni`][voronoi]
 
