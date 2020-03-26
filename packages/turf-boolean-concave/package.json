@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-concave",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf boolean-concave module",
   "author": "Turf Authors",
   "contributors": [
@@ -52,7 +52,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0"
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1"
   }
 }

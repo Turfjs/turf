@@ -1,6 +1,6 @@
 {
   "name": "@turf/bezier-spline",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf bezier-spline module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -49,7 +49,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0"
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-split",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf line-split module",
   "author": "Turf Authors",
   "contributors": [
@@ -50,15 +50,15 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0",
-    "@turf/line-intersect": "^6.2.0-alpha.0",
-    "@turf/line-segment": "^6.2.0-alpha.0",
-    "@turf/meta": "^6.2.0-alpha.0",
-    "@turf/nearest-point-on-line": "^6.2.0-alpha.0",
-    "@turf/square": "^6.2.0-alpha.0",
-    "@turf/truncate": "^6.2.0-alpha.0",
+    "@turf/bbox": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/line-intersect": "^6.2.0-alpha.1",
+    "@turf/line-segment": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1",
+    "@turf/nearest-point-on-line": "^6.2.0-alpha.1",
+    "@turf/square": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
     "geojson-rbush": "3.x"
   }
 }

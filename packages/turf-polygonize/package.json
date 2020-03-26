@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygonize",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf polygonize module",
   "author": "Turf Authors",
   "contributors": [
@@ -51,10 +51,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.0",
-    "@turf/envelope": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0",
-    "@turf/meta": "^6.2.0-alpha.0"
+    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.1",
+    "@turf/envelope": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1"
   }
 }

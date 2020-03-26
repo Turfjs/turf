@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-overlap",
-  "version": "6.2.0-alpha.0",
+  "version": "6.2.0-alpha.1",
   "description": "turf line-overlap module",
   "author": "Turf Authors",
   "contributors": [
@@ -53,12 +53,12 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-on-line": "^6.2.0-alpha.0",
-    "@turf/helpers": "^6.2.0-alpha.0",
-    "@turf/invariant": "^6.2.0-alpha.0",
-    "@turf/line-segment": "^6.2.0-alpha.0",
-    "@turf/meta": "^6.2.0-alpha.0",
-    "@turf/nearest-point-on-line": "^6.2.0-alpha.0",
+    "@turf/boolean-point-on-line": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/line-segment": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1",
+    "@turf/nearest-point-on-line": "^6.2.0-alpha.1",
     "deep-equal": "1.x",
     "geojson-rbush": "3.x"
   }

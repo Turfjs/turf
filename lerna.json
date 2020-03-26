@@ -1,10 +1,12 @@
 {
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
   "command": {
     "publish": {
       "registry": "https://registry.npmjs.org"
     }
   },
   "npmClient": "yarn",
-  "version": "6.2.0-alpha.0"
+  "version": "6.2.0-alpha.1"
 }
