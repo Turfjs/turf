@@ -15,6 +15,9 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "turf",
     "gis",
