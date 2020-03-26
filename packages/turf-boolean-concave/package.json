@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-concave",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.0",
   "description": "turf boolean-concave module",
   "author": "Turf Authors",
   "contributors": [
@@ -40,16 +40,16 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x"
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/invariant": "^6.2.0-alpha.0"
   }
 }

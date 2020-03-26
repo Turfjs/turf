@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-contains",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.0",
   "description": "turf boolean-contains module",
   "author": "Turf Authors",
   "contributors": [
@@ -40,21 +40,21 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
     "boolean-jsts": "*",
     "boolean-shapely": "*",
     "glob": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
-    "@turf/bbox": "6.x",
-    "@turf/boolean-point-in-polygon": "6.x",
-    "@turf/boolean-point-on-line": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x"
+    "@turf/bbox": "^6.2.0-alpha.0",
+    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.0",
+    "@turf/boolean-point-on-line": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/invariant": "^6.2.0-alpha.0"
   }
 }

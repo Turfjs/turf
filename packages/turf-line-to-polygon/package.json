@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-to-polygon",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.0",
   "description": "turf line-to-polygon module",
   "author": "Turf Authors",
   "contributors": [
@@ -41,17 +41,17 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
-    "write-json-file": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x"
+    "@turf/bbox": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/invariant": "^6.2.0-alpha.0"
   }
 }

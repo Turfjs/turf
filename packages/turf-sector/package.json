@@ -1,6 +1,6 @@
 {
   "name": "@turf/sector",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.0",
   "description": "turf sector module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -35,7 +35,7 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "6.x",
+    "@turf/truncate": "^6.2.0-alpha.0",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -43,10 +43,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/circle": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x",
-    "@turf/line-arc": "6.x",
-    "@turf/meta": "6.x"
+    "@turf/circle": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/invariant": "^6.2.0-alpha.0",
+    "@turf/line-arc": "^6.2.0-alpha.0",
+    "@turf/meta": "^6.2.0-alpha.0"
   }
 }

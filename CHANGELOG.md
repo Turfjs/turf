@@ -1,3 +1,35 @@
+# 6.2.0-alpha.0
+
+After a bit of hiatus, TurfJS is resuming releases.
+
+## ⭐️ Major Updates
+
+- ES Modules available for all packages
+- Tree shaking should significantly reduce import size of @turf/turf
+
+## [`@turf/voroni`][voronoi]
+
+Typescript types for the options parameter have been fixed
+(PR https://github.com/Turfjs/turf/pull/1424 - Author @stevage)
+
+## [`@turf/points-within-polygon`][points-within-polygon]
+
+Typescript types around the Feature's Properties will now be preserved.
+(PR https://github.com/Turfjs/turf/pull/1761 - Author @rugheid)
+
+## [`@turf/rewind`][rewind]
+
+Typescript types for the 'reverse' option are now correct. Previously it was misnamed as 'reversed'.
+(PR https://github.com/Turfjs/turf/pull/1786 - Author @jonnycornwell)
+
+## [`@turf/difference`][difference]
+
+No longer publishes an .mjs file.
+
+## [`@turf/meta`][meta]
+
+No longer publishes an .mjs file.
+
 # 5.0.0 🎉
 
 ## ⭐️ Major Updates

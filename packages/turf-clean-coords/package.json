@@ -1,6 +1,6 @@
 {
   "name": "@turf/clean-coords",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.0",
   "description": "turf clean-coords module",
   "author": "Turf Authors",
   "contributors": [
@@ -39,17 +39,17 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "*",
+    "@turf/truncate": "^6.2.0-alpha.0",
+    "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
-    "write-json-file": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x"
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/invariant": "^6.2.0-alpha.0"
   }
 }

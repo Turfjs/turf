@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox-clip",
-  "version": "6.0.3",
+  "version": "6.2.0-alpha.0",
   "description": "turf bbox-clip module",
   "author": "Turf Authors",
   "contributors": [
@@ -42,17 +42,17 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/bbox": "*",
+    "@turf/bbox": "^6.2.0-alpha.0",
+    "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "tape": "*",
-    "typescript": "*",
-    "write-json-file": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x"
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/invariant": "^6.2.0-alpha.0"
   }
 }

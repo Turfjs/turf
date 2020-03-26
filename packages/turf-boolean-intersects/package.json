@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-intersects",
-  "version": "6.0.2",
+  "version": "6.2.0-alpha.0",
   "description": "turf boolean-intersects module",
   "author": "Turf Authors",
   "contributors": [
@@ -40,17 +40,17 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
     "boolean-shapely": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
-    "@turf/boolean-disjoint": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/meta": "6.x"
+    "@turf/boolean-disjoint": "^6.2.0-alpha.0",
+    "@turf/helpers": "^6.2.0-alpha.0",
+    "@turf/meta": "^6.2.0-alpha.0"
   }
 }
