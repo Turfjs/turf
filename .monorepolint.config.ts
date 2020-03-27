@@ -50,6 +50,7 @@ module.exports = {
           "keywords",
           "main",
           "module",
+          "browser",
           "types",
           "sideEffects",
           "files",
@@ -69,6 +70,19 @@ module.exports = {
       {
         options: {
           entries: {
+            // @turf/turf is commonly consumed through CDNs, moving this output file is a breaking change for anyone
+            // who has a hardcoded reference to this specific file, instead of letting the CDN pick the path.
+            // Example of a URL that will break: https://unpkg.com/@turf/turf/dist/turf.min.js
+            // Example of a URL that will keep working: https://unpkg.com/@turf/turf
+            browser: "turf.min.js",
+            files: ["dist", "index.d.ts", "turf.min.js"]
+          }
+        },
+        includePackages: [MAIN_PACKAGE]
+      },
+      {
+        options: {
+          entries: {
             main: "dist/js/index.js",
             module: "dist/es/index.js",
             sideEffects: false,
@@ -77,7 +91,7 @@ module.exports = {
             }
           }
         },
-        includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES]
+        includePackages: [...TS_PACKAGES, ...JS_PACKAGES]
       },
       {
         options: {
@@ -95,7 +109,7 @@ module.exports = {
             files: ["dist", "index.d.ts"]
           }
         },
-        includePackages: [MAIN_PACKAGE, ...JS_PACKAGES]
+        includePackages: JS_PACKAGES
       }
     ],
 
