@@ -4,6 +4,7 @@ import {
     polygon, multiPolygon, lineString, isObject,
     Feature, FeatureCollection, MultiLineString, LineString, Polygon, MultiPolygon, Properties
 } from '@turf/helpers';
+import clone from '@turf/clone';
 
 /**
  * Converts (Multi)LineString(s) to Polygon(s).
@@ -14,6 +15,7 @@ import {
  * @param {Object} [options.properties={}] translates GeoJSON properties to Feature
  * @param {boolean} [options.autoComplete=true] auto complete linestrings (matches first & last coordinates)
  * @param {boolean} [options.orderCoords=true] sorts linestrings to place outer ring at the first position of the coordinates
+ * @param {boolean} [options.mutate=false] mutate the original linestring using autoComplete (matches first & last coordinates)
  * @returns {Feature<Polygon|MultiPolygon>} converted to Polygons
  * @example
  * var line = turf.lineString([[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]);
@@ -29,16 +31,23 @@ function lineToPolygon<G extends LineString|MultiLineString>(
         properties?: Properties,
         autoComplete?: boolean,
         orderCoords?: boolean,
+        mutate?: false,
     } = {}
 ) {
     // Optional parameters
     var properties = options.properties;
     var autoComplete = options.autoComplete;
     var orderCoords = options.orderCoords;
+    var mutate = options.mutate;
 
     // default params
     autoComplete = (autoComplete !== undefined) ? autoComplete : true;
     orderCoords = (orderCoords !== undefined) ? orderCoords : true;
+    mutate = (mutate !== undefined) ? mutate : false;
+
+    if (!mutate) {
+        lines = clone(lines);
+    }
 
     switch (lines.type) {
         case 'FeatureCollection':
