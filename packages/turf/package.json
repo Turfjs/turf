@@ -44,11 +44,13 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "browser": "turf.min.js",
   "types": "index.d.ts",
   "sideEffects": false,
   "files": [
     "dist",
-    "index.d.ts"
+    "index.d.ts",
+    "turf.min.js"
   ],
   "scripts": {
     "last-checks": "npm-run-all last-checks:testjs last-checks:example",
@@ -174,6 +176,5 @@
     "@turf/union": "^6.2.0-alpha.1",
     "@turf/unkink-polygon": "^6.2.0-alpha.1",
     "@turf/voronoi": "^6.2.0-alpha.1"
-  },
-  "browser": "dist/turf.min.js"
+  }
 }
