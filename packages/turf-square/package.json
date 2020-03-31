@@ -1,26 +1,19 @@
 {
   "name": "@turf/square",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.1",
   "description": "turf square module",
-  "main": "main.js",
-  "module": "main.es.js",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts",
-    "main.js",
-    "main.es.js"
-  ],
-  "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "turf",
@@ -28,24 +21,30 @@
     "geojson",
     "extent"
   ],
-  "author": "Turf Authors",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "prepare": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*"
   },
   "dependencies": {
-    "@turf/distance": "6.x",
-    "@turf/helpers": "6.x"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
+    "@turf/distance": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1"
   }
 }

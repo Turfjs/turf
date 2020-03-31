@@ -1,5 +1,5 @@
 import { BBox, polygon, Polygon} from '@turf/helpers';
-import pointGrid from './';
+import pointGrid from './dist/js/index';
 
 const cellSide = 50;
 const bbox: BBox = [-95, 30, -85, 40];

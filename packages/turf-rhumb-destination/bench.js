@@ -1,6 +1,6 @@
 import { point } from '@turf/helpers';
 import Benchmark from 'benchmark';
-import destination from './';
+import destination from './dist/js/index.js';
 
 const pt1 = point([-75.0, 39.0]);
 const distance = 100;

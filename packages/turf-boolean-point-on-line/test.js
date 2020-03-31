@@ -2,7 +2,7 @@ const glob = require('glob');
 const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
-const pointOnLine = require('./').default;
+const pointOnLine = require('./dist/js/index.js').default;
 
 test('turf-boolean-point-on-line', t => {
     // True Fixtures

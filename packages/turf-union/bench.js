@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const union = require('./').default;
+const union = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

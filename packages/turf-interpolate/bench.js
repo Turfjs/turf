@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import interpolate from './';
+import interpolate from './dist/js/index.js';
 
 // Define Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
@@ -35,12 +35,12 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  */
 const suite = new Benchmark.Suite('turf-interpolate');
 for (const {name, geojson} of fixtures) {
-    const {property, cellSize, outputType, units, weight} = geojson.properties;
-
+    const options = geojson.properties;
+    const cellSize = options.cellSize;
     console.time(name);
-    interpolate(geojson, cellSize, outputType, property, units, weight);
+    interpolate(geojson, cellSize, options);
     console.timeEnd(name);
-    suite.add(name, () => interpolate(geojson, cellSize, outputType, property, units, weight));
+    suite.add(name, () => interpolate(geojson, cellSize, options));
 }
 
 suite

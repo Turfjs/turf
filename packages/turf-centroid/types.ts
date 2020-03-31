@@ -1,5 +1,5 @@
 import {lineString} from '@turf/helpers'
-import centroid from './'
+import centroid from './dist/js/index'
 
 const line = lineString([[0, 0], [10, 10]]);
 

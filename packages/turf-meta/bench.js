@@ -1,6 +1,6 @@
 const Benchmark = require('benchmark');
 const random = require('@turf/random');
-const meta = require('./');
+const meta = require('./dist/js/index.js');
 
 const fixtures = {
     point: random.randomPoint(),

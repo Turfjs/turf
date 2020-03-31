@@ -1,30 +1,7 @@
 {
   "name": "@turf/boolean-intersects",
-  "version": "6.0.2",
+  "version": "6.2.0-alpha.1",
   "description": "turf boolean-intersects module",
-  "main": "index",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "intersects",
-    "boolean",
-    "de-9im"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",
@@ -35,18 +12,48 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "intersects",
+    "boolean",
+    "de-9im"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
+  },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
     "boolean-shapely": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
-    "@turf/boolean-disjoint": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/meta": "6.x"
+    "@turf/boolean-disjoint": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1"
   }
 }

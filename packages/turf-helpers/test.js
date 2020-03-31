@@ -6,8 +6,8 @@ const {
     radiansToLength, lengthToRadians, lengthToDegrees, radiansToDegrees, degreesToRadians,
     bearingToAzimuth, convertLength, convertArea,
     round, isObject, isNumber, earthRadius
-} = require('./');
-const turf = require('./');
+} = require('./dist/js/index.js');
+const turf = require('./dist/js/index.js');
 
 test('point', t => {
     const ptArray = point([5, 10], {name: 'test point'});

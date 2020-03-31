@@ -1,5 +1,5 @@
 .rpt2_cache
-dist
+packages/*/dist
 main.js
 main.es.js
 main.mjs

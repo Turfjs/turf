@@ -3,7 +3,7 @@ import distance from '@turf/distance';
 import { coordAll } from '@turf/meta';
 import { convertLength, Properties, Units, FeatureCollection, Feature, Point } from '@turf/helpers';
 import { collectionOf } from '@turf/invariant';
-import * as clustering from 'density-clustering';
+import clustering from 'density-clustering';
 
 export type Dbscan = 'core' | 'edge' | 'noise'
 export interface DbscanProps extends Properties {

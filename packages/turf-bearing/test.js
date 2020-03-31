@@ -3,7 +3,7 @@ const test = require('tape');
 const write = require('write-json-file');
 const destination = require('@turf/destination').default;
 const { point, lineString, featureCollection } = require('@turf/helpers');
-const bearing = require('./').default;
+const bearing = require('./dist/js/index.js').default;
 
 const out = path.join(__dirname, 'test', 'out') + path.sep;
 

@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const touches = require('./').default;
+const touches = require('./dist/js/index.js').default;
 
 /**
  * Benchmark Results

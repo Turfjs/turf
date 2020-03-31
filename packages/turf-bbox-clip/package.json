@@ -1,33 +1,7 @@
 {
   "name": "@turf/bbox-clip",
-  "version": "6.0.3",
+  "version": "6.2.0-alpha.1",
   "description": "turf bbox-clip module",
-  "main": "index",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts",
-    "lib/lineclip.js",
-    "lib/lineclip.d.ts"
-  ],
-  "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "geojson",
-    "gis",
-    "bbox",
-    "clip"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Tim Channell <@tcql>",
@@ -39,18 +13,49 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "gis",
+    "bbox",
+    "clip"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
+  },
   "devDependencies": {
-    "@turf/bbox": "*",
+    "@turf/bbox": "^6.2.0-alpha.1",
+    "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "tape": "*",
-    "typescript": "*",
-    "write-json-file": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x"
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1"
   }
 }

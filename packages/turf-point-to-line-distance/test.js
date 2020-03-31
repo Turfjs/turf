@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const circle = require('@turf/circle').default;
 const { point, lineString, round } = require('@turf/helpers');
-const pointToLineDistance = require('.').default;
+const pointToLineDistance = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

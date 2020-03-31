@@ -4,7 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import { polygon, lineString, featureCollection, geometryCollection } from '@turf/helpers';
-import rewind from '.';
+import rewind from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

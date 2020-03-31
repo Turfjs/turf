@@ -4,13 +4,23 @@
     "packages/*"
   ],
   "scripts": {
-    "prelint": "tsc",
     "lint": "echo 'eslint will be moved to TSLint'",
     "postlint": "documentation lint packages/turf-*/index.js",
     "pretest": "lerna bootstrap --use-workspaces && npm run lint",
-    "test": "lerna run test --use-workspaces",
+    "test": "lerna run test",
+    "posttest": "lerna run --scope @turf/turf last-checks",
     "docs": "node ./scripts/generate-readmes",
     "postinstall": "opencollective postinstall"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/package.json": [
+      "mrl check --paths"
+    ]
   },
   "devDependencies": {
     "@types/geojson": "*",
@@ -21,15 +31,20 @@
     "documentation": "*",
     "eslint": "*",
     "eslint-config-mourner": "*",
+    "esm": "^3.2.25",
     "fs-extra": "*",
-    "lerna": "2.8.0",
+    "husky": "^4.2.3",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.0.8",
     "load-json-file": "*",
     "meow": "*",
+    "monorepolint": "^0.5.0-alpha.17",
+    "npm-run-all": "^4.1.5",
     "progress": "*",
     "rollup": "*",
     "rollup-plugin-typescript": "*",
     "tape": "*",
-    "typescript": "*",
+    "typescript": "^3.8.3",
     "yamljs": "*"
   },
   "dependencies": {

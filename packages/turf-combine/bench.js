@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Benchmark = require('benchmark');
 const { point, polygon, lineString, featureCollection } = require('@turf/helpers');
-const combine = require('./').default;
+const combine = require('./dist/js/index.js').default;
 
 // MultiPoint
 var pt1 = point(50, 51)
@@ -26,14 +26,16 @@ var p1 = polygon( [
     [101.0,0.0],
     [101.0,1.0],
     [100.0,1.0],
-    [100.0,0.0]
+    [100.0,0.0],
+    [20.0,0.0]
   ]
 ])
 var p2 = polygon([
   [
     [30.0,0.0],
     [102.0,0.0],
-    [103.0,1.0]
+    [103.0,1.0],
+    [30.0,0.0]
   ]
 ])
 

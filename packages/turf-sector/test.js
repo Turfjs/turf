@@ -5,7 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import { featureCollection } from '@turf/helpers';
-import sector from '.';
+import sector from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

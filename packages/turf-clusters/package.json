@@ -1,31 +1,7 @@
 {
   "name": "@turf/clusters",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.1",
   "description": "turf clusters module",
-  "main": "index",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "geojson",
-    "cluster",
-    "clusters",
-    "clustering"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>"
@@ -35,15 +11,47 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "cluster",
+    "clusters",
+    "clustering"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts"
+  },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
-    "typescript": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/meta": "6.x"
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1"
   }
 }

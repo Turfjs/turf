@@ -1,27 +1,22 @@
 {
   "name": "@turf/isobands",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.1",
   "description": "turf isobands module",
-  "main": "main.js",
-  "module": "main.es.js",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts",
-    "main.js",
-    "lib",
-    "main.es.js"
+  "author": "Turf Authors",
+  "contributors": [
+    "Stefano Borghi <@stebogit>"
   ],
-  "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "turf",
@@ -32,22 +27,29 @@
     "topography",
     "filled"
   ],
-  "author": "Turf Authors",
-  "contributors": [
-    "Stefano Borghi <@stebogit>"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
   ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "prepare": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
-    "@turf/envelope": "^5.1.5",
-    "@turf/point-grid": "6.x",
-    "@turf/random": "6.x",
-    "@turf/rhumb-destination": "6.x",
-    "@turf/truncate": "6.x",
+    "@turf/envelope": "^6.2.0-alpha.1",
+    "@turf/point-grid": "^6.2.0-alpha.1",
+    "@turf/random": "^6.2.0-alpha.1",
+    "@turf/rhumb-destination": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
     "benchmark": "*",
     "chroma-js": "*",
     "load-json-file": "*",
@@ -57,17 +59,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "6.x",
-    "@turf/bbox": "6.x",
-    "@turf/boolean-point-in-polygon": "6.x",
-    "@turf/explode": "^5.1.5",
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x",
-    "@turf/meta": "6.x",
+    "@turf/area": "^6.2.0-alpha.1",
+    "@turf/bbox": "^6.2.0-alpha.1",
+    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.1",
+    "@turf/explode": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1",
     "object-assign": "*"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }

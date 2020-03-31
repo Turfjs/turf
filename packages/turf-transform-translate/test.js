@@ -5,7 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import { point, lineString, geometryCollection, featureCollection } from '@turf/helpers';
-import translate from '.';
+import translate from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

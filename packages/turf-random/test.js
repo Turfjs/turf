@@ -4,7 +4,7 @@ const {
     randomLineString,
     randomPolygon,
     randomPosition
-} = require('./');
+} = require('./dist/js/index.js');
 
 test('random(points)', t => {
     var points = randomPoint();

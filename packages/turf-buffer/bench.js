@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import buffer from './';
+import buffer from './dist/js/index.js';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -43,9 +43,9 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 const suite = new Benchmark.Suite('turf-buffer');
 for (const {name, geojson} of fixtures) {
     console.time(name);
-    buffer(geojson, 50, 'miles');
+    buffer(geojson, 50, {units: 'miles'});
     console.timeEnd(name);
-    suite.add(name, () => buffer(geojson, 50, 'miles'));
+    suite.add(name, () => buffer(geojson, 50, {units: 'miles'}));
 }
 
 suite

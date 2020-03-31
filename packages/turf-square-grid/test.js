@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const bboxPoly = require('@turf/bbox-polygon').default;
 const truncate = require('@turf/truncate').default;
-const squareGrid = require('./').default;
+const squareGrid = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

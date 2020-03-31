@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const { point, featureCollection } = require('@turf/helpers');
 const { featureEach } = require('@turf/meta');
-const concave = require('./').default;
+const concave = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

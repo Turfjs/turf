@@ -1,6 +1,6 @@
 const { point } = require('@turf/helpers');
 const Benchmark = require('benchmark');
-const rhumbBearing = require('./').default;
+const rhumbBearing = require('./dist/js/index.js').default;
 
 var start = point([-75.4, 39.4]);
 var end = point([-75.534, 39.123]);
