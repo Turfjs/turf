@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Benchmark = require('benchmark');
-const destination = require('./').default;
+const destination = require('./dist/js/index.js').default;
 
 var pt1 = [-75.0, 39.0]
 var dist = 100;

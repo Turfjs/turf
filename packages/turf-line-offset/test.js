@@ -5,7 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import { featureCollection, lineString } from '@turf/helpers';
-import lineOffset from '.';
+import lineOffset from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

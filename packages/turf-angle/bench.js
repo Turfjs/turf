@@ -1,6 +1,6 @@
 const path = require('path');
 const Benchmark = require('benchmark');
-const angle = require('./').default;
+const angle = require('./dist/js/index.js').default;
 
 /**
  * Benchmark Results

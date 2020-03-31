@@ -3,7 +3,7 @@ const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const directionalMean = require('.').default;
+const directionalMean = require('./dist/js/index.js').default;
 
 
 

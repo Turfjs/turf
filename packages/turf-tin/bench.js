@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Benchmark = require('benchmark');
-const tin = require('./').default;
+const tin = require('./dist/js/index.js').default;
 
 const points = JSON.parse(fs.readFileSync(path.join(__dirname, 'test', 'Points.json')));
 

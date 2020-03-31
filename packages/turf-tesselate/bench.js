@@ -1,6 +1,6 @@
 import Benchmark from 'benchmark';
 import { polygon } from '@turf/helpers';
-import tesselate from './';
+import tesselate from './dist/js/index.js';
 
 var poly = polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
 

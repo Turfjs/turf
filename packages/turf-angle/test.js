@@ -8,7 +8,7 @@ const bearing = require('@turf/bearing').default;
 const truncate = require('@turf/truncate').default;
 const distance = require('@turf/distance').default;
 const { point, round, lineString, featureCollection } = require('@turf/helpers');
-const angle = require('./').default;
+const angle = require('./dist/js/index.js').default;
 
 test('turf-angle', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {

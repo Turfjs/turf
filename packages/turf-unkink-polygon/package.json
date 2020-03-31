@@ -1,27 +1,19 @@
 {
   "name": "@turf/unkink-polygon",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.1",
   "description": "turf unkink-polygon module",
-  "main": "main.js",
-  "module": "main.es.js",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts",
-    "main.js",
-    "lib",
-    "main.es.js"
-  ],
-  "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "turf",
@@ -30,15 +22,26 @@
     "polygon",
     "self-intersection"
   ],
-  "author": "Turf Authors",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "prepare": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@std/esm": "*",
-    "@turf/kinks": "^5.1.5",
+    "@turf/kinks": "^6.2.0-alpha.1",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -46,14 +49,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "6.x",
-    "@turf/boolean-point-in-polygon": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/meta": "6.x",
+    "@turf/area": "^6.2.0-alpha.1",
+    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1",
     "rbush": "^2.0.1"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }

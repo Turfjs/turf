@@ -1,5 +1,5 @@
 import { randomPoint } from '@turf/random';
-import standardDeviationalEllipse from '.';
+import standardDeviationalEllipse from './dist/js/index.js';
 import Benchmark from 'benchmark';
 
 /**

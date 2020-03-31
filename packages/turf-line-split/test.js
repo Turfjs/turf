@@ -6,7 +6,7 @@ import write from 'write-json-file';
 import { featureEach } from '@turf/meta';
 import { point, lineString, multiPoint, featureCollection, round } from '@turf/helpers';
 import { getCoords } from '@turf/invariant';
-import lineSplit from '.';
+import lineSplit from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

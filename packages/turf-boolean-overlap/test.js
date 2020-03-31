@@ -3,8 +3,8 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const shapely = require('boolean-shapely');
-const { point, lineString, polygon } = require('@turf/helpers');
-const overlap = require('./').default;
+const { point, lineString, polygon, multiLineString, multiPolygon } = require('@turf/helpers');
+const overlap = require('./dist/js/index.js').default;
 
 test('turf-boolean-overlap', t => {
     // True Fixtures
@@ -38,6 +38,8 @@ const line2 = lineString([[8, 50], [9, 50], [10, 50]]);
 const poly1 = polygon([[[8.5, 50], [9.5, 50], [9.5, 49], [8.5, 49], [8.5, 50]]]);
 const poly2 = polygon([[[8, 50], [9, 50], [9, 49], [8, 49], [8, 50]]]);
 const poly3 = polygon([[[10, 50], [10.5, 50], [10.5, 49], [10, 49], [10, 50]]]);
+const multiline1 = multiLineString([[[7, 50], [8, 50], [9, 50]]]);
+const multipoly1 = multiPolygon([[[[8.5, 50], [9.5, 50], [9.5, 49], [8.5, 49], [8.5, 50]]]]);
 
 test('turf-boolean-overlap -- geometries', t => {
     t.true(overlap(line1.geometry, line2.geometry), '[true] LineString geometry');
@@ -49,8 +51,11 @@ test('turf-boolean-overlap -- geometries', t => {
 test('turf-boolean-overlap -- throws', t => {
     // t.throws(() => overlap(null, line1), /feature1 is required/, 'missing feature1');
     // t.throws(() => overlap(line1, null), /feature2 is required/, 'missing feature2');
-    t.throws(() => overlap(pt, line1), /features must be of the same type/, 'different types');
+    t.throws(() => overlap(poly1, line1), /features must be of the same type/, 'different types');
     t.throws(() => overlap(pt, pt), /Point geometry not supported/, 'geometry not supported');
+
+    t.doesNotThrow(() => overlap(line1, multiline1), 'supports line and multiline comparison')
+    t.doesNotThrow(() => overlap(poly1, multipoly1), 'supports polygon and multipolygon comparison');
 
     t.end();
 });

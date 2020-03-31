@@ -1,32 +1,7 @@
 {
   "name": "@turf/hex-grid",
-  "version": "6.0.2",
+  "version": "6.2.0-alpha.1",
   "description": "turf hex-grid module",
-  "main": "index",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "grid",
-    "hexgrid",
-    "hexbin",
-    "points",
-    "geojson"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "James Seppi <@jseppi>",
@@ -41,21 +16,54 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "grid",
+    "hexgrid",
+    "hexbin",
+    "points",
+    "geojson"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts"
+  },
   "devDependencies": {
-    "@turf/bbox-polygon": "*",
-    "@turf/truncate": "*",
+    "@turf/bbox-polygon": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
+    "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "typescript": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/distance": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/intersect": "6.x",
-    "@turf/invariant": "6.x"
+    "@turf/distance": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/intersect": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1"
   }
 }

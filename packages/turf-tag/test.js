@@ -1,7 +1,7 @@
 import path from 'path';
 import test from 'tape';
 import load from 'load-json-file';
-import tag from '.';
+import tag from './dist/js/index.js';
 
 test('tag', t => {
     const points = load.sync(path.join(__dirname, 'test', 'tagPoints.geojson'));

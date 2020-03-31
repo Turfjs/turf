@@ -1,48 +1,56 @@
 {
   "name": "@turf/union",
-  "version": "6.0.2",
+  "version": "6.2.0-alpha.1",
   "description": "turf union module",
-  "main": "index",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "gif"
-  ],
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "gif"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts"
+  },
   "devDependencies": {
+    "@turf/combine": "^6.2.0-alpha.1",
+    "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
-    "write-json-file": "*",
-    "@turf/combine": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x",
-    "martinez-polygon-clipping": "^0.4.3"
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "martinez-polygon-clipping": "^0.6.2"
   }
 }

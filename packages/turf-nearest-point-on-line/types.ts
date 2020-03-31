@@ -1,4 +1,4 @@
-import nearestPointOnLine from './'
+import nearestPointOnLine from './dist/js/index'
 import { point, lineString, multiLineString } from '@turf/helpers'
 
 const units = 'miles'

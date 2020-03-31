@@ -3,7 +3,7 @@ const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
 const shapely = require('boolean-shapely');
-const crosses = require('./').default;
+const crosses = require('./dist/js/index.js').default;
 
 test('turf-boolean-crosses', t => {
     // True Fixtures

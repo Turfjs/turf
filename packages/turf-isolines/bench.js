@@ -3,7 +3,7 @@ import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
 import matrixToGrid from 'matrix-to-grid';
-import isolines from './';
+import isolines from './dist/js/index.js';
 
 // Define Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;

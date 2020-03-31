@@ -11,7 +11,7 @@ import { lineString } from '@turf/helpers';
 import { featureEach } from '@turf/meta';
 import { randomPolygon }  from '@turf/random';
 import matrixToGrid from './lib/matrix-to-grid';
-import isobands from './';
+import isobands from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

@@ -7,7 +7,7 @@ import truncate from '@turf/truncate';
 import { featureCollection, point } from '@turf/helpers';
 import { getCoord } from '@turf/invariant';
 import { featureEach } from '@turf/meta';
-import shortestPath from './';
+import shortestPath from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

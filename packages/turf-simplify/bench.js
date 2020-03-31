@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import simplify from './';
+import simplify from './dist/js/index.js';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -33,7 +33,7 @@ for (const {name, geojson} of fixtures) {
     tolerance = tolerance || 0.01;
     highQuality = highQuality || false;
     console.time(name);
-    simplify(geojson, tolerance, highQuality);
+    simplify(geojson, {tolerance, highQuality});
     console.timeEnd(name);
 }
 
@@ -58,7 +58,7 @@ for (const {name, geojson} of fixtures) {
     let {tolerance, highQuality} = geojson.properties || {};
     tolerance = tolerance || 0.01;
     highQuality = highQuality || false;
-    suite.add(name, () => simplify(geojson, tolerance, highQuality));
+    suite.add(name, () => simplify(geojson, {tolerance, highQuality}));
 }
 
 suite

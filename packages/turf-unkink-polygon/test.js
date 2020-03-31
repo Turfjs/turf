@@ -6,7 +6,7 @@ import write from 'write-json-file';
 import { featureEach } from '@turf/meta';
 import { featureCollection } from '@turf/helpers';
 import kinks from '@turf/kinks';
-import unkinkPolygon from '.';
+import unkinkPolygon from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

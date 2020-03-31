@@ -7,7 +7,7 @@ import centroid from '@turf/centroid';
 import truncate from '@turf/truncate';
 import { getCoord } from '@turf/invariant';
 import { point, lineString, featureCollection, geometryCollection } from '@turf/helpers';
-import rotate from '.';
+import rotate from './dist/js/index.js';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

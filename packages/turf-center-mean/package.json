@@ -1,23 +1,22 @@
 {
   "name": "@turf/center-mean",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.1",
   "description": "turf center-mean module",
-  "main": "index",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts"
+  "author": "Turf Authors",
+  "contributors": [
+    "Moacir P. de Sá Pereira <@muziejus>"
   ],
-  "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "center",
@@ -28,30 +27,39 @@
     "geo",
     "turf"
   ],
-  "author": "Turf Authors",
-  "contributors": [
-    "Moacir P. de Sá Pereira <@muziejus>"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
   ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js",
+    "test:types": "tsc --noEmit types.ts"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/center": "*",
-    "@turf/truncate": "*",
+    "@turf/center": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
+    "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
-    "write-json-file": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/meta": "6.x"
+    "@turf/bbox": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1"
   }
 }

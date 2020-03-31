@@ -1,25 +1,19 @@
 {
   "name": "@turf/bezier-spline",
-  "version": "6.0.3",
+  "version": "6.2.0-alpha.1",
   "description": "turf bezier-spline module",
-  "main": "index",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts",
-    "lib/spline.js",
-    "lib/spline.d.ts"
-  ],
-  "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "turf",
@@ -28,12 +22,23 @@
     "curve",
     "linestring"
   ],
-  "author": "Turf Authors",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@types/tape": "*",
     "benchmark": "*",
@@ -44,7 +49,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x"
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1"
   }
 }

@@ -3,7 +3,7 @@ const test = require('tape');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const length = require('./').default;
+const length = require('./dist/js/index.js').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

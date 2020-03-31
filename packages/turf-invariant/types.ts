@@ -9,7 +9,7 @@ import {
     Position,
     Types,
 } from "@turf/helpers";
-import * as invariant from "./";
+import * as invariant from "./dist/js/index";
 
 /**
  * Fixtures

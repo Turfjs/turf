@@ -3,7 +3,7 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const { lineString, polygon } = require('@turf/helpers');
-const booleanParallel = require('.').default;
+const booleanParallel = require('./dist/js/index.js').default;
 
 test('turf-boolean-parallel', t => {
     // True Fixtures

@@ -1,5 +1,5 @@
 import test from 'tape';
-import midpoint from '.';
+import midpoint from './dist/js/index.js';
 import distance from '@turf/distance';
 import { point } from '@turf/helpers';
 

@@ -1,34 +1,7 @@
 {
   "name": "@turf/line-split",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.1",
   "description": "turf line-split module",
-  "main": "main.js",
-  "module": "main.es.js",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts",
-    "main.js",
-    "main.es.js"
-  ],
-  "scripts": {
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "node -r @std/esm test.js",
-    "posttest": "node -r @std/esm ../../scripts/validate-es5-dependencies.js",
-    "bench": "node -r @std/esm bench.js",
-    "docs": "node ../../scripts/generate-readmes"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "geojson",
-    "gis",
-    "line",
-    "split"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>"
@@ -38,8 +11,38 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "geojson",
+    "gis",
+    "line",
+    "split"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "prepare": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
+  },
   "devDependencies": {
-    "@std/esm": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "rollup": "*",
@@ -47,19 +50,15 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "6.x",
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x",
-    "@turf/line-intersect": "6.x",
-    "@turf/line-segment": "^5.1.5",
-    "@turf/meta": "6.x",
-    "@turf/nearest-point-on-line": "^5.1.5",
-    "@turf/square": "^5.1.5",
-    "@turf/truncate": "6.x",
+    "@turf/bbox": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/line-intersect": "^6.2.0-alpha.1",
+    "@turf/line-segment": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1",
+    "@turf/nearest-point-on-line": "^6.2.0-alpha.1",
+    "@turf/square": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
     "geojson-rbush": "3.x"
-  },
-  "@std/esm": {
-    "esm": "js",
-    "cjs": true
   }
 }

@@ -1,7 +1,8 @@
+import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import dissolve from '.';
+import dissolve from './dist/js/index.js';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -20,7 +21,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 for (const {name, geojson} of fixtures) {
     const propertyName = geojson.propertyName;
     console.time(name);
-    dissolve(geojson, propertyName);
+    dissolve(geojson, {propertyName});
     console.timeEnd(name);
 }
 
@@ -33,7 +34,7 @@ for (const {name, geojson} of fixtures) {
 const suite = new Benchmark.Suite('turf-dissolve');
 for (const {name, geojson} of fixtures) {
     const propertyName = geojson.propertyName;
-    suite.add(name, () => dissolve(geojson, propertyName));
+    suite.add(name, () => dissolve(geojson, {propertyName}));
 }
 
 suite

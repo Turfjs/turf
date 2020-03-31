@@ -1,32 +1,7 @@
 {
   "name": "@turf/boolean-equal",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.1",
   "description": "turf boolean-equal module",
-  "main": "index",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "node test.js",
-    "bench": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "gis",
-    "boolean",
-    "de-9im",
-    "equal",
-    "boolean-equal"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Tom MacWright <@tmcw>",
@@ -38,20 +13,52 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "gis",
+    "boolean",
+    "de-9im",
+    "equal",
+    "boolean-equal"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
+  },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
     "boolean-shapely": "*",
     "glob": "*",
     "load-json-file": "*",
-    "typescript": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "6.0.0",
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x",
+    "@turf/clean-coords": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
     "geojson-equality": "0.1.6"
   }
 }
