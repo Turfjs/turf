@@ -1,25 +1,19 @@
 {
   "name": "@turf/point-on-feature",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.1",
   "description": "turf point-on-feature module",
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
-  "types": "index.d.ts",
-  "files": [
-    "dist",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "bench": "node -r esm bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js"
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
   },
+  "homepage": "https://github.com/Turfjs/turf",
   "repository": {
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "turf",
@@ -29,24 +23,35 @@
     "surface",
     "polygon"
   ],
-  "author": "Turf Authors",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "prepare": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
   },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
-    "@turf/meta": "6.x",
-    "@turf/truncate": "6.x",
+    "@turf/meta": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
     "benchmark": "*",
     "rollup": "*",
     "tape": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "6.x",
-    "@turf/center": "6.x",
-    "@turf/explode": "^5.1.5",
-    "@turf/helpers": "6.x",
-    "@turf/nearest-point": "^5.1.5"
+    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.1",
+    "@turf/center": "^6.2.0-alpha.1",
+    "@turf/explode": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/nearest-point": "^6.2.0-alpha.1"
   }
 }

@@ -1,30 +1,7 @@
 {
   "name": "@turf/ellipse",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.1",
   "description": "turf ellipse module",
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
-  "types": "index.d.ts",
-  "files": [
-    "dist",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "bench": "node -r esm bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "ellipse"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Moacir P. de Sá Pereira <@muziejus>"
@@ -34,12 +11,40 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "ellipse"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "prepare": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
+  },
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
-    "@turf/bbox-polygon": "6.x",
-    "@turf/circle": "6.x",
-    "@turf/destination": "6.x",
-    "@turf/truncate": "6.x",
+    "@turf/bbox-polygon": "^6.2.0-alpha.1",
+    "@turf/circle": "^6.2.0-alpha.1",
+    "@turf/destination": "^6.2.0-alpha.1",
+    "@turf/truncate": "^6.2.0-alpha.1",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
@@ -48,9 +53,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x",
-    "@turf/rhumb-destination": "6.x",
-    "@turf/transform-rotate": "^5.1.5"
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/rhumb-destination": "^6.2.0-alpha.1",
+    "@turf/transform-rotate": "^6.2.0-alpha.1"
   }
 }

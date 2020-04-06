@@ -32,13 +32,70 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach(pk => {
 
 module.exports = {
   rules: {
+    ":package-order": {
+      options: {
+        order: [
+          "name",
+          "version",
+          "private",
+          "description",
+          "workspaces",
+          "author",
+          "contributors",
+          "license",
+          "bugs",
+          "homepage",
+          "repository",
+          "publishConfig",
+          "keywords",
+          "main",
+          "module",
+          "browser",
+          "types",
+          "sideEffects",
+          "files",
+          "scripts",
+          "husky",
+          "lint-staged",
+          "devDependencies",
+          "dependencies"
+        ]
+      },
+      includeWorkspaceRoot: true
+    },
+
     ":alphabetical-scripts": {},
 
     ":package-entry": [
       {
         options: {
           entries: {
+            // @turf/turf is commonly consumed through CDNs, moving this output file is a breaking change for anyone
+            // who has a hardcoded reference to this specific file, instead of letting the CDN pick the path.
+            // Example of a URL that will break: https://unpkg.com/@turf/turf/dist/turf.min.js
+            // Example of a URL that will keep working: https://unpkg.com/@turf/turf
+            browser: "turf.min.js",
+            files: ["dist", "index.d.ts", "turf.min.js"]
+          }
+        },
+        includePackages: [MAIN_PACKAGE]
+      },
+      {
+        options: {
+          entries: {
             main: "dist/js/index.js",
+            module: "dist/es/index.js",
+            sideEffects: false,
+            publishConfig: {
+              access: "public"
+            }
+          }
+        },
+        includePackages: [...TS_PACKAGES, ...JS_PACKAGES]
+      },
+      {
+        options: {
+          entries: {
             types: "dist/js/index.d.ts",
             files: ["dist"]
           }
@@ -48,8 +105,6 @@ module.exports = {
       {
         options: {
           entries: {
-            main: "dist/js/index.js",
-            module: "dist/es/index.js",
             types: "index.d.ts",
             files: ["dist", "index.d.ts"]
           }
@@ -65,8 +120,18 @@ module.exports = {
             bench: "npm-run-all prepare bench:run",
             "bench:run": "node bench.js",
             docs: "node ../../scripts/generate-readmes",
-            prepare: "tsc",
-            pretest: "tsc"
+            test: "npm-run-all prepare test:*"
+          }
+        },
+        excludePackages: [MAIN_PACKAGE]
+      },
+      {
+        options: {
+          scripts: {
+            prepare: "npm-run-all prepare:*",
+            "prepare:js": "tsc",
+            "prepare:es":
+              "tsc --outDir dist/es --module esnext --declaration false"
           }
         },
         includePackages: TS_PACKAGES
@@ -74,7 +139,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            pretest: "rollup -c ../../rollup.config.js",
+            prepare: "rollup -c ../../rollup.config.js",
             posttest: "node -r esm ../../scripts/validate-es5-dependencies.js"
           }
         },
@@ -95,14 +160,6 @@ module.exports = {
           }
         },
         includePackages: TYPES_PACKAGES
-      },
-      {
-        options: {
-          scripts: {
-            test: "npm-run-all test:*"
-          }
-        },
-        excludePackages: [MAIN_PACKAGE]
       }
     ]
   }

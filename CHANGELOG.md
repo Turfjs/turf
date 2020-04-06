@@ -1,3 +1,53 @@
+# 6.2.0-alpha.1
+
+After a bit of hiatus, TurfJS is resuming releases.
+
+## ⭐️ Major Updates
+
+- ES Modules available for all packages
+- Tree shaking should significantly reduce import size of @turf/turf
+
+## New Modules
+
+### [`@turf/boolean-touches`][boolean-touches]
+
+Determines if two features touch but do not intersect
+
+### [`@turf/boolean-valid`][boolean-valid]
+
+Checks if the geometry is a valid according to the OGC Simple Feature Specification
+
+### [`@turf/quadrat-analysis`][quadrat-analysis]
+
+Performs a quadrat analysis on a set of points
+
+### [`@turf/rectangle-grid`][rectangle-grid]
+
+Creates a grid of rectangles from a bounding box
+
+## [`@turf/voroni`][voronoi]
+
+Typescript types for the options parameter have been fixed
+(PR https://github.com/Turfjs/turf/pull/1424 - Author @stevage)
+
+## [`@turf/points-within-polygon`][points-within-polygon]
+
+Typescript types around the Feature's Properties will now be preserved.
+(PR https://github.com/Turfjs/turf/pull/1761 - Author @rugheid)
+
+## [`@turf/rewind`][rewind]
+
+Typescript types for the 'reverse' option are now correct. Previously it was misnamed as 'reversed'.
+(PR https://github.com/Turfjs/turf/pull/1786 - Author @jonnycornwell)
+
+## [`@turf/difference`][difference]
+
+No longer publishes an .mjs file.
+
+## [`@turf/meta`][meta]
+
+No longer publishes an .mjs file.
+
 # 5.0.0 🎉
 
 ## ⭐️ Major Updates

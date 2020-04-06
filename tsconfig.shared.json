@@ -4,6 +4,7 @@
     "module": "commonjs",
     "declaration": true,
     "esModuleInterop": true,
-    "strict": false
+    "strict": false,
+    "moduleResolution": "node"
   }
 }

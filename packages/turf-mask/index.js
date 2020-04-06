@@ -133,8 +133,10 @@ function unionPolygons(polygons) {
                     tree.remove({index: item.index}, filterByIndex);
                     return item.geojson;
                 });
-                polys.push(currentFeature);
-                currentFeature = union.apply(this, polys);
+
+                for (var i = 0, l = polys.length; i < l; i++) {
+                    currentFeature = union(currentFeature, polys[i]);
+                }
             }
             // Done
             if (search.length === 0) break;

@@ -1,9 +1,12 @@
 {
-  "lerna": "2.8.0",
   "packages": [
     "packages/*"
   ],
-  "version": "independent",
+  "command": {
+    "publish": {
+      "registry": "https://registry.npmjs.org"
+    }
+  },
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "version": "6.2.0-alpha.1"
 }
