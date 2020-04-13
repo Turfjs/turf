@@ -46,6 +46,7 @@
     "benchmark": "*",
     "chromatism": "*",
     "load-json-file": "*",
+    "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
     "write-json-file": "*"

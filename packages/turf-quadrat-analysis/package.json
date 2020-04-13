@@ -44,6 +44,7 @@
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
+    "npm-run-all": "*",
     "tape": "*",
     "tslint": "*",
     "typescript": "*",

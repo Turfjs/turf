@@ -50,6 +50,7 @@
     "boolean-shapely": "*",
     "glob": "*",
     "load-json-file": "*",
+    "npm-run-all": "*",
     "tape": "*",
     "tslint": "*",
     "typescript": "*"

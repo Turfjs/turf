@@ -42,6 +42,7 @@
     "benchmark": "*",
     "load-json-file": "*",
     "mkdirp": "*",
+    "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
     "write-json-file": "*"

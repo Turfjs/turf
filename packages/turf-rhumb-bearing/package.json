@@ -48,6 +48,7 @@
     "@turf/destination": "^6.2.0-alpha.1",
     "@types/tape": "*",
     "benchmark": "*",
+    "npm-run-all": "*",
     "tape": "*",
     "tslint": "*",
     "typescript": "*",
