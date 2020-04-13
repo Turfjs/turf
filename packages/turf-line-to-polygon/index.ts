@@ -31,7 +31,7 @@ function lineToPolygon<G extends LineString|MultiLineString>(
         properties?: Properties,
         autoComplete?: boolean,
         orderCoords?: boolean,
-        mutate?: false,
+        mutate?: boolean,
     } = {}
 ) {
     // Optional parameters
