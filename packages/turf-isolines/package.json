@@ -53,6 +53,7 @@
     "benchmark": "*",
     "load-json-file": "*",
     "matrix-to-grid": "*",
+    "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
     "write-json-file": "*"

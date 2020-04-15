@@ -42,6 +42,7 @@
   "devDependencies": {
     "@types/tape": "*",
     "benchmark": "*",
+    "npm-run-all": "*",
     "tape": "*",
     "tslint": "*",
     "typescript": "*"
