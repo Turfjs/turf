@@ -52,20 +52,20 @@ function pointGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
     var north = bbox[3];
 
     var xCenter = 0;
-	var yCenter = 0;
+    var yCenter = 0;
 	
-	if(east > west)
-	{
-		xCenter = west + (east - west) / 2;
-	}
-	else if(east < west)
-	{
-		xCenter = east - (west + east) / 2;
-	}
-	
-	yCenter = north - (north - south) / 2;
+    if(east > west)
+    {
+        xCenter = west + (east - west) / 2;
+    }
+    else if(east < west)
+    {
+        xCenter = east - (west + east) / 2;
+    }
+    
+    yCenter = north - (north - south) / 2;
 
-	var xFraction = cellSide / ((distance([xCenter, yCenter], [east, yCenter], options)) * 2);
+    var xFraction = cellSide / ((distance([xCenter, yCenter], [east, yCenter], options)) * 2);
     var cellWidth = xFraction * (east - west);
     var yFraction = cellSide / (distance([west, south], [west, north], options));
     var cellHeight = yFraction * (north - south);
