@@ -47,6 +47,7 @@
   "devDependencies": {
     "benchmark": "*",
     "load-json-file": "*",
+    "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
     "write-json-file": "*"

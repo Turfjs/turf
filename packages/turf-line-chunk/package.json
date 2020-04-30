@@ -50,6 +50,7 @@
     "@turf/truncate": "^6.2.0-alpha.1",
     "benchmark": "*",
     "load-json-file": "*",
+    "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
     "write-json-file": "*"
