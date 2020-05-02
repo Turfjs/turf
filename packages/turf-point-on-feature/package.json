@@ -44,6 +44,7 @@
     "@turf/meta": "^6.2.0-alpha.1",
     "@turf/truncate": "^6.2.0-alpha.1",
     "benchmark": "*",
+    "npm-run-all": "*",
     "rollup": "*",
     "tape": "*"
   },

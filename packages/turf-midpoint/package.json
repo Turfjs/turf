@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "benchmark": "*",
+    "npm-run-all": "*",
     "rollup": "*",
     "tape": "*"
   },

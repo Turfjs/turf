@@ -161,6 +161,37 @@ module.exports = {
         },
         includePackages: TYPES_PACKAGES
       }
+    ],
+
+    ":alphabetical-dependencies": {
+      includeWorkspaceRoot: true
+    },
+
+    ":require-dependency": [
+      {
+        options: {
+          devDependencies: {
+            "npm-run-all": "*"
+          }
+        },
+        includePackages: [...TS_PACKAGES, ...JS_PACKAGES]
+      },
+      {
+        options: {
+          devDependencies: {
+            typescript: "*"
+          }
+        },
+        includePackages: TS_PACKAGES
+      },
+      {
+        options: {
+          devDependencies: {
+            rollup: "*"
+          }
+        },
+        includePackages: JS_PACKAGES
+      }
     ]
   }
 };
