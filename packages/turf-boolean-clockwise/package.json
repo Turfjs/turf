@@ -1,30 +1,7 @@
 {
   "name": "@turf/boolean-clockwise",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.1",
   "description": "turf boolean-clockwise module",
-  "main": "dist/js/index.js",
-  "types": "dist/js/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "clockwise",
-    "boolean"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Morgan Herlocker <@morganherlocker>",
@@ -37,17 +14,47 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "clockwise",
+    "boolean"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
+  },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
-    "typescript": "*",
+    "npm-run-all": "*",
     "tape": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x"
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1"
   }
 }

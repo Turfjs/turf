@@ -5,7 +5,7 @@
 ## booleanEqual
 
 Determine whether two geometries of the same type have identical X,Y coordinate values.
-See [http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relations.htm][1]
+See [https://desktop.arcgis.com/en/arcmap/latest/manage-data/using-sql-with-gdbs/spatial-relationships.htm][1]
 
 **Parameters**
 
@@ -27,7 +27,7 @@ turf.booleanEqual(pt2, pt3);
 
 Returns **[boolean][4]** true if the objects are equal, false otherwise
 
-[1]: http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relations.htm
+[1]: https://desktop.arcgis.com/en/arcmap/latest/manage-data/using-sql-with-gdbs/spatial-relationships.htm
 
 [2]: https://tools.ietf.org/html/rfc7946#section-3.1
 

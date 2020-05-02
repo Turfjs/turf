@@ -32,7 +32,12 @@ export default function booleanOverlap(
     const geom2 = getGeom(feature2);
     const type1 = geom1.type;
     const type2 = geom2.type;
-    if (type1 !== type2) throw new Error('features must be of the same type');
+
+    if ((type1 === 'MultiPoint' && type2 !== 'MultiPoint') ||
+        ((type1 === 'LineString' || type1 === 'MultiLineString') && (type2 !== 'LineString' && type2 !== 'MultiLineString')) ||
+        ((type1 === 'Polygon' || type1 === 'MultiPolygon') && (type2 !== 'Polygon' && type2 !== 'MultiPolygon'))) {
+        throw new Error('features must be of the same type');
+    }
     if (type1 === 'Point') throw new Error('Point geometry not supported');
 
     // features must be not equal

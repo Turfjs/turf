@@ -1,9 +1,28 @@
 {
   "name": "@turf/convex",
-  "version": "6.0.3",
+  "version": "6.2.0-alpha.1",
   "description": "turf convex module",
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "gis"
+  ],
   "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
   "types": "dist/js/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
@@ -11,39 +30,27 @@
     "bench": "npm-run-all prepare bench:run",
     "bench:run": "node bench.js",
     "docs": "node ../../scripts/generate-readmes",
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "npm-run-all test:*",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
     "test:tape": "node -r esm test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "gis"
-  ],
-  "author": "Turf Authors",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Turfjs/turf/issues"
-  },
-  "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@types/concaveman": "*",
     "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
+    "npm-run-all": "*",
     "tape": "*",
     "tslint": "*",
     "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/meta": "6.x",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1",
     "concaveman": "*"
   }
 }

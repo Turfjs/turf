@@ -1,33 +1,7 @@
 {
   "name": "@turf/voronoi",
-  "version": "5.1.5",
+  "version": "6.2.0-alpha.1",
   "description": "turf voronoi module",
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
-  "types": "index.d.ts",
-  "files": [
-    "dist",
-    "index.d.ts"
-  ],
-  "scripts": {
-    "bench": "node -r esm bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
-    "pretest": "rollup -c ../../rollup.config.js",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "geometry",
-    "voronoi",
-    "polygons",
-    "points"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Philippe Riviere <@Fil>",
@@ -40,17 +14,49 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "geometry",
+    "voronoi",
+    "polygons",
+    "points"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
+    "prepare": "rollup -c ../../rollup.config.js",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
+  },
   "devDependencies": {
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
+    "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/invariant": "6.x",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/invariant": "^6.2.0-alpha.1",
     "d3-voronoi": "1.1.2"
   }
 }

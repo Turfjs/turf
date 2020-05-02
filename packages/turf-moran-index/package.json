@@ -1,29 +1,7 @@
 {
   "name": "@turf/moran-index",
-  "version": "6.0.1",
+  "version": "6.2.0-alpha.1",
   "description": "turf moran-index module",
-  "main": "dist/js/index.js",
-  "types": "dist/js/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
-    "docs": "node ../../scripts/generate-readmes",
-    "prepare": "tsc",
-    "pretest": "tsc",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Turfjs/turf.git"
-  },
-  "keywords": [
-    "turf",
-    "moran-index"
-  ],
   "author": "Turf Authors",
   "contributors": [
     "Haoming Zhuang <@zhuang-hao-ming>"
@@ -33,18 +11,47 @@
     "url": "https://github.com/Turfjs/turf/issues"
   },
   "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "moran-index"
+  ],
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "npm-run-all prepare bench:run",
+    "bench:run": "node bench.js",
+    "docs": "node ../../scripts/generate-readmes",
+    "prepare": "npm-run-all prepare:*",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:js": "tsc",
+    "test": "npm-run-all prepare test:*",
+    "test:tape": "node -r esm test.js"
+  },
   "devDependencies": {
+    "@types/tape": "*",
     "benchmark": "*",
-    "write-json-file": "*",
     "load-json-file": "*",
+    "npm-run-all": "*",
     "tape": "*",
-    "typescript": "*",
     "tslint": "*",
-    "@types/tape": "*"
+    "typescript": "*",
+    "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "6.x",
-    "@turf/distance-weight": "6.x",
-    "@turf/meta": "6.x"
+    "@turf/distance-weight": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.1",
+    "@turf/meta": "^6.2.0-alpha.1"
   }
 }
