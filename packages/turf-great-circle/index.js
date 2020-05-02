@@ -17,7 +17,7 @@ import { GreatCircle } from './lib/arc';
  * var start = turf.point([-122, 48]);
  * var end = turf.point([-77, 39]);
  *
- * var greatCircle = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
+ * var greatCircle = turf.greatCircle(start, end, {properties: {name: 'Seattle to DC'}});
  *
  * //addToMap
  * var addToMap = [start, end, greatCircle]

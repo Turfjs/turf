@@ -6,7 +6,7 @@
 
 Calculate great circles routes as [LineString][1]
 
-**Parameters**
+### Parameters
 
 -   `start` **[Coord][2]** source point feature
 -   `end` **[Coord][2]** destination point feature
@@ -16,13 +16,13 @@ Calculate great circles routes as [LineString][1]
     -   `options.offset` **[number][4]** offset controls the likelyhood that lines will
         be split which cross the dateline. The higher the number the more likely. (optional, default `10`)
 
-**Examples**
+### Examples
 
 ```javascript
 var start = turf.point([-122, 48]);
 var end = turf.point([-77, 39]);
 
-var greatCircle = turf.greatCircle(start, end, {'name': 'Seattle to DC'});
+var greatCircle = turf.greatCircle(start, end, {properties: {name: 'Seattle to DC'}});
 
 //addToMap
 var addToMap = [start, end, greatCircle]
