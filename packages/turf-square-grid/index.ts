@@ -5,7 +5,7 @@ import {
 import rectangleGrid from "@turf/rectangle-grid";
 
 /**
- * Creates a square grid from a bounding box, {@link Feature} or {@link FeatureCollection}.
+ * Creates a square grid from a bounding box.
  *
  * @name squareGrid
  * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
