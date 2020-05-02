@@ -530,7 +530,7 @@ export function round(num: number, precision = 0): number {
  *
  * @name radiansToLength
  * @param {number} radians in radians across the sphere
- * @param {string} [units="kilometers"] can be degrees, radians, miles, or kilometers inches, yards, metres,
+ * @param {string} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
  * meters, kilometres, kilometers.
  * @returns {number} distance
  */
@@ -546,7 +546,7 @@ export function radiansToLength(radians: number, units: Units = "kilometers"): n
  *
  * @name lengthToRadians
  * @param {number} distance in real units
- * @param {string} [units="kilometers"] can be degrees, radians, miles, or kilometers inches, yards, metres,
+ * @param {string} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
  * meters, kilometres, kilometers.
  * @returns {number} radians
  */
@@ -562,7 +562,7 @@ export function lengthToRadians(distance: number, units: Units = "kilometers"): 
  *
  * @name lengthToDegrees
  * @param {number} distance in real units
- * @param {string} [units="kilometers"] can be degrees, radians, miles, or kilometers inches, yards, metres,
+ * @param {string} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
  * meters, kilometres, kilometers.
  * @returns {number} degrees
  */
@@ -632,7 +632,7 @@ export function convertLength(
  * @param {number} area to be converted
  * @param {Units} [originalUnit="meters"] of the distance
  * @param {Units} [finalUnit="kilometers"] returned unit
- * @returns {number} the converted distance
+ * @returns {number} the converted area
  */
 export function convertArea(area: number, originalUnit: Units = "meters", finalUnit: Units = "kilometers"): number {
     if (!(area >= 0)) { throw new Error("area must be a positive number"); }
