@@ -29,10 +29,10 @@ test('turf-moran-index', t => {
   });
 
   t.deepEqual(result1, {
-    moranIndex: 0.1485081274747776,
+    moranIndex: 0.14834323679862615,
     expectedMoranIndex: -0.020833333333333332,
-    stdNorm: 0.02374513825431575,
-    zNorm: 7.131626651082253
+    stdNorm: 0.023841569242427897,
+    zNorm: 7.0958655620241995
   }, 'polygon clustered pattern');
 
   t.end();

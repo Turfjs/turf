@@ -1,12 +1,12 @@
 {
 	"type": "Feature",
 	"properties": {
-		"cartesianAngle": -62.504692687896025,
-		"bearingAngle": 152.504692687896,
-		"circularVariance": 0.9540978955813745,
+		"averageLength": 24865.8833845794,
 		"averageX": 813350.6889736726,
 		"averageY": 2506449.133536962,
-		"averageLength": 24865.8833845794,
+		"bearingAngle": 152.504692687896,
+		"cartesianAngle": -62.504692687896025,
+		"circularVariance": 0.9540978955813745,
 		"countOfLines": 538
 	},
 	"geometry": {
