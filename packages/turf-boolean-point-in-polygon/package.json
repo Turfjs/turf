@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "@turf/helpers": "^6.2.0-alpha.1",
-    "@turf/invariant": "^6.2.0-alpha.1"
+    "@turf/invariant": "^6.2.0-alpha.1",
+    "point-in-polygon-hao": "0.0.7"
   }
 }
