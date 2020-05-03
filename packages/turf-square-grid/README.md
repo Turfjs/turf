@@ -4,7 +4,7 @@
 
 ## squareGrid
 
-Creates a square grid from a bounding box, [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) or [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3).
+Creates a square grid from a bounding box.
 
 **Parameters**
 
