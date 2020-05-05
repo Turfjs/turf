@@ -1,8 +1,9 @@
 import calcBbox from '@turf/bbox';
 import booleanPointOnLine from '@turf/boolean-point-on-line';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import difference from '@turf/difference';
 import { getGeom, getType } from '@turf/invariant';
-import { Feature, Geometry } from '@turf/helpers';
+import { Feature, Geometry, Polygon } from '@turf/helpers';
 
 /**
  * Boolean-within returns true if the first geometry is completely within the second geometry.
@@ -166,26 +167,31 @@ function isLineInPoly(linestring, polygon) {
 }
 
 /**
- * Is Polygon2 in Polygon1
- * Only takes into account outer rings
+ * Is Polygon1 in Polygon2?
  *
  * @private
- * @param {Geometry|Feature<Polygon>} feature1 Polygon1
- * @param {Geometry|Feature<Polygon>} feature2 Polygon2
+ * @param {Polygon} feature1 Polygon1
+ * @param {Polygon} feature2 Polygon2
  * @returns {boolean} true/false
  */
-function isPolyInPoly(feature1, feature2) {
-    var poly1Bbox = calcBbox(feature1);
-    var poly2Bbox = calcBbox(feature2);
+function isPolyInPoly(feature1: Polygon, feature2: Polygon): boolean {
+    const poly1Bbox = calcBbox(feature1);
+    const poly2Bbox = calcBbox(feature2);
     if (!doBBoxOverlap(poly2Bbox, poly1Bbox)) {
         return false;
     }
+
     for (var i = 0; i < feature1.coordinates[0].length; i++) {
         if (!booleanPointInPolygon(feature1.coordinates[0][i], feature2)) {
             return false;
         }
     }
-    return true;
+
+    //If feature1 is completely contained within feature2
+    //then subtracting feature2 from feature1 will result in
+    //a null feature. Otherwise feature1 is not contained.
+    const diff = difference(feature1, feature2);
+    return diff === null;
 }
 
 function doBBoxOverlap(bbox1, bbox2) {

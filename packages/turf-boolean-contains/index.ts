@@ -1,6 +1,7 @@
 import calcBbox from "@turf/bbox";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import isPointOnLine from "@turf/boolean-point-on-line";
+import difference from '@turf/difference';
 import { point } from "@turf/helpers";
 import { BBox, Feature, Geometry, LineString, MultiPoint, Point, Polygon } from "@turf/helpers";
 import { getCoords, getGeom, getType } from "@turf/invariant";
@@ -162,8 +163,7 @@ export function isLineInPoly(polygon: Polygon, linestring: LineString) {
 }
 
 /**
- * Is Polygon2 in Polygon1
- * Only takes into account outer rings
+ * Is Polygon2 in Polygon1?
  *
  * @private
  * @param {Geometry|Feature<Polygon>} feature1 Polygon1
@@ -189,7 +189,12 @@ export function isPolyInPoly(feature1: Feature<Polygon>|Polygon, feature2: Featu
             }
         }
     }
-    return true;
+
+    //If feature2 is completely contained within feature1
+    //then subtracting feature1 from feature2 will result in
+    //a null feature. Otherwise feature2 is not contained.
+    const diff = difference(feature2, feature1);
+    return diff === null;
 }
 
 export function doBBoxOverlap(bbox1: BBox, bbox2: BBox) {
