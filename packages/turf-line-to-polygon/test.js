@@ -4,6 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const { point, lineString } = require('@turf/helpers');
+const clone = require('@turf/clone').default;
 const lineToPolygon = require('./dist/js/index.js').default;
 
 const directories = {
@@ -22,6 +23,7 @@ let fixtures = fs.readdirSync(directories.in).map(filename => {
 
 test('turf-linestring-to-polygon', t => {
     for (const {name, filename, geojson} of fixtures) {
+        const originalInput = clone(geojson);
         let {autoComplete, properties, orderCoords} = geojson.properties || {};
         properties = properties || {stroke: '#F0F', 'stroke-width': 6};
         const results = lineToPolygon(geojson, {
@@ -32,6 +34,7 @@ test('turf-linestring-to-polygon', t => {
 
         if (process.env.REGEN) write.sync(directories.out + filename, results);
         t.deepEqual(load.sync(directories.out + filename), results, name);
+        t.deepEqual(originalInput, geojson);
     }
     // Handle Errors
     t.throws(() => lineToPolygon(point([10, 5])), 'throws - invalid geometry');
