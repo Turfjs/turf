@@ -28,7 +28,7 @@ function centroid<P = Properties>(geojson: AllGeoJSON, options: {
         xSum += coord[0];
         ySum += coord[1];
         len++;
-    });
+    }, true);
     return point([xSum / len, ySum / len], options.properties);
 }
 

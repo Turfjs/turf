@@ -40,7 +40,8 @@ export function coordEach(
                coordIndex: number,
                featureIndex: number,
                multiFeatureIndex: number,
-               geometryIndex: number) => void
+               geometryIndex: number) => void,
+    excludeWrapCoord?: boolean
 ): void;
 
 /**
