@@ -46,6 +46,14 @@ test('translate -- throws', t => {
     t.end();
 });
 
+test('negative distance handling', t => {
+    const result = translate(point([0,0]), 10, 0);
+    const result2 = translate(point([0,0]), -10, 0);
+    t.deepEqual(result, {"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[0,0.08993203637245381]}})
+    t.deepEqual(result2, {"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[0,-0.08993203637245381]}})
+    t.end()
+})
+
 test('rotate -- mutated input', t => {
     const line = lineString([[10, 10], [12, 15]]);
     const lineBefore = JSON.parse(JSON.stringify(line));
