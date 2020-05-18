@@ -53,7 +53,7 @@
     "@types/tape": "*",
     "benchmark": "*",
     "chromatism": "*",
-    "concaveman": "*",
+    "concaveman": "^1.2.0",
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",

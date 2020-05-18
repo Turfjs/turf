@@ -51,6 +51,6 @@
   "dependencies": {
     "@turf/helpers": "^6.2.0-alpha.1",
     "@turf/meta": "^6.2.0-alpha.1",
-    "concaveman": "*"
+    "concaveman": "^1.2.0"
   }
 }
