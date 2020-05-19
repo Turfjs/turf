@@ -7,6 +7,7 @@ import {
     MultiPolygon,
     Point,
     Polygon,
+    GeometryObject
 } from "@turf/helpers";
 import findIntersections from 'sweepline-intersections'
 
@@ -42,8 +43,7 @@ export default function kinks<T extends LineString | MultiLineString | Polygon |
         features: [],
     };
 
-    // @ts-ignore
-    if (featureIn.type === "Point" || featureIn.type === 'MultiPoint') {
+    if ((featureIn as GeometryObject | Feature<GeometryObject>).type === "Point" || (featureIn as GeometryObject | Feature<GeometryObject>).type === 'MultiPoint') {
         throw new Error("Input must be a LineString, MultiLineString, " +
             "Polygon, or MultiPolygon Feature or Geometry");
     }
