@@ -66,6 +66,7 @@ test('turf -- * wildcard devDependencies', t => {
         for (const dependency of Object.keys(devDependencies)) {
             if (dependency.includes('@turf')) continue
             if (dependency.includes('@std/esm')) continue
+            if (dependency.includes('concaveman')) continue
             if (devDependencies[dependency] !== '*') t.fail(`${name} ${dependency} devDependencies must use *`);
         }
     }
