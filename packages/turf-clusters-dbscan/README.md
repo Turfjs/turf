@@ -28,7 +28,8 @@ var clustered = turf.clustersDbscan(points, maxDistance);
 var addToMap = [clustered];
 ```
 
-Returns **[FeatureCollection][3]&lt;[Point][4]>** Clustered Points with an additional two properties associated to each Feature:-   {number} cluster - the associated clusterId
+Returns **[FeatureCollection][3]&lt;[Point][4]>** Clustered Points with an additional two properties associated to each Feature:
+-   {number} cluster - the associated clusterId
 -   {string} dbscan - type of point it has been classified as ('core'|'edge'|'noise')
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
