@@ -46,10 +46,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^6.2.0-alpha.1",
     "@turf/helpers": "^6.2.0-alpha.1",
     "@turf/invariant": "^6.2.0-alpha.1",
-    "@turf/meta": "^6.2.0-alpha.1",
-    "martinez-polygon-clipping": "^0.6.2"
+    "polygon-clipping": "^0.14.3"
   }
 }

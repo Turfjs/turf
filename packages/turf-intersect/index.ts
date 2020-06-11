@@ -1,6 +1,6 @@
 import { Feature, multiPolygon, MultiPolygon, polygon, Polygon, Properties } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
-import * as martinez from "martinez-polygon-clipping";
+import polygonClipping from 'polygon-clipping';
 
 /**
  * Takes two {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
@@ -47,48 +47,10 @@ export default function intersect<P = Properties>(
 ): Feature<Polygon | MultiPolygon, P> | null {
     const geom1 = getGeom(poly1);
     const geom2 = getGeom(poly2);
-
-    if (geom1.type === "Polygon" && geom2.type === "Polygon") {
-      const intersection: any = martinez.intersection(geom1.coordinates, geom2.coordinates);
-
-      if (intersection === null || intersection.length === 0) { return null; }
-      if (intersection.length === 1) {
-          const start = intersection[0][0][0];
-          const end = intersection[0][0][intersection[0][0].length - 1];
-          if (start[0] === end[0] && start[1] === end[1]) { return polygon(intersection[0], options.properties); }
-          return null;
-      }
-      return multiPolygon(intersection, options.properties);
-
-    } else if (geom1.type === "MultiPolygon") {
-      let resultCoords: any[] = [];
-
-      // iterate through the polygon and run intersect with each part, adding to the resultCoords.
-      for (const coords of geom1.coordinates) {
-        const subGeom = getGeom(polygon(coords));
-        const subIntersection = intersect(subGeom, geom2);
-
-        if (subIntersection) {
-          const subIntGeom = getGeom(subIntersection);
-
-          if (subIntGeom.type === "Polygon") { resultCoords.push(subIntGeom.coordinates);
-          } else if (subIntGeom.type === "MultiPolygon") { resultCoords = resultCoords.concat(subIntGeom.coordinates);
-          } else { throw new Error("intersection is invalid"); }
-        }
-      }
-
-      // Make a polygon with the result
-      if (resultCoords.length === 0) { return null; }
-      if (resultCoords.length === 1) { return polygon(resultCoords[0], options.properties);
-      } else { return multiPolygon(resultCoords, options.properties); }
-
-    } else if (geom2.type === "MultiPolygon") {
-      // geom1 is a polygon and geom2 a multiPolygon,
-      // put the multiPolygon first and fallback to the previous case.
-      return intersect(geom2, geom1);
-
-    } else {
-      // handle invalid geometry types
-      throw new Error("poly1 and poly2 must be either polygons or multiPolygons");
-    }
+  
+    // @ts-ignore
+    // Type error because Turf allows for arbitrary coordinate dimensions.
+    const intersection = polygonClipping.intersection(geom1.coordinates, geom2.coordinates);
+    if (intersection.length === 0) return null;
+    return multiPolygon(intersection, options.properties);
 }
