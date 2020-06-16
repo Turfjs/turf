@@ -1,9 +1,9 @@
-import { coordAll, segmentEach } from '@turf/meta';
+import { segmentEach } from '@turf/meta';
 import { getGeom } from '@turf/invariant';
 import lineOverlap from '@turf/line-overlap';
 import lineIntersect from '@turf/line-intersect';
 import GeojsonEquality from 'geojson-equality';
-import { Feature, LineString, MultiLineString, Polygon, MultiPolygon, Geometry } from '@turf/helpers';
+import { Feature, Geometry, MultiPoint } from '@turf/helpers';
 
 /**
  * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry
@@ -48,14 +48,16 @@ export default function booleanOverlap(
 
     switch (type1) {
     case 'MultiPoint':
-        const coords1 = coordAll(feature1);
-        const coords2 = coordAll(feature2);
-        coords1.forEach((coord1) => {
-            coords2.forEach((coord2) => {
-                if (coord1[0] === coord2[0] && coord1[1] === coord2[1]) overlap++;
-            });
-        });
-        break;
+        for (var i=0; i<(geom1 as MultiPoint).coordinates.length; i++) {
+            for (var j=0; j<(geom2 as MultiPoint).coordinates.length; j++) {
+                var coord1 = geom1.coordinates[i];
+                var coord2 = geom2.coordinates[j];
+                if (coord1[0] === coord2[0] && coord1[1] === coord2[1]) {
+                    return true;
+                }
+            }
+        }
+        return false;
 
     case 'LineString':
     case 'MultiLineString':
