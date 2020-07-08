@@ -41,8 +41,6 @@ function union<P = Properties>(
     const geom1 = getGeom(poly1);
     const geom2 = getGeom(poly2);
 
-    // @ts-ignore
-    // Type error because Turf allows for arbitrary coordinate dimensions.
     const unioned = polygonClipping.union(geom1.coordinates as any, geom2.coordinates as any);
     if (unioned.length === 0) return null;
     else return multiPolygon(unioned, options.properties);
