@@ -1,6 +1,6 @@
 import polygonClipping from 'polygon-clipping';
 import { getGeom } from '@turf/invariant';
-import { multiPolygon } from '@turf/helpers';
+import { multiPolygon, polygon } from '@turf/helpers';
 import { Feature, Polygon, MultiPolygon, Properties } from '@turf/helpers';
 
 /**
@@ -41,10 +41,9 @@ function union<P = Properties>(
     const geom1 = getGeom(poly1);
     const geom2 = getGeom(poly2);
 
-    // @ts-ignore
-    // Type error because Turf allows for arbitrary coordinate dimensions.
     const unioned = polygonClipping.union(geom1.coordinates as any, geom2.coordinates as any);
     if (unioned.length === 0) return null;
+    if (unioned.length === 1) return polygon(unioned[0], options.properties);
     else return multiPolygon(unioned, options.properties);
 }
 

@@ -1,5 +1,5 @@
 import polygonClipping from 'polygon-clipping';
-import { multiPolygon } from '@turf/helpers';
+import { polygon, multiPolygon } from '@turf/helpers';
 import { getGeom } from '@turf/invariant';
 
 /**
@@ -43,6 +43,7 @@ function difference(polygon1, polygon2) {
 
     var differenced = polygonClipping.difference(geom1.coordinates, geom2.coordinates);
     if (differenced.length === 0) return null;
+    if (differenced.length === 1) return polygon(differenced[0], properties);
     return multiPolygon(differenced, properties);
 }
 
