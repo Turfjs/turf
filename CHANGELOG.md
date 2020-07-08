@@ -1,4 +1,4 @@
-# 6.2.0-alpha.1
+# 6.2.0-alpha.2
 
 After a bit of hiatus, TurfJS is resuming releases.
 
@@ -7,7 +7,7 @@ After a bit of hiatus, TurfJS is resuming releases.
 - ES Modules available for all packages
 - Tree shaking should significantly reduce import size of @turf/turf
 
-## New Modules
+## 🚀 New Modules
 
 ### [`@turf/boolean-touches`][boolean-touches]
 
@@ -25,28 +25,57 @@ Performs a quadrat analysis on a set of points
 
 Creates a grid of rectangles from a bounding box
 
-## [`@turf/voroni`][voronoi]
+### [`@turf/voroni`][voronoi]
 
 Typescript types for the options parameter have been fixed
 (PR https://github.com/Turfjs/turf/pull/1424 - Author @stevage)
 
-## [`@turf/points-within-polygon`][points-within-polygon]
+### [`@turf/points-within-polygon`][points-within-polygon]
 
 Typescript types around the Feature's Properties will now be preserved.
 (PR https://github.com/Turfjs/turf/pull/1761 - Author @rugheid)
 
-## [`@turf/rewind`][rewind]
+### [`@turf/rewind`][rewind]
 
 Typescript types for the 'reverse' option are now correct. Previously it was misnamed as 'reversed'.
 (PR https://github.com/Turfjs/turf/pull/1786 - Author @jonnycornwell)
 
-## [`@turf/difference`][difference]
+### [`@turf/difference`][difference]
 
 No longer publishes an .mjs file.
 
-## [`@turf/meta`][meta]
+### [`@turf/meta`][meta]
 
 No longer publishes an .mjs file.
+
+## 🐛 Bug Fixes
+
+- [`@turf/centroid`](centroid) Don't visit first point twice when calculating centroid
+  (PR https://github.com/Turfjs/turf/pull/1894 - Author @rowanwins)
+
+- [`@turf/transform-translate`](transform-translate) Better handling of negative distances
+  (PR https://github.com/Turfjs/turf/pull/1895 - Author @rowanwins)
+
+- [`@turf/union`](union), [`@turf/difference`](difference), [`@turf/intersect`](intersect) Use polygon-clipping library to fix correctness issues
+  (PR https://github.com/Turfjs/turf/pull/1916 - Authors @mbullington, @ngottlieb)
+
+## 🏅 New Features/Enhancements
+
+- [`@turf/boolean-overlap`](boolean-overlap) Better performance for MultiPoint geometries
+  (PR https://github.com/Turfjs/turf/pull/1910 - Author @mfedderly)
+
+## 📖 Documentation
+
+- [`@turf/square-grid`](square-grid) Clarify inputs
+  (PR https://github.com/Turfjs/turf/pull/1885 - Author @raphael-leger)
+
+- [`@turf/greater-circle`](greater-circle) Clarify properties option example
+  (PR https://github.com/Turfjs/turf/pull/1888 - Author @chris-catignani)
+
+## ⚠️ Breaking Change
+
+- [`@turf/line-to-polygon`](line-to-polygon) no longer modifies its input unless the mutate option is true
+  (PR https://github.com/Turfjs/turf/pull/1879 - Author @MortenBirk)
 
 # 5.0.0 🎉
 
