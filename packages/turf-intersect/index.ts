@@ -52,5 +52,6 @@ export default function intersect<P = Properties>(
     // Type error because Turf allows for arbitrary coordinate dimensions.
     const intersection = polygonClipping.intersection(geom1.coordinates, geom2.coordinates);
     if (intersection.length === 0) return null;
+    if (intersection.length === 1) return polygon(intersection[0], options.properties);
     return multiPolygon(intersection, options.properties);
 }
