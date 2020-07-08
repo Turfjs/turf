@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-point-to-line",
-  "version": "6.2.0-alpha.1",
+  "version": "6.2.0-alpha.2",
   "description": "turf nearest-point-to-line module",
   "author": "Turf Authors",
   "contributors": [
@@ -44,8 +44,8 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/circle": "^6.2.0-alpha.1",
-    "@turf/truncate": "^6.2.0-alpha.1",
+    "@turf/circle": "^6.2.0-alpha.2",
+    "@turf/truncate": "^6.2.0-alpha.2",
     "@types/object-assign": "*",
     "@types/tape": "*",
     "benchmark": "*",
@@ -57,10 +57,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.1",
-    "@turf/invariant": "^6.2.0-alpha.1",
-    "@turf/meta": "^6.2.0-alpha.1",
-    "@turf/point-to-line-distance": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.2",
+    "@turf/invariant": "^6.2.0-alpha.2",
+    "@turf/meta": "^6.2.0-alpha.2",
+    "@turf/point-to-line-distance": "^6.2.0-alpha.2",
     "object-assign": "*"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/voronoi",
-  "version": "6.2.0-alpha.1",
+  "version": "6.2.0-alpha.2",
   "description": "turf voronoi module",
   "author": "Turf Authors",
   "contributors": [
@@ -55,8 +55,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.1",
-    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.2.0-alpha.2",
+    "@turf/invariant": "^6.2.0-alpha.2",
     "d3-voronoi": "1.1.2"
   }
 }
