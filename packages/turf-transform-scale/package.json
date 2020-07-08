@@ -1,6 +1,6 @@
 {
   "name": "@turf/transform-scale",
-  "version": "6.2.0-alpha.1",
+  "version": "6.2.0-alpha.2",
   "description": "turf transform-scale module",
   "author": "Turf Authors",
   "contributors": [
@@ -48,9 +48,9 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "^6.2.0-alpha.1",
-    "@turf/hex-grid": "^6.2.0-alpha.1",
-    "@turf/truncate": "^6.2.0-alpha.1",
+    "@turf/bbox-polygon": "^6.2.0-alpha.2",
+    "@turf/hex-grid": "^6.2.0-alpha.2",
+    "@turf/truncate": "^6.2.0-alpha.2",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -59,15 +59,15 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.2.0-alpha.1",
-    "@turf/center": "^6.2.0-alpha.1",
-    "@turf/centroid": "^6.2.0-alpha.1",
-    "@turf/clone": "^6.2.0-alpha.1",
-    "@turf/helpers": "^6.2.0-alpha.1",
-    "@turf/invariant": "^6.2.0-alpha.1",
-    "@turf/meta": "^6.2.0-alpha.1",
-    "@turf/rhumb-bearing": "^6.2.0-alpha.1",
-    "@turf/rhumb-destination": "^6.2.0-alpha.1",
-    "@turf/rhumb-distance": "^6.2.0-alpha.1"
+    "@turf/bbox": "^6.2.0-alpha.2",
+    "@turf/center": "^6.2.0-alpha.2",
+    "@turf/centroid": "^6.2.0-alpha.2",
+    "@turf/clone": "^6.2.0-alpha.2",
+    "@turf/helpers": "^6.2.0-alpha.2",
+    "@turf/invariant": "^6.2.0-alpha.2",
+    "@turf/meta": "^6.2.0-alpha.2",
+    "@turf/rhumb-bearing": "^6.2.0-alpha.2",
+    "@turf/rhumb-destination": "^6.2.0-alpha.2",
+    "@turf/rhumb-distance": "^6.2.0-alpha.2"
   }
 }

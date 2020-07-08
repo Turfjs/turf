@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "6.2.0-alpha.1",
+  "version": "6.2.0-alpha.2",
   "description": "turf meta module",
   "author": "Turf Authors",
   "contributors": [
@@ -61,13 +61,13 @@
     "test:types": "tsc --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/random": "^6.2.0-alpha.1",
+    "@turf/random": "^6.2.0-alpha.2",
     "benchmark": "*",
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.1"
+    "@turf/helpers": "^6.2.0-alpha.2"
   }
 }

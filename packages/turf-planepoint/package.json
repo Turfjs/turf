@@ -1,6 +1,6 @@
 {
   "name": "@turf/planepoint",
-  "version": "6.2.0-alpha.1",
+  "version": "6.2.0-alpha.2",
   "description": "turf planepoint module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -47,7 +47,7 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.1",
-    "@turf/invariant": "^6.2.0-alpha.1"
+    "@turf/helpers": "^6.2.0-alpha.2",
+    "@turf/invariant": "^6.2.0-alpha.2"
   }
 }
