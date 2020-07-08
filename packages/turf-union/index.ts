@@ -1,4 +1,4 @@
-import * as martinez from 'martinez-polygon-clipping';
+import polygonClipping from 'polygon-clipping';
 import { getGeom } from '@turf/invariant';
 import { multiPolygon, polygon } from '@turf/helpers';
 import { Feature, Polygon, MultiPolygon, Properties } from '@turf/helpers';
@@ -34,14 +34,14 @@ import { Feature, Polygon, MultiPolygon, Properties } from '@turf/helpers';
  * var addToMap = [poly1, poly2, union];
  */
 function union<P = Properties>(
-    polygon1: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
-    polygon2: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
+    poly1: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
+    poly2: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
     options: {properties?: P} = {}
 ): Feature<Polygon | MultiPolygon, P> {
-    const coords1 = getGeom(polygon1).coordinates;
-    const coords2 = getGeom(polygon2).coordinates;
+    const geom1 = getGeom(poly1);
+    const geom2 = getGeom(poly2);
 
-    const unioned: any = martinez.union(coords1, coords2);
+    const unioned = polygonClipping.union(geom1.coordinates as any, geom2.coordinates as any);
     if (unioned.length === 0) return null;
     if (unioned.length === 1) return polygon(unioned[0], options.properties);
     else return multiPolygon(unioned, options.properties);
