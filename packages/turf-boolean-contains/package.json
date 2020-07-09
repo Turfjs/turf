@@ -58,6 +58,7 @@
     "@turf/bbox": "^6.2.0-alpha.1",
     "@turf/boolean-point-in-polygon": "^6.2.0-alpha.1",
     "@turf/boolean-point-on-line": "^6.2.0-alpha.1",
+    "@turf/difference": "^6.2.0-alpha.1",
     "@turf/helpers": "^6.2.0-alpha.1",
     "@turf/invariant": "^6.2.0-alpha.1"
   }
