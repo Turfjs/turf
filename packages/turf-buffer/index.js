@@ -1,9 +1,7 @@
 import center from '@turf/center';
-import turfBbox from '@turf/bbox';
 import { BufferOp, GeoJSONReader, GeoJSONWriter } from 'turf-jsts';
-import { toWgs84, toMercator } from '@turf/projection';
 import { geomEach, featureEach } from '@turf/meta';
-import { geoTransverseMercator } from 'd3-geo';
+import { geoAzimuthalEquidistant } from 'd3-geo';
 import { feature, featureCollection, radiansToLength, lengthToRadians, earthRadius } from '@turf/helpers';
 
 /**
@@ -94,19 +92,12 @@ function bufferFeature(geojson, radius, units, steps) {
         return featureCollection(results);
     }
 
-    // Project GeoJSON to Transverse Mercator projection (convert to Meters)
-    var projected;
-    var bbox = turfBbox(geojson);
-    var needsTransverseMercator = bbox[1] > 50 && bbox[3] > 50;
-
-    if (needsTransverseMercator) {
-        projected = {
-            type: geometry.type,
-            coordinates: projectCoords(geometry.coordinates, defineProjection(geometry))
-        };
-    } else {
-        projected = toMercator(geometry);
-    }
+    // Project GeoJSON to Azimuthal Equidistant projection (convert to Meters)
+    var projection = defineProjection(geometry);
+    var projected = {
+        type: geometry.type,
+        coordinates: projectCoords(geometry.coordinates, projection)
+    };
 
     // JSTS buffer operation
     var reader = new GeoJSONReader();
@@ -120,17 +111,12 @@ function bufferFeature(geojson, radius, units, steps) {
     if (coordsIsNaN(buffered.coordinates)) return undefined;
 
     // Unproject coordinates (convert to Degrees)
-    var result;
-    if (needsTransverseMercator) {
-        result = {
-            type: buffered.type,
-            coordinates: unprojectCoords(buffered.coordinates, defineProjection(geometry))
-        };
-    } else {
-        result = toWgs84(buffered);
-    }
+    var result = {
+        type: buffered.type,
+        coordinates: unprojectCoords(buffered.coordinates, projection)
+    };
 
-    return (result.geometry) ? result : feature(result, properties);
+    return feature(result, properties);
 }
 
 /**
@@ -176,19 +162,17 @@ function unprojectCoords(coords, proj) {
 }
 
 /**
- * Define Transverse Mercator projection
+ * Define Azimuthal Equidistant projection
  *
  * @private
  * @param {Geometry|Feature<any>} geojson Base projection on center of GeoJSON
- * @returns {GeoProjection} D3 Geo Transverse Mercator Projection
+ * @returns {GeoProjection} D3 Geo Azimuthal Equidistant Projection
  */
 function defineProjection(geojson) {
-    var coords = center(geojson).geometry.coordinates.reverse();
-    var rotate = coords.map(function (coord) { return -coord; });
-    return geoTransverseMercator()
-        .center(coords)
-        .rotate(rotate)
-        .scale(earthRadius);
+    const coords = center(geojson).geometry.coordinates;
+    const rotation = [-coords[0], -coords[1]];
+    return geoAzimuthalEquidistant().rotate(rotation).scale(earthRadius);
 }
+
 
 export default buffer;
