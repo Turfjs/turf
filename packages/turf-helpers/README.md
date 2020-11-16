@@ -453,7 +453,7 @@ Returns **[number][6]** the converted length
 ## convertArea
 
 Converts a area to the requested unit.
-Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, acres, miles, yards, feet, inches
+Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, acres, miles, yards, feet, inches, hectares
 
 **Parameters**
 
