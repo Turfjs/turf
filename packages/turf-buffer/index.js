@@ -20,7 +20,7 @@ import { feature, featureCollection, radiansToLength, lengthToRadians, earthRadi
  * @param {number} radius distance to draw the buffer (negative values are allowed)
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units="kilometers"] any of the options supported by turf units
- * @param {number} [options.steps=64] number of steps
+ * @param {number} [options.steps=8] number of steps
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
  * @example
  * var point = turf.point([-90.548630, 14.616599]);
@@ -32,8 +32,10 @@ import { feature, featureCollection, radiansToLength, lengthToRadians, earthRadi
 function buffer(geojson, radius, options) {
     // Optional params
     options = options || {};
-    var units = options.units;
-    var steps = options.steps || 64;
+
+    // use user supplied options or default values
+    var units = options.units || 'kilometers';
+    var steps = options.steps || 8;
 
     // validation
     if (!geojson) throw new Error('geojson is required');
@@ -43,10 +45,6 @@ function buffer(geojson, radius, options) {
     // Allow negative buffers ("erosion") or zero-sized buffers ("repair geometry")
     if (radius === undefined) throw new Error('radius is required');
     if (steps <= 0) throw new Error('steps must be greater than 0');
-
-    // default params
-    steps = steps || 64;
-    units = units || 'kilometers';
 
     var results = [];
     switch (geojson.type) {
@@ -77,7 +75,7 @@ function buffer(geojson, radius, options) {
  * @param {Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer
  * @param {string} [units='kilometers'] any of the options supported by turf units
- * @param {number} [steps=64] number of steps
+ * @param {number} [steps=8] number of steps
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
 function bufferFeature(geojson, radius, units, steps) {
@@ -112,7 +110,7 @@ function bufferFeature(geojson, radius, units, steps) {
     var reader = new GeoJSONReader();
     var geom = reader.read(projected);
     var distance = radiansToLength(lengthToRadians(radius, units), 'meters');
-    var buffered = BufferOp.bufferOp(geom, distance);
+    var buffered = BufferOp.bufferOp(geom, distance, steps);
     var writer = new GeoJSONWriter();
     buffered = writer.write(buffered);
 
