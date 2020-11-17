@@ -6,7 +6,7 @@ import {
   Polygon,
   Properties,
 } from "@turf/helpers";
-import { getCoord, getCoords, getGeom } from "@turf/invariant";
+import { getCoord, getGeom } from "@turf/invariant";
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -40,7 +40,7 @@ export default function booleanPointInPolygon<
   P = Properties
 >(
   point: Coord,
-  polygon: Feature<G> | G,
+  polygon: Feature<G, P> | G,
   options: {
     ignoreBoundary?: boolean;
   } = {}

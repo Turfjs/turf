@@ -3,7 +3,6 @@ import {
   featureCollection,
   point,
   lineString,
-  Point,
 } from "@turf/helpers";
 import nearestPointToLine from "./index";
 

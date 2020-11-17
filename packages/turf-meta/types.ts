@@ -3,7 +3,6 @@ import {
   featureCollection,
   point,
   lineString,
-  Feature,
   Point,
   LineString,
 } from "@turf/helpers";

@@ -44,9 +44,7 @@ function greatCircle(start, end, options) {
     properties
   );
 
-  /* eslint-disable */
   var line = generator.Arc(npoints, { offset: offset });
-  /* eslint-enable */
 
   return line.json();
 }

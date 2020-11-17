@@ -61,7 +61,6 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.2.0-alpha.2",
     "@turf/boolean-point-in-polygon": "^6.2.0-alpha.2",
     "@turf/boolean-point-on-line": "^6.2.0-alpha.2",
     "@turf/helpers": "^6.2.0-alpha.2",

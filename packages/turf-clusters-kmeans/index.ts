@@ -1,6 +1,6 @@
 import clone from "@turf/clone";
 import { coordAll, featureEach } from "@turf/meta";
-import { FeatureCollection, Feature, Point, Properties } from "@turf/helpers";
+import { FeatureCollection, Point, Properties } from "@turf/helpers";
 import skmeans from "skmeans";
 
 export interface KmeansProps extends Properties {

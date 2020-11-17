@@ -1,17 +1,13 @@
 import distance from "@turf/distance";
 import intersect from "@turf/intersect";
-import { getType } from "@turf/invariant";
 import {
   polygon,
   featureCollection,
-  isObject,
-  isNumber,
   Feature,
   FeatureCollection,
   Units,
   Properties,
   Polygon,
-  MultiPolygon,
   BBox,
 } from "@turf/helpers";
 

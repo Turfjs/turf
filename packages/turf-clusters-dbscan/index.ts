@@ -6,10 +6,8 @@ import {
   Properties,
   Units,
   FeatureCollection,
-  Feature,
   Point,
 } from "@turf/helpers";
-import { collectionOf } from "@turf/invariant";
 import clustering from "density-clustering";
 
 export type Dbscan = "core" | "edge" | "noise";

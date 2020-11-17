@@ -1,9 +1,5 @@
-const glob = require("glob");
-const path = require("path");
-const load = require("load-json-file");
 const Benchmark = require("benchmark");
 const { randomPoint } = require("@turf/random");
-const bbox = require("@turf/bbox").default;
 const nearestNeighborAnalysis = require("@turf/nearest-neighbor-analysis")
   .default;
 const quadratAnalysis = require("./index").default;

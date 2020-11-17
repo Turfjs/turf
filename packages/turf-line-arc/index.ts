@@ -1,13 +1,6 @@
 import circle from "@turf/circle";
 import destination from "@turf/destination";
-import {
-  Coord,
-  Feature,
-  isObject,
-  lineString,
-  LineString,
-  Units,
-} from "@turf/helpers";
+import { Coord, Feature, lineString, LineString, Units } from "@turf/helpers";
 
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;

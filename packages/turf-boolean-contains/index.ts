@@ -1,7 +1,6 @@
 import calcBbox from "@turf/bbox";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import isPointOnLine from "@turf/boolean-point-on-line";
-import { point } from "@turf/helpers";
 import {
   BBox,
   Feature,
@@ -11,7 +10,7 @@ import {
   Point,
   Polygon,
 } from "@turf/helpers";
-import { getCoords, getGeom, getType } from "@turf/invariant";
+import { getGeom } from "@turf/invariant";
 
 /**
  * Boolean-contains returns True if the second geometry is completely contained by the first geometry.

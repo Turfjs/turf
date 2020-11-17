@@ -1,11 +1,5 @@
 import distance from "@turf/distance";
-import {
-  feature,
-  featureCollection,
-  isNumber,
-  isObject,
-  polygon,
-} from "@turf/helpers";
+import { feature, featureCollection } from "@turf/helpers";
 import {
   Feature,
   FeatureCollection,

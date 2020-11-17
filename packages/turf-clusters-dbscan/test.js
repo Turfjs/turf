@@ -54,26 +54,6 @@ const points = featureCollection([
   point([3, 6], { foo: "bar" }),
 ]);
 
-test("clusters-dbscan -- throws", (t) => {
-  const poly = polygon([
-    [
-      [0, 0],
-      [10, 10],
-      [0, 10],
-      [0, 0],
-    ],
-  ]);
-  // Types being handled by Typescript
-  // t.throws(() => clustersDbscan(poly, 1), /points must consist of a FeatureCollection of only Points/);
-  // t.throws(() => clustersDbscan(points), /maxDistance is required/);
-  // t.throws(() => clustersDbscan(points, -4), /maxDistance is invalid/);
-  // t.throws(() => clustersDbscan(points, 'foo'), /maxDistance is invalid/);
-  // t.throws(() => clustersDbscan(points, 1, {units: 'nanometers'}), /units is invalid/);
-  // t.throws(() => clustersDbscan(points, 1, {units: null, minPoints: 0}), /minPoints is invalid/);
-  // t.throws(() => clustersDbscan(points, 1, {units: 'miles', minPoints: 'baz'}), /minPoints is invalid/);
-  t.end();
-});
-
 test("clusters-dbscan -- prevent input mutation", (t) => {
   clustersDbscan(points, 2, { units: "kilometers", minPoints: 1 });
   t.true(

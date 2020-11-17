@@ -1,6 +1,5 @@
 const fs = require("fs");
 const test = require("tape");
-const glob = require("glob");
 const path = require("path");
 const load = require("load-json-file");
 const write = require("write-json-file");

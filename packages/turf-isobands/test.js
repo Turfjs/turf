@@ -8,7 +8,6 @@ import pointGrid from "@turf/point-grid";
 import truncate from "@turf/truncate";
 import { getCoords } from "@turf/invariant";
 import { lineString } from "@turf/helpers";
-import { featureEach } from "@turf/meta";
 import { randomPolygon } from "@turf/random";
 import matrixToGrid from "./lib/matrix-to-grid";
 import isobands from "./index";
@@ -27,7 +26,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
 });
 
 test("isobands", (t) => {
-  fixtures.forEach(({ name, json, filename }) => {
+  fixtures.forEach(({ name, json }) => {
     const options = json.properties || json;
     const { breaks, matrix, origin, cellSize } = options;
 

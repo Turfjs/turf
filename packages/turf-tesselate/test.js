@@ -3491,11 +3491,11 @@ test("tesselate", function (t) {
     "triangle is valid"
   );
 
-  t.throws(function (err) {
+  t.throws(function () {
     tesselate(point([0, 0]));
   }, /input must be a Polygon or MultiPolygon/);
 
-  t.throws(function (err) {
+  t.throws(function () {
     tesselate(featurecollection([]));
   }, /input must be a Polygon or MultiPolygon/);
 

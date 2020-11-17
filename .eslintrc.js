@@ -1,11 +1,14 @@
 const rules = {
+  "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+
   "@typescript-eslint/ban-types": "off",
   "@typescript-eslint/explicit-module-boundary-types": "off",
   "@typescript-eslint/no-empty-function": "off",
   "@typescript-eslint/no-explicit-any": "off",
   "@typescript-eslint/no-inferrable-types": "off",
   "@typescript-eslint/no-non-null-assertion": "off",
-  "@typescript-eslint/no-unused-vars": "off",
+  "@typescript-eslint/no-this-alias": "off",
+  "@typescript-eslint/no-var-requires": "off",
   "no-case-declarations": "off",
   "no-cond-assign": "off",
   "no-constant-condition": "off",
@@ -16,7 +19,6 @@ const rules = {
   "no-redeclare": "off",
   "no-undef": "off",
   "no-unreachable": "off",
-  "no-unused-vars": "off",
   "no-useless-escape": "off",
   "no-var": "off",
   "prefer-const": "off",
@@ -25,24 +27,28 @@ const rules = {
 
 module.exports = {
   root: true,
-  extends: ["eslint:recommended", "prettier"],
+  ignorePatterns: ["**/dist/**"],
+  plugins: ["@typescript-eslint"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+  ],
   parserOptions: {
     ecmaVersion: 6,
     sourceType: "module",
   },
+  env: { es6: true },
+  rules,
+
   overrides: [
     {
-      files: ["**/*.ts", "**/*.tsx"],
-      env: { es6: true },
-      plugins: ["@typescript-eslint"],
-      extends: [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier",
-        "prettier/@typescript-eslint",
-      ],
-      rules,
+      files: ["packages/*/types.ts"],
+      rules: {
+        // these are meant to test the typescript typings, unused variables are expected
+        "@typescript-eslint/no-unused-vars": "off",
+      },
     },
   ],
-  rules,
 };

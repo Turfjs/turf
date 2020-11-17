@@ -39,7 +39,6 @@ test("turf-concave", (t) => {
   t.end();
 });
 
-const points = featureCollection([point([0, 0]), point([1, 1]), point([1, 0])]);
 const onePoint = featureCollection([point([0, 0])]);
 
 test("concave -- throw", (t) => {
@@ -53,9 +52,6 @@ test("concave -- throw", (t) => {
     null,
     "too few polygons found to compute concave hull -- maxEdge too small"
   );
-  // t.throws(() => concave(null), /points is required/, 'no points');
-  // t.throws(() => concave(points, {units: 'foo'}), /units is invalid/, 'invalid units');
-  // t.throws(() => concave(points, {maxEdge: 'foo'}), /maxEdge is invalid/, 'invalid maxEdge');
 
   t.end();
 });

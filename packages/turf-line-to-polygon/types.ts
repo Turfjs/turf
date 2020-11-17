@@ -2,12 +2,8 @@ import {
   featureCollection,
   lineString,
   multiLineString,
-  Polygon,
   LineString,
   MultiLineString,
-  MultiPolygon,
-  Feature,
-  FeatureCollection,
 } from "@turf/helpers";
 import lineToPolygon from "./index";
 

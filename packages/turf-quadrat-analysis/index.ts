@@ -1,14 +1,7 @@
 import area from "@turf/area";
 import turfBBox from "@turf/bbox";
 import bboxPolygon from "@turf/bbox-polygon";
-import { round } from "@turf/helpers";
-import {
-  BBox,
-  Feature,
-  FeatureCollection,
-  GeometryObject,
-  Point,
-} from "@turf/helpers";
+import { BBox, FeatureCollection, Point } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 import squareGrid from "@turf/square-grid";
 

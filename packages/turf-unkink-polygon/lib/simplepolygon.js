@@ -53,21 +53,9 @@ export default function (feature) {
   var numvertices = vertices.length; // number of input ring vertices, with the last closing vertices not counted
 
   // Compute self-intersections
-  var selfIsectsData = isects(feature, function filterFn(
-    isect,
-    ring0,
-    edge0,
-    start0,
-    end0,
-    frac0,
-    ring1,
-    edge1,
-    start1,
-    end1,
-    frac1,
-    unique
-  ) {
-    return [
+  var selfIsectsData = isects(
+    feature,
+    function filterFn(
       isect,
       ring0,
       edge0,
@@ -79,9 +67,24 @@ export default function (feature) {
       start1,
       end1,
       frac1,
-      unique,
-    ];
-  });
+      unique
+    ) {
+      return [
+        isect,
+        ring0,
+        edge0,
+        start0,
+        end0,
+        frac0,
+        ring1,
+        edge1,
+        start1,
+        end1,
+        frac1,
+        unique,
+      ];
+    }
+  );
   var numSelfIsect = selfIsectsData.length;
 
   // If no self-intersections are found, the input rings are the output rings. Hence, we must only compute their winding numbers, net winding numbers and (since ohers rings could lie outside the first ring) parents.
@@ -562,24 +565,9 @@ Number.prototype.modulo = function (n) {
   return ((this % n) + n) % n;
 };
 
-// Function to get array with only unique elements. From http://stackoverflow.com/questions/1960473/unique-values-in-an-array
-function getUnique(array) {
-  var u = {},
-    a = [];
-  for (var i = 0, l = array.length; i < l; ++i) {
-    if (u.hasOwnProperty(array[i])) {
-      continue;
-    }
-    a.push(array[i]);
-    u[array[i]] = 1;
-  }
-  return a;
-}
-
 // Function to check if array is unique (i.e. all unique elements, i.e. no duplicate elements)
 function isUnique(array) {
-  var u = {},
-    a = [];
+  var u = {};
   var isUnique = 1;
   for (var i = 0, l = array.length; i < l; ++i) {
     if (u.hasOwnProperty(array[i])) {

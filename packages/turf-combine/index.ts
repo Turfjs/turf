@@ -1,15 +1,6 @@
 import { feature, featureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
-import {
-  Point,
-  LineString,
-  Polygon,
-  MultiPoint,
-  MultiLineString,
-  MultiPolygon,
-  Feature,
-  FeatureCollection,
-} from "@turf/helpers";
+import { Point, LineString, Polygon, FeatureCollection } from "@turf/helpers";
 
 /**
  * Combines a {@link FeatureCollection} of {@link Point}, {@link LineString}, or {@link Polygon} features

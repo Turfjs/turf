@@ -1,10 +1,8 @@
 import clone from "@turf/clone";
-import { geometryCollection, isObject } from "@turf/helpers";
+import { geometryCollection } from "@turf/helpers";
 import {
   Feature,
   FeatureCollection,
-  LineString,
-  MultiLineString,
   MultiPolygon,
   Polygon,
 } from "@turf/helpers";

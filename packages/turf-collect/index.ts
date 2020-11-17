@@ -1,7 +1,7 @@
 import turfbbox from "@turf/bbox";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import rbush from "rbush";
-import { FeatureCollection, Polygon, Feature, Point } from "@turf/helpers";
+import { FeatureCollection, Polygon, Point } from "@turf/helpers";
 
 /**
  * Merges a specified property from a FeatureCollection of points into a

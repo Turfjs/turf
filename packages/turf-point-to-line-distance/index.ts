@@ -8,7 +8,6 @@ import {
   lineString,
   LineString,
   point,
-  Point,
   Units,
 } from "@turf/helpers";
 import { featureOf } from "@turf/invariant";

@@ -1,4 +1,4 @@
-import { BBox, Point, FeatureCollection, Polygon } from "@turf/helpers";
+import { Point, FeatureCollection, Polygon } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#tag

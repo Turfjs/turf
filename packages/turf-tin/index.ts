@@ -1,7 +1,7 @@
 // http://en.wikipedia.org/wiki/Delaunay_triangulation
 // https://github.com/ironwallaby/delaunay
 import { featureCollection, polygon } from "@turf/helpers";
-import { Feature, FeatureCollection, Point, Polygon } from "@turf/helpers";
+import { FeatureCollection, Point, Polygon } from "@turf/helpers";
 
 export interface Pt {
   x: number;

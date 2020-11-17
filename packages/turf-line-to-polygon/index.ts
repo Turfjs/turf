@@ -1,16 +1,13 @@
 import turfBBox from "@turf/bbox";
-import { getCoords, getType, getGeom } from "@turf/invariant";
+import { getCoords, getGeom } from "@turf/invariant";
 import {
   polygon,
   multiPolygon,
   lineString,
-  isObject,
   Feature,
   FeatureCollection,
   MultiLineString,
   LineString,
-  Polygon,
-  MultiPolygon,
   Properties,
 } from "@turf/helpers";
 import clone from "@turf/clone";

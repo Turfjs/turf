@@ -8,7 +8,7 @@ import {
   Polygon,
   Properties,
 } from "@turf/helpers";
-import { getCoords, getGeom } from "@turf/invariant";
+import { getGeom } from "@turf/invariant";
 
 /**
  * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a
@@ -55,7 +55,6 @@ export function polygonToLine<G extends Polygon, P = Properties>(
   options: { properties?: any } = {}
 ): Feature<LineString | MultiLineString, P> {
   const geom = getGeom(poly);
-  const type = geom.type;
   const coords: any[] = geom.coordinates;
   const properties: any = options.properties
     ? options.properties
@@ -74,7 +73,6 @@ export function multiPolygonToLine<G extends MultiPolygon, P = Properties>(
   options: { properties?: P } = {}
 ): FeatureCollection<LineString | MultiLineString, P> {
   const geom = getGeom(multiPoly);
-  const type = geom.type;
   const coords: any[] = geom.coordinates;
   const properties: any = options.properties
     ? options.properties

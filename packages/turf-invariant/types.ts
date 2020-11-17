@@ -1,13 +1,10 @@
 import * as helpers from "@turf/helpers";
 import {
-  Geometry,
   GeometryCollection,
-  GeometryTypes,
   LineString,
   Point,
   Polygon,
   Position,
-  Types,
 } from "@turf/helpers";
 import * as invariant from "./index";
 

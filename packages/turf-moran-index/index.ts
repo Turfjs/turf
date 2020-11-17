@@ -1,5 +1,5 @@
 import spatialWeight from "@turf/distance-weight";
-import { Feature, FeatureCollection } from "@turf/helpers";
+import { FeatureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 
 /**

@@ -5,14 +5,12 @@ import {
   Feature,
   featureCollection,
   FeatureCollection,
-  isNumber,
   MultiPolygon,
   polygon,
   Polygon,
   Properties,
   Units,
 } from "@turf/helpers";
-import { getType } from "@turf/invariant";
 
 /**
  * Creates a grid of rectangles from a bounding box, {@link Feature} or {@link FeatureCollection}.

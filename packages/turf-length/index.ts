@@ -3,8 +3,6 @@ import {
   Feature,
   FeatureCollection,
   GeometryCollection,
-  LineString,
-  MultiLineString,
   Units,
 } from "@turf/helpers";
 import { segmentReduce } from "@turf/meta";

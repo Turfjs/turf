@@ -1,7 +1,7 @@
 import calcBbox from "@turf/bbox";
 import booleanPointOnLine from "@turf/boolean-point-on-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { getGeom, getType } from "@turf/invariant";
+import { getGeom } from "@turf/invariant";
 import { Feature, Geometry } from "@turf/helpers";
 
 /**

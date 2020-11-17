@@ -1,6 +1,6 @@
 import convex from "@turf/convex";
 import centroid from "@turf/centroid";
-import { point, Properties, AllGeoJSON, Feature, Point } from "@turf/helpers";
+import { point, Properties, Feature, Point } from "@turf/helpers";
 import { getType, getCoord } from "@turf/invariant";
 import { coordEach } from "@turf/meta";
 

@@ -7,7 +7,6 @@ import {
   Properties,
   BBox,
   Id,
-  AllGeoJSON,
 } from "@turf/helpers";
 
 /**

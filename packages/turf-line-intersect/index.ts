@@ -10,7 +10,7 @@ import {
   Point,
   Polygon,
 } from "@turf/helpers";
-import { getCoords, getGeom } from "@turf/invariant";
+import { getCoords } from "@turf/invariant";
 import lineSegment from "@turf/line-segment";
 import { featureEach } from "@turf/meta";
 import rbush from "geojson-rbush";

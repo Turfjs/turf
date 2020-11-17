@@ -21,7 +21,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
 });
 
 test("hex-grid", (t) => {
-  fixtures.forEach(({ name, json, filename }) => {
+  fixtures.forEach(({ name, json }) => {
     const { bbox, cellSide } = json;
     const options = json;
 
@@ -93,17 +93,5 @@ test("longitude (13141439571036224) - issue #758", (t) => {
       break;
     }
   }
-  t.end();
-});
-
-test("hex-grid -- throw", (t) => {
-  const bbox = [0, 0, 1, 1];
-  // Types handled by Typescript
-  // t.throws(() => hexGrid(null, 0), /bbox is required/, 'missing bbox');
-  // t.throws(() => hexGrid('string', 0), /bbox must be array/, 'invalid bbox');
-  // t.throws(() => hexGrid([0, 2], 1), /bbox must contain 4 numbers/, 'invalid bbox');
-  // t.throws(() => hexGrid(bbox, null), /cellSide is required/, 'missing cellSide');
-  // t.throws(() => hexGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
-  // t.throws(() => hexGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
   t.end();
 });

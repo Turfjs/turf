@@ -1,9 +1,4 @@
-import {
-  AllGeoJSON,
-  Feature,
-  FeatureCollection,
-  Properties,
-} from "@turf/helpers";
+import { AllGeoJSON, Feature, Properties } from "@turf/helpers";
 
 /**
  * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.

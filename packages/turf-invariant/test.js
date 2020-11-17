@@ -3,11 +3,8 @@ const {
   point,
   lineString,
   polygon,
-  feature,
   featureCollection,
   geometryCollection,
-  multiLineString,
-  lineStrings,
 } = require("@turf/helpers");
 const invariant = require("./index");
 
@@ -343,7 +340,6 @@ test("invariant -- getGeom", (t) => {
     [0, 1],
     [1, 1],
   ]);
-  const collection = featureCollection([pt, line]);
   const geomCollection = geometryCollection([pt.geometry, line.geometry]);
 
   t.deepEqual(invariant.getGeom(pt), pt.geometry, "Point");
@@ -358,7 +354,6 @@ test("invariant -- getGeom", (t) => {
     geomCollection.geometry,
     "GeometryCollection"
   );
-  // t.throws(() => invariant.getGeom(collection), 'featureCollection not valid');
   t.end();
 });
 

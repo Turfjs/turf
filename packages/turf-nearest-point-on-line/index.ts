@@ -6,7 +6,6 @@ import { flattenEach } from "@turf/meta";
 import {
   point,
   lineString,
-  isObject,
   Feature,
   Point,
   LineString,

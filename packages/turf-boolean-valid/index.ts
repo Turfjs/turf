@@ -1,5 +1,4 @@
-import { segmentEach } from "@turf/meta";
-import { getGeom, getCoords, getType } from "@turf/invariant";
+import { getGeom } from "@turf/invariant";
 import { polygon, lineString, Feature, Geometry } from "@turf/helpers";
 import booleanDisjoint from "@turf/boolean-disjoint";
 import booleanCrosses from "@turf/boolean-crosses";

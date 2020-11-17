@@ -1,12 +1,5 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
-import {
-  convertLength,
-  Coord,
-  earthRadius,
-  Feature,
-  Point,
-  Units,
-} from "@turf/helpers";
+import { convertLength, Coord, earthRadius, Units } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 
 /**

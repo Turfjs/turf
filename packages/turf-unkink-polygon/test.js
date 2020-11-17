@@ -4,7 +4,6 @@ import test from "tape";
 import load from "load-json-file";
 import write from "write-json-file";
 import { featureEach } from "@turf/meta";
-import { featureCollection } from "@turf/helpers";
 import kinks from "@turf/kinks";
 import unkinkPolygon from "./index";
 
@@ -27,8 +26,6 @@ test("unkink-polygon", (t) => {
       if (kinks(feature).features.length) t.skip(filename + " has kinks");
     });
 
-    // Style results
-    const results = colorize(unkinked);
     if (process.env.REGEN) write.sync(directories.out + filename, unkinked);
 
     const expected = load.sync(directories.out + filename);
@@ -47,25 +44,3 @@ test("unkink-polygon -- throws", (t) => {
   t.throws(() => Array.getUnique(), "getUnique()");
   t.end();
 });
-
-function colorize(
-  features,
-  colors = ["#F00", "#00F", "#0F0", "#F0F", "#FFF"],
-  width = 6
-) {
-  const results = [];
-  featureEach(features, (feature, index) => {
-    const color = colors[index % colors.length];
-    feature.properties = Object.assign(
-      {
-        stroke: color,
-        fill: color,
-        "stroke-width": width,
-        "fill-opacity": 0.5,
-      },
-      feature.properties
-    );
-    results.push(feature);
-  });
-  return featureCollection(results);
-}

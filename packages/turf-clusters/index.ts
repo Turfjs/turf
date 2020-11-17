@@ -1,11 +1,5 @@
 import { featureEach } from "@turf/meta";
-import {
-  featureCollection,
-  Feature,
-  FeatureCollection,
-  Properties,
-  Geometry,
-} from "@turf/helpers";
+import { featureCollection, Feature, FeatureCollection } from "@turf/helpers";
 
 /**
  * Get Cluster
@@ -210,21 +204,21 @@ export function clusterReduce<G = any, P = any>(
   initialValue?: any
 ): void {
   var previousValue = initialValue;
-  clusterEach(geojson, property, function (
-    cluster,
-    clusterValue,
-    currentIndex
-  ) {
-    if (currentIndex === 0 && initialValue === undefined)
-      previousValue = cluster;
-    else
-      previousValue = callback(
-        previousValue,
-        cluster,
-        clusterValue,
-        currentIndex
-      );
-  });
+  clusterEach(
+    geojson,
+    property,
+    function (cluster, clusterValue, currentIndex) {
+      if (currentIndex === 0 && initialValue === undefined)
+        previousValue = cluster;
+      else
+        previousValue = callback(
+          previousValue,
+          cluster,
+          clusterValue,
+          currentIndex
+        );
+    }
+  );
   return previousValue;
 }
 

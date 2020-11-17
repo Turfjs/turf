@@ -1,4 +1,3 @@
-import fs from "fs";
 import test from "tape";
 import glob from "glob";
 import path from "path";

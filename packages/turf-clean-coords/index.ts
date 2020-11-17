@@ -1,4 +1,4 @@
-import { feature, AllGeoJSON } from "@turf/helpers";
+import { feature } from "@turf/helpers";
 import { getCoords, getType } from "@turf/invariant";
 
 // To-Do => Improve Typescript GeoJSON handling

@@ -1,6 +1,5 @@
 import {
   BBox,
-  Feature,
   featureCollection,
   FeatureCollection,
   isNumber,

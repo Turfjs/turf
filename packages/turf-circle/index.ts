@@ -1,7 +1,6 @@
 import destination from "@turf/destination";
 import {
   polygon,
-  Coord,
   Units,
   Point,
   Properties,

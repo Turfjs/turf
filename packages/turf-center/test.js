@@ -1,4 +1,3 @@
-const fs = require("fs");
 const test = require("tape");
 const glob = require("glob");
 const path = require("path");

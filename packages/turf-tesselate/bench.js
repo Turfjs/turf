@@ -18,9 +18,8 @@ var poly = polygon([
  * Benchmark Results
  *
  */
-const suite = new Benchmark.Suite("turf-tesselate");
-suite
-  .add("polygon", () => turf.tesselate(poly))
+new Benchmark.Suite("turf-tesselate")
+  .add("polygon", () => tesselate(poly))
   .on("cycle", (e) => console.log(String(e.target)))
   .on("complete", () => {})
   .run();
