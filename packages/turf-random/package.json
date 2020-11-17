@@ -46,7 +46,6 @@
     "glob": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "tslint": "*",
     "typescript": "*"
   },
   "dependencies": {

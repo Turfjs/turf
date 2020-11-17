@@ -60,16 +60,6 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'index.ts')).forEach(
         "esModuleInterop": true                   /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
     }
 }`);
-
-        fs.writeFileSync(path.join(dir, 'tslint.json'), `{
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
-    ],
-    "jsRules": {},
-    "rules": {},
-    "rulesDirectory": []
-}`);
     }
 });
 

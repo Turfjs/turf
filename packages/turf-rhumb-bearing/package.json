@@ -54,7 +54,6 @@
     "benchmark": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "tslint": "*",
     "typescript": "*",
     "write-json-file": "*"
   },

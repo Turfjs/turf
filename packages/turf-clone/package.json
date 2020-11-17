@@ -50,7 +50,6 @@
     "benchmark": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "tslint": "*",
     "typescript": "*"
   },
   "dependencies": {

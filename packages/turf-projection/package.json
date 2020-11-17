@@ -63,7 +63,6 @@
     "npm-run-all": "*",
     "proj4": "*",
     "tape": "*",
-    "tslint": "*",
     "typescript": "*",
     "write-json-file": "*"
   },
