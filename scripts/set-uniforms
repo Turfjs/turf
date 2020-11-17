@@ -24,7 +24,7 @@ glob.sync(path.join(__dirname, '..', 'packages', 'turf-*', 'package.json')).forE
         types: 'index.d.ts',
         files: [...files],
         scripts: {
-            'pretest': 'rollup -c ../../rollup.config.js',
+            'pretest': 'rollup -c ../../rollup.config.js && echo \'{"type":"module"}\' > dist/es/package.json',
             'test': 'node -r @std/esm test.js',
             'posttest': 'node -r @std/esm ../../scripts/validate-es5-dependencies.js',
             'bench': 'node -r @std/esm bench.js',

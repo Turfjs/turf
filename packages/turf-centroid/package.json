@@ -23,6 +23,10 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "exports": {
+    "import": "./dist/es/index.js",
+    "require": "./dist/js/index.js"
+  },
   "types": "dist/js/index.d.ts",
   "sideEffects": false,
   "files": [
@@ -33,7 +37,7 @@
     "bench:run": "node bench.js",
     "docs": "node ../../scripts/generate-readmes",
     "prepare": "npm-run-all prepare:*",
-    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
+    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "prepare:js": "tsc",
     "test": "npm-run-all prepare test:*",
     "test:tape": "node -r esm test.js",
