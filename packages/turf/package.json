@@ -44,6 +44,10 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "exports": {
+    "import": "./dist/es/index.js",
+    "require": "./dist/js/index.js"
+  },
   "browser": "turf.min.js",
   "types": "index.d.ts",
   "sideEffects": false,
@@ -56,7 +60,7 @@
     "last-checks": "npm-run-all last-checks:testjs last-checks:example",
     "last-checks:example": "node test.example.js",
     "last-checks:testjs": "node test.js",
-    "prepare": "rollup -c rollup.config.js",
+    "prepare": "rollup -c rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "pretest": "npm-run-all prepare",
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },

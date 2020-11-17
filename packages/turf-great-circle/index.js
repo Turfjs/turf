@@ -2,7 +2,9 @@ import { getCoord } from '@turf/invariant';
 import { GreatCircle } from './lib/arc';
 
 /**
- * Calculate great circles routes as {@link LineString}
+ * Calculate great circles routes as {@link LineString} or {@link MultiLineString}.
+ * If the `start` and `end` points span the antimeridian, the resulting feature will
+ * be split into a `MultiLineString`.
  *
  * @name greatCircle
  * @param {Coord} start source point feature
@@ -12,7 +14,7 @@ import { GreatCircle } from './lib/arc';
  * @param {number} [options.npoints=100] number of points
  * @param {number} [options.offset=10] offset controls the likelyhood that lines will
  * be split which cross the dateline. The higher the number the more likely.
- * @returns {Feature<LineString>} great circle line feature
+ * @returns {Feature<LineString | MultiLineString>} great circle line feature
  * @example
  * var start = turf.point([-122, 48]);
  * var end = turf.point([-77, 39]);

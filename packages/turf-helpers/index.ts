@@ -19,7 +19,7 @@ export type Coord = Feature<Point> | Point | Position;
 // TurfJS String Types
 export type Units = "meters" | "millimeters" | "centimeters" |
                     "kilometers" | "acres" | "miles" | "nauticalmiles" |
-                    "inches" | "yards" | "feet" | "radians" | "degrees";
+                    "inches" | "yards" | "feet" | "radians" | "degrees" | "hectares";
 export type Grid = "point" | "square" | "hex" | "triangle";
 export type Corners = "sw" | "se" | "nw" | "ne" | "center" | "centroid";
 
@@ -97,6 +97,7 @@ export let areaFactors: any = {
     centimeters: 10000,
     centimetres: 10000,
     feet: 10.763910417,
+    hectares: 0.0001,
     inches: 1550.003100006,
     kilometers: 0.000001,
     kilometres: 0.000001,
@@ -633,7 +634,7 @@ export function convertLength(
 
 /**
  * Converts a area to the requested unit.
- * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, acres, miles, yards, feet, inches
+ * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, acres, miles, yards, feet, inches, hectares
  * @param {number} area to be converted
  * @param {Units} [originalUnit="meters"] of the distance
  * @param {Units} [finalUnit="kilometers"] returned unit
