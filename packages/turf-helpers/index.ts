@@ -193,6 +193,11 @@ export function point<P = Properties>(
     properties?: P,
     options: {bbox?: BBox, id?: Id} = {},
 ): Feature<Point, P> {
+    if (!coordinates) { throw new Error("coordinates is required"); }
+    if (!Array.isArray(coordinates)) { throw new Error("coordinates must be an Array"); }
+    if (coordinates.length < 2) { throw new Error("coordinates must be at least 2 numbers long"); }
+    if (!isNumber(coordinates[0]) || !isNumber(coordinates[1])) { throw new Error("coordinates must contain numbers"); }
+
     const geom: Point = {
         type: "Point",
         coordinates,
