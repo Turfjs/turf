@@ -1,4 +1,4 @@
-import { LineString, Feature, Coord, Properties } from '@turf/helpers'
+import { LineString, MultiLineString, Feature, Coord, Properties } from '@turf/helpers'
 
 /**
  * http://turfjs.org/docs/#greatcircle
@@ -11,4 +11,4 @@ export default function greatCircle(
         npoints?: number,
         offset?: number
     }
-): Feature<LineString>;
+): Feature<LineString | MultiLineString>;
