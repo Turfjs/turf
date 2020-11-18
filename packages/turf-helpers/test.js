@@ -24,6 +24,10 @@ test('point', t => {
     const noProps = point([0, 0]);
     t.deepEqual(noProps.properties, {}, 'no props becomes {}');
 
+    t.throws(() => {
+        point("hello");
+    }, "Issue #1941 - point rejects invalid coordinate arg");
+
     t.end();
 });
 
