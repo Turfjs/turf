@@ -1,8 +1,8 @@
-import path from 'path';
-import glob from 'glob';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import { toMercator, toWgs84 } from './dist/js/index.js';
+const path = require('path');
+const glob = require('glob');
+const load = require('load-json-file');
+const Benchmark = require('benchmark');
+const { toMercator, toWgs84 } = require('./index');
 
 const suite = new Benchmark.Suite('turf-projection');
 

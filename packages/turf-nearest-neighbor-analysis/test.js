@@ -8,7 +8,7 @@ const truncate = require('@turf/truncate').default;
 const centroid = require('@turf/centroid').default;
 const { featureEach } = require('@turf/meta');
 const { featureCollection } = require('@turf/helpers');
-const nearestNeighborAnalysis = require('./dist/js/index.js').default;
+const nearestNeighborAnalysis = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

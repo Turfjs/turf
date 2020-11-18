@@ -5,7 +5,7 @@ import load from 'load-json-file';
 import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import { featureCollection } from '@turf/helpers';
-import greatCircle from './dist/js/index.js';
+import greatCircle from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import Benchmark from 'benchmark';
-import square from './dist/js/index.js';
+import square from './index';
 
 var bbox = [0,0,5,10];
 

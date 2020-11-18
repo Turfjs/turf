@@ -2,7 +2,7 @@ import Benchmark from 'benchmark';
 import path from 'path';
 import fs from 'fs';
 import load from 'load-json-file';
-import voronoi from './dist/js/index.js';
+import voronoi from './index';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {

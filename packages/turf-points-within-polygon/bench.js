@@ -1,7 +1,7 @@
 import fs from 'fs';
 import Benchmark from 'benchmark';
 import { featureCollection, point, polygon } from '@turf/helpers';
-import pointsWithinPolygon from './dist/js/index.js';
+import pointsWithinPolygon from './index';
 
 var poly1 = polygon([[[0, 0], [10, 0], [10, 10], [0, 0]]]);
 var poly2 = polygon([[[10, 0], [20, 10], [20, 20], [10, 0]]]);

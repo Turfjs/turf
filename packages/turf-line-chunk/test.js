@@ -6,7 +6,7 @@ import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import { featureEach } from '@turf/meta';
 import { lineString, featureCollection } from '@turf/helpers';
-import lineChunk from './dist/js/index.js';
+import lineChunk from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

@@ -8,7 +8,7 @@ const truncate = require('@turf/truncate').default;
 const centerMean = require('@turf/center-mean').default;
 const centerOfMass = require('@turf/center-of-mass').default;
 const { featureCollection, round } = require('@turf/helpers');
-const centerMedian = require('./dist/js/index.js').default;
+const centerMedian = require('./index').default;
 
 test('turf-center-median', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {

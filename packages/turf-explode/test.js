@@ -4,7 +4,7 @@ import tape from 'tape';
 import { all as fixtures } from 'geojson-fixtures';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import explode from './dist/js/index.js';
+import explode from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

@@ -4,7 +4,7 @@ const test = require('tape');
 const load = require('load-json-file');
 const shapely = require('boolean-shapely');
 const { point, lineString, polygon } = require('@turf/helpers');
-const equal = require('./dist/js/index.js').default;
+const equal = require('./index').default;
 
 test('turf-boolean-equal', t => {
     // True Fixtures

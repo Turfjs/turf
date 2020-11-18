@@ -4,7 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const { featureEach } = require('@turf/meta');
-const kinks = require('./dist/js/index.js').default;
+const kinks = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

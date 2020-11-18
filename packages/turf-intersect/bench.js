@@ -1,7 +1,7 @@
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const intersect = require('./dist/js/index.js').default;
+const intersect = require('./index').default;
 
 // Fixtures
 const armenia = load.sync(path.join(__dirname, 'test', 'in', 'armenia.geojson'));

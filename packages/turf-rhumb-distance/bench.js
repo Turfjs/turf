@@ -1,6 +1,6 @@
 const { point } = require('@turf/helpers');
 const Benchmark = require('benchmark');
-const distance = require('./dist/js/index.js').default;
+const distance = require('./index').default;
 
 const pt1 = point([-75.4, 39.4]);
 const pt2 = point([-75.534, 39.123]);

@@ -4,7 +4,7 @@ import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
 import {polygon, point, featureCollection} from '@turf/helpers';
-import dissolve from './dist/js/index.js';
+import dissolve from './index';
 
 const SKIP = ["hexagons-issue#742.geojson", "polysByProperty.geojson", "polysWithoutProperty.geojson", "simplified-issue.geojson"];
 

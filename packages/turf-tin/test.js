@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const test = require('tape');
-const tin = require('./dist/js/index.js').default;
+const tin = require('./index').default;
 
 const points = require(path.join(__dirname,  'test', 'Points.json'));
 

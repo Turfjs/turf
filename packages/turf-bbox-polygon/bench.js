@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Benchmark = require('benchmark');
-const bboxpolygon = require('./dist/js/index.js').default;
+const bboxpolygon = require('./index').default;
 
 /**
  * Benchmark Results

@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const squareGrid = require('./dist/js/index.js').default;
+const squareGrid = require('./index').default;
 
 var bbox = [-95, 30, -85, 40];
 

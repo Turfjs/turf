@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import matrixToGrid from './matrix-to-grid';
-import isobands from './dist/js/index.js';
+import matrixToGrid from './lib/matrix-to-grid';
+import isobands from './index';
 
 // Define Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;

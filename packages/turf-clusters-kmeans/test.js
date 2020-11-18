@@ -9,7 +9,7 @@ const concaveman = require('concaveman');
 const { point, polygon, featureCollection } = require('@turf/helpers');
 const { clusterReduce, clusterEach } = require('@turf/clusters');
 const { coordAll, featureEach } = require('@turf/meta');
-const clustersKmeans = require('./dist/js/index.js').default;
+const clustersKmeans = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

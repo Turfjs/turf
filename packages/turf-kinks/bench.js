@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const kinks = require('./dist/js/index.js').default;
+const kinks = require('./index').default;
 
 const suite = new Benchmark.Suite('turf-kinks');
 

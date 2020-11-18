@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import scale from './dist/js/index.js';
+import scale from './index';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -30,7 +30,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 for (const {name, geojson} of fixtures) {
     const {factor, origin} = geojson.properties || {};
     console.time(name);
-    scale(geojson, factor, origin, true);
+    scale(geojson, factor || 2, {origin, mutate: true});
     console.timeEnd(name);
 }
 
@@ -52,7 +52,7 @@ for (const {name, geojson} of fixtures) {
 const suite = new Benchmark.Suite('turf-transform-scale');
 for (const {name, geojson} of fixtures) {
     const {factor, origin} = geojson.properties || {};
-    suite.add(name, () => scale(geojson, factor, origin));
+    suite.add(name, () => scale(geojson, factor || 2, {origin}));
 }
 
 suite

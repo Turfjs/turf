@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const area = require('./dist/js/index.js').default;
+const area = require('./index').default;
 
 // Define fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;

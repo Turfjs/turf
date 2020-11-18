@@ -9,7 +9,7 @@ const {
     applyFilter,
     filterProperties,
     propertiesContainsFilter
-} = require('./dist/js/index.js');
+} = require('./index');
 
 const properties = {foo: 'bar', cluster: 0};
 const geojson = featureCollection([

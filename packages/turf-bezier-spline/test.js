@@ -4,7 +4,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const { featureCollection } = require('@turf/helpers');
-const bezierSpline = require('./dist/js/index.js').default;
+const bezierSpline = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

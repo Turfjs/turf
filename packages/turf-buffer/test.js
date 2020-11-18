@@ -6,7 +6,7 @@ import write from 'write-json-file';
 import truncate from '@turf/truncate';
 import { featureEach } from '@turf/meta';
 import { featureCollection, point, polygon, geometryCollection } from '@turf/helpers';
-import buffer from './dist/js/index.js';
+import buffer from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

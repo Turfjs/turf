@@ -3,7 +3,7 @@ const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const moranIndex = require('./dist/js/index.js').default;
+const moranIndex = require('./index').default;
 
 test('turf-moran-index', t => {
 

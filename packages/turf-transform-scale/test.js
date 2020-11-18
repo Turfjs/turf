@@ -12,7 +12,7 @@ import centroid from '@turf/centroid';
 import { featureEach } from '@turf/meta';
 import { getCoord } from '@turf/invariant';
 import { point, lineString, geometryCollection, featureCollection } from '@turf/helpers';
-import scale from './dist/js/index.js';
+import scale from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

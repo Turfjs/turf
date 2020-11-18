@@ -1,5 +1,5 @@
 import { lineString, multiLineString, polygon, multiPolygon } from '@turf/helpers'
-import lineOverlap from './dist/js/index'
+import lineOverlap from './index'
 
 const line = lineString([[0, 0], [10, 10]]);
 const multiLine = multiLineString([[[0, 0], [10, 10]], [[30, 30], [50, 50]]]);

@@ -5,8 +5,8 @@ const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
-const distanceWeight = require('./dist/js/index.js').default;
-const { pNormDistance } = require('./dist/js/index.js');
+const distanceWeight = require('./index').default;
+const { pNormDistance } = require('./index');
 
 test('pNormDistance function', t => {
 

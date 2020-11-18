@@ -8,7 +8,7 @@ const clone = require('@turf/clone').default;
 const { point } = require('@turf/helpers');
 const truncate = require('@turf/truncate').default;
 const { coordEach } = require('@turf/meta');
-const { toMercator, toWgs84 } = require('./dist/js/index.js');
+const { toMercator, toWgs84 } = require('./index');
 
 const directories = {
     mercator: path.join(__dirname, 'test', 'mercator') + path.sep,

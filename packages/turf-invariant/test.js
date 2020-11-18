@@ -4,7 +4,7 @@ const {
     feature, featureCollection, geometryCollection,
     multiLineString, lineStrings
 } = require('@turf/helpers');
-const invariant = require('./dist/js/index.js');
+const invariant = require('./index');
 
 test('invariant -- containsNumber', t => {
     t.equals(invariant.containsNumber([1, 1]), true);

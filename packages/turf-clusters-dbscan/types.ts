@@ -1,5 +1,5 @@
 import { featureCollection, point } from '@turf/helpers'
-import clustersDbscan from './dist/js/index'
+import clustersDbscan from './index'
 
 // Fixtures
 const points = featureCollection([

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const lineToPolygon = require('./dist/js/index.js').default;
+const lineToPolygon = require('./index').default;
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 let fixtures = fs.readdirSync(directory).map(filename => {

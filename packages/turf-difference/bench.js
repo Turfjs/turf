@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const difference = require('./dist/js/index.js');
+const difference = require('./index');
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 let fixtures = fs.readdirSync(directory).map(filename => {

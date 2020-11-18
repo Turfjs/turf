@@ -3,7 +3,7 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const shapely = require('boolean-shapely');
-const intersects = require('./dist/js/index.js').default;
+const intersects = require('./index').default;
 
 test('turf-boolean-intersects', t => {
     // True Fixtures

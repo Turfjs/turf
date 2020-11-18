@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import interpolate from './dist/js/index.js';
+import interpolate from './index';
 
 // Define Fixtures
 const directory = path.join(__dirname, 'test', 'in') + path.sep;

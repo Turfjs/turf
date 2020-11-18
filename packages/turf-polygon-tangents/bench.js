@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import tangents from './dist/js/index.js';
+import tangents from './index';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 let fixtures = fs.readdirSync(directory).map(filename => {

@@ -1,4 +1,4 @@
-const random = require('./dist/js/index.js');
+const random = require('./index');
 const Benchmark = require('benchmark');
 
 var suite = new Benchmark.Suite('turf-random');

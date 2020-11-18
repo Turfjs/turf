@@ -3,7 +3,7 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 // const shapely = require('boolean-shapely');
-const isValid = require('./dist/js/index.js').default;
+const isValid = require('./index').default;
 
 test('turf-boolean-valid', t => {
     // True Fixtures

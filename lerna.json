@@ -3,6 +3,10 @@
     "packages/*"
   ],
   "command": {
+    "bootstrap": {
+      "useWorkspaces": true,
+      "ignoreScripts": true
+    },
     "publish": {
       "registry": "https://registry.npmjs.org"
     }

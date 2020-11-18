@@ -37,15 +37,14 @@
     "dist"
   ],
   "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
+    "bench": "ts-node bench.js",
+    "build": "npm-run-all build:*",
+    "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build:js": "tsc",
     "docs": "node ../../scripts/generate-readmes",
-    "prepare": "npm-run-all prepare:*",
-    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
-    "prepare:js": "tsc",
-    "test": "npm-run-all prepare test:*",
-    "test:tape": "node -r esm test.js",
-    "test:types": "tsc --noEmit types.ts"
+    "test": "npm-run-all test:*",
+    "test:tape": "ts-node -r esm test.js",
+    "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
     "@turf/circle": "^6.2.0-alpha.2",
@@ -56,6 +55,7 @@
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
+    "ts-node": "*",
     "tslint": "*",
     "typescript": "*",
     "write-json-file": "*"

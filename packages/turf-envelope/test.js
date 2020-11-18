@@ -1,7 +1,7 @@
 import path from 'path';
 import test from 'tape';
 import load from 'load-json-file';
-import envelope from './dist/js/index.js';
+import envelope from './index';
 
 // Fixtures
 const fc = load.sync(path.join(__dirname, 'test', 'in', 'feature-collection.geojson'));

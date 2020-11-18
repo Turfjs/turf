@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Benchmark = require('benchmark');
 const { point, polygon } = require('@turf/helpers');
-const booleanPointInPolygon = require('./dist/js/index.js').default;
+const booleanPointInPolygon = require('./index').default;
 
 var poly = polygon([[[0, 0], [0, 100], [100, 100], [100, 0], [0, 0]]]);
 var ptIn = point([50, 50]);

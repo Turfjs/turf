@@ -3,7 +3,7 @@
 import test from 'tape';
 
 import { polygon } from '@turf/helpers';
-import planepoint from './dist/js/index.js';
+import planepoint from './index';
 
 
 test('turf-planepoint', t => {

@@ -4,7 +4,7 @@ const test = require('tape');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const { featureCollection } = require('@turf/helpers');
-const intersect = require('./dist/js/index.js').default;
+const intersect = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
