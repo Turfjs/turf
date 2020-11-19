@@ -86,16 +86,17 @@ class EdgeRing {
     /**
      * Check if the ring is valid in geomtry terms.
      *
-     * A ring must have either 0 or 4 or more points. The first and the last must be
-     * equal (in 2D)
+     * A ring must have either 0 or 3 or more points.
+     *
      * geos::geom::LinearRing::validateConstruction
      *
      * @memberof EdgeRing
      * @returns {boolean} - Validity of the EdgeRing
      */
     isValid() {
-    // TODO: stub
-        return true;
+        // this implementation does not repeat the first point at the end
+        // for the EdgeRing, so a polygon of 3 points is valid
+        return this.edges.length === 0 || this.edges.length >= 3;
     }
 
     /**

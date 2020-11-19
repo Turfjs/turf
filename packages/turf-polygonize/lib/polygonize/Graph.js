@@ -85,16 +85,21 @@ class Graph {
      * @param {Node} to - Node which ends the Edge
      */
     addEdge(from, to) {
-        const edge = new Edge(from, to),
-            symetricEdge = edge.getSymetric();
-
-        this.edges.push(edge);
-        this.edges.push(symetricEdge);
+        const edgeId = Edge.buildId(from, to);
+        if (!this.edgeIds[edgeId]) {
+            const edge = new Edge(from, to);
+            const symetricEdge = edge.getSymetric();
+            this.edgeIds[edge.id] = 1;
+            this.edgeIds[symetricEdge.id] = 1;
+            this.edges.push(edge);
+            this.edges.push(symetricEdge);
+        }
     }
 
     constructor() {
         this.edges = []; //< {Edge[]} dirEdges
-
+        this.edgeIds = {};
+        
         // The key is the `id` of the Node (ie: coordinates.join(','))
         this.nodes = {};
     }
@@ -116,8 +121,9 @@ class Graph {
      * @param {Node} node - Node to check if it's a dangle
      */
     _removeIfDangle(node) {
-    // As edges are directed and symetrical, we count only innerEdges
-        if (node.innerEdges.length <= 1) {
+        // do not delete nodes if they form an entire link.
+        // check if it has outer edges, then this isn't the end of the line
+        if (node.innerEdges.length <= 1 && node.outerEdges.length  === 0) {
             const outerNodes = node.getOuterEdges().map(e => e.to);
             this.removeNode(node);
             outerNodes.forEach(n => this._removeIfDangle(n));
@@ -308,11 +314,22 @@ class Graph {
     _findEdgeRing(startEdge) {
         let edge = startEdge;
         const edgeRing = new EdgeRing();
-
+        const vertexSet = {};
+        if (edge.from) {
+            vertexSet[edge.from.id] = 1;
+        }
         do {
+            const toVertex = edge.to;
             edgeRing.push(edge);
             edge.ring = edgeRing;
             edge = edge.next;
+            if (toVertex && !vertexSet[toVertex.id]) {
+                vertexSet[toVertex.id] = 1;
+            } else {
+                // we have come back to an existing point,
+                // therefore our loop is over
+                break;
+            }
         } while (!startEdge.isEqual(edge));
 
         return edgeRing;
@@ -338,6 +355,7 @@ class Graph {
     removeEdge(edge) {
         this.edges = this.edges.filter(e => !e.isEqual(edge));
         edge.deleteEdge();
+        delete this.edgeIds[edge.id];
     }
 }
 

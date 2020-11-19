@@ -1,7 +1,7 @@
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import { featureCollection, lineString, multiPoint, point, polygon } from '@turf/helpers';
+import { point, lineString, multiPoint, polygon, featureCollection } from '@turf/helpers';
 import envelope from '@turf/envelope';
-import { coordReduce, flattenEach } from '@turf/meta';
+import { flattenEach, coordReduce } from '@turf/meta';
 import { featureOf } from '@turf/invariant';
 
 /**
@@ -180,7 +180,7 @@ Node.prototype.addInnerEdge = function addInnerEdge (edge) {
 var Edge = function Edge(from, to) {
     this.from = from; //< start
     this.to = to; //< End
-
+    this.id = Edge.buildId(from, to);
     this.next = undefined; //< The edge to be computed after
     this.label = undefined; //< Used in order to detect Cut Edges (Bridges)
     this.symetric = undefined; //< The symetric edge of this
@@ -192,6 +192,15 @@ var Edge = function Edge(from, to) {
 
 /**
  * Removes edge from from and to nodes.
+ */
+Edge.buildId = function buildId (from, to) {
+    return [from.id, to.id].join('-');
+};
+
+/**
+ * Creates or get the symetric Edge.
+ *
+ * @returns {Edge} - Symetric Edge.
  */
 Edge.prototype.getSymetric = function getSymetric () {
     if (!this.symetric) {
@@ -216,7 +225,7 @@ Edge.prototype.deleteEdge = function deleteEdge () {
  * @returns {boolean} - True if Edges are equal, False otherwise
  */
 Edge.prototype.isEqual = function isEqual (edge) {
-    return this.from.id === edge.from.id && this.to.id === edge.to.id;
+    return this.id === edge.id;
 };
 
 Edge.prototype.toString = function toString () {
@@ -330,16 +339,17 @@ EdgeRing.prototype.some = function some (f) {
 /**
  * Check if the ring is valid in geomtry terms.
  *
- * A ring must have either 0 or 4 or more points. The first and the last must be
- * equal (in 2D)
+ * A ring must have either 0 or 3 or more points.
+ *
  * geos::geom::LinearRing::validateConstruction
  *
  * @memberof EdgeRing
  * @returns {boolean} - Validity of the EdgeRing
  */
 EdgeRing.prototype.isValid = function isValid () {
-// TODO: stub
-    return true;
+    // this implementation does not repeat the first point at the end
+    // for the EdgeRing, so a polygon of 3 points is valid
+    return this.edges.length === 0 || this.edges.length >= 3;
 };
 
 /**
@@ -485,7 +495,8 @@ function validateGeoJson(geoJson) {
  */
 var Graph = function Graph() {
     this.edges = []; //< {Edge[]} dirEdges
-
+    this.edgeIds = {};
+        
     // The key is the `id` of the Node (ie: coordinates.join(','))
     this.nodes = {};
 };
@@ -538,11 +549,15 @@ Graph.prototype.getNode = function getNode (coordinates) {
  * @param {Node} to - Node which ends the Edge
  */
 Graph.prototype.addEdge = function addEdge (from, to) {
-    var edge = new Edge(from, to),
-        symetricEdge = edge.getSymetric();
-
-    this.edges.push(edge);
-    this.edges.push(symetricEdge);
+    var edgeId = Edge.buildId(from, to);
+    if (!this.edgeIds[edgeId]) {
+        var edge = new Edge(from, to);
+        var symetricEdge = edge.getSymetric();
+        this.edgeIds[edge.id] = 1;
+        this.edgeIds[symetricEdge.id] = 1;
+        this.edges.push(edge);
+        this.edges.push(symetricEdge);
+    }
 };
 
 Graph.prototype.deleteDangles = function deleteDangles () {
@@ -563,8 +578,9 @@ Graph.prototype.deleteDangles = function deleteDangles () {
 Graph.prototype._removeIfDangle = function _removeIfDangle (node) {
         var this$1 = this;
 
-// As edges are directed and symetrical, we count only innerEdges
-    if (node.innerEdges.length <= 1) {
+    // do not delete nodes if they form an entire link.
+    // check if it has outer edges, then this isn't the end of the line
+    if (node.innerEdges.length <= 1 && node.outerEdges.length  === 0) {
         var outerNodes = node.getOuterEdges().map(function (e) { return e.to; });
         this.removeNode(node);
         outerNodes.forEach(function (n) { return this$1._removeIfDangle(n); });
@@ -765,11 +781,22 @@ Graph.prototype._findIntersectionNodes = function _findIntersectionNodes (startE
 Graph.prototype._findEdgeRing = function _findEdgeRing (startEdge) {
     var edge = startEdge;
     var edgeRing = new EdgeRing();
-
+    var vertexSet = {};
+    if (edge.from) {
+        vertexSet[edge.from.id] = 1;
+    }
     do {
+        var toVertex = edge.to;
         edgeRing.push(edge);
         edge.ring = edgeRing;
         edge = edge.next;
+        if (toVertex && !vertexSet[toVertex.id]) {
+            vertexSet[toVertex.id] = 1;
+        } else {
+            // we have come back to an existing point,
+            // therefore our loop is over
+            break;
+        }
     } while (!startEdge.isEqual(edge));
 
     return edgeRing;
@@ -797,6 +824,7 @@ Graph.prototype.removeNode = function removeNode (node) {
 Graph.prototype.removeEdge = function removeEdge (edge) {
     this.edges = this.edges.filter(function (e) { return !e.isEqual(edge); });
     edge.deleteEdge();
+    delete this.edgeIds[edge.id];
 };
 
 /**
