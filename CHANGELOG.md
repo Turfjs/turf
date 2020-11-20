@@ -1,4 +1,4 @@
-# 6.2.0-alpha.2
+# 6.2.0-alpha.3
 
 After a bit of hiatus, TurfJS is resuming releases.
 
@@ -6,6 +6,7 @@ After a bit of hiatus, TurfJS is resuming releases.
 
 - ES Modules available for all packages
 - Tree shaking should significantly reduce import size of @turf/turf
+- Better support for ESM modules (PR https://github.com/Turfjs/turf/pull/1942 - Author @@diachedelic)
 
 ## 🚀 New Modules
 
@@ -59,10 +60,22 @@ No longer publishes an .mjs file.
 - [`@turf/union`](union), [`@turf/difference`](difference), [`@turf/intersect`](intersect) Use polygon-clipping library to fix correctness issues
   (PR https://github.com/Turfjs/turf/pull/1916 - Authors @mbullington, @ngottlieb)
 
+- [`@turf/buffer`](buffer) Change default number of steps to 8, and actually support the steps option
+  (PR https://github.com/Turfjs/turf/pull/1931 - Author stevenchanin)
+
+- [`@turf/helpers`](helpers) Add runtime checks to point() method, fixing an API break
+  (PR https://github.com/Turfjs/turf/pull/1964)
+
 ## 🏅 New Features/Enhancements
 
 - [`@turf/boolean-overlap`](boolean-overlap) Better performance for MultiPoint geometries
   (PR https://github.com/Turfjs/turf/pull/1910 - Author @mfedderly)
+
+- [`@turf/helpers`](helpers) Add hectares to convertArea
+  (PR https://github.com/Turfjs/turf/pull/1943 - Author @DanielJDufour)
+
+- [`@turf/great-circle`](great-circle) Update Typescript types to support MultiLineString input
+  (PR https://github.com/Turfjs/turf/pull/1928 - Author kronick)
 
 ## 📖 Documentation
 
