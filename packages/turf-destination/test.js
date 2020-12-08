@@ -23,8 +23,11 @@ test('turf-destination', t => {
         const properties = geojson.properties || {};
         const bearing = (properties.bearing !== undefined) ? properties.bearing : 180;
         const dist = (properties.dist !== undefined) ? properties.dist : 100;
-
-        const dest = truncate(destination(geojson, dist, bearing));
+        let testProperties = {};
+        if (properties.units !== undefined) {
+          testProperties.units = properties.units;
+        }
+        const dest = truncate(destination(geojson, dist, bearing, testProperties));
         const result = featureCollection([geojson, dest, lineString([getCoords(geojson), getCoords(dest)])]);
 
         if (process.env.REGEN) write.sync(directories.out + base, result);
