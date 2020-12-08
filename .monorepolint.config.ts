@@ -50,6 +50,7 @@ module.exports = {
           "keywords",
           "main",
           "module",
+          "exports",
           "browser",
           "types",
           "sideEffects",
@@ -75,7 +76,11 @@ module.exports = {
             // Example of a URL that will break: https://unpkg.com/@turf/turf/dist/turf.min.js
             // Example of a URL that will keep working: https://unpkg.com/@turf/turf
             browser: "turf.min.js",
-            files: ["dist", "index.d.ts", "turf.min.js"]
+            files: ["dist", "index.d.ts", "turf.min.js"],
+            exports: {
+              import: "./dist/es/index.js",
+              require: "./dist/js/index.js"
+            }
           }
         },
         includePackages: [MAIN_PACKAGE]
@@ -87,7 +92,11 @@ module.exports = {
             module: "dist/es/index.js",
             sideEffects: false,
             publishConfig: {
-              access: "public"
+              access: "public",
+            },
+            exports: {
+              import: "./dist/es/index.js",
+              require: "./dist/js/index.js"
             }
           }
         },
@@ -131,7 +140,7 @@ module.exports = {
             prepare: "npm-run-all prepare:*",
             "prepare:js": "tsc",
             "prepare:es":
-              "tsc --outDir dist/es --module esnext --declaration false"
+              "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json"
           }
         },
         includePackages: TS_PACKAGES
@@ -139,11 +148,19 @@ module.exports = {
       {
         options: {
           scripts: {
-            prepare: "rollup -c ../../rollup.config.js",
+            prepare: "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
             posttest: "node -r esm ../../scripts/validate-es5-dependencies.js"
           }
         },
         includePackages: JS_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            prepare: "rollup -c rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json"
+          }
+        },
+        includePackages: [MAIN_PACKAGE]
       },
       {
         options: {

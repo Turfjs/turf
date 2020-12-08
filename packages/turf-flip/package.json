@@ -23,6 +23,10 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "exports": {
+    "import": "./dist/es/index.js",
+    "require": "./dist/js/index.js"
+  },
   "types": "index.d.ts",
   "sideEffects": false,
   "files": [
@@ -34,7 +38,7 @@
     "bench:run": "node bench.js",
     "docs": "node ../../scripts/generate-readmes",
     "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
-    "prepare": "rollup -c ../../rollup.config.js",
+    "prepare": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "test": "npm-run-all prepare test:*",
     "test:tape": "node -r esm test.js",
     "test:types": "tsc --noEmit types.ts"

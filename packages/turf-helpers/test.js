@@ -24,6 +24,10 @@ test('point', t => {
     const noProps = point([0, 0]);
     t.deepEqual(noProps.properties, {}, 'no props becomes {}');
 
+    t.throws(() => {
+        point("hello");
+    }, "Issue #1941 - point rejects invalid coordinate arg");
+
     t.end();
 });
 
@@ -354,6 +358,7 @@ test('convertArea', t => {
     t.equal(convertArea(100, undefined, 'yards'), 119.59900459999999);
     t.equal(convertArea(100, 'metres', 'feet'), 1076.3910417);
     t.equal(convertArea(100000, 'feet', undefined), 0.009290303999749462);
+    t.equal(convertArea(1, 'meters', 'hectares'), 0.0001);
     // t.throws(() => convertLength(1, 'foo'), 'invalid original units');
     // t.throws(() => convertLength(1, 'meters', 'foo'), 'invalid final units');
 
