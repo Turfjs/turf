@@ -103,12 +103,31 @@ function lineOffsetFeature(line, distance, units) {
  * @returns {Array<Array<number>>} offset points
  */
 function processSegment(point1, point2, offset) {
-    var L = Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
+    // arccos of dot product between point1 and point2 is the angle between points (in radians)
+    var angle = Math.acos(
+        Math.cos(point1[1]*Math.PI/180)*Math.cos(point1[0]*Math.PI/180) * Math.cos(point2[1]*Math.PI/180)*Math.cos(point2[0]*Math.PI/180)
+        + Math.cos(point1[1]*Math.PI/180)*Math.sin(point1[0]*Math.PI/180) * Math.cos(point2[1]*Math.PI/180)*Math.sin(point2[0]*Math.PI/180)
+        + Math.sin(point1[1]*Math.PI/180) * Math.sin(point2[1]*Math.PI/180)
+    );
 
-    var out1x = point1[0] + offset * (point2[1] - point1[1]) / L;
-    var out2x = point2[0] + offset * (point2[1] - point1[1]) / L;
-    var out1y = point1[1] + offset * (point1[0] - point2[0]) / L;
-    var out2y = point2[1] + offset * (point1[0] - point2[0]) / L;
+    // Convert to degrees
+    var L = angle*180/Math.PI;
+    
+    if(L > 0) {
+        // Transform local cartesian coordinate system to account for lat steps being smaller farther away from the equator
+        var midpointFactor = Math.cos( (point1[1] + point2[1])/2 * Math.PI / 180);
+
+        var out1x = point1[0] + offset * (point2[1] - point1[1]) / L / midpointFactor;
+        var out2x = point2[0] + offset * (point2[1] - point1[1]) / L / midpointFactor;
+        var out1y = point1[1] + offset * (point1[0] - point2[0]) / L * midpointFactor;
+        var out2y = point2[1] + offset * (point1[0] - point2[0]) / L * midpointFactor;
+    }
+    else {
+        var out1x = point1[0];
+        var out2x = point2[0];
+        var out1y = point1[1];
+        var out2y = point2[1];
+    }
     return [[out1x, out1y], [out2x, out2y]];
 }
 
