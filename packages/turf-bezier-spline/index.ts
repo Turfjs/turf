@@ -1,6 +1,10 @@
 import {
-    Feature, isNumber, isObject,
-    lineString, LineString, Properties,
+  Feature,
+  isNumber,
+  isObject,
+  lineString,
+  LineString,
+  Properties,
 } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 import Spline from "./lib/spline";
@@ -35,32 +39,35 @@ import Spline from "./lib/spline";
  * var addToMap = [line, curved]
  * curved.properties = { stroke: '#0F0' };
  */
-function bezier<P = Properties>(line: Feature<LineString> | LineString, options: {
-    properties?: P,
-    resolution?: number,
-    sharpness?: number,
-} = {}): Feature<LineString, P> {
-    // Optional params
-    const resolution = options.resolution || 10000;
-    const sharpness = options.sharpness || 0.85;
+function bezier<P = Properties>(
+  line: Feature<LineString> | LineString,
+  options: {
+    properties?: P;
+    resolution?: number;
+    sharpness?: number;
+  } = {}
+): Feature<LineString, P> {
+  // Optional params
+  const resolution = options.resolution || 10000;
+  const sharpness = options.sharpness || 0.85;
 
-    const coords = [];
-    const points = getGeom(line).coordinates.map((pt) => {
-        return {x: pt[0], y: pt[1]};
-    });
-    const spline = new Spline({
-        duration: resolution,
-        points,
-        sharpness,
-    });
+  const coords = [];
+  const points = getGeom(line).coordinates.map((pt) => {
+    return { x: pt[0], y: pt[1] };
+  });
+  const spline = new Spline({
+    duration: resolution,
+    points,
+    sharpness,
+  });
 
-    for (let i = 0; i < spline.duration; i += 10) {
-        const pos = spline.pos(i);
-        if (Math.floor(i / 100) % 2 === 0) {
-            coords.push([pos.x, pos.y]);
-        }
+  for (let i = 0; i < spline.duration; i += 10) {
+    const pos = spline.pos(i);
+    if (Math.floor(i / 100) % 2 === 0) {
+      coords.push([pos.x, pos.y]);
     }
-    return lineString(coords, options.properties);
+  }
+  return lineString(coords, options.properties);
 }
 
 export default bezier;

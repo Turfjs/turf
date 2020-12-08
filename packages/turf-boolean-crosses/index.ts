@@ -1,8 +1,8 @@
-import lineIntersect from '@turf/line-intersect';
-import { polygonToLine } from '@turf/polygon-to-line';
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import { getGeom, getType } from '@turf/invariant';
-import { point, Feature, Geometry, MultiPolygon, Polygon } from '@turf/helpers';
+import lineIntersect from "@turf/line-intersect";
+import { polygonToLine } from "@turf/polygon-to-line";
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import { getGeom, getType } from "@turf/invariant";
+import { point, Feature, Geometry, MultiPolygon, Polygon } from "@turf/helpers";
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -22,111 +22,128 @@ import { point, Feature, Geometry, MultiPolygon, Polygon } from '@turf/helpers';
  * var cross = turf.booleanCrosses(line1, line2);
  * //=true
  */
-function booleanCrosses(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry): boolean {
-    var geom1 = getGeom(feature1);
-    var geom2 = getGeom(feature2);
-    var type1 = geom1.type;
-    var type2 = geom2.type;
+function booleanCrosses(
+  feature1: Feature<any> | Geometry,
+  feature2: Feature<any> | Geometry
+): boolean {
+  var geom1 = getGeom(feature1);
+  var geom2 = getGeom(feature2);
+  var type1 = geom1.type;
+  var type2 = geom2.type;
 
-    switch (type1) {
-    case 'MultiPoint':
-        switch (type2) {
-        case 'LineString':
-            return doMultiPointAndLineStringCross(geom1, geom2);
-        case 'Polygon':
-            return doesMultiPointCrossPoly(geom1, geom2);
+  switch (type1) {
+    case "MultiPoint":
+      switch (type2) {
+        case "LineString":
+          return doMultiPointAndLineStringCross(geom1, geom2);
+        case "Polygon":
+          return doesMultiPointCrossPoly(geom1, geom2);
         default:
-            throw new Error('feature2 ' + type2 + ' geometry not supported');
-        }
-    case 'LineString':
-        switch (type2) {
-        case 'MultiPoint': // An inverse operation
-            return doMultiPointAndLineStringCross(geom2, geom1);
-        case 'LineString':
-            return doLineStringsCross(geom1, geom2);
-        case 'Polygon':
-            return doLineStringAndPolygonCross(geom1, geom2);
+          throw new Error("feature2 " + type2 + " geometry not supported");
+      }
+    case "LineString":
+      switch (type2) {
+        case "MultiPoint": // An inverse operation
+          return doMultiPointAndLineStringCross(geom2, geom1);
+        case "LineString":
+          return doLineStringsCross(geom1, geom2);
+        case "Polygon":
+          return doLineStringAndPolygonCross(geom1, geom2);
         default:
-            throw new Error('feature2 ' + type2 + ' geometry not supported');
-        }
-    case 'Polygon':
-        switch (type2) {
-        case 'MultiPoint': // An inverse operation
-            return doesMultiPointCrossPoly(geom2, geom1);
-        case 'LineString': // An inverse operation
-            return doLineStringAndPolygonCross(geom2, geom1);
+          throw new Error("feature2 " + type2 + " geometry not supported");
+      }
+    case "Polygon":
+      switch (type2) {
+        case "MultiPoint": // An inverse operation
+          return doesMultiPointCrossPoly(geom2, geom1);
+        case "LineString": // An inverse operation
+          return doLineStringAndPolygonCross(geom2, geom1);
         default:
-            throw new Error('feature2 ' + type2 + ' geometry not supported');
-        }
+          throw new Error("feature2 " + type2 + " geometry not supported");
+      }
     default:
-        throw new Error('feature1 ' + type1 + ' geometry not supported');
-    }
+      throw new Error("feature1 " + type1 + " geometry not supported");
+  }
 }
 
 function doMultiPointAndLineStringCross(multiPoint, lineString) {
-    var foundIntPoint = false;
-    var foundExtPoint = false;
-    var pointLength = multiPoint.coordinates.length;
-    var i = 0;
-    while (i < pointLength && !foundIntPoint && !foundExtPoint) {
-        for (var i2 = 0; i2 < lineString.coordinates.length - 1; i2++) {
-            var incEndVertices = true;
-            if (i2 === 0 || i2 === lineString.coordinates.length - 2) {
-                incEndVertices = false;
-            }
-            if (isPointOnLineSegment(lineString.coordinates[i2], lineString.coordinates[i2 + 1], multiPoint.coordinates[i], incEndVertices)) {
-                foundIntPoint = true;
-            } else {
-                foundExtPoint = true;
-            }
-        }
-        i++;
+  var foundIntPoint = false;
+  var foundExtPoint = false;
+  var pointLength = multiPoint.coordinates.length;
+  var i = 0;
+  while (i < pointLength && !foundIntPoint && !foundExtPoint) {
+    for (var i2 = 0; i2 < lineString.coordinates.length - 1; i2++) {
+      var incEndVertices = true;
+      if (i2 === 0 || i2 === lineString.coordinates.length - 2) {
+        incEndVertices = false;
+      }
+      if (
+        isPointOnLineSegment(
+          lineString.coordinates[i2],
+          lineString.coordinates[i2 + 1],
+          multiPoint.coordinates[i],
+          incEndVertices
+        )
+      ) {
+        foundIntPoint = true;
+      } else {
+        foundExtPoint = true;
+      }
     }
-    return foundIntPoint && foundExtPoint;
+    i++;
+  }
+  return foundIntPoint && foundExtPoint;
 }
 
 function doLineStringsCross(lineString1, lineString2) {
-    var doLinesIntersect = lineIntersect(lineString1, lineString2);
-    if (doLinesIntersect.features.length > 0) {
-        for (var i = 0; i < lineString1.coordinates.length - 1; i++) {
-            for (var i2 = 0; i2 < lineString2.coordinates.length - 1; i2++) {
-                var incEndVertices = true;
-                if (i2 === 0 || i2 === lineString2.coordinates.length - 2) {
-                    incEndVertices = false;
-                }
-                if (isPointOnLineSegment(lineString1.coordinates[i], lineString1.coordinates[i + 1], lineString2.coordinates[i2], incEndVertices)) {
-                    return true;
-                }
-            }
+  var doLinesIntersect = lineIntersect(lineString1, lineString2);
+  if (doLinesIntersect.features.length > 0) {
+    for (var i = 0; i < lineString1.coordinates.length - 1; i++) {
+      for (var i2 = 0; i2 < lineString2.coordinates.length - 1; i2++) {
+        var incEndVertices = true;
+        if (i2 === 0 || i2 === lineString2.coordinates.length - 2) {
+          incEndVertices = false;
         }
+        if (
+          isPointOnLineSegment(
+            lineString1.coordinates[i],
+            lineString1.coordinates[i + 1],
+            lineString2.coordinates[i2],
+            incEndVertices
+          )
+        ) {
+          return true;
+        }
+      }
     }
-    return false;
+  }
+  return false;
 }
 
 function doLineStringAndPolygonCross(lineString, polygon: Polygon) {
-    const line: any = polygonToLine(polygon);
-    const doLinesIntersect = lineIntersect(lineString, line);
-    if (doLinesIntersect.features.length > 0) {
-        return true;
-    }
-    return false;
+  const line: any = polygonToLine(polygon);
+  const doLinesIntersect = lineIntersect(lineString, line);
+  if (doLinesIntersect.features.length > 0) {
+    return true;
+  }
+  return false;
 }
 
 function doesMultiPointCrossPoly(multiPoint, polygon) {
-    var foundIntPoint = false;
-    var foundExtPoint = false;
-    var pointLength = multiPoint.coordinates[0].length;
-    var i = 0;
-    while (i < pointLength && foundIntPoint && foundExtPoint) {
-        if (booleanPointInPolygon(point(multiPoint.coordinates[0][i]), polygon)) {
-            foundIntPoint = true;
-        } else {
-            foundExtPoint = true;
-        }
-        i++;
+  var foundIntPoint = false;
+  var foundExtPoint = false;
+  var pointLength = multiPoint.coordinates[0].length;
+  var i = 0;
+  while (i < pointLength && foundIntPoint && foundExtPoint) {
+    if (booleanPointInPolygon(point(multiPoint.coordinates[0][i]), polygon)) {
+      foundIntPoint = true;
+    } else {
+      foundExtPoint = true;
     }
+    i++;
+  }
 
-    return foundExtPoint && foundExtPoint;
+  return foundExtPoint && foundExtPoint;
 }
 
 /**
@@ -142,25 +159,33 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
  * @returns {boolean} true/false
  */
 function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, incEnd) {
-    var dxc = pt[0] - lineSegmentStart[0];
-    var dyc = pt[1] - lineSegmentStart[1];
-    var dxl = lineSegmentEnd[0] - lineSegmentStart[0];
-    var dyl = lineSegmentEnd[1] - lineSegmentStart[1];
-    var cross = dxc * dyl - dyc * dxl;
-    if (cross !== 0) {
-        return false;
+  var dxc = pt[0] - lineSegmentStart[0];
+  var dyc = pt[1] - lineSegmentStart[1];
+  var dxl = lineSegmentEnd[0] - lineSegmentStart[0];
+  var dyl = lineSegmentEnd[1] - lineSegmentStart[1];
+  var cross = dxc * dyl - dyc * dxl;
+  if (cross !== 0) {
+    return false;
+  }
+  if (incEnd) {
+    if (Math.abs(dxl) >= Math.abs(dyl)) {
+      return dxl > 0
+        ? lineSegmentStart[0] <= pt[0] && pt[0] <= lineSegmentEnd[0]
+        : lineSegmentEnd[0] <= pt[0] && pt[0] <= lineSegmentStart[0];
     }
-    if (incEnd) {
-        if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] <= pt[0] && pt[0] <= lineSegmentEnd[0] : lineSegmentEnd[0] <= pt[0] && pt[0] <= lineSegmentStart[0];
-        }
-        return dyl > 0 ? lineSegmentStart[1] <= pt[1] && pt[1] <= lineSegmentEnd[1] : lineSegmentEnd[1] <= pt[1] && pt[1] <= lineSegmentStart[1];
-    } else {
-        if (Math.abs(dxl) >= Math.abs(dyl)) {
-            return dxl > 0 ? lineSegmentStart[0] < pt[0] && pt[0] < lineSegmentEnd[0] : lineSegmentEnd[0] < pt[0] && pt[0] < lineSegmentStart[0];
-        }
-        return dyl > 0 ? lineSegmentStart[1] < pt[1] && pt[1] < lineSegmentEnd[1] : lineSegmentEnd[1] < pt[1] && pt[1] < lineSegmentStart[1];
+    return dyl > 0
+      ? lineSegmentStart[1] <= pt[1] && pt[1] <= lineSegmentEnd[1]
+      : lineSegmentEnd[1] <= pt[1] && pt[1] <= lineSegmentStart[1];
+  } else {
+    if (Math.abs(dxl) >= Math.abs(dyl)) {
+      return dxl > 0
+        ? lineSegmentStart[0] < pt[0] && pt[0] < lineSegmentEnd[0]
+        : lineSegmentEnd[0] < pt[0] && pt[0] < lineSegmentStart[0];
     }
+    return dyl > 0
+      ? lineSegmentStart[1] < pt[1] && pt[1] < lineSegmentEnd[1]
+      : lineSegmentEnd[1] < pt[1] && pt[1] < lineSegmentStart[1];
+  }
 }
 
 export default booleanCrosses;

@@ -1,7 +1,7 @@
-import turfbbox from '@turf/bbox';
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import rbush from 'rbush';
-import { FeatureCollection, Polygon, Feature, Point } from '@turf/helpers';
+import turfbbox from "@turf/bbox";
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import rbush from "rbush";
+import { FeatureCollection, Polygon, Feature, Point } from "@turf/helpers";
 
 /**
  * Merges a specified property from a FeatureCollection of points into a
@@ -34,42 +34,46 @@ import { FeatureCollection, Polygon, Feature, Point } from '@turf/helpers';
  * var addToMap = [pointFC, collected]
  */
 function collect(
-    polygons: FeatureCollection<Polygon>,
-    points: FeatureCollection<Point>,
-    inProperty: string,
-    outProperty: string
+  polygons: FeatureCollection<Polygon>,
+  points: FeatureCollection<Point>,
+  inProperty: string,
+  outProperty: string
 ): FeatureCollection<Polygon> {
-    var rtree = rbush(6);
+  var rtree = rbush(6);
 
-    var treeItems = points.features.map(function (item) {
-        return {
-            minX: item.geometry.coordinates[0],
-            minY: item.geometry.coordinates[1],
-            maxX: item.geometry.coordinates[0],
-            maxY: item.geometry.coordinates[1],
-            property: item.properties[inProperty]
-        };
+  var treeItems = points.features.map(function (item) {
+    return {
+      minX: item.geometry.coordinates[0],
+      minY: item.geometry.coordinates[1],
+      maxX: item.geometry.coordinates[0],
+      maxY: item.geometry.coordinates[1],
+      property: item.properties[inProperty],
+    };
+  });
+
+  rtree.load(treeItems);
+  polygons.features.forEach(function (poly) {
+    if (!poly.properties) {
+      poly.properties = {};
+    }
+    var bbox = turfbbox(poly);
+    var potentialPoints = rtree.search({
+      minX: bbox[0],
+      minY: bbox[1],
+      maxX: bbox[2],
+      maxY: bbox[3],
+    });
+    var values = [];
+    potentialPoints.forEach(function (pt) {
+      if (booleanPointInPolygon([pt.minX, pt.minY], poly)) {
+        values.push(pt.property);
+      }
     });
 
-    rtree.load(treeItems);
-    polygons.features.forEach(function (poly) {
+    poly.properties[outProperty] = values;
+  });
 
-        if (!poly.properties) {
-            poly.properties = {};
-        }
-        var bbox = turfbbox(poly);
-        var potentialPoints = rtree.search({minX: bbox[0], minY: bbox[1], maxX: bbox[2], maxY: bbox[3]});
-        var values = [];
-        potentialPoints.forEach(function (pt) {
-            if (booleanPointInPolygon([pt.minX, pt.minY], poly)) {
-                values.push(pt.property);
-            }
-        });
-
-        poly.properties[outProperty] = values;
-    });
-
-    return polygons;
+  return polygons;
 }
 
 export default collect;

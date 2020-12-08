@@ -26,24 +26,31 @@ import { getCoord } from "@turf/invariant";
  * point2.properties['marker-color'] = '#0f0'
  * point1.properties.bearing = bearing
  */
-export default function bearing(start: Coord, end: Coord, options: {
-    final?: boolean,
-} = {}): number {
-    // Reverse calculation
-    if (options.final === true) { return calculateFinalBearing(start, end); }
+export default function bearing(
+  start: Coord,
+  end: Coord,
+  options: {
+    final?: boolean;
+  } = {}
+): number {
+  // Reverse calculation
+  if (options.final === true) {
+    return calculateFinalBearing(start, end);
+  }
 
-    const coordinates1 = getCoord(start);
-    const coordinates2 = getCoord(end);
+  const coordinates1 = getCoord(start);
+  const coordinates2 = getCoord(end);
 
-    const lon1 = degreesToRadians(coordinates1[0]);
-    const lon2 = degreesToRadians(coordinates2[0]);
-    const lat1 = degreesToRadians(coordinates1[1]);
-    const lat2 = degreesToRadians(coordinates2[1]);
-    const a = Math.sin(lon2 - lon1) * Math.cos(lat2);
-    const b = Math.cos(lat1) * Math.sin(lat2) -
-        Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
+  const lon1 = degreesToRadians(coordinates1[0]);
+  const lon2 = degreesToRadians(coordinates2[0]);
+  const lat1 = degreesToRadians(coordinates1[1]);
+  const lat2 = degreesToRadians(coordinates2[1]);
+  const a = Math.sin(lon2 - lon1) * Math.cos(lat2);
+  const b =
+    Math.cos(lat1) * Math.sin(lat2) -
+    Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
 
-    return radiansToDegrees(Math.atan2(a, b));
+  return radiansToDegrees(Math.atan2(a, b));
 }
 
 /**
@@ -55,8 +62,8 @@ export default function bearing(start: Coord, end: Coord, options: {
  * @returns {number} bearing
  */
 function calculateFinalBearing(start: Coord, end: Coord) {
-    // Swap start & end
-    let bear = bearing(end, start);
-    bear = (bear + 180) % 360;
-    return bear;
+  // Swap start & end
+  let bear = bearing(end, start);
+  bear = (bear + 180) % 360;
+  return bear;
 }

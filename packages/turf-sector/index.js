@@ -1,8 +1,8 @@
-import circle from '@turf/circle';
-import lineArc from '@turf/line-arc';
-import { coordEach } from '@turf/meta';
-import { polygon, isObject } from '@turf/helpers';
-import { getCoords } from '@turf/invariant';
+import circle from "@turf/circle";
+import lineArc from "@turf/line-arc";
+import { coordEach } from "@turf/meta";
+import { polygon, isObject } from "@turf/helpers";
+import { getCoords } from "@turf/invariant";
 
 /**
  * Creates a circular sector of a circle of given radius and center {@link Point},
@@ -30,30 +30,32 @@ import { getCoords } from '@turf/invariant';
  * var addToMap = [center, sector];
  */
 function sector(center, radius, bearing1, bearing2, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var properties = options.properties;
+  // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var properties = options.properties;
 
-    // validation
-    if (!center) throw new Error('center is required');
-    if (bearing1 === undefined || bearing1 === null) throw new Error('bearing1 is required');
-    if (bearing2 === undefined || bearing2 === null) throw new Error('bearing2 is required');
-    if (!radius) throw new Error('radius is required');
-    if (typeof options !== 'object') throw new Error('options must be an object');
+  // validation
+  if (!center) throw new Error("center is required");
+  if (bearing1 === undefined || bearing1 === null)
+    throw new Error("bearing1 is required");
+  if (bearing2 === undefined || bearing2 === null)
+    throw new Error("bearing2 is required");
+  if (!radius) throw new Error("radius is required");
+  if (typeof options !== "object") throw new Error("options must be an object");
 
-    if (convertAngleTo360(bearing1) === convertAngleTo360(bearing2)) {
-        return circle(center, radius, options);
-    }
-    var coords = getCoords(center);
-    var arc = lineArc(center, radius, bearing1, bearing2, options);
-    var sliceCoords = [[coords]];
-    coordEach(arc, function (currentCoords) {
-        sliceCoords[0].push(currentCoords);
-    });
-    sliceCoords[0].push(coords);
+  if (convertAngleTo360(bearing1) === convertAngleTo360(bearing2)) {
+    return circle(center, radius, options);
+  }
+  var coords = getCoords(center);
+  var arc = lineArc(center, radius, bearing1, bearing2, options);
+  var sliceCoords = [[coords]];
+  coordEach(arc, function (currentCoords) {
+    sliceCoords[0].push(currentCoords);
+  });
+  sliceCoords[0].push(coords);
 
-    return polygon(sliceCoords, properties);
+  return polygon(sliceCoords, properties);
 }
 
 /**
@@ -65,9 +67,9 @@ function sector(center, radius, bearing1, bearing2, options) {
  * @returns {number} angle between 0-360 degrees
  */
 function convertAngleTo360(alfa) {
-    var beta = alfa % 360;
-    if (beta < 0) beta += 360;
-    return beta;
+  var beta = alfa % 360;
+  if (beta < 0) beta += 360;
+  return beta;
 }
 
 export default sector;

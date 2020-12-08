@@ -1,5 +1,5 @@
-import { feature, AllGeoJSON } from '@turf/helpers';
-import { getCoords, getType } from '@turf/invariant';
+import { feature, AllGeoJSON } from "@turf/helpers";
+import { getCoords, getType } from "@turf/invariant";
 
 // To-Do => Improve Typescript GeoJSON handling
 
@@ -21,66 +21,72 @@ import { getCoords, getType } from '@turf/invariant';
  * turf.cleanCoords(multiPoint).geometry.coordinates;
  * //= [[0, 0], [2, 2]]
  */
-function cleanCoords(geojson: any, options: {
-    mutate?: boolean,
-} = {}) {
-    // Backwards compatible with v4.0
-    var mutate = (typeof options === 'object') ? options.mutate : options;
-    if (!geojson) throw new Error('geojson is required');
-    var type = getType(geojson);
+function cleanCoords(
+  geojson: any,
+  options: {
+    mutate?: boolean;
+  } = {}
+) {
+  // Backwards compatible with v4.0
+  var mutate = typeof options === "object" ? options.mutate : options;
+  if (!geojson) throw new Error("geojson is required");
+  var type = getType(geojson);
 
-    // Store new "clean" points in this Array
-    var newCoords = [];
+  // Store new "clean" points in this Array
+  var newCoords = [];
 
-    switch (type) {
-    case 'LineString':
-        newCoords = cleanLine(geojson);
-        break;
-    case 'MultiLineString':
-    case 'Polygon':
-        getCoords(geojson).forEach(function (line) {
-            newCoords.push(cleanLine(line));
+  switch (type) {
+    case "LineString":
+      newCoords = cleanLine(geojson);
+      break;
+    case "MultiLineString":
+    case "Polygon":
+      getCoords(geojson).forEach(function (line) {
+        newCoords.push(cleanLine(line));
+      });
+      break;
+    case "MultiPolygon":
+      getCoords(geojson).forEach(function (polygons: any) {
+        var polyPoints = [];
+        polygons.forEach(function (ring) {
+          polyPoints.push(cleanLine(ring));
         });
-        break;
-    case 'MultiPolygon':
-        getCoords(geojson).forEach(function (polygons: any) {
-            var polyPoints = [];
-            polygons.forEach(function (ring) {
-                polyPoints.push(cleanLine(ring));
-            });
-            newCoords.push(polyPoints);
-        });
-        break;
-    case 'Point':
-        return geojson;
-    case 'MultiPoint':
-        var existing = {};
-        getCoords(geojson).forEach(function (coord: any) {
-            var key = coord.join('-');
-            if (!existing.hasOwnProperty(key)) {
-                newCoords.push(coord);
-                existing[key] = true;
-            }
-        });
-        break;
+        newCoords.push(polyPoints);
+      });
+      break;
+    case "Point":
+      return geojson;
+    case "MultiPoint":
+      var existing = {};
+      getCoords(geojson).forEach(function (coord: any) {
+        var key = coord.join("-");
+        if (!existing.hasOwnProperty(key)) {
+          newCoords.push(coord);
+          existing[key] = true;
+        }
+      });
+      break;
     default:
-        throw new Error(type + ' geometry not supported');
-    }
+      throw new Error(type + " geometry not supported");
+  }
 
-    // Support input mutation
-    if (geojson.coordinates) {
-        if (mutate === true) {
-            geojson.coordinates = newCoords;
-            return geojson;
-        }
-        return {type: type, coordinates: newCoords};
-    } else {
-        if (mutate === true) {
-            geojson.geometry.coordinates = newCoords;
-            return geojson;
-        }
-        return feature({type: type, coordinates: newCoords}, geojson.properties, {bbox: geojson.bbox, id: geojson.id});
+  // Support input mutation
+  if (geojson.coordinates) {
+    if (mutate === true) {
+      geojson.coordinates = newCoords;
+      return geojson;
     }
+    return { type: type, coordinates: newCoords };
+  } else {
+    if (mutate === true) {
+      geojson.geometry.coordinates = newCoords;
+      return geojson;
+    }
+    return feature({ type: type, coordinates: newCoords }, geojson.properties, {
+      bbox: geojson.bbox,
+      id: geojson.id,
+    });
+  }
 }
 
 /**
@@ -91,34 +97,52 @@ function cleanCoords(geojson: any, options: {
  * @returns {Array<number>} Cleaned coordinates
  */
 function cleanLine(line) {
+  var points = getCoords(line);
+  // handle "clean" segment
+  if (points.length === 2 && !equals(points[0], points[1])) return points;
 
-    var points = getCoords(line);
-    // handle "clean" segment
-    if (points.length === 2 && !equals(points[0], points[1])) return points;
+  var newPoints = [];
+  var secondToLast = points.length - 1;
+  var newPointsLength = newPoints.length;
 
-    var newPoints = [];
-    var secondToLast = points.length - 1;
-    var newPointsLength = newPoints.length;
-
-    newPoints.push(points[0]);
-    for (var i = 1; i < secondToLast; i++) {
-        var prevAddedPoint = newPoints[newPoints.length - 1];
-        if ((points[i][0] === prevAddedPoint[0]) && (points[i][1] === prevAddedPoint[1])) continue;
-        else {
-            newPoints.push(points[i]);
-            newPointsLength = newPoints.length;
-            if (newPointsLength > 2) {
-                if (isPointOnLineSegment(newPoints[newPointsLength - 3], newPoints[newPointsLength - 1], newPoints[newPointsLength - 2])) newPoints.splice(newPoints.length - 2, 1);
-            }
-        }
+  newPoints.push(points[0]);
+  for (var i = 1; i < secondToLast; i++) {
+    var prevAddedPoint = newPoints[newPoints.length - 1];
+    if (
+      points[i][0] === prevAddedPoint[0] &&
+      points[i][1] === prevAddedPoint[1]
+    )
+      continue;
+    else {
+      newPoints.push(points[i]);
+      newPointsLength = newPoints.length;
+      if (newPointsLength > 2) {
+        if (
+          isPointOnLineSegment(
+            newPoints[newPointsLength - 3],
+            newPoints[newPointsLength - 1],
+            newPoints[newPointsLength - 2]
+          )
+        )
+          newPoints.splice(newPoints.length - 2, 1);
+      }
     }
-    newPoints.push(points[points.length - 1]);
+  }
+  newPoints.push(points[points.length - 1]);
 
-    newPointsLength = newPoints.length;
-    if (equals(points[0], points[points.length - 1]) && newPointsLength < 4) throw new Error('invalid polygon');
-    if (isPointOnLineSegment(newPoints[newPointsLength - 3], newPoints[newPointsLength - 1], newPoints[newPointsLength - 2])) newPoints.splice(newPoints.length - 2, 1);
+  newPointsLength = newPoints.length;
+  if (equals(points[0], points[points.length - 1]) && newPointsLength < 4)
+    throw new Error("invalid polygon");
+  if (
+    isPointOnLineSegment(
+      newPoints[newPointsLength - 3],
+      newPoints[newPointsLength - 1],
+      newPoints[newPointsLength - 2]
+    )
+  )
+    newPoints.splice(newPoints.length - 2, 1);
 
-    return newPoints;
+  return newPoints;
 }
 
 /**
@@ -130,7 +154,7 @@ function cleanLine(line) {
  * @returns {boolean} true if they are equals
  */
 function equals(pt1, pt2) {
-    return pt1[0] === pt2[0] && pt1[1] === pt2[1];
+  return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
 
 /**
@@ -144,19 +168,23 @@ function equals(pt1, pt2) {
  * @returns {boolean} true/false
  */
 function isPointOnLineSegment(start, end, point) {
-    var x = point[0], y = point[1];
-    var startX = start[0], startY = start[1];
-    var endX = end[0], endY = end[1];
+  var x = point[0],
+    y = point[1];
+  var startX = start[0],
+    startY = start[1];
+  var endX = end[0],
+    endY = end[1];
 
-    var dxc = x - startX;
-    var dyc = y - startY;
-    var dxl = endX - startX;
-    var dyl = endY - startY;
-    var cross = dxc * dyl - dyc * dxl;
+  var dxc = x - startX;
+  var dyc = y - startY;
+  var dxl = endX - startX;
+  var dyl = endY - startY;
+  var cross = dxc * dyl - dyc * dxl;
 
-    if (cross !== 0) return false;
-    else if (Math.abs(dxl) >= Math.abs(dyl)) return dxl > 0 ? startX <= x && x <= endX : endX <= x && x <= startX;
-    else return dyl > 0 ? startY <= y && y <= endY : endY <= y && y <= startY;
+  if (cross !== 0) return false;
+  else if (Math.abs(dxl) >= Math.abs(dyl))
+    return dxl > 0 ? startX <= x && x <= endX : endX <= x && x <= startX;
+  else return dyl > 0 ? startY <= y && y <= endY : endY <= y && y <= startY;
 }
 
 export default cleanCoords;

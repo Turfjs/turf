@@ -1,4 +1,4 @@
-import { Feature, FeatureCollection, Polygon } from '@turf/helpers'
+import { Feature, FeatureCollection, Polygon } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#tesselate

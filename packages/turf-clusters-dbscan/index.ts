@@ -1,14 +1,21 @@
-import clone from '@turf/clone';
-import distance from '@turf/distance';
-import { coordAll } from '@turf/meta';
-import { convertLength, Properties, Units, FeatureCollection, Feature, Point } from '@turf/helpers';
-import { collectionOf } from '@turf/invariant';
-import clustering from 'density-clustering';
+import clone from "@turf/clone";
+import distance from "@turf/distance";
+import { coordAll } from "@turf/meta";
+import {
+  convertLength,
+  Properties,
+  Units,
+  FeatureCollection,
+  Feature,
+  Point,
+} from "@turf/helpers";
+import { collectionOf } from "@turf/invariant";
+import clustering from "density-clustering";
 
-export type Dbscan = 'core' | 'edge' | 'noise'
+export type Dbscan = "core" | "edge" | "noise";
 export interface DbscanProps extends Properties {
-    dbscan?: Dbscan;
-    cluster?: number;
+  dbscan?: Dbscan;
+  cluster?: number;
 }
 
 /**
@@ -34,50 +41,59 @@ export interface DbscanProps extends Properties {
  * //addToMap
  * var addToMap = [clustered];
  */
-function clustersDbscan(points: FeatureCollection<Point>, maxDistance: number, options: {
-    units?: Units,
-    minPoints?: number,
-    mutate?: boolean
-} = {}): FeatureCollection<Point, DbscanProps> {
-    // Input validation being handled by Typescript
-    // collectionOf(points, 'Point', 'points must consist of a FeatureCollection of only Points');
-    // if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
-    // if (!(Math.sign(maxDistance) > 0)) throw new Error('maxDistance is invalid');
-    // if (!(minPoints === undefined || minPoints === null || Math.sign(minPoints) > 0)) throw new Error('options.minPoints is invalid');
+function clustersDbscan(
+  points: FeatureCollection<Point>,
+  maxDistance: number,
+  options: {
+    units?: Units;
+    minPoints?: number;
+    mutate?: boolean;
+  } = {}
+): FeatureCollection<Point, DbscanProps> {
+  // Input validation being handled by Typescript
+  // collectionOf(points, 'Point', 'points must consist of a FeatureCollection of only Points');
+  // if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
+  // if (!(Math.sign(maxDistance) > 0)) throw new Error('maxDistance is invalid');
+  // if (!(minPoints === undefined || minPoints === null || Math.sign(minPoints) > 0)) throw new Error('options.minPoints is invalid');
 
-    // Clone points to prevent any mutations
-    if (options.mutate !== true) points = clone(points);
+  // Clone points to prevent any mutations
+  if (options.mutate !== true) points = clone(points);
 
-    // Defaults
-    options.minPoints = options.minPoints || 3;
+  // Defaults
+  options.minPoints = options.minPoints || 3;
 
-    // create clustered ids
-    var dbscan = new clustering.DBSCAN();
-    var clusteredIds = dbscan.run(coordAll(points), convertLength(maxDistance, options.units), options.minPoints, distance);
+  // create clustered ids
+  var dbscan = new clustering.DBSCAN();
+  var clusteredIds = dbscan.run(
+    coordAll(points),
+    convertLength(maxDistance, options.units),
+    options.minPoints,
+    distance
+  );
 
-    // Tag points to Clusters ID
-    var clusterId = -1;
-    clusteredIds.forEach(function (clusterIds) {
-        clusterId++;
-        // assign cluster ids to input points
-        clusterIds.forEach(function (idx) {
-            var clusterPoint = points.features[idx];
-            if (!clusterPoint.properties) clusterPoint.properties = {};
-            clusterPoint.properties.cluster = clusterId;
-            clusterPoint.properties.dbscan = 'core';
-        });
+  // Tag points to Clusters ID
+  var clusterId = -1;
+  clusteredIds.forEach(function (clusterIds) {
+    clusterId++;
+    // assign cluster ids to input points
+    clusterIds.forEach(function (idx) {
+      var clusterPoint = points.features[idx];
+      if (!clusterPoint.properties) clusterPoint.properties = {};
+      clusterPoint.properties.cluster = clusterId;
+      clusterPoint.properties.dbscan = "core";
     });
+  });
 
-    // handle noise points, if any
-    // edges points are tagged by DBSCAN as both 'noise' and 'cluster' as they can "reach" less than 'minPoints' number of points
-    dbscan.noise.forEach(function (noiseId) {
-        var noisePoint = points.features[noiseId];
-        if (!noisePoint.properties) noisePoint.properties = {};
-        if (noisePoint.properties.cluster) noisePoint.properties.dbscan = 'edge';
-        else noisePoint.properties.dbscan = 'noise';
-    });
+  // handle noise points, if any
+  // edges points are tagged by DBSCAN as both 'noise' and 'cluster' as they can "reach" less than 'minPoints' number of points
+  dbscan.noise.forEach(function (noiseId) {
+    var noisePoint = points.features[noiseId];
+    if (!noisePoint.properties) noisePoint.properties = {};
+    if (noisePoint.properties.cluster) noisePoint.properties.dbscan = "edge";
+    else noisePoint.properties.dbscan = "noise";
+  });
 
-    return points;
+  return points;
 }
 
 export default clustersDbscan;

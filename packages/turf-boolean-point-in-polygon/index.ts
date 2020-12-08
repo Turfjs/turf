@@ -1,4 +1,11 @@
-import { BBox, Coord, Feature, MultiPolygon, Polygon, Properties } from "@turf/helpers";
+import {
+  BBox,
+  Coord,
+  Feature,
+  MultiPolygon,
+  Polygon,
+  Properties,
+} from "@turf/helpers";
 import { getCoord, getCoords, getGeom } from "@turf/invariant";
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
@@ -28,50 +35,57 @@ import { getCoord, getCoords, getGeom } from "@turf/invariant";
  * turf.booleanPointInPolygon(pt, poly);
  * //= true
  */
-export default function booleanPointInPolygon<G extends Polygon | MultiPolygon, P = Properties>(
-    point: Coord,
-    polygon: Feature<G> | G,
-    options: {
-        ignoreBoundary?: boolean,
-    } = {},
+export default function booleanPointInPolygon<
+  G extends Polygon | MultiPolygon,
+  P = Properties
+>(
+  point: Coord,
+  polygon: Feature<G> | G,
+  options: {
+    ignoreBoundary?: boolean;
+  } = {}
 ) {
-    // validation
-    if (!point) { throw new Error("point is required"); }
-    if (!polygon) { throw new Error("polygon is required"); }
+  // validation
+  if (!point) {
+    throw new Error("point is required");
+  }
+  if (!polygon) {
+    throw new Error("polygon is required");
+  }
 
-    const pt = getCoord(point);
-    const geom = getGeom(polygon);
-    const type = geom.type;
-    const bbox = polygon.bbox;
-    let polys: any[] = geom.coordinates;
+  const pt = getCoord(point);
+  const geom = getGeom(polygon);
+  const type = geom.type;
+  const bbox = polygon.bbox;
+  let polys: any[] = geom.coordinates;
 
-    // Quick elimination if point is not inside bbox
-    if (bbox && inBBox(pt, bbox) === false) {
-        return false;
-    }
-    // normalize to multipolygon
-    if (type === "Polygon") {
-        polys = [polys];
-    }
-    let insidePoly = false;
-    for (let i = 0; i < polys.length && !insidePoly; i++) {
-        // check if it is in the outer ring first
-        if (inRing(pt, polys[i][0], options.ignoreBoundary)) {
-            let inHole = false;
-            let k = 1;
-            // check for the point in any of the holes
-            while (k < polys[i].length && !inHole) {
-                if (inRing(pt, polys[i][k], !options.ignoreBoundary)) {
-                    inHole = true;
-                }
-                k++;
-            }
-            if (!inHole) {
-                insidePoly = true;
-            }
+  // Quick elimination if point is not inside bbox
+  if (bbox && inBBox(pt, bbox) === false) {
+    return false;
+  }
+  // normalize to multipolygon
+  if (type === "Polygon") {
+    polys = [polys];
+  }
+  let insidePoly = false;
+  for (let i = 0; i < polys.length && !insidePoly; i++) {
+    // check if it is in the outer ring first
+    if (inRing(pt, polys[i][0], options.ignoreBoundary)) {
+      let inHole = false;
+      let k = 1;
+      // check for the point in any of the holes
+      while (k < polys[i].length && !inHole) {
+        if (inRing(pt, polys[i][k], !options.ignoreBoundary)) {
+          inHole = true;
         }
+        k++;
+      }
+      if (!inHole) {
+        insidePoly = true;
+      }
     }
-    return insidePoly;
+  }
+  return insidePoly;
 }
 
 /**
@@ -84,27 +98,33 @@ export default function booleanPointInPolygon<G extends Polygon | MultiPolygon, 
  * @returns {boolean} inRing
  */
 function inRing(pt: number[], ring: number[][], ignoreBoundary?: boolean) {
-    let isInside = false;
-    if (ring[0][0] === ring[ring.length - 1][0] && ring[0][1] === ring[ring.length - 1][1]) {
-        ring = ring.slice(0, ring.length - 1);
+  let isInside = false;
+  if (
+    ring[0][0] === ring[ring.length - 1][0] &&
+    ring[0][1] === ring[ring.length - 1][1]
+  ) {
+    ring = ring.slice(0, ring.length - 1);
+  }
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const xi = ring[i][0];
+    const yi = ring[i][1];
+    const xj = ring[j][0];
+    const yj = ring[j][1];
+    const onBoundary =
+      pt[1] * (xi - xj) + yi * (xj - pt[0]) + yj * (pt[0] - xi) === 0 &&
+      (xi - pt[0]) * (xj - pt[0]) <= 0 &&
+      (yi - pt[1]) * (yj - pt[1]) <= 0;
+    if (onBoundary) {
+      return !ignoreBoundary;
     }
-    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-        const xi = ring[i][0];
-        const yi = ring[i][1];
-        const xj = ring[j][0];
-        const yj = ring[j][1];
-        const onBoundary = (pt[1] * (xi - xj) + yi * (xj - pt[0]) + yj * (pt[0] - xi) === 0) &&
-            ((xi - pt[0]) * (xj - pt[0]) <= 0) && ((yi - pt[1]) * (yj - pt[1]) <= 0);
-        if (onBoundary) {
-            return !ignoreBoundary;
-        }
-        const intersect = ((yi > pt[1]) !== (yj > pt[1])) &&
-            (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
-        if (intersect) {
-            isInside = !isInside;
-        }
+    const intersect =
+      yi > pt[1] !== yj > pt[1] &&
+      pt[0] < ((xj - xi) * (pt[1] - yi)) / (yj - yi) + xi;
+    if (intersect) {
+      isInside = !isInside;
     }
-    return isInside;
+  }
+  return isInside;
 }
 /**
  * inBBox
@@ -115,8 +135,7 @@ function inRing(pt: number[], ring: number[][], ignoreBoundary?: boolean) {
  * @returns {boolean} true/false if point is inside BBox
  */
 function inBBox(pt: number[], bbox: BBox) {
-    return bbox[0] <= pt[0] &&
-        bbox[1] <= pt[1] &&
-        bbox[2] >= pt[0] &&
-        bbox[3] >= pt[1];
+  return (
+    bbox[0] <= pt[0] && bbox[1] <= pt[1] && bbox[2] >= pt[0] && bbox[3] >= pt[1]
+  );
 }
