@@ -1,8 +1,8 @@
-import path from 'path';
-import glob from 'glob';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import nearestPointToLine from './dist/js/index.js';
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const nearestPointToLine = require("./index").default;
 
 /**
  * Benchmark Results
@@ -19,18 +19,20 @@ import nearestPointToLine from './dist/js/index.js';
  * resolute x 44,962 ops/sec ±6.76% (67 runs sampled)
  * two x 42,690 ops/sec ±2.34% (76 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-nearest-point-to-line');
-glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-nearest-point-to-line");
+glob
+  .sync(path.join(__dirname, "test", "in", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [points, line] = geojson.features;
     console.time(name);
     nearestPointToLine(points, line);
     console.timeEnd(name);
     suite.add(name, () => nearestPointToLine(points, line));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

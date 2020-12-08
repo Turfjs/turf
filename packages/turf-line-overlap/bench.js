@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const lineOverlap = require('./dist/js/index.js').default;
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const lineOverlap = require("./index").default;
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -21,12 +21,14 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * simple2 x 10,278 ops/sec ±1.52% (86 runs sampled)
  * simple3 x 13,124 ops/sec ±1.37% (85 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-line-overlap');
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => lineOverlap(geojson.features[0], geojson.features[1]));
+const suite = new Benchmark.Suite("turf-line-overlap");
+for (const { name, geojson } of fixtures) {
+  suite.add(name, () => lineOverlap(geojson.features[0], geojson.features[1]));
 }
 
 suite
-    .on('cycle', e => { console.log(String(e.target)); })
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => {
+    console.log(String(e.target));
+  })
+  .on("complete", () => {})
+  .run();

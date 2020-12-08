@@ -1,8 +1,8 @@
-const Benchmark = require('benchmark');
-const glob = require('glob');
-const path = require('path');
-const load = require('load-json-file');
-const nearestNeighborAnalysis = require('./dist/js/index.js').default;
+const Benchmark = require("benchmark");
+const glob = require("glob");
+const path = require("path");
+const load = require("load-json-file");
+const nearestNeighborAnalysis = require("./index").default;
 
 /**
  * Benchmark Results
@@ -14,18 +14,18 @@ const nearestNeighborAnalysis = require('./dist/js/index.js').default;
  * random: 6.862ms
  * squares: 3.393ms
  */
-const suite = new Benchmark.Suite('turf-nearest-neighbor');
-glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
-    const {name} = path.parse(filepath);
-    const geojson = load.sync(filepath);
-    const options = geojson.options;
-    console.time(name);
-    nearestNeighborAnalysis(geojson, options);
-    console.timeEnd(name);
-    suite.add(name, () => nearestNeighbor(geojson, options));
+const suite = new Benchmark.Suite("turf-nearest-neighbor");
+glob.sync(path.join(__dirname, "test", "in", "*.json")).forEach((filepath) => {
+  const { name } = path.parse(filepath);
+  const geojson = load.sync(filepath);
+  const options = geojson.options;
+  console.time(name);
+  nearestNeighborAnalysis(geojson, options);
+  console.timeEnd(name);
+  suite.add(name, () => nearestNeighbor(geojson, options));
 });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

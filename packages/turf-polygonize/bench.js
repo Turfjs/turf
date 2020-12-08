@@ -1,17 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import polygonize from './dist/js/index.js';
+import fs from "fs";
+import path from "path";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import polygonize from "./index";
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
-
 
 /**
  * Single Process Benchmark
@@ -21,10 +20,10 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * dangle: 0.289ms
  * two-polygons: 0.784ms
  */
-for (const {name, geojson} of fixtures) {
-    console.time(name);
-    polygonize(geojson);
-    console.timeEnd(name);
+for (const { name, geojson } of fixtures) {
+  console.time(name);
+  polygonize(geojson);
+  console.timeEnd(name);
 }
 
 /**
@@ -35,12 +34,12 @@ for (const {name, geojson} of fixtures) {
  * dangle x 9,175 ops/sec ±4.44% (83 runs sampled)
  * two-polygons x 16,323 ops/sec ±1.39% (91 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-transform-polygonize');
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => polygonize(geojson));
+const suite = new Benchmark.Suite("turf-transform-polygonize");
+for (const { name, geojson } of fixtures) {
+  suite.add(name, () => polygonize(geojson));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

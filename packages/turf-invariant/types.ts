@@ -1,30 +1,48 @@
 import * as helpers from "@turf/helpers";
 import {
-    Geometry,
-    GeometryCollection,
-    GeometryTypes,
-    LineString,
-    Point,
-    Polygon,
-    Position,
-    Types,
+  Geometry,
+  GeometryCollection,
+  GeometryTypes,
+  LineString,
+  Point,
+  Polygon,
+  Position,
+  Types,
 } from "@turf/helpers";
-import * as invariant from "./dist/js/index";
+import * as invariant from "./index";
 
 /**
  * Fixtures
  */
 const pt = helpers.point([0, 0]);
-const line = helpers.lineString([[0, 0], [1, 1]]);
-const poly = helpers.polygon([[[0, 0], [1, 1], [2, 2], [0, 0]]]);
-const gc = helpers.geometryCollection([pt.geometry, line.geometry, poly.geometry]);
-const fc = helpers.featureCollection<Point|LineString|Polygon>([pt, line, poly]);
+const line = helpers.lineString([
+  [0, 0],
+  [1, 1],
+]);
+const poly = helpers.polygon([
+  [
+    [0, 0],
+    [1, 1],
+    [2, 2],
+    [0, 0],
+  ],
+]);
+const gc = helpers.geometryCollection([
+  pt.geometry,
+  line.geometry,
+  poly.geometry,
+]);
+const fc = helpers.featureCollection<Point | LineString | Polygon>([
+  pt,
+  line,
+  poly,
+]);
 
 /**
  * invariant.getGeom
  */
 // invariant.getGeom(fc); // Argument of type 'FeatureCollection<any>' is not assignable to parameter of type
-const gcGeom: GeometryCollection  = invariant.getGeom(gc);
+const gcGeom: GeometryCollection = invariant.getGeom(gc);
 const pointGeom: Point = invariant.getGeom(pt);
 const lineGeom: LineString = invariant.getGeom(line);
 const polyGeom: Polygon = invariant.getGeom(poly);
@@ -55,5 +73,8 @@ invariant.getCoords(line)[0][0].toFixed();
 invariant.getCoords(poly)[0][0][0].toFixed();
 invariant.getCoords(poly.geometry)[0][0][0].toFixed();
 invariant.getCoords(poly.geometry.coordinates)[0][0][0].toFixed();
-const lineCoords: Position[] = [[10, 30], [40, 40]];
+const lineCoords: Position[] = [
+  [10, 30],
+  [40, 40],
+];
 invariant.getCoords(lineCoords)[0][0].toFixed();

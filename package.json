@@ -9,7 +9,8 @@
     "lint:prettier": "prettier --check .",
     "lint:mrl": "mrl check",
     "postlint": "documentation lint packages/turf-*/index.js",
-    "pretest": "lerna bootstrap --use-workspaces && npm run lint",
+    "prepare": "lerna bootstrap && lerna run build",
+    "pretest": "npm run lint",
     "test": "lerna run test",
     "posttest": "lerna run --scope @turf/turf last-checks",
     "docs": "node ./scripts/generate-readmes",
@@ -55,6 +56,7 @@
     "rollup": "*",
     "rollup-plugin-typescript": "*",
     "tape": "*",
+    "ts-node": "^9.0.0",
     "typescript": "^3.8.3",
     "yamljs": "*"
   },

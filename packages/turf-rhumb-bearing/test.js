@@ -1,44 +1,46 @@
-const fs = require('fs');
-const path = require('path');
-const test = require('tape');
-const load = require('load-json-file');
-const write = require('write-json-file');
-const { point } = require('@turf/helpers');
-const rhumbBearing = require('./dist/js/index.js').default;
+const fs = require("fs");
+const path = require("path");
+const test = require("tape");
+const load = require("load-json-file");
+const write = require("write-json-file");
+const { point } = require("@turf/helpers");
+const rhumbBearing = require("./index").default;
 
 const directories = {
-    in: path.join(__dirname, 'test', 'in') + path.sep,
-    out: path.join(__dirname, 'test', 'out') + path.sep
+  in: path.join(__dirname, "test", "in") + path.sep,
+  out: path.join(__dirname, "test", "out") + path.sep,
 };
 
-let fixtures = fs.readdirSync(directories.in).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directories.in + filename)
-    };
+let fixtures = fs.readdirSync(directories.in).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directories.in + filename),
+  };
 });
 
-test('bearing', t => {
-    fixtures.forEach(fixture => {
-        const name = fixture.name;
-        const filename = fixture.filename;
-        const geojson = fixture.geojson;
+test("bearing", (t) => {
+  fixtures.forEach((fixture) => {
+    const name = fixture.name;
+    const filename = fixture.filename;
+    const geojson = fixture.geojson;
 
-        const start = geojson.features[0];
-        const end = geojson.features[1];
+    const start = geojson.features[0];
+    const end = geojson.features[1];
 
-        const initialBearing = rhumbBearing(start, end);
-        const finalBearing = rhumbBearing(start, end, {final: true});
+    const initialBearing = rhumbBearing(start, end);
+    const finalBearing = rhumbBearing(start, end, { final: true });
 
-        const result = {
-            'initialBearing': initialBearing,
-            'finalBearing': finalBearing
-        };
-        if (process.env.REGEN) write.sync(directories.out + name + '.json', result);
-        t.deepEqual(load.sync(directories.out + name + '.json'), result, name);
-    });
+    const result = {
+      initialBearing: initialBearing,
+      finalBearing: finalBearing,
+    };
+    if (process.env.REGEN) write.sync(directories.out + name + ".json", result);
+    t.deepEqual(load.sync(directories.out + name + ".json"), result, name);
+  });
 
-    t.throws(() => { rhumbBearing(point([12, -54]), 'point'); }, 'invalid point');
-    t.end();
+  t.throws(() => {
+    rhumbBearing(point([12, -54]), "point");
+  }, "invalid point");
+  t.end();
 });

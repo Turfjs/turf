@@ -1,15 +1,15 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import simplify from './dist/js/index.js';
+import fs from "fs";
+import path from "path";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import simplify from "./index";
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -28,13 +28,13 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * polygon: 0.675ms
  * simple-polygon: 2.735ms
  */
-for (const {name, geojson} of fixtures) {
-    let {tolerance, highQuality} = geojson.properties || {};
-    tolerance = tolerance || 0.01;
-    highQuality = highQuality || false;
-    console.time(name);
-    simplify(geojson, {tolerance, highQuality});
-    console.timeEnd(name);
+for (const { name, geojson } of fixtures) {
+  let { tolerance, highQuality } = geojson.properties || {};
+  tolerance = tolerance || 0.01;
+  highQuality = highQuality || false;
+  console.time(name);
+  simplify(geojson, { tolerance, highQuality });
+  console.timeEnd(name);
 }
 
 /**
@@ -53,15 +53,15 @@ for (const {name, geojson} of fixtures) {
  * polygon x 2,996 ops/sec ±2.85% (74 runs sampled)
  * simple-polygon x 369 ops/sec ±7.55% (66 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-transform-simplify');
-for (const {name, geojson} of fixtures) {
-    let {tolerance, highQuality} = geojson.properties || {};
-    tolerance = tolerance || 0.01;
-    highQuality = highQuality || false;
-    suite.add(name, () => simplify(geojson, {tolerance, highQuality}));
+const suite = new Benchmark.Suite("turf-transform-simplify");
+for (const { name, geojson } of fixtures) {
+  let { tolerance, highQuality } = geojson.properties || {};
+  tolerance = tolerance || 0.01;
+  highQuality = highQuality || false;
+  suite.add(name, () => simplify(geojson, { tolerance, highQuality }));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();
