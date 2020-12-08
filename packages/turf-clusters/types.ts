@@ -1,6 +1,6 @@
 import * as clusters from './'
 import { featureCollection, point, Point} from '@turf/helpers'
-import { getCluster, clusterEach, clusterReduce } from './dist/js/index'
+import { getCluster, clusterEach, clusterReduce } from './index'
 
 /**
  * Fixtures

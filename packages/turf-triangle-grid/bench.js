@@ -1,6 +1,6 @@
-import fs from 'fs';
-import Benchmark from 'benchmark';
-import grid from './dist/js/index.js';
+const fs = require('fs');
+const Benchmark = require('benchmark');
+const grid = require('./index').default;
 
 var bbox1 = [
         -96.6357421875,

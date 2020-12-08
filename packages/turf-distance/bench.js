@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const distance = require('./dist/js/index.js').default;
+const distance = require('./index').default;
 
 var pt1 = [-75.4, 39.4];
 var pt2 = [-75.534, 39.123];

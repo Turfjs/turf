@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import envelope from './dist/js/index.js';
+import envelope from './index';
 
 const fixture = load.sync(path.join(__dirname, 'test', 'in', 'feature-collection.geojson'));
 

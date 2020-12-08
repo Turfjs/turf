@@ -4,7 +4,7 @@ const test = require('tape');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const { point } = require('@turf/helpers');
-const rhumbBearing = require('./dist/js/index.js').default;
+const rhumbBearing = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

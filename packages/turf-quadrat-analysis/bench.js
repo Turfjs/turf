@@ -5,7 +5,7 @@ const Benchmark = require('benchmark');
 const { randomPoint } = require('@turf/random');
 const bbox = require('@turf/bbox').default;
 const nearestNeighborAnalysis = require('@turf/nearest-neighbor-analysis').default;
-const quadratAnalysis = require('./dist/js/index.js').default;
+const quadratAnalysis = require('./index').default;
 
 /**
  * Benchmark Results

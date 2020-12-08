@@ -2,7 +2,7 @@ const Benchmark = require('benchmark');
 const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');
-const nearestNeighborAnalysis = require('./dist/js/index.js').default;
+const nearestNeighborAnalysis = require('./index').default;
 
 /**
  * Benchmark Results

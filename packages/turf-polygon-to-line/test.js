@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const { point } = require('@turf/helpers');
 const { polygon } = require('@turf/helpers');
-const polygonToLine = require('./dist/js/index.js').default;
+const polygonToLine = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

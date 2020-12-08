@@ -3,7 +3,7 @@ import test from 'tape';
 import path from 'path';
 import load from 'load-json-file';
 import write from 'write-json-file';
-import flatten from './dist/js/index.js';
+import flatten from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

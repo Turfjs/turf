@@ -9,7 +9,7 @@ const squareGrid = require('@turf/square-grid').default;
 const bboxPolygon = require('@turf/bbox-polygon').default;
 const { randomPoint } = require('@turf/random');
 const { featureCollection } = require('@turf/helpers');
-const quadratAnalysis = require('./dist/js/index.js').default;
+const quadratAnalysis = require('./index').default;
 
 test('turf-quadrat-analysis geojson file', t => {
   const futianBboxPath = path.join(__dirname, 'test', 'in', 'futian_bbox.json');

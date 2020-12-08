@@ -8,6 +8,7 @@ const MAIN_PACKAGE = "@turf/turf";
 
 const TAPE_PACKAGES = []; // projects that have tape tests
 const TYPES_PACKAGES = []; // projects that have types tests
+const BENCH_PACKAGES = []; // projects that have benchmarks
 
 // iterate all the packages and figure out what buckets everything falls into
 glob.sync(path.join(__dirname, "packages", "turf-*")).forEach(pk => {
@@ -29,6 +30,11 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach(pk => {
     TYPES_PACKAGES.push(name);
   }
 });
+
+const TS_BENCH_PACKAGES = BENCH_PACKAGES.filter(pkg => -1 !== TS_PACKAGES.indexOf(pkg));
+const JS_BENCH_PACKAGES = BENCH_PACKAGES.filter(pkg => -1 !==  JS_PACKAGES.indexOf(pkg));
+const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(pkg => -1 !==  TS_PACKAGES.indexOf(pkg));
+const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(pkg => -1 !==  JS_PACKAGES.indexOf(pkg));
 
 module.exports = {
   rules: {
@@ -126,10 +132,8 @@ module.exports = {
       {
         options: {
           scripts: {
-            bench: "npm-run-all prepare bench:run",
-            "bench:run": "node bench.js",
             docs: "node ../../scripts/generate-readmes",
-            test: "npm-run-all prepare test:*"
+            test: "npm-run-all test:*"
           }
         },
         excludePackages: [MAIN_PACKAGE]
@@ -137,9 +141,9 @@ module.exports = {
       {
         options: {
           scripts: {
-            prepare: "npm-run-all prepare:*",
-            "prepare:js": "tsc",
-            "prepare:es":
+            build: "npm-run-all build:*",
+            "build:js": "tsc",
+            "build:es":
               "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json"
           }
         },
@@ -148,7 +152,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            prepare: "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
+            build: "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
             posttest: "node -r esm ../../scripts/validate-es5-dependencies.js"
           }
         },
@@ -157,7 +161,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            prepare: "rollup -c rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json"
+            build: "rollup -c rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json"
           }
         },
         includePackages: [MAIN_PACKAGE]
@@ -168,12 +172,36 @@ module.exports = {
             "test:tape": "node -r esm test.js"
           }
         },
-        includePackages: TAPE_PACKAGES
+        includePackages: JS_TAPE_PACKAGES
       },
       {
         options: {
           scripts: {
-            "test:types": "tsc --noEmit types.ts"
+            "test:tape": "ts-node -r esm test.js"
+          }
+        },
+        includePackages: TS_TAPE_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            "bench": "node -r esm bench.js"
+          }
+        },
+        includePackages: JS_TAPE_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            "bench": "ts-node bench.js"
+          }
+        },
+        includePackages: TS_TAPE_PACKAGES
+      },
+      {
+        options: {
+          scripts: {
+            "test:types": "tsc --esModuleInterop --noEmit types.ts"
           }
         },
         includePackages: TYPES_PACKAGES
@@ -196,6 +224,7 @@ module.exports = {
       {
         options: {
           devDependencies: {
+            "ts-node": "*",
             typescript: "*"
           }
         },

@@ -1,9 +1,9 @@
-import path from 'path';
-import glob from 'glob';
-import Benchmark from 'benchmark';
-import load from 'load-json-file';
-import bbox from '@turf/bbox';
-import contains from './dist/js/index.js';
+const path = require('path');
+const glob = require('glob');
+const Benchmark = require('benchmark');
+const load = require('load-json-file');
+const bbox = require('@turf/bbox').default;
+const contains = require('./index').default;
 
 /**
  * Benchmark Results

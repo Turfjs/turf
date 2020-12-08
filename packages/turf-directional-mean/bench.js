@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const directionalMean = require('./dist/js/index.js').default;
+const directionalMean = require('./index').default;
 const glob = require('glob');
 const path = require('path');
 const load = require('load-json-file');

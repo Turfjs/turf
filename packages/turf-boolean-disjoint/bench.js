@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
-const disjoint = require('./dist/js/index.js').default;
+const disjoint = require('./index').default;
 
 /**
  * Benchmark Results

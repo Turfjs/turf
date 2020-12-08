@@ -1,5 +1,5 @@
 const test = require('tape');
-const bboxPolygon = require('./dist/js/index.js').default;
+const bboxPolygon = require('./index').default;
 
 test('bbox-polygon', t => {
     const poly = bboxPolygon([0, 0, 10, 10]);

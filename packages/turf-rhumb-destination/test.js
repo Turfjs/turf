@@ -6,7 +6,7 @@ const load = require('load-json-file');
 const truncate = require('@turf/truncate').default;
 const { getCoords } = require('@turf/invariant');
 const { featureCollection, lineString, point } = require('@turf/helpers');
-const rhumbDestination = require('./dist/js/index.js').default;
+const rhumbDestination = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

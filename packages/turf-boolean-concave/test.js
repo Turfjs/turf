@@ -3,7 +3,7 @@ const path = require('path');
 const test = require('tape');
 const load = require('load-json-file');
 const { polygon, point } = require('@turf/helpers');
-const isConcave = require('./dist/js/index.js').default;
+const isConcave = require('./index').default;
 
 test('isConcave#fixtures', t => {
     // True Fixtures

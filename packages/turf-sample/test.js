@@ -1,7 +1,7 @@
 import test from 'tape';
 import { point } from '@turf/helpers';
 import { featureCollection } from '@turf/helpers';
-import sample from './dist/js/index.js';
+import sample from './index';
 
 test('remove', function (t) {
     var points = featureCollection([

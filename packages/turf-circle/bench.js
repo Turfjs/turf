@@ -1,5 +1,5 @@
 const Benchmark = require('benchmark');
-const circle = require('./dist/js/index.js').default;
+const circle = require('./index').default;
 
 const center = [-75.0, 39.0];
 const radius = 5;

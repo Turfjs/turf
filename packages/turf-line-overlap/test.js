@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const { featureEach } = require('@turf/meta');
 const { featureCollection, lineString } = require('@turf/helpers');
-const lineOverlap = require('./dist/js/index.js').default;
+const lineOverlap = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

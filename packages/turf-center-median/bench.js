@@ -1,6 +1,6 @@
 const Benchmark = require('benchmark');
 const { randomPoint } = require('@turf/random');
-const centerMedian = require('./dist/js/index.js').default;
+const centerMedian = require('./index').default;
 
 /**
  * Benchmark Results

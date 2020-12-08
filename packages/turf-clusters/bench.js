@@ -8,7 +8,7 @@ const {
     filterProperties,
     applyFilter,
     createBins
-} = require('./dist/js/index.js');
+} = require('./index');
 
 const geojson = featureCollection([
     point([0, 0], {cluster: 0}),

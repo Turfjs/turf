@@ -1,6 +1,6 @@
 const Benchmark = require('benchmark');
 const { point, lineString, polygon, featureCollection } = require('@turf/helpers');
-const clone = require('./dist/js/index.js').default;
+const clone = require('./index').default;
 
 const fixtures = [
     point([0, 20]),

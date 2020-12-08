@@ -10,7 +10,7 @@ import bboxPolygon from '@turf/bbox-polygon';
 import rhumbDestination from '@turf/rhumb-destination';
 // import destination from '@turf/destination';
 import { featureCollection } from '@turf/helpers';
-import ellipse from './dist/js/index.js';
+import ellipse from './index';
 
 test('turf-ellipse', t => {
     glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {

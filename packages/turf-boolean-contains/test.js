@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const { point } = require('@turf/helpers');
 const booleanJSTS = require('boolean-jsts');
 const shapely = require('boolean-shapely');
-const contains = require('./dist/js/index.js').default;
+const contains = require('./index').default;
 
 test('turf-boolean-contains', t => {
     // True Fixtures

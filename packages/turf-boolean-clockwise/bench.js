@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const Benchmark = require('benchmark');
 const load = require('load-json-file');
-const isClockwise = require('./dist/js/index.js').default;
+const isClockwise = require('./index').default;
 
 /**
  * Benchmark Results

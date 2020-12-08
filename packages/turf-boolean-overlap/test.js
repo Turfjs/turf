@@ -4,7 +4,7 @@ const test = require('tape');
 const load = require('load-json-file');
 const shapely = require('boolean-shapely');
 const { point, lineString, polygon, multiLineString, multiPolygon } = require('@turf/helpers');
-const overlap = require('./dist/js/index.js').default;
+const overlap = require('./index').default;
 
 test('turf-boolean-overlap', t => {
     // True Fixtures

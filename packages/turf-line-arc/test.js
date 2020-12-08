@@ -5,7 +5,7 @@ const load = require('load-json-file');
 const write = require('write-json-file');
 const truncate = require('@turf/truncate').default;
 const { featureCollection } = require('@turf/helpers');
-const lineArc = require('./dist/js/index.js').default;
+const lineArc = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

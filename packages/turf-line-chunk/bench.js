@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import lineChunk from './dist/js/index.js';
+import lineChunk from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

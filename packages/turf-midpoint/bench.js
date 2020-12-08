@@ -1,7 +1,7 @@
 import fs from 'fs';
 import Benchmark from 'benchmark';
 import { point } from '@turf/helpers';
-import midpoint from './dist/js/index.js';
+import midpoint from './index';
 
 var pt1 = point([0,0]);
 var pt2 = point([10,0]);

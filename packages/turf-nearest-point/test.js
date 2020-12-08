@@ -5,7 +5,7 @@ const path = require('path');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const {featureCollection, point} = require('@turf/helpers');
-const nearestPoint = require('./dist/js/index.js').default;
+const nearestPoint = require('./index').default;
 
 
 const directories = {

@@ -4,7 +4,7 @@ const test = require('tape');
 const load = require('load-json-file');
 const write = require('write-json-file');
 const combine = require('@turf/combine').default;
-const union = require('./dist/js/index.js').default;
+const union = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

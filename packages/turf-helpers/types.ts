@@ -1,4 +1,4 @@
-import * as helpers from "./dist/js/index";
+import * as helpers from "./index";
 import {
     BBox,
     bearingToAzimuth,

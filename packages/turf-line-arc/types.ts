@@ -1,5 +1,5 @@
 import {point} from "@turf/helpers";
-import linearc from "./dist/js/index";
+import linearc from "./index";
 
 const center = point([-75.343, 39.984]);
 const bearing1 = 10;

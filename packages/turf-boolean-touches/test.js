@@ -4,7 +4,7 @@ const test = require('tape');
 const load = require('load-json-file');
 const shapely = require('boolean-shapely');
 const booleanJSTS = require('boolean-jsts');
-const touches = require('./dist/js/index.js').default;
+const touches = require('./index').default;
 
 test('turf-boolean-touches', t => {
     // True Fixtures

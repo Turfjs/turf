@@ -1,6 +1,6 @@
 const test = require('tape');
 const { featureCollection, point, polygon } = require('@turf/helpers');
-const collect = require('./dist/js/index.js').default;
+const collect = require('./index').default;
 
 test('turf collect module', t => {
     const poly1 = polygon([[[0, 0], [10, 0], [10, 10], [0, 10], [0, 0]]]);

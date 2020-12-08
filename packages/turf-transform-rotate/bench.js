@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import load from 'load-json-file';
 import Benchmark from 'benchmark';
-import rotate from './dist/js/index.js';
+import rotate from './index';
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {
@@ -29,7 +29,7 @@ const fixtures = fs.readdirSync(directory).map(filename => {
 for (const {name, geojson} of fixtures) {
     const {angle, pivot} = geojson.properties || {};
     console.time(name);
-    rotate(geojson, angle, pivot, true);
+    rotate(geojson, angle, {pivot, mutate: true});
     console.timeEnd(name);
 }
 
@@ -49,7 +49,7 @@ for (const {name, geojson} of fixtures) {
 const suite = new Benchmark.Suite('turf-transform-rotate');
 for (const {name, geojson} of fixtures) {
     const {angle, pivot} = geojson.properties || {};
-    suite.add(name, () => rotate(geojson, angle, pivot, true));
+    suite.add(name, () => rotate(geojson, angle, {pivot, mutate: true}));
 }
 
 suite

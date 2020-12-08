@@ -10,7 +10,7 @@ import { getCoords } from '@turf/invariant';
 import { randomPolygon } from '@turf/random';
 import { lineString, polygon } from '@turf/helpers';
 import matrixToGrid from './lib/matrix-to-grid';
-import isolines from './dist/js/index.js';
+import isolines from './index';
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,

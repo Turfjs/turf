@@ -3,7 +3,7 @@ const path = require('path');
 const load = require('load-json-file');
 const Benchmark = require('benchmark');
 const bbox = require('@turf/bbox').default;
-const bboxClip = require('./dist/js/index.js').default;
+const bboxClip = require('./index').default;
 
 const directory = path.join(__dirname, 'test', 'in') + path.sep;
 const fixtures = fs.readdirSync(directory).map(filename => {

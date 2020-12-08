@@ -11,7 +11,7 @@ const {
     polygon,
  } = require('@turf/helpers');
 const write = require('write-json-file');
-const cleanCoords = require('./dist/js/index.js').default;
+const cleanCoords = require('./index').default;
 
 const directories = {
     in: path.join(__dirname, 'test', 'in') + path.sep,
