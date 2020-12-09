@@ -1,16 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import rewind from './index';
+import fs from "fs";
+import path from "path";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import rewind from "./index";
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-let fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+let fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 // fixtures = fixtures.filter(fixture => fixture.name === 'polygons');
 
@@ -24,12 +24,12 @@ let fixtures = fs.readdirSync(directory).map(filename => {
  * polygon-clockwise x 4,898,849 ops/sec ±8.02% (75 runs sampled)
  * polygon-counter-clockwise x 6,586,601 ops/sec ±6.10% (82 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-rewind');
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => rewind(geojson, false, true));
+const suite = new Benchmark.Suite("turf-rewind");
+for (const { name, geojson } of fixtures) {
+  suite.add(name, () => rewind(geojson, false, true));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

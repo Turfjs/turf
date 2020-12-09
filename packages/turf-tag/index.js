@@ -1,6 +1,6 @@
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import clone from '@turf/clone';
-import { featureEach } from '@turf/meta';
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import clone from "@turf/clone";
+import { featureEach } from "@turf/meta";
 
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and performs a spatial join.
@@ -38,18 +38,19 @@ import { featureEach } from '@turf/meta';
  * var addToMap = [tagged, polygons]
  */
 function tag(points, polygons, field, outField) {
-    // prevent mutations
-    points = clone(points);
-    polygons = clone(polygons);
-    featureEach(points, function (pt) {
-        if (!pt.properties) pt.properties = {};
-        featureEach(polygons, function (poly) {
-            if (pt.properties[outField] === undefined) {
-                if (booleanPointInPolygon(pt, poly)) pt.properties[outField] = poly.properties[field];
-            }
-        });
+  // prevent mutations
+  points = clone(points);
+  polygons = clone(polygons);
+  featureEach(points, function (pt) {
+    if (!pt.properties) pt.properties = {};
+    featureEach(polygons, function (poly) {
+      if (pt.properties[outField] === undefined) {
+        if (booleanPointInPolygon(pt, poly))
+          pt.properties[outField] = poly.properties[field];
+      }
     });
-    return points;
+  });
+  return points;
 }
 
 export default tag;

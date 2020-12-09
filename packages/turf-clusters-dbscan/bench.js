@@ -1,17 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const clustersDbscan = require('./index').default;
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const clustersDbscan = require("./index").default;
 
 // Define Fixtures
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -30,17 +30,17 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * points1 x 7,199 ops/sec ±0.99% (90 runs sampled)
  * points2 x 4,047 ops/sec ±1.02% (91 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-clusters-dbscan');
-for (const {name, geojson} of fixtures) {
-    let {distance} = geojson.properties || {};
-    distance = distance || 100;
+const suite = new Benchmark.Suite("turf-clusters-dbscan");
+for (const { name, geojson } of fixtures) {
+  let { distance } = geojson.properties || {};
+  distance = distance || 100;
 
-    console.time(name);
-    clustersDbscan(geojson, distance);
-    console.timeEnd(name);
-    suite.add(name, () => clustersDbscan(geojson, distance));
+  console.time(name);
+  clustersDbscan(geojson, distance);
+  console.timeEnd(name);
+  suite.add(name, () => clustersDbscan(geojson, distance));
 }
 suite
-  .on('cycle', e => console.log(String(e.target)))
-  .on('complete', () => {})
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
   .run();

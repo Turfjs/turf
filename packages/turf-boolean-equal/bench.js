@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const equal = require('./index').default;
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const equal = require("./index").default;
 
 /**
  * Benchmark Results
@@ -32,19 +32,20 @@ const equal = require('./index').default;
  * reverse-lines x 83,612 ops/sec ±3.31% (77 runs sampled)
  * reverse-polygons x 64,686 ops/sec ±1.91% (76 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-equal');
-glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-boolean-equal");
+glob
+  .sync(path.join(__dirname, "test", "**", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature1, feature2] = geojson.features;
     console.time(name);
     equal(feature1, feature2);
     console.timeEnd(name);
     suite.add(name, () => equal(feature1, feature2));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
-
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

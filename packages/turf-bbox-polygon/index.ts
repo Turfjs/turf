@@ -1,6 +1,12 @@
 import {
-    BBox, Feature, Id,
-    isObject, polygon, Polygon, Properties, validateBBox,
+  BBox,
+  Feature,
+  Id,
+  isObject,
+  polygon,
+  Polygon,
+  Properties,
+  validateBBox,
 } from "@turf/helpers";
 
 /**
@@ -20,30 +26,35 @@ import {
  * //addToMap
  * var addToMap = [poly]
  */
-export default function bboxPolygon<P = Properties>(bbox: BBox, options: {
-    properties?: P,
-    id?: Id,
-} = {}): Feature<Polygon, P> {
-    // Convert BBox positions to Numbers
-    // No performance loss for including Number()
-    // https://github.com/Turfjs/turf/issues/1119
-    const west = Number(bbox[0]);
-    const south = Number(bbox[1]);
-    const east = Number(bbox[2]);
-    const north = Number(bbox[3]);
+export default function bboxPolygon<P = Properties>(
+  bbox: BBox,
+  options: {
+    properties?: P;
+    id?: Id;
+  } = {}
+): Feature<Polygon, P> {
+  // Convert BBox positions to Numbers
+  // No performance loss for including Number()
+  // https://github.com/Turfjs/turf/issues/1119
+  const west = Number(bbox[0]);
+  const south = Number(bbox[1]);
+  const east = Number(bbox[2]);
+  const north = Number(bbox[3]);
 
-    if (bbox.length === 6) { throw new Error("@turf/bbox-polygon does not support BBox with 6 positions"); }
+  if (bbox.length === 6) {
+    throw new Error(
+      "@turf/bbox-polygon does not support BBox with 6 positions"
+    );
+  }
 
-    const lowLeft = [west, south];
-    const topLeft = [west, north];
-    const topRight = [east, north];
-    const lowRight = [east, south];
+  const lowLeft = [west, south];
+  const topLeft = [west, north];
+  const topRight = [east, north];
+  const lowRight = [east, south];
 
-    return polygon([[
-        lowLeft,
-        lowRight,
-        topRight,
-        topLeft,
-        lowLeft,
-    ]], options.properties, {bbox, id: options.id});
+  return polygon(
+    [[lowLeft, lowRight, topRight, topLeft, lowLeft]],
+    options.properties,
+    { bbox, id: options.id }
+  );
 }

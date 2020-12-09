@@ -1,9 +1,9 @@
-import fs from 'fs';
-import path from 'path';
-import glob from 'glob';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import pointOnFeature from './index';
+import fs from "fs";
+import path from "path";
+import glob from "glob";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import pointOnFeature from "./index";
 
 /**
  * Benchmark Results
@@ -15,15 +15,15 @@ import pointOnFeature from './index';
  * polygon-in-center x 492,494 ops/sec ±1.12% (86 runs sampled)
  * polygons x 31,270 ops/sec ±1.41% (88 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-point-on-feature');
+const suite = new Benchmark.Suite("turf-point-on-feature");
 
-glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
-  const {name} = path.parse(filepath);
+glob.sync(path.join(__dirname, "test", "in", "*.json")).forEach((filepath) => {
+  const { name } = path.parse(filepath);
   const geojson = load.sync(filepath);
-  suite.add(name, () => pointOnFeature(geojson))
-})
+  suite.add(name, () => pointOnFeature(geojson));
+});
 
 suite
-  .on('cycle', e => console.log(String(e.target)))
-  .on('complete', () => {})
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
   .run();

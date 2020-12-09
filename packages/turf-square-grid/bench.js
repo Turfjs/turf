@@ -1,5 +1,5 @@
-const Benchmark = require('benchmark');
-const squareGrid = require('./index').default;
+const Benchmark = require("benchmark");
+const squareGrid = require("./index").default;
 
 var bbox = [-95, 30, -85, 40];
 
@@ -11,14 +11,20 @@ var bbox = [-95, 30, -85, 40];
  * lowres  -- 412620 cells x 1.18 ops/sec ±9.27% (7 runs sampled)
  */
 
-var highres = squareGrid(bbox, 100, {units: 'miles'}).features.length;
-var midres = squareGrid(bbox, 10, {units: 'miles'}).features.length;
-var lowres = squareGrid(bbox, 1, {units: 'miles'}).features.length;
-var suite = new Benchmark.Suite('turf-square-grid');
+var highres = squareGrid(bbox, 100, { units: "miles" }).features.length;
+var midres = squareGrid(bbox, 10, { units: "miles" }).features.length;
+var lowres = squareGrid(bbox, 1, { units: "miles" }).features.length;
+var suite = new Benchmark.Suite("turf-square-grid");
 suite
-  .add('highres -- ' + highres + ' cells', () => squareGrid(bbox, 100, {units: 'miles'}))
-  .add('midres  -- ' + midres + ' cells', () => squareGrid(bbox, 10, {units: 'miles'}))
-  .add('lowres  -- ' + lowres + ' cells', () => squareGrid(bbox, 1, {units: 'miles'}))
-  .on('cycle', e => console.log(String(e.target)))
-  .on('complete', () => {})
+  .add("highres -- " + highres + " cells", () =>
+    squareGrid(bbox, 100, { units: "miles" })
+  )
+  .add("midres  -- " + midres + " cells", () =>
+    squareGrid(bbox, 10, { units: "miles" })
+  )
+  .add("lowres  -- " + lowres + " cells", () =>
+    squareGrid(bbox, 1, { units: "miles" })
+  )
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
   .run();

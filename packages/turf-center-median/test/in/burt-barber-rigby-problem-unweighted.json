@@ -1,16 +1,12 @@
 {
   "type": "FeatureCollection",
-  "properties": {
-  },
+  "properties": {},
   "features": [
     {
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          2,
-          4
-        ]
+        "coordinates": [2, 4]
       },
       "properties": {
         "weight": "10"
@@ -20,10 +16,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          3,
-          6
-        ]
+        "coordinates": [3, 6]
       },
       "properties": {
         "weight": "20"
@@ -33,10 +26,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          3.4,
-          5.2
-        ]
+        "coordinates": [3.4, 5.2]
       },
       "properties": {
         "weight": "10"
@@ -46,10 +36,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          4,
-          4
-        ]
+        "coordinates": [4, 4]
       },
       "properties": {
         "weight": "20"
@@ -59,10 +46,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          4.4,
-          5.2
-        ]
+        "coordinates": [4.4, 5.2]
       },
       "properties": {
         "weight": "10"
@@ -72,10 +56,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          4.8,
-          6.2
-        ]
+        "coordinates": [4.8, 6.2]
       },
       "properties": {
         "weight": "80"
@@ -85,10 +66,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          5,
-          1
-        ]
+        "coordinates": [5, 1]
       },
       "properties": {
         "weight": "10"
@@ -98,10 +76,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          6,
-          5
-        ]
+        "coordinates": [6, 5]
       },
       "properties": {
         "weight": "90"
@@ -111,10 +86,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          9,
-          9
-        ]
+        "coordinates": [9, 9]
       },
       "properties": {
         "weight": "100"

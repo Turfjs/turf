@@ -1,0 +1,11 @@
+dist
+*.md
+node_modules
+tsconfig.json
+
+# slow
+packages/turf-directional-mean/test/in/bus_route_gps.json
+packages/turf-directional-mean/test/in/bus_route_utm.json
+
+# is actually output
+packages/turf/turf.min.js

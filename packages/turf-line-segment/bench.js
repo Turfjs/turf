@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const lineSegment = require('./index').default;
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const lineSegment = require("./index").default;
 
 // Fixtures
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -24,9 +24,11 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * polygon-with-holes x 390,985 ops/sec ±1.19% (86 runs sampled)
  * polygon x 873,856 ops/sec ±1.28% (88 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-line-segment');
-fixtures.forEach(({name, geojson}) => suite.add(name, () => lineSegment(geojson)));
+const suite = new Benchmark.Suite("turf-line-segment");
+fixtures.forEach(({ name, geojson }) =>
+  suite.add(name, () => lineSegment(geojson))
+);
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const difference = require('./index');
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const difference = require("./index");
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-let fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+let fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 // fixtures = fixtures.filter(({name}) => name === 'issue-#721');
 
@@ -27,12 +27,12 @@ let fixtures = fs.readdirSync(directory).map(filename => {
  * multi-polygon-target x 14,077 ops/sec ±6.52% (75 runs sampled)
  * split-polygon x 29,258 ops/sec ±8.99% (69 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-difference');
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => difference(geojson.features[0], geojson.features[1]));
+const suite = new Benchmark.Suite("turf-difference");
+for (const { name, geojson } of fixtures) {
+  suite.add(name, () => difference(geojson.features[0], geojson.features[1]));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

@@ -1,6 +1,19 @@
 import distance from "@turf/distance";
-import { feature, featureCollection, isNumber, isObject, polygon } from "@turf/helpers";
-import { Feature, FeatureCollection, MultiPolygon, Point, Polygon, Units} from "@turf/helpers";
+import {
+  feature,
+  featureCollection,
+  isNumber,
+  isObject,
+  polygon,
+} from "@turf/helpers";
+import {
+  Feature,
+  FeatureCollection,
+  MultiPolygon,
+  Point,
+  Polygon,
+  Units,
+} from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 import tin from "@turf/tin";
 import dissolve from "./lib/turf-dissolve";
@@ -33,37 +46,39 @@ import dissolve from "./lib/turf-dissolve";
  * var addToMap = [points, hull]
  */
 function concave(
-    points: FeatureCollection<Point>,
-    options: {maxEdge?: number, units?: Units} = {},
+  points: FeatureCollection<Point>,
+  options: { maxEdge?: number; units?: Units } = {}
 ): Feature<Polygon | MultiPolygon> | null {
-    const maxEdge = options.maxEdge || Infinity;
+  const maxEdge = options.maxEdge || Infinity;
 
-    const cleaned = removeDuplicates(points);
+  const cleaned = removeDuplicates(points);
 
-    const tinPolys = tin(cleaned);
-    // calculate length of all edges and area of all triangles
-    // and remove triangles that fail the max length test
-    tinPolys.features = tinPolys.features.filter((triangle) => {
-        const pt1 = triangle.geometry.coordinates[0][0];
-        const pt2 = triangle.geometry.coordinates[0][1];
-        const pt3 = triangle.geometry.coordinates[0][2];
-        const dist1 = distance(pt1, pt2, options);
-        const dist2 = distance(pt2, pt3, options);
-        const dist3 = distance(pt1, pt3, options);
-        return (dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge);
-    });
+  const tinPolys = tin(cleaned);
+  // calculate length of all edges and area of all triangles
+  // and remove triangles that fail the max length test
+  tinPolys.features = tinPolys.features.filter((triangle) => {
+    const pt1 = triangle.geometry.coordinates[0][0];
+    const pt2 = triangle.geometry.coordinates[0][1];
+    const pt3 = triangle.geometry.coordinates[0][2];
+    const dist1 = distance(pt1, pt2, options);
+    const dist2 = distance(pt2, pt3, options);
+    const dist3 = distance(pt1, pt3, options);
+    return dist1 <= maxEdge && dist2 <= maxEdge && dist3 <= maxEdge;
+  });
 
-    if (tinPolys.features.length < 1) { return null; }
+  if (tinPolys.features.length < 1) {
+    return null;
+  }
 
-    // merge the adjacent triangles
-    const dissolved: any = dissolve(tinPolys);
+  // merge the adjacent triangles
+  const dissolved: any = dissolve(tinPolys);
 
-    // geojson-dissolve always returns a MultiPolygon
-    if (dissolved.coordinates.length === 1) {
-        dissolved.coordinates = dissolved.coordinates[0];
-        dissolved.type = "Polygon";
-    }
-    return feature(dissolved);
+  // geojson-dissolve always returns a MultiPolygon
+  if (dissolved.coordinates.length === 1) {
+    dissolved.coordinates = dissolved.coordinates[0];
+    dissolved.type = "Polygon";
+  }
+  return feature(dissolved);
 }
 
 /**
@@ -73,19 +88,23 @@ function concave(
  * @param {FeatureCollection<Point>} points to be cleaned
  * @returns {FeatureCollection<Point>} cleaned set of points
  */
-function removeDuplicates(points: FeatureCollection<Point>): FeatureCollection<Point> {
-    const cleaned: Array<Feature<Point>> = [];
-    const existing: {[key: string]: boolean} = {};
+function removeDuplicates(
+  points: FeatureCollection<Point>
+): FeatureCollection<Point> {
+  const cleaned: Array<Feature<Point>> = [];
+  const existing: { [key: string]: boolean } = {};
 
-    featureEach(points, (pt) => {
-        if (!pt.geometry) { return; }
-        const key = pt.geometry.coordinates.join("-");
-        if (!existing.hasOwnProperty(key)) {
-            cleaned.push(pt);
-            existing[key] = true;
-        }
-    });
-    return featureCollection(cleaned);
+  featureEach(points, (pt) => {
+    if (!pt.geometry) {
+      return;
+    }
+    const key = pt.geometry.coordinates.join("-");
+    if (!existing.hasOwnProperty(key)) {
+      cleaned.push(pt);
+      existing[key] = true;
+    }
+  });
+  return featureCollection(cleaned);
 }
 
 export default concave;

@@ -1,5 +1,11 @@
 import {
-    FeatureCollection, Polygon, BBox, Units, Feature, MultiPolygon, Properties
+  FeatureCollection,
+  Polygon,
+  BBox,
+  Units,
+  Feature,
+  MultiPolygon,
+  Properties,
 } from "@turf/helpers";
 
 import rectangleGrid from "@turf/rectangle-grid";
@@ -28,10 +34,14 @@ import rectangleGrid from "@turf/rectangle-grid";
  * var addToMap = [squareGrid]
  */
 
-export default function squareGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
-    units?: Units,
-    properties?: P,
-    mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
-} = {}): FeatureCollection<Polygon, P> {
-    return rectangleGrid(bbox, cellSide, cellSide, options);
+export default function squareGrid<P = Properties>(
+  bbox: BBox,
+  cellSide: number,
+  options: {
+    units?: Units;
+    properties?: P;
+    mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon;
+  } = {}
+): FeatureCollection<Polygon, P> {
+  return rectangleGrid(bbox, cellSide, cellSide, options);
 }

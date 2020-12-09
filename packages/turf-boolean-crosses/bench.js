@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const Benchmark = require('benchmark');
-const load = require('load-json-file');
-const crosses = require('./index').default;
+const path = require("path");
+const glob = require("glob");
+const Benchmark = require("benchmark");
+const load = require("load-json-file");
+const crosses = require("./index").default;
 
 /**
  * Benchmark Results
@@ -26,9 +26,11 @@ const crosses = require('./index').default;
  * LineCrossesPolygonPartial x 63,313 ops/sec ±2.87% (71 runs sampled)
  * MultiPointsCrossLine x 10,900,034 ops/sec ±0.39% (93 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-crosses');
-glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-boolean-crosses");
+glob
+  .sync(path.join(__dirname, "test", "**", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature1, feature2] = geojson.features;
 
@@ -36,9 +38,9 @@ glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     crosses(feature1, feature2);
     console.timeEnd(name);
     suite.add(name, () => crosses(feature1, feature2));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

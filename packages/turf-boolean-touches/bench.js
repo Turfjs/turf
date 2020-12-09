@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const touches = require('./index').default;
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const touches = require("./index").default;
 
 /**
  * Benchmark Results
@@ -30,18 +30,20 @@ const touches = require('./index').default;
  * MpTouchesPoint x 8,655,507 ops/sec ±0.88% (93 runs sampled)
  * MultiPolyTouchesPoly x 557,069 ops/sec ±0.57% (94 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-touches');
-glob.sync(path.join(__dirname, 'test/true', '**', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-boolean-touches");
+glob
+  .sync(path.join(__dirname, "test/true", "**", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature1, feature2] = geojson.features;
     console.time(name);
     touches(feature1, feature2);
     console.timeEnd(name);
     suite.add(name, () => touches(feature1, feature2));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

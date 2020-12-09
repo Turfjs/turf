@@ -1,16 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const pointToLineDistance = require('./index').default;
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const pointToLineDistance = require("./index").default;
 
-
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -37,13 +36,13 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * segment3: 0.043ms
  * segment4: 0.035ms
  */
-for (const {name, geojson} of fixtures) {
-    const [point, line] = geojson.features;
-    let {units} = geojson.properties || {};
-    if (!units) units = 'kilometers';
-    console.time(name);
-    pointToLineDistance(point, line, {units: units});
-    console.timeEnd(name);
+for (const { name, geojson } of fixtures) {
+  const [point, line] = geojson.features;
+  let { units } = geojson.properties || {};
+  if (!units) units = "kilometers";
+  console.time(name);
+  pointToLineDistance(point, line, { units: units });
+  console.timeEnd(name);
 }
 
 /**
@@ -70,15 +69,15 @@ for (const {name, geojson} of fixtures) {
  * segment3 x 692,171 ops/sec ±1.16% (82 runs sampled)
  * segment4 x 681,063 ops/sec ±0.95% (86 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-point-to-line-distance');
-for (const {name, geojson} of fixtures) {
-    const [point, line] = geojson.features;
-    let {units} = geojson.properties || {};
-    if (!units) units = 'kilometers';
-    suite.add(name, () => pointToLineDistance(point, line, {units: units}));
+const suite = new Benchmark.Suite("turf-point-to-line-distance");
+for (const { name, geojson } of fixtures) {
+  const [point, line] = geojson.features;
+  let { units } = geojson.properties || {};
+  if (!units) units = "kilometers";
+  suite.add(name, () => pointToLineDistance(point, line, { units: units }));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

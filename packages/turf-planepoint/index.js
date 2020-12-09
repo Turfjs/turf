@@ -1,4 +1,4 @@
-import { getCoord, getGeom } from '@turf/invariant';
+import { getCoord, getGeom } from "@turf/invariant";
 
 /**
  * Takes a triangular plane as a {@link Polygon}
@@ -33,35 +33,45 @@ import { getCoord, getGeom } from '@turf/invariant';
  * var addToMap = [triangle, point];
  */
 function planepoint(point, triangle) {
-    // Normalize input
-    var coord = getCoord(point);
-    var geom = getGeom(triangle);
-    var coords = geom.coordinates;
-    var outer = coords[0];
-    if (outer.length < 4) throw new Error('OuterRing of a Polygon must have 4 or more Positions.');
-    var properties = triangle.properties || {};
-    var a = properties.a;
-    var b = properties.b;
-    var c = properties.c;
+  // Normalize input
+  var coord = getCoord(point);
+  var geom = getGeom(triangle);
+  var coords = geom.coordinates;
+  var outer = coords[0];
+  if (outer.length < 4)
+    throw new Error("OuterRing of a Polygon must have 4 or more Positions.");
+  var properties = triangle.properties || {};
+  var a = properties.a;
+  var b = properties.b;
+  var c = properties.c;
 
-    // Planepoint
-    var x = coord[0];
-    var y = coord[1];
-    var x1 = outer[0][0];
-    var y1 = outer[0][1];
-    var z1 = (a !== undefined ? a : outer[0][2]);
-    var x2 = outer[1][0];
-    var y2 = outer[1][1];
-    var z2 = (b !== undefined ? b : outer[1][2]);
-    var x3 = outer[2][0];
-    var y3 = outer[2][1];
-    var z3 = (c !== undefined ? c : outer[2][2]);
-    var z = (z3 * (x - x1) * (y - y2) + z1 * (x - x2) * (y - y3) + z2 * (x - x3) * (y - y1) -
-             z2 * (x - x1) * (y - y3) - z3 * (x - x2) * (y - y1) - z1 * (x - x3) * (y - y2)) /
-           ((x - x1) * (y - y2) + (x - x2) * (y - y3) + (x - x3) * (y - y1) -
-            (x - x1) * (y - y3) - (x - x2) * (y - y1) - (x - x3) * (y - y2));
+  // Planepoint
+  var x = coord[0];
+  var y = coord[1];
+  var x1 = outer[0][0];
+  var y1 = outer[0][1];
+  var z1 = a !== undefined ? a : outer[0][2];
+  var x2 = outer[1][0];
+  var y2 = outer[1][1];
+  var z2 = b !== undefined ? b : outer[1][2];
+  var x3 = outer[2][0];
+  var y3 = outer[2][1];
+  var z3 = c !== undefined ? c : outer[2][2];
+  var z =
+    (z3 * (x - x1) * (y - y2) +
+      z1 * (x - x2) * (y - y3) +
+      z2 * (x - x3) * (y - y1) -
+      z2 * (x - x1) * (y - y3) -
+      z3 * (x - x2) * (y - y1) -
+      z1 * (x - x3) * (y - y2)) /
+    ((x - x1) * (y - y2) +
+      (x - x2) * (y - y3) +
+      (x - x3) * (y - y1) -
+      (x - x1) * (y - y3) -
+      (x - x2) * (y - y1) -
+      (x - x3) * (y - y2));
 
-    return z;
+  return z;
 }
 
 export default planepoint;

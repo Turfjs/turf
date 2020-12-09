@@ -1,17 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const bbox = require('@turf/bbox').default;
-const bboxClip = require('./index').default;
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const bbox = require("@turf/bbox").default;
+const bboxClip = require("./index").default;
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -25,12 +25,14 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * polygon-holes x 27,233 ops/sec ±0.89% (91 runs sampled)
  * polygon x 21,339 ops/sec ±1.19% (89 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-bbox-clip');
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => bboxClip(geojson.features[0], bbox(geojson.features[1])));
+const suite = new Benchmark.Suite("turf-bbox-clip");
+for (const { name, geojson } of fixtures) {
+  suite.add(name, () =>
+    bboxClip(geojson.features[0], bbox(geojson.features[1]))
+  );
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

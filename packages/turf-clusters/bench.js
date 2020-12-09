@@ -1,23 +1,23 @@
-const Benchmark = require('benchmark');
-const { featureCollection, point } = require('@turf/helpers');
+const Benchmark = require("benchmark");
+const { featureCollection, point } = require("@turf/helpers");
 const {
-    getCluster,
-    clusterEach,
-    clusterReduce,
-    propertiesContainsFilter,
-    filterProperties,
-    applyFilter,
-    createBins
-} = require('./index');
+  getCluster,
+  clusterEach,
+  clusterReduce,
+  propertiesContainsFilter,
+  filterProperties,
+  applyFilter,
+  createBins,
+} = require("./index");
 
 const geojson = featureCollection([
-    point([0, 0], {cluster: 0}),
-    point([2, 4], {cluster: 1}),
-    point([3, 6], {cluster: 1}),
-    point([5, 1], {0: 'foo'}),
-    point([4, 2], {'bar': 'foo'}),
-    point([2, 4], {}),
-    point([4, 3], undefined)
+  point([0, 0], { cluster: 0 }),
+  point([2, 4], { cluster: 1 }),
+  point([3, 6], { cluster: 1 }),
+  point([5, 1], { 0: "foo" }),
+  point([4, 2], { bar: "foo" }),
+  point([2, 4], {}),
+  point([4, 3], undefined),
 ]);
 
 /**
@@ -33,21 +33,35 @@ const geojson = featureCollection([
  * clusterEach x 890,683 ops/sec ±1.48% (87 runs sampled)
  * clusterReduce x 837,383 ops/sec ±1.93% (87 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-clusters');
+const suite = new Benchmark.Suite("turf-clusters");
 
 // Testing Purposes
 suite
-  .add('testing -- createBins', () => createBins(geojson, 'cluster'))
-  .add('testing -- propertiesContainsFilter', () => propertiesContainsFilter({foo: 'bar', cluster: 0}, {cluster: 0}))
-  .add('testing -- filterProperties', () => filterProperties({foo: 'bar', cluster: 0}, ['cluster']))
-  .add('testing -- applyFilter', () => applyFilter({foo: 'bar', cluster: 0}, ['cluster']));
+  .add("testing -- createBins", () => createBins(geojson, "cluster"))
+  .add("testing -- propertiesContainsFilter", () =>
+    propertiesContainsFilter({ foo: "bar", cluster: 0 }, { cluster: 0 })
+  )
+  .add("testing -- filterProperties", () =>
+    filterProperties({ foo: "bar", cluster: 0 }, ["cluster"])
+  )
+  .add("testing -- applyFilter", () =>
+    applyFilter({ foo: "bar", cluster: 0 }, ["cluster"])
+  );
 
 suite
-  .add('getCluster -- string filter', () => getCluster(geojson, 'cluster'))
-  .add('getCluster -- object filter', () => getCluster(geojson, {cluster: 1}))
-  .add('getCluster -- aray filter', () => getCluster(geojson, ['cluster']))
-  .add('clusterEach', () => clusterEach(geojson, 'cluster', cluster => { return cluster; }))
-  .add('clusterReduce', () => clusterReduce(geojson, 'cluster', (previousValue, cluster) => { return cluster; }))
-  .on('cycle', e => console.log(String(e.target)))
-  .on('complete', () => {})
+  .add("getCluster -- string filter", () => getCluster(geojson, "cluster"))
+  .add("getCluster -- object filter", () => getCluster(geojson, { cluster: 1 }))
+  .add("getCluster -- aray filter", () => getCluster(geojson, ["cluster"]))
+  .add("clusterEach", () =>
+    clusterEach(geojson, "cluster", (cluster) => {
+      return cluster;
+    })
+  )
+  .add("clusterReduce", () =>
+    clusterReduce(geojson, "cluster", (previousValue, cluster) => {
+      return cluster;
+    })
+  )
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
   .run();

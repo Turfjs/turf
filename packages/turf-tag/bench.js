@@ -1,19 +1,17 @@
-import fs from 'fs';
-import Benchmark from 'benchmark';
-import tag from './index';
+import fs from "fs";
+import Benchmark from "benchmark";
+import tag from "./index";
 
-var points = JSON.parse(fs.readFileSync('./test/tagPoints.geojson'));
-var polygons = JSON.parse(fs.readFileSync('./test/tagPolygons.geojson'));
+var points = JSON.parse(fs.readFileSync("./test/tagPoints.geojson"));
+var polygons = JSON.parse(fs.readFileSync("./test/tagPolygons.geojson"));
 
-var suite = new Benchmark.Suite('turf-tag');
+var suite = new Benchmark.Suite("turf-tag");
 suite
-  .add('turf-tag',function () {
-    tag(points, polygons, 'polyID', 'containingPolyID');
+  .add("turf-tag", function () {
+    tag(points, polygons, "polyID", "containingPolyID");
   })
-  .on('cycle', function (event) {
+  .on("cycle", function (event) {
     console.log(String(event.target));
   })
-  .on('complete', function () {
-
-  })
+  .on("complete", function () {})
   .run();

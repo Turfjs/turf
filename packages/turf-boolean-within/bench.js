@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const within = require('./index').default;
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const within = require("./index").default;
 
 /**
  * Benchmark Results
@@ -35,13 +35,15 @@ const within = require('./index').default;
  * PolygonIsWIthinPolygon x 518,524 ops/sec ±5.57% (80 runs sampled)
  * PolygonsExactSameShape x 418,247 ops/sec ±7.43% (80 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-within');
-glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-boolean-within");
+glob
+  .sync(path.join(__dirname, "test", "**", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
 
     // don't test files that start with skip
     if (/^skip/.test(name)) {
-        return;
+      return;
     }
 
     const geojson = load.sync(filepath);
@@ -50,9 +52,9 @@ glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     within(feature1, feature2);
     console.timeEnd(name);
     suite.add(name, () => within(feature1, feature2));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

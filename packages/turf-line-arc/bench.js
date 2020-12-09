@@ -1,15 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const lineArc = require('./index').default;
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const lineArc = require("./index").default;
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -24,13 +24,15 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * line-arc5 x 35,259 ops/sec ±4.43% (69 runs sampled)
  * line-arc6 x 38,674 ops/sec ±4.86% (75 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-line-arc');
-for (const {name, geojson} of fixtures) {
-    const {radius, bearing1, bearing2, steps, units} = geojson.properties;
-    suite.add(name, () => lineArc(geojson, radius, bearing1, bearing2, steps, units));
+const suite = new Benchmark.Suite("turf-line-arc");
+for (const { name, geojson } of fixtures) {
+  const { radius, bearing1, bearing2, steps, units } = geojson.properties;
+  suite.add(name, () =>
+    lineArc(geojson, radius, bearing1, bearing2, steps, units)
+  );
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

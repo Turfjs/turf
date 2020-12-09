@@ -1,10 +1,10 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const { toMercator, toWgs84 } = require('./index');
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const { toMercator, toWgs84 } = require("./index");
 
-const suite = new Benchmark.Suite('turf-projection');
+const suite = new Benchmark.Suite("turf-projection");
 
 /**
  * Benchmark Results toMercator
@@ -31,14 +31,16 @@ const suite = new Benchmark.Suite('turf-projection');
  * point x 1,539,797 ops/sec ±3.72% (77 runs sampled)
  * polygon x 203,059 ops/sec ±16.43% (58 runs sampled)
  */
-glob.sync(path.join(__dirname, 'test', 'mercator', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+glob
+  .sync(path.join(__dirname, "test", "mercator", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     console.time(name);
     toMercator(geojson);
     console.timeEnd(name);
     suite.add(name, () => toMercator(geojson));
-});
+  });
 
 /**
  * Benchmark Results toWgs84
@@ -63,16 +65,18 @@ glob.sync(path.join(__dirname, 'test', 'mercator', '*.geojson')).forEach(filepat
  * point x 1,784,702 ops/sec ±2.29% (76 runs sampled)
  * polygon x 307,268 ops/sec ±1.95% (79 runs sampled)
  */
-glob.sync(path.join(__dirname, 'test', 'wgs84', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+glob
+  .sync(path.join(__dirname, "test", "wgs84", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     console.time(name);
     toWgs84(geojson);
     console.timeEnd(name);
     suite.add(name, () => toWgs84(geojson));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

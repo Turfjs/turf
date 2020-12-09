@@ -1,10 +1,10 @@
-const glob = require('glob');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const convex = require('./index').default;
+const glob = require("glob");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const convex = require("./index").default;
 
-const suite = new Benchmark.Suite('turf-convex');
+const suite = new Benchmark.Suite("turf-convex");
 
 /**
  * Benchmark Results
@@ -15,12 +15,14 @@ const suite = new Benchmark.Suite('turf-convex');
  * elevation4 x 103,112 ops/sec ±1.26% (85 runs sampled)
  * elevation5 x 39,251 ops/sec ±1.32% (82 runs sampled)
  */
-glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
+glob
+  .sync(path.join(__dirname, "test", "in", "*.geojson"))
+  .forEach((filepath) => {
     const geojson = load.sync(filepath);
     suite.add(path.parse(filepath).name, () => convex(geojson));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

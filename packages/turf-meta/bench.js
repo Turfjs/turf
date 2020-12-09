@@ -1,15 +1,15 @@
-const Benchmark = require('benchmark');
-const random = require('@turf/random');
-const meta = require('./index');
+const Benchmark = require("benchmark");
+const random = require("@turf/random");
+const meta = require("./index");
 
 const fixtures = {
-    point: random.randomPoint(),
-    points: random.randomPoint(1000),
-    polygon: random.randomPolygon(),
-    polygons: random.randomPolygon(1000)
+  point: random.randomPoint(),
+  points: random.randomPoint(1000),
+  polygon: random.randomPolygon(),
+  polygons: random.randomPolygon(1000),
 };
 
-const suite = new Benchmark.Suite('turf-meta');
+const suite = new Benchmark.Suite("turf-meta");
 
 /**
  * Benchmark Results
@@ -72,27 +72,27 @@ const suite = new Benchmark.Suite('turf-meta');
  * findPoint     - polygon x 2,216,808 ops/sec ±1.63% (86 runs sampled)
  * findPoint     - polygons x 2,160,583 ops/sec ±1.06% (87 runs sampled)
  */
-Object.keys(fixtures).forEach(name => {
-    const geojson = fixtures[name];
-    suite
-        .add('segmentEach   - ' + name, () => meta.segmentEach(geojson, () => {}))
-        .add('segmentReduce - ' + name, () => meta.segmentReduce(geojson, () => {}))
-        .add('flattenEach   - ' + name, () => meta.flattenEach(geojson, () => {}))
-        .add('flattenReduce - ' + name, () => meta.flattenReduce(geojson, () => {}))
-        .add('coordEach     - ' + name, () => meta.coordEach(geojson, () => {}))
-        .add('coordReduce   - ' + name, () => meta.coordReduce(geojson, () => {}))
-        .add('propEach      - ' + name, () => meta.propEach(geojson, () => {}))
-        .add('propReduce    - ' + name, () => meta.propReduce(geojson, () => {}))
-        .add('geomEach      - ' + name, () => meta.geomEach(geojson, () => {}))
-        .add('geomReduce    - ' + name, () => meta.geomReduce(geojson, () => {}))
-        .add('featureEach   - ' + name, () => meta.featureEach(geojson, () => {}))
-        .add('featureReduce - ' + name, () => meta.featureReduce(geojson, () => {}))
-        .add('coordAll      - ' + name, () => meta.coordAll(geojson))
-        .add('findSegment   - ' + name, () => meta.findSegment(geojson))
-        .add('findPoint     - ' + name, () => meta.findPoint(geojson));
+Object.keys(fixtures).forEach((name) => {
+  const geojson = fixtures[name];
+  suite
+    .add("segmentEach   - " + name, () => meta.segmentEach(geojson, () => {}))
+    .add("segmentReduce - " + name, () => meta.segmentReduce(geojson, () => {}))
+    .add("flattenEach   - " + name, () => meta.flattenEach(geojson, () => {}))
+    .add("flattenReduce - " + name, () => meta.flattenReduce(geojson, () => {}))
+    .add("coordEach     - " + name, () => meta.coordEach(geojson, () => {}))
+    .add("coordReduce   - " + name, () => meta.coordReduce(geojson, () => {}))
+    .add("propEach      - " + name, () => meta.propEach(geojson, () => {}))
+    .add("propReduce    - " + name, () => meta.propReduce(geojson, () => {}))
+    .add("geomEach      - " + name, () => meta.geomEach(geojson, () => {}))
+    .add("geomReduce    - " + name, () => meta.geomReduce(geojson, () => {}))
+    .add("featureEach   - " + name, () => meta.featureEach(geojson, () => {}))
+    .add("featureReduce - " + name, () => meta.featureReduce(geojson, () => {}))
+    .add("coordAll      - " + name, () => meta.coordAll(geojson))
+    .add("findSegment   - " + name, () => meta.findSegment(geojson))
+    .add("findPoint     - " + name, () => meta.findPoint(geojson));
 });
 
 suite
-  .on('cycle', e => console.log(String(e.target)))
-  .on('complete', () => {})
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
   .run();

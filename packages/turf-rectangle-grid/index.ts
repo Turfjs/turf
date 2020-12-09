@@ -1,10 +1,18 @@
 import intersect from "@turf/boolean-intersects";
 import distance from "@turf/distance";
 import {
-    BBox, Feature, featureCollection,
-    FeatureCollection, isNumber, MultiPolygon, polygon, Polygon, Properties, Units,
+  BBox,
+  Feature,
+  featureCollection,
+  FeatureCollection,
+  isNumber,
+  MultiPolygon,
+  polygon,
+  Polygon,
+  Properties,
+  Units,
 } from "@turf/helpers";
-import {getType} from "@turf/invariant";
+import { getType } from "@turf/invariant";
 
 /**
  * Creates a grid of rectangles from a bounding box, {@link Feature} or {@link FeatureCollection}.
@@ -14,7 +22,7 @@ import {getType} from "@turf/invariant";
  * @param {number} cellWidth of each cell, in units
  * @param {number} cellHeight of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] units ("degrees", "radians", "miles", "kilometers") that the given cellWidth 
+ * @param {string} [options.units='kilometers'] units ("degrees", "radians", "miles", "kilometers") that the given cellWidth
  * and cellHeight are expressed in. Converted at the southern border.
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
  * the grid Points will be created only inside it
@@ -31,56 +39,69 @@ import {getType} from "@turf/invariant";
  * //addToMap
  * var addToMap = [rectangleGrid]
  */
-function rectangleGrid<P = Properties>(bbox: BBox, cellWidth: number, cellHeight: number, options: {
-    units?: Units,
-    properties?: P,
-    mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
-} = {}): FeatureCollection<Polygon, P> {
-    // Containers
-    const results = [];
-    const west = bbox[0];
-    const south = bbox[1];
-    const east = bbox[2];
-    const north = bbox[3];
+function rectangleGrid<P = Properties>(
+  bbox: BBox,
+  cellWidth: number,
+  cellHeight: number,
+  options: {
+    units?: Units;
+    properties?: P;
+    mask?: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon;
+  } = {}
+): FeatureCollection<Polygon, P> {
+  // Containers
+  const results = [];
+  const west = bbox[0];
+  const south = bbox[1];
+  const east = bbox[2];
+  const north = bbox[3];
 
-    const xFraction = cellWidth / (distance([west, south], [east, south], options));
-    const cellWidthDeg = xFraction * (east - west);
-    const yFraction = cellHeight / (distance([west, south], [west, north], options));
-    const cellHeightDeg = yFraction * (north - south);
+  const xFraction = cellWidth / distance([west, south], [east, south], options);
+  const cellWidthDeg = xFraction * (east - west);
+  const yFraction =
+    cellHeight / distance([west, south], [west, north], options);
+  const cellHeightDeg = yFraction * (north - south);
 
-    // rows & columns
-    const bboxWidth = (east - west);
-    const bboxHeight = (north - south);
-    const columns = Math.floor(bboxWidth / cellWidthDeg);
-    const rows = Math.floor(bboxHeight / cellHeightDeg);
+  // rows & columns
+  const bboxWidth = east - west;
+  const bboxHeight = north - south;
+  const columns = Math.floor(bboxWidth / cellWidthDeg);
+  const rows = Math.floor(bboxHeight / cellHeightDeg);
 
-    // if the grid does not fill the bbox perfectly, center it.
-    const deltaX = (bboxWidth - columns * cellWidthDeg) / 2;
-    const deltaY = (bboxHeight - rows * cellHeightDeg) / 2;
+  // if the grid does not fill the bbox perfectly, center it.
+  const deltaX = (bboxWidth - columns * cellWidthDeg) / 2;
+  const deltaY = (bboxHeight - rows * cellHeightDeg) / 2;
 
-    // iterate over columns & rows
-    let currentX = west + deltaX;
-    for (let column = 0; column < columns; column++) {
-        let currentY = south + deltaY;
-        for (let row = 0; row < rows; row++) {
-            const cellPoly = polygon([[
-                [currentX, currentY],
-                [currentX, currentY + cellHeightDeg],
-                [currentX + cellWidthDeg, currentY + cellHeightDeg],
-                [currentX + cellWidthDeg, currentY],
-                [currentX, currentY],
-            ]], options.properties);
-            if (options.mask) {
-                if (intersect(options.mask, cellPoly)) { results.push(cellPoly); }
-            } else {
-                results.push(cellPoly);
-            }
-
-            currentY += cellHeightDeg;
+  // iterate over columns & rows
+  let currentX = west + deltaX;
+  for (let column = 0; column < columns; column++) {
+    let currentY = south + deltaY;
+    for (let row = 0; row < rows; row++) {
+      const cellPoly = polygon(
+        [
+          [
+            [currentX, currentY],
+            [currentX, currentY + cellHeightDeg],
+            [currentX + cellWidthDeg, currentY + cellHeightDeg],
+            [currentX + cellWidthDeg, currentY],
+            [currentX, currentY],
+          ],
+        ],
+        options.properties
+      );
+      if (options.mask) {
+        if (intersect(options.mask, cellPoly)) {
+          results.push(cellPoly);
         }
-        currentX += cellWidthDeg;
+      } else {
+        results.push(cellPoly);
+      }
+
+      currentY += cellHeightDeg;
     }
-    return featureCollection(results);
+    currentX += cellWidthDeg;
+  }
+  return featureCollection(results);
 }
 
 export default rectangleGrid;

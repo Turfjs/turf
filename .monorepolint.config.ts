@@ -11,7 +11,7 @@ const TYPES_PACKAGES = []; // projects that have types tests
 const BENCH_PACKAGES = []; // projects that have benchmarks
 
 // iterate all the packages and figure out what buckets everything falls into
-glob.sync(path.join(__dirname, "packages", "turf-*")).forEach(pk => {
+glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
   const name = JSON.parse(
     fs.readFileSync(path.join(pk, "package.json"), "utf8")
   ).name;
@@ -31,10 +31,18 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach(pk => {
   }
 });
 
-const TS_BENCH_PACKAGES = BENCH_PACKAGES.filter(pkg => -1 !== TS_PACKAGES.indexOf(pkg));
-const JS_BENCH_PACKAGES = BENCH_PACKAGES.filter(pkg => -1 !==  JS_PACKAGES.indexOf(pkg));
-const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(pkg => -1 !==  TS_PACKAGES.indexOf(pkg));
-const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(pkg => -1 !==  JS_PACKAGES.indexOf(pkg));
+const TS_BENCH_PACKAGES = BENCH_PACKAGES.filter(
+  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
+);
+const JS_BENCH_PACKAGES = BENCH_PACKAGES.filter(
+  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
+);
+const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
+  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
+);
+const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
+  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
+);
 
 module.exports = {
   rules: {
@@ -65,10 +73,10 @@ module.exports = {
           "husky",
           "lint-staged",
           "devDependencies",
-          "dependencies"
-        ]
+          "dependencies",
+        ],
       },
-      includeWorkspaceRoot: true
+      includeWorkspaceRoot: true,
     },
 
     ":alphabetical-scripts": {},
@@ -85,11 +93,11 @@ module.exports = {
             files: ["dist", "index.d.ts", "turf.min.js"],
             exports: {
               import: "./dist/es/index.js",
-              require: "./dist/js/index.js"
-            }
-          }
+              require: "./dist/js/index.js",
+            },
+          },
         },
-        includePackages: [MAIN_PACKAGE]
+        includePackages: [MAIN_PACKAGE],
       },
       {
         options: {
@@ -102,30 +110,30 @@ module.exports = {
             },
             exports: {
               import: "./dist/es/index.js",
-              require: "./dist/js/index.js"
-            }
-          }
+              require: "./dist/js/index.js",
+            },
+          },
         },
-        includePackages: [...TS_PACKAGES, ...JS_PACKAGES]
+        includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
       },
       {
         options: {
           entries: {
             types: "dist/js/index.d.ts",
-            files: ["dist"]
-          }
+            files: ["dist"],
+          },
         },
-        includePackages: TS_PACKAGES
+        includePackages: TS_PACKAGES,
       },
       {
         options: {
           entries: {
             types: "index.d.ts",
-            files: ["dist", "index.d.ts"]
-          }
+            files: ["dist", "index.d.ts"],
+          },
         },
-        includePackages: JS_PACKAGES
-      }
+        includePackages: JS_PACKAGES,
+      },
     ],
 
     ":package-script": [
@@ -133,10 +141,10 @@ module.exports = {
         options: {
           scripts: {
             docs: "node ../../scripts/generate-readmes",
-            test: "npm-run-all test:*"
-          }
+            test: "npm-run-all test:*",
+          },
         },
-        excludePackages: [MAIN_PACKAGE]
+        excludePackages: [MAIN_PACKAGE],
       },
       {
         options: {
@@ -144,100 +152,102 @@ module.exports = {
             build: "npm-run-all build:*",
             "build:js": "tsc",
             "build:es":
-              "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json"
-          }
+              'tsc --outDir dist/es --module esnext --declaration false && echo \'{"type":"module"}\' > dist/es/package.json',
+          },
         },
-        includePackages: TS_PACKAGES
+        includePackages: TS_PACKAGES,
       },
       {
         options: {
           scripts: {
-            build: "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
-            posttest: "node -r esm ../../scripts/validate-es5-dependencies.js"
-          }
+            build:
+              'rollup -c ../../rollup.config.js && echo \'{"type":"module"}\' > dist/es/package.json',
+            posttest: "node -r esm ../../scripts/validate-es5-dependencies.js",
+          },
         },
-        includePackages: JS_PACKAGES
+        includePackages: JS_PACKAGES,
       },
       {
         options: {
           scripts: {
-            build: "rollup -c rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json"
-          }
+            build:
+              'rollup -c rollup.config.js && echo \'{"type":"module"}\' > dist/es/package.json',
+          },
         },
-        includePackages: [MAIN_PACKAGE]
+        includePackages: [MAIN_PACKAGE],
       },
       {
         options: {
           scripts: {
-            "test:tape": "node -r esm test.js"
-          }
+            "test:tape": "node -r esm test.js",
+          },
         },
-        includePackages: JS_TAPE_PACKAGES
+        includePackages: JS_TAPE_PACKAGES,
       },
       {
         options: {
           scripts: {
-            "test:tape": "ts-node -r esm test.js"
-          }
+            "test:tape": "ts-node -r esm test.js",
+          },
         },
-        includePackages: TS_TAPE_PACKAGES
+        includePackages: TS_TAPE_PACKAGES,
       },
       {
         options: {
           scripts: {
-            "bench": "node -r esm bench.js"
-          }
+            bench: "node -r esm bench.js",
+          },
         },
-        includePackages: JS_TAPE_PACKAGES
+        includePackages: JS_TAPE_PACKAGES,
       },
       {
         options: {
           scripts: {
-            "bench": "ts-node bench.js"
-          }
+            bench: "ts-node bench.js",
+          },
         },
-        includePackages: TS_TAPE_PACKAGES
+        includePackages: TS_TAPE_PACKAGES,
       },
       {
         options: {
           scripts: {
-            "test:types": "tsc --esModuleInterop --noEmit types.ts"
-          }
+            "test:types": "tsc --esModuleInterop --noEmit types.ts",
+          },
         },
-        includePackages: TYPES_PACKAGES
-      }
+        includePackages: TYPES_PACKAGES,
+      },
     ],
 
     ":alphabetical-dependencies": {
-      includeWorkspaceRoot: true
+      includeWorkspaceRoot: true,
     },
 
     ":require-dependency": [
       {
         options: {
           devDependencies: {
-            "npm-run-all": "*"
-          }
+            "npm-run-all": "*",
+          },
         },
-        includePackages: [...TS_PACKAGES, ...JS_PACKAGES]
+        includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
       },
       {
         options: {
           devDependencies: {
             "ts-node": "*",
-            typescript: "*"
-          }
+            typescript: "*",
+          },
         },
-        includePackages: TS_PACKAGES
+        includePackages: TS_PACKAGES,
       },
       {
         options: {
           devDependencies: {
-            rollup: "*"
-          }
+            rollup: "*",
+          },
         },
-        includePackages: JS_PACKAGES
-      }
-    ]
-  }
+        includePackages: JS_PACKAGES,
+      },
+    ],
+  },
 };

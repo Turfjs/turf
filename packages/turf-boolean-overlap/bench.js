@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const overlap = require('./index').default;
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const overlap = require("./index").default;
 
 /**
  * Benchmark Results
@@ -40,18 +40,20 @@ const overlap = require('./index').default;
  * simple-lines x 8,880 ops/sec ±3.63% (75 runs sampled)
  * single-multipoints x 281,914 ops/sec ±2.27% (76 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-overlap');
-glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-boolean-overlap");
+glob
+  .sync(path.join(__dirname, "test", "**", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature1, feature2] = geojson.features;
     console.time(name);
     overlap(feature1, feature2);
     console.timeEnd(name);
     suite.add(name, () => overlap(feature1, feature2));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

@@ -9,10 +9,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          3,
-          3
-        ]
+        "coordinates": [3, 3]
       }
     },
     {
@@ -21,14 +18,8 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [
-            0,
-            0
-          ],
-          [
-            3,
-            3
-          ]
+          [0, 0],
+          [3, 3]
         ]
       }
     }
