@@ -672,25 +672,28 @@ export function geomEach(geojson, callback) {
  */
 export function geomReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
-  geomEach(geojson, function (
-    currentGeometry,
-    featureIndex,
-    featureProperties,
-    featureBBox,
-    featureId
-  ) {
-    if (featureIndex === 0 && initialValue === undefined)
-      previousValue = currentGeometry;
-    else
-      previousValue = callback(
-        previousValue,
-        currentGeometry,
-        featureIndex,
-        featureProperties,
-        featureBBox,
-        featureId
-      );
-  });
+  geomEach(
+    geojson,
+    function (
+      currentGeometry,
+      featureIndex,
+      featureProperties,
+      featureBBox,
+      featureId
+    ) {
+      if (featureIndex === 0 && initialValue === undefined)
+        previousValue = currentGeometry;
+      else
+        previousValue = callback(
+          previousValue,
+          currentGeometry,
+          featureIndex,
+          featureProperties,
+          featureBBox,
+          featureId
+        );
+    }
+  );
   return previousValue;
 }
 
@@ -822,25 +825,24 @@ export function flattenEach(geojson, callback) {
  */
 export function flattenReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
-  flattenEach(geojson, function (
-    currentFeature,
-    featureIndex,
-    multiFeatureIndex
-  ) {
-    if (
-      featureIndex === 0 &&
-      multiFeatureIndex === 0 &&
-      initialValue === undefined
-    )
-      previousValue = currentFeature;
-    else
-      previousValue = callback(
-        previousValue,
-        currentFeature,
-        featureIndex,
-        multiFeatureIndex
-      );
-  });
+  flattenEach(
+    geojson,
+    function (currentFeature, featureIndex, multiFeatureIndex) {
+      if (
+        featureIndex === 0 &&
+        multiFeatureIndex === 0 &&
+        initialValue === undefined
+      )
+        previousValue = currentFeature;
+      else
+        previousValue = callback(
+          previousValue,
+          currentFeature,
+          featureIndex,
+          multiFeatureIndex
+        );
+    }
+  );
   return previousValue;
 }
 
@@ -897,44 +899,47 @@ export function segmentEach(geojson, callback) {
     var previousMultiIndex = 0;
     var prevGeomIndex = 0;
     if (
-      coordEach(feature, function (
-        currentCoord,
-        coordIndex,
-        featureIndexCoord,
-        multiPartIndexCoord,
-        geometryIndex
-      ) {
-        // Simulating a meta.coordReduce() since `reduce` operations cannot be stopped by returning `false`
-        if (
-          previousCoords === undefined ||
-          featureIndex > previousFeatureIndex ||
-          multiPartIndexCoord > previousMultiIndex ||
-          geometryIndex > prevGeomIndex
+      coordEach(
+        feature,
+        function (
+          currentCoord,
+          coordIndex,
+          featureIndexCoord,
+          multiPartIndexCoord,
+          geometryIndex
         ) {
+          // Simulating a meta.coordReduce() since `reduce` operations cannot be stopped by returning `false`
+          if (
+            previousCoords === undefined ||
+            featureIndex > previousFeatureIndex ||
+            multiPartIndexCoord > previousMultiIndex ||
+            geometryIndex > prevGeomIndex
+          ) {
+            previousCoords = currentCoord;
+            previousFeatureIndex = featureIndex;
+            previousMultiIndex = multiPartIndexCoord;
+            prevGeomIndex = geometryIndex;
+            segmentIndex = 0;
+            return;
+          }
+          var currentSegment = lineString(
+            [previousCoords, currentCoord],
+            feature.properties
+          );
+          if (
+            callback(
+              currentSegment,
+              featureIndex,
+              multiFeatureIndex,
+              geometryIndex,
+              segmentIndex
+            ) === false
+          )
+            return false;
+          segmentIndex++;
           previousCoords = currentCoord;
-          previousFeatureIndex = featureIndex;
-          previousMultiIndex = multiPartIndexCoord;
-          prevGeomIndex = geometryIndex;
-          segmentIndex = 0;
-          return;
         }
-        var currentSegment = lineString(
-          [previousCoords, currentCoord],
-          feature.properties
-        );
-        if (
-          callback(
-            currentSegment,
-            featureIndex,
-            multiFeatureIndex,
-            geometryIndex,
-            segmentIndex
-          ) === false
-        )
-          return false;
-        segmentIndex++;
-        previousCoords = currentCoord;
-      }) === false
+      ) === false
     )
       return false;
   });
@@ -996,26 +1001,29 @@ export function segmentEach(geojson, callback) {
 export function segmentReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
   var started = false;
-  segmentEach(geojson, function (
-    currentSegment,
-    featureIndex,
-    multiFeatureIndex,
-    geometryIndex,
-    segmentIndex
-  ) {
-    if (started === false && initialValue === undefined)
-      previousValue = currentSegment;
-    else
-      previousValue = callback(
-        previousValue,
-        currentSegment,
-        featureIndex,
-        multiFeatureIndex,
-        geometryIndex,
-        segmentIndex
-      );
-    started = true;
-  });
+  segmentEach(
+    geojson,
+    function (
+      currentSegment,
+      featureIndex,
+      multiFeatureIndex,
+      geometryIndex,
+      segmentIndex
+    ) {
+      if (started === false && initialValue === undefined)
+        previousValue = currentSegment;
+      else
+        previousValue = callback(
+          previousValue,
+          currentSegment,
+          featureIndex,
+          multiFeatureIndex,
+          geometryIndex,
+          segmentIndex
+        );
+      started = true;
+    }
+  );
   return previousValue;
 }
 
@@ -1131,23 +1139,21 @@ export function lineEach(geojson, callback) {
  */
 export function lineReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
-  lineEach(geojson, function (
-    currentLine,
-    featureIndex,
-    multiFeatureIndex,
-    geometryIndex
-  ) {
-    if (featureIndex === 0 && initialValue === undefined)
-      previousValue = currentLine;
-    else
-      previousValue = callback(
-        previousValue,
-        currentLine,
-        featureIndex,
-        multiFeatureIndex,
-        geometryIndex
-      );
-  });
+  lineEach(
+    geojson,
+    function (currentLine, featureIndex, multiFeatureIndex, geometryIndex) {
+      if (featureIndex === 0 && initialValue === undefined)
+        previousValue = currentLine;
+      else
+        previousValue = callback(
+          previousValue,
+          currentLine,
+          featureIndex,
+          multiFeatureIndex,
+          geometryIndex
+        );
+    }
+  );
   return previousValue;
 }
 
