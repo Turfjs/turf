@@ -210,21 +210,21 @@ export function clusterReduce<G = any, P = any>(
   initialValue?: any
 ): void {
   var previousValue = initialValue;
-  clusterEach(geojson, property, function (
-    cluster,
-    clusterValue,
-    currentIndex
-  ) {
-    if (currentIndex === 0 && initialValue === undefined)
-      previousValue = cluster;
-    else
-      previousValue = callback(
-        previousValue,
-        cluster,
-        clusterValue,
-        currentIndex
-      );
-  });
+  clusterEach(
+    geojson,
+    property,
+    function (cluster, clusterValue, currentIndex) {
+      if (currentIndex === 0 && initialValue === undefined)
+        previousValue = cluster;
+      else
+        previousValue = callback(
+          previousValue,
+          cluster,
+          clusterValue,
+          currentIndex
+        );
+    }
+  );
   return previousValue;
 }
 

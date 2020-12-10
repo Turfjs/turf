@@ -1,7 +1,7 @@
-export default function () {
+export default function validES5() {
   return {
     name: "valid-es5",
-    transformBundle(code) {
+    renderChunk(code) {
       removeComments(code)
         .match(/[\w\=\>]+/g)
         .forEach((word) => {
