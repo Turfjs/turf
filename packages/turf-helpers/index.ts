@@ -60,7 +60,8 @@ export type Units =
   | "feet"
   | "radians"
   | "degrees"
-  | "hectares";
+  | "hectares"
+  | "percentage";
 export type Grid = "point" | "square" | "hex" | "triangle";
 export type Corners = "sw" | "se" | "nw" | "ne" | "center" | "centroid";
 

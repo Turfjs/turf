@@ -1,6 +1,7 @@
 import bearing from "@turf/bearing";
 import destination from "@turf/destination";
 import measureDistance from "@turf/distance";
+import measureLength from "@turf/length";
 import { Feature, LineString, point, Point, Units } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 
@@ -30,6 +31,11 @@ export default function along(
   // Get Coords
   const geom = getGeom(line);
   const coords = geom.coordinates;
+  if (options?.units === "percentage") {
+    options = {};
+    const length = measureLength(line);
+    distance = (distance / 100) * length;
+  }
   let travelled = 0;
   for (let i = 0; i < coords.length; i++) {
     if (distance >= travelled && i === coords.length - 1) {
