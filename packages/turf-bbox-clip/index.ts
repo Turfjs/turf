@@ -1,9 +1,18 @@
 import {
-    BBox, Feature, LineString, lineString,
-    multiLineString, MultiLineString, multiPolygon, MultiPolygon, polygon, Polygon, Properties,
+  BBox,
+  Feature,
+  LineString,
+  lineString,
+  multiLineString,
+  MultiLineString,
+  multiPolygon,
+  MultiPolygon,
+  polygon,
+  Polygon,
+  Properties,
 } from "@turf/helpers";
-import { getCoords, getGeom } from "@turf/invariant";
-import {lineclip, polygonclip} from "./lib/lineclip";
+import { getGeom } from "@turf/invariant";
+import { lineclip, polygonclip } from "./lib/lineclip";
 
 /**
  * Takes a {@link Feature} and a bbox and clips the feature to the bbox using
@@ -23,48 +32,58 @@ import {lineclip, polygonclip} from "./lib/lineclip";
  * //addToMap
  * var addToMap = [bbox, poly, clipped]
  */
-export default function bboxClip<G extends Polygon | MultiPolygon | LineString | MultiLineString, P = Properties>(
-    feature: Feature<G, P> | G,
-    bbox: BBox,
-) {
-    const geom = getGeom(feature);
-    const type = geom.type;
-    const properties = feature.type === "Feature" ? feature.properties : {};
-    let coords: any[] = geom.coordinates;
+export default function bboxClip<
+  G extends Polygon | MultiPolygon | LineString | MultiLineString,
+  P = Properties
+>(feature: Feature<G, P> | G, bbox: BBox) {
+  const geom = getGeom(feature);
+  const type = geom.type;
+  const properties = feature.type === "Feature" ? feature.properties : {};
+  let coords: any[] = geom.coordinates;
 
-    switch (type) {
+  switch (type) {
     case "LineString":
     case "MultiLineString":
-        const lines: any[] = [];
-        if (type === "LineString") { coords = [coords]; }
-        coords.forEach((line) => {
-            lineclip(line, bbox, lines);
-        });
-        if (lines.length === 1) { return lineString(lines[0], properties); }
-        return multiLineString(lines, properties);
+      const lines: any[] = [];
+      if (type === "LineString") {
+        coords = [coords];
+      }
+      coords.forEach((line) => {
+        lineclip(line, bbox, lines);
+      });
+      if (lines.length === 1) {
+        return lineString(lines[0], properties);
+      }
+      return multiLineString(lines, properties);
     case "Polygon":
-        return polygon(clipPolygon(coords, bbox), properties);
+      return polygon(clipPolygon(coords, bbox), properties);
     case "MultiPolygon":
-        return multiPolygon(coords.map((poly) => {
-            return clipPolygon(poly, bbox);
-        }), properties);
+      return multiPolygon(
+        coords.map((poly) => {
+          return clipPolygon(poly, bbox);
+        }),
+        properties
+      );
     default:
-        throw new Error("geometry " + type + " not supported");
-    }
+      throw new Error("geometry " + type + " not supported");
+  }
 }
 
 function clipPolygon(rings: any[], bbox: BBox) {
-    const outRings = [];
-    for (const ring of rings) {
-        const clipped: any = polygonclip(ring, bbox);
-        if (clipped.length > 0) {
-            if (clipped[0][0] !== clipped[clipped.length - 1][0] || clipped[0][1] !== clipped[clipped.length - 1][1]) {
-                clipped.push(clipped[0]);
-            }
-            if (clipped.length >= 4) {
-                outRings.push(clipped);
-            }
-        }
+  const outRings = [];
+  for (const ring of rings) {
+    const clipped: any = polygonclip(ring, bbox);
+    if (clipped.length > 0) {
+      if (
+        clipped[0][0] !== clipped[clipped.length - 1][0] ||
+        clipped[0][1] !== clipped[clipped.length - 1][1]
+      ) {
+        clipped.push(clipped[0]);
+      }
+      if (clipped.length >= 4) {
+        outRings.push(clipped);
+      }
     }
-    return outRings;
+  }
+  return outRings;
 }

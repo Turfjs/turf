@@ -1,6 +1,6 @@
-import { polygon, featureCollection, isObject } from '@turf/helpers';
-import { collectionOf } from '@turf/invariant';
-import * as d3voronoi from 'd3-voronoi';
+import { polygon, featureCollection, isObject } from "@turf/helpers";
+import { collectionOf } from "@turf/invariant";
+import * as d3voronoi from "d3-voronoi";
 
 /**
  * @private
@@ -8,9 +8,9 @@ import * as d3voronoi from 'd3-voronoi';
  * @returns {Feature<Polygon>} polygon
  */
 function coordsToPolygon(coords) {
-    coords = coords.slice();
-    coords.push(coords[0]);
-    return polygon([coords]);
+  coords = coords.slice();
+  coords.push(coords[0]);
+  return polygon([coords]);
 }
 
 /**
@@ -35,25 +35,33 @@ function coordsToPolygon(coords) {
  * var addToMap = [voronoiPolygons, points];
  */
 function voronoi(points, options) {
-    // Optional params
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var bbox = options.bbox || [-180, -85, 180, 85];
+  // Optional params
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var bbox = options.bbox || [-180, -85, 180, 85];
 
-    // Input Validation
-    if (!points) throw new Error('points is required');
-    if (!Array.isArray(bbox)) throw new Error('bbox is invalid');
-    collectionOf(points, 'Point', 'points');
+  // Input Validation
+  if (!points) throw new Error("points is required");
+  if (!Array.isArray(bbox)) throw new Error("bbox is invalid");
+  collectionOf(points, "Point", "points");
 
-    // Main
-    return featureCollection(
-        d3voronoi.voronoi()
-            .x(function (feature) { return feature.geometry.coordinates[0]; })
-            .y(function (feature) { return feature.geometry.coordinates[1]; })
-            .extent([[bbox[0], bbox[1]], [bbox[2], bbox[3]]])
-            .polygons(points.features)
-            .map(coordsToPolygon)
-    );
+  // Main
+  return featureCollection(
+    d3voronoi
+      .voronoi()
+      .x(function (feature) {
+        return feature.geometry.coordinates[0];
+      })
+      .y(function (feature) {
+        return feature.geometry.coordinates[1];
+      })
+      .extent([
+        [bbox[0], bbox[1]],
+        [bbox[2], bbox[3]],
+      ])
+      .polygons(points.features)
+      .map(coordsToPolygon)
+  );
 }
 
 export default voronoi;

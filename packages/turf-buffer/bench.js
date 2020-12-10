@@ -1,16 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import buffer from './dist/js/index.js';
+import fs from "fs";
+import path from "path";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import buffer from "./index";
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -40,15 +40,15 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * point x 65,020 ops/sec ±1.29% (85 runs sampled)
  * polygon-with-holes x 2,795 ops/sec ±2.98% (81 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-buffer');
-for (const {name, geojson} of fixtures) {
-    console.time(name);
-    buffer(geojson, 50, {units: 'miles'});
-    console.timeEnd(name);
-    suite.add(name, () => buffer(geojson, 50, {units: 'miles'}));
+const suite = new Benchmark.Suite("turf-buffer");
+for (const { name, geojson } of fixtures) {
+  console.time(name);
+  buffer(geojson, 50, { units: "miles" });
+  console.timeEnd(name);
+  suite.add(name, () => buffer(geojson, 50, { units: "miles" }));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

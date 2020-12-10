@@ -1,14 +1,14 @@
 /*!
-* @license GNU Affero General Public License.
-* Copyright (c) 2015, 2015 Ronny Lorenz <ronny@tbi.univie.ac.at>
-* v. 1.2.0
-* https://github.com/RaumZeit/MarchingSquares.js
-*/
+ * @license GNU Affero General Public License.
+ * Copyright (c) 2015, 2015 Ronny Lorenz <ronny@tbi.univie.ac.at>
+ * v. 1.2.0
+ * https://github.com/RaumZeit/MarchingSquares.js
+ */
 
 var defaultSettings = {
-    successCallback: null,
-    verbose: false,
-    polygons: false
+  successCallback: null,
+  verbose: false,
+  polygons: false,
 };
 
 var settings = {};
@@ -21,39 +21,50 @@ var settings = {};
   outline of connected polygons.
 */
 export default function isoBands(data, minV, bandwidth, options) {
-    /* process options */
-    options = options ? options : {};
+  /* process options */
+  options = options ? options : {};
 
-    var optionKeys = Object.keys(defaultSettings);
+  var optionKeys = Object.keys(defaultSettings);
 
-    for (var i = 0; i < optionKeys.length; i++) {
-        var key = optionKeys[i];
-        var val = options[key];
-        val = ((typeof val !== 'undefined') && (val !== null)) ? val : defaultSettings[key];
+  for (var i = 0; i < optionKeys.length; i++) {
+    var key = optionKeys[i];
+    var val = options[key];
+    val =
+      typeof val !== "undefined" && val !== null ? val : defaultSettings[key];
 
-        settings[key] = val;
-    }
+    settings[key] = val;
+  }
 
+  if (settings.verbose)
+    console.log(
+      "MarchingSquaresJS-isoBands: computing isobands for [" +
+        minV +
+        ":" +
+        (minV + bandwidth) +
+        "]"
+    );
+
+  var grid = computeBandGrid(data, minV, bandwidth);
+
+  var ret;
+  if (settings.polygons) {
     if (settings.verbose)
-        console.log('MarchingSquaresJS-isoBands: computing isobands for [' + minV + ':' + (minV + bandwidth) + ']');
+      console.log(
+        "MarchingSquaresJS-isoBands: returning single polygons for each grid cell"
+      );
+    ret = BandGrid2Areas(grid);
+  } else {
+    if (settings.verbose)
+      console.log(
+        "MarchingSquaresJS-isoBands: returning polygon paths for entire data grid"
+      );
+    ret = BandGrid2AreaPaths(grid);
+  }
 
-    var grid = computeBandGrid(data, minV, bandwidth);
+  if (typeof settings.successCallback === "function")
+    settings.successCallback(ret);
 
-    var ret;
-    if (settings.polygons) {
-        if (settings.verbose)
-            console.log('MarchingSquaresJS-isoBands: returning single polygons for each grid cell');
-        ret = BandGrid2Areas(grid);
-    } else {
-        if (settings.verbose)
-            console.log('MarchingSquaresJS-isoBands: returning polygon paths for entire data grid');
-        ret = BandGrid2AreaPaths(grid);
-    }
-
-    if (typeof settings.successCallback === 'function')
-        settings.successCallback(ret);
-
-    return ret;
+  return ret;
 }
 
 /*
@@ -63,9 +74,9 @@ export default function isoBands(data, minV, bandwidth, options) {
 
 /* Some private variables */
 var Node0 = 64,
-    Node1 = 16,
-    Node2 = 4,
-    Node3 = 1;
+  Node1 = 16,
+  Node2 = 4,
+  Node3 = 1;
 
 /*
   The look-up tables for tracing back the contour path
@@ -117,7 +128,6 @@ isoBandNextOTL[85] = isoBandNextOBL[85] = 0;
 isoBandNextXBR[85] = isoBandNextXBL[85] = 0;
 isoBandNextYBR[85] = isoBandNextYBL[85] = 1;
 isoBandNextOTR[85] = isoBandNextOBR[85] = 1;
-
 
 /* triangle cases */
 isoBandNextXLB[1] = isoBandNextXLB[169] = 0;
@@ -750,167 +760,404 @@ isoBandNextXTR[39] = 1;
 isoBandNextYTR[39] = 0;
 isoBandNextOTR[39] = 0;
 
-
 /*
   Define helper functions for the polygon_table
   */
 
 /* triangle cases */
 var p00 = function (cell) {
-    return [[cell.bottomleft, 0], [0, 0], [0, cell.leftbottom]];
+  return [
+    [cell.bottomleft, 0],
+    [0, 0],
+    [0, cell.leftbottom],
+  ];
 };
 var p01 = function (cell) {
-    return [[1, cell.rightbottom], [1, 0], [cell.bottomright, 0]];
+  return [
+    [1, cell.rightbottom],
+    [1, 0],
+    [cell.bottomright, 0],
+  ];
 };
 var p02 = function (cell) {
-    return [[cell.topright, 1], [1, 1], [1, cell.righttop]];
+  return [
+    [cell.topright, 1],
+    [1, 1],
+    [1, cell.righttop],
+  ];
 };
 var p03 = function (cell) {
-    return [[0, cell.lefttop], [0, 1], [cell.topleft, 1]];
+  return [
+    [0, cell.lefttop],
+    [0, 1],
+    [cell.topleft, 1],
+  ];
 };
 /* trapezoid cases */
 var p04 = function (cell) {
-    return [[cell.bottomright, 0], [cell.bottomleft, 0], [0, cell.leftbottom], [0, cell.lefttop]];
+  return [
+    [cell.bottomright, 0],
+    [cell.bottomleft, 0],
+    [0, cell.leftbottom],
+    [0, cell.lefttop],
+  ];
 };
 var p05 = function (cell) {
-    return [[cell.bottomright, 0], [cell.bottomleft, 0], [1, cell.righttop], [1, cell.rightbottom]];
+  return [
+    [cell.bottomright, 0],
+    [cell.bottomleft, 0],
+    [1, cell.righttop],
+    [1, cell.rightbottom],
+  ];
 };
 var p06 = function (cell) {
-    return [[1, cell.righttop], [1, cell.rightbottom], [cell.topleft, 1], [cell.topright, 1]];
+  return [
+    [1, cell.righttop],
+    [1, cell.rightbottom],
+    [cell.topleft, 1],
+    [cell.topright, 1],
+  ];
 };
 var p07 = function (cell) {
-    return [[0, cell.leftbottom], [0, cell.lefttop], [cell.topleft, 1], [cell.topright, 1]];
+  return [
+    [0, cell.leftbottom],
+    [0, cell.lefttop],
+    [cell.topleft, 1],
+    [cell.topright, 1],
+  ];
 };
 /* rectangle cases */
 var p08 = function (cell) {
-    return [[0, 0], [0, cell.leftbottom], [1, cell.rightbottom], [1, 0]];
+  return [
+    [0, 0],
+    [0, cell.leftbottom],
+    [1, cell.rightbottom],
+    [1, 0],
+  ];
 };
 var p09 = function (cell) {
-    return [[1, 0], [cell.bottomright, 0], [cell.topright, 1], [1, 1]];
+  return [
+    [1, 0],
+    [cell.bottomright, 0],
+    [cell.topright, 1],
+    [1, 1],
+  ];
 };
 var p10 = function (cell) {
-    return [[1, 1], [1, cell.righttop], [0, cell.lefttop], [0, 1]];
+  return [
+    [1, 1],
+    [1, cell.righttop],
+    [0, cell.lefttop],
+    [0, 1],
+  ];
 };
 var p11 = function (cell) {
-    return [[cell.bottomleft, 0], [0, 0], [0, 1], [cell.topleft, 1]];
+  return [
+    [cell.bottomleft, 0],
+    [0, 0],
+    [0, 1],
+    [cell.topleft, 1],
+  ];
 };
 var p12 = function (cell) {
-    return [[1, cell.righttop], [1, cell.rightbottom], [0, cell.leftbottom], [0, cell.lefttop]];
+  return [
+    [1, cell.righttop],
+    [1, cell.rightbottom],
+    [0, cell.leftbottom],
+    [0, cell.lefttop],
+  ];
 };
 var p13 = function (cell) {
-    return [[cell.topleft, 1], [cell.topright, 1], [cell.bottomright, 0], [cell.bottomleft, 0]];
+  return [
+    [cell.topleft, 1],
+    [cell.topright, 1],
+    [cell.bottomright, 0],
+    [cell.bottomleft, 0],
+  ];
 };
 /* square case */
 var p14 = function () {
-    return [[0, 0], [0, 1], [1, 1], [1, 0]];
+  return [
+    [0, 0],
+    [0, 1],
+    [1, 1],
+    [1, 0],
+  ];
 };
 /* pentagon cases */
 var p15 = function (cell) {
-    return [[1, cell.rightbottom], [1, 0], [0, 0], [0, 1], [cell.topleft, 1]];
+  return [
+    [1, cell.rightbottom],
+    [1, 0],
+    [0, 0],
+    [0, 1],
+    [cell.topleft, 1],
+  ];
 };
 /* 1211 || 1011 */
 var p16 = function (cell) {
-    return [[cell.topright, 1], [1, 1], [1, 0], [0, 0], [0, cell.leftbottom]];
+  return [
+    [cell.topright, 1],
+    [1, 1],
+    [1, 0],
+    [0, 0],
+    [0, cell.leftbottom],
+  ];
 };
 /* 2111 || 0111 */
 var p17 = function (cell) {
-    return [[1, 0], [cell.bottomright, 0], [0, cell.lefttop], [0, 1], [1, 1]];
+  return [
+    [1, 0],
+    [cell.bottomright, 0],
+    [0, cell.lefttop],
+    [0, 1],
+    [1, 1],
+  ];
 };
 /* 1112 || 1110 */
 var p18 = function (cell) {
-    return [[1, 1], [1, cell.righttop], [cell.bottomleft, 0], [0, 0], [0, 1]];
+  return [
+    [1, 1],
+    [1, cell.righttop],
+    [cell.bottomleft, 0],
+    [0, 0],
+    [0, 1],
+  ];
 };
 /* 1121 || 1101 */
 var p19 = function (cell) {
-    return [[1, cell.righttop], [1, cell.rightbottom], [0, cell.lefttop], [0, 1], [cell.topleft, 1]];
+  return [
+    [1, cell.righttop],
+    [1, cell.rightbottom],
+    [0, cell.lefttop],
+    [0, 1],
+    [cell.topleft, 1],
+  ];
 };
 /* 1200 || 1022 */
 var p20 = function (cell) {
-    return [[1, 1], [1, cell.righttop], [cell.bottomright, 0], [cell.bottomleft, 0], [cell.topright, 1]];
+  return [
+    [1, 1],
+    [1, cell.righttop],
+    [cell.bottomright, 0],
+    [cell.bottomleft, 0],
+    [cell.topright, 1],
+  ];
 };
 /* 0120 || 2102 */
 var p21 = function (cell) {
-    return [[1, cell.rightbottom], [1, 0], [cell.bottomright, 0], [0, cell.leftbottom], [0, cell.lefttop]];
+  return [
+    [1, cell.rightbottom],
+    [1, 0],
+    [cell.bottomright, 0],
+    [0, cell.leftbottom],
+    [0, cell.lefttop],
+  ];
 };
 /* 0012 || 2210 */
 var p22 = function (cell) {
-    return [[cell.topright, 1], [cell.bottomleft, 0], [0, 0], [0, cell.leftbottom], [cell.topleft, 1]];
+  return [
+    [cell.topright, 1],
+    [cell.bottomleft, 0],
+    [0, 0],
+    [0, cell.leftbottom],
+    [cell.topleft, 1],
+  ];
 };
 /* 2001 || 0221 */
 var p23 = function (cell) {
-    return [[cell.bottomright, 0], [cell.bottomleft, 0], [0, cell.lefttop], [0, 1], [cell.topleft, 1]];
+  return [
+    [cell.bottomright, 0],
+    [cell.bottomleft, 0],
+    [0, cell.lefttop],
+    [0, 1],
+    [cell.topleft, 1],
+  ];
 };
 /* 1002 || 1220 */
 var p24 = function (cell) {
-    return [[1, 1], [1, cell.righttop], [0, cell.leftbottom], [0, cell.lefttop], [cell.topright, 1]];
+  return [
+    [1, 1],
+    [1, cell.righttop],
+    [0, cell.leftbottom],
+    [0, cell.lefttop],
+    [cell.topright, 1],
+  ];
 };
 /* 2100 || 0122 */
 var p25 = function (cell) {
-    return [[1, cell.rightbottom], [1, 0], [cell.bottomright, 0], [cell.topleft, 1], [cell.topright, 1]];
+  return [
+    [1, cell.rightbottom],
+    [1, 0],
+    [cell.bottomright, 0],
+    [cell.topleft, 1],
+    [cell.topright, 1],
+  ];
 };
 /* 0210 || 2012 */
 var p26 = function (cell) {
-    return [[1, cell.righttop], [1, cell.rightbottom], [cell.bottomleft, 0], [0, 0], [0, cell.leftbottom]];
+  return [
+    [1, cell.righttop],
+    [1, cell.rightbottom],
+    [cell.bottomleft, 0],
+    [0, 0],
+    [0, cell.leftbottom],
+  ];
 };
 /* 0021 || 2201 */
 /*hexagon cases */
 var p27 = function (cell) {
-    return [[1, cell.rightbottom], [1, 0], [0, 0], [0, cell.leftbottom], [cell.topleft, 1], [cell.topright, 1]];
+  return [
+    [1, cell.rightbottom],
+    [1, 0],
+    [0, 0],
+    [0, cell.leftbottom],
+    [cell.topleft, 1],
+    [cell.topright, 1],
+  ];
 };
 /* 0211 || 2011 */
 var p28 = function (cell) {
-    return [[1, 1], [1, 0], [cell.bottomright, 0], [0, cell.leftbottom], [0, cell.lefttop], [cell.topright, 1]];
+  return [
+    [1, 1],
+    [1, 0],
+    [cell.bottomright, 0],
+    [0, cell.leftbottom],
+    [0, cell.lefttop],
+    [cell.topright, 1],
+  ];
 };
 /* 2110 || 0112 */
 var p29 = function (cell) {
-    return [[1, 1], [1, cell.righttop], [cell.bottomright, 0], [cell.bottomleft, 0], [0, cell.lefttop], [0, 1]];
+  return [
+    [1, 1],
+    [1, cell.righttop],
+    [cell.bottomright, 0],
+    [cell.bottomleft, 0],
+    [0, cell.lefttop],
+    [0, 1],
+  ];
 };
 /* 1102 || 1120 */
 var p30 = function (cell) {
-    return [[1, cell.righttop], [1, cell.rightbottom], [cell.bottomleft, 0], [0, 0], [0, 1], [cell.topleft, 1]];
+  return [
+    [1, cell.righttop],
+    [1, cell.rightbottom],
+    [cell.bottomleft, 0],
+    [0, 0],
+    [0, 1],
+    [cell.topleft, 1],
+  ];
 };
 /* 1021 || 1201 */
 var p31 = function (cell) {
-    return [[1, 1], [1, cell.righttop], [cell.bottomleft, 0], [0, 0], [0, cell.leftbottom], [cell.topright, 1]];
+  return [
+    [1, 1],
+    [1, cell.righttop],
+    [cell.bottomleft, 0],
+    [0, 0],
+    [0, cell.leftbottom],
+    [cell.topright, 1],
+  ];
 };
 /* 2101 || 0121 */
 var p32 = function (cell) {
-    return [[1, cell.rightbottom], [1, 0], [cell.bottomright, 0], [0, cell.lefttop], [0, 1], [cell.topleft, 1]];
+  return [
+    [1, cell.rightbottom],
+    [1, 0],
+    [cell.bottomright, 0],
+    [0, cell.lefttop],
+    [0, 1],
+    [cell.topleft, 1],
+  ];
 };
 /* 1012 || 1210 */
 /* 8-sided cases */
 var p33 = function (cell) {
-    return [[1, cell.righttop], [1, cell.rightbottom], [cell.bottomright, 0], [cell.bottomleft, 0], [0, cell.leftbottom], [0, cell.lefttop], [cell.topleft, 1], [cell.topright, 1]];
+  return [
+    [1, cell.righttop],
+    [1, cell.rightbottom],
+    [cell.bottomright, 0],
+    [cell.bottomleft, 0],
+    [0, cell.leftbottom],
+    [0, cell.lefttop],
+    [cell.topleft, 1],
+    [cell.topright, 1],
+  ];
 };
 /* flipped == 1 state for 0202 and 2020 */
 /* 6-sided cases */
 var p34 = function (cell) {
-    return [[1, 1], [1, cell.righttop], [cell.bottomleft, 0], [0, 0], [0, cell.leftbottom], [cell.topright, 1]];
+  return [
+    [1, 1],
+    [1, cell.righttop],
+    [cell.bottomleft, 0],
+    [0, 0],
+    [0, cell.leftbottom],
+    [cell.topright, 1],
+  ];
 };
 /* 0101 with flipped == 1 || 2121 with flipped == 1 */
 var p35 = function (cell) {
-    return [[1, cell.rightbottom], [1, 0], [cell.bottomright, 0], [0, cell.lefttop], [0, 1], [cell.topleft, 1]];
+  return [
+    [1, cell.rightbottom],
+    [1, 0],
+    [cell.bottomright, 0],
+    [0, cell.lefttop],
+    [0, 1],
+    [cell.topleft, 1],
+  ];
 };
 /* 1010 with flipped == 1 || 1212 with flipped == 1 */
 /* 7-sided cases */
 var p36 = function (cell) {
-    return [[1, 1], [1, cell.righttop], [cell.bottomright, 0], [cell.bottomleft, 0], [0, cell.leftbottom], [0, cell.lefttop], [cell.topright, 1]];
+  return [
+    [1, 1],
+    [1, cell.righttop],
+    [cell.bottomright, 0],
+    [cell.bottomleft, 0],
+    [0, cell.leftbottom],
+    [0, cell.lefttop],
+    [cell.topright, 1],
+  ];
 };
 /* 2120 with flipped == 1 || 0102 with flipped == 1 */
 var p37 = function (cell) {
-    return [[1, cell.righttop], [1, cell.rightbottom], [cell.bottomleft, 0], [0, 0], [0, cell.leftbottom], [cell.topleft, 1], [cell.topright, 1]];
+  return [
+    [1, cell.righttop],
+    [1, cell.rightbottom],
+    [cell.bottomleft, 0],
+    [0, 0],
+    [0, cell.leftbottom],
+    [cell.topleft, 1],
+    [cell.topright, 1],
+  ];
 };
 /* 2021 with flipped == 1 || 0201 with flipped == 1 */
 var p38 = function (cell) {
-    return [[1, cell.righttop], [1, cell.rightbottom], [cell.bottomright, 0], [cell.bottomleft, 0], [0, cell.lefttop], [0, 1], [cell.topleft, 1]];
+  return [
+    [1, cell.righttop],
+    [1, cell.rightbottom],
+    [cell.bottomright, 0],
+    [cell.bottomleft, 0],
+    [0, cell.lefttop],
+    [0, 1],
+    [cell.topleft, 1],
+  ];
 };
 /* 1202 with flipped == 1 || 1020 with flipped == 1 */
 var p39 = function (cell) {
-    return [[1, cell.rightbottom], [1, 0], [cell.bottomright, 0], [0, cell.leftbottom], [0, cell.lefttop], [cell.topleft, 1], [cell.topright, 1]];
+  return [
+    [1, cell.rightbottom],
+    [1, 0],
+    [cell.bottomright, 0],
+    [0, cell.leftbottom],
+    [0, cell.lefttop],
+    [cell.topleft, 1],
+    [cell.topright, 1],
+  ];
 };
 /* 0212 with flipped == 1 || 2010 with flipped == 1 */
-
-
 
 /*
   The lookup tables for edge number given the polygon
@@ -927,32 +1174,32 @@ var isoBandEdgeTL = [];
 var isoBandEdgeTR = [];
 
 /* triangle cases */
-isoBandEdgeBL[1]    = isoBandEdgeLB[1]    = 18;
-isoBandEdgeBL[169]  = isoBandEdgeLB[169]  = 18;
-isoBandEdgeBR[4]    = isoBandEdgeRB[4]    = 12;
-isoBandEdgeBR[166]  = isoBandEdgeRB[166]  = 12;
-isoBandEdgeRT[16]   = isoBandEdgeTR[16]   = 4;
-isoBandEdgeRT[154]  = isoBandEdgeTR[154]  = 4;
-isoBandEdgeLT[64]   = isoBandEdgeTL[64]   = 22;
-isoBandEdgeLT[106]  = isoBandEdgeTL[106]  = 22;
+isoBandEdgeBL[1] = isoBandEdgeLB[1] = 18;
+isoBandEdgeBL[169] = isoBandEdgeLB[169] = 18;
+isoBandEdgeBR[4] = isoBandEdgeRB[4] = 12;
+isoBandEdgeBR[166] = isoBandEdgeRB[166] = 12;
+isoBandEdgeRT[16] = isoBandEdgeTR[16] = 4;
+isoBandEdgeRT[154] = isoBandEdgeTR[154] = 4;
+isoBandEdgeLT[64] = isoBandEdgeTL[64] = 22;
+isoBandEdgeLT[106] = isoBandEdgeTL[106] = 22;
 
 /* trapezoid cases */
-isoBandEdgeBR[2]    = isoBandEdgeLT[2]    = 17;
-isoBandEdgeBL[2]    = isoBandEdgeLB[2]    = 18;
-isoBandEdgeBR[168]  = isoBandEdgeLT[168]  = 17;
-isoBandEdgeBL[168]  = isoBandEdgeLB[168]  = 18;
-isoBandEdgeRT[8]    = isoBandEdgeBL[8]    = 9;
-isoBandEdgeRB[8]    = isoBandEdgeBR[8]    = 12;
-isoBandEdgeRT[162]  = isoBandEdgeBL[162]  = 9;
-isoBandEdgeRB[162]  = isoBandEdgeBR[162]  = 12;
-isoBandEdgeRT[32]   = isoBandEdgeTR[32]   = 4;
-isoBandEdgeRB[32]   = isoBandEdgeTL[32]   = 1;
-isoBandEdgeRT[138]  = isoBandEdgeTR[138]  = 4;
-isoBandEdgeRB[138]  = isoBandEdgeTL[138]  = 1;
-isoBandEdgeLB[128]  = isoBandEdgeTR[128]  = 21;
-isoBandEdgeLT[128]  = isoBandEdgeTL[128]  = 22;
-isoBandEdgeLB[42]   = isoBandEdgeTR[42]   = 21;
-isoBandEdgeLT[42]   = isoBandEdgeTL[42]   = 22;
+isoBandEdgeBR[2] = isoBandEdgeLT[2] = 17;
+isoBandEdgeBL[2] = isoBandEdgeLB[2] = 18;
+isoBandEdgeBR[168] = isoBandEdgeLT[168] = 17;
+isoBandEdgeBL[168] = isoBandEdgeLB[168] = 18;
+isoBandEdgeRT[8] = isoBandEdgeBL[8] = 9;
+isoBandEdgeRB[8] = isoBandEdgeBR[8] = 12;
+isoBandEdgeRT[162] = isoBandEdgeBL[162] = 9;
+isoBandEdgeRB[162] = isoBandEdgeBR[162] = 12;
+isoBandEdgeRT[32] = isoBandEdgeTR[32] = 4;
+isoBandEdgeRB[32] = isoBandEdgeTL[32] = 1;
+isoBandEdgeRT[138] = isoBandEdgeTR[138] = 4;
+isoBandEdgeRB[138] = isoBandEdgeTL[138] = 1;
+isoBandEdgeLB[128] = isoBandEdgeTR[128] = 21;
+isoBandEdgeLT[128] = isoBandEdgeTL[128] = 22;
+isoBandEdgeLB[42] = isoBandEdgeTR[42] = 21;
+isoBandEdgeLT[42] = isoBandEdgeTL[42] = 22;
 
 /* rectangle cases */
 isoBandEdgeRB[5] = isoBandEdgeLB[5] = 14;
@@ -1143,26 +1390,41 @@ polygon_table[145] = polygon_table[25] = p31; /* 2101 || 0121 */
 polygon_table[70] = polygon_table[100] = p32; /* 1012 || 1210 */
 
 /* 8-sided cases */
-polygon_table[34] = function (c) { return [p07(c), p05(c)]; }; /* 0202 || 2020 with flipped == 0 */
+polygon_table[34] = function (c) {
+  return [p07(c), p05(c)];
+}; /* 0202 || 2020 with flipped == 0 */
 polygon_table[35] = p33; /* flipped == 1 state for 0202 and 2020 */
-polygon_table[136] = function (c) { return [p06(c), p04(c)]; }; /* 2020 || 0202 with flipped == 0 */
+polygon_table[136] = function (c) {
+  return [p06(c), p04(c)];
+}; /* 2020 || 0202 with flipped == 0 */
 
 /* 6-sided cases */
-polygon_table[153] = function (c) { return [p02(c), p00(c)]; }; /* 0101 with flipped == 0 || 2121 with flipped == 2 */
-polygon_table[102] = function (c) { return [p01(c), p03(c)]; }; /* 1010 with flipped == 0 || 1212 with flipped == 2 */
+polygon_table[153] = function (c) {
+  return [p02(c), p00(c)];
+}; /* 0101 with flipped == 0 || 2121 with flipped == 2 */
+polygon_table[102] = function (c) {
+  return [p01(c), p03(c)];
+}; /* 1010 with flipped == 0 || 1212 with flipped == 2 */
 polygon_table[155] = p34; /* 0101 with flipped == 1 || 2121 with flipped == 1 */
 polygon_table[103] = p35; /* 1010 with flipped == 1 || 1212 with flipped == 1 */
 
 /* 7-sided cases */
-polygon_table[152] = function (c) { return [p02(c), p04(c)]; }; /* 2120 with flipped == 2 || 0102 with flipped == 0 */
+polygon_table[152] = function (c) {
+  return [p02(c), p04(c)];
+}; /* 2120 with flipped == 2 || 0102 with flipped == 0 */
 polygon_table[156] = p36; /* 2120 with flipped == 1 || 0102 with flipped == 1 */
-polygon_table[137] = function (c) { return [p06(c), p00(c)]; }; /* 2021 with flipped == 2 || 0201 with flipped == 0 */
+polygon_table[137] = function (c) {
+  return [p06(c), p00(c)];
+}; /* 2021 with flipped == 2 || 0201 with flipped == 0 */
 polygon_table[139] = p37; /* 2021 with flipped == 1 || 0201 with flipped == 1 */
-polygon_table[98] = function (c) { return [p05(c), p03(c)]; }; /* 1202 with flipped == 2 || 1020 with flipped == 0 */
+polygon_table[98] = function (c) {
+  return [p05(c), p03(c)];
+}; /* 1202 with flipped == 2 || 1020 with flipped == 0 */
 polygon_table[99] = p38; /* 1202 with flipped == 1 || 1020 with flipped == 1 */
-polygon_table[38] = function (c) { return [p01(c), p07(c)]; }; /* 0212 with flipped == 2 || 2010 with flipped == 0 */
+polygon_table[38] = function (c) {
+  return [p01(c), p07(c)];
+}; /* 0212 with flipped == 2 || 2010 with flipped == 0 */
 polygon_table[39] = p39; /* 0212 with flipped == 1 || 2010 with flipped == 1 */
-
 
 /*
 ####################################
@@ -1172,11 +1434,11 @@ Some small helper functions
 
 /* assume that x1 == 1 &&  x0 == 0 */
 function interpolateX(y, y0, y1) {
-    return (y - y0) / (y1 - y0);
+  return (y - y0) / (y1 - y0);
 }
 
 function isArray(myArray) {
-    return myArray.constructor.toString().indexOf('Array') > -1;
+  return myArray.constructor.toString().indexOf("Array") > -1;
 }
 
 /*
@@ -1186,1728 +1448,1969 @@ Below is the actual Marching Squares implementation
 */
 
 function computeBandGrid(data, minV, bandwidth) {
-    var rows = data.length - 1;
-    var cols = data[0].length - 1;
-    var BandGrid = { rows: rows, cols: cols, cells: [] };
+  var rows = data.length - 1;
+  var cols = data[0].length - 1;
+  var BandGrid = { rows: rows, cols: cols, cells: [] };
 
-    var maxV = minV + Math.abs(bandwidth);
+  var maxV = minV + Math.abs(bandwidth);
 
-    for (var j = 0; j < rows; ++j) {
-        BandGrid.cells[j] = [];
-        for (var i = 0; i < cols; ++i) {
-            /*  compose the 4-trit corner representation */
-            var cval = 0;
+  for (var j = 0; j < rows; ++j) {
+    BandGrid.cells[j] = [];
+    for (var i = 0; i < cols; ++i) {
+      /*  compose the 4-trit corner representation */
+      var cval = 0;
 
-            var tl = data[j + 1][i];
-            var tr = data[j + 1][i + 1];
-            var br = data[j][i + 1];
-            var bl = data[j][i];
+      var tl = data[j + 1][i];
+      var tr = data[j + 1][i + 1];
+      var br = data[j][i + 1];
+      var bl = data[j][i];
 
-            if (isNaN(tl) || isNaN(tr) || isNaN(br) || isNaN(bl)) {
-                continue;
-            }
+      if (isNaN(tl) || isNaN(tr) || isNaN(br) || isNaN(bl)) {
+        continue;
+      }
 
-            cval |= (tl < minV) ? 0 : (tl > maxV) ? 128 : 64;
-            cval |= (tr < minV) ? 0 : (tr > maxV) ? 32 : 16;
-            cval |= (br < minV) ? 0 : (br > maxV) ? 8 : 4;
-            cval |= (bl < minV) ? 0 : (bl > maxV) ? 2 : 1;
+      cval |= tl < minV ? 0 : tl > maxV ? 128 : 64;
+      cval |= tr < minV ? 0 : tr > maxV ? 32 : 16;
+      cval |= br < minV ? 0 : br > maxV ? 8 : 4;
+      cval |= bl < minV ? 0 : bl > maxV ? 2 : 1;
 
-            var cval_real = +cval;
+      var cval_real = +cval;
 
-            /* resolve ambiguity via averaging */
-            var flipped = 0;
-            if ((cval === 17)  || /* 0101 */
-          (cval === 18)  || /* 0102 */
-          (cval === 33)  || /* 0201 */
-          (cval === 34)  || /* 0202 */
-          (cval === 38)  || /* 0212 */
-          (cval === 68)  || /* 1010 */
-          (cval === 72)  || /* 1020 */
-          (cval === 98)  || /* 1202 */
-          (cval === 102)  || /* 1212 */
-          (cval === 132)  || /* 2010 */
-          (cval === 136)  || /* 2020 */
-          (cval === 137)  || /* 2021 */
-          (cval === 152)  || /* 2120 */
-          (cval === 153) /* 2121 */
-            ) {
-                var average = (tl + tr + br + bl) / 4;
-                /* set flipped state */
-                flipped = (average > maxV) ? 2 : (average < minV) ? 0 : 1;
+      /* resolve ambiguity via averaging */
+      var flipped = 0;
+      if (
+        cval === 17 /* 0101 */ ||
+        cval === 18 /* 0102 */ ||
+        cval === 33 /* 0201 */ ||
+        cval === 34 /* 0202 */ ||
+        cval === 38 /* 0212 */ ||
+        cval === 68 /* 1010 */ ||
+        cval === 72 /* 1020 */ ||
+        cval === 98 /* 1202 */ ||
+        cval === 102 /* 1212 */ ||
+        cval === 132 /* 2010 */ ||
+        cval === 136 /* 2020 */ ||
+        cval === 137 /* 2021 */ ||
+        cval === 152 /* 2120 */ ||
+        cval === 153 /* 2121 */
+      ) {
+        var average = (tl + tr + br + bl) / 4;
+        /* set flipped state */
+        flipped = average > maxV ? 2 : average < minV ? 0 : 1;
 
-                /* adjust cval for flipped cases */
+        /* adjust cval for flipped cases */
 
-                /* 8-sided cases */
-                if (cval === 34) {
-                    if (flipped === 1) {
-                        cval = 35;
-                    } else if (flipped === 0) {
-                        cval = 136;
-                    }
-                } else if (cval === 136) {
-                    if (flipped === 1) {
-                        cval = 35;
-                        flipped = 4;
-                    } else if (flipped === 0) {
-                        cval = 34;
-                    }
-                }
-
-                /* 6-sided polygon cases */
-                else if (cval === 17) {
-                    if (flipped === 1) {
-                        cval = 155;
-                        flipped = 4;
-                    } else if (flipped === 0) {
-                        cval = 153;
-                    }
-                } else if (cval === 68) {
-                    if (flipped === 1) {
-                        cval = 103;
-                        flipped = 4;
-                    } else if (flipped === 0) {
-                        cval = 102;
-                    }
-                } else if (cval === 153) {
-                    if (flipped === 1)
-                        cval = 155;
-                } else if (cval === 102) {
-                    if (flipped === 1)
-                        cval = 103;
-                }
-
-                /* 7-sided polygon cases */
-                else if (cval === 152) {
-                    if (flipped < 2) {
-                        cval    = 156;
-                        flipped = 1;
-                    }
-                } else if (cval === 137) {
-                    if (flipped < 2) {
-                        cval = 139;
-                        flipped = 1;
-                    }
-                } else if (cval === 98) {
-                    if (flipped < 2) {
-                        cval    = 99;
-                        flipped = 1;
-                    }
-                } else if (cval === 38) {
-                    if (flipped < 2) {
-                        cval    = 39;
-                        flipped = 1;
-                    }
-                } else if (cval === 18) {
-                    if (flipped > 0) {
-                        cval = 156;
-                        flipped = 4;
-                    } else {
-                        cval = 152;
-                    }
-                } else if (cval === 33) {
-                    if (flipped > 0) {
-                        cval = 139;
-                        flipped = 4;
-                    } else {
-                        cval = 137;
-                    }
-                } else if (cval === 72) {
-                    if (flipped > 0) {
-                        cval = 99;
-                        flipped = 4;
-                    } else {
-                        cval = 98;
-                    }
-                } else if (cval === 132) {
-                    if (flipped > 0) {
-                        cval = 39;
-                        flipped = 4;
-                    } else {
-                        cval = 38;
-                    }
-                }
-            }
-
-            /* add cell to BandGrid if it contains at least one polygon-side */
-            if ((cval != 0) && (cval != 170)) {
-                var topleft, topright, bottomleft, bottomright,
-                    righttop, rightbottom, lefttop, leftbottom;
-
-                topleft = topright = bottomleft = bottomright = righttop =
-                rightbottom = lefttop = leftbottom = 0.5;
-
-                var edges = [];
-
-                /* do interpolation here */
-                /* 1st Triangles */
-                if (cval === 1) { /* 0001 */
-                    bottomleft = 1 - interpolateX(minV, br, bl);
-                    leftbottom = 1 - interpolateX(minV, tl, bl);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 169) { /* 2221 */
-                    bottomleft = interpolateX(maxV, bl, br);
-                    leftbottom = interpolateX(maxV, bl, tl);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 4) { /* 0010 */
-                    rightbottom = 1 - interpolateX(minV, tr, br);
-                    bottomright = interpolateX(minV, bl, br);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 166) { /* 2212 */
-                    rightbottom = interpolateX(maxV, br, tr);
-                    bottomright = 1 - interpolateX(maxV, br, bl);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 16) { /* 0100 */
-                    righttop = interpolateX(minV, br, tr);
-                    topright = interpolateX(minV, tl, tr);
-                    edges.push(isoBandEdgeRT[cval]);
-                } else if (cval === 154) { /* 2122 */
-                    righttop = 1 - interpolateX(maxV, tr, br);
-                    topright = 1 - interpolateX(maxV, tr, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                } else if (cval === 64) { /* 1000 */
-                    lefttop = interpolateX(minV, bl, tl);
-                    topleft = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 106) { /* 1222 */
-                    lefttop = 1 - interpolateX(maxV, tl, bl);
-                    topleft = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeLT[cval]);
-                }
-                /* 2nd Trapezoids */
-                else if (cval === 168) { /* 2220 */
-                    bottomright = interpolateX(maxV, bl, br);
-                    bottomleft = interpolateX(minV, bl, br);
-                    leftbottom = interpolateX(minV, bl, tl);
-                    lefttop = interpolateX(maxV, bl, tl);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 2) { /* 0002 */
-                    bottomright = 1 - interpolateX(minV, br, bl);
-                    bottomleft = 1 - interpolateX(maxV, br, bl);
-                    leftbottom = 1 - interpolateX(maxV, tl, bl);
-                    lefttop = 1 - interpolateX(minV, tl, bl);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 162) { /* 2202 */
-                    righttop = interpolateX(maxV, br, tr);
-                    rightbottom = interpolateX(minV, br, tr);
-                    bottomright = 1 - interpolateX(minV, br, bl);
-                    bottomleft = 1 - interpolateX(maxV, br, bl);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 8) { /* 0020 */
-                    righttop = 1 - interpolateX(minV, tr, br);
-                    rightbottom = 1 - interpolateX(maxV, tr, br);
-                    bottomright = interpolateX(maxV, bl, br);
-                    bottomleft = interpolateX(minV, bl, br);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 138) { /* 2022 */
-                    righttop = 1 - interpolateX(minV, tr, br);
-                    rightbottom = 1 - interpolateX(maxV, tr, br);
-                    topleft = 1 - interpolateX(maxV, tr, tl);
-                    topright = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 32) { /* 0200 */
-                    righttop = interpolateX(maxV, br, tr);
-                    rightbottom = interpolateX(minV, br, tr);
-                    topleft = interpolateX(minV, tl, tr);
-                    topright = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 42) { /* 0222 */
-                    leftbottom = 1 - interpolateX(maxV, tl, bl);
-                    lefttop = 1 - interpolateX(minV, tl, bl);
-                    topleft = interpolateX(minV, tl, tr);
-                    topright = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeLB[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 128) { /* 2000 */
-                    leftbottom = interpolateX(minV, bl, tl);
-                    lefttop = interpolateX(maxV, bl, tl);
-                    topleft = 1 - interpolateX(maxV, tr, tl);
-                    topright = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeLB[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                }
-
-                /* 3rd rectangle cases */
-                if (cval === 5) { /* 0011 */
-                    rightbottom = 1 - interpolateX(minV, tr, br);
-                    leftbottom = 1 - interpolateX(minV, tl, bl);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 165) { /* 2211 */
-                    rightbottom = interpolateX(maxV, br, tr);
-                    leftbottom = interpolateX(maxV, bl, tl);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 20) { /* 0110 */
-                    bottomright = interpolateX(minV, bl, br);
-                    topright = interpolateX(minV, tl, tr);
-                    edges.push(isoBandEdgeBR[cval]);
-                } else if (cval === 150) { /* 2112 */
-                    bottomright = 1 - interpolateX(maxV, br, bl);
-                    topright = 1 - interpolateX(maxV, tr, tl);
-                    edges.push(isoBandEdgeBR[cval]);
-                } else if (cval === 80) { /* 1100 */
-                    righttop = interpolateX(minV, br, tr);
-                    lefttop = interpolateX(minV, bl, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                } else if (cval === 90) { /* 1122 */
-                    righttop = 1 - interpolateX(maxV, tr, br);
-                    lefttop = 1 - interpolateX(maxV, tl, bl);
-                    edges.push(isoBandEdgeRT[cval]);
-                } else if (cval === 65) { /* 1001 */
-                    bottomleft = 1 - interpolateX(minV, br, bl);
-                    topleft = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 105) { /* 1221 */
-                    bottomleft = interpolateX(maxV, bl, br);
-                    topleft = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 160) { /* 2200 */
-                    righttop = interpolateX(maxV, br, tr);
-                    rightbottom = interpolateX(minV, br, tr);
-                    leftbottom = interpolateX(minV, bl, tl);
-                    lefttop = interpolateX(maxV, bl, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 10) { /* 0022 */
-                    righttop = 1 - interpolateX(minV, tr, br);
-                    rightbottom = 1 - interpolateX(maxV, tr, br);
-                    leftbottom = 1 - interpolateX(maxV, tl, bl);
-                    lefttop = 1 - interpolateX(minV, tl, bl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 130) { /* 2002 */
-                    bottomright = 1 - interpolateX(minV, br, bl);
-                    bottomleft = 1 - interpolateX(maxV, br, bl);
-                    topleft = 1 - interpolateX(maxV, tr, tl);
-                    topright = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 40) { /* 0220 */
-                    bottomright = interpolateX(maxV, bl, br);
-                    bottomleft = interpolateX(minV, bl, br);
-                    topleft = interpolateX(minV, tl, tr);
-                    topright = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                }
-
-                /* 4th single pentagon cases */
-                else if (cval === 101) { /* 1211 */
-                    rightbottom = interpolateX(maxV, br, tr);
-                    topleft = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 69) { /* 1011 */
-                    rightbottom = 1 - interpolateX(minV, tr, br);
-                    topleft = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 149) { /* 2111 */
-                    leftbottom = interpolateX(maxV, bl, tl);
-                    topright = 1 - interpolateX(maxV, tr, tl);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 21) { /* 0111 */
-                    leftbottom = 1 - interpolateX(minV, tl, bl);
-                    topright = interpolateX(minV, tl, tr);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 86) { /* 1112 */
-                    bottomright = 1 - interpolateX(maxV, br, bl);
-                    lefttop = 1 - interpolateX(maxV, tl, bl);
-                    edges.push(isoBandEdgeBR[cval]);
-                } else if (cval === 84) { /* 1110 */
-                    bottomright = interpolateX(minV, bl, br);
-                    lefttop = interpolateX(minV, bl, tl);
-                    edges.push(isoBandEdgeBR[cval]);
-                } else if (cval === 89) { /* 1121 */
-                    righttop = 1 - interpolateX(maxV, tr, br);
-                    bottomleft = interpolateX(maxV, bl, br);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 81) { /* 1101 */
-                    righttop = interpolateX(minV, br, tr);
-                    bottomleft = 1 - interpolateX(minV, br, bl);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 96) { /* 1200 */
-                    righttop = interpolateX(maxV, br, tr);
-                    rightbottom = interpolateX(minV, br, tr);
-                    lefttop = interpolateX(minV, bl, tl);
-                    topleft = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 74) { /* 1022 */
-                    righttop = 1 - interpolateX(minV, tr, br);
-                    rightbottom = 1 - interpolateX(maxV, tr, br);
-                    lefttop = 1 - interpolateX(maxV, tl, bl);
-                    topleft = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 24) { /* 0120 */
-                    righttop = 1 - interpolateX(maxV, tr, br);
-                    bottomright = interpolateX(maxV, bl, br);
-                    bottomleft = interpolateX(minV, bl, br);
-                    topright = interpolateX(minV, tl, tr);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 146) { /* 2102 */
-                    righttop = interpolateX(minV, br, tr);
-                    bottomright = 1 - interpolateX(minV, br, bl);
-                    bottomleft = 1 - interpolateX(maxV, br, bl);
-                    topright = 1 - interpolateX(maxV, tr, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 6) { /* 0012 */
-                    rightbottom = 1 - interpolateX(minV, tr, br);
-                    bottomright = 1 - interpolateX(maxV, br, bl);
-                    leftbottom = 1 - interpolateX(maxV, tl, bl);
-                    lefttop = 1 - interpolateX(minV, tl, bl);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBR[cval]);
-                } else if (cval === 164) { /* 2210 */
-                    rightbottom = interpolateX(maxV, br, tr);
-                    bottomright = interpolateX(minV, bl, br);
-                    leftbottom = interpolateX(minV, bl, tl);
-                    lefttop = interpolateX(maxV, bl, tl);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBR[cval]);
-                } else if (cval === 129) { /* 2001 */
-                    bottomleft = 1 - interpolateX(minV, br, bl);
-                    leftbottom = interpolateX(maxV, bl, tl);
-                    topleft = 1 - interpolateX(maxV, tr, tl);
-                    topright = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeBL[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 41) { /* 0221 */
-                    bottomleft = interpolateX(maxV, bl, br);
-                    leftbottom = 1 - interpolateX(minV, tl, bl);
-                    topleft = interpolateX(minV, tl, tr);
-                    topright = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeBL[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 66) { /* 1002 */
-                    bottomright = 1 - interpolateX(minV, br, bl);
-                    bottomleft = 1 - interpolateX(maxV, br, bl);
-                    lefttop = 1 - interpolateX(maxV, tl, bl);
-                    topleft = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 104) { /* 1220 */
-                    bottomright = interpolateX(maxV, bl, br);
-                    bottomleft = interpolateX(minV, bl, br);
-                    lefttop = interpolateX(minV, bl, tl);
-                    topleft = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeBL[cval]);
-                    edges.push(isoBandEdgeTL[cval]);
-                } else if (cval === 144) { /* 2100 */
-                    righttop = interpolateX(minV, br, tr);
-                    leftbottom = interpolateX(minV, bl, tl);
-                    lefttop = interpolateX(maxV, bl, tl);
-                    topright = 1 - interpolateX(maxV, tr, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 26) { /* 0122 */
-                    righttop = 1 - interpolateX(maxV, tr, br);
-                    leftbottom = 1 - interpolateX(maxV, tl, bl);
-                    lefttop = 1 - interpolateX(minV, tl, bl);
-                    topright = interpolateX(minV, tl, tr);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 36) { /* 0210 */
-                    rightbottom = interpolateX(maxV, br, tr);
-                    bottomright = interpolateX(minV, bl, br);
-                    topleft = interpolateX(minV, tl, tr);
-                    topright = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBR[cval]);
-                } else if (cval === 134) { /* 2012 */
-                    rightbottom = 1 - interpolateX(minV, tr, br);
-                    bottomright = 1 - interpolateX(maxV, br, bl);
-                    topleft = 1 - interpolateX(maxV, tr, tl);
-                    topright = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBR[cval]);
-                } else if (cval === 9) { /* 0021 */
-                    righttop = 1 - interpolateX(minV, tr, br);
-                    rightbottom = 1 - interpolateX(maxV, tr, br);
-                    bottomleft = interpolateX(maxV, bl, br);
-                    leftbottom = 1 - interpolateX(minV, tl, bl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 161) { /* 2201 */
-                    righttop = interpolateX(maxV, br, tr);
-                    rightbottom = interpolateX(minV, br, tr);
-                    bottomleft = 1 - interpolateX(minV, br, bl);
-                    leftbottom = interpolateX(maxV, bl, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                }
-
-                /* 5th single hexagon cases */
-                else if (cval === 37) { /* 0211 */
-                    rightbottom = interpolateX(maxV, br, tr);
-                    leftbottom = 1 - interpolateX(minV, tl, bl);
-                    topleft = interpolateX(minV, tl, tr);
-                    topright = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 133) { /* 2011 */
-                    rightbottom = 1 - interpolateX(minV, tr, br);
-                    leftbottom = interpolateX(maxV, bl, tl);
-                    topleft = 1 - interpolateX(maxV, tr, tl);
-                    topright = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 148) { /* 2110 */
-                    bottomright = interpolateX(minV, bl, br);
-                    leftbottom = interpolateX(minV, bl, tl);
-                    lefttop = interpolateX(maxV, bl, tl);
-                    topright = 1 - interpolateX(maxV, tr, tl);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 22) { /* 0112 */
-                    bottomright = 1 - interpolateX(maxV, br, bl);
-                    leftbottom = 1 - interpolateX(maxV, tl, bl);
-                    lefttop = 1 - interpolateX(minV, tl, bl);
-                    topright = interpolateX(minV, tl, tr);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 82) { /* 1102 */
-                    righttop = interpolateX(minV, br, tr);
-                    bottomright = 1 - interpolateX(minV, br, bl);
-                    bottomleft = 1 - interpolateX(maxV, br, bl);
-                    lefttop = 1 - interpolateX(maxV, tl, bl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 88) { /* 1120 */
-                    righttop = 1 - interpolateX(maxV, tr, br);
-                    bottomright = interpolateX(maxV, bl, br);
-                    bottomleft = interpolateX(minV, bl, br);
-                    lefttop = interpolateX(minV, bl, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 73) { /* 1021 */
-                    righttop = 1 - interpolateX(minV, tr, br);
-                    rightbottom = 1 - interpolateX(maxV, tr, br);
-                    bottomleft = interpolateX(maxV, bl, br);
-                    topleft = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 97) { /* 1201 */
-                    righttop = interpolateX(maxV, br, tr);
-                    rightbottom = interpolateX(minV, br, tr);
-                    bottomleft = 1 - interpolateX(minV, br, bl);
-                    topleft = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                } else if (cval === 145) { /* 2101 */
-                    righttop = interpolateX(minV, br, tr);
-                    bottomleft = 1 - interpolateX(minV, br, bl);
-                    leftbottom = interpolateX(maxV, bl, tl);
-                    topright = 1 - interpolateX(maxV, tr, tl);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 25) { /* 0121 */
-                    righttop = 1 - interpolateX(maxV, tr, br);
-                    bottomleft = interpolateX(maxV, bl, br);
-                    leftbottom = 1 - interpolateX(minV, tl, bl);
-                    topright = interpolateX(minV, tl, tr);
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 70) { /* 1012 */
-                    rightbottom = 1 - interpolateX(minV, tr, br);
-                    bottomright = 1 - interpolateX(maxV, br, bl);
-                    lefttop = 1 - interpolateX(maxV, tl, bl);
-                    topleft = 1 - interpolateX(minV, tr, tl);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBR[cval]);
-                } else if (cval === 100) { /* 1210 */
-                    rightbottom = interpolateX(maxV, br, tr);
-                    bottomright = interpolateX(minV, bl, br);
-                    lefttop = interpolateX(minV, bl, tl);
-                    topleft = interpolateX(maxV, tl, tr);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBR[cval]);
-                }
-
-                /* 8-sided cases */
-                else if (cval === 34) { /* 0202 || 2020 with flipped == 0 */
-                    if (flipped === 0) {
-                        righttop = 1 - interpolateX(minV, tr, br);
-                        rightbottom = 1 - interpolateX(maxV, tr, br);
-                        bottomright = interpolateX(maxV, bl, br);
-                        bottomleft = interpolateX(minV, bl, br);
-                        leftbottom = interpolateX(minV, bl, tl);
-                        lefttop = interpolateX(maxV, bl, tl);
-                        topleft = 1 - interpolateX(maxV, tr, tl);
-                        topright = 1 - interpolateX(minV, tr, tl);
-                    } else {
-                        righttop = interpolateX(maxV, br, tr);
-                        rightbottom = interpolateX(minV, br, tr);
-                        bottomright = 1 - interpolateX(minV, br, bl);
-                        bottomleft = 1 - interpolateX(maxV, br, bl);
-                        leftbottom = 1 - interpolateX(maxV, tl, bl);
-                        lefttop = 1 - interpolateX(minV, tl, bl);
-                        topleft = interpolateX(minV, tl, tr);
-                        topright = interpolateX(maxV, tl, tr);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 35) { /* flipped == 1 state for 0202, and 2020 with flipped == 4*/
-                    if (flipped === 4) {
-                        righttop = 1 - interpolateX(minV, tr, br);
-                        rightbottom = 1 - interpolateX(maxV, tr, br);
-                        bottomright = interpolateX(maxV, bl, br);
-                        bottomleft = interpolateX(minV, bl, br);
-                        leftbottom = interpolateX(minV, bl, tl);
-                        lefttop = interpolateX(maxV, bl, tl);
-                        topleft = 1 - interpolateX(maxV, tr, tl);
-                        topright = 1 - interpolateX(minV, tr, tl);
-                    } else {
-                        righttop = interpolateX(maxV, br, tr);
-                        rightbottom = interpolateX(minV, br, tr);
-                        bottomright = 1 - interpolateX(minV, br, bl);
-                        bottomleft = 1 - interpolateX(maxV, br, bl);
-                        leftbottom = 1 - interpolateX(maxV, tl, bl);
-                        lefttop = 1 - interpolateX(minV, tl, bl);
-                        topleft = interpolateX(minV, tl, tr);
-                        topright = interpolateX(maxV, tl, tr);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 136) { /* 2020 || 0202 with flipped == 0 */
-                    if (flipped === 0) {
-                        righttop = interpolateX(maxV, br, tr);
-                        rightbottom = interpolateX(minV, br, tr);
-                        bottomright = 1 - interpolateX(minV, br, bl);
-                        bottomleft = 1 - interpolateX(maxV, br, bl);
-                        leftbottom = 1 - interpolateX(maxV, tl, bl);
-                        lefttop = 1 - interpolateX(minV, tl, bl);
-                        topleft = interpolateX(minV, tl, tr);
-                        topright = interpolateX(maxV, tl, tr);
-                    } else {
-                        righttop = 1 - interpolateX(minV, tr, br);
-                        rightbottom = 1 - interpolateX(maxV, tr, br);
-                        bottomright = interpolateX(maxV, bl, br);
-                        bottomleft = interpolateX(minV, bl, br);
-                        leftbottom = interpolateX(minV, bl, tl);
-                        lefttop = interpolateX(maxV, bl, tl);
-                        topleft = 1 - interpolateX(maxV, tr, tl);
-                        topright = 1 - interpolateX(minV, tr, tl);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                }
-
-                /* 6-sided polygon cases */
-                else if (cval === 153) { /* 0101 with flipped == 0 || 2121 with flipped == 2 */
-                    if (flipped === 0) {
-                        righttop = interpolateX(minV, br, tr);
-                        bottomleft = 1 - interpolateX(minV, br, bl);
-                        leftbottom = 1 - interpolateX(minV, tl, bl);
-                        topright = interpolateX(minV, tl, tr);
-                    } else {
-                        righttop = 1 - interpolateX(maxV, tr, br);
-                        bottomleft = interpolateX(maxV, bl, br);
-                        leftbottom = interpolateX(maxV, bl, tl);
-                        topright = 1 - interpolateX(maxV, tr, tl);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 102) { /* 1010 with flipped == 0 || 1212 with flipped == 2 */
-                    if (flipped === 0) {
-                        rightbottom = 1 - interpolateX(minV, tr, br);
-                        bottomright = interpolateX(minV, bl, br);
-                        lefttop = interpolateX(minV, bl, tl);
-                        topleft = 1 - interpolateX(minV, tr, tl);
-                    } else {
-                        rightbottom = interpolateX(maxV, br, tr);
-                        bottomright = 1 - interpolateX(maxV, br, bl);
-                        lefttop = 1 - interpolateX(maxV, tl, bl);
-                        topleft = interpolateX(maxV, tl, tr);
-                    }
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 155) { /* 0101 with flipped == 4 || 2121 with flipped == 1 */
-                    if (flipped === 4) {
-                        righttop = interpolateX(minV, br, tr);
-                        bottomleft = 1 - interpolateX(minV, br, bl);
-                        leftbottom = 1 - interpolateX(minV, tl, bl);
-                        topright = interpolateX(minV, tl, tr);
-                    } else {
-                        righttop = 1 - interpolateX(maxV, tr, br);
-                        bottomleft = interpolateX(maxV, bl, br);
-                        leftbottom = interpolateX(maxV, bl, tl);
-                        topright = 1 - interpolateX(maxV, tr, tl);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 103) { /* 1010 with flipped == 4 || 1212 with flipped == 1 */
-                    if (flipped === 4) {
-                        rightbottom = 1 - interpolateX(minV, tr, br);
-                        bottomright = interpolateX(minV, bl, br);
-                        lefttop = interpolateX(minV, bl, tl);
-                        topleft = 1 - interpolateX(minV, tr, tl);
-                    } else {
-                        rightbottom = interpolateX(maxV, br, tr);
-                        bottomright = 1 - interpolateX(maxV, br, bl);
-                        lefttop = 1 - interpolateX(maxV, tl, bl);
-                        topleft = interpolateX(maxV, tl, tr);
-                    }
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBR[cval]);
-                }
-
-                /* 7-sided polygon cases */
-                else if (cval === 152) { /* 2120 with flipped == 2 || 0102 with flipped == 0 */
-                    if (flipped === 0) {
-                        righttop = interpolateX(minV, br, tr);
-                        bottomright = 1 - interpolateX(minV, br, bl);
-                        bottomleft = 1 - interpolateX(maxV, br, bl);
-                        leftbottom = 1 - interpolateX(maxV, tl, bl);
-                        lefttop = 1 - interpolateX(minV, tl, bl);
-                        topright = interpolateX(minV, tl, tr);
-                    } else {
-                        righttop = 1 - interpolateX(maxV, tr, br);
-                        bottomright = interpolateX(maxV, bl, br);
-                        bottomleft = interpolateX(minV, bl, br);
-                        leftbottom = interpolateX(minV, bl, tl);
-                        lefttop = interpolateX(maxV, bl, tl);
-                        topright = 1 - interpolateX(maxV, tr, tl);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 156) { /* 2120 with flipped == 1 || 0102 with flipped == 4 */
-                    if (flipped === 4) {
-                        righttop = interpolateX(minV, br, tr);
-                        bottomright = 1 - interpolateX(minV, br, bl);
-                        bottomleft = 1 - interpolateX(maxV, br, bl);
-                        leftbottom = 1 - interpolateX(maxV, tl, bl);
-                        lefttop = 1 - interpolateX(minV, tl, bl);
-                        topright = interpolateX(minV, tl, tr);
-                    } else {
-                        righttop = 1 - interpolateX(maxV, tr, br);
-                        bottomright = interpolateX(maxV, bl, br);
-                        bottomleft = interpolateX(minV, bl, br);
-                        leftbottom = interpolateX(minV, bl, tl);
-                        lefttop = interpolateX(maxV, bl, tl);
-                        topright = 1 - interpolateX(maxV, tr, tl);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 137) { /* 2021 with flipped == 2 || 0201 with flipped == 0 */
-                    if (flipped === 0) {
-                        righttop = interpolateX(maxV, br, tr);
-                        rightbottom = interpolateX(minV, br, tr);
-                        bottomleft = 1 - interpolateX(minV, br, bl);
-                        leftbottom = 1 - interpolateX(minV, tl, bl);
-                        topleft = interpolateX(minV, tl, tr);
-                        topright = interpolateX(maxV, tl, tr);
-                    } else {
-                        righttop = 1 - interpolateX(minV, tr, br);
-                        rightbottom = 1 - interpolateX(maxV, tr, br);
-                        bottomleft = interpolateX(maxV, bl, br);
-                        leftbottom = interpolateX(maxV, bl, tl);
-                        topleft = 1 - interpolateX(maxV, tr, tl);
-                        topright = 1 - interpolateX(minV, tr, tl);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 139) { /* 2021 with flipped == 1 || 0201 with flipped == 4 */
-                    if (flipped === 4) {
-                        righttop = interpolateX(maxV, br, tr);
-                        rightbottom = interpolateX(minV, br, tr);
-                        bottomleft = 1 - interpolateX(minV, br, bl);
-                        leftbottom = 1 - interpolateX(minV, tl, bl);
-                        topleft = interpolateX(minV, tl, tr);
-                        topright = interpolateX(maxV, tl, tr);
-                    } else {
-                        righttop = 1 - interpolateX(minV, tr, br);
-                        rightbottom = 1 - interpolateX(maxV, tr, br);
-                        bottomleft = interpolateX(maxV, bl, br);
-                        leftbottom = interpolateX(maxV, bl, tl);
-                        topleft = 1 - interpolateX(maxV, tr, tl);
-                        topright = 1 - interpolateX(minV, tr, tl);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                } else if (cval === 98) { /* 1202 with flipped == 2 || 1020 with flipped == 0 */
-                    if (flipped === 0) {
-                        righttop = 1 - interpolateX(minV, tr, br);
-                        rightbottom = 1 - interpolateX(maxV, tr, br);
-                        bottomright = interpolateX(maxV, bl, br);
-                        bottomleft = interpolateX(minV, bl, br);
-                        lefttop = interpolateX(minV, bl, tl);
-                        topleft = 1 - interpolateX(minV, tr, tl);
-                    } else {
-                        righttop = interpolateX(maxV, br, tr);
-                        rightbottom = interpolateX(minV, br, tr);
-                        bottomright = 1 - interpolateX(minV, br, bl);
-                        bottomleft = 1 - interpolateX(maxV, br, bl);
-                        lefttop = 1 - interpolateX(maxV, tl, bl);
-                        topleft = interpolateX(maxV, tl, tr);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 99) { /* 1202 with flipped == 1 || 1020 with flipped == 4 */
-                    if (flipped === 4) {
-                        righttop = 1 - interpolateX(minV, tr, br);
-                        rightbottom = 1 - interpolateX(maxV, tr, br);
-                        bottomright = interpolateX(maxV, bl, br);
-                        bottomleft = interpolateX(minV, bl, br);
-                        lefttop = interpolateX(minV, bl, tl);
-                        topleft = 1 - interpolateX(minV, tr, tl);
-                    } else {
-                        righttop = interpolateX(maxV, br, tr);
-                        rightbottom = interpolateX(minV, br, tr);
-                        bottomright = 1 - interpolateX(minV, br, bl);
-                        bottomleft = 1 - interpolateX(maxV, br, bl);
-                        lefttop = 1 - interpolateX(maxV, tl, bl);
-                        topleft = interpolateX(maxV, tl, tr);
-                    }
-                    edges.push(isoBandEdgeRT[cval]);
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBL[cval]);
-                } else if (cval === 38) { /* 0212 with flipped == 2 || 2010 with flipped == 0 */
-                    if (flipped === 0) {
-                        rightbottom = 1 - interpolateX(minV, tr, br);
-                        bottomright = interpolateX(minV, bl, br);
-                        leftbottom = interpolateX(minV, bl, tl);
-                        lefttop = interpolateX(maxV, bl, tl);
-                        topleft = 1 - interpolateX(maxV, tr, tl);
-                        topright = 1 - interpolateX(minV, tr, tl);
-                    } else {
-                        rightbottom = interpolateX(maxV, br, tr);
-                        bottomright = 1 - interpolateX(maxV, br, bl);
-                        leftbottom = 1 - interpolateX(maxV, tl, bl);
-                        lefttop = 1 - interpolateX(minV, tl, bl);
-                        topleft = interpolateX(minV, tl, tr);
-                        topright = interpolateX(maxV, tl, tr);
-                    }
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeLB[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 39) { /* 0212 with flipped == 1 || 2010 with flipped == 4 */
-                    if (flipped === 4) {
-                        rightbottom = 1 - interpolateX(minV, tr, br);
-                        bottomright = interpolateX(minV, bl, br);
-                        leftbottom = interpolateX(minV, bl, tl);
-                        lefttop = interpolateX(maxV, bl, tl);
-                        topleft = 1 - interpolateX(maxV, tr, tl);
-                        topright = 1 - interpolateX(minV, tr, tl);
-                    } else {
-                        rightbottom = interpolateX(maxV, br, tr);
-                        bottomright = 1 - interpolateX(maxV, br, bl);
-                        leftbottom = 1 - interpolateX(maxV, tl, bl);
-                        lefttop = 1 - interpolateX(minV, tl, bl);
-                        topleft = interpolateX(minV, tl, tr);
-                        topright = interpolateX(maxV, tl, tr);
-                    }
-                    edges.push(isoBandEdgeRB[cval]);
-                    edges.push(isoBandEdgeBR[cval]);
-                    edges.push(isoBandEdgeLT[cval]);
-                } else if (cval === 85) {
-                    righttop = 1;
-                    rightbottom = 0;
-                    bottomright = 1;
-                    bottomleft = 0;
-                    leftbottom = 0;
-                    lefttop = 1;
-                    topleft = 0;
-                    topright = 1;
-                }
-
-                if (topleft < 0 || topleft > 1 || topright < 0 || topright > 1 || righttop < 0 || righttop > 1 || bottomright < 0 || bottomright > 1 || leftbottom < 0 || leftbottom > 1 || lefttop < 0 || lefttop > 1) {
-                    console.log('MarchingSquaresJS-isoBands: ' + cval + ' ' + cval_real + ' ' + tl + ',' + tr + ',' + br + ',' + bl + ' ' + flipped + ' ' + topleft + ' ' + topright + ' ' + righttop + ' ' + rightbottom + ' ' + bottomright + ' ' + bottomleft + ' ' + leftbottom + ' ' + lefttop);
-                }
-
-                BandGrid.cells[j][i] = {
-                    cval: cval,
-                    cval_real: cval_real,
-                    flipped: flipped,
-                    topleft: topleft,
-                    topright: topright,
-                    righttop: righttop,
-                    rightbottom: rightbottom,
-                    bottomright: bottomright,
-                    bottomleft: bottomleft,
-                    leftbottom: leftbottom,
-                    lefttop: lefttop,
-                    edges: edges
-                };
-            }
+        /* 8-sided cases */
+        if (cval === 34) {
+          if (flipped === 1) {
+            cval = 35;
+          } else if (flipped === 0) {
+            cval = 136;
+          }
+        } else if (cval === 136) {
+          if (flipped === 1) {
+            cval = 35;
+            flipped = 4;
+          } else if (flipped === 0) {
+            cval = 34;
+          }
+        } else if (cval === 17) {
+          /* 6-sided polygon cases */
+          if (flipped === 1) {
+            cval = 155;
+            flipped = 4;
+          } else if (flipped === 0) {
+            cval = 153;
+          }
+        } else if (cval === 68) {
+          if (flipped === 1) {
+            cval = 103;
+            flipped = 4;
+          } else if (flipped === 0) {
+            cval = 102;
+          }
+        } else if (cval === 153) {
+          if (flipped === 1) cval = 155;
+        } else if (cval === 102) {
+          if (flipped === 1) cval = 103;
+        } else if (cval === 152) {
+          /* 7-sided polygon cases */
+          if (flipped < 2) {
+            cval = 156;
+            flipped = 1;
+          }
+        } else if (cval === 137) {
+          if (flipped < 2) {
+            cval = 139;
+            flipped = 1;
+          }
+        } else if (cval === 98) {
+          if (flipped < 2) {
+            cval = 99;
+            flipped = 1;
+          }
+        } else if (cval === 38) {
+          if (flipped < 2) {
+            cval = 39;
+            flipped = 1;
+          }
+        } else if (cval === 18) {
+          if (flipped > 0) {
+            cval = 156;
+            flipped = 4;
+          } else {
+            cval = 152;
+          }
+        } else if (cval === 33) {
+          if (flipped > 0) {
+            cval = 139;
+            flipped = 4;
+          } else {
+            cval = 137;
+          }
+        } else if (cval === 72) {
+          if (flipped > 0) {
+            cval = 99;
+            flipped = 4;
+          } else {
+            cval = 98;
+          }
+        } else if (cval === 132) {
+          if (flipped > 0) {
+            cval = 39;
+            flipped = 4;
+          } else {
+            cval = 38;
+          }
         }
-    }
+      }
 
-    return BandGrid;
+      /* add cell to BandGrid if it contains at least one polygon-side */
+      if (cval != 0 && cval != 170) {
+        var topleft,
+          topright,
+          bottomleft,
+          bottomright,
+          righttop,
+          rightbottom,
+          lefttop,
+          leftbottom;
+
+        topleft = topright = bottomleft = bottomright = righttop = rightbottom = lefttop = leftbottom = 0.5;
+
+        var edges = [];
+
+        /* do interpolation here */
+        /* 1st Triangles */
+        if (cval === 1) {
+          /* 0001 */
+          bottomleft = 1 - interpolateX(minV, br, bl);
+          leftbottom = 1 - interpolateX(minV, tl, bl);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 169) {
+          /* 2221 */
+          bottomleft = interpolateX(maxV, bl, br);
+          leftbottom = interpolateX(maxV, bl, tl);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 4) {
+          /* 0010 */
+          rightbottom = 1 - interpolateX(minV, tr, br);
+          bottomright = interpolateX(minV, bl, br);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 166) {
+          /* 2212 */
+          rightbottom = interpolateX(maxV, br, tr);
+          bottomright = 1 - interpolateX(maxV, br, bl);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 16) {
+          /* 0100 */
+          righttop = interpolateX(minV, br, tr);
+          topright = interpolateX(minV, tl, tr);
+          edges.push(isoBandEdgeRT[cval]);
+        } else if (cval === 154) {
+          /* 2122 */
+          righttop = 1 - interpolateX(maxV, tr, br);
+          topright = 1 - interpolateX(maxV, tr, tl);
+          edges.push(isoBandEdgeRT[cval]);
+        } else if (cval === 64) {
+          /* 1000 */
+          lefttop = interpolateX(minV, bl, tl);
+          topleft = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 106) {
+          /* 1222 */
+          lefttop = 1 - interpolateX(maxV, tl, bl);
+          topleft = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 168) {
+          /* 2nd Trapezoids */
+          /* 2220 */
+          bottomright = interpolateX(maxV, bl, br);
+          bottomleft = interpolateX(minV, bl, br);
+          leftbottom = interpolateX(minV, bl, tl);
+          lefttop = interpolateX(maxV, bl, tl);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 2) {
+          /* 0002 */
+          bottomright = 1 - interpolateX(minV, br, bl);
+          bottomleft = 1 - interpolateX(maxV, br, bl);
+          leftbottom = 1 - interpolateX(maxV, tl, bl);
+          lefttop = 1 - interpolateX(minV, tl, bl);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 162) {
+          /* 2202 */
+          righttop = interpolateX(maxV, br, tr);
+          rightbottom = interpolateX(minV, br, tr);
+          bottomright = 1 - interpolateX(minV, br, bl);
+          bottomleft = 1 - interpolateX(maxV, br, bl);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 8) {
+          /* 0020 */
+          righttop = 1 - interpolateX(minV, tr, br);
+          rightbottom = 1 - interpolateX(maxV, tr, br);
+          bottomright = interpolateX(maxV, bl, br);
+          bottomleft = interpolateX(minV, bl, br);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 138) {
+          /* 2022 */
+          righttop = 1 - interpolateX(minV, tr, br);
+          rightbottom = 1 - interpolateX(maxV, tr, br);
+          topleft = 1 - interpolateX(maxV, tr, tl);
+          topright = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 32) {
+          /* 0200 */
+          righttop = interpolateX(maxV, br, tr);
+          rightbottom = interpolateX(minV, br, tr);
+          topleft = interpolateX(minV, tl, tr);
+          topright = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 42) {
+          /* 0222 */
+          leftbottom = 1 - interpolateX(maxV, tl, bl);
+          lefttop = 1 - interpolateX(minV, tl, bl);
+          topleft = interpolateX(minV, tl, tr);
+          topright = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeLB[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 128) {
+          /* 2000 */
+          leftbottom = interpolateX(minV, bl, tl);
+          lefttop = interpolateX(maxV, bl, tl);
+          topleft = 1 - interpolateX(maxV, tr, tl);
+          topright = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeLB[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        }
+
+        /* 3rd rectangle cases */
+        if (cval === 5) {
+          /* 0011 */
+          rightbottom = 1 - interpolateX(minV, tr, br);
+          leftbottom = 1 - interpolateX(minV, tl, bl);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 165) {
+          /* 2211 */
+          rightbottom = interpolateX(maxV, br, tr);
+          leftbottom = interpolateX(maxV, bl, tl);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 20) {
+          /* 0110 */
+          bottomright = interpolateX(minV, bl, br);
+          topright = interpolateX(minV, tl, tr);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 150) {
+          /* 2112 */
+          bottomright = 1 - interpolateX(maxV, br, bl);
+          topright = 1 - interpolateX(maxV, tr, tl);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 80) {
+          /* 1100 */
+          righttop = interpolateX(minV, br, tr);
+          lefttop = interpolateX(minV, bl, tl);
+          edges.push(isoBandEdgeRT[cval]);
+        } else if (cval === 90) {
+          /* 1122 */
+          righttop = 1 - interpolateX(maxV, tr, br);
+          lefttop = 1 - interpolateX(maxV, tl, bl);
+          edges.push(isoBandEdgeRT[cval]);
+        } else if (cval === 65) {
+          /* 1001 */
+          bottomleft = 1 - interpolateX(minV, br, bl);
+          topleft = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 105) {
+          /* 1221 */
+          bottomleft = interpolateX(maxV, bl, br);
+          topleft = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 160) {
+          /* 2200 */
+          righttop = interpolateX(maxV, br, tr);
+          rightbottom = interpolateX(minV, br, tr);
+          leftbottom = interpolateX(minV, bl, tl);
+          lefttop = interpolateX(maxV, bl, tl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 10) {
+          /* 0022 */
+          righttop = 1 - interpolateX(minV, tr, br);
+          rightbottom = 1 - interpolateX(maxV, tr, br);
+          leftbottom = 1 - interpolateX(maxV, tl, bl);
+          lefttop = 1 - interpolateX(minV, tl, bl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 130) {
+          /* 2002 */
+          bottomright = 1 - interpolateX(minV, br, bl);
+          bottomleft = 1 - interpolateX(maxV, br, bl);
+          topleft = 1 - interpolateX(maxV, tr, tl);
+          topright = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 40) {
+          /* 0220 */
+          bottomright = interpolateX(maxV, bl, br);
+          bottomleft = interpolateX(minV, bl, br);
+          topleft = interpolateX(minV, tl, tr);
+          topright = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 101) {
+          /* 4th single pentagon cases */
+          /* 1211 */
+          rightbottom = interpolateX(maxV, br, tr);
+          topleft = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 69) {
+          /* 1011 */
+          rightbottom = 1 - interpolateX(minV, tr, br);
+          topleft = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 149) {
+          /* 2111 */
+          leftbottom = interpolateX(maxV, bl, tl);
+          topright = 1 - interpolateX(maxV, tr, tl);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 21) {
+          /* 0111 */
+          leftbottom = 1 - interpolateX(minV, tl, bl);
+          topright = interpolateX(minV, tl, tr);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 86) {
+          /* 1112 */
+          bottomright = 1 - interpolateX(maxV, br, bl);
+          lefttop = 1 - interpolateX(maxV, tl, bl);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 84) {
+          /* 1110 */
+          bottomright = interpolateX(minV, bl, br);
+          lefttop = interpolateX(minV, bl, tl);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 89) {
+          /* 1121 */
+          righttop = 1 - interpolateX(maxV, tr, br);
+          bottomleft = interpolateX(maxV, bl, br);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 81) {
+          /* 1101 */
+          righttop = interpolateX(minV, br, tr);
+          bottomleft = 1 - interpolateX(minV, br, bl);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 96) {
+          /* 1200 */
+          righttop = interpolateX(maxV, br, tr);
+          rightbottom = interpolateX(minV, br, tr);
+          lefttop = interpolateX(minV, bl, tl);
+          topleft = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 74) {
+          /* 1022 */
+          righttop = 1 - interpolateX(minV, tr, br);
+          rightbottom = 1 - interpolateX(maxV, tr, br);
+          lefttop = 1 - interpolateX(maxV, tl, bl);
+          topleft = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 24) {
+          /* 0120 */
+          righttop = 1 - interpolateX(maxV, tr, br);
+          bottomright = interpolateX(maxV, bl, br);
+          bottomleft = interpolateX(minV, bl, br);
+          topright = interpolateX(minV, tl, tr);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 146) {
+          /* 2102 */
+          righttop = interpolateX(minV, br, tr);
+          bottomright = 1 - interpolateX(minV, br, bl);
+          bottomleft = 1 - interpolateX(maxV, br, bl);
+          topright = 1 - interpolateX(maxV, tr, tl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 6) {
+          /* 0012 */
+          rightbottom = 1 - interpolateX(minV, tr, br);
+          bottomright = 1 - interpolateX(maxV, br, bl);
+          leftbottom = 1 - interpolateX(maxV, tl, bl);
+          lefttop = 1 - interpolateX(minV, tl, bl);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 164) {
+          /* 2210 */
+          rightbottom = interpolateX(maxV, br, tr);
+          bottomright = interpolateX(minV, bl, br);
+          leftbottom = interpolateX(minV, bl, tl);
+          lefttop = interpolateX(maxV, bl, tl);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 129) {
+          /* 2001 */
+          bottomleft = 1 - interpolateX(minV, br, bl);
+          leftbottom = interpolateX(maxV, bl, tl);
+          topleft = 1 - interpolateX(maxV, tr, tl);
+          topright = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeBL[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 41) {
+          /* 0221 */
+          bottomleft = interpolateX(maxV, bl, br);
+          leftbottom = 1 - interpolateX(minV, tl, bl);
+          topleft = interpolateX(minV, tl, tr);
+          topright = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeBL[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 66) {
+          /* 1002 */
+          bottomright = 1 - interpolateX(minV, br, bl);
+          bottomleft = 1 - interpolateX(maxV, br, bl);
+          lefttop = 1 - interpolateX(maxV, tl, bl);
+          topleft = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 104) {
+          /* 1220 */
+          bottomright = interpolateX(maxV, bl, br);
+          bottomleft = interpolateX(minV, bl, br);
+          lefttop = interpolateX(minV, bl, tl);
+          topleft = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeBL[cval]);
+          edges.push(isoBandEdgeTL[cval]);
+        } else if (cval === 144) {
+          /* 2100 */
+          righttop = interpolateX(minV, br, tr);
+          leftbottom = interpolateX(minV, bl, tl);
+          lefttop = interpolateX(maxV, bl, tl);
+          topright = 1 - interpolateX(maxV, tr, tl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 26) {
+          /* 0122 */
+          righttop = 1 - interpolateX(maxV, tr, br);
+          leftbottom = 1 - interpolateX(maxV, tl, bl);
+          lefttop = 1 - interpolateX(minV, tl, bl);
+          topright = interpolateX(minV, tl, tr);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 36) {
+          /* 0210 */
+          rightbottom = interpolateX(maxV, br, tr);
+          bottomright = interpolateX(minV, bl, br);
+          topleft = interpolateX(minV, tl, tr);
+          topright = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 134) {
+          /* 2012 */
+          rightbottom = 1 - interpolateX(minV, tr, br);
+          bottomright = 1 - interpolateX(maxV, br, bl);
+          topleft = 1 - interpolateX(maxV, tr, tl);
+          topright = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 9) {
+          /* 0021 */
+          righttop = 1 - interpolateX(minV, tr, br);
+          rightbottom = 1 - interpolateX(maxV, tr, br);
+          bottomleft = interpolateX(maxV, bl, br);
+          leftbottom = 1 - interpolateX(minV, tl, bl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 161) {
+          /* 2201 */
+          righttop = interpolateX(maxV, br, tr);
+          rightbottom = interpolateX(minV, br, tr);
+          bottomleft = 1 - interpolateX(minV, br, bl);
+          leftbottom = interpolateX(maxV, bl, tl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 37) {
+          /* 5th single hexagon cases */
+          /* 0211 */
+          rightbottom = interpolateX(maxV, br, tr);
+          leftbottom = 1 - interpolateX(minV, tl, bl);
+          topleft = interpolateX(minV, tl, tr);
+          topright = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 133) {
+          /* 2011 */
+          rightbottom = 1 - interpolateX(minV, tr, br);
+          leftbottom = interpolateX(maxV, bl, tl);
+          topleft = 1 - interpolateX(maxV, tr, tl);
+          topright = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 148) {
+          /* 2110 */
+          bottomright = interpolateX(minV, bl, br);
+          leftbottom = interpolateX(minV, bl, tl);
+          lefttop = interpolateX(maxV, bl, tl);
+          topright = 1 - interpolateX(maxV, tr, tl);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 22) {
+          /* 0112 */
+          bottomright = 1 - interpolateX(maxV, br, bl);
+          leftbottom = 1 - interpolateX(maxV, tl, bl);
+          lefttop = 1 - interpolateX(minV, tl, bl);
+          topright = interpolateX(minV, tl, tr);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 82) {
+          /* 1102 */
+          righttop = interpolateX(minV, br, tr);
+          bottomright = 1 - interpolateX(minV, br, bl);
+          bottomleft = 1 - interpolateX(maxV, br, bl);
+          lefttop = 1 - interpolateX(maxV, tl, bl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 88) {
+          /* 1120 */
+          righttop = 1 - interpolateX(maxV, tr, br);
+          bottomright = interpolateX(maxV, bl, br);
+          bottomleft = interpolateX(minV, bl, br);
+          lefttop = interpolateX(minV, bl, tl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 73) {
+          /* 1021 */
+          righttop = 1 - interpolateX(minV, tr, br);
+          rightbottom = 1 - interpolateX(maxV, tr, br);
+          bottomleft = interpolateX(maxV, bl, br);
+          topleft = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 97) {
+          /* 1201 */
+          righttop = interpolateX(maxV, br, tr);
+          rightbottom = interpolateX(minV, br, tr);
+          bottomleft = 1 - interpolateX(minV, br, bl);
+          topleft = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+        } else if (cval === 145) {
+          /* 2101 */
+          righttop = interpolateX(minV, br, tr);
+          bottomleft = 1 - interpolateX(minV, br, bl);
+          leftbottom = interpolateX(maxV, bl, tl);
+          topright = 1 - interpolateX(maxV, tr, tl);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 25) {
+          /* 0121 */
+          righttop = 1 - interpolateX(maxV, tr, br);
+          bottomleft = interpolateX(maxV, bl, br);
+          leftbottom = 1 - interpolateX(minV, tl, bl);
+          topright = interpolateX(minV, tl, tr);
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 70) {
+          /* 1012 */
+          rightbottom = 1 - interpolateX(minV, tr, br);
+          bottomright = 1 - interpolateX(maxV, br, bl);
+          lefttop = 1 - interpolateX(maxV, tl, bl);
+          topleft = 1 - interpolateX(minV, tr, tl);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 100) {
+          /* 1210 */
+          rightbottom = interpolateX(maxV, br, tr);
+          bottomright = interpolateX(minV, bl, br);
+          lefttop = interpolateX(minV, bl, tl);
+          topleft = interpolateX(maxV, tl, tr);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 34) {
+          /* 8-sided cases */
+          /* 0202 || 2020 with flipped == 0 */
+          if (flipped === 0) {
+            righttop = 1 - interpolateX(minV, tr, br);
+            rightbottom = 1 - interpolateX(maxV, tr, br);
+            bottomright = interpolateX(maxV, bl, br);
+            bottomleft = interpolateX(minV, bl, br);
+            leftbottom = interpolateX(minV, bl, tl);
+            lefttop = interpolateX(maxV, bl, tl);
+            topleft = 1 - interpolateX(maxV, tr, tl);
+            topright = 1 - interpolateX(minV, tr, tl);
+          } else {
+            righttop = interpolateX(maxV, br, tr);
+            rightbottom = interpolateX(minV, br, tr);
+            bottomright = 1 - interpolateX(minV, br, bl);
+            bottomleft = 1 - interpolateX(maxV, br, bl);
+            leftbottom = 1 - interpolateX(maxV, tl, bl);
+            lefttop = 1 - interpolateX(minV, tl, bl);
+            topleft = interpolateX(minV, tl, tr);
+            topright = interpolateX(maxV, tl, tr);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 35) {
+          /* flipped == 1 state for 0202, and 2020 with flipped == 4*/
+          if (flipped === 4) {
+            righttop = 1 - interpolateX(minV, tr, br);
+            rightbottom = 1 - interpolateX(maxV, tr, br);
+            bottomright = interpolateX(maxV, bl, br);
+            bottomleft = interpolateX(minV, bl, br);
+            leftbottom = interpolateX(minV, bl, tl);
+            lefttop = interpolateX(maxV, bl, tl);
+            topleft = 1 - interpolateX(maxV, tr, tl);
+            topright = 1 - interpolateX(minV, tr, tl);
+          } else {
+            righttop = interpolateX(maxV, br, tr);
+            rightbottom = interpolateX(minV, br, tr);
+            bottomright = 1 - interpolateX(minV, br, bl);
+            bottomleft = 1 - interpolateX(maxV, br, bl);
+            leftbottom = 1 - interpolateX(maxV, tl, bl);
+            lefttop = 1 - interpolateX(minV, tl, bl);
+            topleft = interpolateX(minV, tl, tr);
+            topright = interpolateX(maxV, tl, tr);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 136) {
+          /* 2020 || 0202 with flipped == 0 */
+          if (flipped === 0) {
+            righttop = interpolateX(maxV, br, tr);
+            rightbottom = interpolateX(minV, br, tr);
+            bottomright = 1 - interpolateX(minV, br, bl);
+            bottomleft = 1 - interpolateX(maxV, br, bl);
+            leftbottom = 1 - interpolateX(maxV, tl, bl);
+            lefttop = 1 - interpolateX(minV, tl, bl);
+            topleft = interpolateX(minV, tl, tr);
+            topright = interpolateX(maxV, tl, tr);
+          } else {
+            righttop = 1 - interpolateX(minV, tr, br);
+            rightbottom = 1 - interpolateX(maxV, tr, br);
+            bottomright = interpolateX(maxV, bl, br);
+            bottomleft = interpolateX(minV, bl, br);
+            leftbottom = interpolateX(minV, bl, tl);
+            lefttop = interpolateX(maxV, bl, tl);
+            topleft = 1 - interpolateX(maxV, tr, tl);
+            topright = 1 - interpolateX(minV, tr, tl);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 153) {
+          /* 6-sided polygon cases */
+          /* 0101 with flipped == 0 || 2121 with flipped == 2 */
+          if (flipped === 0) {
+            righttop = interpolateX(minV, br, tr);
+            bottomleft = 1 - interpolateX(minV, br, bl);
+            leftbottom = 1 - interpolateX(minV, tl, bl);
+            topright = interpolateX(minV, tl, tr);
+          } else {
+            righttop = 1 - interpolateX(maxV, tr, br);
+            bottomleft = interpolateX(maxV, bl, br);
+            leftbottom = interpolateX(maxV, bl, tl);
+            topright = 1 - interpolateX(maxV, tr, tl);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 102) {
+          /* 1010 with flipped == 0 || 1212 with flipped == 2 */
+          if (flipped === 0) {
+            rightbottom = 1 - interpolateX(minV, tr, br);
+            bottomright = interpolateX(minV, bl, br);
+            lefttop = interpolateX(minV, bl, tl);
+            topleft = 1 - interpolateX(minV, tr, tl);
+          } else {
+            rightbottom = interpolateX(maxV, br, tr);
+            bottomright = 1 - interpolateX(maxV, br, bl);
+            lefttop = 1 - interpolateX(maxV, tl, bl);
+            topleft = interpolateX(maxV, tl, tr);
+          }
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 155) {
+          /* 0101 with flipped == 4 || 2121 with flipped == 1 */
+          if (flipped === 4) {
+            righttop = interpolateX(minV, br, tr);
+            bottomleft = 1 - interpolateX(minV, br, bl);
+            leftbottom = 1 - interpolateX(minV, tl, bl);
+            topright = interpolateX(minV, tl, tr);
+          } else {
+            righttop = 1 - interpolateX(maxV, tr, br);
+            bottomleft = interpolateX(maxV, bl, br);
+            leftbottom = interpolateX(maxV, bl, tl);
+            topright = 1 - interpolateX(maxV, tr, tl);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 103) {
+          /* 1010 with flipped == 4 || 1212 with flipped == 1 */
+          if (flipped === 4) {
+            rightbottom = 1 - interpolateX(minV, tr, br);
+            bottomright = interpolateX(minV, bl, br);
+            lefttop = interpolateX(minV, bl, tl);
+            topleft = 1 - interpolateX(minV, tr, tl);
+          } else {
+            rightbottom = interpolateX(maxV, br, tr);
+            bottomright = 1 - interpolateX(maxV, br, bl);
+            lefttop = 1 - interpolateX(maxV, tl, bl);
+            topleft = interpolateX(maxV, tl, tr);
+          }
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBR[cval]);
+        } else if (cval === 152) {
+          /* 7-sided polygon cases */
+          /* 2120 with flipped == 2 || 0102 with flipped == 0 */
+          if (flipped === 0) {
+            righttop = interpolateX(minV, br, tr);
+            bottomright = 1 - interpolateX(minV, br, bl);
+            bottomleft = 1 - interpolateX(maxV, br, bl);
+            leftbottom = 1 - interpolateX(maxV, tl, bl);
+            lefttop = 1 - interpolateX(minV, tl, bl);
+            topright = interpolateX(minV, tl, tr);
+          } else {
+            righttop = 1 - interpolateX(maxV, tr, br);
+            bottomright = interpolateX(maxV, bl, br);
+            bottomleft = interpolateX(minV, bl, br);
+            leftbottom = interpolateX(minV, bl, tl);
+            lefttop = interpolateX(maxV, bl, tl);
+            topright = 1 - interpolateX(maxV, tr, tl);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 156) {
+          /* 2120 with flipped == 1 || 0102 with flipped == 4 */
+          if (flipped === 4) {
+            righttop = interpolateX(minV, br, tr);
+            bottomright = 1 - interpolateX(minV, br, bl);
+            bottomleft = 1 - interpolateX(maxV, br, bl);
+            leftbottom = 1 - interpolateX(maxV, tl, bl);
+            lefttop = 1 - interpolateX(minV, tl, bl);
+            topright = interpolateX(minV, tl, tr);
+          } else {
+            righttop = 1 - interpolateX(maxV, tr, br);
+            bottomright = interpolateX(maxV, bl, br);
+            bottomleft = interpolateX(minV, bl, br);
+            leftbottom = interpolateX(minV, bl, tl);
+            lefttop = interpolateX(maxV, bl, tl);
+            topright = 1 - interpolateX(maxV, tr, tl);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 137) {
+          /* 2021 with flipped == 2 || 0201 with flipped == 0 */
+          if (flipped === 0) {
+            righttop = interpolateX(maxV, br, tr);
+            rightbottom = interpolateX(minV, br, tr);
+            bottomleft = 1 - interpolateX(minV, br, bl);
+            leftbottom = 1 - interpolateX(minV, tl, bl);
+            topleft = interpolateX(minV, tl, tr);
+            topright = interpolateX(maxV, tl, tr);
+          } else {
+            righttop = 1 - interpolateX(minV, tr, br);
+            rightbottom = 1 - interpolateX(maxV, tr, br);
+            bottomleft = interpolateX(maxV, bl, br);
+            leftbottom = interpolateX(maxV, bl, tl);
+            topleft = 1 - interpolateX(maxV, tr, tl);
+            topright = 1 - interpolateX(minV, tr, tl);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 139) {
+          /* 2021 with flipped == 1 || 0201 with flipped == 4 */
+          if (flipped === 4) {
+            righttop = interpolateX(maxV, br, tr);
+            rightbottom = interpolateX(minV, br, tr);
+            bottomleft = 1 - interpolateX(minV, br, bl);
+            leftbottom = 1 - interpolateX(minV, tl, bl);
+            topleft = interpolateX(minV, tl, tr);
+            topright = interpolateX(maxV, tl, tr);
+          } else {
+            righttop = 1 - interpolateX(minV, tr, br);
+            rightbottom = 1 - interpolateX(maxV, tr, br);
+            bottomleft = interpolateX(maxV, bl, br);
+            leftbottom = interpolateX(maxV, bl, tl);
+            topleft = 1 - interpolateX(maxV, tr, tl);
+            topright = 1 - interpolateX(minV, tr, tl);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+        } else if (cval === 98) {
+          /* 1202 with flipped == 2 || 1020 with flipped == 0 */
+          if (flipped === 0) {
+            righttop = 1 - interpolateX(minV, tr, br);
+            rightbottom = 1 - interpolateX(maxV, tr, br);
+            bottomright = interpolateX(maxV, bl, br);
+            bottomleft = interpolateX(minV, bl, br);
+            lefttop = interpolateX(minV, bl, tl);
+            topleft = 1 - interpolateX(minV, tr, tl);
+          } else {
+            righttop = interpolateX(maxV, br, tr);
+            rightbottom = interpolateX(minV, br, tr);
+            bottomright = 1 - interpolateX(minV, br, bl);
+            bottomleft = 1 - interpolateX(maxV, br, bl);
+            lefttop = 1 - interpolateX(maxV, tl, bl);
+            topleft = interpolateX(maxV, tl, tr);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 99) {
+          /* 1202 with flipped == 1 || 1020 with flipped == 4 */
+          if (flipped === 4) {
+            righttop = 1 - interpolateX(minV, tr, br);
+            rightbottom = 1 - interpolateX(maxV, tr, br);
+            bottomright = interpolateX(maxV, bl, br);
+            bottomleft = interpolateX(minV, bl, br);
+            lefttop = interpolateX(minV, bl, tl);
+            topleft = 1 - interpolateX(minV, tr, tl);
+          } else {
+            righttop = interpolateX(maxV, br, tr);
+            rightbottom = interpolateX(minV, br, tr);
+            bottomright = 1 - interpolateX(minV, br, bl);
+            bottomleft = 1 - interpolateX(maxV, br, bl);
+            lefttop = 1 - interpolateX(maxV, tl, bl);
+            topleft = interpolateX(maxV, tl, tr);
+          }
+          edges.push(isoBandEdgeRT[cval]);
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBL[cval]);
+        } else if (cval === 38) {
+          /* 0212 with flipped == 2 || 2010 with flipped == 0 */
+          if (flipped === 0) {
+            rightbottom = 1 - interpolateX(minV, tr, br);
+            bottomright = interpolateX(minV, bl, br);
+            leftbottom = interpolateX(minV, bl, tl);
+            lefttop = interpolateX(maxV, bl, tl);
+            topleft = 1 - interpolateX(maxV, tr, tl);
+            topright = 1 - interpolateX(minV, tr, tl);
+          } else {
+            rightbottom = interpolateX(maxV, br, tr);
+            bottomright = 1 - interpolateX(maxV, br, bl);
+            leftbottom = 1 - interpolateX(maxV, tl, bl);
+            lefttop = 1 - interpolateX(minV, tl, bl);
+            topleft = interpolateX(minV, tl, tr);
+            topright = interpolateX(maxV, tl, tr);
+          }
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeLB[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 39) {
+          /* 0212 with flipped == 1 || 2010 with flipped == 4 */
+          if (flipped === 4) {
+            rightbottom = 1 - interpolateX(minV, tr, br);
+            bottomright = interpolateX(minV, bl, br);
+            leftbottom = interpolateX(minV, bl, tl);
+            lefttop = interpolateX(maxV, bl, tl);
+            topleft = 1 - interpolateX(maxV, tr, tl);
+            topright = 1 - interpolateX(minV, tr, tl);
+          } else {
+            rightbottom = interpolateX(maxV, br, tr);
+            bottomright = 1 - interpolateX(maxV, br, bl);
+            leftbottom = 1 - interpolateX(maxV, tl, bl);
+            lefttop = 1 - interpolateX(minV, tl, bl);
+            topleft = interpolateX(minV, tl, tr);
+            topright = interpolateX(maxV, tl, tr);
+          }
+          edges.push(isoBandEdgeRB[cval]);
+          edges.push(isoBandEdgeBR[cval]);
+          edges.push(isoBandEdgeLT[cval]);
+        } else if (cval === 85) {
+          righttop = 1;
+          rightbottom = 0;
+          bottomright = 1;
+          bottomleft = 0;
+          leftbottom = 0;
+          lefttop = 1;
+          topleft = 0;
+          topright = 1;
+        }
+
+        if (
+          topleft < 0 ||
+          topleft > 1 ||
+          topright < 0 ||
+          topright > 1 ||
+          righttop < 0 ||
+          righttop > 1 ||
+          bottomright < 0 ||
+          bottomright > 1 ||
+          leftbottom < 0 ||
+          leftbottom > 1 ||
+          lefttop < 0 ||
+          lefttop > 1
+        ) {
+          console.log(
+            "MarchingSquaresJS-isoBands: " +
+              cval +
+              " " +
+              cval_real +
+              " " +
+              tl +
+              "," +
+              tr +
+              "," +
+              br +
+              "," +
+              bl +
+              " " +
+              flipped +
+              " " +
+              topleft +
+              " " +
+              topright +
+              " " +
+              righttop +
+              " " +
+              rightbottom +
+              " " +
+              bottomright +
+              " " +
+              bottomleft +
+              " " +
+              leftbottom +
+              " " +
+              lefttop
+          );
+        }
+
+        BandGrid.cells[j][i] = {
+          cval: cval,
+          cval_real: cval_real,
+          flipped: flipped,
+          topleft: topleft,
+          topright: topright,
+          righttop: righttop,
+          rightbottom: rightbottom,
+          bottomright: bottomright,
+          bottomleft: bottomleft,
+          leftbottom: leftbottom,
+          lefttop: lefttop,
+          edges: edges,
+        };
+      }
+    }
+  }
+
+  return BandGrid;
 }
 
 function BandGrid2AreaPaths(grid) {
-    var areas = [];
-    var rows = grid.rows;
-    var cols = grid.cols;
-    var currentPolygon = [];
+  var areas = [];
+  var rows = grid.rows;
+  var cols = grid.cols;
+  var currentPolygon = [];
 
-    for (var j = 0; j < rows; j++) {
-        for (var i = 0; i < cols; i++) {
-            if ((typeof grid.cells[j][i] !== 'undefined') && (grid.cells[j][i].edges.length > 0)) {
-                /* trace back polygon path starting from this cell */
+  for (var j = 0; j < rows; j++) {
+    for (var i = 0; i < cols; i++) {
+      if (
+        typeof grid.cells[j][i] !== "undefined" &&
+        grid.cells[j][i].edges.length > 0
+      ) {
+        /* trace back polygon path starting from this cell */
 
-                var cell = grid.cells[j][i];
+        var cell = grid.cells[j][i];
 
-                /* get start coordinates */
+        /* get start coordinates */
 
-                var prev  = getStartXY(cell),
-                    next  = null,
-                    p     = i,
-                    q     = j;
+        var prev = getStartXY(cell),
+          next = null,
+          p = i,
+          q = j;
 
-                if (prev !== null) {
-                    currentPolygon.push([prev.p[0] + p, prev.p[1] + q]);
-                    //console.log(cell);
-                    //console.log("coords: " + (prev.p[0] + p) + " " + (prev.p[1] + q));
-                }
+        if (prev !== null) {
+          currentPolygon.push([prev.p[0] + p, prev.p[1] + q]);
+          //console.log(cell);
+          //console.log("coords: " + (prev.p[0] + p) + " " + (prev.p[1] + q));
+        }
 
-                do {
-                    //console.log(p + "," + q);
-                    //console.log(grid.cells[q][p]);
-                    //console.log(grid.cells[q][p].edges);
-                    //console.log("from : " + prev.x + " " + prev.y + " " + prev.o);
+        do {
+          //console.log(p + "," + q);
+          //console.log(grid.cells[q][p]);
+          //console.log(grid.cells[q][p].edges);
+          //console.log("from : " + prev.x + " " + prev.y + " " + prev.o);
 
-                    next = getExitXY(grid.cells[q][p], prev.x, prev.y, prev.o);
-                    if (next !== null) {
-                        //console.log("coords: " + (next.p[0] + p) + " " + (next.p[1] + q));
-                        currentPolygon.push([next.p[0] + p, next.p[1] + q]);
-                        p += next.x;
-                        q += next.y;
-                        prev = next;
-                    } else {
-                        //console.log("getExitXY() returned null!");
-                        break;
-                    }
-                    //console.log("to : " + next.x + " " + next.y + " " + next.o);
-                    /* special case, where we've reached the grid boundaries */
-                    if ((q < 0) || (q >= rows) || (p < 0) || (p >= cols) || (typeof grid.cells[q][p] === 'undefined')) {
-                        /* to create a closed path, we need to trace our way
+          next = getExitXY(grid.cells[q][p], prev.x, prev.y, prev.o);
+          if (next !== null) {
+            //console.log("coords: " + (next.p[0] + p) + " " + (next.p[1] + q));
+            currentPolygon.push([next.p[0] + p, next.p[1] + q]);
+            p += next.x;
+            q += next.y;
+            prev = next;
+          } else {
+            //console.log("getExitXY() returned null!");
+            break;
+          }
+          //console.log("to : " + next.x + " " + next.y + " " + next.o);
+          /* special case, where we've reached the grid boundaries */
+          if (
+            q < 0 ||
+            q >= rows ||
+            p < 0 ||
+            p >= cols ||
+            typeof grid.cells[q][p] === "undefined"
+          ) {
+            /* to create a closed path, we need to trace our way
                 arround the missing data, until we find an entry
                 point again
             */
 
-                        /* set back coordinates of current cell */
-                        p -= next.x;
-                        q -= next.y;
+            /* set back coordinates of current cell */
+            p -= next.x;
+            q -= next.y;
 
-                        //console.log("reached boundary at " + p + " " + q);
+            //console.log("reached boundary at " + p + " " + q);
 
-                        var missing = traceOutOfGridPath(grid, p, q, next.x, next.y, next.o);
-                        if (missing !== null) {
-                            missing.path.forEach(function (pp) {
-                                //console.log("coords: " + (pp[0]) + " " + (pp[1]));
-                                currentPolygon.push(pp);
-                            });
-                            p = missing.i;
-                            q = missing.j;
-                            prev = missing;
-                        } else {
-                            break;
-                        }
-                        //console.log(grid.cells[q][p]);
-                    }
-                } while ((typeof grid.cells[q][p] !== 'undefined') &&
-                  (grid.cells[q][p].edges.length > 0));
-
-                areas.push(currentPolygon);
-                //console.log("next polygon");
-                //console.log(currentPolygon);
-                currentPolygon = [];
-                if (grid.cells[j][i].edges.length > 0)
-                    i--;
+            var missing = traceOutOfGridPath(
+              grid,
+              p,
+              q,
+              next.x,
+              next.y,
+              next.o
+            );
+            if (missing !== null) {
+              missing.path.forEach(function (pp) {
+                //console.log("coords: " + (pp[0]) + " " + (pp[1]));
+                currentPolygon.push(pp);
+              });
+              p = missing.i;
+              q = missing.j;
+              prev = missing;
+            } else {
+              break;
             }
-        }
+            //console.log(grid.cells[q][p]);
+          }
+        } while (
+          typeof grid.cells[q][p] !== "undefined" &&
+          grid.cells[q][p].edges.length > 0
+        );
+
+        areas.push(currentPolygon);
+        //console.log("next polygon");
+        //console.log(currentPolygon);
+        currentPolygon = [];
+        if (grid.cells[j][i].edges.length > 0) i--;
+      }
     }
-    return areas;
+  }
+  return areas;
 }
 
 function traceOutOfGridPath(grid, i, j, d_x, d_y, d_o) {
-    var cell = grid.cells[j][i];
-    var cval = cell.cval_real;
-    var p = i + d_x,
-        q = j + d_y;
-    var path = [];
-    var closed = false;
+  var cell = grid.cells[j][i];
+  var cval = cell.cval_real;
+  var p = i + d_x,
+    q = j + d_y;
+  var path = [];
+  var closed = false;
 
-    while (!closed) {
+  while (!closed) {
     //console.log("processing cell " + p + "," + q + " " + d_x + " " + d_y + " " + d_o);
-        if ((typeof grid.cells[q] === 'undefined') || (typeof grid.cells[q][p] === 'undefined')) {
-            //console.log("which is undefined");
-            /* we can't move on, so we have to change direction to proceed further */
+    if (
+      typeof grid.cells[q] === "undefined" ||
+      typeof grid.cells[q][p] === "undefined"
+    ) {
+      //console.log("which is undefined");
+      /* we can't move on, so we have to change direction to proceed further */
 
-            /* go back to previous cell */
-            q -= d_y;
-            p -= d_x;
-            cell = grid.cells[q][p];
-            cval = cell.cval_real;
+      /* go back to previous cell */
+      q -= d_y;
+      p -= d_x;
+      cell = grid.cells[q][p];
+      cval = cell.cval_real;
 
-            /* check where we've left defined cells of the grid... */
-            if (d_y === -1) { /* we came from top */
-                if (d_o === 0) {  /* exit left */
-                    if (cval & Node3) { /* lower left node is within range, so we move left */
-                        path.push([p, q]);
-                        d_x = -1;
-                        d_y = 0;
-                        d_o = 0;
-                    } else if (cval & Node2) { /* lower right node is within range, so we move right */
-                        path.push([p + 1, q]);
-                        d_x = 1;
-                        d_y = 0;
-                        d_o = 0;
-                    } else { /* close the path */
-                        path.push([p + cell.bottomright, q]);
-                        d_x = 0;
-                        d_y = 1;
-                        d_o = 1;
-                        closed = true;
-                        break;
-                    }
-                } else if (cval & Node3) {
-                    path.push([p, q]);
-                    d_x = -1;
-                    d_y = 0;
-                    d_o = 0;
-                } else if (cval & Node2) {
-                    path.push([p + cell.bottomright, q]);
-                    d_x = 0;
-                    d_y = 1;
-                    d_o = 1;
-                    closed = true;
-                    break;
-                } else {
-                    path.push([p + cell.bottomleft, q]);
-                    d_x = 0;
-                    d_y = 1;
-                    d_o = 0;
-                    closed = true;
-                    break;
-                }
-            } else if (d_y === 1) { /* we came from bottom */
-                //console.log("we came from bottom and hit a non-existing cell " + (p + d_x) + "," + (q + d_y) + "!");
-                if (d_o === 0) { /* exit left */
-                    if (cval & Node1) { /* top right node is within range, so we move right */
-                        path.push([p + 1, q + 1]);
-                        d_x = 1;
-                        d_y = 0;
-                        d_o = 1;
-                    } else if (!(cval & Node0)) { /* found entry within same cell */
-                        path.push([p + cell.topright, q + 1]);
-                        d_x = 0;
-                        d_y = -1;
-                        d_o = 1;
-                        closed = true;
-                        //console.log("found entry from bottom at " + p + "," + q);
-                        break;
-                    } else {
-                        path.push([p + cell.topleft, q + 1]);
-                        d_x = 0;
-                        d_y = -1;
-                        d_o = 0;
-                        closed = true;
-                        break;
-                    }
-                } else if (cval & Node1) {
-                    path.push([p + 1, q + 1]);
-                    d_x = 1;
-                    d_y = 0;
-                    d_o = 1;
-                } else { /* move right */
-                    path.push([p + 1, q + 1]);
-                    d_x = 1;
-                    d_y = 0;
-                    d_o = 1;
-                    //console.log("wtf");
-                    //break;
-                }
-            } else if (d_x === -1) { /* we came from right */
-                //console.log("we came from right and hit a non-existing cell at " + (p + d_x) + "," + (q + d_y) + "!");
-                if (d_o === 0) {
-                    //console.log("continue at bottom");
-                    if (cval & Node0) {
-                        path.push([p, q + 1]);
-                        d_x = 0;
-                        d_y = 1;
-                        d_o = 0;
-                        //console.log("moving upwards to " + (p + d_x) + "," + (q + d_y) + "!");
-                    } else if (!(cval & Node3)) { /* there has to be an entry into the regular grid again! */
-                        //console.log("exiting top");
-                        path.push([p, q + cell.lefttop]);
-                        d_x = 1;
-                        d_y = 0;
-                        d_o = 1;
-                        closed = true;
-                        break;
-                    } else {
-                        //console.log("exiting bottom");
-                        path.push([p, q + cell.leftbottom]);
-                        d_x = 1;
-                        d_y = 0;
-                        d_o = 0;
-                        closed = true;
-                        break;
-                    }
-                } else {
-                    //console.log("continue at top");
-                    if (cval & Node0) {
-                        path.push([p, q + 1]);
-                        d_x = 0;
-                        d_y = 1;
-                        d_o = 0;
-                        //console.log("moving upwards to " + (p + d_x) + "," + (q + d_y) + "!");
-                    } else { /* */
-                        console.log('MarchingSquaresJS-isoBands: wtf');
-                        break;
-                    }
-                }
-            } else if (d_x === 1) { /* we came from left */
-                //console.log("we came from left and hit a non-existing cell " + (p + d_x) + "," + (q + d_y) + "!");
-                if (d_o === 0) { /* exit bottom */
-                    if (cval & Node2) {
-                        path.push([p + 1, q]);
-                        d_x = 0;
-                        d_y = -1;
-                        d_o = 1;
-                    } else {
-                        path.push([p + 1, q + cell.rightbottom]);
-                        d_x = -1;
-                        d_y = 0;
-                        d_o = 0;
-                        closed = true;
-                        break;
-                    }
-                } else { /* exit top */
-                    if (cval & Node2) {
-                        path.push([p + 1, q]);
-                        d_x = 0;
-                        d_y = -1;
-                        d_o = 1;
-                    } else if (!(cval & Node1)) {
-                        path.push([p + 1, q + cell.rightbottom]);
-                        d_x = -1;
-                        d_y = 0;
-                        d_o = 0;
-                        closed = true;
-                        break;
-                    } else {
-                        path.push([p + 1, q + cell.righttop]);
-                        d_x = -1;
-                        d_y = 0;
-                        d_o = 1;
-                        break;
-                    }
-                }
-            } else { /* we came from the same cell */
-                console.log('MarchingSquaresJS-isoBands: we came from nowhere!');
-                break;
-            }
-
-        } else { /* try to find an entry into the regular grid again! */
-            cell = grid.cells[q][p];
-            cval = cell.cval_real;
-            //console.log("which is defined");
-
-            if (d_x === -1) {
-                if (d_o === 0) {
-                    /* try to go downwards */
-                    if ((typeof grid.cells[q - 1] !== 'undefined') && (typeof grid.cells[q - 1][p] !== 'undefined')) {
-                        d_x = 0;
-                        d_y = -1;
-                        d_o = 1;
-                    } else if (cval & Node3) { /* proceed searching in x-direction */
-                        //console.log("proceeding in x-direction!");
-                        path.push([p, q]);
-                    } else { /* we must have found an entry into the regular grid */
-                        path.push([p + cell.bottomright, q]);
-                        d_x = 0;
-                        d_y = 1;
-                        d_o = 1;
-                        closed = true;
-                        //console.log("found entry from bottom at " + p + "," + q);
-                        break;
-                    }
-                } else if (cval & Node0) { /* proceed searchin in x-direction */
-                    console.log('MarchingSquaresJS-isoBands: proceeding in x-direction!');
-                } else { /* we must have found an entry into the regular grid */
-                    console.log('MarchingSquaresJS-isoBands: found entry from top at ' + p + ',' + q);
-                    break;
-                }
-            } else if (d_x === 1) {
-                if (d_o === 0) {
-                    console.log('MarchingSquaresJS-isoBands: wtf');
-                    break;
-                } else {
-                    /* try to go upwards */
-                    if ((typeof grid.cells[q + 1] !== 'undefined') && (typeof grid.cells[q + 1][p] !== 'undefined')) {
-                        d_x = 0;
-                        d_y = 1;
-                        d_o = 0;
-                    } else if (cval & Node1) {
-                        path.push([p + 1, q + 1]);
-                        d_x = 1;
-                        d_y = 0;
-                        d_o = 1;
-                    } else { /* found an entry point into regular grid! */
-                        path.push([p + cell.topleft, q + 1]);
-                        d_x = 0;
-                        d_y = -1;
-                        d_o = 0;
-                        closed = true;
-                        //console.log("found entry from bottom at " + p + "," + q);
-                        break;
-                    }
-                }
-            } else if (d_y === -1) {
-                if (d_o === 1) {
-                    /* try to go right */
-                    if (typeof grid.cells[q][p + 1] !== 'undefined') {
-                        d_x = 1;
-                        d_y = 0;
-                        d_o = 1;
-                    } else if (cval & Node2) {
-                        path.push([p + 1, q]);
-                        d_x = 0;
-                        d_y = -1;
-                        d_o = 1;
-                    } else { /* found entry into regular grid! */
-                        path.push([p + 1, q + cell.righttop]);
-                        d_x = -1;
-                        d_y = 0;
-                        d_o = 1;
-                        closed = true;
-                        //console.log("found entry from top at " + p + "," + q);
-                        break;
-                    }
-                } else {
-                    console.log('MarchingSquaresJS-isoBands: wtf');
-                    break;
-                }
-            } else if (d_y === 1) {
-                if (d_o === 0) {
-                    //console.log("we came from bottom left and proceed to the left");
-                    /* try to go left */
-                    if (typeof grid.cells[q][p - 1] !== 'undefined') {
-                        d_x = -1;
-                        d_y = 0;
-                        d_o = 0;
-                    } else if (cval & Node0) {
-                        path.push([p, q + 1]);
-                        d_x = 0;
-                        d_y = 1;
-                        d_o = 0;
-                    } else { /* found an entry point into regular grid! */
-                        path.push([p, q + cell.leftbottom]);
-                        d_x = 1;
-                        d_y = 0;
-                        d_o = 0;
-                        closed = true;
-                        //console.log("found entry from bottom at " + p + "," + q);
-                        break;
-                    }
-                } else {
-                    //console.log("we came from bottom right and proceed to the right");
-                    console.log('MarchingSquaresJS-isoBands: wtf');
-                    break;
-                }
-            } else {
-                console.log('MarchingSquaresJS-isoBands: where did we came from???');
-                break;
-            }
-
-        }
-
-        p += d_x;
-        q += d_y;
-        //console.log("going on to  " + p + "," + q + " via " + d_x + " " + d_y + " " + d_o);
-
-        if ((p === i) && (q === j)) { /* bail out, once we've closed a circle path */
+      /* check where we've left defined cells of the grid... */
+      if (d_y === -1) {
+        /* we came from top */
+        if (d_o === 0) {
+          /* exit left */
+          if (cval & Node3) {
+            /* lower left node is within range, so we move left */
+            path.push([p, q]);
+            d_x = -1;
+            d_y = 0;
+            d_o = 0;
+          } else if (cval & Node2) {
+            /* lower right node is within range, so we move right */
+            path.push([p + 1, q]);
+            d_x = 1;
+            d_y = 0;
+            d_o = 0;
+          } else {
+            /* close the path */
+            path.push([p + cell.bottomright, q]);
+            d_x = 0;
+            d_y = 1;
+            d_o = 1;
+            closed = true;
             break;
+          }
+        } else if (cval & Node3) {
+          path.push([p, q]);
+          d_x = -1;
+          d_y = 0;
+          d_o = 0;
+        } else if (cval & Node2) {
+          path.push([p + cell.bottomright, q]);
+          d_x = 0;
+          d_y = 1;
+          d_o = 1;
+          closed = true;
+          break;
+        } else {
+          path.push([p + cell.bottomleft, q]);
+          d_x = 0;
+          d_y = 1;
+          d_o = 0;
+          closed = true;
+          break;
         }
+      } else if (d_y === 1) {
+        /* we came from bottom */
+        //console.log("we came from bottom and hit a non-existing cell " + (p + d_x) + "," + (q + d_y) + "!");
+        if (d_o === 0) {
+          /* exit left */
+          if (cval & Node1) {
+            /* top right node is within range, so we move right */
+            path.push([p + 1, q + 1]);
+            d_x = 1;
+            d_y = 0;
+            d_o = 1;
+          } else if (!(cval & Node0)) {
+            /* found entry within same cell */
+            path.push([p + cell.topright, q + 1]);
+            d_x = 0;
+            d_y = -1;
+            d_o = 1;
+            closed = true;
+            //console.log("found entry from bottom at " + p + "," + q);
+            break;
+          } else {
+            path.push([p + cell.topleft, q + 1]);
+            d_x = 0;
+            d_y = -1;
+            d_o = 0;
+            closed = true;
+            break;
+          }
+        } else if (cval & Node1) {
+          path.push([p + 1, q + 1]);
+          d_x = 1;
+          d_y = 0;
+          d_o = 1;
+        } else {
+          /* move right */
+          path.push([p + 1, q + 1]);
+          d_x = 1;
+          d_y = 0;
+          d_o = 1;
+          //console.log("wtf");
+          //break;
+        }
+      } else if (d_x === -1) {
+        /* we came from right */
+        //console.log("we came from right and hit a non-existing cell at " + (p + d_x) + "," + (q + d_y) + "!");
+        if (d_o === 0) {
+          //console.log("continue at bottom");
+          if (cval & Node0) {
+            path.push([p, q + 1]);
+            d_x = 0;
+            d_y = 1;
+            d_o = 0;
+            //console.log("moving upwards to " + (p + d_x) + "," + (q + d_y) + "!");
+          } else if (!(cval & Node3)) {
+            /* there has to be an entry into the regular grid again! */
+            //console.log("exiting top");
+            path.push([p, q + cell.lefttop]);
+            d_x = 1;
+            d_y = 0;
+            d_o = 1;
+            closed = true;
+            break;
+          } else {
+            //console.log("exiting bottom");
+            path.push([p, q + cell.leftbottom]);
+            d_x = 1;
+            d_y = 0;
+            d_o = 0;
+            closed = true;
+            break;
+          }
+        } else {
+          //console.log("continue at top");
+          if (cval & Node0) {
+            path.push([p, q + 1]);
+            d_x = 0;
+            d_y = 1;
+            d_o = 0;
+            //console.log("moving upwards to " + (p + d_x) + "," + (q + d_y) + "!");
+          } else {
+            /* */
+            console.log("MarchingSquaresJS-isoBands: wtf");
+            break;
+          }
+        }
+      } else if (d_x === 1) {
+        /* we came from left */
+        //console.log("we came from left and hit a non-existing cell " + (p + d_x) + "," + (q + d_y) + "!");
+        if (d_o === 0) {
+          /* exit bottom */
+          if (cval & Node2) {
+            path.push([p + 1, q]);
+            d_x = 0;
+            d_y = -1;
+            d_o = 1;
+          } else {
+            path.push([p + 1, q + cell.rightbottom]);
+            d_x = -1;
+            d_y = 0;
+            d_o = 0;
+            closed = true;
+            break;
+          }
+        } else {
+          /* exit top */
+          if (cval & Node2) {
+            path.push([p + 1, q]);
+            d_x = 0;
+            d_y = -1;
+            d_o = 1;
+          } else if (!(cval & Node1)) {
+            path.push([p + 1, q + cell.rightbottom]);
+            d_x = -1;
+            d_y = 0;
+            d_o = 0;
+            closed = true;
+            break;
+          } else {
+            path.push([p + 1, q + cell.righttop]);
+            d_x = -1;
+            d_y = 0;
+            d_o = 1;
+            break;
+          }
+        }
+      } else {
+        /* we came from the same cell */
+        console.log("MarchingSquaresJS-isoBands: we came from nowhere!");
+        break;
+      }
+    } else {
+      /* try to find an entry into the regular grid again! */
+      cell = grid.cells[q][p];
+      cval = cell.cval_real;
+      //console.log("which is defined");
 
+      if (d_x === -1) {
+        if (d_o === 0) {
+          /* try to go downwards */
+          if (
+            typeof grid.cells[q - 1] !== "undefined" &&
+            typeof grid.cells[q - 1][p] !== "undefined"
+          ) {
+            d_x = 0;
+            d_y = -1;
+            d_o = 1;
+          } else if (cval & Node3) {
+            /* proceed searching in x-direction */
+            //console.log("proceeding in x-direction!");
+            path.push([p, q]);
+          } else {
+            /* we must have found an entry into the regular grid */
+            path.push([p + cell.bottomright, q]);
+            d_x = 0;
+            d_y = 1;
+            d_o = 1;
+            closed = true;
+            //console.log("found entry from bottom at " + p + "," + q);
+            break;
+          }
+        } else if (cval & Node0) {
+          /* proceed searchin in x-direction */
+          console.log("MarchingSquaresJS-isoBands: proceeding in x-direction!");
+        } else {
+          /* we must have found an entry into the regular grid */
+          console.log(
+            "MarchingSquaresJS-isoBands: found entry from top at " + p + "," + q
+          );
+          break;
+        }
+      } else if (d_x === 1) {
+        if (d_o === 0) {
+          console.log("MarchingSquaresJS-isoBands: wtf");
+          break;
+        } else {
+          /* try to go upwards */
+          if (
+            typeof grid.cells[q + 1] !== "undefined" &&
+            typeof grid.cells[q + 1][p] !== "undefined"
+          ) {
+            d_x = 0;
+            d_y = 1;
+            d_o = 0;
+          } else if (cval & Node1) {
+            path.push([p + 1, q + 1]);
+            d_x = 1;
+            d_y = 0;
+            d_o = 1;
+          } else {
+            /* found an entry point into regular grid! */
+            path.push([p + cell.topleft, q + 1]);
+            d_x = 0;
+            d_y = -1;
+            d_o = 0;
+            closed = true;
+            //console.log("found entry from bottom at " + p + "," + q);
+            break;
+          }
+        }
+      } else if (d_y === -1) {
+        if (d_o === 1) {
+          /* try to go right */
+          if (typeof grid.cells[q][p + 1] !== "undefined") {
+            d_x = 1;
+            d_y = 0;
+            d_o = 1;
+          } else if (cval & Node2) {
+            path.push([p + 1, q]);
+            d_x = 0;
+            d_y = -1;
+            d_o = 1;
+          } else {
+            /* found entry into regular grid! */
+            path.push([p + 1, q + cell.righttop]);
+            d_x = -1;
+            d_y = 0;
+            d_o = 1;
+            closed = true;
+            //console.log("found entry from top at " + p + "," + q);
+            break;
+          }
+        } else {
+          console.log("MarchingSquaresJS-isoBands: wtf");
+          break;
+        }
+      } else if (d_y === 1) {
+        if (d_o === 0) {
+          //console.log("we came from bottom left and proceed to the left");
+          /* try to go left */
+          if (typeof grid.cells[q][p - 1] !== "undefined") {
+            d_x = -1;
+            d_y = 0;
+            d_o = 0;
+          } else if (cval & Node0) {
+            path.push([p, q + 1]);
+            d_x = 0;
+            d_y = 1;
+            d_o = 0;
+          } else {
+            /* found an entry point into regular grid! */
+            path.push([p, q + cell.leftbottom]);
+            d_x = 1;
+            d_y = 0;
+            d_o = 0;
+            closed = true;
+            //console.log("found entry from bottom at " + p + "," + q);
+            break;
+          }
+        } else {
+          //console.log("we came from bottom right and proceed to the right");
+          console.log("MarchingSquaresJS-isoBands: wtf");
+          break;
+        }
+      } else {
+        console.log("MarchingSquaresJS-isoBands: where did we came from???");
+        break;
+      }
     }
 
-    //console.log("exit with " + p + "," + q + " " + d_x + " " + d_y + " " + d_o);
-    return { path: path, i: p, j: q, x: d_x, y: d_y, o: d_o };
+    p += d_x;
+    q += d_y;
+    //console.log("going on to  " + p + "," + q + " via " + d_x + " " + d_y + " " + d_o);
+
+    if (p === i && q === j) {
+      /* bail out, once we've closed a circle path */
+      break;
+    }
+  }
+
+  //console.log("exit with " + p + "," + q + " " + d_x + " " + d_y + " " + d_o);
+  return { path: path, i: p, j: q, x: d_x, y: d_y, o: d_o };
 }
 
 function deleteEdge(cell, edgeIdx) {
-    delete cell.edges[edgeIdx];
-    for (var k = edgeIdx + 1; k < cell.edges.length; k++) {
-        cell.edges[k - 1] = cell.edges[k];
-    }
-    cell.edges.pop();
+  delete cell.edges[edgeIdx];
+  for (var k = edgeIdx + 1; k < cell.edges.length; k++) {
+    cell.edges[k - 1] = cell.edges[k];
+  }
+  cell.edges.pop();
 }
 
 function getStartXY(cell) {
-
-    if (cell.edges.length > 0) {
-        var e = cell.edges[cell.edges.length - 1];
-        //console.log("starting with edge " + e);
-        var cval = cell.cval_real;
-        switch (e) {
-        case 0:   if (cval & Node1) { /* node 1 within range */
-            return {p: [1, cell.righttop], x: -1, y: 0, o: 1};
-        } else { /* node 1 below or above threshold */
-            return {p: [cell.topleft, 1], x: 0, y: -1, o: 0};
-        }
-        case 1:   if (cval & Node2) {
-            return {p: [cell.topleft, 1], x: 0, y: -1, o: 0};
+  if (cell.edges.length > 0) {
+    var e = cell.edges[cell.edges.length - 1];
+    //console.log("starting with edge " + e);
+    var cval = cell.cval_real;
+    switch (e) {
+      case 0:
+        if (cval & Node1) {
+          /* node 1 within range */
+          return { p: [1, cell.righttop], x: -1, y: 0, o: 1 };
         } else {
-            return {p: [1, cell.rightbottom], x: -1, y: 0, o: 0};
+          /* node 1 below or above threshold */
+          return { p: [cell.topleft, 1], x: 0, y: -1, o: 0 };
         }
-        case 2:   if (cval & Node2) {
-            return {p: [cell.bottomright, 0], x: 0, y: 1, o: 1};
+      case 1:
+        if (cval & Node2) {
+          return { p: [cell.topleft, 1], x: 0, y: -1, o: 0 };
         } else {
-            return {p: [cell.topleft, 1], x: 0, y: -1, o: 0};
+          return { p: [1, cell.rightbottom], x: -1, y: 0, o: 0 };
         }
-        case 3:   if (cval & Node3) {
-            return {p: [cell.topleft, 1], x: 0, y: -1, o: 0};
+      case 2:
+        if (cval & Node2) {
+          return { p: [cell.bottomright, 0], x: 0, y: 1, o: 1 };
         } else {
-            return {p: [cell.bottomleft, 0], x: 0, y: 1, o: 0};
+          return { p: [cell.topleft, 1], x: 0, y: -1, o: 0 };
         }
-        case 4:   if (cval & Node1) {
-            return {p: [1, cell.righttop], x: -1, y: 0, o: 1};
+      case 3:
+        if (cval & Node3) {
+          return { p: [cell.topleft, 1], x: 0, y: -1, o: 0 };
         } else {
-            return {p: [cell.topright, 1], x: 0, y: -1, o: 1};
+          return { p: [cell.bottomleft, 0], x: 0, y: 1, o: 0 };
         }
-        case 5:   if (cval & Node2) {
-            return {p: [cell.topright, 1], x: 0, y: -1, o: 1};
+      case 4:
+        if (cval & Node1) {
+          return { p: [1, cell.righttop], x: -1, y: 0, o: 1 };
         } else {
-            return {p: [1, cell.rightbottom], x: -1, y: 0, o: 0};
+          return { p: [cell.topright, 1], x: 0, y: -1, o: 1 };
         }
-        case 6:   if (cval & Node2) {
-            return {p: [cell.bottomright, 0], x: 0, y: 1, o: 1};
+      case 5:
+        if (cval & Node2) {
+          return { p: [cell.topright, 1], x: 0, y: -1, o: 1 };
         } else {
-            return {p: [cell.topright, 1], x: 0, y: -1, o: 1};
+          return { p: [1, cell.rightbottom], x: -1, y: 0, o: 0 };
         }
-        case 7:   if (cval & Node3) {
-            return {p: [cell.topright, 1], x: 0, y: -1, o: 1};
+      case 6:
+        if (cval & Node2) {
+          return { p: [cell.bottomright, 0], x: 0, y: 1, o: 1 };
         } else {
-            return {p: [cell.bottomleft, 0], x: 0, y: 1, o: 0};
+          return { p: [cell.topright, 1], x: 0, y: -1, o: 1 };
         }
-        case 8:   if (cval & Node2) {
-            return {p: [cell.bottomright, 0], x: 0, y: 1, o: 1};
+      case 7:
+        if (cval & Node3) {
+          return { p: [cell.topright, 1], x: 0, y: -1, o: 1 };
         } else {
-            return {p: [1, cell.righttop], x: -1, y: 0, o: 1};
+          return { p: [cell.bottomleft, 0], x: 0, y: 1, o: 0 };
         }
-        case 9:   if (cval & Node3) {
-            return {p: [1, cell.righttop], x: -1, y: 0, o: 1};
+      case 8:
+        if (cval & Node2) {
+          return { p: [cell.bottomright, 0], x: 0, y: 1, o: 1 };
         } else {
-            return {p: [cell.bottomleft, 0], x: 0, y: 1, o: 0};
+          return { p: [1, cell.righttop], x: -1, y: 0, o: 1 };
         }
-        case 10:  if (cval & Node3) {
-            return {p: [0, cell.leftbottom], x: 1, y: 0, o: 0};
+      case 9:
+        if (cval & Node3) {
+          return { p: [1, cell.righttop], x: -1, y: 0, o: 1 };
         } else {
-            return {p: [1, cell.righttop], x: -1, y: 0, o: 1};
+          return { p: [cell.bottomleft, 0], x: 0, y: 1, o: 0 };
         }
-        case 11:  if (cval & Node0) {
-            return {p: [1, cell.righttop], x: -1, y: 0, o: 1};
+      case 10:
+        if (cval & Node3) {
+          return { p: [0, cell.leftbottom], x: 1, y: 0, o: 0 };
         } else {
-            return {p: [0, cell.lefttop], x: 1, y: 0, o: 1};
+          return { p: [1, cell.righttop], x: -1, y: 0, o: 1 };
         }
-        case 12:  if (cval & Node2) {
-            return {p: [cell.bottomright, 0], x: 0, y: 1, o: 1};
+      case 11:
+        if (cval & Node0) {
+          return { p: [1, cell.righttop], x: -1, y: 0, o: 1 };
         } else {
-            return {p: [1, cell.rightbottom], x: -1, y: 0, o: 0};
+          return { p: [0, cell.lefttop], x: 1, y: 0, o: 1 };
         }
-        case 13:  if (cval & Node3) {
-            return {p: [1, cell.rightbottom], x: -1, y: 0, o: 0};
+      case 12:
+        if (cval & Node2) {
+          return { p: [cell.bottomright, 0], x: 0, y: 1, o: 1 };
         } else {
-            return {p: [cell.bottomleft, 0], x: 0, y: 1, o: 0};
+          return { p: [1, cell.rightbottom], x: -1, y: 0, o: 0 };
         }
-        case 14:  if (cval & Node3) {
-            return {p: [0, cell.leftbottom], x: 1, y: 0, o: 0};
+      case 13:
+        if (cval & Node3) {
+          return { p: [1, cell.rightbottom], x: -1, y: 0, o: 0 };
         } else {
-            return {p: [1, cell.rightbottom], x: -1, y: 0, o: 0};
+          return { p: [cell.bottomleft, 0], x: 0, y: 1, o: 0 };
         }
-        case 15:  if (cval & Node0) {
-            return {p: [1, cell.rightbottom], x: -1, y: 0, o: 0};
+      case 14:
+        if (cval & Node3) {
+          return { p: [0, cell.leftbottom], x: 1, y: 0, o: 0 };
         } else {
-            return {p: [0, cell.lefttop], x: 1, y: 0, o: 1};
+          return { p: [1, cell.rightbottom], x: -1, y: 0, o: 0 };
         }
-        case 16:  if (cval & Node2) {
-            return {p: [cell.bottomright, 0], x: 0, y: 1, o: 1};
+      case 15:
+        if (cval & Node0) {
+          return { p: [1, cell.rightbottom], x: -1, y: 0, o: 0 };
         } else {
-            return {p: [0, cell.leftbottom], x: 1, y: 0, o: 0};
+          return { p: [0, cell.lefttop], x: 1, y: 0, o: 1 };
         }
-        case 17:  if (cval & Node0) {
-            return {p: [cell.bottomright, 0], x: 0, y: 1, o: 1};
+      case 16:
+        if (cval & Node2) {
+          return { p: [cell.bottomright, 0], x: 0, y: 1, o: 1 };
         } else {
-            return {p: [0, cell.lefttop], x: 1, y: 0, o: 1};
+          return { p: [0, cell.leftbottom], x: 1, y: 0, o: 0 };
         }
-        case 18:  if (cval & Node3) {
-            return {p: [0, cell.leftbottom], x: 1, y: 0, o: 0};
+      case 17:
+        if (cval & Node0) {
+          return { p: [cell.bottomright, 0], x: 0, y: 1, o: 1 };
         } else {
-            return {p: [cell.bottomleft, 0], x: 0, y: 1, o: 0};
+          return { p: [0, cell.lefttop], x: 1, y: 0, o: 1 };
         }
-        case 19:  if (cval & Node0) {
-            return {p: [cell.bottomleft, 0], x: 0, y: 1, o: 0};
+      case 18:
+        if (cval & Node3) {
+          return { p: [0, cell.leftbottom], x: 1, y: 0, o: 0 };
         } else {
-            return {p: [0, cell.lefttop], x: 1, y: 0, o: 1};
+          return { p: [cell.bottomleft, 0], x: 0, y: 1, o: 0 };
         }
-        case 20:  if (cval & Node0) {
-            return {p: [cell.topleft, 1], x: 0, y: -1, o: 0};
+      case 19:
+        if (cval & Node0) {
+          return { p: [cell.bottomleft, 0], x: 0, y: 1, o: 0 };
         } else {
-            return {p: [0, cell.leftbottom], x: 1, y: 0, o: 0};
+          return { p: [0, cell.lefttop], x: 1, y: 0, o: 1 };
         }
-        case 21:  if (cval & Node1) {
-            return {p: [0, cell.leftbottom], x: 1, y: 0, o: 0};
+      case 20:
+        if (cval & Node0) {
+          return { p: [cell.topleft, 1], x: 0, y: -1, o: 0 };
         } else {
-            return {p: [cell.topright, 1], x: 0, y: -1, o: 1};
+          return { p: [0, cell.leftbottom], x: 1, y: 0, o: 0 };
         }
-        case 22:  if (cval & Node0) {
-            return {p: [cell.topleft, 1], x: 0, y: -1, o: 0};
+      case 21:
+        if (cval & Node1) {
+          return { p: [0, cell.leftbottom], x: 1, y: 0, o: 0 };
         } else {
-            return {p: [0, cell.lefttop], x: 1, y: 0, o: 1};
+          return { p: [cell.topright, 1], x: 0, y: -1, o: 1 };
         }
-        case 23:  if (cval & Node1) {
-            return {p: [0, cell.lefttop], x: 1, y: 0, o: 1};
+      case 22:
+        if (cval & Node0) {
+          return { p: [cell.topleft, 1], x: 0, y: -1, o: 0 };
         } else {
-            return {p: [cell.topright, 1], x: 0, y: -1, o: 1};
+          return { p: [0, cell.lefttop], x: 1, y: 0, o: 1 };
         }
-        default:  console.log('MarchingSquaresJS-isoBands: edge index out of range!');
-            console.log(cell);
-            break;
+      case 23:
+        if (cval & Node1) {
+          return { p: [0, cell.lefttop], x: 1, y: 0, o: 1 };
+        } else {
+          return { p: [cell.topright, 1], x: 0, y: -1, o: 1 };
         }
+      default:
+        console.log("MarchingSquaresJS-isoBands: edge index out of range!");
+        console.log(cell);
+        break;
     }
+  }
 
-    return null;
+  return null;
 }
 
 function getExitXY(cell, x, y, o) {
+  var e,
+    id_x,
+    d_x,
+    d_y,
+    cval = cell.cval;
+  var d_o;
 
-    var e, id_x, d_x, d_y, cval = cell.cval;
-    var d_o;
+  switch (x) {
+    case -1:
+      switch (o) {
+        case 0:
+          e = isoBandEdgeRB[cval];
+          d_x = isoBandNextXRB[cval];
+          d_y = isoBandNextYRB[cval];
+          d_o = isoBandNextORB[cval];
+          break;
+        default:
+          e = isoBandEdgeRT[cval];
+          d_x = isoBandNextXRT[cval];
+          d_y = isoBandNextYRT[cval];
+          d_o = isoBandNextORT[cval];
+          break;
+      }
+      break;
+    case 1:
+      switch (o) {
+        case 0:
+          e = isoBandEdgeLB[cval];
+          d_x = isoBandNextXLB[cval];
+          d_y = isoBandNextYLB[cval];
+          d_o = isoBandNextOLB[cval];
+          break;
+        default:
+          e = isoBandEdgeLT[cval];
+          d_x = isoBandNextXLT[cval];
+          d_y = isoBandNextYLT[cval];
+          d_o = isoBandNextOLT[cval];
+          break;
+      }
+      break;
+    default:
+      switch (y) {
+        case -1:
+          switch (o) {
+            case 0:
+              e = isoBandEdgeTL[cval];
+              d_x = isoBandNextXTL[cval];
+              d_y = isoBandNextYTL[cval];
+              d_o = isoBandNextOTL[cval];
+              break;
+            default:
+              e = isoBandEdgeTR[cval];
+              d_x = isoBandNextXTR[cval];
+              d_y = isoBandNextYTR[cval];
+              d_o = isoBandNextOTR[cval];
+              break;
+          }
+          break;
+        case 1:
+          switch (o) {
+            case 0:
+              e = isoBandEdgeBL[cval];
+              d_x = isoBandNextXBL[cval];
+              d_y = isoBandNextYBL[cval];
+              d_o = isoBandNextOBL[cval];
+              break;
+            default:
+              e = isoBandEdgeBR[cval];
+              d_x = isoBandNextXBR[cval];
+              d_y = isoBandNextYBR[cval];
+              d_o = isoBandNextOBR[cval];
+              break;
+          }
+          break;
+        default:
+          break;
+      }
+      break;
+  }
 
-    switch (x) {
-    case -1:  switch (o) {
-    case 0:   e = isoBandEdgeRB[cval];
-        d_x = isoBandNextXRB[cval];
-        d_y = isoBandNextYRB[cval];
-        d_o = isoBandNextORB[cval];
-        break;
-    default:  e = isoBandEdgeRT[cval];
-        d_x = isoBandNextXRT[cval];
-        d_y = isoBandNextYRT[cval];
-        d_o = isoBandNextORT[cval];
-        break;
-        }
-        break;
-    case 1:   switch (o) {
-    case 0:   e = isoBandEdgeLB[cval];
-        d_x = isoBandNextXLB[cval];
-        d_y = isoBandNextYLB[cval];
-        d_o = isoBandNextOLB[cval];
-        break;
-    default:  e = isoBandEdgeLT[cval];
-        d_x = isoBandNextXLT[cval];
-        d_y = isoBandNextYLT[cval];
-        d_o = isoBandNextOLT[cval];
-        break;
-        }
-        break;
-    default:  switch (y) {
-    case -1:  switch (o) {
-    case 0:   e = isoBandEdgeTL[cval];
-        d_x = isoBandNextXTL[cval];
-        d_y = isoBandNextYTL[cval];
-        d_o = isoBandNextOTL[cval];
-        break;
-    default:  e = isoBandEdgeTR[cval];
-        d_x = isoBandNextXTR[cval];
-        d_y = isoBandNextYTR[cval];
-        d_o = isoBandNextOTR[cval];
-        break;
-        }
-        break;
-    case 1:   switch (o) {
-    case 0:   e = isoBandEdgeBL[cval];
-        d_x = isoBandNextXBL[cval];
-        d_y = isoBandNextYBL[cval];
-        d_o = isoBandNextOBL[cval];
-        break;
-    default:  e = isoBandEdgeBR[cval];
-        d_x = isoBandNextXBR[cval];
-        d_y = isoBandNextYBR[cval];
-        d_o = isoBandNextOBR[cval];
-        break;
-        }
-        break;
-    default:  break;
-        }
-        break;
-    }
-
-    id_x = cell.edges.indexOf(e);
-    if (typeof cell.edges[id_x] !== 'undefined') {
-        deleteEdge(cell, id_x);
-    } else {
+  id_x = cell.edges.indexOf(e);
+  if (typeof cell.edges[id_x] !== "undefined") {
+    deleteEdge(cell, id_x);
+  } else {
     //console.log("wrong edges...");
     //console.log(x + " " + y + " " + o);
     //console.log(cell);
-        return null;
-    }
+    return null;
+  }
 
-    cval = cell.cval_real;
+  cval = cell.cval_real;
 
-    switch (e) {
-    case 0:   if (cval & Node1) { /* node 1 within range */
+  switch (e) {
+    case 0:
+      if (cval & Node1) {
+        /* node 1 within range */
         x = cell.topleft;
         y = 1;
-    } else { /* node 1 below or above threshold */
+      } else {
+        /* node 1 below or above threshold */
         x = 1;
         y = cell.righttop;
-    }
-        break;
-    case 1:   if (cval & Node2) {
+      }
+      break;
+    case 1:
+      if (cval & Node2) {
         x = 1;
         y = cell.rightbottom;
-    } else {
+      } else {
         x = cell.topleft;
         y = 1;
-    }
-        break;
-    case 2:   if (cval & Node2) {
+      }
+      break;
+    case 2:
+      if (cval & Node2) {
         x = cell.topleft;
         y = 1;
-    } else {
+      } else {
         x = cell.bottomright;
         y = 0;
-    }
-        break;
-    case 3:   if (cval & Node3) {
+      }
+      break;
+    case 3:
+      if (cval & Node3) {
         x = cell.bottomleft;
         y = 0;
-    } else {
+      } else {
         x = cell.topleft;
         y = 1;
-    }
-        break;
-    case 4:   if (cval & Node1) {
+      }
+      break;
+    case 4:
+      if (cval & Node1) {
         x = cell.topright;
         y = 1;
-    } else {
+      } else {
         x = 1;
         y = cell.righttop;
-    }
-        break;
-    case 5:   if (cval & Node2) {
+      }
+      break;
+    case 5:
+      if (cval & Node2) {
         x = 1;
         y = cell.rightbottom;
-    } else {
+      } else {
         x = cell.topright;
         y = 1;
-    }
-        break;
-    case 6:   if (cval & Node2) {
+      }
+      break;
+    case 6:
+      if (cval & Node2) {
         x = cell.topright;
         y = 1;
-    } else {
+      } else {
         x = cell.bottomright;
         y = 0;
-    }
-        break;
-    case 7:   if (cval & Node3) {
+      }
+      break;
+    case 7:
+      if (cval & Node3) {
         x = cell.bottomleft;
         y = 0;
-    } else {
+      } else {
         x = cell.topright;
         y = 1;
-    }
-        break;
-    case 8:   if (cval & Node2) {
+      }
+      break;
+    case 8:
+      if (cval & Node2) {
         x = 1;
         y = cell.righttop;
-    } else {
+      } else {
         x = cell.bottomright;
         y = 0;
-    }
-        break;
-    case 9:   if (cval & Node3) {
+      }
+      break;
+    case 9:
+      if (cval & Node3) {
         x = cell.bottomleft;
         y = 0;
-    } else {
+      } else {
         x = 1;
         y = cell.righttop;
-    }
-        break;
-    case 10:  if (cval & Node3) {
+      }
+      break;
+    case 10:
+      if (cval & Node3) {
         x = 1;
         y = cell.righttop;
-    } else {
+      } else {
         x = 0;
         y = cell.leftbottom;
-    }
-        break;
-    case 11:  if (cval & Node0) {
+      }
+      break;
+    case 11:
+      if (cval & Node0) {
         x = 0;
         y = cell.lefttop;
-    } else {
+      } else {
         x = 1;
         y = cell.righttop;
-    }
-        break;
-    case 12:  if (cval & Node2) {
+      }
+      break;
+    case 12:
+      if (cval & Node2) {
         x = 1;
         y = cell.rightbottom;
-    } else {
+      } else {
         x = cell.bottomright;
         y = 0;
-    }
-        break;
-    case 13:  if (cval & Node3) {
+      }
+      break;
+    case 13:
+      if (cval & Node3) {
         x = cell.bottomleft;
         y = 0;
-    } else {
+      } else {
         x = 1;
         y = cell.rightbottom;
-    }
-        break;
-    case 14:  if (cval & Node3) {
+      }
+      break;
+    case 14:
+      if (cval & Node3) {
         x = 1;
         y = cell.rightbottom;
-    } else {
+      } else {
         x = 0;
         y = cell.leftbottom;
-    }
-        break;
-    case 15:  if (cval & Node0) {
+      }
+      break;
+    case 15:
+      if (cval & Node0) {
         x = 0;
         y = cell.lefttop;
-    } else {
+      } else {
         x = 1;
         y = cell.rightbottom;
-    }
-        break;
-    case 16:  if (cval & Node2) {
+      }
+      break;
+    case 16:
+      if (cval & Node2) {
         x = 0;
         y = cell.leftbottom;
-    } else {
+      } else {
         x = cell.bottomright;
         y = 0;
-    }
-        break;
-    case 17:  if (cval & Node0) {
+      }
+      break;
+    case 17:
+      if (cval & Node0) {
         x = 0;
         y = cell.lefttop;
-    } else {
+      } else {
         x = cell.bottomright;
         y = 0;
-    }
-        break;
-    case 18:  if (cval & Node3) {
+      }
+      break;
+    case 18:
+      if (cval & Node3) {
         x = cell.bottomleft;
         y = 0;
-    } else {
+      } else {
         x = 0;
         y = cell.leftbottom;
-    }
-        break;
-    case 19:  if (cval & Node0) {
+      }
+      break;
+    case 19:
+      if (cval & Node0) {
         x = 0;
         y = cell.lefttop;
-    } else {
+      } else {
         x = cell.bottomleft;
         y = 0;
-    }
-        break;
-    case 20:  if (cval & Node0) {
+      }
+      break;
+    case 20:
+      if (cval & Node0) {
         x = 0;
         y = cell.leftbottom;
-    } else {
+      } else {
         x = cell.topleft;
         y = 1;
-    }
-        break;
-    case 21:  if (cval & Node1) {
+      }
+      break;
+    case 21:
+      if (cval & Node1) {
         x = cell.topright;
         y = 1;
-    } else {
+      } else {
         x = 0;
         y = cell.leftbottom;
-    }
-        break;
-    case 22:  if (cval & Node0) {
+      }
+      break;
+    case 22:
+      if (cval & Node0) {
         x = 0;
         y = cell.lefttop;
-    } else {
+      } else {
         x = cell.topleft;
         y = 1;
-    }
-        break;
-    case 23:  if (cval & Node1) {
+      }
+      break;
+    case 23:
+      if (cval & Node1) {
         x = cell.topright;
         y = 1;
-    } else {
+      } else {
         x = 0;
         y = cell.lefttop;
-    }
-        break;
-    default:  console.log('MarchingSquaresJS-isoBands: edge index out of range!');
-        console.log(cell);
-        return null;
-    }
+      }
+      break;
+    default:
+      console.log("MarchingSquaresJS-isoBands: edge index out of range!");
+      console.log(cell);
+      return null;
+  }
 
-    if ((typeof x === 'undefined') || (typeof y === 'undefined') ||
-      (typeof d_x === 'undefined') || (typeof d_y === 'undefined') ||
-      (typeof d_o === 'undefined')) {
-        console.log('MarchingSquaresJS-isoBands: undefined value!');
-        console.log(cell);
-        console.log(x + ' ' + y + ' ' + d_x + ' ' + d_y + ' ' + d_o);
-    }
-    return {p: [x, y], x: d_x, y: d_y, o: d_o};
+  if (
+    typeof x === "undefined" ||
+    typeof y === "undefined" ||
+    typeof d_x === "undefined" ||
+    typeof d_y === "undefined" ||
+    typeof d_o === "undefined"
+  ) {
+    console.log("MarchingSquaresJS-isoBands: undefined value!");
+    console.log(cell);
+    console.log(x + " " + y + " " + d_x + " " + d_y + " " + d_o);
+  }
+  return { p: [x, y], x: d_x, y: d_y, o: d_o };
 }
 
 function BandGrid2Areas(grid) {
-    var areas = [];
-    var area_idx = 0;
+  var areas = [];
+  var area_idx = 0;
 
-    grid.cells.forEach(function (g, j) {
-        g.forEach(function (gg, i) {
-            if (typeof gg !== 'undefined') {
-                var a = polygon_table[gg.cval](gg);
-                if ((typeof a === 'object') && isArray(a)) {
-                    if ((typeof a[0] === 'object') && isArray(a[0])) {
-                        if ((typeof a[0][0] === 'object') && isArray(a[0][0])) {
-                            a.forEach(function (aa) {
-                                aa.forEach(function (aaa) {
-                                    aaa[0] += i;
-                                    aaa[1] += j;
-                                });
-                                areas[area_idx++] = aa;
-                            });
-                        } else {
-                            a.forEach(function (aa) {
-                                aa[0] += i;
-                                aa[1] += j;
-                            });
-                            areas[area_idx++] = a;
-                        }
-                    } else {
-                        console.log('MarchingSquaresJS-isoBands: bandcell polygon with malformed coordinates');
-                    }
-                } else {
-                    console.log('MarchingSquaresJS-isoBands: bandcell polygon with null coordinates');
-                }
+  grid.cells.forEach(function (g, j) {
+    g.forEach(function (gg, i) {
+      if (typeof gg !== "undefined") {
+        var a = polygon_table[gg.cval](gg);
+        if (typeof a === "object" && isArray(a)) {
+          if (typeof a[0] === "object" && isArray(a[0])) {
+            if (typeof a[0][0] === "object" && isArray(a[0][0])) {
+              a.forEach(function (aa) {
+                aa.forEach(function (aaa) {
+                  aaa[0] += i;
+                  aaa[1] += j;
+                });
+                areas[area_idx++] = aa;
+              });
+            } else {
+              a.forEach(function (aa) {
+                aa[0] += i;
+                aa[1] += j;
+              });
+              areas[area_idx++] = a;
             }
-        });
+          } else {
+            console.log(
+              "MarchingSquaresJS-isoBands: bandcell polygon with malformed coordinates"
+            );
+          }
+        } else {
+          console.log(
+            "MarchingSquaresJS-isoBands: bandcell polygon with null coordinates"
+          );
+        }
+      }
     });
+  });
 
-    return areas;
+  return areas;
 }

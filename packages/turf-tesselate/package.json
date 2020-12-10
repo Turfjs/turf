@@ -1,6 +1,6 @@
 {
   "name": "@turf/tesselate",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf tesselate module",
   "author": "Turf Authors",
   "contributors": [
@@ -31,6 +31,10 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "exports": {
+    "import": "./dist/es/index.js",
+    "require": "./dist/js/index.js"
+  },
   "types": "index.d.ts",
   "sideEffects": false,
   "files": [
@@ -38,12 +42,11 @@
     "index.d.ts"
   ],
   "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
+    "bench": "node -r esm bench.js",
+    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "docs": "node ../../scripts/generate-readmes",
     "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
-    "prepare": "rollup -c ../../rollup.config.js",
-    "test": "npm-run-all prepare test:*",
+    "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
@@ -53,7 +56,7 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.2",
+    "@turf/helpers": "^6.2.0-alpha.3",
     "earcut": "^2.0.0"
   }
 }

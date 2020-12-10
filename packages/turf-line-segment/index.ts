@@ -1,6 +1,13 @@
 import {
-    BBox, Feature,
-    featureCollection, FeatureCollection, lineString, LineString, MultiLineString, MultiPolygon, Polygon,
+  BBox,
+  Feature,
+  featureCollection,
+  FeatureCollection,
+  lineString,
+  LineString,
+  MultiLineString,
+  MultiPolygon,
+  Polygon,
 } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 import { flattenEach } from "@turf/meta";
@@ -19,16 +26,20 @@ import { flattenEach } from "@turf/meta";
  * //addToMap
  * var addToMap = [polygon, segments]
  */
-function lineSegment<G extends LineString | MultiLineString | Polygon | MultiPolygon>(
-    geojson: Feature<G> | FeatureCollection<G> | G,
+function lineSegment<
+  G extends LineString | MultiLineString | Polygon | MultiPolygon
+>(
+  geojson: Feature<G> | FeatureCollection<G> | G
 ): FeatureCollection<LineString> {
-    if (!geojson) { throw new Error("geojson is required"); }
+  if (!geojson) {
+    throw new Error("geojson is required");
+  }
 
-    const results: Array<Feature<LineString>> = [];
-    flattenEach(geojson, (feature: Feature<any>) => {
-        lineSegmentFeature(feature, results);
-    });
-    return featureCollection(results);
+  const results: Array<Feature<LineString>> = [];
+  flattenEach(geojson, (feature: Feature<any>) => {
+    lineSegmentFeature(feature, results);
+  });
+  return featureCollection(results);
 }
 
 /**
@@ -39,25 +50,28 @@ function lineSegment<G extends LineString | MultiLineString | Polygon | MultiPol
  * @param {Array} results push to results
  * @returns {void}
  */
-function lineSegmentFeature(geojson: Feature<LineString|Polygon>, results: Array<Feature<LineString>>) {
-    let coords: number[][][] = [];
-    const geometry = geojson.geometry;
-    if (geometry !== null) {
-        switch (geometry.type) {
-        case "Polygon":
-            coords = getCoords(geometry);
-            break;
-        case "LineString":
-            coords = [getCoords(geometry)];
-        }
-        coords.forEach((coord) => {
-            const segments = createSegments(coord, geojson.properties);
-            segments.forEach((segment) => {
-                segment.id = results.length;
-                results.push(segment);
-            });
-        });
+function lineSegmentFeature(
+  geojson: Feature<LineString | Polygon>,
+  results: Array<Feature<LineString>>
+) {
+  let coords: number[][][] = [];
+  const geometry = geojson.geometry;
+  if (geometry !== null) {
+    switch (geometry.type) {
+      case "Polygon":
+        coords = getCoords(geometry);
+        break;
+      case "LineString":
+        coords = [getCoords(geometry)];
     }
+    coords.forEach((coord) => {
+      const segments = createSegments(coord, geojson.properties);
+      segments.forEach((segment) => {
+        segment.id = results.length;
+        results.push(segment);
+      });
+    });
+  }
 }
 
 /**
@@ -69,14 +83,14 @@ function lineSegmentFeature(geojson: Feature<LineString|Polygon>, results: Array
  * @returns {Array<Feature<LineString>>} line segments
  */
 function createSegments(coords: number[][], properties: any) {
-    const segments: Array<Feature<LineString>> = [];
-    coords.reduce((previousCoords, currentCoords) => {
-        const segment = lineString([previousCoords, currentCoords], properties);
-        segment.bbox = bbox(previousCoords, currentCoords);
-        segments.push(segment);
-        return currentCoords;
-    });
-    return segments;
+  const segments: Array<Feature<LineString>> = [];
+  coords.reduce((previousCoords, currentCoords) => {
+    const segment = lineString([previousCoords, currentCoords], properties);
+    segment.bbox = bbox(previousCoords, currentCoords);
+    segments.push(segment);
+    return currentCoords;
+  });
+  return segments;
 }
 
 /**
@@ -88,15 +102,15 @@ function createSegments(coords: number[][], properties: any) {
  * @returns {BBox} [west, south, east, north]
  */
 function bbox(coords1: number[], coords2: number[]): BBox {
-    const x1 = coords1[0];
-    const y1 = coords1[1];
-    const x2 = coords2[0];
-    const y2 = coords2[1];
-    const west = (x1 < x2) ? x1 : x2;
-    const south = (y1 < y2) ? y1 : y2;
-    const east = (x1 > x2) ? x1 : x2;
-    const north = (y1 > y2) ? y1 : y2;
-    return [west, south, east, north];
+  const x1 = coords1[0];
+  const y1 = coords1[1];
+  const x2 = coords2[0];
+  const y2 = coords2[1];
+  const west = x1 < x2 ? x1 : x2;
+  const south = y1 < y2 ? y1 : y2;
+  const east = x1 > x2 ? x1 : x2;
+  const north = y1 > y2 ? y1 : y2;
+  return [west, south, east, north];
 }
 
 export default lineSegment;

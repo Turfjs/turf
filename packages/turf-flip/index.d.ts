@@ -1,8 +1,8 @@
-import { AllGeoJSON } from '@turf/helpers'
+import { AllGeoJSON } from "@turf/helpers";
 
 export default function flip<T extends AllGeoJSON>(
-    geojson: T,
-    options?: {
-        mutate?: boolean
-    }
-): T
+  geojson: T,
+  options?: {
+    mutate?: boolean;
+  }
+): T;

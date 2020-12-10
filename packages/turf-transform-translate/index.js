@@ -1,8 +1,8 @@
-import { coordEach } from '@turf/meta';
-import { isObject } from '@turf/helpers';
-import { getCoords } from '@turf/invariant';
-import clone from '@turf/clone';
-import rhumbDestination from '@turf/rhumb-destination';
+import { coordEach } from "@turf/meta";
+import { isObject } from "@turf/helpers";
+import { getCoords } from "@turf/invariant";
+import clone from "@turf/clone";
+import rhumbDestination from "@turf/rhumb-destination";
 
 /**
  * Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
@@ -26,41 +26,47 @@ import rhumbDestination from '@turf/rhumb-destination';
  * translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
 function transformTranslate(geojson, distance, direction, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
-    var zTranslation = options.zTranslation;
-    var mutate = options.mutate;
+  // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var units = options.units;
+  var zTranslation = options.zTranslation;
+  var mutate = options.mutate;
 
-    // Input validation
-    if (!geojson) throw new Error('geojson is required');
-    if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
-    if (zTranslation && typeof zTranslation !== 'number' && isNaN(zTranslation)) throw new Error('zTranslation is not a number');
+  // Input validation
+  if (!geojson) throw new Error("geojson is required");
+  if (distance === undefined || distance === null || isNaN(distance))
+    throw new Error("distance is required");
+  if (zTranslation && typeof zTranslation !== "number" && isNaN(zTranslation))
+    throw new Error("zTranslation is not a number");
 
-    // Shortcut no-motion
-    zTranslation = (zTranslation !== undefined) ? zTranslation : 0;
-    if (distance === 0 && zTranslation === 0) return geojson;
+  // Shortcut no-motion
+  zTranslation = zTranslation !== undefined ? zTranslation : 0;
+  if (distance === 0 && zTranslation === 0) return geojson;
 
-    if (direction === undefined || direction === null || isNaN(direction)) throw new Error('direction is required');
+  if (direction === undefined || direction === null || isNaN(direction))
+    throw new Error("direction is required");
 
-    // Invert with negative distances
-    if (distance < 0) {
-        distance = -distance;
-        direction = direction + 180;
-    }
+  // Invert with negative distances
+  if (distance < 0) {
+    distance = -distance;
+    direction = direction + 180;
+  }
 
-    // Clone geojson to avoid side effects
-    if (mutate === false || mutate === undefined) geojson = clone(geojson);
+  // Clone geojson to avoid side effects
+  if (mutate === false || mutate === undefined) geojson = clone(geojson);
 
-    // Translate each coordinate
-    coordEach(geojson, function (pointCoords) {
-        var newCoords = getCoords(rhumbDestination(pointCoords, distance, direction, {units: units}));
-        pointCoords[0] = newCoords[0];
-        pointCoords[1] = newCoords[1];
-        if (zTranslation && pointCoords.length === 3) pointCoords[2] += zTranslation;
-    });
-    return geojson;
+  // Translate each coordinate
+  coordEach(geojson, function (pointCoords) {
+    var newCoords = getCoords(
+      rhumbDestination(pointCoords, distance, direction, { units: units })
+    );
+    pointCoords[0] = newCoords[0];
+    pointCoords[1] = newCoords[1];
+    if (zTranslation && pointCoords.length === 3)
+      pointCoords[2] += zTranslation;
+  });
+  return geojson;
 }
 
 export default transformTranslate;

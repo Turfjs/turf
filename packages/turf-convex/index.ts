@@ -1,4 +1,10 @@
-import { AllGeoJSON, Feature, polygon, Polygon, Properties } from "@turf/helpers";
+import {
+  AllGeoJSON,
+  Feature,
+  polygon,
+  Polygon,
+  Properties,
+} from "@turf/helpers";
 import { coordEach } from "@turf/meta";
 import concaveman from "concaveman";
 
@@ -30,27 +36,32 @@ import concaveman from "concaveman";
  * //addToMap
  * var addToMap = [points, hull]
  */
-export default function convex<P = Properties>(geojson: AllGeoJSON, options: {
-    concavity?: number,
-    properties?: P,
-} = {}): Feature<Polygon, P> | null {
-    // Default parameters
-    options.concavity = options.concavity || Infinity;
+export default function convex<P = Properties>(
+  geojson: AllGeoJSON,
+  options: {
+    concavity?: number;
+    properties?: P;
+  } = {}
+): Feature<Polygon, P> | null {
+  // Default parameters
+  options.concavity = options.concavity || Infinity;
 
-    // Container
-    const points: number[][] = [];
+  // Container
+  const points: number[][] = [];
 
-    // Convert all points to flat 2D coordinate Array
-    coordEach(geojson, (coord) => {
-        points.push([coord[0], coord[1]]);
-    });
-    if (!points.length) { return null; }
-
-    const convexHull = concaveman(points, options.concavity);
-
-    // Convex hull should have at least 3 different vertices in order to create a valid polygon
-    if (convexHull.length > 3) {
-        return polygon([convexHull]);
-    }
+  // Convert all points to flat 2D coordinate Array
+  coordEach(geojson, (coord) => {
+    points.push([coord[0], coord[1]]);
+  });
+  if (!points.length) {
     return null;
+  }
+
+  const convexHull = concaveman(points, options.concavity);
+
+  // Convex hull should have at least 3 different vertices in order to create a valid polygon
+  if (convexHull.length > 3) {
+    return polygon([convexHull]);
+  }
+  return null;
 }

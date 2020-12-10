@@ -9,22 +9,10 @@
       "geometry": {
         "type": "MultiPoint",
         "coordinates": [
-          [
-            135,
-            -25
-          ],
-          [
-            130,
-            -20
-          ],
-          [
-            125,
-            -25
-          ],
-          [
-            126,
-            -25
-          ]
+          [135, -25],
+          [130, -20],
+          [125, -25],
+          [126, -25]
         ]
       }
     },
@@ -35,10 +23,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          130,
-          -27.5
-        ]
+        "coordinates": [130, -27.5]
       }
     },
     {
@@ -48,10 +33,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          126,
-          -24.5
-        ]
+        "coordinates": [126, -24.5]
       }
     }
   ]

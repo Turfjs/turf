@@ -1,6 +1,6 @@
 {
   "name": "@turf/interpolate",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf interpolate module",
   "author": "Turf Authors",
   "contributors": [
@@ -25,6 +25,10 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "exports": {
+    "import": "./dist/es/index.js",
+    "require": "./dist/js/index.js"
+  },
   "types": "index.d.ts",
   "sideEffects": false,
   "files": [
@@ -32,17 +36,16 @@
     "index.d.ts"
   ],
   "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
+    "bench": "node -r esm bench.js",
+    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "docs": "node ../../scripts/generate-readmes",
     "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
-    "prepare": "rollup -c ../../rollup.config.js",
-    "test": "npm-run-all prepare test:*",
+    "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js",
-    "test:types": "tsc --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.2.0-alpha.2",
+    "@turf/truncate": "^6.2.0-alpha.3",
     "benchmark": "*",
     "chromatism": "*",
     "load-json-file": "*",
@@ -52,16 +55,16 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.2.0-alpha.2",
-    "@turf/centroid": "^6.2.0-alpha.2",
-    "@turf/clone": "^6.2.0-alpha.2",
-    "@turf/distance": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/hex-grid": "^6.2.0-alpha.2",
-    "@turf/invariant": "^6.2.0-alpha.2",
-    "@turf/meta": "^6.2.0-alpha.2",
-    "@turf/point-grid": "^6.2.0-alpha.2",
-    "@turf/square-grid": "^6.2.0-alpha.2",
-    "@turf/triangle-grid": "^6.2.0-alpha.2"
+    "@turf/bbox": "^6.2.0-alpha.3",
+    "@turf/centroid": "^6.2.0-alpha.3",
+    "@turf/clone": "^6.2.0-alpha.3",
+    "@turf/distance": "^6.2.0-alpha.3",
+    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/hex-grid": "^6.2.0-alpha.3",
+    "@turf/invariant": "^6.2.0-alpha.3",
+    "@turf/meta": "^6.2.0-alpha.3",
+    "@turf/point-grid": "^6.2.0-alpha.3",
+    "@turf/square-grid": "^6.2.0-alpha.3",
+    "@turf/triangle-grid": "^6.2.0-alpha.3"
   }
 }

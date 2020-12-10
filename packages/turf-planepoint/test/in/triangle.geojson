@@ -2,12 +2,14 @@
   "type": "Feature",
   "geometry": {
     "type": "Polygon",
-    "coordinates": [[
-      [0, 0, 0],
-      [2, 0, 0],
-      [1, 2, 2],
-      [0, 0, 0]
-    ]]
+    "coordinates": [
+      [
+        [0, 0, 0],
+        [2, 0, 0],
+        [1, 2, 2],
+        [0, 0, 0]
+      ]
+    ]
   },
   "properties": {
     "a": 0,

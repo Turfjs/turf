@@ -3,10 +3,14 @@
     "packages/*"
   ],
   "command": {
+    "bootstrap": {
+      "useWorkspaces": true,
+      "ignoreScripts": true
+    },
     "publish": {
       "registry": "https://registry.npmjs.org"
     }
   },
   "npmClient": "yarn",
-  "version": "6.2.0-alpha.2"
+  "version": "6.2.0-alpha.3"
 }

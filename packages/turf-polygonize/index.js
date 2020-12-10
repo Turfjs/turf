@@ -1,4 +1,4 @@
-import polygonize from './lib/polygonize';
+import polygonize from "./lib/polygonize";
 
 /**
  * Polygonizes {@link LineString|(Multi)LineString(s)} into {@link Polygons}.

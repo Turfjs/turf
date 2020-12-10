@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-median",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf center-median module",
   "author": "Turf Authors",
   "contributors": [
@@ -24,40 +24,44 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "exports": {
+    "import": "./dist/es/index.js",
+    "require": "./dist/js/index.js"
+  },
   "types": "dist/js/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist"
   ],
   "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
+    "bench": "ts-node bench.js",
+    "build": "npm-run-all build:*",
+    "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build:js": "tsc",
     "docs": "node ../../scripts/generate-readmes",
-    "prepare": "npm-run-all prepare:*",
-    "prepare:es": "tsc --outDir dist/es --module esnext --declaration false",
-    "prepare:js": "tsc",
-    "test": "npm-run-all prepare test:*",
-    "test:tape": "node -r esm test.js"
+    "test": "npm-run-all test:*",
+    "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/center": "^6.2.0-alpha.2",
-    "@turf/center-of-mass": "^6.2.0-alpha.2",
-    "@turf/random": "^6.2.0-alpha.2",
-    "@turf/truncate": "^6.2.0-alpha.2",
+    "@turf/center": "^6.2.0-alpha.3",
+    "@turf/center-of-mass": "^6.2.0-alpha.3",
+    "@turf/random": "^6.2.0-alpha.3",
+    "@turf/truncate": "^6.2.0-alpha.3",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
+    "ts-node": "*",
     "tslint": "*",
     "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/center-mean": "^6.2.0-alpha.2",
-    "@turf/centroid": "^6.2.0-alpha.2",
-    "@turf/distance": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/meta": "^6.2.0-alpha.2"
+    "@turf/center-mean": "^6.2.0-alpha.3",
+    "@turf/centroid": "^6.2.0-alpha.3",
+    "@turf/distance": "^6.2.0-alpha.3",
+    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/meta": "^6.2.0-alpha.3"
   }
 }
