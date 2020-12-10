@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-on-feature",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf point-on-feature module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -44,18 +44,18 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/meta": "^6.2.0-alpha.2",
-    "@turf/truncate": "^6.2.0-alpha.2",
+    "@turf/meta": "^6.2.0-alpha.3",
+    "@turf/truncate": "^6.2.0-alpha.3",
     "benchmark": "*",
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.2",
-    "@turf/center": "^6.2.0-alpha.2",
-    "@turf/explode": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/nearest-point": "^6.2.0-alpha.2"
+    "@turf/boolean-point-in-polygon": "^6.2.0-alpha.3",
+    "@turf/center": "^6.2.0-alpha.3",
+    "@turf/explode": "^6.2.0-alpha.3",
+    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/nearest-point": "^6.2.0-alpha.3"
   }
 }

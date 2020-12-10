@@ -1,6 +1,6 @@
 {
   "name": "@turf/square",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf square module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -48,7 +48,7 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/distance": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2"
+    "@turf/distance": "^6.2.0-alpha.3",
+    "@turf/helpers": "^6.2.0-alpha.3"
   }
 }
