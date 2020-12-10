@@ -6,7 +6,11 @@ After a bit of hiatus, TurfJS is resuming releases.
 
 - ES Modules available for all packages
 - Tree shaking should significantly reduce import size of @turf/turf
-- Better support for ESM modules (PR https://github.com/Turfjs/turf/pull/1942 - Author @@diachedelic)
+- Better support for ESM modules (PR https://github.com/Turfjs/turf/pull/1942 - Author @diachedelic)
+- Clean-up of test and benchmark running to make publishing easier
+- Enforce styling using Prettier
+- Enable ESLint and get rid of unused variables
+- Upgrade rollup for more correct javascript module builds
 
 ## 🚀 New Modules
 
@@ -62,6 +66,9 @@ No longer publishes an .mjs file.
 
 - [`@turf/buffer`](buffer) Change default number of steps to 8, and actually support the steps option
   (PR https://github.com/Turfjs/turf/pull/1931 - Author stevenchanin)
+
+- [`@turf/buffer`](buffer) Fix projection issues that produce undersized buffers at non-equatorial latitudes
+  (PR https://github.com/Turfjs/turf/pull/1956 - Author dyakovlev)
 
 - [`@turf/helpers`](helpers) Add runtime checks to point() method, fixing an API break
   (PR https://github.com/Turfjs/turf/pull/1964)
