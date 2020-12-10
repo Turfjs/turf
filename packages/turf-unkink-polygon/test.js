@@ -27,8 +27,7 @@ test("unkink-polygon", (t) => {
       if (kinks(feature).features.length) t.skip(filename + " has kinks");
     });
 
-    // Style results
-    const results = colorize(unkinked);
+    colorize(unkinked);
     if (process.env.REGEN) write.sync(directories.out + filename, unkinked);
 
     const expected = load.sync(directories.out + filename);

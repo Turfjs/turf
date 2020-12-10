@@ -1,4 +1,3 @@
-import fs from "fs";
 import Benchmark from "benchmark";
 import { featureCollection, point, polygon } from "@turf/helpers";
 import pointsWithinPolygon from "./index";

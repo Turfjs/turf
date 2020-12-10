@@ -1,6 +1,5 @@
 const Benchmark = require("benchmark");
-const moranIndex = require("./index").default;
-const glob = require("glob");
+const moranIndex = require("./dist/js/index.js").default;
 const path = require("path");
 const load = require("load-json-file");
 

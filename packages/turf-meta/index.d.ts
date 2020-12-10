@@ -2,7 +2,6 @@ import {
   Point,
   LineString,
   Polygon,
-  MultiPoint,
   MultiLineString,
   MultiPolygon,
   FeatureCollection,

@@ -2,9 +2,7 @@ import {
   Feature,
   FeatureCollection,
   Geometries,
-  Geometry,
   GeometryCollection,
-  GeometryObject,
   isNumber,
   Point,
 } from "@turf/helpers";
@@ -248,7 +246,7 @@ export function getGeom<G extends Geometries | GeometryCollection>(
  * Get GeoJSON object's type, Geometry type is prioritize.
  *
  * @param {GeoJSON} geojson GeoJSON object
- * @param {string} [name="geojson"] name of the variable to display in error message
+ * @param {string} [name="geojson"] name of the variable to display in error message (unused)
  * @returns {string} GeoJSON type
  * @example
  * var point = {
@@ -268,7 +266,7 @@ export function getType(
     | FeatureCollection<any>
     | Geometries
     | GeometryCollection,
-  name?: string
+  _name?: string
 ): string {
   if (geojson.type === "FeatureCollection") {
     return "FeatureCollection";

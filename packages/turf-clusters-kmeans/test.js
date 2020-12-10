@@ -49,22 +49,6 @@ const points = featureCollection([
   point([3, 6], { foo: "bar" }),
 ]);
 
-test("clusters-kmeans -- throws", (t) => {
-  const poly = polygon([
-    [
-      [0, 0],
-      [10, 10],
-      [0, 10],
-      [0, 0],
-    ],
-  ]);
-
-  // Types handled by Typescript
-  // t.throws(() => clustersKmeans(poly, {numberOfClusters: 1}), /Input must contain Points/);
-  // t.throws(() => clustersKmeans(points, 5), /numberOfClusters can't be greater than the number of points/);
-  t.end();
-});
-
 test("clusters-kmeans -- translate properties", (t) => {
   t.equal(
     clustersKmeans(points, { numberOfClusters: 2 }).features[0].properties.foo,

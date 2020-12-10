@@ -60,7 +60,6 @@
   "dependencies": {
     "@turf/boolean-intersects": "^6.2.0-alpha.2",
     "@turf/distance": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/invariant": "^6.2.0-alpha.2"
+    "@turf/helpers": "^6.2.0-alpha.2"
   }
 }

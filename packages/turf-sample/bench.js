@@ -1,4 +1,3 @@
-import fs from "fs";
 import Benchmark from "benchmark";
 import { point, featureCollection } from "@turf/helpers";
 import sample from "./index";
@@ -12,8 +11,7 @@ var points = featureCollection([
   point(4, 2, { team: "Yankees" }),
 ]);
 
-var suite = new Benchmark.Suite("turf-sample");
-suite
+new Benchmark.Suite("turf-sample")
   .add("turf-sample", function () {
     sample(points, 4);
   })

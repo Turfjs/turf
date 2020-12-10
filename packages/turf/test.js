@@ -37,23 +37,6 @@ for (const name of fs.readdirSync(directory)) {
 // Exclude main Turf module
 modules = modules.filter(({ name }) => name !== "turf");
 
-test("turf -- required files", (t) => {
-  for (const { name, dir } of modules) {
-    for (const filename of [
-      "test.js",
-      "index.js",
-      "index.d.ts",
-      "LICENSE",
-      "README.md",
-    ]) {
-      // if (!fs.existsSync(path.join(dir, filename))) t.fail(`${name} ${filename} is required`);
-    }
-    // if (!fs.existsSync(path.join(dir, 'types.ts'))) t.fail(`${name} types.ts is required`);
-  }
-  t.skip('add "types.ts" to all packages');
-  t.end();
-});
-
 test("turf -- invalid dependencies", (t) => {
   for (const { name, dependencies, devDependencies } of modules) {
     for (const invalidDependency of [
@@ -131,7 +114,7 @@ test("turf -- check if files exists", (t) => {
 });
 
 test("turf -- external files must be in the lib folder", (t) => {
-  for (const { name, pckg } of modules) {
+  for (const { pckg } of modules) {
     const { files } = pckg;
     for (const file of files) {
       switch (file) {

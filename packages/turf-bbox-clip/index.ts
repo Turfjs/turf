@@ -11,7 +11,7 @@ import {
   Polygon,
   Properties,
 } from "@turf/helpers";
-import { getCoords, getGeom } from "@turf/invariant";
+import { getGeom } from "@turf/invariant";
 import { lineclip, polygonclip } from "./lib/lineclip";
 
 /**

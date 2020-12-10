@@ -1,4 +1,3 @@
-const fs = require("fs");
 const path = require("path");
 const Benchmark = require("benchmark");
 const load = require("load-json-file");

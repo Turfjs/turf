@@ -1,8 +1,7 @@
-import calcBbox from "@turf/bbox";
 import booleanPointOnLine from "@turf/boolean-point-on-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { getGeom, getType } from "@turf/invariant";
-import { Feature, Geometry, LineString } from "@turf/helpers";
+import { getGeom } from "@turf/invariant";
+import { Feature, Geometry } from "@turf/helpers";
 
 /**
  * Boolean-touches true if none of the points common to both geometries
@@ -779,78 +778,6 @@ function isPointOnLineEnd(point, line) {
   return false;
 }
 
-function isLineOnLine(lineString1, lineString2) {
-  for (var i = 0; i < lineString1.coordinates.length; i++) {
-    if (!booleanPointOnLine(lineString1.coordinates[i], lineString2)) {
-      return false;
-    }
-  }
-  return true;
-}
-
-function isLineInPoly(linestring, polygon) {
-  var polyBbox = calcBbox(polygon);
-  var lineBbox = calcBbox(linestring);
-  if (!doBBoxOverlap(polyBbox, lineBbox)) {
-    return false;
-  }
-  var foundInsidePoint = false;
-
-  for (var i = 0; i < linestring.coordinates.length - 1; i++) {
-    if (!booleanPointInPolygon(linestring.coordinates[i], polygon)) {
-      return false;
-    }
-    if (!foundInsidePoint) {
-      foundInsidePoint = booleanPointInPolygon(
-        linestring.coordinates[i],
-        polygon,
-        { ignoreBoundary: true }
-      );
-    }
-    if (!foundInsidePoint) {
-      var midpoint = getMidpoint(
-        linestring.coordinates[i],
-        linestring.coordinates[i + 1]
-      );
-      foundInsidePoint = booleanPointInPolygon(midpoint, polygon, {
-        ignoreBoundary: true,
-      });
-    }
-  }
-  return foundInsidePoint;
-}
-
-/**
- * Is Polygon2 in Polygon1
- * Only takes into account outer rings
- *
- * @private
- * @param {Geometry|Feature<Polygon>} feature1 Polygon1
- * @param {Geometry|Feature<Polygon>} feature2 Polygon2
- * @returns {boolean} true/false
- */
-function isPolyInPoly(feature1, feature2) {
-  var poly1Bbox = calcBbox(feature1);
-  var poly2Bbox = calcBbox(feature2);
-  if (!doBBoxOverlap(poly2Bbox, poly1Bbox)) {
-    return false;
-  }
-  for (var i = 0; i < feature1.coordinates[0].length; i++) {
-    if (!booleanPointInPolygon(feature1.coordinates[0][i], feature2)) {
-      return false;
-    }
-  }
-  return true;
-}
-
-function doBBoxOverlap(bbox1, bbox2) {
-  if (bbox1[0] > bbox2[0]) return false;
-  if (bbox1[2] < bbox2[2]) return false;
-  if (bbox1[1] > bbox2[1]) return false;
-  if (bbox1[3] < bbox2[3]) return false;
-  return true;
-}
-
 /**
  * compareCoords
  *
@@ -861,18 +788,6 @@ function doBBoxOverlap(bbox1, bbox2) {
  */
 function compareCoords(pair1, pair2) {
   return pair1[0] === pair2[0] && pair1[1] === pair2[1];
-}
-
-/**
- * getMidpoint
- *
- * @private
- * @param {Position} pair1 point [x,y]
- * @param {Position} pair2 point [x,y]
- * @returns {Position} midpoint of pair1 and pair2
- */
-function getMidpoint(pair1, pair2) {
-  return [(pair1[0] + pair2[0]) / 2, (pair1[1] + pair2[1]) / 2];
 }
 
 export default booleanTouches;

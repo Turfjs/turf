@@ -53,14 +53,3 @@ test("square-grid", (t) => {
   }
   t.end();
 });
-
-test("square-grid -- throw", (t) => {
-  const bbox = [0, 0, 1, 1];
-  // t.throws(() => squareGrid(null, 0), /bbox is required/, 'missing bbox');
-  // t.throws(() => squareGrid('string', 0), /bbox must be array/, 'invalid bbox');
-  // t.throws(() => squareGrid([0, 2], 0), /bbox must contain 4 numbers/, 'invalid bbox');
-  // t.throws(() => squareGrid(bbox, null), /cellSide is required/, 'missing cellSide');
-  // t.throws(() => squareGrid(bbox, 'string'), /cellSide is invalid/, 'invalid cellSide');
-  // t.throws(() => squareGrid(bbox, 1, 'string'), /options is invalid/, 'invalid options');
-  t.end();
-});

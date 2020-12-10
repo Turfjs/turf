@@ -31,7 +31,7 @@ test("turf-interpolate", (t) => {
 
     // Truncate coordinates & elevation (property) to 6 precision
     let result = truncate(interpolate(geojson, cellSize, options));
-    propEach(result, (properties, featureIndex) => {
+    propEach(result, (properties) => {
       properties[property] = round(properties[property]);
     });
     result = colorize(result, property, name);
@@ -44,7 +44,6 @@ test("turf-interpolate", (t) => {
 
 test("turf-interpolate -- throws errors", (t) => {
   const cellSize = 1;
-  const property = "elevation";
   const weight = 0.5;
   const units = "miles";
   const gridType = "point";

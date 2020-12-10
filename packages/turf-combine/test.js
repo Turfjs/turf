@@ -7,7 +7,6 @@ const {
   lineString,
   multiLineString,
   featureCollection,
-  feature,
 } = require("@turf/helpers");
 const combine = require("./index").default;
 

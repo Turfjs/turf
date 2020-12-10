@@ -8,7 +8,7 @@ import truncate from "@turf/truncate";
 import pointGrid from "@turf/point-grid";
 import { getCoords } from "@turf/invariant";
 import { randomPolygon } from "@turf/random";
-import { lineString, polygon } from "@turf/helpers";
+import { lineString } from "@turf/helpers";
 import matrixToGrid from "./lib/matrix-to-grid";
 import isolines from "./index";
 
@@ -26,7 +26,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
 });
 
 test("isolines", (t) => {
-  fixtures.forEach(({ name, json, filename }) => {
+  fixtures.forEach(({ name, json }) => {
     const options = json.properties || json;
     const { breaks, matrix, cellSize, origin } = options;
 

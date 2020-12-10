@@ -1,8 +1,8 @@
 import lineIntersect from "@turf/line-intersect";
 import { polygonToLine } from "@turf/polygon-to-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { getGeom, getType } from "@turf/invariant";
-import { point, Feature, Geometry, MultiPolygon, Polygon } from "@turf/helpers";
+import { getGeom } from "@turf/invariant";
+import { point, Feature, Geometry, Polygon } from "@turf/helpers";
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than

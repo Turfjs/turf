@@ -1,11 +1,4 @@
 node_modules
-test
-test.js
-bench.js
 packages/turf/turf.js
 packages/turf/turf.min.js
-marchingsquares-isobands.js
-rollup.config.js
-simplepolygon.js
-types.js
-test.example.js
+packages/turf/test.example.js

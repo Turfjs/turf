@@ -1,15 +1,8 @@
 import bearing from "@turf/bearing";
 import centroid from "@turf/centroid";
 import destination from "@turf/destination";
-import { featureCollection, geometry, lineString, point } from "@turf/helpers";
-import {
-  Coord,
-  Feature,
-  FeatureCollection,
-  Geometry,
-  LineString,
-  Point,
-} from "@turf/helpers";
+import { featureCollection, lineString, point } from "@turf/helpers";
+import { Feature, FeatureCollection, LineString, Point } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 import length from "@turf/length";
 import { featureEach, segmentEach, segmentReduce } from "@turf/meta";
@@ -94,28 +87,25 @@ export default function directionalMean(
     // planar and segment
   } else {
     // planar and non-segment
-    featureEach(
-      lines,
-      (currentFeature: Feature<LineString>, featureIndex: number) => {
-        if (currentFeature.geometry.type !== "LineString") {
-          throw new Error("shold to support MultiLineString?");
-        }
-        const [sin1, cos1]: [number, number] = getCosAndSin(
-          currentFeature.geometry.coordinates,
-          isPlanar
-        );
-        const lenOfLine = getLengthOfLineString(currentFeature, isPlanar);
-        if (isNaN(sin1) || isNaN(cos1)) {
-          return;
-        } else {
-          sigmaSin += sin1;
-          sigmaCos += cos1;
-          countOfLines += 1;
-          sumOfLen += lenOfLine;
-          centroidList.push(centroid(currentFeature));
-        }
+    featureEach(lines, (currentFeature: Feature<LineString>) => {
+      if (currentFeature.geometry.type !== "LineString") {
+        throw new Error("shold to support MultiLineString?");
       }
-    );
+      const [sin1, cos1]: [number, number] = getCosAndSin(
+        currentFeature.geometry.coordinates,
+        isPlanar
+      );
+      const lenOfLine = getLengthOfLineString(currentFeature, isPlanar);
+      if (isNaN(sin1) || isNaN(cos1)) {
+        return;
+      } else {
+        sigmaSin += sin1;
+        sigmaCos += cos1;
+        countOfLines += 1;
+        sumOfLen += lenOfLine;
+        centroidList.push(centroid(currentFeature));
+      }
+    });
   }
 
   const cartesianAngle: number = getAngleBySinAndCos(sigmaSin, sigmaCos);

@@ -1,4 +1,3 @@
-const fs = require("fs");
 const Benchmark = require("benchmark");
 const bboxpolygon = require("./index").default;
 

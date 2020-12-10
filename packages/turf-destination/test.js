@@ -4,7 +4,7 @@ const glob = require("glob");
 const load = require("load-json-file");
 const write = require("write-json-file");
 const { getCoords } = require("@turf/invariant");
-const { lineString, featureCollection, round } = require("@turf/helpers");
+const { lineString, featureCollection } = require("@turf/helpers");
 const truncate = require("@turf/truncate").default;
 const destination = require("./index").default;
 

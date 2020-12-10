@@ -1,11 +1,4 @@
-import {
-  Feature,
-  isNumber,
-  isObject,
-  lineString,
-  LineString,
-  Properties,
-} from "@turf/helpers";
+import { Feature, lineString, LineString, Properties } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 import Spline from "./lib/spline";
 

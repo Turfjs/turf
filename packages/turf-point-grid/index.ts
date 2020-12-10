@@ -1,11 +1,8 @@
 import within from "@turf/boolean-within";
 import distance from "@turf/distance";
-import { getType } from "@turf/invariant";
 import {
   point,
   featureCollection,
-  isObject,
-  isNumber,
   BBox,
   Feature,
   Polygon,

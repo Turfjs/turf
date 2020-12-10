@@ -565,24 +565,9 @@ Number.prototype.modulo = function (n) {
   return ((this % n) + n) % n;
 };
 
-// Function to get array with only unique elements. From http://stackoverflow.com/questions/1960473/unique-values-in-an-array
-function getUnique(array) {
-  var u = {},
-    a = [];
-  for (var i = 0, l = array.length; i < l; ++i) {
-    if (u.hasOwnProperty(array[i])) {
-      continue;
-    }
-    a.push(array[i]);
-    u[array[i]] = 1;
-  }
-  return a;
-}
-
 // Function to check if array is unique (i.e. all unique elements, i.e. no duplicate elements)
 function isUnique(array) {
-  var u = {},
-    a = [];
+  var u = {};
   var isUnique = 1;
   for (var i = 0, l = array.length; i < l; ++i) {
     if (u.hasOwnProperty(array[i])) {

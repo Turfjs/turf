@@ -199,8 +199,6 @@ function getXY(cell, edge) {
 function contourGrid2Paths(grid) {
   var paths = [];
   var path_idx = 0;
-  var rows = grid.rows;
-  var cols = grid.cols;
   var epsilon = 1e-7;
 
   grid.cells.forEach(function (g, j) {
@@ -286,7 +284,6 @@ function tracePath(grid, j, i) {
   ];
   var edge;
 
-  var startCell = grid[j][i];
   var currentCell = grid[j][i];
 
   var cval = currentCell.cval;

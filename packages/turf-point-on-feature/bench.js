@@ -1,4 +1,3 @@
-import fs from "fs";
 import path from "path";
 import glob from "glob";
 import load from "load-json-file";

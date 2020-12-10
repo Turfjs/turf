@@ -1,12 +1,5 @@
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import {
-  BBox,
-  Feature,
-  Geometry,
-  LineString,
-  Point,
-  Polygon,
-} from "@turf/helpers";
+import { Feature, Geometry, LineString, Point, Polygon } from "@turf/helpers";
 import lineIntersect from "@turf/line-intersect";
 import { flattenEach } from "@turf/meta";
 import polygonToLine from "@turf/polygon-to-line";

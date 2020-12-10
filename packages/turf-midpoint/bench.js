@@ -1,4 +1,3 @@
-import fs from "fs";
 import Benchmark from "benchmark";
 import { point } from "@turf/helpers";
 import midpoint from "./index";

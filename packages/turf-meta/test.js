@@ -9,9 +9,7 @@ const {
   multiLineString,
   geometryCollection,
   featureCollection,
-  points,
   lineStrings,
-  polygons,
 } = require("@turf/helpers");
 const meta = require("./index");
 
@@ -514,7 +512,6 @@ test("null geometries", (t) => {
   meta.coordEach(fcNull, () => t.fail("no coordinates should be found"));
 
   // Reduce operations
-  /* eslint-disable no-return-assign */
   t.equal(
     meta.featureReduce(fcNull, (prev) => (prev += 1), 0),
     2,

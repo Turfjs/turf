@@ -1,7 +1,6 @@
 import nearestPointOnLine from "./index";
 import { point, lineString, multiLineString } from "@turf/helpers";
 
-const units = "miles";
 const pt = point([1.5, 1.5]);
 const line = lineString([
   [0, 0],

@@ -1,6 +1,5 @@
 const Benchmark = require("benchmark");
-const distanceWeight = require("./index").default;
-const glob = require("glob");
+const distanceWeight = require("./dist/js/index.js").default;
 const path = require("path");
 const load = require("load-json-file");
 

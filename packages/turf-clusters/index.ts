@@ -1,11 +1,5 @@
 import { featureEach } from "@turf/meta";
-import {
-  featureCollection,
-  Feature,
-  FeatureCollection,
-  Properties,
-  Geometry,
-} from "@turf/helpers";
+import { featureCollection, Feature, FeatureCollection } from "@turf/helpers";
 
 /**
  * Get Cluster

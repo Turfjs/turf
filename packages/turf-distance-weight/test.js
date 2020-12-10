@@ -1,12 +1,10 @@
 const { point } = require("@turf/helpers");
 
 const test = require("tape");
-const glob = require("glob");
 const path = require("path");
 const load = require("load-json-file");
-const write = require("write-json-file");
-const distanceWeight = require("./index").default;
-const { pNormDistance } = require("./index");
+const distanceWeight = require("./dist/js/index.js").default;
+const { pNormDistance } = require("./dist/js/index.js");
 
 test("pNormDistance function", (t) => {
   t.equal(pNormDistance(point([2, 0]), point([0, 0]), 2), 2, "2-norm is ok");

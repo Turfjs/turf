@@ -66,8 +66,6 @@ export default class Spline {
     }
     this.controls.push([this.points[0], this.points[0]]);
     for (let i = 0; i < this.centers.length - 1; i++) {
-      const p1 = this.centers[i];
-      const p2 = this.centers[i + 1];
       const dx =
         this.points[i + 1].x - (this.centers[i].x + this.centers[i + 1].x) / 2;
       const dy =

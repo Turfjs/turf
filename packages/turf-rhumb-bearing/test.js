@@ -22,7 +22,6 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
 test("bearing", (t) => {
   fixtures.forEach((fixture) => {
     const name = fixture.name;
-    const filename = fixture.filename;
     const geojson = fixture.geojson;
 
     const start = geojson.features[0];

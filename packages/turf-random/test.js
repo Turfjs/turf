@@ -1,10 +1,5 @@
 const test = require("tape");
-const {
-  randomPoint,
-  randomLineString,
-  randomPolygon,
-  randomPosition,
-} = require("./index");
+const { randomPoint, randomPolygon } = require("./dist/js/index.js");
 
 test("random(points)", (t) => {
   var points = randomPoint();

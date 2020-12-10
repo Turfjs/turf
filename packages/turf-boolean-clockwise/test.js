@@ -2,8 +2,8 @@ const glob = require("glob");
 const path = require("path");
 const test = require("tape");
 const load = require("load-json-file");
-const { point, lineString } = require("@turf/helpers");
-const isClockwise = require("./index").default;
+const { lineString } = require("@turf/helpers");
+const isClockwise = require("./dist/js/index.js").default;
 
 test("isClockwise#fixtures", (t) => {
   // True Fixtures

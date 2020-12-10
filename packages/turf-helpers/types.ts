@@ -1,14 +1,7 @@
-import * as helpers from "./index";
 import {
   BBox,
-  bearingToAzimuth,
-  convertArea,
-  convertLength,
-  degreesToRadians,
-  earthRadius,
   feature,
   featureCollection,
-  Geometries,
   geometry,
   geometryCollection,
   GeometryCollection,
@@ -19,19 +12,14 @@ import {
   lineString,
   LineString,
   multiLineString,
-  MultiLineString,
   multiPoint,
-  MultiPoint,
   multiPolygon,
   // Typescript types
-  MultiPolygon,
   point,
   Point,
   Polygon,
   polygon,
-  radiansToDegrees,
   radiansToLength,
-  round,
 } from "./";
 
 // Fixtures

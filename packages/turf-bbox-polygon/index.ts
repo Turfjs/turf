@@ -1,13 +1,4 @@
-import {
-  BBox,
-  Feature,
-  Id,
-  isObject,
-  polygon,
-  Polygon,
-  Properties,
-  validateBBox,
-} from "@turf/helpers";
+import { BBox, Feature, Id, polygon, Polygon, Properties } from "@turf/helpers";
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.

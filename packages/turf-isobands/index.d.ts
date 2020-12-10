@@ -2,7 +2,6 @@ import {
   Point,
   MultiPolygon,
   FeatureCollection,
-  Feature,
   Properties,
 } from "@turf/helpers";
 
