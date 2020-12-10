@@ -119,11 +119,11 @@ export default function (feature) {
       pseudoVtxListByRingAndEdge[i].push([
         new PseudoVtx(
           feature.geometry.coordinates[i][
-            (j + 1).modulo(feature.geometry.coordinates[i].length - 1)
+            modulo(j + 1, feature.geometry.coordinates[i].length - 1)
           ],
           1,
           [i, j],
-          [i, (j + 1).modulo(feature.geometry.coordinates[i].length - 1)],
+          [i, modulo(j + 1, feature.geometry.coordinates[i].length - 1)],
           undefined
         ),
       ]);
@@ -131,7 +131,7 @@ export default function (feature) {
       isectList.push(
         new Isect(
           feature.geometry.coordinates[i][j],
-          [i, (j - 1).modulo(feature.geometry.coordinates[i].length - 1)],
+          [i, modulo(j - 1, feature.geometry.coordinates[i].length - 1)],
           [i, j],
           undefined,
           undefined,
@@ -202,7 +202,7 @@ export default function (feature) {
           // If it's the last pseudoVertex on that edge, then the next pseudoVertex is the first one on the next edge of that ring.
           coordToFind =
             pseudoVtxListByRingAndEdge[i][
-              (j + 1).modulo(feature.geometry.coordinates[i].length - 1)
+              modulo(j + 1, feature.geometry.coordinates[i].length - 1)
             ][0].coord;
         } else {
           coordToFind = pseudoVtxListByRingAndEdge[i][j][k + 1].coord;
@@ -525,9 +525,9 @@ function windingOfRing(ring) {
   if (
     isConvex(
       [
-        ring[(leftVtx - 1).modulo(ring.length - 1)],
+        ring[modulo(leftVtx - 1, ring.length - 1)],
         ring[leftVtx],
-        ring[(leftVtx + 1).modulo(ring.length - 1)],
+        ring[modulo(leftVtx + 1, ring.length - 1)],
       ],
       true
     )
@@ -561,9 +561,9 @@ function equalArrays(array1, array2) {
 }
 
 // Fix Javascript modulo for negative number. From http://stackoverflow.com/questions/4467539/javascript-modulo-not-behaving
-Number.prototype.modulo = function (n) {
-  return ((this % n) + n) % n;
-};
+function modulo(n, m) {
+  return ((n % m) + m) % m;
+}
 
 // Function to check if array is unique (i.e. all unique elements, i.e. no duplicate elements)
 function isUnique(array) {
