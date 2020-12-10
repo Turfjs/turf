@@ -1,21 +1,27 @@
-import bearing from '@turf/bearing';
-import distance from '@turf/distance';
-import destination from '@turf/destination';
-import lineIntersects from '@turf/line-intersect';
-import { flattenEach } from '@turf/meta';
+import bearing from "@turf/bearing";
+import distance from "@turf/distance";
+import destination from "@turf/destination";
+import lineIntersects from "@turf/line-intersect";
+import { flattenEach } from "@turf/meta";
 import {
-    point, lineString, isObject,
-    Feature, Point, LineString, MultiLineString, Coord, Units
-} from '@turf/helpers';
-import { getCoords } from '@turf/invariant';
+  point,
+  lineString,
+  Feature,
+  Point,
+  LineString,
+  MultiLineString,
+  Coord,
+  Units,
+} from "@turf/helpers";
+import { getCoords } from "@turf/invariant";
 
 export interface NearestPointOnLine extends Feature<Point> {
-    properties: {
-        index?: number
-        dist?: number
-        location?: number
-        [key: string]: any
-    }
+  properties: {
+    index?: number;
+    dist?: number;
+    location?: number;
+    [key: string]: any;
+  };
 }
 
 /**
@@ -44,65 +50,84 @@ export interface NearestPointOnLine extends Feature<Point> {
  * var addToMap = [line, pt, snapped];
  * snapped.properties['marker-color'] = '#00f';
  */
-function nearestPointOnLine<G extends LineString|MultiLineString>(
-    lines: Feature<G> | G,
-    pt: Coord,
-    options: {units?: Units} = {}
+function nearestPointOnLine<G extends LineString | MultiLineString>(
+  lines: Feature<G> | G,
+  pt: Coord,
+  options: { units?: Units } = {}
 ): NearestPointOnLine {
-    let closestPt: any = point([Infinity, Infinity], {
-        dist: Infinity
-    });
+  let closestPt: any = point([Infinity, Infinity], {
+    dist: Infinity,
+  });
 
-    let length = 0.0;
-    flattenEach(lines, function (line: any) {
-        const coords: any = getCoords(line);
+  let length = 0.0;
+  flattenEach(lines, function (line: any) {
+    const coords: any = getCoords(line);
 
-        for (let i = 0; i < coords.length - 1; i++) {
-            //start
-            const start = point(coords[i]);
-            start.properties.dist = distance(pt, start, options);
-            //stop
-            const stop = point(coords[i + 1]);
-            stop.properties.dist = distance(pt, stop, options);
-            // sectionLength
-            const sectionLength = distance(start, stop, options);
-            //perpendicular
-            const heightDistance = Math.max(start.properties.dist, stop.properties.dist);
-            const direction = bearing(start, stop);
-            const perpendicularPt1 = destination(pt, heightDistance, direction + 90, options);
-            const perpendicularPt2 = destination(pt, heightDistance, direction - 90, options);
-            const intersect = lineIntersects(
-                lineString([perpendicularPt1.geometry.coordinates, perpendicularPt2.geometry.coordinates]),
-                lineString([start.geometry.coordinates, stop.geometry.coordinates])
-            );
-            let intersectPt = null;
-            if (intersect.features.length > 0) {
-                intersectPt = intersect.features[0];
-                intersectPt.properties.dist = distance(pt, intersectPt, options);
-                intersectPt.properties.location = length + distance(start, intersectPt, options);
-            }
+    for (let i = 0; i < coords.length - 1; i++) {
+      //start
+      const start = point(coords[i]);
+      start.properties.dist = distance(pt, start, options);
+      //stop
+      const stop = point(coords[i + 1]);
+      stop.properties.dist = distance(pt, stop, options);
+      // sectionLength
+      const sectionLength = distance(start, stop, options);
+      //perpendicular
+      const heightDistance = Math.max(
+        start.properties.dist,
+        stop.properties.dist
+      );
+      const direction = bearing(start, stop);
+      const perpendicularPt1 = destination(
+        pt,
+        heightDistance,
+        direction + 90,
+        options
+      );
+      const perpendicularPt2 = destination(
+        pt,
+        heightDistance,
+        direction - 90,
+        options
+      );
+      const intersect = lineIntersects(
+        lineString([
+          perpendicularPt1.geometry.coordinates,
+          perpendicularPt2.geometry.coordinates,
+        ]),
+        lineString([start.geometry.coordinates, stop.geometry.coordinates])
+      );
+      let intersectPt = null;
+      if (intersect.features.length > 0) {
+        intersectPt = intersect.features[0];
+        intersectPt.properties.dist = distance(pt, intersectPt, options);
+        intersectPt.properties.location =
+          length + distance(start, intersectPt, options);
+      }
 
-            if (start.properties.dist < closestPt.properties.dist) {
-                closestPt = start;
-                closestPt.properties.index = i;
-                closestPt.properties.location = length;
-            }
-            if (stop.properties.dist < closestPt.properties.dist) {
-                closestPt = stop;
-                closestPt.properties.index = i + 1;
-                closestPt.properties.location = length + sectionLength;
-            }
-            if (intersectPt && intersectPt.properties.dist < closestPt.properties.dist) {
-                closestPt = intersectPt;
-                closestPt.properties.index = i;
-            }
-            // update length
-            length += sectionLength;
-        }
+      if (start.properties.dist < closestPt.properties.dist) {
+        closestPt = start;
+        closestPt.properties.index = i;
+        closestPt.properties.location = length;
+      }
+      if (stop.properties.dist < closestPt.properties.dist) {
+        closestPt = stop;
+        closestPt.properties.index = i + 1;
+        closestPt.properties.location = length + sectionLength;
+      }
+      if (
+        intersectPt &&
+        intersectPt.properties.dist < closestPt.properties.dist
+      ) {
+        closestPt = intersectPt;
+        closestPt.properties.index = i;
+      }
+      // update length
+      length += sectionLength;
+    }
+  });
 
-    });
-
-    return closestPt;
+  return closestPt;
 }
 
 export default nearestPointOnLine;

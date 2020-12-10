@@ -1,6 +1,6 @@
-import { getCoords, collectionOf } from '@turf/invariant';
-import { featureEach } from '@turf/meta';
-import { isObject } from '@turf/helpers';
+import { getCoords, collectionOf } from "@turf/invariant";
+import { featureEach } from "@turf/meta";
+import { isObject } from "@turf/helpers";
 
 /**
  * Takes a {@link Point} grid and returns a correspondent matrix {Array<Array<number>>}
@@ -35,36 +35,36 @@ import { isObject } from '@turf/helpers';
  *   ]
  */
 export default function gridToMatrix(grid, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var zProperty = options.zProperty || 'elevation';
-    var flip = options.flip;
-    var flags = options.flags;
+  // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var zProperty = options.zProperty || "elevation";
+  var flip = options.flip;
+  var flags = options.flags;
 
-    // validation
-    collectionOf(grid, 'Point', 'input must contain Points');
+  // validation
+  collectionOf(grid, "Point", "input must contain Points");
 
-    var pointsMatrix = sortPointsByLatLng(grid, flip);
+  var pointsMatrix = sortPointsByLatLng(grid, flip);
 
-    var matrix = [];
-    // create property matrix from sorted points
-    // looping order matters here
-    for (var r = 0; r < pointsMatrix.length; r++) {
-        var pointRow = pointsMatrix[r];
-        var row = [];
-        for (var c = 0; c < pointRow.length; c++) {
-            var point = pointRow[c];
-            // Check if zProperty exist
-            if (point.properties[zProperty]) row.push(point.properties[zProperty]);
-            else row.push(0);
-            // add flags
-            if (flags === true) point.properties.matrixPosition = [r, c];
-        }
-        matrix.push(row);
+  var matrix = [];
+  // create property matrix from sorted points
+  // looping order matters here
+  for (var r = 0; r < pointsMatrix.length; r++) {
+    var pointRow = pointsMatrix[r];
+    var row = [];
+    for (var c = 0; c < pointRow.length; c++) {
+      var point = pointRow[c];
+      // Check if zProperty exist
+      if (point.properties[zProperty]) row.push(point.properties[zProperty]);
+      else row.push(0);
+      // add flags
+      if (flags === true) point.properties.matrixPosition = [r, c];
     }
+    matrix.push(row);
+  }
 
-    return matrix;
+  return matrix;
 }
 
 /**
@@ -76,29 +76,29 @@ export default function gridToMatrix(grid, options) {
  * @returns {Array<Array<Point>>} points ordered by latitude and longitude
  */
 function sortPointsByLatLng(points, flip) {
-    var pointsByLatitude = {};
+  var pointsByLatitude = {};
 
-    // divide points by rows with the same latitude
-    featureEach(points, function (point) {
-        var lat = getCoords(point)[1];
-        if (!pointsByLatitude[lat]) pointsByLatitude[lat] = [];
-        pointsByLatitude[lat].push(point);
+  // divide points by rows with the same latitude
+  featureEach(points, function (point) {
+    var lat = getCoords(point)[1];
+    if (!pointsByLatitude[lat]) pointsByLatitude[lat] = [];
+    pointsByLatitude[lat].push(point);
+  });
+
+  // sort points (with the same latitude) by longitude
+  var orderedRowsByLatitude = Object.keys(pointsByLatitude).map(function (lat) {
+    var row = pointsByLatitude[lat];
+    var rowOrderedByLongitude = row.sort(function (a, b) {
+      return getCoords(a)[0] - getCoords(b)[0];
     });
+    return rowOrderedByLongitude;
+  });
 
-    // sort points (with the same latitude) by longitude
-    var orderedRowsByLatitude = Object.keys(pointsByLatitude).map(function (lat) {
-        var row = pointsByLatitude[lat];
-        var rowOrderedByLongitude = row.sort(function (a, b) {
-            return getCoords(a)[0] - getCoords(b)[0];
-        });
-        return rowOrderedByLongitude;
-    });
+  // sort rows (of points with the same latitude) by latitude
+  var pointMatrix = orderedRowsByLatitude.sort(function (a, b) {
+    if (flip) return getCoords(a[0])[1] - getCoords(b[0])[1];
+    else return getCoords(b[0])[1] - getCoords(a[0])[1];
+  });
 
-    // sort rows (of points with the same latitude) by latitude
-    var pointMatrix = orderedRowsByLatitude.sort(function (a, b) {
-        if (flip) return getCoords(a[0])[1] - getCoords(b[0])[1];
-        else return getCoords(b[0])[1] - getCoords(a[0])[1];
-    });
-
-    return pointMatrix;
+  return pointMatrix;
 }

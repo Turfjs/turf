@@ -1,5 +1,5 @@
-import { isObject, featureCollection, point } from '@turf/helpers';
-import rhumbDestination from '@turf/rhumb-destination';
+import { isObject, featureCollection, point } from "@turf/helpers";
+import rhumbDestination from "@turf/rhumb-destination";
 
 /**
  * Takes a {@link Point} grid and returns a correspondent matrix {Array<Array<number>>}
@@ -32,47 +32,48 @@ import rhumbDestination from '@turf/rhumb-destination';
  *    //= pointGrid
  */
 export default function matrixToGrid(matrix, origin, cellSize, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var zProperty = options.zProperty || 'elevation';
-    var properties = options.properties;
-    var units = options.units;
+  // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var zProperty = options.zProperty || "elevation";
+  var properties = options.properties;
+  var units = options.units;
 
-    // validation
-    if (!matrix || !Array.isArray(matrix)) throw new Error('matrix is required');
-    if (!origin) throw new Error('origin is required');
-    if (Array.isArray(origin)) {
-        origin = point(origin); // Convert coordinates array to point
-    }
-    // all matrix array have to be of the same size
-    var matrixCols = matrix[0].length;
-    var matrixRows = matrix.length;
-    for (var row = 1; row < matrixRows; row++) {
-        if (matrix[row].length !== matrixCols) throw new Error('matrix requires all rows of equal size');
-    }
+  // validation
+  if (!matrix || !Array.isArray(matrix)) throw new Error("matrix is required");
+  if (!origin) throw new Error("origin is required");
+  if (Array.isArray(origin)) {
+    origin = point(origin); // Convert coordinates array to point
+  }
+  // all matrix array have to be of the same size
+  var matrixCols = matrix[0].length;
+  var matrixRows = matrix.length;
+  for (var row = 1; row < matrixRows; row++) {
+    if (matrix[row].length !== matrixCols)
+      throw new Error("matrix requires all rows of equal size");
+  }
 
-    var points = [];
-    for (var r = 0; r < matrixRows; r++) {
-        // create first point in the row
-        var first = rhumbDestination(origin, cellSize * r, 0, { units: units });
-        first.properties[zProperty] = matrix[matrixRows - 1 - r][0];
-        for (var prop in properties) {
-            first.properties[prop] = properties[prop];
-        }
-        points.push(first);
-        for (var c = 1; c < matrixCols; c++) {
-            // create the other points in the same row
-            var pt = rhumbDestination(first, cellSize * c, 90, { units: units });
-            for (var prop2 in properties) {
-                pt.properties[prop2] = properties[prop2];
-            }
-            // add matrix property
-            var val = matrix[matrixRows - 1 - r][c];
-            pt.properties[zProperty] = val;
-            points.push(pt);
-        }
+  var points = [];
+  for (var r = 0; r < matrixRows; r++) {
+    // create first point in the row
+    var first = rhumbDestination(origin, cellSize * r, 0, { units: units });
+    first.properties[zProperty] = matrix[matrixRows - 1 - r][0];
+    for (var prop in properties) {
+      first.properties[prop] = properties[prop];
     }
-    var grid = featureCollection(points);
-    return grid;
+    points.push(first);
+    for (var c = 1; c < matrixCols; c++) {
+      // create the other points in the same row
+      var pt = rhumbDestination(first, cellSize * c, 90, { units: units });
+      for (var prop2 in properties) {
+        pt.properties[prop2] = properties[prop2];
+      }
+      // add matrix property
+      var val = matrix[matrixRows - 1 - r][c];
+      pt.properties[zProperty] = val;
+      points.push(pt);
+    }
+  }
+  var grid = featureCollection(points);
+  return grid;
 }

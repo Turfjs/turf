@@ -1,65 +1,38 @@
 {
-	"type": "FeatureCollection",
-	"features": [
-		{
-			"type": "Feature",
-			"properties": {
-				"radius": 5,
-				"bearing1": -50,
-				"bearing2": -15
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					11.343,
-					44.495
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"radius": 5,
-				"bearing1": -50,
-				"bearing2": -15
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						11.294686,
-						44.523893
-					],
-					[
-						11.29889,
-						44.527132
-					],
-					[
-						11.303519,
-						44.530062
-					],
-					[
-						11.308529,
-						44.532653
-					],
-					[
-						11.313872,
-						44.534882
-					],
-					[
-						11.319496,
-						44.536726
-					],
-					[
-						11.325347,
-						44.538168
-					],
-					[
-						11.326672,
-						44.538433
-					]
-				]
-			}
-		}
-	]
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "radius": 5,
+        "bearing1": -50,
+        "bearing2": -15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [11.343, 44.495]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "radius": 5,
+        "bearing1": -50,
+        "bearing2": -15
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [11.294686, 44.523893],
+          [11.29889, 44.527132],
+          [11.303519, 44.530062],
+          [11.308529, 44.532653],
+          [11.313872, 44.534882],
+          [11.319496, 44.536726],
+          [11.325347, 44.538168],
+          [11.326672, 44.538433]
+        ]
+      }
+    }
+  ]
 }

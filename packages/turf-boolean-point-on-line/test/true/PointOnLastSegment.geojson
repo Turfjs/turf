@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "properties": {
-      "ignoreEndVertices": true
+    "ignoreEndVertices": true
   },
   "features": [
     {
@@ -9,10 +9,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          3.5,
-         3.5
-        ]
+        "coordinates": [3.5, 3.5]
       }
     },
     {
@@ -21,16 +18,9 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [
-			       0,0
-          ],
-          [
-			       3,3
-          ],
-          [
-            4,
-            4
-          ]
+          [0, 0],
+          [3, 3],
+          [4, 4]
         ]
       }
     }

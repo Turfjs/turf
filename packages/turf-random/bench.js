@@ -1,14 +1,13 @@
-const random = require('./dist/js/index.js');
-const Benchmark = require('benchmark');
+const random = require("./index");
+const Benchmark = require("benchmark");
 
-var suite = new Benchmark.Suite('turf-random');
+var suite = new Benchmark.Suite("turf-random");
 suite
-  .add('turf-random',function () {
-    random('point');
+  .add("turf-random", function () {
+    random("point");
   })
-  .on('cycle', function (event) {
+  .on("cycle", function (event) {
     console.log(String(event.target));
   })
-  .on('complete', function () {
-  })
+  .on("complete", function () {})
   .run();

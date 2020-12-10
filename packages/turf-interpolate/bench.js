@@ -1,16 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import interpolate from './dist/js/index.js';
+import fs from "fs";
+import path from "path";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import interpolate from "./index";
 
 // Define Fixtures
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -33,17 +33,17 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * points1 x 356 ops/sec ±1.83% (70 runs sampled)
  * triangle-zValue x 570 ops/sec ±1.69% (81 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-interpolate');
-for (const {name, geojson} of fixtures) {
-    const options = geojson.properties;
-    const cellSize = options.cellSize;
-    console.time(name);
-    interpolate(geojson, cellSize, options);
-    console.timeEnd(name);
-    suite.add(name, () => interpolate(geojson, cellSize, options));
+const suite = new Benchmark.Suite("turf-interpolate");
+for (const { name, geojson } of fixtures) {
+  const options = geojson.properties;
+  const cellSize = options.cellSize;
+  console.time(name);
+  interpolate(geojson, cellSize, options);
+  console.timeEnd(name);
+  suite.add(name, () => interpolate(geojson, cellSize, options));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

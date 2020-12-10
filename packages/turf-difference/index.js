@@ -1,6 +1,6 @@
-import polygonClipping from 'polygon-clipping';
-import { polygon, multiPolygon } from '@turf/helpers';
-import { getGeom } from '@turf/invariant';
+import polygonClipping from "polygon-clipping";
+import { polygon, multiPolygon } from "@turf/helpers";
+import { getGeom } from "@turf/invariant";
 
 /**
  * Finds the difference between two {@link Polygon|polygons} by clipping the second polygon from the first.
@@ -37,14 +37,17 @@ import { getGeom } from '@turf/invariant';
  * var addToMap = [polygon1, polygon2, difference];
  */
 function difference(polygon1, polygon2) {
-    var geom1 = getGeom(polygon1);
-    var geom2 = getGeom(polygon2);
-    var properties = polygon1.properties || {};
+  var geom1 = getGeom(polygon1);
+  var geom2 = getGeom(polygon2);
+  var properties = polygon1.properties || {};
 
-    var differenced = polygonClipping.difference(geom1.coordinates, geom2.coordinates);
-    if (differenced.length === 0) return null;
-    if (differenced.length === 1) return polygon(differenced[0], properties);
-    return multiPolygon(differenced, properties);
+  var differenced = polygonClipping.difference(
+    geom1.coordinates,
+    geom2.coordinates
+  );
+  if (differenced.length === 0) return null;
+  if (differenced.length === 1) return polygon(differenced[0], properties);
+  return multiPolygon(differenced, properties);
 }
 
 export default difference;

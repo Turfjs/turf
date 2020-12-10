@@ -1,5 +1,5 @@
-import { featureEach } from '@turf/meta';
-import { featureCollection, Feature, FeatureCollection, Properties, Geometry } from '@turf/helpers';
+import { featureEach } from "@turf/meta";
+import { featureCollection, Feature, FeatureCollection } from "@turf/helpers";
 
 /**
  * Get Cluster
@@ -31,20 +31,22 @@ import { featureCollection, Feature, FeatureCollection, Properties, Geometry } f
  * //= 1
  */
 export function getCluster<G extends any, P = any>(
-    geojson: FeatureCollection<G, P>,
-    filter: any
+  geojson: FeatureCollection<G, P>,
+  filter: any
 ): FeatureCollection<G, P> {
-    // Validation
-    if (!geojson) throw new Error('geojson is required');
-    if (geojson.type !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
-    if (filter === undefined || filter === null) throw new Error('filter is required');
+  // Validation
+  if (!geojson) throw new Error("geojson is required");
+  if (geojson.type !== "FeatureCollection")
+    throw new Error("geojson must be a FeatureCollection");
+  if (filter === undefined || filter === null)
+    throw new Error("filter is required");
 
-    // Filter Features
-    var features: Feature<G, P>[] = [];
-    featureEach<G, P>(geojson, function (feature) {
-        if (applyFilter(feature.properties, filter)) features.push(feature);
-    });
-    return featureCollection(features);
+  // Filter Features
+  var features: Feature<G, P>[] = [];
+  featureEach<G, P>(geojson, function (feature) {
+    if (applyFilter(feature.properties, filter)) features.push(feature);
+  });
+  return featureCollection(features);
 }
 
 /**
@@ -97,27 +99,33 @@ export function getCluster<G extends any, P = any>(
  * });
  */
 export function clusterEach<G = any, P = any>(
-    geojson: FeatureCollection<G, P>,
-    property: number | string,
-    callback: (cluster?: FeatureCollection<G, P>, clusterValue?: any, currentIndex?: number) => void
+  geojson: FeatureCollection<G, P>,
+  property: number | string,
+  callback: (
+    cluster?: FeatureCollection<G, P>,
+    clusterValue?: any,
+    currentIndex?: number
+  ) => void
 ): void {
-    // Validation
-    if (!geojson) throw new Error('geojson is required');
-    if (geojson.type !== 'FeatureCollection') throw new Error('geojson must be a FeatureCollection');
-    if (property === undefined || property === null) throw new Error('property is required');
+  // Validation
+  if (!geojson) throw new Error("geojson is required");
+  if (geojson.type !== "FeatureCollection")
+    throw new Error("geojson must be a FeatureCollection");
+  if (property === undefined || property === null)
+    throw new Error("property is required");
 
-    // Create clusters based on property values
-    var bins = createBins(geojson, property);
-    var values = Object.keys(bins);
-    for (var index = 0; index < values.length; index++) {
-        var value = values[index];
-        var bin = bins[value];
-        var features = [];
-        for (var i = 0; i < bin.length; i++) {
-            features.push(geojson.features[bin[i]]);
-        }
-        callback(featureCollection(features), value, index);
+  // Create clusters based on property values
+  var bins = createBins(geojson, property);
+  var values = Object.keys(bins);
+  for (var index = 0; index < values.length; index++) {
+    var value = values[index];
+    var bin = bins[value];
+    var features = [];
+    for (var i = 0; i < bin.length; i++) {
+      features.push(geojson.features[bin[i]]);
     }
+    callback(featureCollection(features), value, index);
+  }
 }
 
 /**
@@ -185,17 +193,33 @@ export function clusterEach<G = any, P = any>(
  * }, []);
  */
 export function clusterReduce<G = any, P = any>(
-    geojson: FeatureCollection<G, P>,
-    property: number | string,
-    callback: (previousValue?: any, cluster?: FeatureCollection<G, P>, clusterValue?: any, currentIndex?: number) => void,
-    initialValue?: any
+  geojson: FeatureCollection<G, P>,
+  property: number | string,
+  callback: (
+    previousValue?: any,
+    cluster?: FeatureCollection<G, P>,
+    clusterValue?: any,
+    currentIndex?: number
+  ) => void,
+  initialValue?: any
 ): void {
-    var previousValue = initialValue;
-    clusterEach(geojson, property, function (cluster, clusterValue, currentIndex) {
-        if (currentIndex === 0 && initialValue === undefined) previousValue = cluster;
-        else previousValue = callback(previousValue, cluster, clusterValue, currentIndex);
-    });
-    return previousValue;
+  var previousValue = initialValue;
+  clusterEach(
+    geojson,
+    property,
+    function (cluster, clusterValue, currentIndex) {
+      if (currentIndex === 0 && initialValue === undefined)
+        previousValue = cluster;
+      else
+        previousValue = callback(
+          previousValue,
+          cluster,
+          clusterValue,
+          currentIndex
+        );
+    }
+  );
+  return previousValue;
 }
 
 /**
@@ -215,18 +239,21 @@ export function clusterReduce<G = any, P = any>(
  * createBins(geojson, 'cluster');
  * //= { '0': [ 0 ], '1': [ 1, 3 ] }
  */
-export function createBins(geojson: FeatureCollection<any>, property: string | number) {
-    var bins = {};
+export function createBins(
+  geojson: FeatureCollection<any>,
+  property: string | number
+) {
+  var bins = {};
 
-    featureEach(geojson, function (feature, i) {
-        var properties = feature.properties || {};
-        if (properties.hasOwnProperty(String(property))) {
-            var value = properties[property];
-            if (bins.hasOwnProperty(value)) bins[value].push(i);
-            else bins[value] = [i];
-        }
-    });
-    return bins;
+  featureEach(geojson, function (feature, i) {
+    var properties = feature.properties || {};
+    if (properties.hasOwnProperty(String(property))) {
+      var value = properties[property];
+      if (bins.hasOwnProperty(value)) bins[value].push(i);
+      else bins[value] = [i];
+    }
+  });
+  return bins;
 }
 
 /**
@@ -238,21 +265,22 @@ export function createBins(geojson: FeatureCollection<any>, property: string | n
  * @returns {boolean} applied Filter to properties
  */
 export function applyFilter(properties: any, filter: any) {
-    if (properties === undefined) return false;
-    var filterType = typeof filter;
+  if (properties === undefined) return false;
+  var filterType = typeof filter;
 
-    // String & Number
-    if (filterType === 'number' || filterType === 'string') return properties.hasOwnProperty(filter);
-    // Array
-    else if (Array.isArray(filter)) {
-        for (var i = 0; i < filter.length; i++) {
-            if (!applyFilter(properties, filter[i])) return false;
-        }
-        return true;
-    // Object
-    } else {
-        return propertiesContainsFilter(properties, filter);
+  // String & Number
+  if (filterType === "number" || filterType === "string")
+    return properties.hasOwnProperty(filter);
+  // Array
+  else if (Array.isArray(filter)) {
+    for (var i = 0; i < filter.length; i++) {
+      if (!applyFilter(properties, filter[i])) return false;
     }
+    return true;
+    // Object
+  } else {
+    return propertiesContainsFilter(properties, filter);
+  }
 }
 
 /**
@@ -268,13 +296,16 @@ export function applyFilter(properties: any, filter: any) {
  * propertiesContainsFilter({foo: 'bar', cluster: 0}, {cluster: 1})
  * //= false
  */
-export function propertiesContainsFilter(properties: any, filter: any): boolean {
-    var keys = Object.keys(filter);
-    for (var i = 0; i < keys.length; i++) {
-        var key = keys[i];
-        if (properties[key] !== filter[key]) return false;
-    }
-    return true;
+export function propertiesContainsFilter(
+  properties: any,
+  filter: any
+): boolean {
+  var keys = Object.keys(filter);
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    if (properties[key] !== filter[key]) return false;
+  }
+  return true;
 }
 
 /**
@@ -289,13 +320,13 @@ export function propertiesContainsFilter(properties: any, filter: any): boolean 
  * //= {cluster: 0}
  */
 export function filterProperties(properties: any, keys: string[]): any {
-    if (!keys) return {};
-    if (!keys.length) return {};
+  if (!keys) return {};
+  if (!keys.length) return {};
 
-    var newProperties = {};
-    for (var i = 0; i < keys.length; i++) {
-        var key = keys[i];
-        if (properties.hasOwnProperty(key)) newProperties[key] = properties[key];
-    }
-    return newProperties;
+  var newProperties = {};
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    if (properties.hasOwnProperty(key)) newProperties[key] = properties[key];
+  }
+  return newProperties;
 }

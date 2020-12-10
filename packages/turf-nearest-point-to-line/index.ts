@@ -1,4 +1,12 @@
-import { Feature, FeatureCollection, GeometryCollection, LineString, Point, Properties, Units } from "@turf/helpers";
+import {
+  Feature,
+  FeatureCollection,
+  GeometryCollection,
+  LineString,
+  Point,
+  Properties,
+  Units,
+} from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { featureEach, geomEach } from "@turf/meta";
 import pointToLineDistance from "@turf/point-to-line-distance";
@@ -27,43 +35,54 @@ import objectAssign from "object-assign";
  * //addToMap
  * var addToMap = [nearest, line];
  */
-function nearestPointToLine<P = {dist: number, [key: string]: any}>(
-    points: FeatureCollection<Point> | Feature<GeometryCollection> | GeometryCollection,
-    line: Feature<LineString> | LineString,
-    options: {
-        units?: Units,
-        properties?: Properties,
-    } = {},
+function nearestPointToLine<P = { dist: number; [key: string]: any }>(
+  points:
+    | FeatureCollection<Point>
+    | Feature<GeometryCollection>
+    | GeometryCollection,
+  line: Feature<LineString> | LineString,
+  options: {
+    units?: Units;
+    properties?: Properties;
+  } = {}
 ): Feature<Point, P> {
-    const units = options.units;
-    const properties = options.properties || {};
+  const units = options.units;
+  const properties = options.properties || {};
 
-    // validation
-    const pts = normalize(points);
-    if (!pts.features.length) { throw new Error("points must contain features"); }
+  // validation
+  const pts = normalize(points);
+  if (!pts.features.length) {
+    throw new Error("points must contain features");
+  }
 
-    if (!line) { throw new Error("line is required"); }
-    if (getType(line) !== "LineString") { throw new Error("line must be a LineString"); }
+  if (!line) {
+    throw new Error("line is required");
+  }
+  if (getType(line) !== "LineString") {
+    throw new Error("line must be a LineString");
+  }
 
-    let dist = Infinity;
-    let pt: any = null;
+  let dist = Infinity;
+  let pt: any = null;
 
-    featureEach(pts, (point) => {
-        const d = pointToLineDistance(point, line, { units });
-        if (d < dist) {
-            dist = d;
-            pt = point;
-        }
-    });
-    /**
-     * Translate Properties to final Point, priorities:
-     * 1. options.properties
-     * 2. inherent Point properties
-     * 3. dist custom properties created by NearestPointToLine
-     */
-    if (pt) { pt.properties = objectAssign({dist}, pt.properties, properties); }
-    // if (pt) { pt.properties = objectAssign({dist}, pt.properties, properties); }
-    return pt;
+  featureEach(pts, (point) => {
+    const d = pointToLineDistance(point, line, { units });
+    if (d < dist) {
+      dist = d;
+      pt = point;
+    }
+  });
+  /**
+   * Translate Properties to final Point, priorities:
+   * 1. options.properties
+   * 2. inherent Point properties
+   * 3. dist custom properties created by NearestPointToLine
+   */
+  if (pt) {
+    pt.properties = objectAssign({ dist }, pt.properties, properties);
+  }
+  // if (pt) { pt.properties = objectAssign({dist}, pt.properties, properties); }
+  return pt;
 }
 
 /**
@@ -74,22 +93,24 @@ function nearestPointToLine<P = {dist: number, [key: string]: any}>(
  * @returns {FeatureCollection<Point>} points
  */
 function normalize(points: any): FeatureCollection<Point> {
-    const features: any[] = [];
-    const type = points.geometry ? points.geometry.type : points.type;
-    switch (type) {
+  const features: any[] = [];
+  const type = points.geometry ? points.geometry.type : points.type;
+  switch (type) {
     case "GeometryCollection":
-        geomEach(points, (geom) => {
-            if (geom.type === "Point") { features.push({type: "Feature", properties: {}, geometry: geom}); }
-        });
-        return {type: "FeatureCollection", features};
+      geomEach(points, (geom) => {
+        if (geom.type === "Point") {
+          features.push({ type: "Feature", properties: {}, geometry: geom });
+        }
+      });
+      return { type: "FeatureCollection", features };
     case "FeatureCollection":
-        points.features = points.features.filter((feature: any) => {
-            return feature.geometry.type === "Point";
-        });
-        return points;
+      points.features = points.features.filter((feature: any) => {
+        return feature.geometry.type === "Point";
+      });
+      return points;
     default:
-        throw new Error("points must be a Point Collection");
-    }
+      throw new Error("points must be a Point Collection");
+  }
 }
 
 export default nearestPointToLine;

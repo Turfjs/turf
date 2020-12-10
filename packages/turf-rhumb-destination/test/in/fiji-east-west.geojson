@@ -1,14 +1,11 @@
 {
-	"type": "Feature",
-	"properties": {
-		"bearing": -90,
-		"dist": 100
-	},
-	"geometry": {
-		"type": "Point",
-		"coordinates": [
-			-179.5,
-			-16.5
-		]
-	}
+  "type": "Feature",
+  "properties": {
+    "bearing": -90,
+    "dist": 100
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [-179.5, -16.5]
+  }
 }

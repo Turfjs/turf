@@ -6,7 +6,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [4,4]
+        "coordinates": [4, 4]
       }
     },
     {
@@ -14,7 +14,15 @@
       "properties": {},
       "geometry": {
         "type": "Polygon",
-        "coordinates": [[[1, 1], [1, 10], [10, 10], [10, 1], [1, 1]]]
+        "coordinates": [
+          [
+            [1, 1],
+            [1, 10],
+            [10, 10],
+            [10, 1],
+            [1, 1]
+          ]
+        ]
       }
     }
   ]

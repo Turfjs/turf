@@ -1,20 +1,19 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import envelope from './dist/js/index.js';
+import path from "path";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import envelope from "./index";
 
-const fixture = load.sync(path.join(__dirname, 'test', 'in', 'feature-collection.geojson'));
+const fixture = load.sync(
+  path.join(__dirname, "test", "in", "feature-collection.geojson")
+);
 
-var suite = new Benchmark.Suite('turf-envelope');
+var suite = new Benchmark.Suite("turf-envelope");
 suite
-  .add('turf-envelope',function () {
+  .add("turf-envelope", function () {
     envelope(fixture);
   })
-  .on('cycle', function (event) {
+  .on("cycle", function (event) {
     console.log(String(event.target));
   })
-  .on('complete', function () {
-
-  })
+  .on("complete", function () {})
   .run();
