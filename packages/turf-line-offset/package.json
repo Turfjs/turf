@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-offset",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf line-offset module",
   "author": "Turf Authors",
   "contributors": [
@@ -48,7 +48,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.2.0-alpha.2",
+    "@turf/truncate": "^6.2.0-alpha.3",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -57,8 +57,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/invariant": "^6.2.0-alpha.2",
-    "@turf/meta": "^6.2.0-alpha.2"
+    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/invariant": "^6.2.0-alpha.3",
+    "@turf/meta": "^6.2.0-alpha.3"
   }
 }

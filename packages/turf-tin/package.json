@@ -1,6 +1,6 @@
 {
   "name": "@turf/tin",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf tin module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -51,6 +51,6 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.2"
+    "@turf/helpers": "^6.2.0-alpha.3"
   }
 }

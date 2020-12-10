@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-neighbor-analysis",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf nearest-neighbor-analysis module",
   "author": "Turf Authors",
   "contributors": [
@@ -43,7 +43,7 @@
     "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.2.0-alpha.2",
+    "@turf/truncate": "^6.2.0-alpha.3",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -55,13 +55,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^6.2.0-alpha.2",
-    "@turf/bbox": "^6.2.0-alpha.2",
-    "@turf/bbox-polygon": "^6.2.0-alpha.2",
-    "@turf/centroid": "^6.2.0-alpha.2",
-    "@turf/distance": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/meta": "^6.2.0-alpha.2",
-    "@turf/nearest-point": "^6.2.0-alpha.2"
+    "@turf/area": "^6.2.0-alpha.3",
+    "@turf/bbox": "^6.2.0-alpha.3",
+    "@turf/bbox-polygon": "^6.2.0-alpha.3",
+    "@turf/centroid": "^6.2.0-alpha.3",
+    "@turf/distance": "^6.2.0-alpha.3",
+    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/meta": "^6.2.0-alpha.3",
+    "@turf/nearest-point": "^6.2.0-alpha.3"
   }
 }
