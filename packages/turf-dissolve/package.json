@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf dissolve module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -51,13 +51,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-overlap": "^6.2.0-alpha.2",
-    "@turf/clone": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/invariant": "^6.2.0-alpha.2",
-    "@turf/line-intersect": "^6.2.0-alpha.2",
-    "@turf/meta": "^6.2.0-alpha.2",
-    "@turf/union": "^6.2.0-alpha.2",
+    "@turf/boolean-overlap": "^6.2.0-alpha.3",
+    "@turf/clone": "^6.2.0-alpha.3",
+    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/invariant": "^6.2.0-alpha.3",
+    "@turf/line-intersect": "^6.2.0-alpha.3",
+    "@turf/meta": "^6.2.0-alpha.3",
+    "@turf/union": "^6.2.0-alpha.3",
     "geojson-rbush": "3.x",
     "get-closest": "*"
   }

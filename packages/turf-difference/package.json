@@ -1,6 +1,6 @@
 {
   "name": "@turf/difference",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf difference module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -49,8 +49,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/invariant": "^6.2.0-alpha.2",
+    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/invariant": "^6.2.0-alpha.3",
     "polygon-clipping": "^0.14.3"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/ellipse",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf ellipse module",
   "author": "Turf Authors",
   "contributors": [
@@ -44,10 +44,10 @@
   },
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
-    "@turf/bbox-polygon": "^6.2.0-alpha.2",
-    "@turf/circle": "^6.2.0-alpha.2",
-    "@turf/destination": "^6.2.0-alpha.2",
-    "@turf/truncate": "^6.2.0-alpha.2",
+    "@turf/bbox-polygon": "^6.2.0-alpha.3",
+    "@turf/circle": "^6.2.0-alpha.3",
+    "@turf/destination": "^6.2.0-alpha.3",
+    "@turf/truncate": "^6.2.0-alpha.3",
     "benchmark": "*",
     "glob": "*",
     "load-json-file": "*",
@@ -57,9 +57,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/invariant": "^6.2.0-alpha.2",
-    "@turf/rhumb-destination": "^6.2.0-alpha.2",
-    "@turf/transform-rotate": "^6.2.0-alpha.2"
+    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/invariant": "^6.2.0-alpha.3",
+    "@turf/rhumb-destination": "^6.2.0-alpha.3",
+    "@turf/transform-rotate": "^6.2.0-alpha.3"
   }
 }

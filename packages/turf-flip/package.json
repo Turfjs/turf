@@ -1,6 +1,6 @@
 {
   "name": "@turf/flip",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0-alpha.3",
   "description": "turf flip module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -51,8 +51,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clone": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/meta": "^6.2.0-alpha.2"
+    "@turf/clone": "^6.2.0-alpha.3",
+    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/meta": "^6.2.0-alpha.3"
   }
 }
