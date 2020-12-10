@@ -1,15 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const concave = require('./dist/js/index.js').default;
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const concave = require("./index").default;
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -23,10 +23,10 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * pts2: 13.297ms
  * pts3: 0.375ms
  */
-for (const {name, geojson} of fixtures) {
-    console.time(name);
-    concave(geojson, geojson.properties);
-    console.timeEnd(name);
+for (const { name, geojson } of fixtures) {
+  console.time(name);
+  concave(geojson, geojson.properties);
+  console.timeEnd(name);
 }
 
 /**
@@ -41,14 +41,14 @@ for (const {name, geojson} of fixtures) {
  * pts3 x 6,938 ops/sec ±6.21% (71 runs sampled)
  * support-null-geometry x 3,110 ops/sec ±4.75% (74 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-transform-scale');
-for (const {name, geojson} of fixtures) {
-    const options = geojson.properties;
-    options.mutate = true;
-    suite.add(name, () => concave(geojson, options));
+const suite = new Benchmark.Suite("turf-transform-scale");
+for (const { name, geojson } of fixtures) {
+  const options = geojson.properties;
+  options.mutate = true;
+  suite.add(name, () => concave(geojson, options));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

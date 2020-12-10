@@ -1,49 +1,66 @@
-import * as helpers from "./dist/js/index";
 import {
-    BBox,
-    bearingToAzimuth,
-    convertArea,
-    convertLength,
-    degreesToRadians,
-    earthRadius,
-    feature,
-    featureCollection,
-    Geometries,
-    geometry,
-    geometryCollection,
-    GeometryCollection,
-    isNumber,
-    isObject,
-    lengthToDegrees,
-    lengthToRadians,
-    lineString,
-    LineString,
-    multiLineString,
-    MultiLineString,
-    multiPoint,
-    MultiPoint,
-    multiPolygon,
-    // Typescript types
-    MultiPolygon,
-    point,
-    Point,
-    Polygon,
-    polygon,
-    radiansToDegrees,
-    radiansToLength,
-    round,
+  BBox,
+  feature,
+  featureCollection,
+  geometry,
+  geometryCollection,
+  GeometryCollection,
+  isNumber,
+  isObject,
+  lengthToDegrees,
+  lengthToRadians,
+  lineString,
+  LineString,
+  multiLineString,
+  multiPoint,
+  multiPolygon,
+  // Typescript types
+  point,
+  Point,
+  Polygon,
+  polygon,
+  radiansToLength,
 } from "./";
 
 // Fixtures
 const bbox: BBox = [-180, -90, 180, 90];
-const properties = {foo: "bar"};
+const properties = { foo: "bar" };
 const pt = point([0, 1]);
-const line = lineString([[0, 1], [2, 3]]);
-const poly = polygon([[[0, 1], [0, 0], [2, 3], [0, 1]]]);
-const feat = feature({coordinates: [1, 0], type: "point"});
-const multiPt = multiPoint([[0, 1], [2, 3], [0, 1]]);
-const multiLine = multiLineString([[[0, 1], [2, 3], [0, 1]]]);
-const multiPoly = multiPolygon([[[[0, 1], [0, 0], [2, 3], [0, 1]]]]);
+const line = lineString([
+  [0, 1],
+  [2, 3],
+]);
+const poly = polygon([
+  [
+    [0, 1],
+    [0, 0],
+    [2, 3],
+    [0, 1],
+  ],
+]);
+const feat = feature({ coordinates: [1, 0], type: "point" });
+const multiPt = multiPoint([
+  [0, 1],
+  [2, 3],
+  [0, 1],
+]);
+const multiLine = multiLineString([
+  [
+    [0, 1],
+    [2, 3],
+    [0, 1],
+  ],
+]);
+const multiPoly = multiPolygon([
+  [
+    [
+      [0, 1],
+      [0, 0],
+      [2, 3],
+      [0, 1],
+    ],
+  ],
+]);
 
 // radiansToLength & lengthToRadians
 radiansToLength(5);
@@ -52,12 +69,41 @@ lengthToDegrees(45);
 
 // default import & import * as
 point([0, 1]);
-lineString([[0, 1], [2, 3]]);
-polygon([[[0, 1], [0, 0], [2, 3], [0, 1]]]);
-feature({coordinates: [1, 0], type: "point"});
-multiPoint([[0, 1], [2, 3], [0, 1]]);
-multiLineString([[[0, 1], [2, 3], [0, 1]]]);
-multiPolygon([[[[0, 1], [0, 0], [2, 3], [0, 1]]]]);
+lineString([
+  [0, 1],
+  [2, 3],
+]);
+polygon([
+  [
+    [0, 1],
+    [0, 0],
+    [2, 3],
+    [0, 1],
+  ],
+]);
+feature({ coordinates: [1, 0], type: "point" });
+multiPoint([
+  [0, 1],
+  [2, 3],
+  [0, 1],
+]);
+multiLineString([
+  [
+    [0, 1],
+    [2, 3],
+    [0, 1],
+  ],
+]);
+multiPolygon([
+  [
+    [
+      [0, 1],
+      [0, 0],
+      [2, 3],
+      [0, 1],
+    ],
+  ],
+]);
 
 // Mixed collection is defiend as FeatureCollection<any>
 const mixed = featureCollection<Point | LineString | Polygon>([pt, poly]);
@@ -88,18 +134,18 @@ const polygons = featureCollection<Polygon>([]);
 polygons.features.push(poly);
 
 // bbox & id
-point(pt.geometry.coordinates, properties, {bbox, id: 1});
-lineString(line.geometry.coordinates, properties, {bbox, id: 1});
-polygon(poly.geometry.coordinates, properties, {bbox, id: 1});
-multiPoint(multiPt.geometry.coordinates, properties, {bbox, id: 1});
-multiLineString(multiLine.geometry.coordinates, properties, {bbox, id: 1});
-multiPolygon(multiPoly.geometry.coordinates, properties, {bbox, id: 1});
-geometryCollection([pt.geometry], properties, {bbox, id: 1});
+point(pt.geometry.coordinates, properties, { bbox, id: 1 });
+lineString(line.geometry.coordinates, properties, { bbox, id: 1 });
+polygon(poly.geometry.coordinates, properties, { bbox, id: 1 });
+multiPoint(multiPt.geometry.coordinates, properties, { bbox, id: 1 });
+multiLineString(multiLine.geometry.coordinates, properties, { bbox, id: 1 });
+multiPolygon(multiPoly.geometry.coordinates, properties, { bbox, id: 1 });
+geometryCollection([pt.geometry], properties, { bbox, id: 1 });
 
 // properties
-point(pt.geometry.coordinates, {foo: "bar"});
-point(pt.geometry.coordinates, {1: 2});
-point(pt.geometry.coordinates, {1: {foo: "bar"}});
+point(pt.geometry.coordinates, { foo: "bar" });
+point(pt.geometry.coordinates, { 1: 2 });
+point(pt.geometry.coordinates, { 1: { foo: "bar" } });
 
 // isNumber -- true
 isNumber(123);
@@ -120,14 +166,14 @@ isNumber("10px");
 isNumber(NaN);
 isNumber(undefined);
 isNumber(null);
-isNumber({a: 1});
+isNumber({ a: 1 });
 isNumber({});
 isNumber([1, 2, 3]);
 isNumber([]);
 isNumber(isNumber);
 
 // isObject -- true
-isObject({a: 1});
+isObject({ a: 1 });
 isObject({});
 isObject(point([0, 1]));
 
@@ -148,17 +194,23 @@ const ptGeom = geometry("Point", pt.geometry.coordinates);
 const lineGeom = geometry("LineString", line.geometry.coordinates);
 const polyGeom = geometry("Polygon", poly.geometry.coordinates);
 const multiPtGeom = geometry("MultiPoint", multiPt.geometry.coordinates);
-const multiLineGeom = geometry("MultiLineString", multiLine.geometry.coordinates);
+const multiLineGeom = geometry(
+  "MultiLineString",
+  multiLine.geometry.coordinates
+);
 const multiPolyGeom = geometry("MultiPolygon", multiPoly.geometry.coordinates);
 
 // Custom Properties
-const customPt = point([10, 50], {foo: "bar"});
+const customPt = point([10, 50], { foo: "bar" });
 
 // Handle GeometryCollection & Feature.GeometryCollection
 const geomCollection = geometryCollection([pt.geometry, line.geometry]);
 const p1 = geomCollection.geometry.geometries[0];
 const l1 = geomCollection.geometry.geometries[0];
 
-const mixedGeomCollection = featureCollection<Point | GeometryCollection>([pt, geomCollection]);
+const mixedGeomCollection = featureCollection<Point | GeometryCollection>([
+  pt,
+  geomCollection,
+]);
 const fc = featureCollection<Point | LineString>([pt, line]);
 const featureGeomCollection = feature(geomCollection.geometry);

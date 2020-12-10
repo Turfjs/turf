@@ -1,8 +1,14 @@
-import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import { featureCollection, lineString, multiPoint, point, polygon } from '@turf/helpers';
-import envelope from '@turf/envelope';
-import { coordReduce, flattenEach } from '@turf/meta';
-import { featureOf } from '@turf/invariant';
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import {
+  featureCollection,
+  lineString,
+  multiPoint,
+  point,
+  polygon,
+} from "@turf/helpers";
+import envelope from "@turf/envelope";
+import { coordReduce, flattenEach } from "@turf/meta";
+import { featureOf } from "@turf/invariant";
 
 /**
  * Returns the direction of the point q relative to the vector p1 -> p2.
@@ -19,12 +25,12 @@ import { featureOf } from '@turf/invariant';
  *     0 if q is colinear with p1->p2
  */
 function orientationIndex(p1, p2, q) {
-    var dx1 = p2[0] - p1[0],
-        dy1 = p2[1] - p1[1],
-        dx2 = q[0] - p2[0],
-        dy2 = q[1] - p2[1];
+  var dx1 = p2[0] - p1[0],
+    dy1 = p2[1] - p1[1],
+    dx2 = q[0] - p2[0],
+    dy2 = q[1] - p2[1];
 
-    return Math.sign(dx1 * dy2 - dx2 * dy1);
+  return Math.sign(dx1 * dy2 - dx2 * dy1);
 }
 
 /**
@@ -37,15 +43,25 @@ function orientationIndex(p1, p2, q) {
  * @returns {boolean} - True if the envelopes are equal
  */
 function envelopeIsEqual(env1, env2) {
-    var envX1 = env1.geometry.coordinates.map(function (c) { return c[0]; }),
-        envY1 = env1.geometry.coordinates.map(function (c) { return c[1]; }),
-        envX2 = env2.geometry.coordinates.map(function (c) { return c[0]; }),
-        envY2 = env2.geometry.coordinates.map(function (c) { return c[1]; });
+  var envX1 = env1.geometry.coordinates.map(function (c) {
+      return c[0];
+    }),
+    envY1 = env1.geometry.coordinates.map(function (c) {
+      return c[1];
+    }),
+    envX2 = env2.geometry.coordinates.map(function (c) {
+      return c[0];
+    }),
+    envY2 = env2.geometry.coordinates.map(function (c) {
+      return c[1];
+    });
 
-    return Math.max(null, envX1) === Math.max(null, envX2) &&
+  return (
+    Math.max(null, envX1) === Math.max(null, envX2) &&
     Math.max(null, envY1) === Math.max(null, envY2) &&
     Math.min(null, envX1) === Math.min(null, envX2) &&
-    Math.min(null, envY1) === Math.min(null, envY2);
+    Math.min(null, envY1) === Math.min(null, envY2)
+  );
 }
 
 /**
@@ -60,7 +76,9 @@ function envelopeIsEqual(env1, env2) {
  * @returns {boolean} - True if env is contained in self
  */
 function envelopeContains(self, env) {
-    return env.geometry.coordinates[0].every(function (c) { return booleanPointInPolygon(point(c), self); });
+  return env.geometry.coordinates[0].every(function (c) {
+    return booleanPointInPolygon(point(c), self);
+  });
 }
 
 /**
@@ -71,32 +89,36 @@ function envelopeContains(self, env) {
  * @returns {boolean} - True if coordinates are equal
  */
 function coordinatesEqual(coord1, coord2) {
-    return coord1[0] === coord2[0] && coord1[1] === coord2[1];
+  return coord1[0] === coord2[0] && coord1[1] === coord2[1];
 }
 
 /**
  * Node
  */
 var Node = function Node(coordinates) {
-    this.id = Node.buildId(coordinates);
-    this.coordinates = coordinates; //< {Number[]}
-    this.innerEdges = []; //< {Edge[]}
+  this.id = Node.buildId(coordinates);
+  this.coordinates = coordinates; //< {Number[]}
+  this.innerEdges = []; //< {Edge[]}
 
-    // We wil store to (out) edges in an CCW order as geos::planargraph::DirectedEdgeStar does
-    this.outerEdges = []; //< {Edge[]}
-    this.outerEdgesSorted = false; //< {Boolean} flag that stores if the outer Edges had been sorted
+  // We wil store to (out) edges in an CCW order as geos::planargraph::DirectedEdgeStar does
+  this.outerEdges = []; //< {Edge[]}
+  this.outerEdgesSorted = false; //< {Boolean} flag that stores if the outer Edges had been sorted
 };
 
-Node.buildId = function buildId (coordinates) {
-    return coordinates.join(',');
+Node.buildId = function buildId(coordinates) {
+  return coordinates.join(",");
 };
 
-Node.prototype.removeInnerEdge = function removeInnerEdge (edge) {
-    this.innerEdges = this.innerEdges.filter(function (e) { return e.from.id !== edge.from.id; });
+Node.prototype.removeInnerEdge = function removeInnerEdge(edge) {
+  this.innerEdges = this.innerEdges.filter(function (e) {
+    return e.from.id !== edge.from.id;
+  });
 };
 
-Node.prototype.removeOuterEdge = function removeOuterEdge (edge) {
-    this.outerEdges = this.outerEdges.filter(function (e) { return e.to.id !== edge.to.id; });
+Node.prototype.removeOuterEdge = function removeOuterEdge(edge) {
+  this.outerEdges = this.outerEdges.filter(function (e) {
+    return e.to.id !== edge.to.id;
+  });
 };
 
 /**
@@ -105,9 +127,9 @@ Node.prototype.removeOuterEdge = function removeOuterEdge (edge) {
  * @memberof Node
  * @param {Edge} edge - Edge to add as an outerEdge.
  */
-Node.prototype.addOuterEdge = function addOuterEdge (edge) {
-    this.outerEdges.push(edge);
-    this.outerEdgesSorted = false;
+Node.prototype.addOuterEdge = function addOuterEdge(edge) {
+  this.outerEdges.push(edge);
+  this.outerEdgesSorted = false;
 };
 
 /**
@@ -116,40 +138,65 @@ Node.prototype.addOuterEdge = function addOuterEdge (edge) {
  * @memberof Node
  * @private
  */
-Node.prototype.sortOuterEdges = function sortOuterEdges () {
-        var this$1 = this;
+Node.prototype.sortOuterEdges = function sortOuterEdges() {
+  var this$1 = this;
 
-    if (!this.outerEdgesSorted) {
-        //this.outerEdges.sort((a, b) => a.compareTo(b));
-        // Using this comparator in order to be deterministic
-        this.outerEdges.sort(function (a, b) {
-            var aNode = a.to,
-                bNode = b.to;
+  if (!this.outerEdgesSorted) {
+    //this.outerEdges.sort((a, b) => a.compareTo(b));
+    // Using this comparator in order to be deterministic
+    this.outerEdges.sort(function (a, b) {
+      var aNode = a.to,
+        bNode = b.to;
 
-            if (aNode.coordinates[0] - this$1.coordinates[0] >= 0 && bNode.coordinates[0] - this$1.coordinates[0] < 0)
-                { return 1; }
-            if (aNode.coordinates[0] - this$1.coordinates[0] < 0 && bNode.coordinates[0] - this$1.coordinates[0] >= 0)
-                { return -1; }
+      if (
+        aNode.coordinates[0] - this$1.coordinates[0] >= 0 &&
+        bNode.coordinates[0] - this$1.coordinates[0] < 0
+      ) {
+        return 1;
+      }
+      if (
+        aNode.coordinates[0] - this$1.coordinates[0] < 0 &&
+        bNode.coordinates[0] - this$1.coordinates[0] >= 0
+      ) {
+        return -1;
+      }
 
-            if (aNode.coordinates[0] - this$1.coordinates[0] === 0 && bNode.coordinates[0] - this$1.coordinates[0] === 0) {
-                if (aNode.coordinates[1] - this$1.coordinates[1] >= 0 || bNode.coordinates[1] - this$1.coordinates[1] >= 0)
-                    { return aNode.coordinates[1] - bNode.coordinates[1]; }
-                return bNode.coordinates[1] - aNode.coordinates[1];
-            }
+      if (
+        aNode.coordinates[0] - this$1.coordinates[0] === 0 &&
+        bNode.coordinates[0] - this$1.coordinates[0] === 0
+      ) {
+        if (
+          aNode.coordinates[1] - this$1.coordinates[1] >= 0 ||
+          bNode.coordinates[1] - this$1.coordinates[1] >= 0
+        ) {
+          return aNode.coordinates[1] - bNode.coordinates[1];
+        }
+        return bNode.coordinates[1] - aNode.coordinates[1];
+      }
 
-            var det = orientationIndex(this$1.coordinates, aNode.coordinates, bNode.coordinates);
-            if (det < 0)
-                { return 1; }
-            if (det > 0)
-                { return -1; }
+      var det = orientationIndex(
+        this$1.coordinates,
+        aNode.coordinates,
+        bNode.coordinates
+      );
+      if (det < 0) {
+        return 1;
+      }
+      if (det > 0) {
+        return -1;
+      }
 
-            var d1 = Math.pow(aNode.coordinates[0] - this$1.coordinates[0], 2) + Math.pow(aNode.coordinates[1] - this$1.coordinates[1], 2),
-                d2 = Math.pow(bNode.coordinates[0] - this$1.coordinates[0], 2) + Math.pow(bNode.coordinates[1] - this$1.coordinates[1], 2);
+      var d1 =
+          Math.pow(aNode.coordinates[0] - this$1.coordinates[0], 2) +
+          Math.pow(aNode.coordinates[1] - this$1.coordinates[1], 2),
+        d2 =
+          Math.pow(bNode.coordinates[0] - this$1.coordinates[0], 2) +
+          Math.pow(bNode.coordinates[1] - this$1.coordinates[1], 2);
 
-            return d1 - d2;
-        });
-        this.outerEdgesSorted = true;
-    }
+      return d1 - d2;
+    });
+    this.outerEdgesSorted = true;
+  }
 };
 
 /**
@@ -160,51 +207,51 @@ Node.prototype.sortOuterEdges = function sortOuterEdges () {
  * @memberof Node
  * @returns {Edge[]} - List of outer edges sorted in a CCW order.
  */
-Node.prototype.getOuterEdges = function getOuterEdges () {
-    this.sortOuterEdges();
-    return this.outerEdges;
+Node.prototype.getOuterEdges = function getOuterEdges() {
+  this.sortOuterEdges();
+  return this.outerEdges;
 };
 
-Node.prototype.getOuterEdge = function getOuterEdge (i) {
-    this.sortOuterEdges();
-    return this.outerEdges[i];
+Node.prototype.getOuterEdge = function getOuterEdge(i) {
+  this.sortOuterEdges();
+  return this.outerEdges[i];
 };
 
-Node.prototype.addInnerEdge = function addInnerEdge (edge) {
-    this.innerEdges.push(edge);
+Node.prototype.addInnerEdge = function addInnerEdge(edge) {
+  this.innerEdges.push(edge);
 };
 
 /**
  * This class is inspired by GEOS's geos::operation::polygonize::PolygonizeDirectedEdge
  */
 var Edge = function Edge(from, to) {
-    this.from = from; //< start
-    this.to = to; //< End
+  this.from = from; //< start
+  this.to = to; //< End
 
-    this.next = undefined; //< The edge to be computed after
-    this.label = undefined; //< Used in order to detect Cut Edges (Bridges)
-    this.symetric = undefined; //< The symetric edge of this
-    this.ring = undefined; //< EdgeRing in which the Edge is
+  this.next = undefined; //< The edge to be computed after
+  this.label = undefined; //< Used in order to detect Cut Edges (Bridges)
+  this.symetric = undefined; //< The symetric edge of this
+  this.ring = undefined; //< EdgeRing in which the Edge is
 
-    this.from.addOuterEdge(this);
-    this.to.addInnerEdge(this);
+  this.from.addOuterEdge(this);
+  this.to.addInnerEdge(this);
 };
 
 /**
  * Removes edge from from and to nodes.
  */
-Edge.prototype.getSymetric = function getSymetric () {
-    if (!this.symetric) {
-        this.symetric = new Edge(this.to, this.from);
-        this.symetric.symetric = this;
-    }
+Edge.prototype.getSymetric = function getSymetric() {
+  if (!this.symetric) {
+    this.symetric = new Edge(this.to, this.from);
+    this.symetric.symetric = this;
+  }
 
-    return this.symetric;
+  return this.symetric;
 };
 
-Edge.prototype.deleteEdge = function deleteEdge () {
-    this.from.removeOuterEdge(this);
-    this.to.removeInnerEdge(this);
+Edge.prototype.deleteEdge = function deleteEdge() {
+  this.from.removeOuterEdge(this);
+  this.to.removeInnerEdge(this);
 };
 
 /**
@@ -215,12 +262,12 @@ Edge.prototype.deleteEdge = function deleteEdge () {
  * @param {Edge} edge - Another Edge
  * @returns {boolean} - True if Edges are equal, False otherwise
  */
-Edge.prototype.isEqual = function isEqual (edge) {
-    return this.from.id === edge.from.id && this.to.id === edge.to.id;
+Edge.prototype.isEqual = function isEqual(edge) {
+  return this.from.id === edge.from.id && this.to.id === edge.to.id;
 };
 
-Edge.prototype.toString = function toString () {
-    return ("Edge { " + (this.from.id) + " -> " + (this.to.id) + " }");
+Edge.prototype.toString = function toString() {
+  return "Edge { " + this.from.id + " -> " + this.to.id + " }";
 };
 
 /**
@@ -228,8 +275,8 @@ Edge.prototype.toString = function toString () {
  *
  * @returns {Feature<LineString>} - LineString representation of the Edge
  */
-Edge.prototype.toLineString = function toLineString () {
-    return lineString([this.from.coordinates, this.to.coordinates]);
+Edge.prototype.toLineString = function toLineString() {
+  return lineString([this.from.coordinates, this.to.coordinates]);
 };
 
 /**
@@ -242,8 +289,12 @@ Edge.prototype.toLineString = function toLineString () {
  *      0 if the Edges are colinear,
  *      1 otherwise
  */
-Edge.prototype.compareTo = function compareTo (edge) {
-    return orientationIndex(edge.from.coordinates, edge.to.coordinates, this.to.coordinates);
+Edge.prototype.compareTo = function compareTo(edge) {
+  return orientationIndex(
+    edge.from.coordinates,
+    edge.to.coordinates,
+    this.to.coordinates
+  );
 };
 
 /**
@@ -254,9 +305,9 @@ Edge.prototype.compareTo = function compareTo (edge) {
  * This class is inspired in GEOS's geos::operation::polygonize::EdgeRing
  */
 var EdgeRing = function EdgeRing() {
-    this.edges = [];
-    this.polygon = undefined; //< Caches Polygon representation
-    this.envelope = undefined; //< Caches Envelope representation
+  this.edges = [];
+  this.polygon = undefined; //< Caches Polygon representation
+  this.envelope = undefined; //< Caches Envelope representation
 };
 
 var prototypeAccessors = { length: { configurable: true } };
@@ -267,11 +318,11 @@ var prototypeAccessors = { length: { configurable: true } };
  * @memberof EdgeRing
  * @param {Edge} edge - Edge to be inserted
  */
-EdgeRing.prototype.push = function push (edge) {
-// Emulate Array getter ([]) behaviour
-    this[this.edges.length] = edge;
-    this.edges.push(edge);
-    this.polygon = this.envelope = undefined;
+EdgeRing.prototype.push = function push(edge) {
+  // Emulate Array getter ([]) behaviour
+  this[this.edges.length] = edge;
+  this.edges.push(edge);
+  this.polygon = this.envelope = undefined;
 };
 
 /**
@@ -281,8 +332,8 @@ EdgeRing.prototype.push = function push (edge) {
  * @param {number} i - Index
  * @returns {Edge} - Edge in the i position
  */
-EdgeRing.prototype.get = function get (i) {
-    return this.edges[i];
+EdgeRing.prototype.get = function get(i) {
+  return this.edges[i];
 };
 
 /**
@@ -292,7 +343,7 @@ EdgeRing.prototype.get = function get (i) {
  * @returns {number} - Length of the edge ring.
  */
 prototypeAccessors.length.get = function () {
-    return this.edges.length;
+  return this.edges.length;
 };
 
 /**
@@ -301,8 +352,8 @@ prototypeAccessors.length.get = function () {
  * @memberof EdgeRing
  * @param {Function} f - The same function to be passed to Array.prototype.forEach
  */
-EdgeRing.prototype.forEach = function forEach (f) {
-    this.edges.forEach(f);
+EdgeRing.prototype.forEach = function forEach(f) {
+  this.edges.forEach(f);
 };
 
 /**
@@ -312,8 +363,8 @@ EdgeRing.prototype.forEach = function forEach (f) {
  * @param {Function} f - The same function to be passed to Array.prototype.map
  * @returns {Array} - The mapped values in the function
  */
-EdgeRing.prototype.map = function map (f) {
-    return this.edges.map(f);
+EdgeRing.prototype.map = function map(f) {
+  return this.edges.map(f);
 };
 
 /**
@@ -323,8 +374,8 @@ EdgeRing.prototype.map = function map (f) {
  * @param {Function} f - The same function to be passed to Array.prototype.some
  * @returns {boolean} - True if an Edge check the condition
  */
-EdgeRing.prototype.some = function some (f) {
-    return this.edges.some(f);
+EdgeRing.prototype.some = function some(f) {
+  return this.edges.some(f);
 };
 
 /**
@@ -337,9 +388,9 @@ EdgeRing.prototype.some = function some (f) {
  * @memberof EdgeRing
  * @returns {boolean} - Validity of the EdgeRing
  */
-EdgeRing.prototype.isValid = function isValid () {
-// TODO: stub
-    return true;
+EdgeRing.prototype.isValid = function isValid() {
+  // TODO: stub
+  return true;
 };
 
 /**
@@ -351,23 +402,32 @@ EdgeRing.prototype.isValid = function isValid () {
  * @memberof EdgeRing
  * @returns {boolean} - true: if it is a hole
  */
-EdgeRing.prototype.isHole = function isHole () {
-        var this$1 = this;
+EdgeRing.prototype.isHole = function isHole() {
+  var this$1 = this;
 
-// XXX: Assuming Ring is valid
-// Find highest point
-    var hiIndex = this.edges.reduce(function (high, edge, i) {
-            if (edge.from.coordinates[1] > this$1.edges[high].from.coordinates[1])
-                { high = i; }
-            return high;
-        }, 0),
-        iPrev = (hiIndex === 0 ? this.length : hiIndex) - 1,
-        iNext = (hiIndex + 1) % this.length,
-        disc = orientationIndex(this.edges[iPrev].from.coordinates, this.edges[hiIndex].from.coordinates, this.edges[iNext].from.coordinates);
+  // XXX: Assuming Ring is valid
+  // Find highest point
+  var hiIndex = this.edges.reduce(function (high, edge, i) {
+      if (edge.from.coordinates[1] > this$1.edges[high].from.coordinates[1]) {
+        high = i;
+      }
+      return high;
+    }, 0),
+    iPrev = (hiIndex === 0 ? this.length : hiIndex) - 1,
+    iNext = (hiIndex + 1) % this.length,
+    disc = orientationIndex(
+      this.edges[iPrev].from.coordinates,
+      this.edges[hiIndex].from.coordinates,
+      this.edges[iNext].from.coordinates
+    );
 
-    if (disc === 0)
-        { return this.edges[iPrev].from.coordinates[0] > this.edges[iNext].from.coordinates[0]; }
-    return disc > 0;
+  if (disc === 0) {
+    return (
+      this.edges[iPrev].from.coordinates[0] >
+      this.edges[iNext].from.coordinates[0]
+    );
+  }
+  return disc > 0;
 };
 
 /**
@@ -376,8 +436,12 @@ EdgeRing.prototype.isHole = function isHole () {
  * @memberof EdgeRing
  * @returns {Feature<MultiPoint>} - Multipoint representation of the EdgeRing
  */
-EdgeRing.prototype.toMultiPoint = function toMultiPoint () {
-    return multiPoint(this.edges.map(function (edge) { return edge.from.coordinates; }));
+EdgeRing.prototype.toMultiPoint = function toMultiPoint() {
+  return multiPoint(
+    this.edges.map(function (edge) {
+      return edge.from.coordinates;
+    })
+  );
 };
 
 /**
@@ -386,12 +450,15 @@ EdgeRing.prototype.toMultiPoint = function toMultiPoint () {
  * @memberof EdgeRing
  * @returns {Feature<Polygon>} - Polygon representation of the Edge Ring
  */
-EdgeRing.prototype.toPolygon = function toPolygon () {
-    if (this.polygon)
-        { return this.polygon; }
-    var coordinates = this.edges.map(function (edge) { return edge.from.coordinates; });
-    coordinates.push(this.edges[0].from.coordinates);
-    return (this.polygon = polygon([coordinates]));
+EdgeRing.prototype.toPolygon = function toPolygon() {
+  if (this.polygon) {
+    return this.polygon;
+  }
+  var coordinates = this.edges.map(function (edge) {
+    return edge.from.coordinates;
+  });
+  coordinates.push(this.edges[0].from.coordinates);
+  return (this.polygon = polygon([coordinates]));
 };
 
 /**
@@ -400,10 +467,11 @@ EdgeRing.prototype.toPolygon = function toPolygon () {
  * @memberof EdgeRing
  * @returns {Feature<Polygon>} - envelope
  */
-EdgeRing.prototype.getEnvelope = function getEnvelope () {
-    if (this.envelope)
-        { return this.envelope; }
-    return (this.envelope = envelope(this.toPolygon()));
+EdgeRing.prototype.getEnvelope = function getEnvelope() {
+  if (this.envelope) {
+    return this.envelope;
+  }
+  return (this.envelope = envelope(this.toPolygon()));
 };
 
 /**
@@ -414,33 +482,45 @@ EdgeRing.prototype.getEnvelope = function getEnvelope () {
  *
  * @returns {EdgeRing} - EdgeRing which contains the testEdgeRing
  */
-EdgeRing.findEdgeRingContaining = function findEdgeRingContaining (testEdgeRing, shellList) {
-    var testEnvelope = testEdgeRing.getEnvelope();
+EdgeRing.findEdgeRingContaining = function findEdgeRingContaining(
+  testEdgeRing,
+  shellList
+) {
+  var testEnvelope = testEdgeRing.getEnvelope();
 
-    var minEnvelope,
-        minShell;
-    shellList.forEach(function (shell) {
-        var tryEnvelope = shell.getEnvelope();
+  var minEnvelope, minShell;
+  shellList.forEach(function (shell) {
+    var tryEnvelope = shell.getEnvelope();
 
-        if (minShell)
-            { minEnvelope = minShell.getEnvelope(); }
+    if (minShell) {
+      minEnvelope = minShell.getEnvelope();
+    }
 
-        // the hole envelope cannot equal the shell envelope
-        if (envelopeIsEqual(tryEnvelope, testEnvelope))
-            { return; }
+    // the hole envelope cannot equal the shell envelope
+    if (envelopeIsEqual(tryEnvelope, testEnvelope)) {
+      return;
+    }
 
-        if (envelopeContains(tryEnvelope, testEnvelope)) {
-            var testPoint = testEdgeRing.map(function (edge) { return edge.from.coordinates; })
-                .find(function (pt) { return !shell.some(function (edge) { return coordinatesEqual(pt, edge.from.coordinates); }); });
+    if (envelopeContains(tryEnvelope, testEnvelope)) {
+      var testPoint = testEdgeRing
+        .map(function (edge) {
+          return edge.from.coordinates;
+        })
+        .find(function (pt) {
+          return !shell.some(function (edge) {
+            return coordinatesEqual(pt, edge.from.coordinates);
+          });
+        });
 
-            if (testPoint && shell.inside(point(testPoint))) {
-                if (!minShell || envelopeContains(minEnvelope, tryEnvelope))
-                    { minShell = shell; }
-            }
+      if (testPoint && shell.inside(point(testPoint))) {
+        if (!minShell || envelopeContains(minEnvelope, tryEnvelope)) {
+          minShell = shell;
         }
-    });
+      }
+    }
+  });
 
-    return minShell;
+  return minShell;
 };
 
 /**
@@ -449,11 +529,11 @@ EdgeRing.findEdgeRingContaining = function findEdgeRingContaining (testEdgeRing,
  * @param {Feature<Point>} pt - Point to check if it is inside the edgeRing
  * @returns {boolean} - True if it is inside, False otherwise
  */
-EdgeRing.prototype.inside = function inside (pt) {
-    return booleanPointInPolygon(pt, this.toPolygon());
+EdgeRing.prototype.inside = function inside(pt) {
+  return booleanPointInPolygon(pt, this.toPolygon());
 };
 
-Object.defineProperties( EdgeRing.prototype, prototypeAccessors );
+Object.defineProperties(EdgeRing.prototype, prototypeAccessors);
 
 /**
  * Validates the geoJson.
@@ -462,16 +542,23 @@ Object.defineProperties( EdgeRing.prototype, prototypeAccessors );
  * @throws {Error} if geoJson is invalid.
  */
 function validateGeoJson(geoJson) {
-    if (!geoJson)
-        { throw new Error('No geojson passed'); }
+  if (!geoJson) {
+    throw new Error("No geojson passed");
+  }
 
-    if (geoJson.type !== 'FeatureCollection' &&
-    geoJson.type !== 'GeometryCollection' &&
-    geoJson.type !== 'MultiLineString' &&
-    geoJson.type !== 'LineString' &&
-    geoJson.type !== 'Feature'
-    )
-        { throw new Error(("Invalid input type '" + (geoJson.type) + "'. Geojson must be FeatureCollection, GeometryCollection, LineString, MultiLineString or Feature")); }
+  if (
+    geoJson.type !== "FeatureCollection" &&
+    geoJson.type !== "GeometryCollection" &&
+    geoJson.type !== "MultiLineString" &&
+    geoJson.type !== "LineString" &&
+    geoJson.type !== "Feature"
+  ) {
+    throw new Error(
+      "Invalid input type '" +
+        geoJson.type +
+        "'. Geojson must be FeatureCollection, GeometryCollection, LineString, MultiLineString or Feature"
+    );
+  }
 }
 
 /**
@@ -484,34 +571,34 @@ function validateGeoJson(geoJson) {
  * This graph is directed (both directions are created)
  */
 var Graph = function Graph() {
-    this.edges = []; //< {Edge[]} dirEdges
+  this.edges = []; //< {Edge[]} dirEdges
 
-    // The key is the `id` of the Node (ie: coordinates.join(','))
-    this.nodes = {};
+  // The key is the `id` of the Node (ie: coordinates.join(','))
+  this.nodes = {};
 };
 
 /**
  * Removes Dangle Nodes (nodes with grade 1).
  */
-Graph.fromGeoJson = function fromGeoJson (geoJson) {
-    validateGeoJson(geoJson);
+Graph.fromGeoJson = function fromGeoJson(geoJson) {
+  validateGeoJson(geoJson);
 
-    var graph = new Graph();
-    flattenEach(geoJson, function (feature) {
-        featureOf(feature, 'LineString', 'Graph::fromGeoJson');
-        // When a LineString if formed by many segments, split them
-        coordReduce(feature, function (prev, cur) {
-            if (prev) {
-                var start = graph.getNode(prev),
-                    end = graph.getNode(cur);
+  var graph = new Graph();
+  flattenEach(geoJson, function (feature) {
+    featureOf(feature, "LineString", "Graph::fromGeoJson");
+    // When a LineString if formed by many segments, split them
+    coordReduce(feature, function (prev, cur) {
+      if (prev) {
+        var start = graph.getNode(prev),
+          end = graph.getNode(cur);
 
-                graph.addEdge(start, end);
-            }
-            return cur;
-        });
+        graph.addEdge(start, end);
+      }
+      return cur;
     });
+  });
 
-    return graph;
+  return graph;
 };
 
 /**
@@ -520,13 +607,14 @@ Graph.fromGeoJson = function fromGeoJson (geoJson) {
  * @param {number[]} coordinates - Coordinates of the node
  * @returns {Node} - The created or stored node
  */
-Graph.prototype.getNode = function getNode (coordinates) {
-    var id = Node.buildId(coordinates);
-    var node = this.nodes[id];
-    if (!node)
-        { node = this.nodes[id] = new Node(coordinates); }
+Graph.prototype.getNode = function getNode(coordinates) {
+  var id = Node.buildId(coordinates);
+  var node = this.nodes[id];
+  if (!node) {
+    node = this.nodes[id] = new Node(coordinates);
+  }
 
-    return node;
+  return node;
 };
 
 /**
@@ -537,20 +625,24 @@ Graph.prototype.getNode = function getNode (coordinates) {
  * @param {Node} from - Node which starts the Edge
  * @param {Node} to - Node which ends the Edge
  */
-Graph.prototype.addEdge = function addEdge (from, to) {
-    var edge = new Edge(from, to),
-        symetricEdge = edge.getSymetric();
+Graph.prototype.addEdge = function addEdge(from, to) {
+  var edge = new Edge(from, to),
+    symetricEdge = edge.getSymetric();
 
-    this.edges.push(edge);
-    this.edges.push(symetricEdge);
+  this.edges.push(edge);
+  this.edges.push(symetricEdge);
 };
 
-Graph.prototype.deleteDangles = function deleteDangles () {
-        var this$1 = this;
+Graph.prototype.deleteDangles = function deleteDangles() {
+  var this$1 = this;
 
-    Object.keys(this.nodes)
-        .map(function (id) { return this$1.nodes[id]; })
-        .forEach(function (node) { return this$1._removeIfDangle(node); });
+  Object.keys(this.nodes)
+    .map(function (id) {
+      return this$1.nodes[id];
+    })
+    .forEach(function (node) {
+      return this$1._removeIfDangle(node);
+    });
 };
 
 /**
@@ -560,15 +652,19 @@ Graph.prototype.deleteDangles = function deleteDangles () {
  *
  * @param {Node} node - Node to check if it's a dangle
  */
-Graph.prototype._removeIfDangle = function _removeIfDangle (node) {
-        var this$1 = this;
+Graph.prototype._removeIfDangle = function _removeIfDangle(node) {
+  var this$1 = this;
 
-// As edges are directed and symetrical, we count only innerEdges
-    if (node.innerEdges.length <= 1) {
-        var outerNodes = node.getOuterEdges().map(function (e) { return e.to; });
-        this.removeNode(node);
-        outerNodes.forEach(function (n) { return this$1._removeIfDangle(n); });
-    }
+  // As edges are directed and symetrical, we count only innerEdges
+  if (node.innerEdges.length <= 1) {
+    var outerNodes = node.getOuterEdges().map(function (e) {
+      return e.to;
+    });
+    this.removeNode(node);
+    outerNodes.forEach(function (n) {
+      return this$1._removeIfDangle(n);
+    });
+  }
 };
 
 /**
@@ -578,19 +674,19 @@ Graph.prototype._removeIfDangle = function _removeIfDangle (node) {
  * in which they are. (The label is a number incremented by 1). Edges with the same
  * label are cut-edges.
  */
-Graph.prototype.deleteCutEdges = function deleteCutEdges () {
-        var this$1 = this;
+Graph.prototype.deleteCutEdges = function deleteCutEdges() {
+  var this$1 = this;
 
-    this._computeNextCWEdges();
-    this._findLabeledEdgeRings();
+  this._computeNextCWEdges();
+  this._findLabeledEdgeRings();
 
-    // Cut-edges (bridges) are edges where both edges have the same label
-    this.edges.forEach(function (edge) {
-        if (edge.label === edge.symetric.label) {
-            this$1.removeEdge(edge.symetric);
-            this$1.removeEdge(edge);
-        }
-    });
+  // Cut-edges (bridges) are edges where both edges have the same label
+  this.edges.forEach(function (edge) {
+    if (edge.label === edge.symetric.label) {
+      this$1.removeEdge(edge.symetric);
+      this$1.removeEdge(edge);
+    }
+  });
 };
 
 /**
@@ -601,17 +697,20 @@ Graph.prototype.deleteCutEdges = function deleteCutEdges () {
  *
  * @param {Node} [node] - If no node is passed, the function calls itself for every node in the Graph
  */
-Graph.prototype._computeNextCWEdges = function _computeNextCWEdges (node) {
-        var this$1 = this;
+Graph.prototype._computeNextCWEdges = function _computeNextCWEdges(node) {
+  var this$1 = this;
 
-    if (typeof node === 'undefined') {
-        Object.keys(this.nodes)
-            .forEach(function (id) { return this$1._computeNextCWEdges(this$1.nodes[id]); });
-    } else {
-        node.getOuterEdges().forEach(function (edge, i) {
-            node.getOuterEdge((i === 0 ? node.getOuterEdges().length : i) - 1).symetric.next = edge;
-        });
-    }
+  if (typeof node === "undefined") {
+    Object.keys(this.nodes).forEach(function (id) {
+      return this$1._computeNextCWEdges(this$1.nodes[id]);
+    });
+  } else {
+    node.getOuterEdges().forEach(function (edge, i) {
+      node.getOuterEdge(
+        (i === 0 ? node.getOuterEdges().length : i) - 1
+      ).symetric.next = edge;
+    });
+  }
 };
 
 /**
@@ -625,44 +724,52 @@ Graph.prototype._computeNextCWEdges = function _computeNextCWEdges (node) {
  * @param {Node} node - Node
  * @param {number} label - Ring's label
  */
-Graph.prototype._computeNextCCWEdges = function _computeNextCCWEdges (node, label) {
-    var edges = node.getOuterEdges();
-    var firstOutDE,
-        prevInDE;
+Graph.prototype._computeNextCCWEdges = function _computeNextCCWEdges(
+  node,
+  label
+) {
+  var edges = node.getOuterEdges();
+  var firstOutDE, prevInDE;
 
-    for (var i = edges.length - 1; i >= 0; --i) {
-        var de = edges[i],
-            sym = de.symetric,
-            outDE = (void 0),
-            inDE = (void 0);
+  for (var i = edges.length - 1; i >= 0; --i) {
+    var de = edges[i],
+      sym = de.symetric,
+      outDE = void 0,
+      inDE = void 0;
 
-        if (de.label === label)
-            { outDE = de; }
-
-        if (sym.label === label)
-            { inDE = sym; }
-
-        if (!outDE || !inDE) // This edge is not in edgering
-            { continue; }
-
-        if (inDE)
-            { prevInDE = inDE; }
-
-        if (outDE) {
-            if (prevInDE) {
-                prevInDE.next = outDE;
-                prevInDE = undefined;
-            }
-
-            if (!firstOutDE)
-                { firstOutDE = outDE; }
-        }
+    if (de.label === label) {
+      outDE = de;
     }
 
-    if (prevInDE)
-        { prevInDE.next = firstOutDE; }
-};
+    if (sym.label === label) {
+      inDE = sym;
+    }
 
+    if (!outDE || !inDE) {
+      // This edge is not in edgering
+      continue;
+    }
+
+    if (inDE) {
+      prevInDE = inDE;
+    }
+
+    if (outDE) {
+      if (prevInDE) {
+        prevInDE.next = outDE;
+        prevInDE = undefined;
+      }
+
+      if (!firstOutDE) {
+        firstOutDE = outDE;
+      }
+    }
+  }
+
+  if (prevInDE) {
+    prevInDE.next = firstOutDE;
+  }
+};
 
 /**
  * Finds rings and labels edges according to which rings are.
@@ -671,25 +778,26 @@ Graph.prototype._computeNextCCWEdges = function _computeNextCCWEdges (node, labe
  *
  * @returns {Edge[]} edges that start rings
  */
-Graph.prototype._findLabeledEdgeRings = function _findLabeledEdgeRings () {
-    var edgeRingStarts = [];
-    var label = 0;
-    this.edges.forEach(function (edge) {
-        if (edge.label >= 0)
-            { return; }
+Graph.prototype._findLabeledEdgeRings = function _findLabeledEdgeRings() {
+  var edgeRingStarts = [];
+  var label = 0;
+  this.edges.forEach(function (edge) {
+    if (edge.label >= 0) {
+      return;
+    }
 
-        edgeRingStarts.push(edge);
+    edgeRingStarts.push(edge);
 
-        var e = edge;
-        do {
-            e.label = label;
-            e = e.next;
-        } while (!edge.isEqual(e));
+    var e = edge;
+    do {
+      e.label = label;
+      e = e.next;
+    } while (!edge.isEqual(e));
 
-        label++;
-    });
+    label++;
+  });
 
-    return edgeRingStarts;
+  return edgeRingStarts;
 };
 
 /**
@@ -697,33 +805,34 @@ Graph.prototype._findLabeledEdgeRings = function _findLabeledEdgeRings () {
  *
  * @returns {EdgeRing[]} - A list of all the EdgeRings in the graph.
  */
-Graph.prototype.getEdgeRings = function getEdgeRings () {
-        var this$1 = this;
+Graph.prototype.getEdgeRings = function getEdgeRings() {
+  var this$1 = this;
 
-    this._computeNextCWEdges();
+  this._computeNextCWEdges();
 
-    // Clear labels
-    this.edges.forEach(function (edge) {
-        edge.label = undefined;
+  // Clear labels
+  this.edges.forEach(function (edge) {
+    edge.label = undefined;
+  });
+
+  this._findLabeledEdgeRings().forEach(function (edge) {
+    // convertMaximalToMinimalEdgeRings
+    this$1._findIntersectionNodes(edge).forEach(function (node) {
+      this$1._computeNextCCWEdges(node, edge.label);
     });
+  });
 
-    this._findLabeledEdgeRings().forEach(function (edge) {
-        // convertMaximalToMinimalEdgeRings
-        this$1._findIntersectionNodes(edge).forEach(function (node) {
-            this$1._computeNextCCWEdges(node, edge.label);
-        });
-    });
+  var edgeRingList = [];
 
-    var edgeRingList = [];
+  // find all edgerings
+  this.edges.forEach(function (edge) {
+    if (edge.ring) {
+      return;
+    }
+    edgeRingList.push(this$1._findEdgeRing(edge));
+  });
 
-    // find all edgerings
-    this.edges.forEach(function (edge) {
-        if (edge.ring)
-            { return; }
-        edgeRingList.push(this$1._findEdgeRing(edge));
-    });
-
-    return edgeRingList;
+  return edgeRingList;
 };
 
 /**
@@ -732,28 +841,32 @@ Graph.prototype.getEdgeRings = function getEdgeRings () {
  * @param {Node} startEdge - Start Edge of the Ring
  * @returns {Node[]} - intersection nodes
  */
-Graph.prototype._findIntersectionNodes = function _findIntersectionNodes (startEdge) {
-    var intersectionNodes = [];
-    var edge = startEdge;
-    var loop = function () {
-        // getDegree
-        var degree = 0;
-        edge.from.getOuterEdges().forEach(function (e) {
-            if (e.label === startEdge.label)
-                { ++degree; }
-        });
+Graph.prototype._findIntersectionNodes = function _findIntersectionNodes(
+  startEdge
+) {
+  var intersectionNodes = [];
+  var edge = startEdge;
+  var loop = function () {
+    // getDegree
+    var degree = 0;
+    edge.from.getOuterEdges().forEach(function (e) {
+      if (e.label === startEdge.label) {
+        ++degree;
+      }
+    });
 
-        if (degree > 1)
-            { intersectionNodes.push(edge.from); }
+    if (degree > 1) {
+      intersectionNodes.push(edge.from);
+    }
 
-        edge = edge.next;
-    };
+    edge = edge.next;
+  };
 
-        do {
-            loop();
-        } while (!startEdge.isEqual(edge));
+  do {
+    loop();
+  } while (!startEdge.isEqual(edge));
 
-    return intersectionNodes;
+  return intersectionNodes;
 };
 
 /**
@@ -762,17 +875,17 @@ Graph.prototype._findIntersectionNodes = function _findIntersectionNodes (startE
  * @param {Edge} startEdge - starting edge of the edge ring
  * @returns {EdgeRing} - EdgeRing which start Edge is the provided one.
  */
-Graph.prototype._findEdgeRing = function _findEdgeRing (startEdge) {
-    var edge = startEdge;
-    var edgeRing = new EdgeRing();
+Graph.prototype._findEdgeRing = function _findEdgeRing(startEdge) {
+  var edge = startEdge;
+  var edgeRing = new EdgeRing();
 
-    do {
-        edgeRing.push(edge);
-        edge.ring = edgeRing;
-        edge = edge.next;
-    } while (!startEdge.isEqual(edge));
+  do {
+    edgeRing.push(edge);
+    edge.ring = edgeRing;
+    edge = edge.next;
+  } while (!startEdge.isEqual(edge));
 
-    return edgeRing;
+  return edgeRing;
 };
 
 /**
@@ -781,12 +894,16 @@ Graph.prototype._findEdgeRing = function _findEdgeRing (startEdge) {
  * It also removes edges asociated to that node
  * @param {Node} node - Node to be removed
  */
-Graph.prototype.removeNode = function removeNode (node) {
-        var this$1 = this;
+Graph.prototype.removeNode = function removeNode(node) {
+  var this$1 = this;
 
-    node.getOuterEdges().forEach(function (edge) { return this$1.removeEdge(edge); });
-    node.innerEdges.forEach(function (edge) { return this$1.removeEdge(edge); });
-    delete this.nodes[node.id];
+  node.getOuterEdges().forEach(function (edge) {
+    return this$1.removeEdge(edge);
+  });
+  node.innerEdges.forEach(function (edge) {
+    return this$1.removeEdge(edge);
+  });
+  delete this.nodes[node.id];
 };
 
 /**
@@ -794,9 +911,11 @@ Graph.prototype.removeNode = function removeNode (node) {
  *
  * @param {Edge} edge - Edge to be removed
  */
-Graph.prototype.removeEdge = function removeEdge (edge) {
-    this.edges = this.edges.filter(function (e) { return !e.isEqual(edge); });
-    edge.deleteEdge();
+Graph.prototype.removeEdge = function removeEdge(edge) {
+  this.edges = this.edges.filter(function (e) {
+    return !e.isEqual(edge);
+  });
+  edge.deleteEdge();
 };
 
 /**
@@ -818,35 +937,44 @@ Graph.prototype.removeEdge = function removeEdge (edge) {
  * @throws {Error} if geoJson is invalid.
  */
 function polygonize(geoJson) {
-    var graph = Graph.fromGeoJson(geoJson);
+  var graph = Graph.fromGeoJson(geoJson);
 
-    // 1. Remove dangle node
-    graph.deleteDangles();
+  // 1. Remove dangle node
+  graph.deleteDangles();
 
-    // 2. Remove cut-edges (bridge edges)
-    graph.deleteCutEdges();
+  // 2. Remove cut-edges (bridge edges)
+  graph.deleteCutEdges();
 
-    // 3. Get all holes and shells
-    var holes = [],
-        shells = [];
+  // 3. Get all holes and shells
+  var holes = [],
+    shells = [];
 
-    graph.getEdgeRings()
-        .filter(function (edgeRing) { return edgeRing.isValid(); })
-        .forEach(function (edgeRing) {
-            if (edgeRing.isHole())
-                { holes.push(edgeRing); }
-            else
-                { shells.push(edgeRing); }
-        });
-
-    // 4. Assign Holes to Shells
-    holes.forEach(function (hole) {
-        if (EdgeRing.findEdgeRingContaining(hole, shells))
-            { shells.push(hole); }
+  graph
+    .getEdgeRings()
+    .filter(function (edgeRing) {
+      return edgeRing.isValid();
+    })
+    .forEach(function (edgeRing) {
+      if (edgeRing.isHole()) {
+        holes.push(edgeRing);
+      } else {
+        shells.push(edgeRing);
+      }
     });
 
-    // 5. EdgeRings to Polygons
-    return featureCollection(shells.map(function (shell) { return shell.toPolygon(); }));
+  // 4. Assign Holes to Shells
+  holes.forEach(function (hole) {
+    if (EdgeRing.findEdgeRingContaining(hole, shells)) {
+      shells.push(hole);
+    }
+  });
+
+  // 5. EdgeRings to Polygons
+  return featureCollection(
+    shells.map(function (shell) {
+      return shell.toPolygon();
+    })
+  );
 }
 
 export default polygonize;

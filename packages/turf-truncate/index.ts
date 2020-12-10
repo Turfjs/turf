@@ -1,5 +1,5 @@
-import { coordEach } from '@turf/meta';
-import { AllGeoJSON } from '@turf/helpers';
+import { coordEach } from "@turf/meta";
+import { AllGeoJSON } from "@turf/helpers";
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
@@ -24,35 +24,47 @@ import { AllGeoJSON } from '@turf/helpers';
  * //addToMap
  * var addToMap = [truncated];
  */
-function truncate<T extends AllGeoJSON>(geojson: T, options: {
-    precision?: number,
-    coordinates?: number,
-    mutate?: boolean
-} = {}): T {
-    // Optional parameters
-    var precision = options.precision;
-    var coordinates = options.coordinates;
-    var mutate = options.mutate;
+function truncate<T extends AllGeoJSON>(
+  geojson: T,
+  options: {
+    precision?: number;
+    coordinates?: number;
+    mutate?: boolean;
+  } = {}
+): T {
+  // Optional parameters
+  var precision = options.precision;
+  var coordinates = options.coordinates;
+  var mutate = options.mutate;
 
-    // default params
-    precision = (precision === undefined || precision === null || isNaN(precision)) ? 6 : precision;
-    coordinates = (coordinates === undefined || coordinates === null || isNaN(coordinates)) ? 3 : coordinates;
+  // default params
+  precision =
+    precision === undefined || precision === null || isNaN(precision)
+      ? 6
+      : precision;
+  coordinates =
+    coordinates === undefined || coordinates === null || isNaN(coordinates)
+      ? 3
+      : coordinates;
 
-    // validation
-    if (!geojson) throw new Error('<geojson> is required');
-    if (typeof precision !== 'number') throw new Error('<precision> must be a number');
-    if (typeof coordinates !== 'number') throw new Error('<coordinates> must be a number');
+  // validation
+  if (!geojson) throw new Error("<geojson> is required");
+  if (typeof precision !== "number")
+    throw new Error("<precision> must be a number");
+  if (typeof coordinates !== "number")
+    throw new Error("<coordinates> must be a number");
 
-    // prevent input mutation
-    if (mutate === false || mutate === undefined) geojson = JSON.parse(JSON.stringify(geojson));
+  // prevent input mutation
+  if (mutate === false || mutate === undefined)
+    geojson = JSON.parse(JSON.stringify(geojson));
 
-    var factor = Math.pow(10, precision);
+  var factor = Math.pow(10, precision);
 
-    // Truncate Coordinates
-    coordEach(geojson, function (coords) {
-        truncateCoords(coords, factor, coordinates);
-    });
-    return geojson;
+  // Truncate Coordinates
+  coordEach(geojson, function (coords) {
+    truncateCoords(coords, factor, coordinates);
+  });
+  return geojson;
 }
 
 /**
@@ -65,14 +77,14 @@ function truncate<T extends AllGeoJSON>(geojson: T, options: {
  * @returns {Array<any>} mutated coordinates
  */
 function truncateCoords(coords, factor, coordinates) {
-    // Remove extra coordinates (usually elevation coordinates and more)
-    if (coords.length > coordinates) coords.splice(coordinates, coords.length);
+  // Remove extra coordinates (usually elevation coordinates and more)
+  if (coords.length > coordinates) coords.splice(coordinates, coords.length);
 
-    // Truncate coordinate decimals
-    for (var i = 0; i < coords.length; i++) {
-        coords[i] = Math.round(coords[i] * factor) / factor;
-    }
-    return coords;
+  // Truncate coordinate decimals
+  for (var i = 0; i < coords.length; i++) {
+    coords[i] = Math.round(coords[i] * factor) / factor;
+  }
+  return coords;
 }
 
 export default truncate;

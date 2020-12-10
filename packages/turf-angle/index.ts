@@ -18,31 +18,50 @@ import rhumbBearing from "@turf/rhumb-bearing";
  * turf.angle([5, 5], [5, 6], [3, 4]);
  * //=45
  */
-function angle(startPoint: Coord, midPoint: Coord, endPoint: Coord, options: {
-    explementary?: boolean
-    mercator?: boolean,
-} = {}): number {
-    // Optional Parameters
-    if (!isObject(options)) { throw new Error("options is invalid"); }
+function angle(
+  startPoint: Coord,
+  midPoint: Coord,
+  endPoint: Coord,
+  options: {
+    explementary?: boolean;
+    mercator?: boolean;
+  } = {}
+): number {
+  // Optional Parameters
+  if (!isObject(options)) {
+    throw new Error("options is invalid");
+  }
 
-    // Validation
-    if (!startPoint) { throw new Error("startPoint is required"); }
-    if (!midPoint) { throw new Error("midPoint is required"); }
-    if (!endPoint) { throw new Error("endPoint is required"); }
+  // Validation
+  if (!startPoint) {
+    throw new Error("startPoint is required");
+  }
+  if (!midPoint) {
+    throw new Error("midPoint is required");
+  }
+  if (!endPoint) {
+    throw new Error("endPoint is required");
+  }
 
-    // Rename to shorter variables
-    const A = startPoint;
-    const O = midPoint;
-    const B = endPoint;
+  // Rename to shorter variables
+  const A = startPoint;
+  const O = midPoint;
+  const B = endPoint;
 
-    // Main
-    const azimuthAO = bearingToAzimuth((options.mercator !== true) ? bearing(A, O) : rhumbBearing(A, O));
-    const azimuthBO = bearingToAzimuth((options.mercator !== true) ? bearing(B, O) : rhumbBearing(B, O));
-    const angleAO = Math.abs(azimuthAO - azimuthBO);
+  // Main
+  const azimuthAO = bearingToAzimuth(
+    options.mercator !== true ? bearing(A, O) : rhumbBearing(A, O)
+  );
+  const azimuthBO = bearingToAzimuth(
+    options.mercator !== true ? bearing(B, O) : rhumbBearing(B, O)
+  );
+  const angleAO = Math.abs(azimuthAO - azimuthBO);
 
-    // Explementary angle
-    if (options.explementary === true) { return 360 - angleAO; }
-    return angleAO;
+  // Explementary angle
+  if (options.explementary === true) {
+    return 360 - angleAO;
+  }
+  return angleAO;
 }
 
 export default angle;

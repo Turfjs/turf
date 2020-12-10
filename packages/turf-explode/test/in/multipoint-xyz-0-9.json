@@ -1,15 +1,7 @@
 {
-	"type": "MultiPoint",
-	"coordinates": [
-		[
-			100,
-			0,
-			1
-		],
-		[
-			101,
-			1,
-			2
-		]
-	]
+  "type": "MultiPoint",
+  "coordinates": [
+    [100, 0, 1],
+    [101, 1, 2]
+  ]
 }

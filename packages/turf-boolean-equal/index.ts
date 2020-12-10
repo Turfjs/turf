@@ -1,7 +1,7 @@
-import GeojsonEquality from 'geojson-equality';
-import cleanCoords from '@turf/clean-coords';
-import { getGeom } from '@turf/invariant';
-import { Feature, Geometry } from '@turf/helpers';
+import GeojsonEquality from "geojson-equality";
+import cleanCoords from "@turf/clean-coords";
+import { getGeom } from "@turf/invariant";
+import { Feature, Geometry } from "@turf/helpers";
 
 /**
  * Determine whether two geometries of the same type have identical X,Y coordinate values.
@@ -21,13 +21,16 @@ import { Feature, Geometry } from '@turf/helpers';
  * turf.booleanEqual(pt2, pt3);
  * //= false
  */
-function booleanEqual(feature1: Feature<any> | Geometry, feature2: Feature<any> | Geometry): boolean {
-    const type1 = getGeom(feature1).type;
-    const type2 = getGeom(feature2).type;
-    if (type1 !== type2) return false;
+function booleanEqual(
+  feature1: Feature<any> | Geometry,
+  feature2: Feature<any> | Geometry
+): boolean {
+  const type1 = getGeom(feature1).type;
+  const type2 = getGeom(feature2).type;
+  if (type1 !== type2) return false;
 
-    const equality = new GeojsonEquality({precision: 6});
-    return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
+  const equality = new GeojsonEquality({ precision: 6 });
+  return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
 }
 
 export default booleanEqual;

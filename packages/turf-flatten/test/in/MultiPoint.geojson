@@ -6,14 +6,8 @@
   "geometry": {
     "type": "MultiPoint",
     "coordinates": [
-      [
-        100,
-        0
-      ],
-      [
-        101,
-        1
-      ]
+      [100, 0],
+      [101, 1]
     ]
   }
 }

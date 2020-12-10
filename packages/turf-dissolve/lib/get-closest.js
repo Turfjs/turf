@@ -17,23 +17,22 @@
  * @returns {Object} Get Closest
  */
 function _getClosest(item, array, getDiff) {
-    var closest,
-        diff;
+  var closest, diff;
 
-    if (!Array.isArray(array)) {
-        throw new Error('Get closest expects an array as second argument');
+  if (!Array.isArray(array)) {
+    throw new Error("Get closest expects an array as second argument");
+  }
+
+  array.forEach(function (comparedItem, comparedItemIndex) {
+    var thisDiff = getDiff(comparedItem, item);
+
+    if (thisDiff >= 0 && (typeof diff == "undefined" || thisDiff < diff)) {
+      diff = thisDiff;
+      closest = comparedItemIndex;
     }
+  });
 
-    array.forEach(function (comparedItem, comparedItemIndex) {
-        var thisDiff = getDiff(comparedItem, item);
-
-        if (thisDiff >= 0 && (typeof diff == 'undefined' || thisDiff < diff)) {
-            diff = thisDiff;
-            closest = comparedItemIndex;
-        }
-    });
-
-    return closest;
+  return closest;
 }
 
 /**
@@ -48,9 +47,9 @@ function _getClosest(item, array, getDiff) {
  * //= will return 3 as 29 is the closest item
  */
 export function closestNumber(item, array) {
-    return _getClosest(item, array, function (comparedItem, item) {
-        return Math.abs(comparedItem - item);
-    });
+  return _getClosest(item, array, function (comparedItem, item) {
+    return Math.abs(comparedItem - item);
+  });
 }
 
 /**
@@ -65,9 +64,9 @@ export function closestNumber(item, array) {
  * //= will return 2 as 50 is the closest greater item
  */
 export function closestGreaterNumber(item, array) {
-    return _getClosest(item, array, function (comparedItem, item) {
-        return comparedItem - item;
-    });
+  return _getClosest(item, array, function (comparedItem, item) {
+    return comparedItem - item;
+  });
 }
 
 /**
@@ -82,9 +81,9 @@ export function closestGreaterNumber(item, array) {
  * //= will return 0 as 20 is the closest lower item
  */
 export function closestLowerNumber(item, array) {
-    return _getClosest(item, array, function (comparedItem, item) {
-        return item - comparedItem;
-    });
+  return _getClosest(item, array, function (comparedItem, item) {
+    return item - comparedItem;
+  });
 }
 
 /**
@@ -109,5 +108,5 @@ export function closestLowerNumber(item, array) {
  * }
  */
 export function closestCustom(item, array, comparator) {
-    return _getClosest(item, array, comparator);
+  return _getClosest(item, array, comparator);
 }

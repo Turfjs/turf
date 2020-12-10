@@ -6,7 +6,15 @@
       "properties": {},
       "geometry": {
         "type": "Polygon",
-        "coordinates": [[[1, 1], [1, 10], [10, 10], [10, 1], [1, 1]]]
+        "coordinates": [
+          [
+            [1, 1],
+            [1, 10],
+            [10, 10],
+            [10, 1],
+            [1, 1]
+          ]
+        ]
       }
     },
     {
@@ -14,7 +22,10 @@
       "properties": {},
       "geometry": {
         "type": "LineString",
-        "coordinates": [[1, 1], [10,10]]
+        "coordinates": [
+          [1, 1],
+          [10, 10]
+        ]
       }
     }
   ]

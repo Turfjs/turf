@@ -6,7 +6,15 @@
       "properties": {},
       "geometry": {
         "type": "Polygon",
-        "coordinates": [[[1, 1], [1, 10], [10, 10], [10, 1], [1, 1]]]
+        "coordinates": [
+          [
+            [1, 1],
+            [1, 10],
+            [10, 10],
+            [10, 1],
+            [1, 1]
+          ]
+        ]
       }
     },
     {
@@ -14,7 +22,11 @@
       "properties": {},
       "geometry": {
         "type": "MultiPoint",
-        "coordinates": [[1, 1], [12, 12], [15, 15]]
+        "coordinates": [
+          [1, 1],
+          [12, 12],
+          [15, 15]
+        ]
       }
     }
   ]

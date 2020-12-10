@@ -44,6 +44,10 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "exports": {
+    "import": "./dist/es/index.js",
+    "require": "./dist/js/index.js"
+  },
   "browser": "turf.min.js",
   "types": "index.d.ts",
   "sideEffects": false,
@@ -53,22 +57,21 @@
     "turf.min.js"
   ],
   "scripts": {
+    "build": "rollup -c rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "last-checks": "npm-run-all last-checks:testjs last-checks:example",
     "last-checks:example": "node test.example.js",
     "last-checks:testjs": "node test.js",
-    "prepare": "rollup -c rollup.config.js",
-    "pretest": "npm-run-all prepare",
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
     "camelcase": "*",
     "documentation": "*",
     "glob": "*",
-    "rollup": "*",
-    "rollup-plugin-buble": "*",
-    "rollup-plugin-commonjs": "*",
-    "rollup-plugin-node-resolve": "*",
-    "rollup-plugin-uglify": "*",
+    "rollup": "^2.34.2",
+    "rollup-plugin-terser": "^7.0.2",
     "tape": "*"
   },
   "dependencies": {

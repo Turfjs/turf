@@ -3,13 +3,10 @@
   "properties": {
     "bearing": 90,
     "dist": 5000,
-    "units": "miles"
+    "units": "kilometers"
   },
   "geometry": {
     "type": "Point",
-    "coordinates": [
-      -75,
-      39
-    ]
+    "coordinates": [-75, 39]
   }
 }

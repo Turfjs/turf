@@ -1,10 +1,15 @@
-import distance from '@turf/distance';
-import intersect from '@turf/intersect';
-import { getType } from '@turf/invariant';
+import distance from "@turf/distance";
+import intersect from "@turf/intersect";
 import {
-    polygon, featureCollection, isObject, isNumber,
-    Feature, FeatureCollection, Units, Properties, Polygon, MultiPolygon, BBox
-} from '@turf/helpers';
+  polygon,
+  featureCollection,
+  Feature,
+  FeatureCollection,
+  Units,
+  Properties,
+  Polygon,
+  BBox,
+} from "@turf/helpers";
 
 /**
  * Takes a bounding box and the diameter of the cell and returns a {@link FeatureCollection} of flat-topped
@@ -31,108 +36,117 @@ import {
  * //addToMap
  * var addToMap = [hexgrid];
  */
-function hexGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
-    units?: Units,
-    triangles?: boolean,
-    properties?: P,
+function hexGrid<P = Properties>(
+  bbox: BBox,
+  cellSide: number,
+  options: {
+    units?: Units;
+    triangles?: boolean;
+    properties?: P;
     mask?: Feature<Polygon> | Polygon;
-} = {}): FeatureCollection<Polygon, P> {
-    // Issue => https://github.com/Turfjs/turf/issues/1284
-    const clonedProperties = JSON.stringify(options.properties || {})
+  } = {}
+): FeatureCollection<Polygon, P> {
+  // Issue => https://github.com/Turfjs/turf/issues/1284
+  const clonedProperties = JSON.stringify(options.properties || {});
 
-    const [west, south, east, north] = bbox;
-    const centerY = (south + north) / 2;
-    const centerX = (west + east) / 2;
+  const [west, south, east, north] = bbox;
+  const centerY = (south + north) / 2;
+  const centerX = (west + east) / 2;
 
-    // https://github.com/Turfjs/turf/issues/758
-    const xFraction = cellSide * 2 / (distance([west, centerY], [east, centerY], options));
-    const cellWidth = xFraction * (east - west);
-    const yFraction = cellSide * 2 / (distance([centerX, south], [centerX, north], options));
-    const cellHeight = yFraction * (north - south);
-    const radius = cellWidth / 2;
+  // https://github.com/Turfjs/turf/issues/758
+  const xFraction =
+    (cellSide * 2) / distance([west, centerY], [east, centerY], options);
+  const cellWidth = xFraction * (east - west);
+  const yFraction =
+    (cellSide * 2) / distance([centerX, south], [centerX, north], options);
+  const cellHeight = yFraction * (north - south);
+  const radius = cellWidth / 2;
 
-    const hex_width = radius * 2;
-    const hex_height = Math.sqrt(3) / 2 * cellHeight;
+  const hex_width = radius * 2;
+  const hex_height = (Math.sqrt(3) / 2) * cellHeight;
 
-    const box_width = east - west;
-    const box_height = north - south;
+  const box_width = east - west;
+  const box_height = north - south;
 
-    const x_interval = 3 / 4 * hex_width;
-    const y_interval = hex_height;
+  const x_interval = (3 / 4) * hex_width;
+  const y_interval = hex_height;
 
-    // adjust box_width so all hexagons will be inside the bbox
-    const x_span = (box_width - hex_width) / (hex_width - radius / 2);
-    const x_count = Math.floor(x_span);
+  // adjust box_width so all hexagons will be inside the bbox
+  const x_span = (box_width - hex_width) / (hex_width - radius / 2);
+  const x_count = Math.floor(x_span);
 
-    const x_adjust = ((x_count * x_interval - radius / 2) - box_width) / 2 - radius / 2 + x_interval / 2;
+  const x_adjust =
+    (x_count * x_interval - radius / 2 - box_width) / 2 -
+    radius / 2 +
+    x_interval / 2;
 
-    // adjust box_height so all hexagons will be inside the bbox
-    const y_count = Math.floor((box_height - hex_height) / hex_height);
+  // adjust box_height so all hexagons will be inside the bbox
+  const y_count = Math.floor((box_height - hex_height) / hex_height);
 
-    let y_adjust = (box_height - y_count * hex_height) / 2;
+  let y_adjust = (box_height - y_count * hex_height) / 2;
 
-    const hasOffsetY = y_count * hex_height - box_height > hex_height / 2;
-    if (hasOffsetY) {
-        y_adjust -= hex_height / 4;
-    }
+  const hasOffsetY = y_count * hex_height - box_height > hex_height / 2;
+  if (hasOffsetY) {
+    y_adjust -= hex_height / 4;
+  }
 
-    // Precompute cosines and sines of angles used in hexagon creation for performance gain
-    const cosines = [];
-    const sines = [];
-    for (let i = 0; i < 6; i++) {
-        const angle = 2 * Math.PI / 6 * i;
-        cosines.push(Math.cos(angle));
-        sines.push(Math.sin(angle));
-    }
+  // Precompute cosines and sines of angles used in hexagon creation for performance gain
+  const cosines = [];
+  const sines = [];
+  for (let i = 0; i < 6; i++) {
+    const angle = ((2 * Math.PI) / 6) * i;
+    cosines.push(Math.cos(angle));
+    sines.push(Math.sin(angle));
+  }
 
-    const results = [];
-    for (let x = 0; x <= x_count; x++) {
-        for (let y = 0; y <= y_count; y++) {
+  const results = [];
+  for (let x = 0; x <= x_count; x++) {
+    for (let y = 0; y <= y_count; y++) {
+      const isOdd = x % 2 === 1;
+      if (y === 0 && isOdd) continue;
+      if (y === 0 && hasOffsetY) continue;
 
-            const isOdd = x % 2 === 1;
-            if (y === 0 && isOdd) continue;
-            if (y === 0 && hasOffsetY) continue;
+      const center_x = x * x_interval + west - x_adjust;
+      let center_y = y * y_interval + south + y_adjust;
 
-            const center_x = x * x_interval + west - x_adjust;
-            let center_y = y * y_interval + south + y_adjust;
+      if (isOdd) {
+        center_y -= hex_height / 2;
+      }
 
-            if (isOdd) {
-                center_y -= hex_height / 2;
-            }
-
-            if (options.triangles === true) {
-                hexTriangles(
-                    [center_x, center_y],
-                    cellWidth / 2,
-                    cellHeight / 2,
-                    JSON.parse(clonedProperties),
-                    cosines,
-                    sines).forEach(function (triangle) {
-                    if (options.mask) {
-                        if (intersect(options.mask, triangle)) results.push(triangle);
-                    } else {
-                        results.push(triangle);
-                    }
-                });
-            } else {
-                const hex = hexagon(
-                    [center_x, center_y],
-                    cellWidth / 2,
-                    cellHeight / 2,
-                    JSON.parse(clonedProperties),
-                    cosines,
-                    sines
-                );
-                if (options.mask) {
-                    if (intersect(options.mask, hex)) results.push(hex);
-                } else {
-                    results.push(hex);
-                }
-            }
+      if (options.triangles === true) {
+        hexTriangles(
+          [center_x, center_y],
+          cellWidth / 2,
+          cellHeight / 2,
+          JSON.parse(clonedProperties),
+          cosines,
+          sines
+        ).forEach(function (triangle) {
+          if (options.mask) {
+            if (intersect(options.mask, triangle)) results.push(triangle);
+          } else {
+            results.push(triangle);
+          }
+        });
+      } else {
+        const hex = hexagon(
+          [center_x, center_y],
+          cellWidth / 2,
+          cellHeight / 2,
+          JSON.parse(clonedProperties),
+          cosines,
+          sines
+        );
+        if (options.mask) {
+          if (intersect(options.mask, hex)) results.push(hex);
+        } else {
+          results.push(hex);
         }
+      }
     }
+  }
 
-    return featureCollection(results);
+  return featureCollection(results);
 }
 
 /**
@@ -148,15 +162,15 @@ function hexGrid<P = Properties>(bbox: BBox, cellSide: number, options: {
  * @returns {Feature<Polygon>} hexagon
  */
 function hexagon(center, rx, ry, properties, cosines, sines) {
-    const vertices = [];
-    for (let i = 0; i < 6; i++) {
-        const x = center[0] + rx * cosines[i];
-        const y = center[1] + ry * sines[i];
-        vertices.push([x, y]);
-    }
-    //first and last vertex must be the same
-    vertices.push(vertices[0].slice());
-    return polygon([vertices], properties);
+  const vertices = [];
+  for (let i = 0; i < 6; i++) {
+    const x = center[0] + rx * cosines[i];
+    const y = center[1] + ry * sines[i];
+    vertices.push([x, y]);
+  }
+  //first and last vertex must be the same
+  vertices.push(vertices[0].slice());
+  return polygon([vertices], properties);
 }
 
 /**
@@ -172,22 +186,19 @@ function hexagon(center, rx, ry, properties, cosines, sines) {
  * @returns {Array<Feature<Polygon>>} triangles
  */
 function hexTriangles(center, rx, ry, properties, cosines, sines) {
-    const triangles = [];
-    for (let i = 0; i < 6; i++) {
-        const vertices = [];
-        vertices.push(center);
-        vertices.push([
-            center[0] + rx * cosines[i],
-            center[1] + ry * sines[i]
-        ]);
-        vertices.push([
-            center[0] + rx * cosines[(i + 1) % 6],
-            center[1] + ry * sines[(i + 1) % 6]
-        ]);
-        vertices.push(center);
-        triangles.push(polygon([vertices], properties));
-    }
-    return triangles;
+  const triangles = [];
+  for (let i = 0; i < 6; i++) {
+    const vertices = [];
+    vertices.push(center);
+    vertices.push([center[0] + rx * cosines[i], center[1] + ry * sines[i]]);
+    vertices.push([
+      center[0] + rx * cosines[(i + 1) % 6],
+      center[1] + ry * sines[(i + 1) % 6],
+    ]);
+    vertices.push(center);
+    triangles.push(polygon([vertices], properties));
+  }
+  return triangles;
 }
 
 export default hexGrid;

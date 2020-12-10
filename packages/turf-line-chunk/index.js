@@ -1,7 +1,7 @@
-import length from '@turf/length';
-import lineSliceAlong from '@turf/line-slice-along';
-import { flattenEach } from '@turf/meta';
-import { featureCollection, isObject } from '@turf/helpers';
+import length from "@turf/length";
+import lineSliceAlong from "@turf/line-slice-along";
+import { flattenEach } from "@turf/meta";
+import { featureCollection, isObject } from "@turf/helpers";
 
 /**
  * Divides a {@link LineString} into chunks of a specified length.
@@ -23,29 +23,31 @@ import { featureCollection, isObject } from '@turf/helpers';
  * var addToMap = [chunk];
  */
 function lineChunk(geojson, segmentLength, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
-    var reverse = options.reverse;
+  // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var units = options.units;
+  var reverse = options.reverse;
 
-    // Validation
-    if (!geojson) throw new Error('geojson is required');
-    if (segmentLength <= 0) throw new Error('segmentLength must be greater than 0');
+  // Validation
+  if (!geojson) throw new Error("geojson is required");
+  if (segmentLength <= 0)
+    throw new Error("segmentLength must be greater than 0");
 
-    // Container
-    var results = [];
+  // Container
+  var results = [];
 
-    // Flatten each feature to simple LineString
-    flattenEach(geojson, function (feature) {
-        // reverses coordinates to start the first chunked segment at the end
-        if (reverse) feature.geometry.coordinates = feature.geometry.coordinates.reverse();
+  // Flatten each feature to simple LineString
+  flattenEach(geojson, function (feature) {
+    // reverses coordinates to start the first chunked segment at the end
+    if (reverse)
+      feature.geometry.coordinates = feature.geometry.coordinates.reverse();
 
-        sliceLineSegments(feature, segmentLength, units, function (segment) {
-            results.push(segment);
-        });
+    sliceLineSegments(feature, segmentLength, units, function (segment) {
+      results.push(segment);
     });
-    return featureCollection(results);
+  });
+  return featureCollection(results);
 }
 
 /**
@@ -59,22 +61,27 @@ function lineChunk(geojson, segmentLength, options) {
  * @returns {void}
  */
 function sliceLineSegments(line, segmentLength, units, callback) {
-    var lineLength = length(line, {units: units});
+  var lineLength = length(line, { units: units });
 
-    // If the line is shorter than the segment length then the orginal line is returned.
-    if (lineLength <= segmentLength) return callback(line);
+  // If the line is shorter than the segment length then the orginal line is returned.
+  if (lineLength <= segmentLength) return callback(line);
 
-    var numberOfSegments = lineLength / segmentLength;
+  var numberOfSegments = lineLength / segmentLength;
 
-    // If numberOfSegments is integer, no need to plus 1
-    if (!Number.isInteger(numberOfSegments)) {
-        numberOfSegments = Math.floor(numberOfSegments) + 1;
-    }
+  // If numberOfSegments is integer, no need to plus 1
+  if (!Number.isInteger(numberOfSegments)) {
+    numberOfSegments = Math.floor(numberOfSegments) + 1;
+  }
 
-    for (var i = 0; i < numberOfSegments; i++) {
-        var outline = lineSliceAlong(line, segmentLength * i, segmentLength * (i + 1), {units: units});
-        callback(outline, i);
-    }
+  for (var i = 0; i < numberOfSegments; i++) {
+    var outline = lineSliceAlong(
+      line,
+      segmentLength * i,
+      segmentLength * (i + 1),
+      { units: units }
+    );
+    callback(outline, i);
+  }
 }
 
 export default lineChunk;

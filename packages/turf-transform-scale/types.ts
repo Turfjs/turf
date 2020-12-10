@@ -1,8 +1,25 @@
-import { lineString, polygon, featureCollection, LineString, Feature, Polygon } from '@turf/helpers';
-import scale from './';
+import {
+  lineString,
+  polygon,
+  featureCollection,
+  LineString,
+  Feature,
+  Polygon,
+} from "@turf/helpers";
+import scale from "./";
 
-const line = lineString([[0, 0],[10, 29]]);
-const poly = polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
+const line = lineString([
+  [0, 0],
+  [10, 29],
+]);
+const poly = polygon([
+  [
+    [0, 29],
+    [3.5, 29],
+    [2.5, 32],
+    [0, 29],
+  ],
+]);
 
 // Does not mutate Geometry type
 const scaledPt: LineString = scale(line.geometry, 1.5);
@@ -15,5 +32,5 @@ scale(featureCollection([poly]), 1.5);
 
 // All params
 scale(poly, 1.5);
-scale(poly, 1.5, {origin: [10, 10]});
-scale(poly, 1.5, {origin: 'ne', mutate: true});
+scale(poly, 1.5, { origin: [10, 10] });
+scale(poly, 1.5, { origin: "ne", mutate: true });

@@ -23,27 +23,34 @@ import { getGeom } from "@turf/invariant";
  * var addToMap = [along, line]
  */
 export default function along(
-    line: Feature<LineString> | LineString,
-    distance: number,
-    options: {units?: Units} = {},
+  line: Feature<LineString> | LineString,
+  distance: number,
+  options: { units?: Units } = {}
 ): Feature<Point> {
-    // Get Coords
-    const geom = getGeom(line);
-    const coords = geom.coordinates;
-    let travelled = 0;
-    for (let i = 0; i < coords.length; i++) {
-        if (distance >= travelled && i === coords.length - 1) { break;
-        } else if (travelled >= distance) {
-            const overshot = distance - travelled;
-            if (!overshot) { return point(coords[i]);
-            } else {
-                const direction = bearing(coords[i], coords[i - 1]) - 180;
-                const interpolated = destination(coords[i], overshot, direction, options);
-                return interpolated;
-            }
-        } else {
-            travelled += measureDistance(coords[i], coords[i + 1], options);
-        }
+  // Get Coords
+  const geom = getGeom(line);
+  const coords = geom.coordinates;
+  let travelled = 0;
+  for (let i = 0; i < coords.length; i++) {
+    if (distance >= travelled && i === coords.length - 1) {
+      break;
+    } else if (travelled >= distance) {
+      const overshot = distance - travelled;
+      if (!overshot) {
+        return point(coords[i]);
+      } else {
+        const direction = bearing(coords[i], coords[i - 1]) - 180;
+        const interpolated = destination(
+          coords[i],
+          overshot,
+          direction,
+          options
+        );
+        return interpolated;
+      }
+    } else {
+      travelled += measureDistance(coords[i], coords[i + 1], options);
     }
-    return point(coords[coords.length - 1]);
+  }
+  return point(coords[coords.length - 1]);
 }
