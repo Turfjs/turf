@@ -5,7 +5,6 @@
  * @module turf
  * @summary Geospatial analysis for JavaScript
  */
-export { default as isolines } from "@turf/isolines";
 export { default as convex } from "@turf/convex";
 export { default as pointsWithinPolygon } from "@turf/points-within-polygon";
 export { default as concave } from "@turf/concave";
@@ -63,7 +62,6 @@ export { default as rhumbDistance } from "@turf/rhumb-distance";
 export { default as rhumbDestination } from "@turf/rhumb-destination";
 export { default as polygonTangents } from "@turf/polygon-tangents";
 export { default as rewind } from "@turf/rewind";
-export { default as isobands } from "@turf/isobands";
 export { default as transformRotate } from "@turf/transform-rotate";
 export { default as transformScale } from "@turf/transform-scale";
 export { default as transformTranslate } from "@turf/transform-translate";

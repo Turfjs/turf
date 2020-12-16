@@ -88,8 +88,6 @@ toc:
   - sample
   - name: Interpolation
   - interpolate
-  - isobands
-  - isolines
   - planepoint
   - tin
   - name: Joins

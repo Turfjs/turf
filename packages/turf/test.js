@@ -359,17 +359,6 @@ test('turf-example-${turfName}', t => {
     t.end();
 });
 `;
-  // Specific moduels will exclude testing @example
-  switch (turfName) {
-    case "isolines":
-    case "isobands":
-      return `
-        test('turf-example-${turfName}', t => {
-            t.skip('${turfName}');
-            t.end();
-        });
-        `;
-  }
   return `
 test('turf-example-${turfName}', t => {
     const ${testFunctionName} = () => {

@@ -125,8 +125,6 @@
     "@turf/interpolate": "^6.2.0-alpha.3",
     "@turf/intersect": "^6.2.0-alpha.3",
     "@turf/invariant": "^6.2.0-alpha.3",
-    "@turf/isobands": "^6.2.0-alpha.3",
-    "@turf/isolines": "^6.2.0-alpha.3",
     "@turf/kinks": "^6.2.0-alpha.3",
     "@turf/length": "^6.2.0-alpha.3",
     "@turf/line-arc": "^6.2.0-alpha.3",
