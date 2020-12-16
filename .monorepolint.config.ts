@@ -162,7 +162,6 @@ module.exports = {
           scripts: {
             build:
               'rollup -c ../../rollup.config.js && echo \'{"type":"module"}\' > dist/es/package.json',
-            posttest: "node -r esm ../../scripts/validate-es5-dependencies.js",
           },
         },
         includePackages: JS_PACKAGES,
