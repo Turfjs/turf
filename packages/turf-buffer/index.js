@@ -173,8 +173,8 @@ function unprojectCoords(coords, proj) {
  * @returns {GeoProjection} D3 Geo Azimuthal Equidistant Projection
  */
 function defineProjection(geojson) {
-  const coords = center(geojson).geometry.coordinates;
-  const rotation = [-coords[0], -coords[1]];
+  var coords = center(geojson).geometry.coordinates;
+  var rotation = [-coords[0], -coords[1]];
   return geoAzimuthalEquidistant().rotate(rotation).scale(earthRadius);
 }
 
