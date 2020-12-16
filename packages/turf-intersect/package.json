@@ -56,6 +56,6 @@
   "dependencies": {
     "@turf/helpers": "^6.2.0-alpha.3",
     "@turf/invariant": "^6.2.0-alpha.3",
-    "polygon-clipping": "^0.14.3"
+    "polygon-clipping": "^0.15.2"
   }
 }
