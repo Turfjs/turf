@@ -1,14 +1,21 @@
 import { orientationIndex } from "./util";
+import Edge from "./Edge";
 
 /**
  * Node
  */
-class Node {
-  static buildId(coordinates) {
+export default class Node {
+  static buildId(coordinates: number[]) {
     return coordinates.join(",");
   }
 
-  constructor(coordinates) {
+  public id: string;
+  public coordinates: number[];
+  public innerEdges: Edge[];
+  private outerEdges: Edge[];
+  private outerEdgesSorted: boolean;
+
+  constructor(coordinates: number[]) {
     this.id = Node.buildId(coordinates);
     this.coordinates = coordinates; //< {Number[]}
     this.innerEdges = []; //< {Edge[]}
@@ -117,5 +124,3 @@ class Node {
     this.innerEdges.push(edge);
   }
 }
-
-export default Node;
