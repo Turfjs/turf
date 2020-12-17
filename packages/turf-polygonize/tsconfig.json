@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.shared.json",
+  "compilerOptions": {
+    "outDir": "dist/js"
+  },
+  "files": ["index.ts"]
+}

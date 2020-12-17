@@ -1,10 +1,19 @@
 import { lineString } from "@turf/helpers";
 import { orientationIndex } from "./util";
+import Node from "./Node";
+import EdgeRing from "./EdgeRing";
 
 /**
  * This class is inspired by GEOS's geos::operation::polygonize::PolygonizeDirectedEdge
  */
-class Edge {
+export default class Edge {
+  public label: number;
+  public symetric: Edge;
+  public from: Node;
+  public to: Node;
+  public next: Edge;
+  public ring: EdgeRing;
+
   /**
    * Creates or get the symetric Edge.
    *
@@ -87,5 +96,3 @@ class Edge {
     );
   }
 }
-
-export default Edge;

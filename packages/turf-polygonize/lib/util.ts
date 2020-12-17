@@ -1,6 +1,13 @@
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { point } from "@turf/helpers";
 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign#Polyfill
+function mathSign(x: number) {
+  return (
+    (((x > 0) as unknown) as number) - (((x < 0) as unknown) as number) || +x
+  );
+}
+
 /**
  * Returns the direction of the point q relative to the vector p1 -> p2.
  *
@@ -21,7 +28,7 @@ function orientationIndex(p1, p2, q) {
     dx2 = q[0] - p2[0],
     dy2 = q[1] - p2[1];
 
-  return Math.sign(dx1 * dy2 - dx2 * dy1);
+  return mathSign(dx1 * dy2 - dx2 * dy1);
 }
 
 /**
