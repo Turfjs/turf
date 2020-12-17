@@ -864,32 +864,3 @@ export function validateId(id: any): void {
     throw new Error("id must be a number or a string");
   }
 }
-
-// Deprecated methods
-export function radians2degrees(): void {
-  throw new Error("method has been renamed to `radiansToDegrees`");
-}
-
-export function degrees2radians(): void {
-  throw new Error("method has been renamed to `degreesToRadians`");
-}
-
-export function distanceToDegrees(): void {
-  throw new Error("method has been renamed to `lengthToDegrees`");
-}
-
-export function distanceToRadians(): void {
-  throw new Error("method has been renamed to `lengthToRadians`");
-}
-
-export function radiansToDistance(): void {
-  throw new Error("method has been renamed to `radiansToLength`");
-}
-
-export function bearingToAngle(): void {
-  throw new Error("method has been renamed to `bearingToAzimuth`");
-}
-
-export function convertDistance(): void {
-  throw new Error("method has been renamed to `convertLength`");
-}

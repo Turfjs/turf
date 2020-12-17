@@ -3,6 +3,12 @@ import Edge from "./Edge";
 import EdgeRing from "./EdgeRing";
 import { flattenEach, coordReduce } from "@turf/meta";
 import { featureOf } from "@turf/invariant";
+import {
+  FeatureCollection,
+  LineString,
+  MultiLineString,
+  Feature,
+} from "@turf/helpers";
 
 /**
  * Validates the geoJson.
@@ -34,7 +40,10 @@ function validateGeoJson(geoJson) {
  *
  * This graph is directed (both directions are created)
  */
-class Graph {
+export default class Graph {
+  private nodes: { [id: string]: Node };
+  private edges: Edge[];
+
   /**
    * Creates a graph from a GeoJSON.
    *
@@ -42,14 +51,20 @@ class Graph {
    * @returns {Graph} - The newly created graph
    * @throws {Error} if geoJson is invalid.
    */
-  static fromGeoJson(geoJson) {
+  static fromGeoJson(
+    geoJson:
+      | FeatureCollection<LineString | MultiLineString>
+      | LineString
+      | MultiLineString
+      | Feature<LineString | MultiLineString>
+  ) {
     validateGeoJson(geoJson);
 
     const graph = new Graph();
     flattenEach(geoJson, (feature) => {
       featureOf(feature, "LineString", "Graph::fromGeoJson");
       // When a LineString if formed by many segments, split them
-      coordReduce(feature, (prev, cur) => {
+      coordReduce<number[]>(feature, (prev, cur) => {
         if (prev) {
           const start = graph.getNode(prev),
             end = graph.getNode(cur);
@@ -69,7 +84,7 @@ class Graph {
    * @param {number[]} coordinates - Coordinates of the node
    * @returns {Node} - The created or stored node
    */
-  getNode(coordinates) {
+  getNode(coordinates: number[]) {
     const id = Node.buildId(coordinates);
     let node = this.nodes[id];
     if (!node) node = this.nodes[id] = new Node(coordinates);
@@ -85,7 +100,7 @@ class Graph {
    * @param {Node} from - Node which starts the Edge
    * @param {Node} to - Node which ends the Edge
    */
-  addEdge(from, to) {
+  addEdge(from: Node, to: Node) {
     const edge = new Edge(from, to),
       symetricEdge = edge.getSymetric();
 
@@ -116,7 +131,7 @@ class Graph {
    *
    * @param {Node} node - Node to check if it's a dangle
    */
-  _removeIfDangle(node) {
+  _removeIfDangle(node: Node) {
     // As edges are directed and symetrical, we count only innerEdges
     if (node.innerEdges.length <= 1) {
       const outerNodes = node.getOuterEdges().map((e) => e.to);
@@ -153,7 +168,7 @@ class Graph {
    *
    * @param {Node} [node] - If no node is passed, the function calls itself for every node in the Graph
    */
-  _computeNextCWEdges(node) {
+  _computeNextCWEdges(node?: Node) {
     if (typeof node === "undefined") {
       Object.keys(this.nodes).forEach((id) =>
         this._computeNextCWEdges(this.nodes[id])
@@ -178,7 +193,7 @@ class Graph {
    * @param {Node} node - Node
    * @param {number} label - Ring's label
    */
-  _computeNextCCWEdges(node, label) {
+  _computeNextCCWEdges(node: Node, label: number) {
     const edges = node.getOuterEdges();
     let firstOutDE, prevInDE;
 
@@ -275,7 +290,7 @@ class Graph {
    * @param {Node} startEdge - Start Edge of the Ring
    * @returns {Node[]} - intersection nodes
    */
-  _findIntersectionNodes(startEdge) {
+  _findIntersectionNodes(startEdge: Edge) {
     const intersectionNodes = [];
     let edge = startEdge;
     do {
@@ -299,7 +314,7 @@ class Graph {
    * @param {Edge} startEdge - starting edge of the edge ring
    * @returns {EdgeRing} - EdgeRing which start Edge is the provided one.
    */
-  _findEdgeRing(startEdge) {
+  _findEdgeRing(startEdge: Edge) {
     let edge = startEdge;
     const edgeRing = new EdgeRing();
 
@@ -318,7 +333,7 @@ class Graph {
    * It also removes edges asociated to that node
    * @param {Node} node - Node to be removed
    */
-  removeNode(node) {
+  removeNode(node: Node) {
     node.getOuterEdges().forEach((edge) => this.removeEdge(edge));
     node.innerEdges.forEach((edge) => this.removeEdge(edge));
     delete this.nodes[node.id];
@@ -329,10 +344,8 @@ class Graph {
    *
    * @param {Edge} edge - Edge to be removed
    */
-  removeEdge(edge) {
+  removeEdge(edge: Edge) {
     this.edges = this.edges.filter((e) => !e.isEqual(edge));
     edge.deleteEdge();
   }
 }
-
-export default Graph;

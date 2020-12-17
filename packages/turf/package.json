@@ -64,7 +64,6 @@
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {
-    "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "camelcase": "*",
