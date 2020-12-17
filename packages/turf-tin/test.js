@@ -11,10 +11,12 @@ test("tin - z property", (t) => {
   t.equal(tinned.features[0].geometry.type, "Polygon");
   t.equal(tinned.features.length, 24);
   t.deepEqual(tinned, expected, "tinned polygons match");
-  fs.writeFileSync(
-    path.join(__dirname, "test", "Tin.json"),
-    JSON.stringify(tinned, null, 2)
-  );
+  if (process.env.REGEN) {
+    fs.writeFileSync(
+      path.join(__dirname, "test", "Tin.json"),
+      JSON.stringify(tinned, null, 2)
+    );
+  }
   t.end();
 });
 
@@ -24,9 +26,11 @@ test("tin - z coordinate", (t) => {
   t.equal(tinned.features[0].geometry.type, "Polygon");
   t.equal(tinned.features.length, 24);
   t.deepEqual(tinned, expected, "tinned polygons match");
-  fs.writeFileSync(
-    path.join(__dirname, "test", "Tin-z.json"),
-    JSON.stringify(tinned, null, 2)
-  );
+  if (process.env.REGEN) {
+    fs.writeFileSync(
+      path.join(__dirname, "test", "Tin-z.json"),
+      JSON.stringify(tinned, null, 2)
+    );
+  }
   t.end();
 });
