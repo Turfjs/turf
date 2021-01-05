@@ -24,6 +24,7 @@ import {
  * @param {number} radius distance to draw the buffer (negative values are allowed)
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units="kilometers"] any of the options supported by turf units
+ * @param {string} [options.endCapStyle="round"] can be round, flat or square
  * @param {number} [options.steps=8] number of steps
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
  * @example
@@ -40,11 +41,25 @@ function buffer(geojson, radius, options) {
   // use user supplied options or default values
   var units = options.units || "kilometers";
   var steps = options.steps || 8;
+  var endCapStyle = options.endCapStyle || 'round';
 
   // validation
   if (!geojson) throw new Error("geojson is required");
   if (typeof options !== "object") throw new Error("options must be an object");
-  if (typeof steps !== "number") throw new Error("steps must be an number");
+  if (typeof steps !== "number") throw new Error("steps must be a number");
+  switch (endCapStyle) {
+    case "round":
+      endCapStyle = 1;
+      break;
+    case "flat":
+      endCapStyle = 2;
+      break;
+    case "square":
+      endCapStyle = 3;
+      break;
+    default:
+      throw new Error("endCapStyle must be 'flat', 'round' or 'square'");
+  }
 
   // Allow negative buffers ("erosion") or zero-sized buffers ("repair geometry")
   if (radius === undefined) throw new Error("radius is required");
@@ -54,13 +69,25 @@ function buffer(geojson, radius, options) {
   switch (geojson.type) {
     case "GeometryCollection":
       geomEach(geojson, function (geometry) {
-        var buffered = bufferFeature(geometry, radius, units, steps);
+        var buffered = bufferFeature(
+          geometry,
+          radius,
+          units,
+          steps,
+          endCapStyle
+        );
         if (buffered) results.push(buffered);
       });
       return featureCollection(results);
     case "FeatureCollection":
       featureEach(geojson, function (feature) {
-        var multiBuffered = bufferFeature(feature, radius, units, steps);
+        var multiBuffered = bufferFeature(
+          feature,
+          radius,
+          units,
+          steps,
+          endCapStyle
+        );
         if (multiBuffered) {
           featureEach(multiBuffered, function (buffered) {
             if (buffered) results.push(buffered);
@@ -69,7 +96,7 @@ function buffer(geojson, radius, options) {
       });
       return featureCollection(results);
   }
-  return bufferFeature(geojson, radius, units, steps);
+  return bufferFeature(geojson, radius, units, steps, endCapStyle);
 }
 
 /**
@@ -82,7 +109,7 @@ function buffer(geojson, radius, options) {
  * @param {number} [steps=8] number of steps
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
-function bufferFeature(geojson, radius, units, steps) {
+function bufferFeature(geojson, radius, units, steps, endCapStyle) {
   var properties = geojson.properties || {};
   var geometry = geojson.type === "Feature" ? geojson.geometry : geojson;
 
@@ -90,7 +117,7 @@ function bufferFeature(geojson, radius, units, steps) {
   if (geometry.type === "GeometryCollection") {
     var results = [];
     geomEach(geojson, function (geometry) {
-      var buffered = bufferFeature(geometry, radius, units, steps);
+      var buffered = bufferFeature(geometry, radius, units, steps, endCapStyle);
       if (buffered) results.push(buffered);
     });
     return featureCollection(results);
@@ -107,7 +134,7 @@ function bufferFeature(geojson, radius, units, steps) {
   var reader = new GeoJSONReader();
   var geom = reader.read(projected);
   var distance = radiansToLength(lengthToRadians(radius, units), "meters");
-  var buffered = BufferOp.bufferOp(geom, distance, steps);
+  var buffered = BufferOp.bufferOp(geom, distance, steps, endCapStyle);
   var writer = new GeoJSONWriter();
   buffered = writer.write(buffered);
 
