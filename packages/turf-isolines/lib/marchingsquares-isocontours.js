@@ -28,7 +28,7 @@
  * - allows you to distribute UNMODIFIED VERSIONS of MarchingSquaresJS under any
  *   license as long as this license notice is included
  * - enables you to keep the source code of your program that uses MarchingSquaresJS
- *   disclosed
+ *   undisclosed
  * - forces you to share any modifications you have made to MarchingSquaresJS,
  *   e.g. bug-fixes
  *
