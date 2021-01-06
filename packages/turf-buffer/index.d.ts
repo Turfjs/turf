@@ -15,6 +15,7 @@ import {
 interface Options {
   units?: Units;
   steps?: number;
+  endCapStyle?: string;
 }
 
 /**

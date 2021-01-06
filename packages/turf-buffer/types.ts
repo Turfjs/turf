@@ -32,6 +32,7 @@ buffer(line, 5);
 buffer(poly, 5);
 buffer(pt, 5, { units: "miles" });
 buffer(pt, 10, { units: "meters", steps: 64 });
+buffer(pt, 10, { units: "meters", steps: 64, endCapStyle: "flat" });
 
 // Multi Geometry
 const multiPt = multiPoint([
