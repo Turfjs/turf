@@ -41,7 +41,7 @@ function buffer(geojson, radius, options) {
   // use user supplied options or default values
   var units = options.units || "kilometers";
   var steps = options.steps || 8;
-  var endCapStyle = options.endCapStyle || 'round';
+  var endCapStyle = options.endCapStyle || "round";
 
   // validation
   if (!geojson) throw new Error("geojson is required");
@@ -106,6 +106,7 @@ function buffer(geojson, radius, options) {
  * @param {Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer
  * @param {string} [units='kilometers'] any of the options supported by turf units
+ * @param {string} [endCapStyle='round'] can be round, flat or square
  * @param {number} [steps=8] number of steps
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
