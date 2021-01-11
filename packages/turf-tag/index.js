@@ -3,7 +3,7 @@ import clone from "@turf/clone";
 import { featureEach } from "@turf/meta";
 
 /**
- * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and performs a spatial join.
+ * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and/or {@link MultiPolygon|multipolygons} and performs a spatial join.
  *
  * @name tag
  * @param {FeatureCollection<Point>} points input points
