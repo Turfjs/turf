@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-point",
-  "version": "6.2.0-alpha.3",
+  "version": "6.2.0",
   "description": "turf nearest-point module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -54,9 +54,9 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/clone": "^6.2.0-alpha.3",
-    "@turf/distance": "^6.2.0-alpha.3",
-    "@turf/helpers": "^6.2.0-alpha.3",
-    "@turf/meta": "^6.2.0-alpha.3"
+    "@turf/clone": "^6.2.0",
+    "@turf/distance": "^6.2.0",
+    "@turf/helpers": "^6.2.0",
+    "@turf/meta": "^6.2.0"
   }
 }

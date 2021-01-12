@@ -1,6 +1,6 @@
 {
   "name": "@turf/buffer",
-  "version": "6.2.0-alpha.3",
+  "version": "6.2.0",
   "description": "turf buffer module",
   "author": "Turf Authors",
   "contributors": [
@@ -50,7 +50,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.2.0-alpha.3",
+    "@turf/truncate": "^6.2.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -59,11 +59,11 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.2.0-alpha.3",
-    "@turf/center": "^6.2.0-alpha.3",
-    "@turf/helpers": "^6.2.0-alpha.3",
-    "@turf/meta": "^6.2.0-alpha.3",
-    "@turf/projection": "^6.2.0-alpha.3",
+    "@turf/bbox": "^6.2.0",
+    "@turf/center": "^6.2.0",
+    "@turf/helpers": "^6.2.0",
+    "@turf/meta": "^6.2.0",
+    "@turf/projection": "^6.2.0",
     "d3-geo": "1.7.1",
     "turf-jsts": "*"
   }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/midpoint",
-  "version": "6.2.0-alpha.3",
+  "version": "6.2.0",
   "description": "turf midpoint module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -48,9 +48,9 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^6.2.0-alpha.3",
-    "@turf/destination": "^6.2.0-alpha.3",
-    "@turf/distance": "^6.2.0-alpha.3",
-    "@turf/helpers": "^6.2.0-alpha.3"
+    "@turf/bearing": "^6.2.0",
+    "@turf/destination": "^6.2.0",
+    "@turf/distance": "^6.2.0",
+    "@turf/helpers": "^6.2.0"
   }
 }
