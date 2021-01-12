@@ -19,3 +19,14 @@
   - you will likely need to publish several times as your OTP expires
   - you might get rate limited as well
   - between publish attempts, you'll have to undo the gitHead changes in the package.json files
+
+## Release
+- create new branch with some name
+- write up changelog changes (manually), commit that
+- make PR (don't merge)
+- yarn lerna version --no-push --no-commit-hooks 6.2.0
+- git push origin --follow-tags \$branch
+- merge PR
+- re-fetch the new master and check it out locally
+- yarn install
+- yarn lerna publish --ignore-scripts from-package
