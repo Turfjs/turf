@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-clockwise",
-  "version": "6.2.0-alpha.3",
+  "version": "6.2.0",
   "description": "turf boolean-clockwise module",
   "author": "Turf Authors",
   "contributors": [
@@ -58,7 +58,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.3",
-    "@turf/invariant": "^6.2.0-alpha.3"
+    "@turf/helpers": "^6.2.0",
+    "@turf/invariant": "^6.2.0"
   }
 }
