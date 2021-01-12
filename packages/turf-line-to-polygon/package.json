@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-to-polygon",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0",
   "description": "turf line-to-polygon module",
   "author": "Turf Authors",
   "contributors": [
@@ -58,9 +58,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.2.0-alpha.2",
-    "@turf/clone": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2",
-    "@turf/invariant": "^6.2.0-alpha.2"
+    "@turf/bbox": "^6.2.0",
+    "@turf/clone": "^6.2.0",
+    "@turf/helpers": "^6.2.0",
+    "@turf/invariant": "^6.2.0"
   }
 }

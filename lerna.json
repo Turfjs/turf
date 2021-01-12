@@ -1,5 +1,7 @@
 {
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
   "command": {
     "bootstrap": {
       "useWorkspaces": true,
@@ -10,5 +12,5 @@
     }
   },
   "npmClient": "yarn",
-  "version": "6.2.0-alpha.2"
+  "version": "6.2.0"
 }

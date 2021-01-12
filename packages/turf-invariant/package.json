@@ -1,6 +1,6 @@
 {
   "name": "@turf/invariant",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0",
   "description": "turf invariant module",
   "author": "Turf Authors",
   "contributors": [
@@ -54,6 +54,6 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.2"
+    "@turf/helpers": "^6.2.0"
   }
 }

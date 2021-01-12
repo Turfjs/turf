@@ -1,4 +1,4 @@
-# 6.2.0-alpha.2
+# 6.2.0
 
 After a bit of hiatus, TurfJS is resuming releases.
 
@@ -6,6 +6,12 @@ After a bit of hiatus, TurfJS is resuming releases.
 
 - ES Modules available for all packages
 - Tree shaking should significantly reduce import size of @turf/turf
+- Better support for ESM modules (PR https://github.com/Turfjs/turf/pull/1942 - Author @diachedelic)
+- Clean-up of test and benchmark running to make publishing easier
+- Enforce styling using Prettier
+- Enable ESLint and get rid of unused variables
+- Upgrade rollup for more correct javascript module builds
+- Only include ES5 code
 
 ## 🚀 New Modules
 
@@ -48,6 +54,11 @@ No longer publishes an .mjs file.
 
 No longer publishes an .mjs file.
 
+### [`@turf/tag`][tag]
+
+Add MultiPolygon support.
+(PR https://github.com/Turfjs/turf/pull/1996 - Author bryceroney)
+
 ## 🐛 Bug Fixes
 
 - [`@turf/centroid`](centroid) Don't visit first point twice when calculating centroid
@@ -59,10 +70,25 @@ No longer publishes an .mjs file.
 - [`@turf/union`](union), [`@turf/difference`](difference), [`@turf/intersect`](intersect) Use polygon-clipping library to fix correctness issues
   (PR https://github.com/Turfjs/turf/pull/1916 - Authors @mbullington, @ngottlieb)
 
+- [`@turf/buffer`](buffer) Change default number of steps to 8, and actually support the steps option
+  (PR https://github.com/Turfjs/turf/pull/1931 - Author stevenchanin)
+
+- [`@turf/buffer`](buffer) Fix projection issues that produce undersized buffers at non-equatorial latitudes
+  (PR https://github.com/Turfjs/turf/pull/1956 - Author dyakovlev)
+
+- [`@turf/helpers`](helpers) Add runtime checks to point() method, fixing an API break
+  (PR https://github.com/Turfjs/turf/pull/1964)
+
 ## 🏅 New Features/Enhancements
 
 - [`@turf/boolean-overlap`](boolean-overlap) Better performance for MultiPoint geometries
   (PR https://github.com/Turfjs/turf/pull/1910 - Author @mfedderly)
+
+- [`@turf/helpers`](helpers) Add hectares to convertArea
+  (PR https://github.com/Turfjs/turf/pull/1943 - Author @DanielJDufour)
+
+- [`@turf/great-circle`](great-circle) Update Typescript types to support MultiLineString input
+  (PR https://github.com/Turfjs/turf/pull/1928 - Author kronick)
 
 ## 📖 Documentation
 
@@ -76,6 +102,9 @@ No longer publishes an .mjs file.
 
 - [`@turf/line-to-polygon`](line-to-polygon) no longer modifies its input unless the mutate option is true
   (PR https://github.com/Turfjs/turf/pull/1879 - Author @MortenBirk)
+
+- [`@turf/unkink-polygon`](unkink-polygon) remove Number.prototype.modulo override
+  (PR https://github.com/Turfjs/turf/pull/1978)
 
 # 5.0.0 🎉
 

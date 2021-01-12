@@ -1,6 +1,6 @@
 {
   "name": "@turf/rectangle-grid",
-  "version": "6.2.0-alpha.2",
+  "version": "6.2.0",
   "description": "turf rectangle-grid module",
   "author": "Turf Authors",
   "contributors": [
@@ -46,8 +46,8 @@
     "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "^6.2.0-alpha.2",
-    "@turf/truncate": "^6.2.0-alpha.2",
+    "@turf/bbox-polygon": "^6.2.0",
+    "@turf/truncate": "^6.2.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -58,8 +58,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-intersects": "^6.2.0-alpha.2",
-    "@turf/distance": "^6.2.0-alpha.2",
-    "@turf/helpers": "^6.2.0-alpha.2"
+    "@turf/boolean-intersects": "^6.2.0",
+    "@turf/distance": "^6.2.0",
+    "@turf/helpers": "^6.2.0"
   }
 }
