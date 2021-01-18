@@ -38,9 +38,11 @@ function dissolve(fc, options) {
   if (!options.propertyName) {
     return featureCollection([
       multiPolygon(
-        polygonClipping.union(...fc.features.map(function (f) {
-          return f.geometry.coordinates
-        }))
+        polygonClipping.union(
+          ...fc.features.map(function (f) {
+            return f.geometry.coordinates;
+          })
+        )
       ),
     ]);
   } else {
@@ -59,7 +61,7 @@ function dissolve(fc, options) {
         multiPolygon(
           polygonClipping.union(
             ...uniquePropertyVals[vals[i]].map(function (f) {
-              return f.geometry.coordinates
+              return f.geometry.coordinates;
             })
           ),
           {
