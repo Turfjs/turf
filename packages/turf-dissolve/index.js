@@ -28,21 +28,23 @@ function dissolve(fc, options) {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  const propertyName = options.propertyName;
+  var propertyName = options.propertyName;
 
   // Input validation
   collectionOf(fc, "Polygon", "dissolve");
 
   // Main
-  const outFeatures = [];
+  var outFeatures = [];
   if (!options.propertyName) {
     return featureCollection([
       multiPolygon(
-        polygonClipping.union(...fc.features.map((f) => f.geometry.coordinates))
+        polygonClipping.union(...fc.features.map(function (f) {
+          return f.geometry.coordinates
+        }))
       ),
     ]);
   } else {
-    const uniquePropertyVals = {};
+    var uniquePropertyVals = {};
     featureEach(fc, function (feature) {
       if (
         !uniquePropertyVals.hasOwnProperty(feature.properties[propertyName])
@@ -51,12 +53,14 @@ function dissolve(fc, options) {
       }
       uniquePropertyVals[feature.properties[propertyName]].push(feature);
     });
-    const vals = Object.keys(uniquePropertyVals);
+    var vals = Object.keys(uniquePropertyVals);
     for (let i = 0; i < vals.length; i++) {
       outFeatures.push(
         multiPolygon(
           polygonClipping.union(
-            ...uniquePropertyVals[vals[i]].map((f) => f.geometry.coordinates)
+            ...uniquePropertyVals[vals[i]].map(function (f) {
+              return f.geometry.coordinates
+            }))
           ),
           {
             [options.propertyName]: vals[i],
