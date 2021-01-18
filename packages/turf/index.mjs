@@ -77,6 +77,7 @@ export { default as booleanOverlap } from "@turf/boolean-overlap";
 export { default as booleanPointOnLine } from "@turf/boolean-point-on-line";
 export { default as booleanEqual } from "@turf/boolean-equal";
 export { default as booleanWithin } from "@turf/boolean-within";
+export { default as booleanIntersects} from "@turf/boolean-intersects";
 export { default as clone } from "@turf/clone";
 export { default as cleanCoords } from "@turf/clean-coords";
 export { default as clustersDbscan } from "@turf/clusters-dbscan";
