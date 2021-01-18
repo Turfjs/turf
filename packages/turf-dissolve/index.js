@@ -1,4 +1,4 @@
-import { featureCollection, multiPolygon, isObject } from '@turf/helpers';
+import { featureCollection, multiPolygon, isObject } from "@turf/helpers";
 import { collectionOf } from "@turf/invariant";
 import { featureEach } from "@turf/meta";
 import polygonClipping from "polygon-clipping";
@@ -25,46 +25,48 @@ import polygonClipping from "polygon-clipping";
  * var addToMap = [features, dissolved]
  */
 function dissolve(fc, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    const propertyName = options.propertyName;
+  // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  const propertyName = options.propertyName;
 
-    // Input validation
-    collectionOf(fc, 'Polygon', 'dissolve');
+  // Input validation
+  collectionOf(fc, "Polygon", "dissolve");
 
-    // Main
-    const outFeatures = [];
-    if (!options.propertyName) {
-        return featureCollection([
-          multiPolygon(
-            polygonClipping.union(...fc.features.map(f => f.geometry.coordinates))
-          )
-        ]);
-    } else {
-        const uniquePropertyVals = {};
-        featureEach(fc, function (feature) {
-            if (!uniquePropertyVals.hasOwnProperty(feature.properties[propertyName])) {
-                uniquePropertyVals[feature.properties[propertyName]] = [];
-            }
-            uniquePropertyVals[feature.properties[propertyName]].push(feature);
-        });
-        const vals = Object.keys(uniquePropertyVals);
-        for (let i = 0; i < vals.length; i++) {
-            outFeatures.push(
-              multiPolygon(
-                polygonClipping.union(
-                  ...uniquePropertyVals[vals[i]].map(f => f.geometry.coordinates)
-                ),
-                {
-                  [options.propertyName]: vals[i]
-                }
-              )
-            );
-        }
+  // Main
+  const outFeatures = [];
+  if (!options.propertyName) {
+    return featureCollection([
+      multiPolygon(
+        polygonClipping.union(...fc.features.map((f) => f.geometry.coordinates))
+      ),
+    ]);
+  } else {
+    const uniquePropertyVals = {};
+    featureEach(fc, function (feature) {
+      if (
+        !uniquePropertyVals.hasOwnProperty(feature.properties[propertyName])
+      ) {
+        uniquePropertyVals[feature.properties[propertyName]] = [];
+      }
+      uniquePropertyVals[feature.properties[propertyName]].push(feature);
+    });
+    const vals = Object.keys(uniquePropertyVals);
+    for (let i = 0; i < vals.length; i++) {
+      outFeatures.push(
+        multiPolygon(
+          polygonClipping.union(
+            ...uniquePropertyVals[vals[i]].map((f) => f.geometry.coordinates)
+          ),
+          {
+            [options.propertyName]: vals[i],
+          }
+        )
+      );
     }
+  }
 
-    return featureCollection(outFeatures);
+  return featureCollection(outFeatures);
 }
 
 export default dissolve;

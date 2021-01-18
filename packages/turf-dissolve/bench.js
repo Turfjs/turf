@@ -12,7 +12,6 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
   };
 });
 
-
 /**
  * Benchmark Results
  *
