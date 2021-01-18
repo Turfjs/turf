@@ -87,6 +87,7 @@
     "@turf/boolean-crosses": "^6.2.0",
     "@turf/boolean-disjoint": "^6.2.0",
     "@turf/boolean-equal": "^6.2.0",
+    "@turf/boolean-intersects": "^6.2.0",
     "@turf/boolean-overlap": "^6.2.0",
     "@turf/boolean-parallel": "^6.2.0",
     "@turf/boolean-point-in-polygon": "^6.2.0",
