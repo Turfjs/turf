@@ -6,12 +6,7 @@ import write from "write-json-file";
 import { polygon, point, featureCollection } from "@turf/helpers";
 import dissolve from "./index";
 
-const SKIP = [
-  "hexagons-issue#742.geojson",
-  "polysByProperty.geojson",
-  "polysWithoutProperty.geojson",
-  "simplified-issue.geojson",
-];
+const SKIP = [];
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

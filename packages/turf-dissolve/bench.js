@@ -12,24 +12,12 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
   };
 });
 
-/**
- * Single Process Benchmark
- *
- * polysByProperty: 64.173ms
- * polysWithoutProperty: 44.453ms
- */
-for (const { name, geojson } of fixtures) {
-  const propertyName = geojson.propertyName;
-  console.time(name);
-  dissolve(geojson, { propertyName });
-  console.timeEnd(name);
-}
 
 /**
  * Benchmark Results
  *
- * polysByProperty x 425 ops/sec ±7.64% (73 runs sampled)
- * polysWithoutProperty x 238 ops/sec ±11.04% (59 runs sampled)
+ * polysByProperty x 6,366 ops/sec ±1.49% (89 runs sampled)
+ * polysWithoutProperty x 4,224 ops/sec ±2.34% (77 runs sampled)
  */
 const suite = new Benchmark.Suite("turf-dissolve");
 for (const { name, geojson } of fixtures) {

@@ -50,14 +50,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-overlap": "^6.2.0",
-    "@turf/clone": "^6.2.0",
     "@turf/helpers": "^6.2.0",
     "@turf/invariant": "^6.2.0",
-    "@turf/line-intersect": "^6.2.0",
     "@turf/meta": "^6.2.0",
-    "@turf/union": "^6.2.0",
-    "geojson-rbush": "3.x",
-    "get-closest": "*"
+    "polygon-clipping": "^0.15.2"
   }
 }
