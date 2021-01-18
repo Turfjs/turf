@@ -10,7 +10,7 @@ import polygonClipping from "polygon-clipping";
  * @name dissolve
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.propertyName] features with equals 'propertyName' in `properties` will be merged
+ * @param {string} [options.propertyName] features with the same `propertyName` value will be dissolved.
  * @returns {FeatureCollection<Polygon>} a FeatureCollection containing the dissolved polygons
  * @example
  * var features = turf.featureCollection([
