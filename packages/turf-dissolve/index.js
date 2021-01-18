@@ -60,7 +60,7 @@ function dissolve(fc, options) {
           polygonClipping.union(
             ...uniquePropertyVals[vals[i]].map(function (f) {
               return f.geometry.coordinates
-            }))
+            })
           ),
           {
             [options.propertyName]: vals[i],
