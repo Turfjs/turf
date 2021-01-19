@@ -1,6 +1,6 @@
 {
   "name": "@turf/union",
-  "version": "6.2.0",
+  "version": "6.3.0",
   "description": "turf union module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -44,7 +44,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/combine": "^6.2.0",
+    "@turf/combine": "^6.3.0",
     "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
@@ -57,8 +57,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0",
-    "@turf/invariant": "^6.2.0",
+    "@turf/helpers": "^6.3.0",
+    "@turf/invariant": "^6.3.0",
     "polygon-clipping": "^0.15.2"
   }
 }
