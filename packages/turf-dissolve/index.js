@@ -58,19 +58,16 @@ function dissolve(fc, options) {
     });
     var vals = Object.keys(uniquePropertyVals);
     for (var i = 0; i < vals.length; i++) {
-      outFeatures.push(
-        multiPolygon(
-          polygonClipping.union.apply(
-            null,
-            uniquePropertyVals[vals[i]].map(function (f) {
-              return f.geometry.coordinates;
-            })
-          ),
-          {
-            [options.propertyName]: vals[i],
-          }
+      var mp = multiPolygon(
+        polygonClipping.union.apply(
+          null,
+          uniquePropertyVals[vals[i]].map(function (f) {
+            return f.geometry.coordinates;
+          })
         )
       );
+      mp.properties[propertyName] = vals[i];
+      outFeatures.push(mp);
     }
   }
 
