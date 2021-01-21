@@ -57,7 +57,7 @@ function dissolve(fc, options) {
       uniquePropertyVals[feature.properties[propertyName]].push(feature);
     });
     var vals = Object.keys(uniquePropertyVals);
-    for (let i = 0; i < vals.length; i++) {
+    for (var i = 0; i < vals.length; i++) {
       outFeatures.push(
         multiPolygon(
           polygonClipping.union.apply(
