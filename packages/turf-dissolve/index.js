@@ -38,8 +38,7 @@ function dissolve(fc, options) {
   if (!options.propertyName) {
     return featureCollection([
       multiPolygon(
-        polygonClipping.union(
-          ...fc.features.map(function (f) {
+        polygonClipping.union.apply(null, fc.features.map(function (f) {
             return f.geometry.coordinates;
           })
         )
@@ -59,8 +58,8 @@ function dissolve(fc, options) {
     for (let i = 0; i < vals.length; i++) {
       outFeatures.push(
         multiPolygon(
-          polygonClipping.union(
-            ...uniquePropertyVals[vals[i]].map(function (f) {
+          polygonClipping.union.apply(null,
+            uniquePropertyVals[vals[i]].map(function (f) {
               return f.geometry.coordinates;
             })
           ),
