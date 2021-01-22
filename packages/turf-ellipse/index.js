@@ -10,7 +10,7 @@ import { getCoord } from "@turf/invariant";
  * @param {number} xSemiAxis semi (major) axis of the ellipse along the x-axis
  * @param {number} ySemiAxis semi (minor) axis of the ellipse along the y-axis
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.angle=0] angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
+ * @param {number} [options.angle=0] angle of rotation in decimal degrees, positive clockwise
  * @param {Coord} [options.pivot='origin'] point around which the rotation will be performed
  * @param {number} [options.steps=64] number of steps
  * @param {string} [options.units='kilometers'] unit of measurement for axes
