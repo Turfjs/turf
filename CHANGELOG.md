@@ -1,3 +1,12 @@
+# 6.3.0
+
+### Fix issues importing Turf for react-native, webpack 5, and other bundlers
+  (PR https://github.com/Turfjs/turf/pull/2004 - Author r0b0t3d)
+  (PR https://github.com/Turfjs/turf/pull/2011 - Author mfedderly)
+
+### [`@turf/turf`][turf] expose @turf/boolean-intersect
+  (PR https://github.com/Turfjs/turf/pull/2007 - Author rowanwins)
+
 # 6.2.0
 
 After a bit of hiatus, TurfJS is resuming releases.

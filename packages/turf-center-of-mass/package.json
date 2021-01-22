@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-of-mass",
-  "version": "6.2.0",
+  "version": "6.3.0",
   "description": "turf center-of-mass module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -22,8 +22,11 @@
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
   "exports": {
-    "import": "./dist/es/index.js",
-    "require": "./dist/js/index.js"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
   },
   "types": "dist/js/index.d.ts",
   "sideEffects": false,
@@ -53,10 +56,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/centroid": "^6.2.0",
-    "@turf/convex": "^6.2.0",
-    "@turf/helpers": "^6.2.0",
-    "@turf/invariant": "^6.2.0",
-    "@turf/meta": "^6.2.0"
+    "@turf/centroid": "^6.3.0",
+    "@turf/convex": "^6.3.0",
+    "@turf/helpers": "^6.3.0",
+    "@turf/invariant": "^6.3.0",
+    "@turf/meta": "^6.3.0"
   }
 }
