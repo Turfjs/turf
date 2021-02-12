@@ -64,3 +64,50 @@ test("dissolve -- throw", (t) => {
   );
   t.end();
 });
+
+test("dissolve -- properties", (t) => {
+  var features = featureCollection([
+    polygon(
+      [
+        [
+          [0, 0],
+          [0, 1],
+          [1, 1],
+          [1, 0],
+          [0, 0],
+        ],
+      ],
+      { combine: "yes" }
+    ),
+    polygon(
+      [
+        [
+          [0, -1],
+          [0, 0],
+          [1, 0],
+          [1, -1],
+          [0, -1],
+        ],
+      ],
+      { combine: "yes" }
+    ),
+    polygon(
+      [
+        [
+          [1, -1],
+          [1, 0],
+          [2, 0],
+          [2, -1],
+          [1, -1],
+        ],
+      ],
+      { combine: "no" }
+    ),
+  ]);
+
+  var results = dissolve(features, { propertyName: "combine" });
+  t.equals(results.features[0].properties.combine, "yes");
+  t.equals(results.features[1].properties.combine, "no");
+
+  t.end();
+});
