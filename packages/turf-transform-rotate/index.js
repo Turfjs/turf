@@ -8,12 +8,11 @@ import { getCoords } from "@turf/invariant";
 import { isObject } from "@turf/helpers";
 
 /**
- * Rotates any geojson Feature or Geometry of a specified angle, around its `centroid` or a given `pivot` point;
- * all rotations follow the right-hand rule: https://en.wikipedia.org/wiki/Right-hand_rule
+ * Rotates any geojson Feature or Geometry of a specified angle, around its `centroid` or a given `pivot` point.
  *
  * @name transformRotate
  * @param {GeoJSON} geojson object to be rotated
- * @param {number} angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise
+ * @param {number} angle of rotation in decimal degrees, positive clockwise
  * @param {Object} [options={}] Optional parameters
  * @param {Coord} [options.pivot='centroid'] point around which the rotation will be performed
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
