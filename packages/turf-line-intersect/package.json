@@ -63,9 +63,6 @@
   },
   "dependencies": {
     "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0",
-    "@turf/line-segment": "^6.3.0",
-    "@turf/meta": "^6.3.0",
-    "geojson-rbush": "3.x"
+    "sweepline-intersections": "^1.2.1"
   }
 }
