@@ -20,7 +20,7 @@ import findIntersections from "sweepline-intersections";
  * @param {GeoJSON} line1 any LineString or Polygon
  * @param {GeoJSON} line2 any LineString or Polygon
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.removeDuplicates=true] remove duplicate intersections
+ * @param {boolean} [options.removeDuplicates=true] remove duplicate intersections
  * @returns {FeatureCollection<Point>} point(s) that intersect both
  * @example
  * var line1 = turf.lineString([[126, -11], [129, -21]]);
