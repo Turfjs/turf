@@ -73,6 +73,7 @@ export { default as booleanDisjoint } from "@turf/boolean-disjoint";
 export { default as booleanContains } from "@turf/boolean-contains";
 export { default as booleanCrosses } from "@turf/boolean-crosses";
 export { default as booleanClockwise } from "@turf/boolean-clockwise";
+export { default as booleanIntersects } from "@turf/boolean-intersects";
 export { default as booleanOverlap } from "@turf/boolean-overlap";
 export { default as booleanPointOnLine } from "@turf/boolean-point-on-line";
 export { default as booleanEqual } from "@turf/boolean-equal";
