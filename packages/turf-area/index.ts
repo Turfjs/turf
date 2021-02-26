@@ -114,7 +114,7 @@ function ringArea(coords: number[][]) {
       total += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
     }
 
-    total = (total * RADIUS * RADIUS) / 2;
+    total = (total * earthRadius * earthRadius) / 2;
   }
   return total;
 }
