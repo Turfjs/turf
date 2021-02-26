@@ -1,8 +1,5 @@
-import { Feature, FeatureCollection, Geometry } from "@turf/helpers";
+import { Feature, FeatureCollection, Geometry, earthRadius } from "@turf/helpers";
 import { geomReduce } from "@turf/meta";
-
-// Note: change RADIUS => earthRadius
-const RADIUS = 6378137;
 
 /**
  * Takes one or more features and returns their area in square meters.
