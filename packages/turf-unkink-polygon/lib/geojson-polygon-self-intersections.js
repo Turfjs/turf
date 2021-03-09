@@ -1,5 +1,5 @@
 // Find self-intersections in geojson polygon (possibly with interior rings)
-import rbush from "rbush";
+import RBush from "rbush";
 
 export default function (feature, filterFn, useSpatialIndex) {
   if (feature.geometry.type !== "Polygon")
@@ -18,7 +18,7 @@ export default function (feature, filterFn, useSpatialIndex) {
         allEdgesAsRbushTreeItems.push(rbushTreeItem(ring0, edge0));
       }
     }
-    var tree = rbush();
+    var tree = new RBush();
     tree.load(allEdgesAsRbushTreeItems);
   }
 

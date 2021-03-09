@@ -59,6 +59,6 @@
     "@turf/boolean-point-in-polygon": "^6.3.0",
     "@turf/helpers": "^6.3.0",
     "@turf/meta": "^6.3.0",
-    "rbush": "^2.0.1"
+    "rbush": "^3.0.1"
   }
 }

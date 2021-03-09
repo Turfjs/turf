@@ -2,7 +2,7 @@ import isects from "./geojson-polygon-self-intersections";
 import area from "@turf/area";
 import { featureCollection, polygon } from "@turf/helpers";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import rbush from "rbush";
+import RBush from "rbush";
 
 /**
  * Takes a complex (i.e. self-intersecting) geojson polygon, and breaks it down into its composite simple, non-self-intersecting one-ring polygons.
@@ -188,7 +188,7 @@ export default function (feature) {
       index: i,
     }); // could pass isect: isectList[i], but not necessary
   }
-  var isectRbushTree = rbush();
+  var isectRbushTree = new RBush();
   isectRbushTree.load(allIsectsAsIsectRbushTreeItem);
 
   // Now we will teach each intersection in isectList which is the next intersection along both it's [ring, edge]'s, in two steps.
