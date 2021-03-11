@@ -10,6 +10,7 @@ import { getCoord, getCoords } from "@turf/invariant";
  * @param {Feature<LineString>} line GeoJSON LineString
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.ignoreEndVertices=false] whether to ignore the start and end vertices.
+ * @param {number} [options.precision=5] how many places after the decimal point to consider for the cross product result.
  * @returns {boolean} true/false
  * @example
  * var pt = turf.point([0, 0]);
@@ -22,6 +23,7 @@ function booleanPointOnLine(
   line: Feature<LineString> | LineString,
   options: {
     ignoreEndVertices?: boolean;
+    precision?: number;
   } = {}
 ): boolean {
   // Normalize inputs
@@ -47,7 +49,8 @@ function booleanPointOnLine(
         lineCoords[i],
         lineCoords[i + 1],
         ptCoords,
-        ignoreBoundary
+        ignoreBoundary,
+        typeof options.precision === "undefined" ? 5 : options.precision
       )
     ) {
       return true;
@@ -63,6 +66,7 @@ function booleanPointOnLine(
  * @param {Position} lineSegmentEnd coord pair of end of line
  * @param {Position} pt coord pair of point to check
  * @param {boolean|string} excludeBoundary whether the point is allowed to fall on the line ends.
+ * @param {number} precision how many places after the decimal point to consider for the cross product result.
  * If true which end to ignore.
  * @returns {boolean} true/false
  */
@@ -70,7 +74,8 @@ function isPointOnLineSegment(
   lineSegmentStart: number[],
   lineSegmentEnd: number[],
   pt: number[],
-  excludeBoundary: string | boolean
+  excludeBoundary: string | boolean,
+  precision: number
 ): boolean {
   const x = pt[0];
   const y = pt[1];
@@ -82,7 +87,11 @@ function isPointOnLineSegment(
   const dyc = pt[1] - y1;
   const dxl = x2 - x1;
   const dyl = y2 - y1;
-  const cross = dxc * dyl - dyc * dxl;
+  let cross = dxc * dyl - dyc * dxl;
+  if (precision) {
+    const multiplier = Math.pow(10, precision);
+    cross = Math.round(cross * multiplier) / multiplier;
+  }
   if (cross !== 0) {
     return false;
   }
