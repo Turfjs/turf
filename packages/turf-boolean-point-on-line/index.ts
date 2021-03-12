@@ -10,7 +10,7 @@ import { getCoord, getCoords } from "@turf/invariant";
  * @param {Feature<LineString>} line GeoJSON LineString
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.ignoreEndVertices=false] whether to ignore the start and end vertices.
- * @param {number} [options.precision=5] how many places after the decimal point to consider for the cross product result.
+ * @param {number} [options.precision=10] how many places after the decimal point to consider for the cross product result.
  * @returns {boolean} true/false
  * @example
  * var pt = turf.point([0, 0]);
@@ -50,7 +50,7 @@ function booleanPointOnLine(
         lineCoords[i + 1],
         ptCoords,
         ignoreBoundary,
-        typeof options.precision === "undefined" ? 5 : options.precision
+        typeof options.precision === "undefined" ? 10 : options.precision
       )
     ) {
       return true;
