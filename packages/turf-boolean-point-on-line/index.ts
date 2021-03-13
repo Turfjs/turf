@@ -10,7 +10,7 @@ import { getCoord, getCoords } from "@turf/invariant";
  * @param {Feature<LineString>} line GeoJSON LineString
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.ignoreEndVertices=false] whether to ignore the start and end vertices.
- * @param {number} [options.precision=10] how many places after the decimal point to consider for the cross product result.
+ * @param {number} [options.epsilon] Fractional number to compare with the cross product result. Useful for dealing with floating points such as lng/lat points
  * @returns {boolean} true/false
  * @example
  * var pt = turf.point([0, 0]);
@@ -23,7 +23,7 @@ function booleanPointOnLine(
   line: Feature<LineString> | LineString,
   options: {
     ignoreEndVertices?: boolean;
-    precision?: number;
+    epsilon?: number;
   } = {}
 ): boolean {
   // Normalize inputs
@@ -50,7 +50,7 @@ function booleanPointOnLine(
         lineCoords[i + 1],
         ptCoords,
         ignoreBoundary,
-        typeof options.precision === "undefined" ? 10 : options.precision
+        typeof options.epsilon === "undefined" ? null : options.epsilon
       )
     ) {
       return true;
@@ -60,13 +60,14 @@ function booleanPointOnLine(
 }
 
 // See http://stackoverflow.com/a/4833823/1979085
+// See https://stackoverflow.com/a/328122/1048847
 /**
  * @private
  * @param {Position} lineSegmentStart coord pair of start of line
  * @param {Position} lineSegmentEnd coord pair of end of line
  * @param {Position} pt coord pair of point to check
  * @param {boolean|string} excludeBoundary whether the point is allowed to fall on the line ends.
- * @param {number} precision how many places after the decimal point to consider for the cross product result.
+ * @param {number} epsilon Fractional number to compare with the cross product result. Useful for dealing with floating points such as lng/lat points
  * If true which end to ignore.
  * @returns {boolean} true/false
  */
@@ -75,7 +76,7 @@ function isPointOnLineSegment(
   lineSegmentEnd: number[],
   pt: number[],
   excludeBoundary: string | boolean,
-  precision: number
+  epsilon: number | null
 ): boolean {
   const x = pt[0];
   const y = pt[1];
@@ -87,12 +88,12 @@ function isPointOnLineSegment(
   const dyc = pt[1] - y1;
   const dxl = x2 - x1;
   const dyl = y2 - y1;
-  let cross = dxc * dyl - dyc * dxl;
-  if (precision) {
-    const multiplier = Math.pow(10, precision);
-    cross = Math.round(cross * multiplier) / multiplier;
-  }
-  if (cross !== 0) {
+  const cross = dxc * dyl - dyc * dxl;
+  if (epsilon !== null) {
+    if (Math.abs(cross) > epsilon) {
+      return false;
+    }
+  } else if (cross !== 0) {
     return false;
   }
   if (!excludeBoundary) {
