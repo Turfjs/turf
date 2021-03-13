@@ -69,10 +69,10 @@ export default function bboxClip<
   }
 }
 
-function clipPolygon(rings: any[], bbox: BBox) {
+function clipPolygon(rings: number[][][], bbox: BBox) {
   const outRings = [];
   for (const ring of rings) {
-    const clipped: any = polygonclip(ring, bbox);
+    const clipped = polygonclip(ring, bbox);
     if (clipped.length > 0) {
       if (
         clipped[0][0] !== clipped[clipped.length - 1][0] ||

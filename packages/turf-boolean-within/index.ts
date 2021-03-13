@@ -2,7 +2,16 @@ import calcBbox from "@turf/bbox";
 import booleanPointOnLine from "@turf/boolean-point-on-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
-import { Feature, Geometry } from "@turf/helpers";
+import {
+  BBox,
+  Feature,
+  Geometry,
+  LineString,
+  MultiPoint,
+  MultiPolygon,
+  Point,
+  Polygon,
+} from "@turf/helpers";
 
 /**
  * Boolean-within returns true if the first geometry is completely within the second geometry.
@@ -78,7 +87,7 @@ function booleanWithin(
   }
 }
 
-function isPointInMultiPoint(point, multiPoint) {
+function isPointInMultiPoint(point: Point, multiPoint: MultiPoint) {
   var i;
   var output = false;
   for (i = 0; i < multiPoint.coordinates.length; i++) {
@@ -90,7 +99,10 @@ function isPointInMultiPoint(point, multiPoint) {
   return output;
 }
 
-function isMultiPointInMultiPoint(multiPoint1, multiPoint2) {
+function isMultiPointInMultiPoint(
+  multiPoint1: MultiPoint,
+  multiPoint2: MultiPoint
+) {
   for (var i = 0; i < multiPoint1.coordinates.length; i++) {
     var anyMatch = false;
     for (var i2 = 0; i2 < multiPoint2.coordinates.length; i2++) {
@@ -107,7 +119,7 @@ function isMultiPointInMultiPoint(multiPoint1, multiPoint2) {
   return true;
 }
 
-function isMultiPointOnLine(multiPoint, lineString) {
+function isMultiPointOnLine(multiPoint: MultiPoint, lineString: LineString) {
   var foundInsidePoint = false;
 
   for (var i = 0; i < multiPoint.coordinates.length; i++) {
@@ -125,11 +137,12 @@ function isMultiPointOnLine(multiPoint, lineString) {
   return foundInsidePoint;
 }
 
-function isMultiPointInPoly(multiPoint, polygon) {
+function isMultiPointInPoly(multiPoint: MultiPoint, polygon: Polygon) {
   var output = true;
   var oneInside = false;
+  var isInside = false;
   for (var i = 0; i < multiPoint.coordinates.length; i++) {
-    var isInside = booleanPointInPolygon(multiPoint.coordinates[1], polygon);
+    isInside = booleanPointInPolygon(multiPoint.coordinates[1], polygon);
     if (!isInside) {
       output = false;
       break;
@@ -143,7 +156,7 @@ function isMultiPointInPoly(multiPoint, polygon) {
   return output && isInside;
 }
 
-function isLineOnLine(lineString1, lineString2) {
+function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   for (var i = 0; i < lineString1.coordinates.length; i++) {
     if (!booleanPointOnLine(lineString1.coordinates[i], lineString2)) {
       return false;
@@ -152,7 +165,7 @@ function isLineOnLine(lineString1, lineString2) {
   return true;
 }
 
-function isLineInPoly(linestring, polygon) {
+function isLineInPoly(linestring: LineString, polygon: Polygon) {
   var polyBbox = calcBbox(polygon);
   var lineBbox = calcBbox(linestring);
   if (!doBBoxOverlap(polyBbox, lineBbox)) {
@@ -189,25 +202,25 @@ function isLineInPoly(linestring, polygon) {
  * Only takes into account outer rings
  *
  * @private
- * @param {Geometry|Feature<Polygon>} feature1 Polygon1
- * @param {Geometry|Feature<Polygon>} feature2 Polygon2
+ * @param {Polygon} geometry1
+ * @param {Polygon|MultiPolygon} geometry2
  * @returns {boolean} true/false
  */
-function isPolyInPoly(feature1, feature2) {
-  var poly1Bbox = calcBbox(feature1);
-  var poly2Bbox = calcBbox(feature2);
+function isPolyInPoly(geometry1: Polygon, geometry2: Polygon | MultiPolygon) {
+  var poly1Bbox = calcBbox(geometry1);
+  var poly2Bbox = calcBbox(geometry2);
   if (!doBBoxOverlap(poly2Bbox, poly1Bbox)) {
     return false;
   }
-  for (var i = 0; i < feature1.coordinates[0].length; i++) {
-    if (!booleanPointInPolygon(feature1.coordinates[0][i], feature2)) {
+  for (var i = 0; i < geometry1.coordinates[0].length; i++) {
+    if (!booleanPointInPolygon(geometry1.coordinates[0][i], geometry2)) {
       return false;
     }
   }
   return true;
 }
 
-function doBBoxOverlap(bbox1, bbox2) {
+function doBBoxOverlap(bbox1: BBox, bbox2: BBox) {
   if (bbox1[0] > bbox2[0]) return false;
   if (bbox1[2] < bbox2[2]) return false;
   if (bbox1[1] > bbox2[1]) return false;
@@ -223,7 +236,7 @@ function doBBoxOverlap(bbox1, bbox2) {
  * @param {Position} pair2 point [x,y]
  * @returns {boolean} true/false if coord pairs match
  */
-function compareCoords(pair1, pair2) {
+function compareCoords(pair1: number[], pair2: number[]) {
   return pair1[0] === pair2[0] && pair1[1] === pair2[1];
 }
 
@@ -235,7 +248,7 @@ function compareCoords(pair1, pair2) {
  * @param {Position} pair2 point [x,y]
  * @returns {Position} midpoint of pair1 and pair2
  */
-function getMidpoint(pair1, pair2) {
+function getMidpoint(pair1: number[], pair2: number[]) {
   return [(pair1[0] + pair2[0]) / 2, (pair1[1] + pair2[1]) / 2];
 }
 

@@ -42,7 +42,7 @@ function triangleGrid<P = Properties>(
   } = {}
 ): FeatureCollection<Polygon, P> {
   // Containers
-  var results = [];
+  var results: Feature<Polygon, P>[] = [];
 
   // Input Validation is being handled by Typescript
 
@@ -164,11 +164,13 @@ function triangleGrid<P = Properties>(
         );
       }
       if (options.mask) {
-        if (intersect(options.mask, cellTriangle1)) results.push(cellTriangle1);
-        if (intersect(options.mask, cellTriangle2)) results.push(cellTriangle2);
+        if (intersect(options.mask, cellTriangle1!))
+          results.push(cellTriangle1!);
+        if (intersect(options.mask, cellTriangle2!))
+          results.push(cellTriangle2!);
       } else {
-        results.push(cellTriangle1);
-        results.push(cellTriangle2);
+        results.push(cellTriangle1!);
+        results.push(cellTriangle2!);
       }
 
       currentY += cellHeight;
