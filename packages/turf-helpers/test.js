@@ -519,10 +519,13 @@ test("round", (t) => {
 
 test("convertLength", (t) => {
   t.equal(convertLength(1000, "meters"), 1);
+  t.equal(convertLength(1000, "meters", "kilometers"), 1);
   t.equal(convertLength(1, "kilometers", "miles"), 0.621371192237334);
   t.equal(convertLength(1, "miles", "kilometers"), 1.609344);
   t.equal(convertLength(1, "nauticalmiles"), 1.852);
   t.equal(convertLength(1, "meters", "centimeters"), 100.00000000000001);
+  t.equal(convertLength(1, "meters", "yards"), 1.0936);
+  t.equal(convertLength(1, "yards", "meters"), 0.91441111923921);
   // t.throws(() => convertLength(1, 'foo'), 'invalid units');
   t.end();
 });
