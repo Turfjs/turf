@@ -10,6 +10,7 @@ import { getCoord, getCoords } from "@turf/invariant";
  * @param {Feature<LineString>} line GeoJSON LineString
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.ignoreEndVertices=false] whether to ignore the start and end vertices.
+ * @param {number} [options.epsilon] Fractional number to compare with the cross product result. Useful for dealing with floating points such as lng/lat points
  * @returns {boolean} true/false
  * @example
  * var pt = turf.point([0, 0]);
@@ -22,6 +23,7 @@ function booleanPointOnLine(
   line: Feature<LineString> | LineString,
   options: {
     ignoreEndVertices?: boolean;
+    epsilon?: number;
   } = {}
 ): boolean {
   // Normalize inputs
@@ -47,7 +49,8 @@ function booleanPointOnLine(
         lineCoords[i],
         lineCoords[i + 1],
         ptCoords,
-        ignoreBoundary
+        ignoreBoundary,
+        typeof options.epsilon === "undefined" ? null : options.epsilon
       )
     ) {
       return true;
@@ -57,12 +60,14 @@ function booleanPointOnLine(
 }
 
 // See http://stackoverflow.com/a/4833823/1979085
+// See https://stackoverflow.com/a/328122/1048847
 /**
  * @private
  * @param {Position} lineSegmentStart coord pair of start of line
  * @param {Position} lineSegmentEnd coord pair of end of line
  * @param {Position} pt coord pair of point to check
  * @param {boolean|string} excludeBoundary whether the point is allowed to fall on the line ends.
+ * @param {number} epsilon Fractional number to compare with the cross product result. Useful for dealing with floating points such as lng/lat points
  * If true which end to ignore.
  * @returns {boolean} true/false
  */
@@ -70,7 +75,8 @@ function isPointOnLineSegment(
   lineSegmentStart: number[],
   lineSegmentEnd: number[],
   pt: number[],
-  excludeBoundary: string | boolean
+  excludeBoundary: string | boolean,
+  epsilon: number | null
 ): boolean {
   const x = pt[0];
   const y = pt[1];
@@ -83,7 +89,11 @@ function isPointOnLineSegment(
   const dxl = x2 - x1;
   const dyl = y2 - y1;
   const cross = dxc * dyl - dyc * dxl;
-  if (cross !== 0) {
+  if (epsilon !== null) {
+    if (Math.abs(cross) > epsilon) {
+      return false;
+    }
+  } else if (cross !== 0) {
     return false;
   }
   if (!excludeBoundary) {
