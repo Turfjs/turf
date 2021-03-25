@@ -1,0 +1,62 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [129.990234, -31.728167],
+            [123.75, -28.07198],
+            [122.519531, -24.846565],
+            [122.695313, -19.890723]
+          ],
+          [
+            [127.265625, -13.667338],
+            [133.154297, -13.581921],
+            [136.933594, -16.972741],
+            [140.537109, -22.024546],
+            [141.503906, -25.403585]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#F00",
+        "stroke-width": 6
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [127.265625, -13.667338],
+          [124.189453, -15.538376]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [124.189453, -15.538376]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "dist": 390.942725,
+        "index": 0,
+        "location": 1656.139708,
+        "marker-color": "#F0F"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [127.265625, -13.667338]
+      }
+    }
+  ]
+}

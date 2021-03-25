@@ -1,0 +1,65 @@
+{
+  "name": "@turf/snapped-point-on-route",
+  "version": "6.3.0",
+  "description": "turf snapped-point-on-route module",
+  "author": "Turf Authors",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
+  },
+  "types": "dist/js/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "ts-node bench.js",
+    "build": "npm-run-all build:*",
+    "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build:js": "tsc",
+    "docs": "node ../../scripts/generate-readmes",
+    "test": "npm-run-all test:*",
+    "test:tape": "ts-node -r esm test.js",
+    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+  },
+  "devDependencies": {
+    "@turf/along": "^6.3.0",
+    "@turf/length": "^6.3.0",
+    "@turf/truncate": "^6.3.0",
+    "@types/tape": "*",
+    "benchmark": "*",
+    "load-json-file": "*",
+    "npm-run-all": "*",
+    "tape": "*",
+    "ts-node": "*",
+    "tslint": "*",
+    "typescript": "*",
+    "write-json-file": "*"
+  },
+  "dependencies": {
+    "@turf/bearing": "^6.3.0",
+    "@turf/destination": "^6.3.0",
+    "@turf/distance": "^6.3.0",
+    "@turf/helpers": "^6.3.0",
+    "@turf/invariant": "^6.3.0",
+    "@turf/line-intersect": "^6.3.0",
+    "@turf/meta": "^6.3.0"
+  }
+}
