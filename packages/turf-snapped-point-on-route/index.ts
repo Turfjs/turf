@@ -24,7 +24,7 @@ export interface SnappedPointOnRoute extends Feature<Point> {
   };
 }
 
-function processRouteSegment(length, closestPt, pt, i, coords, options) {
+function processRouteSegment(totalLength, closestPt, pt, i, coords, options) {
   //start
   const start = point(coords[i]);
   start.properties.dist = distance(pt, start, options);
@@ -62,18 +62,18 @@ function processRouteSegment(length, closestPt, pt, i, coords, options) {
     intersectPt = intersect.features[0];
     intersectPt.properties.dist = distance(pt, intersectPt, options);
     intersectPt.properties.location =
-      length + distance(start, intersectPt, options);
+      totalLength + distance(start, intersectPt, options);
   }
 
   if (start.properties.dist < closestPt.properties.dist) {
     closestPt = start;
     closestPt.properties.index = i;
-    closestPt.properties.location = length;
+    closestPt.properties.location = totalLength;
   }
   if (stop.properties.dist < closestPt.properties.dist) {
     closestPt = stop;
     closestPt.properties.index = i + 1;
-    closestPt.properties.location = length + sectionLength;
+    closestPt.properties.location = totalLength + sectionLength;
   }
   if (intersectPt && intersectPt.properties.dist < closestPt.properties.dist) {
     closestPt = intersectPt;
@@ -81,11 +81,11 @@ function processRouteSegment(length, closestPt, pt, i, coords, options) {
   }
 
   // update length
-  length += sectionLength;
+  totalLength += sectionLength;
 
   return {
     closestPt: closestPt,
-    length: length,
+    totalLength: totalLength,
   };
 }
 
@@ -162,7 +162,7 @@ function snappedPointOnRoute<G extends LineString | MultiLineString>(
       );
 
       closestPt = segment.closestPt;
-      length = segment.length;
+      length = segment.totalLength;
 
       if (closestPt.properties.dist <= options.snapDistance) {
         finished = true;
@@ -183,7 +183,7 @@ function snappedPointOnRoute<G extends LineString | MultiLineString>(
           if (distance > closestPt.properties.dist) return;
 
           closestPt = local.closestPt;
-          length = local.length;
+          length = local.totalLength;
         }
 
         return;

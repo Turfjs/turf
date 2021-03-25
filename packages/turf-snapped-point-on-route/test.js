@@ -32,7 +32,9 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
 test("turf-linestring-to-polygon", (t) => {
   for (const { name, filename, geojson } of fixtures) {
     const [line, point] = geojson.features;
-    const onLine = snappedPointOnRoute(line, point);
+    const onLine = snappedPointOnRoute(line, point, {
+      units: "miles",
+    });
     onLine.properties["marker-color"] = "#F0F";
     onLine.properties.dist = round(onLine.properties.dist, 6);
     onLine.properties.location = round(onLine.properties.location, 6);
@@ -55,7 +57,11 @@ test("turf-snapped-point-on-route - first point", (t) => {
   ]);
   const pt = point([-122.457175, 37.720033]);
 
-  const snapped = truncate(snappedPointOnRoute(line, pt));
+  const snapped = truncate(
+    snappedPointOnRoute(line, pt, {
+      units: "miles",
+    })
+  );
 
   t.deepEqual(
     pt.geometry.coordinates,
@@ -86,7 +92,11 @@ test("turf-snapped-point-on-route - points behind first point", (t) => {
   const expectedLocation = [0, 0, 0, 0];
 
   pts.forEach((pt) => {
-    const snapped = truncate(snappedPointOnRoute(line, pt));
+    const snapped = truncate(
+      snappedPointOnRoute(line, pt, {
+        units: "miles",
+      })
+    );
     t.deepEqual(
       first.geometry.coordinates,
       snapped.geometry.coordinates,
@@ -120,7 +130,11 @@ test("turf-snapped-point-on-route - points in front of last point", (t) => {
   const expectedLocation = [];
 
   pts.forEach((pt) => {
-    const snapped = truncate(snappedPointOnRoute(line, pt));
+    const snapped = truncate(
+      snappedPointOnRoute(line, pt, {
+        units: "miles",
+      })
+    );
     t.deepEqual(
       last.geometry.coordinates,
       snapped.geometry.coordinates,
@@ -178,7 +192,11 @@ test("turf-snapped-point-on-route - points on joints", (t) => {
         return point(coord);
       })
       .forEach((pt, j) => {
-        const snapped = truncate(snappedPointOnRoute(line, pt));
+        const snapped = truncate(
+          snappedPointOnRoute(line, pt, {
+            units: "miles",
+          })
+        );
         t.deepEqual(
           pt.geometry.coordinates,
           snapped.geometry.coordinates,
@@ -238,7 +256,9 @@ test("turf-snapped-point-on-route - point along line", (t) => {
   ]);
 
   const pt = along(line, 0.019, { units: "miles" });
-  const snapped = snappedPointOnRoute(line, pt);
+  const snapped = snappedPointOnRoute(line, pt, {
+    units: "miles",
+  });
   const shift = distance(pt, snapped, { units: "miles" });
 
   t.true(shift < 0.00001, "pt did not shift far");
@@ -261,7 +281,9 @@ test("turf-snapped-point-on-route - points on sides of lines", (t) => {
   ];
 
   pts.forEach((pt) => {
-    const snapped = snappedPointOnRoute(line, pt);
+    const snapped = snappedPointOnRoute(line, pt, {
+      units: "miles",
+    });
     t.notDeepEqual(
       snapped.geometry.coordinates,
       first,
@@ -290,7 +312,11 @@ test("turf-snapped-point-on-route - check dist and index", (t) => {
     [-92.100791, 41.040002],
   ]);
   const pt = point([-92.110576, 41.040649]);
-  const snapped = truncate(snappedPointOnRoute(line, pt));
+  const snapped = truncate(
+    snappedPointOnRoute(line, pt, {
+      units: "miles",
+    })
+  );
 
   t.equal(snapped.properties.index, 8, "properties.index");
   t.equal(
@@ -304,19 +330,6 @@ test("turf-snapped-point-on-route - check dist and index", (t) => {
     "coordinates"
   );
 
-  t.end();
-});
-
-test("turf-snapped-point-on-route -- Issue #691", (t) => {
-  const line1 = lineString([
-    [7, 50],
-    [8, 50],
-    [9, 50],
-  ]);
-  const pointAlong = along(line1, 10);
-  const { location } = snappedPointOnRoute(line1, pointAlong).properties;
-
-  t.false(isNaN(location));
   t.end();
 });
 
@@ -339,11 +352,28 @@ test("turf-snapped-point-on-route -- Geometry Support", (t) => {
       [2, 30],
     ],
   ]);
-  t.assert(snappedPointOnRoute(line.geometry, pt), "line Geometry");
-  t.assert(snappedPointOnRoute(multiLine.geometry, pt), "multiLine Geometry");
-  t.assert(snappedPointOnRoute(line, pt.geometry), "point Geometry");
   t.assert(
-    snappedPointOnRoute(line, pt.geometry.coordinates),
+    snappedPointOnRoute(line.geometry, pt, {
+      units: "miles",
+    }),
+    "line Geometry"
+  );
+  t.assert(
+    snappedPointOnRoute(multiLine.geometry, pt, {
+      units: "miles",
+    }),
+    "multiLine Geometry"
+  );
+  t.assert(
+    snappedPointOnRoute(line, pt.geometry, {
+      units: "miles",
+    }),
+    "point Geometry"
+  );
+  t.assert(
+    snappedPointOnRoute(line, pt.geometry.coordinates, {
+      units: "miles",
+    }),
     "point Coordinates"
   );
   t.end();
