@@ -74,6 +74,7 @@
     "@turf/invariant": "^6.3.0",
     "@turf/meta": "^6.3.0",
     "@turf/tin": "^6.3.0",
-    "topojson": "3.x"
+    "topojson-client": "3.x",
+    "topojson-server": "3.x"
   }
 }
