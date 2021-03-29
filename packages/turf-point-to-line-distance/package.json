@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-to-line-distance",
-  "version": "6.2.0-alpha.3",
+  "version": "6.3.0",
   "description": "turf point-to-line-distance module",
   "author": "Turf Authors",
   "contributors": [
@@ -26,8 +26,11 @@
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
   "exports": {
-    "import": "./dist/es/index.js",
-    "require": "./dist/js/index.js"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
   },
   "types": "dist/js/index.d.ts",
   "sideEffects": false,
@@ -45,7 +48,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/circle": "^6.2.0-alpha.3",
+    "@turf/circle": "^6.3.0",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -57,13 +60,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^6.2.0-alpha.3",
-    "@turf/distance": "^6.2.0-alpha.3",
-    "@turf/helpers": "^6.2.0-alpha.3",
-    "@turf/invariant": "^6.2.0-alpha.3",
-    "@turf/meta": "^6.2.0-alpha.3",
-    "@turf/projection": "^6.2.0-alpha.3",
-    "@turf/rhumb-bearing": "^6.2.0-alpha.3",
-    "@turf/rhumb-distance": "^6.2.0-alpha.3"
+    "@turf/bearing": "^6.3.0",
+    "@turf/distance": "^6.3.0",
+    "@turf/helpers": "^6.3.0",
+    "@turf/invariant": "^6.3.0",
+    "@turf/meta": "^6.3.0",
+    "@turf/projection": "^6.3.0",
+    "@turf/rhumb-bearing": "^6.3.0",
+    "@turf/rhumb-distance": "^6.3.0"
   }
 }

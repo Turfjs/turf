@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "6.2.0-alpha.3",
+  "version": "6.3.0",
   "description": "turf meta module",
   "author": "Turf Authors",
   "contributors": [
@@ -45,8 +45,11 @@
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
   "exports": {
-    "import": "./dist/es/index.js",
-    "require": "./dist/js/index.js"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
   },
   "types": "index.d.ts",
   "sideEffects": false,
@@ -63,13 +66,13 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/random": "^6.2.0-alpha.3",
+    "@turf/random": "^6.3.0",
     "benchmark": "*",
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.3"
+    "@turf/helpers": "^6.3.0"
   }
 }

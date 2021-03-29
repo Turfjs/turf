@@ -1,6 +1,6 @@
 {
   "name": "@turf/tesselate",
-  "version": "6.2.0-alpha.3",
+  "version": "6.3.0",
   "description": "turf tesselate module",
   "author": "Turf Authors",
   "contributors": [
@@ -32,8 +32,11 @@
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
   "exports": {
-    "import": "./dist/es/index.js",
-    "require": "./dist/js/index.js"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
   },
   "types": "index.d.ts",
   "sideEffects": false,
@@ -55,7 +58,7 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.3",
+    "@turf/helpers": "^6.3.0",
     "earcut": "^2.0.0"
   }
 }

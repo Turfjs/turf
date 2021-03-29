@@ -1,6 +1,6 @@
 {
   "name": "@turf/concave",
-  "version": "6.2.0-alpha.3",
+  "version": "6.3.0",
   "description": "turf concave module",
   "author": "Turf Authors",
   "contributors": [
@@ -35,8 +35,11 @@
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
   "exports": {
-    "import": "./dist/es/index.js",
-    "require": "./dist/js/index.js"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
   },
   "types": "dist/js/index.d.ts",
   "sideEffects": false,
@@ -65,12 +68,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clone": "^6.2.0-alpha.3",
-    "@turf/distance": "^6.2.0-alpha.3",
-    "@turf/helpers": "^6.2.0-alpha.3",
-    "@turf/invariant": "^6.2.0-alpha.3",
-    "@turf/meta": "^6.2.0-alpha.3",
-    "@turf/tin": "^6.2.0-alpha.3",
-    "topojson": "3.x"
+    "@turf/clone": "^6.3.0",
+    "@turf/distance": "^6.3.0",
+    "@turf/helpers": "^6.3.0",
+    "@turf/invariant": "^6.3.0",
+    "@turf/meta": "^6.3.0",
+    "@turf/tin": "^6.3.0",
+    "topojson-client": "3.x",
+    "topojson-server": "3.x"
   }
 }

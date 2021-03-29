@@ -1,6 +1,6 @@
 {
   "name": "@turf/quadrat-analysis",
-  "version": "6.2.0-alpha.3",
+  "version": "6.3.0",
   "description": "turf quadrat-analysis module",
   "author": "Turf Authors",
   "contributors": [
@@ -25,8 +25,11 @@
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
   "exports": {
-    "import": "./dist/es/index.js",
-    "require": "./dist/js/index.js"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
   },
   "types": "dist/js/index.d.ts",
   "sideEffects": false,
@@ -43,7 +46,7 @@
     "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/nearest-neighbor-analysis": "^6.2.0-alpha.3",
+    "@turf/nearest-neighbor-analysis": "^6.3.0",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -55,14 +58,14 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^6.2.0-alpha.3",
-    "@turf/bbox": "^6.2.0-alpha.3",
-    "@turf/bbox-polygon": "^6.2.0-alpha.3",
-    "@turf/centroid": "^6.2.0-alpha.3",
-    "@turf/helpers": "^6.2.0-alpha.3",
-    "@turf/invariant": "^6.2.0-alpha.3",
-    "@turf/point-grid": "^6.2.0-alpha.3",
-    "@turf/random": "^6.2.0-alpha.3",
-    "@turf/square-grid": "^6.2.0-alpha.3"
+    "@turf/area": "^6.3.0",
+    "@turf/bbox": "^6.3.0",
+    "@turf/bbox-polygon": "^6.3.0",
+    "@turf/centroid": "^6.3.0",
+    "@turf/helpers": "^6.3.0",
+    "@turf/invariant": "^6.3.0",
+    "@turf/point-grid": "^6.3.0",
+    "@turf/random": "^6.3.0",
+    "@turf/square-grid": "^6.3.0"
   }
 }

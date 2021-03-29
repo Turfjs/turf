@@ -8,7 +8,8 @@ import {
 } from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { flattenEach } from "@turf/meta";
-import { merge, topology } from "topojson";
+import { merge } from "topojson-client";
+import { topology } from "topojson-server";
 
 /**
  * Dissolves all overlapping (Multi)Polygon

@@ -1,4 +1,13 @@
-# 6.2.0-alpha.3
+# 6.3.0
+
+### Fix issues importing Turf for react-native, webpack 5, and other bundlers
+  (PR https://github.com/Turfjs/turf/pull/2004 - Author r0b0t3d)
+  (PR https://github.com/Turfjs/turf/pull/2011 - Author mfedderly)
+
+### [`@turf/turf`][turf] expose @turf/boolean-intersect
+  (PR https://github.com/Turfjs/turf/pull/2007 - Author rowanwins)
+
+# 6.2.0
 
 After a bit of hiatus, TurfJS is resuming releases.
 
@@ -11,6 +20,7 @@ After a bit of hiatus, TurfJS is resuming releases.
 - Enforce styling using Prettier
 - Enable ESLint and get rid of unused variables
 - Upgrade rollup for more correct javascript module builds
+- Only include ES5 code
 
 ## 🚀 New Modules
 
@@ -52,6 +62,11 @@ No longer publishes an .mjs file.
 ### [`@turf/meta`][meta]
 
 No longer publishes an .mjs file.
+
+### [`@turf/tag`][tag]
+
+Add MultiPolygon support.
+(PR https://github.com/Turfjs/turf/pull/1996 - Author bryceroney)
 
 ## 🐛 Bug Fixes
 
@@ -96,6 +111,9 @@ No longer publishes an .mjs file.
 
 - [`@turf/line-to-polygon`](line-to-polygon) no longer modifies its input unless the mutate option is true
   (PR https://github.com/Turfjs/turf/pull/1879 - Author @MortenBirk)
+
+- [`@turf/unkink-polygon`](unkink-polygon) remove Number.prototype.modulo override
+  (PR https://github.com/Turfjs/turf/pull/1978)
 
 # 5.0.0 🎉
 

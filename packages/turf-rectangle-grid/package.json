@@ -1,6 +1,6 @@
 {
   "name": "@turf/rectangle-grid",
-  "version": "6.2.0-alpha.3",
+  "version": "6.3.0",
   "description": "turf rectangle-grid module",
   "author": "Turf Authors",
   "contributors": [
@@ -28,8 +28,11 @@
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
   "exports": {
-    "import": "./dist/es/index.js",
-    "require": "./dist/js/index.js"
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
   },
   "types": "dist/js/index.d.ts",
   "sideEffects": false,
@@ -46,8 +49,8 @@
     "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "^6.2.0-alpha.3",
-    "@turf/truncate": "^6.2.0-alpha.3",
+    "@turf/bbox-polygon": "^6.3.0",
+    "@turf/truncate": "^6.3.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -58,8 +61,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-intersects": "^6.2.0-alpha.3",
-    "@turf/distance": "^6.2.0-alpha.3",
-    "@turf/helpers": "^6.2.0-alpha.3"
+    "@turf/boolean-intersects": "^6.3.0",
+    "@turf/distance": "^6.3.0",
+    "@turf/helpers": "^6.3.0"
   }
 }

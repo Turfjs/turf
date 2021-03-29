@@ -92,8 +92,11 @@ module.exports = {
             browser: "turf.min.js",
             files: ["dist", "index.d.ts", "turf.min.js"],
             exports: {
-              import: "./dist/es/index.js",
-              require: "./dist/js/index.js",
+              "./package.json": "./package.json",
+              ".": {
+                import: "./dist/es/index.js",
+                require: "./dist/js/index.js",
+              },
             },
           },
         },
@@ -109,8 +112,11 @@ module.exports = {
               access: "public",
             },
             exports: {
-              import: "./dist/es/index.js",
-              require: "./dist/js/index.js",
+              "./package.json": "./package.json",
+              ".": {
+                import: "./dist/es/index.js",
+                require: "./dist/js/index.js",
+              },
             },
           },
         },
