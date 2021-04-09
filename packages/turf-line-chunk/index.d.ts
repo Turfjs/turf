@@ -8,7 +8,7 @@ import {
 } from "@turf/helpers";
 
 /**
- * http://turfjs.org/docs/#linechunk
+ * http://turfjs.org/docs/#lineChunk
  */
 export default function lineChunk<T extends LineString | MultiLineString>(
   geojson:
