@@ -54,12 +54,18 @@ function bezier<P = Properties>(
     sharpness,
   });
 
-  for (let i = 0; i < spline.duration; i += 10) {
-    const pos = spline.pos(i);
-    if (Math.floor(i / 100) % 2 === 0) {
+  const pushCoord = (time: number) => {
+    var pos = spline.pos(time);
+    if (Math.floor(time / 100) % 2 === 0) {
       coords.push([pos.x, pos.y]);
     }
+  };
+
+  for (var i = 0; i < spline.duration; i += 10) {
+    pushCoord(i);
   }
+  pushCoord(spline.duration);
+
   return lineString(coords, options.properties);
 }
 
