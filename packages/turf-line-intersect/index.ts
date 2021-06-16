@@ -70,7 +70,7 @@ function lineIntersect<
     features.push(feature(line2));
   }
 
-  const intersections = findIntersections(featureCollection(features));
+  const intersections = findIntersections(featureCollection(features), false);
   let results = [];
   if (removeDuplicates) {
     const unique = {};

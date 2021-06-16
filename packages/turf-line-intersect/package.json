@@ -63,6 +63,6 @@
   },
   "dependencies": {
     "@turf/helpers": "^6.3.0",
-    "sweepline-intersections": "^1.2.1"
+    "sweepline-intersections": "^1.3.1"
   }
 }
