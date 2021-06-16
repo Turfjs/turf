@@ -9,6 +9,7 @@ import {
   FeatureCollection,
   Feature,
   Point,
+  Position,
 } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 

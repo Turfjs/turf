@@ -79,7 +79,9 @@ function lineSliceAlong(line, startDist, stopDist, options) {
 
   if (travelled < startDist && coords.length === origCoordsLength)
     throw new Error("Start position is beyond line");
-  return lineString(coords[coords.length - 1]);
+
+  var last = coords[coords.length - 1];
+  return lineString([last, last]);
 }
 
 export default lineSliceAlong;
