@@ -1,6 +1,6 @@
 {
   "name": "@turf/convex",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf convex module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -56,8 +56,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.3.0",
-    "@turf/meta": "^6.3.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/meta": "^6.4.0",
     "concaveman": "*"
   }
 }

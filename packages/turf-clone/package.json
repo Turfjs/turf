@@ -1,6 +1,6 @@
 {
   "name": "@turf/clone",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf clone module",
   "author": "Turf Authors",
   "contributors": [
@@ -47,7 +47,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/meta": "^6.3.0",
+    "@turf/meta": "^6.4.0",
     "@types/tape": "*",
     "benchmark": "*",
     "npm-run-all": "*",
@@ -57,6 +57,6 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.3.0"
+    "@turf/helpers": "^6.4.0"
   }
 }

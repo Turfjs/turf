@@ -1,6 +1,6 @@
 {
   "name": "@turf/great-circle",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf great-circle module",
   "author": "Turf Authors",
   "contributors": [
@@ -51,7 +51,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.3.0",
+    "@turf/truncate": "^6.4.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -60,7 +60,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0"
+    "@turf/helpers": "^6.4.0",
+    "@turf/invariant": "^6.4.0"
   }
 }

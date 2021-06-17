@@ -1,3 +1,42 @@
+# 6.4.0
+
+## 🏅 New Features/Enhancements
+
+- [`@turf/boolean-point-on-line`](boolean-point-on-line) Added an `epislon` option to help in floating point comparison.
+  (PR https://github.com/Turfjs/turf/pull/2051 - Author @okcoker)
+
+## 🐛 Bug Fixes
+
+- [`@turf/line-slice-along`](line-slice-along) Fixed a bug where the offset distance equal to the length of the line
+  (PR https://github.com/Turfjs/turf/pull/2030 - Author @EricPKerr)
+
+- [`@turf/helpers`](helpers) Fixed the conversion ratio for converting meters to yards and vice-versa
+  (PR https://github.com/Turfjs/turf/pull/2046 - Author @anotherhale)
+
+- [`@turf/center-median`](center-median) Fixed a missing TS type import
+  (PR https://github.com/Turfjs/turf/pull/2044 - Author @Seairth)
+
+- [`@turf/bezier-spline](bezier-spline) Fix a bug ensuring the spline result reaches the end of the input
+  (PR https://github.com/Turfjs/turf/pull/2090 - Author @the-nemz)
+
+## 📖 Documentation
+- [`@turf/transform-rotate`](transform-rotate) and [`@turf/ellipse`](ellipse)) Improve documentation for angle parameter
+  (PR https://github.com/Turfjs/turf/pull/2016 - Author @pasieronen)
+
+- [`@turf/line-chunk`](line-chunk) Fix an invalid anchor
+  (PR https://github.com/Turfjs/turf/pull/2071 - Author @GraxMonzo)
+
+- [`@turf/distance`](distance) Enhance distance doco so supported inputs are clearer
+  (PR https://github.com/Turfjs/turf/pull/2032 - Author @rowanwins)
+
+## 🔔 Misc
+- [`@turf/concave`](concave) Replace deprecated topojson dependency
+  (PR https://github.com/Turfjs/turf/pull/2037 - Author @elliots)
+
+- Work towards enabling TS Strict Mode
+  (PR https://github.com/Turfjs/turf/pull/2053 - Author @mfedderly)
+
+
 # 6.3.0
 
 ### Fix issues importing Turf for react-native, webpack 5, and other bundlers
