@@ -6,8 +6,7 @@
 [![Gitter chat][gitter-img]][gitter-url]
 [![Backers on Open Collective][oc-backer-badge]](#backers) 
 [![Sponsors on Open Collective][oc-sponsor-badge]](#sponsors) [![Coverage Status](https://coveralls.io/repos/github/Turfjs/turf/badge.svg)](https://coveralls.io/github/Turfjs/turf)
-[![Greenkeeper badge](https://badges.greenkeeper.io/Turfjs/turf.svg)](https://greenkeeper.io/)
-
+ 
 [npm-img]: https://img.shields.io/npm/v/@turf/turf.svg
 [npm-url]: https://www.npmjs.com/package/@turf/turf
 [gitter-img]: https://badges.gitter.im/Turfjs/turf.svg

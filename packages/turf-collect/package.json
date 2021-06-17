@@ -50,6 +50,7 @@
     "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
+    "@types/rbush": "^2.0.3",
     "@types/tape": "*",
     "benchmark": "*",
     "npm-run-all": "*",

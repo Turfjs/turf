@@ -43,7 +43,7 @@ function centerMean<P = Properties>(
   let sumYs = 0;
   let sumNs = 0;
   geomEach(geojson, function (geom, featureIndex, properties) {
-    let weight = properties[options.weight];
+    let weight = options.weight ? properties?.[options.weight] : undefined;
     weight = weight === undefined || weight === null ? 1 : weight;
     if (!isNumber(weight))
       throw new Error(
