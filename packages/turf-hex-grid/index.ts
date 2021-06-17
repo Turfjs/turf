@@ -146,7 +146,7 @@ function hexGrid<P = Properties>(
     }
   }
 
-  return featureCollection(results);
+  return featureCollection(results) as FeatureCollection<Polygon, P>;
 }
 
 /**
@@ -161,7 +161,14 @@ function hexGrid<P = Properties>(
  * @param {Array<number>} sines precomputed
  * @returns {Feature<Polygon>} hexagon
  */
-function hexagon(center, rx, ry, properties, cosines, sines) {
+function hexagon(
+  center: number[],
+  rx: number,
+  ry: number,
+  properties: Properties,
+  cosines: number[],
+  sines: number[]
+) {
   const vertices = [];
   for (let i = 0; i < 6; i++) {
     const x = center[0] + rx * cosines[i];
@@ -185,7 +192,14 @@ function hexagon(center, rx, ry, properties, cosines, sines) {
  * @param {Array<number>} sines precomputed
  * @returns {Array<Feature<Polygon>>} triangles
  */
-function hexTriangles(center, rx, ry, properties, cosines, sines) {
+function hexTriangles(
+  center: number[],
+  rx: number,
+  ry: number,
+  properties: Properties,
+  cosines: number[],
+  sines: number[]
+) {
   const triangles = [];
   for (let i = 0; i < 6; i++) {
     const vertices = [];

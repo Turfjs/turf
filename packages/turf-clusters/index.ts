@@ -243,7 +243,7 @@ export function createBins(
   geojson: FeatureCollection<any>,
   property: string | number
 ) {
-  var bins = {};
+  var bins: Record<string, number[]> = {};
 
   featureEach(geojson, function (feature, i) {
     var properties = feature.properties || {};
@@ -319,11 +319,14 @@ export function propertiesContainsFilter(
  * filterProperties({foo: 'bar', cluster: 0}, ['cluster'])
  * //= {cluster: 0}
  */
-export function filterProperties(properties: any, keys: string[]): any {
+export function filterProperties(
+  properties: Record<string, any>,
+  keys: string[]
+): any {
   if (!keys) return {};
   if (!keys.length) return {};
 
-  var newProperties = {};
+  var newProperties: Record<string, any> = {};
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i];
     if (properties.hasOwnProperty(key)) newProperties[key] = properties[key];
