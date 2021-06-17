@@ -50,6 +50,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
+    "@types/deep-equal": "^1.0.1",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",

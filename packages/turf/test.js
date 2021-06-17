@@ -66,18 +66,6 @@ test("turf -- invalid dependencies", (t) => {
   t.end();
 });
 
-test("turf -- * wildcard devDependencies", (t) => {
-  for (const { name, devDependencies } of modules) {
-    for (const dependency of Object.keys(devDependencies)) {
-      if (dependency.includes("@turf")) continue;
-      if (dependency.includes("@std/esm")) continue;
-      if (devDependencies[dependency] !== "*")
-        t.fail(`${name} ${dependency} devDependencies must use *`);
-    }
-  }
-  t.end();
-});
-
 test("turf -- strict version dependencies", (t) => {
   for (const { name, dependencies } of modules) {
     if (dependencies["jsts"]) t.fail(name + " jsts must use turf-jsts");
