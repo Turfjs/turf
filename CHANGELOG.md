@@ -28,7 +28,7 @@
   (PR https://github.com/Turfjs/turf/pull/2032 - Author @rowanwins)
 
 ## 🔔 Misc
-- [`@turf/concvae`](concave) Replace deprecated topojson dependency
+- [`@turf/concave`](concave) Replace deprecated topojson dependency
   (PR https://github.com/Turfjs/turf/pull/2037 - Author @elliots)
 
 
