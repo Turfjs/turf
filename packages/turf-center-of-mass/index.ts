@@ -1,6 +1,6 @@
 import convex from "@turf/convex";
 import centroid from "@turf/centroid";
-import { point, Properties, Feature, Point } from "@turf/helpers";
+import { point, Properties, Feature, Point, Position } from "@turf/helpers";
 import { getType, getCoord } from "@turf/invariant";
 import { coordEach } from "@turf/meta";
 
@@ -30,7 +30,7 @@ function centerOfMass<P = Properties>(
     case "Point":
       return point(getCoord(geojson), options.properties);
     case "Polygon":
-      var coords = [];
+      var coords: Position[] = [];
       coordEach(geojson, function (coord) {
         coords.push(coord);
       });
