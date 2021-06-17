@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-to-line-distance",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf point-to-line-distance module",
   "author": "Turf Authors",
   "contributors": [
@@ -48,7 +48,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/circle": "^6.3.0",
+    "@turf/circle": "^6.4.0",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -60,13 +60,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^6.3.0",
-    "@turf/distance": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0",
-    "@turf/meta": "^6.3.0",
-    "@turf/projection": "^6.3.0",
-    "@turf/rhumb-bearing": "^6.3.0",
-    "@turf/rhumb-distance": "^6.3.0"
+    "@turf/bearing": "^6.4.0",
+    "@turf/distance": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/invariant": "^6.4.0",
+    "@turf/meta": "^6.4.0",
+    "@turf/projection": "^6.4.0",
+    "@turf/rhumb-bearing": "^6.4.0",
+    "@turf/rhumb-distance": "^6.4.0"
   }
 }

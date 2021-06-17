@@ -1,15 +1,21 @@
-// Cohen-Sutherland line clippign algorithm, adapted to efficiently
+// Cohen-Sutherland line clipping algorithm, adapted to efficiently
 // handle polylines rather than just segments
 
-export function lineclip(points, bbox, result) {
+import { BBox } from "@turf/helpers";
+
+export function lineclip(
+  points: number[][],
+  bbox: BBox,
+  result?: number[][][]
+): number[][][] {
   var len = points.length,
     codeA = bitCode(points[0], bbox),
-    part = [],
+    part = [] as number[][],
     i,
-    a,
-    b,
     codeB,
     lastCode;
+  let a: number[];
+  let b: number[];
 
   if (!result) result = [];
 
@@ -41,11 +47,11 @@ export function lineclip(points, bbox, result) {
         break;
       } else if (codeA) {
         // a outside, intersect with clip edge
-        a = intersect(a, b, codeA, bbox);
+        a = intersect(a, b, codeA, bbox)!;
         codeA = bitCode(a, bbox);
       } else {
         // b outside
-        b = intersect(a, b, codeB, bbox);
+        b = intersect(a, b, codeB, bbox)!;
         codeB = bitCode(b, bbox);
       }
     }
@@ -60,8 +66,8 @@ export function lineclip(points, bbox, result) {
 
 // Sutherland-Hodgeman polygon clipping algorithm
 
-export function polygonclip(points, bbox) {
-  var result, edge, prev, prevInside, i, p, inside;
+export function polygonclip(points: number[][], bbox: BBox): number[][] {
+  var result: number[][], edge, prev, prevInside, i, p, inside;
 
   // clip against each side of the clip rectangle
   for (edge = 1; edge <= 8; edge *= 2) {
@@ -74,7 +80,7 @@ export function polygonclip(points, bbox) {
       inside = !(bitCode(p, bbox) & edge);
 
       // if segment goes through the clip window, add an intersection
-      if (inside !== prevInside) result.push(intersect(prev, p, edge, bbox));
+      if (inside !== prevInside) result.push(intersect(prev, p, edge, bbox)!);
 
       if (inside) result.push(p); // add a point if it's inside
 
@@ -87,12 +93,17 @@ export function polygonclip(points, bbox) {
     if (!points.length) break;
   }
 
-  return result;
+  return result!;
 }
 
 // intersect a segment against one of the 4 lines that make up the bbox
 
-function intersect(a, b, edge, bbox) {
+function intersect(
+  a: number[],
+  b: number[],
+  edge: number,
+  bbox: BBox
+): number[] | null {
   return edge & 8
     ? [a[0] + ((b[0] - a[0]) * (bbox[3] - a[1])) / (b[1] - a[1]), bbox[3]] // top
     : edge & 4
@@ -111,7 +122,7 @@ function intersect(a, b, edge, bbox) {
 //    mid  0001  0000  0010
 // bottom  0101  0100  0110
 
-function bitCode(p, bbox) {
+function bitCode(p: number[], bbox: BBox) {
   var code = 0;
 
   if (p[0] < bbox[0]) code |= 1;

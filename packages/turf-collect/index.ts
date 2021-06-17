@@ -3,6 +3,14 @@ import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import rbush from "rbush";
 import { FeatureCollection, Polygon, Point } from "@turf/helpers";
 
+interface Entry {
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
+  property: any;
+}
+
 /**
  * Merges a specified property from a FeatureCollection of points into a
  * FeatureCollection of polygons. Given an `inProperty` on points and an `outProperty`
@@ -39,7 +47,7 @@ function collect(
   inProperty: string,
   outProperty: string
 ): FeatureCollection<Polygon> {
-  var rtree = rbush(6);
+  var rtree = rbush<Entry>(6);
 
   var treeItems = points.features.map(function (item) {
     return {
@@ -47,7 +55,7 @@ function collect(
       minY: item.geometry.coordinates[1],
       maxX: item.geometry.coordinates[0],
       maxY: item.geometry.coordinates[1],
-      property: item.properties[inProperty],
+      property: item.properties?.[inProperty],
     };
   });
 
@@ -63,7 +71,7 @@ function collect(
       maxX: bbox[2],
       maxY: bbox[3],
     });
-    var values = [];
+    var values: any[] = [];
     potentialPoints.forEach(function (pt) {
       if (booleanPointInPolygon([pt.minX, pt.minY], poly)) {
         values.push(pt.property);

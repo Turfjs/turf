@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-touches",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf boolean-touches module",
   "author": "Turf Authors",
   "contributors": [
@@ -64,9 +64,9 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.3.0",
-    "@turf/boolean-point-on-line": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0"
+    "@turf/boolean-point-in-polygon": "^6.4.0",
+    "@turf/boolean-point-on-line": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/invariant": "^6.4.0"
   }
 }

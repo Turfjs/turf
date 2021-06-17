@@ -1,6 +1,6 @@
 {
   "name": "@turf/transform-rotate",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf transform-rotate module",
   "author": "Turf Authors",
   "contributors": [
@@ -49,7 +49,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.3.0",
+    "@turf/truncate": "^6.4.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -58,13 +58,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/centroid": "^6.3.0",
-    "@turf/clone": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0",
-    "@turf/meta": "^6.3.0",
-    "@turf/rhumb-bearing": "^6.3.0",
-    "@turf/rhumb-destination": "^6.3.0",
-    "@turf/rhumb-distance": "^6.3.0"
+    "@turf/centroid": "^6.4.0",
+    "@turf/clone": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/invariant": "^6.4.0",
+    "@turf/meta": "^6.4.0",
+    "@turf/rhumb-bearing": "^6.4.0",
+    "@turf/rhumb-destination": "^6.4.0",
+    "@turf/rhumb-distance": "^6.4.0"
   }
 }
