@@ -11,10 +11,10 @@ import {
 import clustering from "density-clustering";
 
 export type Dbscan = "core" | "edge" | "noise";
-export interface DbscanProps extends Properties {
+export type DbscanProps = Properties & {
   dbscan?: Dbscan;
   cluster?: number;
-}
+};
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters according to {@link DBSCAN's|https://en.wikipedia.org/wiki/DBSCAN} data clustering algorithm.
@@ -91,7 +91,7 @@ function clustersDbscan(
     else noisePoint.properties.dbscan = "noise";
   });
 
-  return points;
+  return points as FeatureCollection<Point, DbscanProps>;
 }
 
 export default clustersDbscan;

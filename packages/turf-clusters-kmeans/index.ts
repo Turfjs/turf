@@ -55,11 +55,7 @@ function clustersKmeans(
   var initialCentroids = data.slice(0, options.numberOfClusters);
 
   // create skmeans clusters
-  var skmeansResult = skmeans(
-    data,
-    options.numberOfClusters,
-    initialCentroids as any // typings are slightly wrong here
-  );
+  var skmeansResult = skmeans(data, options.numberOfClusters, initialCentroids);
 
   // store centroids {clusterId: [number, number]}
   var centroids: Record<string, number[]> = {};
