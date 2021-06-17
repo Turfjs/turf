@@ -7,12 +7,12 @@ import EdgeRing from "./EdgeRing";
  * This class is inspired by GEOS's geos::operation::polygonize::PolygonizeDirectedEdge
  */
 export default class Edge {
-  public label: number;
-  public symetric: Edge;
+  public label?: number;
+  public symetric?: Edge;
   public from: Node;
   public to: Node;
-  public next: Edge;
-  public ring: EdgeRing;
+  public next?: Edge;
+  public ring?: EdgeRing;
 
   /**
    * Creates or get the symetric Edge.
@@ -32,7 +32,7 @@ export default class Edge {
    * @param {Node} from - start node of the Edge
    * @param {Node} to - end node of the edge
    */
-  constructor(from, to) {
+  constructor(from: Node, to: Node) {
     this.from = from; //< start
     this.to = to; //< End
 
@@ -61,7 +61,7 @@ export default class Edge {
    * @param {Edge} edge - Another Edge
    * @returns {boolean} - True if Edges are equal, False otherwise
    */
-  isEqual(edge) {
+  isEqual(edge: Edge) {
     return this.from.id === edge.from.id && this.to.id === edge.to.id;
   }
 
@@ -88,7 +88,7 @@ export default class Edge {
    *          0 if the Edges are colinear,
    *          1 otherwise
    */
-  compareTo(edge) {
+  compareTo(edge: Edge) {
     return orientationIndex(
       edge.from.coordinates,
       edge.to.coordinates,

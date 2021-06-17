@@ -8,6 +8,7 @@ import {
   LineString,
   MultiLineString,
   Feature,
+  GeoJSONObject,
 } from "@turf/helpers";
 
 /**
@@ -16,7 +17,7 @@ import {
  * @param {GeoJSON} geoJson - input geoJson.
  * @throws {Error} if geoJson is invalid.
  */
-function validateGeoJson(geoJson) {
+function validateGeoJson(geoJson: GeoJSONObject) {
   if (!geoJson) throw new Error("No geojson passed");
 
   if (
@@ -153,8 +154,8 @@ export default class Graph {
 
     // Cut-edges (bridges) are edges where both edges have the same label
     this.edges.forEach((edge) => {
-      if (edge.label === edge.symetric.label) {
-        this.removeEdge(edge.symetric);
+      if (edge.label === edge.symetric!.label) {
+        this.removeEdge(edge.symetric!);
         this.removeEdge(edge);
       }
     });
@@ -177,7 +178,7 @@ export default class Graph {
       node.getOuterEdges().forEach((edge, i) => {
         node.getOuterEdge(
           (i === 0 ? node.getOuterEdges().length : i) - 1
-        ).symetric.next = edge;
+        ).symetric!.next = edge;
       });
     }
   }
@@ -205,7 +206,7 @@ export default class Graph {
 
       if (de.label === label) outDE = de;
 
-      if (sym.label === label) inDE = sym;
+      if (sym!.label === label) inDE = sym;
 
       if (!outDE || !inDE)
         // This edge is not in edgering
@@ -234,17 +235,17 @@ export default class Graph {
    * @returns {Edge[]} edges that start rings
    */
   _findLabeledEdgeRings() {
-    const edgeRingStarts = [];
+    const edgeRingStarts: Edge[] = [];
     let label = 0;
     this.edges.forEach((edge) => {
-      if (edge.label >= 0) return;
+      if (edge.label! >= 0) return;
 
       edgeRingStarts.push(edge);
 
       let e = edge;
       do {
         e.label = label;
-        e = e.next;
+        e = e.next!;
       } while (!edge.isEqual(e));
 
       label++;
@@ -269,11 +270,11 @@ export default class Graph {
     this._findLabeledEdgeRings().forEach((edge) => {
       // convertMaximalToMinimalEdgeRings
       this._findIntersectionNodes(edge).forEach((node) => {
-        this._computeNextCCWEdges(node, edge.label);
+        this._computeNextCCWEdges(node, edge.label!);
       });
     });
 
-    const edgeRingList = [];
+    const edgeRingList: EdgeRing[] = [];
 
     // find all edgerings
     this.edges.forEach((edge) => {
@@ -302,7 +303,7 @@ export default class Graph {
 
       if (degree > 1) intersectionNodes.push(edge.from);
 
-      edge = edge.next;
+      edge = edge.next!;
     } while (!startEdge.isEqual(edge));
 
     return intersectionNodes;
@@ -321,7 +322,7 @@ export default class Graph {
     do {
       edgeRing.push(edge);
       edge.ring = edgeRing;
-      edge = edge.next;
+      edge = edge.next!;
     } while (!startEdge.isEqual(edge));
 
     return edgeRing;

@@ -4,7 +4,15 @@ import {
   envelopeContains,
   coordinatesEqual,
 } from "./util";
-import { multiPoint, polygon, point, Polygon, Feature } from "@turf/helpers";
+import {
+  multiPoint,
+  polygon,
+  point,
+  Polygon,
+  Feature,
+  Point,
+  Position,
+} from "@turf/helpers";
 import envelope from "@turf/envelope";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import Edge from "./Edge";
@@ -18,13 +26,13 @@ import Edge from "./Edge";
  */
 export default class EdgeRing {
   private edges: Edge[];
-  private polygon: Feature<
+  private polygon?: Feature<
     Polygon,
     {
       [name: string]: any;
     }
   >;
-  private envelope: Feature<
+  private envelope?: Feature<
     Polygon,
     {
       [name: string]: any;
@@ -43,9 +51,7 @@ export default class EdgeRing {
    * @memberof EdgeRing
    * @param {Edge} edge - Edge to be inserted
    */
-  push(edge) {
-    // Emulate Array getter ([]) behaviour
-    this[this.edges.length] = edge;
+  push(edge: Edge) {
     this.edges.push(edge);
     this.polygon = this.envelope = undefined;
   }
@@ -57,7 +63,7 @@ export default class EdgeRing {
    * @param {number} i - Index
    * @returns {Edge} - Edge in the i position
    */
-  get(i) {
+  get(i: number) {
     return this.edges[i];
   }
 
@@ -77,7 +83,7 @@ export default class EdgeRing {
    * @memberof EdgeRing
    * @param {Function} f - The same function to be passed to Array.prototype.forEach
    */
-  forEach(f) {
+  forEach(f: (edge: Edge, index: number, array: Edge[]) => void) {
     this.edges.forEach(f);
   }
 
@@ -88,7 +94,7 @@ export default class EdgeRing {
    * @param {Function} f - The same function to be passed to Array.prototype.map
    * @returns {Array} - The mapped values in the function
    */
-  map(f) {
+  map<T>(f: (edge: Edge, index: number, array: Edge[]) => T): T[] {
     return this.edges.map(f);
   }
 
@@ -99,7 +105,7 @@ export default class EdgeRing {
    * @param {Function} f - The same function to be passed to Array.prototype.some
    * @returns {boolean} - True if an Edge check the condition
    */
-  some(f) {
+  some(f: (edge: Edge, index: number, array: Edge[]) => boolean) {
     return this.edges.some(f);
   }
 
@@ -182,7 +188,10 @@ export default class EdgeRing {
    */
   getEnvelope() {
     if (this.envelope) return this.envelope;
-    return (this.envelope = envelope(this.toPolygon()));
+    return (this.envelope = envelope(this.toPolygon()) as Feature<
+      Polygon,
+      { [name: string]: any }
+    >);
   }
 
   /**
@@ -193,10 +202,13 @@ export default class EdgeRing {
    *
    * @returns {EdgeRing} - EdgeRing which contains the testEdgeRing
    */
-  static findEdgeRingContaining(testEdgeRing, shellList) {
+  static findEdgeRingContaining(
+    testEdgeRing: EdgeRing,
+    shellList: EdgeRing[]
+  ): EdgeRing | undefined {
     const testEnvelope = testEdgeRing.getEnvelope();
 
-    let minEnvelope, minShell;
+    let minEnvelope: Feature<Polygon>, minShell: EdgeRing | undefined;
     shellList.forEach((shell) => {
       const tryEnvelope = shell.getEnvelope();
 
@@ -206,12 +218,18 @@ export default class EdgeRing {
       if (envelopeIsEqual(tryEnvelope, testEnvelope)) return;
 
       if (envelopeContains(tryEnvelope, testEnvelope)) {
-        const testPoint = testEdgeRing
-          .map((edge) => edge.from.coordinates)
-          .find(
-            (pt) =>
-              !shell.some((edge) => coordinatesEqual(pt, edge.from.coordinates))
-          );
+        const testEdgeRingCoordinates = testEdgeRing.map(
+          (edge) => edge.from.coordinates
+        );
+
+        let testPoint: Position | undefined;
+        for (const pt of testEdgeRingCoordinates) {
+          if (
+            !shell.some((edge) => coordinatesEqual(pt, edge.from.coordinates))
+          ) {
+            testPoint = pt;
+          }
+        }
 
         if (testPoint && shell.inside(point(testPoint))) {
           if (!minShell || envelopeContains(minEnvelope, tryEnvelope))
@@ -229,7 +247,7 @@ export default class EdgeRing {
    * @param {Feature<Point>} pt - Point to check if it is inside the edgeRing
    * @returns {boolean} - True if it is inside, False otherwise
    */
-  inside(pt) {
+  inside(pt: Feature<Point>) {
     return booleanPointInPolygon(pt, this.toPolygon());
   }
 }

@@ -39,8 +39,8 @@ export default function polygonize<T extends LineString | MultiLineString>(
   graph.deleteCutEdges();
 
   // 3. Get all holes and shells
-  const holes = [],
-    shells = [];
+  const holes: EdgeRing[] = [],
+    shells: EdgeRing[] = [];
 
   graph
     .getEdgeRings()
