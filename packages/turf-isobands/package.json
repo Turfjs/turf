@@ -1,6 +1,6 @@
 {
   "name": "@turf/isobands",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf isobands module",
   "author": "Turf Authors",
   "contributors": [
@@ -50,11 +50,11 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/envelope": "^6.3.0",
-    "@turf/point-grid": "^6.3.0",
-    "@turf/random": "^6.3.0",
-    "@turf/rhumb-destination": "^6.3.0",
-    "@turf/truncate": "^6.3.0",
+    "@turf/envelope": "^6.4.0",
+    "@turf/point-grid": "^6.4.0",
+    "@turf/random": "^6.4.0",
+    "@turf/rhumb-destination": "^6.4.0",
+    "@turf/truncate": "^6.4.0",
     "benchmark": "*",
     "chroma-js": "*",
     "load-json-file": "*",
@@ -65,13 +65,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^6.3.0",
-    "@turf/bbox": "^6.3.0",
-    "@turf/boolean-point-in-polygon": "^6.3.0",
-    "@turf/explode": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0",
-    "@turf/meta": "^6.3.0",
+    "@turf/area": "^6.4.0",
+    "@turf/bbox": "^6.4.0",
+    "@turf/boolean-point-in-polygon": "^6.4.0",
+    "@turf/explode": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/invariant": "^6.4.0",
+    "@turf/meta": "^6.4.0",
     "object-assign": "*"
   }
 }

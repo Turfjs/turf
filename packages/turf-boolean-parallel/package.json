@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-parallel",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf boolean-parallel module",
   "author": "Turf Authors",
   "contributors": [
@@ -59,9 +59,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/line-segment": "^6.3.0",
-    "@turf/rhumb-bearing": "^6.3.0"
+    "@turf/clean-coords": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/line-segment": "^6.4.0",
+    "@turf/rhumb-bearing": "^6.4.0"
   }
 }

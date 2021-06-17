@@ -1,6 +1,6 @@
 {
   "name": "@turf/triangle-grid",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf triangle-grid module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -48,8 +48,8 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "^6.3.0",
-    "@turf/truncate": "^6.3.0",
+    "@turf/bbox-polygon": "^6.4.0",
+    "@turf/truncate": "^6.4.0",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -61,8 +61,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/distance": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/intersect": "^6.3.0"
+    "@turf/distance": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/intersect": "^6.4.0"
   }
 }
