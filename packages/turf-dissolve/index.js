@@ -1,6 +1,7 @@
 import { featureCollection, multiPolygon, isObject } from "@turf/helpers";
 import { collectionOf } from "@turf/invariant";
 import { featureEach } from "@turf/meta";
+import flatten from "@turf/flatten";
 import polygonClipping from "polygon-clipping";
 
 /**
@@ -36,7 +37,7 @@ function dissolve(fc, options) {
   // Main
   var outFeatures = [];
   if (!options.propertyName) {
-    return featureCollection([
+    return flatten(
       multiPolygon(
         polygonClipping.union.apply(
           null,
@@ -45,7 +46,7 @@ function dissolve(fc, options) {
           })
         )
       ),
-    ]);
+    );
   } else {
     var uniquePropertyVals = {};
     featureEach(fc, function (feature) {
@@ -71,7 +72,7 @@ function dissolve(fc, options) {
     }
   }
 
-  return featureCollection(outFeatures);
+  return flatten(featureCollection(outFeatures));
 }
 
 export default dissolve;
