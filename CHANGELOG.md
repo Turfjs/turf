@@ -31,6 +31,9 @@
 - [`@turf/concave`](concave) Replace deprecated topojson dependency
   (PR https://github.com/Turfjs/turf/pull/2037 - Author @elliots)
 
+- Work towards enabling TS Strict Mode
+ (PR https://github.com/Turfjs/turf/pull/2053 - Author @mfedderly)
+
 
 # 6.3.0
 
