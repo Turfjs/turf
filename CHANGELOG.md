@@ -16,6 +16,8 @@
 - [`@turf/center-median`](center-median) Fixed a missing TS type import
   (PR https://github.com/Turfjs/turf/pull/2044 - Author @Seairth)
 
+- [`@turf/bezier-spline](bezier-spline) Fix a bug ensuring the spline result reaches the end of the input
+  (PR https://github.com/Turfjs/turf/pull/2090 - Author @the-nemz)
 
 ## 📖 Documentation
 - [`@turf/transform-rotate`](transform-rotate) and [`@turf/ellipse`](ellipse)) Improve documentation for angle parameter
@@ -32,7 +34,7 @@
   (PR https://github.com/Turfjs/turf/pull/2037 - Author @elliots)
 
 - Work towards enabling TS Strict Mode
- (PR https://github.com/Turfjs/turf/pull/2053 - Author @mfedderly)
+  (PR https://github.com/Turfjs/turf/pull/2053 - Author @mfedderly)
 
 
 # 6.3.0
