@@ -1,6 +1,6 @@
 {
   "name": "@turf/circle",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf circle module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@mapbox/geojsonhint": "*",
-    "@turf/truncate": "^6.3.0",
+    "@turf/truncate": "^6.4.0",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -61,7 +61,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/destination": "^6.3.0",
-    "@turf/helpers": "^6.3.0"
+    "@turf/destination": "^6.4.0",
+    "@turf/helpers": "^6.4.0"
   }
 }

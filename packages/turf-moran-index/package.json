@@ -1,6 +1,6 @@
 {
   "name": "@turf/moran-index",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf moran-index module",
   "author": "Turf Authors",
   "contributors": [
@@ -57,8 +57,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/distance-weight": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/meta": "^6.3.0"
+    "@turf/distance-weight": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/meta": "^6.4.0"
   }
 }

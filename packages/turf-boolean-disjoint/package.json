@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-disjoint",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf boolean-disjoint module",
   "author": "Turf Authors",
   "contributors": [
@@ -60,10 +60,10 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/line-intersect": "^6.3.0",
-    "@turf/meta": "^6.3.0",
-    "@turf/polygon-to-line": "^6.3.0"
+    "@turf/boolean-point-in-polygon": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/line-intersect": "^6.4.0",
+    "@turf/meta": "^6.4.0",
+    "@turf/polygon-to-line": "^6.4.0"
   }
 }
