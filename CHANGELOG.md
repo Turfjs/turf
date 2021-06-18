@@ -1,3 +1,17 @@
+# next release (6.5.0)
+
+## 🏅 New Features/Enhancements
+
+## 🐛 Bug Fixes
+- [`@turf/rectangle-grid`](rectangle-grid) Fixed a bug in the calculation of x width of the grid
+  (PR https://github.com/Turfjs/turf/pull/2105 - Author @rowanwins)
+
+## 📖 Documentation
+
+## 🔔 Misc
+
+
+
 # 6.4.0
 
 ## 🏅 New Features/Enhancements
