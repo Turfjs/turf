@@ -49,6 +49,7 @@ module.exports = {
     },
     {
       files: [
+        // a few files use browser global variables
         "packages/turf-isobands/lib/marchingsquares-isobands.js",
         "packages/turf-isolines/lib/marchingsquares-isocontours.js",
       ],
