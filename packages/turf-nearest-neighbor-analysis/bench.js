@@ -22,7 +22,7 @@ glob.sync(path.join(__dirname, "test", "in", "*.json")).forEach((filepath) => {
   console.time(name);
   nearestNeighborAnalysis(geojson, options);
   console.timeEnd(name);
-  suite.add(name, () => nearestNeighbor(geojson, options));
+  suite.add(name, () => nearestNeighborAnalysis(geojson, options));
 });
 
 suite.on("cycle", (e) => console.log(String(e.target))).run();

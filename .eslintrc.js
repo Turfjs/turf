@@ -7,7 +7,6 @@ const rules = {
   "@typescript-eslint/no-var-requires": "off",
   "no-constant-condition": "off",
   "no-redeclare": "off",
-  "no-undef": "off",
   "no-unreachable": "off",
   "no-useless-escape": "off",
   "no-var": "off",
@@ -38,6 +37,26 @@ module.exports = {
       rules: {
         // these are meant to test the typescript typings, unused variables are expected
         "@typescript-eslint/no-unused-vars": "off",
+      },
+    },
+    {
+      files: [
+        ".eslintrc.js",
+        "packages/*/bench.js",
+        "packages/*/test.js",
+        "packages/turf/rollup.config.js",
+      ],
+      env: {
+        node: true,
+      },
+    },
+    {
+      files: [
+        "packages/turf-isobands/lib/marchingsquares-isobands.js",
+        "packages/turf-isolines/lib/marchingsquares-isocontours.js",
+      ],
+      env: {
+        browser: true,
       },
     },
   ],
