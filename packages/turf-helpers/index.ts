@@ -215,7 +215,7 @@ export function geometry(
     | "MultiLineString"
     | "MultiPolygon",
   coordinates: any[],
-  _options: {} = {}
+  _options: Record<string, never> = {}
 ) {
   switch (type) {
     case "Point":
