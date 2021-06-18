@@ -43,7 +43,7 @@ export default function bboxClip<
 
   switch (type) {
     case "LineString":
-    case "MultiLineString":
+    case "MultiLineString": {
       const lines: any[] = [];
       if (type === "LineString") {
         coords = [coords];
@@ -55,6 +55,7 @@ export default function bboxClip<
         return lineString(lines[0], properties);
       }
       return multiLineString(lines, properties);
+    }
     case "Polygon":
       return polygon(clipPolygon(coords, bbox), properties);
     case "MultiPolygon":
