@@ -1168,10 +1168,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/skmeans@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@types/skmeans/-/skmeans-0.11.1.tgz#77d4eab94b380111fc998057feea358fe1826fb6"
-  integrity sha512-N7Z03qVNPBHpXjNTzRS5fYX9jxKaW8ES++/2P4LElmQbMqGOBSwoQmzWtWHlX8Vq2OR81vvWR4qjvc9BUiX8wA==
+"@types/skmeans@^0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@types/skmeans/-/skmeans-0.11.2.tgz#33b74ff650a166ea86ae4644d8ce16c50a93e603"
+  integrity sha512-VFOatc1ITAAaYjslFTow+2qJckJROAa5eUvivcTZ4wnSLELFCVt3ezwC0ENl21A0SfqclhKeK4unthZ3uTBCCg==
 
 "@types/tape@*":
   version "4.2.32"

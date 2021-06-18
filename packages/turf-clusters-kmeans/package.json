@@ -56,7 +56,7 @@
     "@turf/centroid": "^6.4.0",
     "@turf/clusters": "^6.4.0",
     "@turf/random": "^6.4.0",
-    "@types/skmeans": "^0.11.1",
+    "@types/skmeans": "^0.11.2",
     "@types/tape": "*",
     "benchmark": "*",
     "chromatism": "*",
