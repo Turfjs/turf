@@ -54,14 +54,10 @@ function rectangleGrid<P = Properties>(
   const east = bbox[2];
   const north = bbox[3];
 
-  const bboxWidth = distance([west, south], [east, south], {
-    units: degrees
-  })
+  const bboxWidth = east - west;
   const cellWidthDeg = convertLength(cellWidth, options.units, "degrees");
 
-  const bboxHeight = distance([west, south], [east,north], {
-    units: degrees
-  })
+  const bboxHeight = north - south;
   const cellHeightDeg = convertLength(cellHeight, options.units, "degrees");
 
   const columns = Math.floor(Math.abs(bboxWidth) / cellWidthDeg);
