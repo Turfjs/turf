@@ -6,7 +6,6 @@ const rules = {
   "@typescript-eslint/no-non-null-assertion": "off",
   "@typescript-eslint/no-var-requires": "off",
   "no-constant-condition": "off",
-  "no-explicit-any": "off",
   "no-prototype-builtins": "off",
   "no-redeclare": "off",
   "no-undef": "off",
