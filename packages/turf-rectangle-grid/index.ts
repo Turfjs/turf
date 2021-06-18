@@ -27,7 +27,7 @@ import {
  * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Polygon>} a grid of polygons
  * @example
- * var bbox = [-95, 30 ,-85, 40];
+ * var bbox = [-95, 30, -85, 40];
  * var cellWidth = 50;
  * var cellHeight = 20;
  * var options = {units: 'miles'};
@@ -54,7 +54,7 @@ function rectangleGrid<P = Properties>(
   const east = bbox[2];
   const north = bbox[3];
 
-  const xFraction = cellWidth / distance([west, south], [east, south], options);
+  const xFraction = cellWidth / distance([west, south], [east, north], options);
   const cellWidthDeg = xFraction * (east - west);
   const yFraction =
     cellHeight / distance([west, south], [west, north], options);

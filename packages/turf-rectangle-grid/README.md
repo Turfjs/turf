@@ -8,28 +8,28 @@ Creates a grid of rectangles from a bounding box, [Feature](https://tools.ietf.o
 
 **Parameters**
 
--   `bbox` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
--   `cellWidth` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** of each cell, in units
--   `cellHeight` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** of each cell, in units
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** units ("degrees", "radians", "miles", "kilometers") that the given cellWidth 
-        and cellHeight are expressed in. Converted at the southern border. (optional, default `'kilometers'`)
-    -   `options.mask` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>?** if passed a Polygon or MultiPolygon,
-        the grid Points will be created only inside it
-    -   `options.properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each point of the grid (optional, default `{}`)
+- `bbox` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
+- `cellWidth` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** of each cell, in units
+- `cellHeight` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** of each cell, in units
+- `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+  - `options.units` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** units ("degrees", "radians", "miles", "kilometers") that the given cellWidth
+    and cellHeight are expressed in. Converted at the southern border. (optional, default `'kilometers'`)
+  - `options.mask` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>?** if passed a Polygon or MultiPolygon,
+    the grid Points will be created only inside it
+  - `options.properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each point of the grid (optional, default `{}`)
 
 **Examples**
 
 ```javascript
-var bbox = [-95, 30 ,-85, 40];
+var bbox = [-95, 30, -85, 40];
 var cellWidth = 50;
 var cellHeight = 20;
-var options = {units: 'miles'};
+var options = { units: "miles" };
 
 var rectangleGrid = turf.rectangleGrid(bbox, cellWidth, cellHeight, options);
 
 //addToMap
-var addToMap = [rectangleGrid]
+var addToMap = [rectangleGrid];
 ```
 
 Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6)>** a grid of polygons
