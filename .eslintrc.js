@@ -7,7 +7,6 @@ const rules = {
   "@typescript-eslint/no-var-requires": "off",
   "no-constant-condition": "off",
   "no-redeclare": "off",
-  "no-useless-escape": "off",
   "no-var": "off",
   "prefer-const": "off",
   "prefer-spread": "off",
