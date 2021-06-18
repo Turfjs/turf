@@ -45,7 +45,7 @@ function dissolve(fc, options) {
             return f.geometry.coordinates;
           })
         )
-      ),
+      )
     );
   } else {
     var uniquePropertyVals = {};
