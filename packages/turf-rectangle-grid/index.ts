@@ -1,5 +1,4 @@
 import intersect from "@turf/boolean-intersects";
-import distance from "@turf/distance";
 import {
   BBox,
   convertLength,
@@ -55,10 +54,14 @@ function rectangleGrid<P = Properties>(
   const east = bbox[2];
   const north = bbox[3];
 
-  const bboxWidth = east - west;
+  const bboxWidth = distance([west, south], [east, south], {
+    units: degrees
+  })
   const cellWidthDeg = convertLength(cellWidth, options.units, "degrees");
 
-  const bboxHeight = north - south;
+  const bboxHeight = distance([west, south], [east,north], {
+    units: degrees
+  })
   const cellHeightDeg = convertLength(cellHeight, options.units, "degrees");
 
   const columns = Math.floor(Math.abs(bboxWidth) / cellWidthDeg);
