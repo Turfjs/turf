@@ -86,9 +86,9 @@ export default function (
   const yMean = mean(y);
   const yVar = variance(y);
   let weightSum = 0;
-  let s0: number = 0;
-  let s1: number = 0;
-  let s2: number = 0;
+  let s0 = 0;
+  let s1 = 0;
+  let s2 = 0;
   const n = weight.length;
   // validate y.length is the same as weight.length
   for (let i = 0; i < n; i++) {

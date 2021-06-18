@@ -12,7 +12,7 @@ import { featureEach } from "@turf/meta";
 export function pNormDistance(
   feature1: Feature<Point>,
   feature2: Feature<Point>,
-  p: number = 2
+  p = 2
 ): number {
   const coordinate1 = getCoord(feature1);
   const coordinate2 = getCoord(feature2);
