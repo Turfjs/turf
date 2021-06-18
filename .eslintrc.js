@@ -9,7 +9,6 @@ const rules = {
   "no-redeclare": "off",
   "no-var": "off",
   "prefer-const": "off",
-  "prefer-spread": "off",
 };
 
 module.exports = {
