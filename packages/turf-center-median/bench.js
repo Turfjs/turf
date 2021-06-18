@@ -16,5 +16,4 @@ suite
   .add("turf-center-median - 200 points", () => centerMedian(randomPoint(200)))
   .add("turf-center-median - 500 points", () => centerMedian(randomPoint(500)))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

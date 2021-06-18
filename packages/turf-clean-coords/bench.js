@@ -73,7 +73,4 @@ glob
     suite.add(name, () => cleanCoords(geojson, true));
   });
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

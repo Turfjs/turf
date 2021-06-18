@@ -17,5 +17,4 @@ suite
   .add("turf-circle - 32 steps", () => circle(center, radius, 32))
   .add("turf-circle - 64 steps", () => circle(center, radius, 64))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

@@ -26,7 +26,4 @@ fixtures.forEach(({ filename, geojson }) => {
   suite.add(filename, () => lineChunk(geojson, 5, "miles"));
 });
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

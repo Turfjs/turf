@@ -13,5 +13,4 @@ new Benchmark.Suite("turf-angle")
     angle([5, 5], [5, 6], [3, 4], { mercator: true })
   )
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

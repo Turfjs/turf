@@ -8,5 +8,4 @@ var suite = new Benchmark.Suite("turf-distance");
 suite
   .add("turf-distance", () => distance(pt1, pt2))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

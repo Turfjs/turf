@@ -37,7 +37,4 @@ suite.add(nameQ, () =>
 );
 suite.add(nameN, () => nearestNeighborAnalysis(dataset));
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

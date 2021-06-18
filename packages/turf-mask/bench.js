@@ -27,5 +27,4 @@ suite
   .on("cycle", (event) => {
     console.log(String(event.target));
   })
-  .on("complete", () => {})
   .run();

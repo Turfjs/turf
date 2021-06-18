@@ -30,7 +30,4 @@ for (const { name, geojson } of fixtures) {
   suite.add(name, () => sector(geojson, radius, bearing1, bearing2));
 }
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

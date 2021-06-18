@@ -16,5 +16,4 @@ suite
     nearestPoint(pts.properties.targetPoint, pts)
   )
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

@@ -51,7 +51,4 @@ for (const { name, geojson } of fixtures) {
   suite.add(name, () => rotate(geojson, angle, { pivot, mutate: true }));
 }
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

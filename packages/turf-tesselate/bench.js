@@ -21,5 +21,4 @@ var poly = polygon([
 new Benchmark.Suite("turf-tesselate")
   .add("polygon", () => tesselate(poly))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

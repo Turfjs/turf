@@ -16,5 +16,4 @@ suite
   .add("initial bearing", () => rhumbBearing(start, end))
   .add("final bearing", () => rhumbBearing(start, end, true))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

@@ -63,7 +63,4 @@ for (const { name, jsondata, filename } of fixtures) {
     })
   );
 }
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

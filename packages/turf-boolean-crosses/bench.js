@@ -40,7 +40,4 @@ glob
     suite.add(name, () => crosses(feature1, feature2));
   });
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

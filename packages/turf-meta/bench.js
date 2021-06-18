@@ -74,25 +74,25 @@ const suite = new Benchmark.Suite("turf-meta");
  */
 Object.keys(fixtures).forEach((name) => {
   const geojson = fixtures[name];
+  const noop = () => {
+    /* no-op */
+  };
   suite
-    .add("segmentEach   - " + name, () => meta.segmentEach(geojson, () => {}))
-    .add("segmentReduce - " + name, () => meta.segmentReduce(geojson, () => {}))
-    .add("flattenEach   - " + name, () => meta.flattenEach(geojson, () => {}))
-    .add("flattenReduce - " + name, () => meta.flattenReduce(geojson, () => {}))
-    .add("coordEach     - " + name, () => meta.coordEach(geojson, () => {}))
-    .add("coordReduce   - " + name, () => meta.coordReduce(geojson, () => {}))
-    .add("propEach      - " + name, () => meta.propEach(geojson, () => {}))
-    .add("propReduce    - " + name, () => meta.propReduce(geojson, () => {}))
-    .add("geomEach      - " + name, () => meta.geomEach(geojson, () => {}))
-    .add("geomReduce    - " + name, () => meta.geomReduce(geojson, () => {}))
-    .add("featureEach   - " + name, () => meta.featureEach(geojson, () => {}))
-    .add("featureReduce - " + name, () => meta.featureReduce(geojson, () => {}))
+    .add("segmentEach   - " + name, () => meta.segmentEach(geojson, noop))
+    .add("segmentReduce - " + name, () => meta.segmentReduce(geojson, noop))
+    .add("flattenEach   - " + name, () => meta.flattenEach(geojson, noop))
+    .add("flattenReduce - " + name, () => meta.flattenReduce(geojson, noop))
+    .add("coordEach     - " + name, () => meta.coordEach(geojson, noop))
+    .add("coordReduce   - " + name, () => meta.coordReduce(geojson, noop))
+    .add("propEach      - " + name, () => meta.propEach(geojson, noop))
+    .add("propReduce    - " + name, () => meta.propReduce(geojson, noop))
+    .add("geomEach      - " + name, () => meta.geomEach(geojson, noop))
+    .add("geomReduce    - " + name, () => meta.geomReduce(geojson, noop))
+    .add("featureEach   - " + name, () => meta.featureEach(geojson, noop))
+    .add("featureReduce - " + name, () => meta.featureReduce(geojson, noop))
     .add("coordAll      - " + name, () => meta.coordAll(geojson))
     .add("findSegment   - " + name, () => meta.findSegment(geojson))
     .add("findPoint     - " + name, () => meta.findPoint(geojson));
 });
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

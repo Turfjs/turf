@@ -25,5 +25,4 @@ new Benchmark.Suite("turf-intersect")
     intersect(armenia.features[0], armenia.features[1])
   )
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

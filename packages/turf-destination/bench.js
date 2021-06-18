@@ -8,5 +8,4 @@ var bear = 180;
 new Benchmark.Suite("turf-destination")
   .add("turf-destination", () => destination(pt1, dist, bear))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

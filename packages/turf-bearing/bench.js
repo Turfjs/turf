@@ -9,5 +9,4 @@ suite
   .add("initial bearing", () => bearing(start, end))
   .add("final bearing", () => bearing(start, end, { final: true }))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

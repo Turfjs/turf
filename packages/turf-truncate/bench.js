@@ -49,7 +49,4 @@ for (const { name, geojson } of fixtures) {
   suite.add(name, () => truncate(geojson, 6, 2, true));
 }
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

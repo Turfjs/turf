@@ -26,5 +26,4 @@ suite
     squareGrid(bbox, 1, { units: "miles" })
   )
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

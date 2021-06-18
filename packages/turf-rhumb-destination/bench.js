@@ -17,5 +17,4 @@ suite
     destination(pt1, distance, bearing, "kilometers")
   )
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

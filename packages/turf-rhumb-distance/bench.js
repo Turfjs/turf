@@ -14,5 +14,4 @@ const suite = new Benchmark.Suite("turf-rhumb-distance");
 suite
   .add("turf-rhumb-distance", () => distance(pt1, pt2, "miles"))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

@@ -30,7 +30,4 @@ const suite = new Benchmark.Suite("turf-line-distance");
 for (const { name, geojson } of fixtures) {
   suite.add(name, () => length(geojson));
 }
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

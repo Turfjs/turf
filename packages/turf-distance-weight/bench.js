@@ -21,7 +21,4 @@ console.timeEnd(name);
 
 suite.add(name, () => distanceWeight(columbusJson));
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

@@ -160,7 +160,6 @@ glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
 
 suite
     .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
     .run();
 `
 );

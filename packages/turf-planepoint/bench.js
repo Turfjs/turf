@@ -24,5 +24,4 @@ const suite = new Benchmark.Suite("turf-planepoint");
 suite
   .add("turf-planepoint", () => planepoint(point, triangle))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

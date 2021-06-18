@@ -25,7 +25,4 @@ const suite = new Benchmark.Suite("turf-area");
 for (const { name, geojson } of fixtures) {
   suite.add(name, () => area(geojson));
 }
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

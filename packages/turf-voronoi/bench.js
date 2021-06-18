@@ -23,7 +23,4 @@ for (const { name, geojson } of fixtures) {
   suite.add(name, () => voronoi(geojson, geojson.features[0].properties.bbox));
 }
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

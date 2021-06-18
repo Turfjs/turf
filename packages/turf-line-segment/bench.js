@@ -28,7 +28,4 @@ const suite = new Benchmark.Suite("turf-line-segment");
 fixtures.forEach(({ name, geojson }) =>
   suite.add(name, () => lineSegment(geojson))
 );
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();
