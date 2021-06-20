@@ -43,7 +43,11 @@ export default function kinks<T extends LineString | MultiLineString | Polygon |
         features: [],
     };
 
-    if ((featureIn as GeometryObject | Feature<GeometryObject>).type === "Point" || (featureIn as GeometryObject | Feature<GeometryObject>).type === 'MultiPoint') {
+if (featureIn as GeometryObject).type === "Point" ||
+  featureIn as GeometryObject).type === 'MultiPoint' ||
+  (featureIn as Feature<GeometryObject>.type === 'Feature' && (
+    featureIn.geometry.type === 'Point' ||
+    featureIn.geometry.type === 'MultiPoint'))) {
         throw new Error("Input must be a LineString, MultiLineString, " +
             "Polygon, or MultiPolygon Feature or Geometry");
     }
