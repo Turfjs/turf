@@ -1,16 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import lineSplit from './dist/js/index.js';
+import fs from "fs";
+import path from "path";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import lineSplit from "./index";
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -28,12 +28,14 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * polygon-with-holes x 3,260 ops/sec ±3.41% (68 runs sampled)
  * polygon x 12,352 ops/sec ±3.88% (62 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-line-split');
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => lineSplit(geojson.features[0], geojson.features[1]));
+const suite = new Benchmark.Suite("turf-line-split");
+for (const { name, geojson } of fixtures) {
+  suite.add(name, () => lineSplit(geojson.features[0], geojson.features[1]));
 }
 
 suite
-    .on('cycle', e => { console.log(String(e.target)); })
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => {
+    console.log(String(e.target));
+  })
+  .on("complete", () => {})
+  .run();

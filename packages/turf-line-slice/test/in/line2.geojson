@@ -7,8 +7,8 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [0,0],
-          [1,1]
+          [0, 0],
+          [1, 1]
         ]
       }
     },
@@ -17,10 +17,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          0,
-          0.1
-        ]
+        "coordinates": [0, 0.1]
       }
     },
     {
@@ -28,10 +25,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          0.9,
-          0.8
-        ]
+        "coordinates": [0.9, 0.8]
       }
     }
   ]

@@ -1,7 +1,12 @@
-import { flattenEach } from '@turf/meta';
-import { getCoords, getType } from '@turf/invariant';
-import { isObject, lineString, multiLineString, lengthToDegrees } from '@turf/helpers';
-import intersection from './lib/intersection';
+import { flattenEach } from "@turf/meta";
+import { getCoords, getType } from "@turf/invariant";
+import {
+  isObject,
+  lineString,
+  multiLineString,
+  lengthToDegrees,
+} from "@turf/helpers";
+import intersection from "./lib/intersection";
 
 /**
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.
@@ -22,30 +27,33 @@ import intersection from './lib/intersection';
  * offsetLine.properties.stroke = "#00F"
  */
 function lineOffset(geojson, distance, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var units = options.units;
+  // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var units = options.units;
 
-    // Valdiation
-    if (!geojson) throw new Error('geojson is required');
-    if (distance === undefined || distance === null || isNaN(distance)) throw new Error('distance is required');
+  // Valdiation
+  if (!geojson) throw new Error("geojson is required");
+  if (distance === undefined || distance === null || isNaN(distance))
+    throw new Error("distance is required");
 
-    var type = getType(geojson);
-    var properties = geojson.properties;
+  var type = getType(geojson);
+  var properties = geojson.properties;
 
-    switch (type) {
-    case 'LineString':
-        return lineOffsetFeature(geojson, distance, units);
-    case 'MultiLineString':
-        var coords = [];
-        flattenEach(geojson, function (feature) {
-            coords.push(lineOffsetFeature(feature, distance, units).geometry.coordinates);
-        });
-        return multiLineString(coords, properties);
+  switch (type) {
+    case "LineString":
+      return lineOffsetFeature(geojson, distance, units);
+    case "MultiLineString":
+      var coords = [];
+      flattenEach(geojson, function (feature) {
+        coords.push(
+          lineOffsetFeature(feature, distance, units).geometry.coordinates
+        );
+      });
+      return multiLineString(coords, properties);
     default:
-        throw new Error('geometry ' + type + ' is not supported');
-    }
+      throw new Error("geometry " + type + " is not supported");
+  }
 }
 
 /**
@@ -58,38 +66,42 @@ function lineOffset(geojson, distance, options) {
  * @returns {Feature<LineString>} Line offset from the input line
  */
 function lineOffsetFeature(line, distance, units) {
-    var segments = [];
-    var offsetDegrees = lengthToDegrees(distance, units);
-    var coords = getCoords(line);
-    var finalCoords = [];
-    coords.forEach(function (currentCoords, index) {
-        if (index !== coords.length - 1) {
-            var segment = processSegment(currentCoords, coords[index + 1], offsetDegrees);
-            segments.push(segment);
-            if (index > 0) {
-                var seg2Coords = segments[index - 1];
-                var intersects = intersection(segment, seg2Coords);
+  var segments = [];
+  var offsetDegrees = lengthToDegrees(distance, units);
+  var coords = getCoords(line);
+  var finalCoords = [];
+  coords.forEach(function (currentCoords, index) {
+    if (index !== coords.length - 1) {
+      var segment = processSegment(
+        currentCoords,
+        coords[index + 1],
+        offsetDegrees
+      );
+      segments.push(segment);
+      if (index > 0) {
+        var seg2Coords = segments[index - 1];
+        var intersects = intersection(segment, seg2Coords);
 
-                // Handling for line segments that aren't straight
-                if (intersects !== false) {
-                    seg2Coords[1] = intersects;
-                    segment[0] = intersects;
-                }
-
-                finalCoords.push(seg2Coords[0]);
-                if (index === coords.length - 2) {
-                    finalCoords.push(segment[0]);
-                    finalCoords.push(segment[1]);
-                }
-            }
-            // Handling for lines that only have 1 segment
-            if (coords.length === 2) {
-                finalCoords.push(segment[0]);
-                finalCoords.push(segment[1]);
-            }
+        // Handling for line segments that aren't straight
+        if (intersects !== false) {
+          seg2Coords[1] = intersects;
+          segment[0] = intersects;
         }
-    });
-    return lineString(finalCoords, line.properties);
+
+        finalCoords.push(seg2Coords[0]);
+        if (index === coords.length - 2) {
+          finalCoords.push(segment[0]);
+          finalCoords.push(segment[1]);
+        }
+      }
+      // Handling for lines that only have 1 segment
+      if (coords.length === 2) {
+        finalCoords.push(segment[0]);
+        finalCoords.push(segment[1]);
+      }
+    }
+  });
+  return lineString(finalCoords, line.properties);
 }
 
 /**
@@ -103,13 +115,19 @@ function lineOffsetFeature(line, distance, units) {
  * @returns {Array<Array<number>>} offset points
  */
 function processSegment(point1, point2, offset) {
-    var L = Math.sqrt((point1[0] - point2[0]) * (point1[0] - point2[0]) + (point1[1] - point2[1]) * (point1[1] - point2[1]));
+  var L = Math.sqrt(
+    (point1[0] - point2[0]) * (point1[0] - point2[0]) +
+      (point1[1] - point2[1]) * (point1[1] - point2[1])
+  );
 
-    var out1x = point1[0] + offset * (point2[1] - point1[1]) / L;
-    var out2x = point2[0] + offset * (point2[1] - point1[1]) / L;
-    var out1y = point1[1] + offset * (point1[0] - point2[0]) / L;
-    var out2y = point2[1] + offset * (point1[0] - point2[0]) / L;
-    return [[out1x, out1y], [out2x, out2y]];
+  var out1x = point1[0] + (offset * (point2[1] - point1[1])) / L;
+  var out2x = point2[0] + (offset * (point2[1] - point1[1])) / L;
+  var out1y = point1[1] + (offset * (point1[0] - point2[0])) / L;
+  var out2y = point2[1] + (offset * (point1[0] - point2[0])) / L;
+  return [
+    [out1x, out1y],
+    [out2x, out2y],
+  ];
 }
 
 export default lineOffset;

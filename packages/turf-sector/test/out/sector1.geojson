@@ -1,81 +1,45 @@
 {
-	"type": "FeatureCollection",
-	"features": [
-		{
-			"type": "Feature",
-			"properties": {
-				"radius": 5,
-				"bearing1": 20,
-				"bearing2": 60
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					11.343,
-					44.495
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"stroke": "#000000",
-				"stroke-width": 10,
-				"stroke-opacity": 1,
-				"fill": "#FF0",
-				"fill-opacity": 0.8
-			},
-			"geometry": {
-				"type": "Polygon",
-				"coordinates": [
-					[
-						[
-							11.343,
-							44.495
-						],
-						[
-							11.364576,
-							44.537252
-						],
-						[
-							11.370282,
-							44.53554
-						],
-						[
-							11.375724,
-							44.533437
-						],
-						[
-							11.380851,
-							44.530964
-						],
-						[
-							11.385612,
-							44.528145
-						],
-						[
-							11.389963,
-							44.525006
-						],
-						[
-							11.39386,
-							44.521578
-						],
-						[
-							11.397267,
-							44.517894
-						],
-						[
-							11.397614,
-							44.51747
-						],
-						[
-							11.343,
-							44.495
-						]
-					]
-				]
-			}
-		}
-	]
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "radius": 5,
+        "bearing1": 20,
+        "bearing2": 60
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [11.343, 44.495]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#000000",
+        "stroke-width": 10,
+        "stroke-opacity": 1,
+        "fill": "#FF0",
+        "fill-opacity": 0.8
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [11.343, 44.495],
+            [11.364576, 44.537252],
+            [11.370282, 44.53554],
+            [11.375724, 44.533437],
+            [11.380851, 44.530964],
+            [11.385612, 44.528145],
+            [11.389963, 44.525006],
+            [11.39386, 44.521578],
+            [11.397267, 44.517894],
+            [11.397614, 44.51747],
+            [11.343, 44.495]
+          ]
+        ]
+      }
+    }
+  ]
 }

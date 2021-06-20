@@ -1,16 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import flip from './dist/js/index.js';
+import fs from "fs";
+import path from "path";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import flip from "./index";
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -21,12 +21,12 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * point-with-elevation x 10,779,300 ops/sec ±2.08% (84 runs sampled)
  * polygon x 4,454,602 ops/sec ±3.45% (86 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-flip');
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => flip(geojson));
+const suite = new Benchmark.Suite("turf-flip");
+for (const { name, geojson } of fixtures) {
+  suite.add(name, () => flip(geojson));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

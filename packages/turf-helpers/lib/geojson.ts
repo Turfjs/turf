@@ -17,13 +17,14 @@
  * https://tools.ietf.org/html/rfc7946#section-1.4
  * The valid values for the "type" property of GeoJSON geometry objects.
  */
-export type GeometryTypes = "Point" |
-                            "LineString" |
-                            "Polygon" |
-                            "MultiPoint" |
-                            "MultiLineString" |
-                            "MultiPolygon" |
-                            "GeometryCollection";
+export type GeometryTypes =
+  | "Point"
+  | "LineString"
+  | "Polygon"
+  | "MultiPoint"
+  | "MultiLineString"
+  | "MultiPolygon"
+  | "GeometryCollection";
 
 export type CollectionTypes = "FeatureCollection" | "GeometryCollection";
 
@@ -74,17 +75,18 @@ export type Position = number[]; // [number, number] | [number, number, number];
  * A Feature object has a member with the name "properties".
  * The value of the properties member is an object (any JSON object or a JSON null value).
  */
-export type Properties = { [name: string]: any; } | null;
+export type Properties = { [name: string]: any } | null;
 
 /**
  * Geometries
  */
-export type Geometries = Point |
-                         LineString |
-                         Polygon |
-                         MultiPoint |
-                         MultiLineString |
-                         MultiPolygon;
+export type Geometries =
+  | Point
+  | LineString
+  | Polygon
+  | MultiPoint
+  | MultiLineString
+  | MultiPolygon;
 
 /**
  * GeoJSON Object
@@ -94,18 +96,18 @@ export type Geometries = Point |
  * Developers should use "&" type in TypeScript or extend the interface to add these foreign members.
  */
 export interface GeoJSONObject {
-    // Don't include foreign members directly into this type def.
-    // in order to preserve type safety.
-    // [key: string]: any;
-    /**
-     * Specifies the type of GeoJSON object.
-     */
-    type: string;
-    /**
-     * Bounding box of the coordinate range of the object's Geometries, Features, or Feature Collections.
-     * https://tools.ietf.org/html/rfc7946#section-5
-     */
-    bbox?: BBox;
+  // Don't include foreign members directly into this type def.
+  // in order to preserve type safety.
+  // [key: string]: any;
+  /**
+   * Specifies the type of GeoJSON object.
+   */
+  type: string;
+  /**
+   * Bounding box of the coordinate range of the object's Geometries, Features, or Feature Collections.
+   * https://tools.ietf.org/html/rfc7946#section-5
+   */
+  bbox?: BBox;
 }
 
 /**
@@ -114,7 +116,7 @@ export interface GeoJSONObject {
  * https://tools.ietf.org/html/rfc7946#section-3
  */
 export interface GeometryObject extends GeoJSONObject {
-    type: GeometryTypes;
+  type: GeometryTypes;
 }
 
 /**
@@ -123,10 +125,7 @@ export interface GeometryObject extends GeoJSONObject {
  * https://tools.ietf.org/html/rfc7946#section-3
  */
 export interface Geometry extends GeoJSONObject {
-    coordinates: Position |
-                 Position[] |
-                 Position[][] |
-                 Position[][][];
+  coordinates: Position | Position[] | Position[][] | Position[][][];
 }
 
 /**
@@ -135,8 +134,8 @@ export interface Geometry extends GeoJSONObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.2
  */
 export interface Point extends GeometryObject {
-    type: "Point";
-    coordinates: Position;
+  type: "Point";
+  coordinates: Position;
 }
 
 /**
@@ -145,8 +144,8 @@ export interface Point extends GeometryObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.3
  */
 export interface MultiPoint extends GeometryObject {
-    type: "MultiPoint";
-    coordinates: Position[];
+  type: "MultiPoint";
+  coordinates: Position[];
 }
 
 /**
@@ -155,8 +154,8 @@ export interface MultiPoint extends GeometryObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.4
  */
 export interface LineString extends GeometryObject {
-    type: "LineString";
-    coordinates: Position[];
+  type: "LineString";
+  coordinates: Position[];
 }
 
 /**
@@ -165,8 +164,8 @@ export interface LineString extends GeometryObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.5
  */
 export interface MultiLineString extends GeometryObject {
-    type: "MultiLineString";
-    coordinates: Position[][];
+  type: "MultiLineString";
+  coordinates: Position[][];
 }
 
 /**
@@ -175,8 +174,8 @@ export interface MultiLineString extends GeometryObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.6
  */
 export interface Polygon extends GeometryObject {
-    type: "Polygon";
-    coordinates: Position[][];
+  type: "Polygon";
+  coordinates: Position[][];
 }
 
 /**
@@ -185,8 +184,8 @@ export interface Polygon extends GeometryObject {
  * https://tools.ietf.org/html/rfc7946#section-3.1.7
  */
 export interface MultiPolygon extends GeometryObject {
-    type: "MultiPolygon";
-    coordinates: Position[][][];
+  type: "MultiPolygon";
+  coordinates: Position[][][];
 }
 
 /**
@@ -200,8 +199,10 @@ export interface MultiPolygon extends GeometryObject {
  * It is possible for this array to be empty.
  */
 export interface GeometryCollection extends GeometryObject {
-    type: "GeometryCollection";
-    geometries: Array<Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon>;
+  type: "GeometryCollection";
+  geometries: Array<
+    Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
+  >;
 }
 
 /**
@@ -211,18 +212,19 @@ export interface GeometryCollection extends GeometryObject {
  * A Feature object represents a spatially bounded thing.
  * Every Feature object is a GeoJSON object no matter where it occurs in a GeoJSON text.
  */
-export interface Feature<G = Geometry | GeometryCollection, P = Properties> extends GeoJSONObject {
-    type: "Feature";
-    geometry: G;
-    /**
-     * A value that uniquely identifies this feature in a
-     * https://tools.ietf.org/html/rfc7946#section-3.2.
-     */
-    id?: Id;
-    /**
-     * Properties associated with this feature.
-     */
-    properties: P;
+export interface Feature<G = Geometry | GeometryCollection, P = Properties>
+  extends GeoJSONObject {
+  type: "Feature";
+  geometry: G;
+  /**
+   * A value that uniquely identifies this feature in a
+   * https://tools.ietf.org/html/rfc7946#section-3.2.
+   */
+  id?: Id;
+  /**
+   * Properties associated with this feature.
+   */
+  properties: P;
 }
 
 /**
@@ -234,7 +236,10 @@ export interface Feature<G = Geometry | GeometryCollection, P = Properties> exte
  * The value of "features" is a JSON array. Each element of the array is a Feature object as defined above.
  * It is possible for this array to be empty.
  */
-export interface FeatureCollection<G = Geometry | GeometryCollection, P = Properties> extends GeoJSONObject {
-    type: "FeatureCollection";
-    features: Array<Feature<G, P>>;
+export interface FeatureCollection<
+  G = Geometry | GeometryCollection,
+  P = Properties
+> extends GeoJSONObject {
+  type: "FeatureCollection";
+  features: Array<Feature<G, P>>;
 }

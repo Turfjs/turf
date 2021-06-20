@@ -19,10 +19,16 @@ const RADIUS = 6378137;
  * var addToMap = [polygon]
  * polygon.properties.area = area
  */
-export default function area(geojson: Feature<any> | FeatureCollection<any> | Geometry) {
-    return geomReduce(geojson, (value, geom) => {
-        return value + calculateArea(geom);
-    }, 0);
+export default function area(
+  geojson: Feature<any> | FeatureCollection<any> | Geometry
+) {
+  return geomReduce(
+    geojson,
+    (value, geom) => {
+      return value + calculateArea(geom);
+    },
+    0
+  );
 }
 
 /**
@@ -33,34 +39,34 @@ export default function area(geojson: Feature<any> | FeatureCollection<any> | Ge
  * @returns {number} area
  */
 function calculateArea(geom: Geometry): number {
-    let total = 0;
-    let i;
-    switch (geom.type) {
+  let total = 0;
+  let i;
+  switch (geom.type) {
     case "Polygon":
-        return polygonArea(geom.coordinates);
+      return polygonArea(geom.coordinates);
     case "MultiPolygon":
-        for (i = 0; i < geom.coordinates.length; i++) {
-            total += polygonArea(geom.coordinates[i]);
-        }
-        return total;
+      for (i = 0; i < geom.coordinates.length; i++) {
+        total += polygonArea(geom.coordinates[i]);
+      }
+      return total;
     case "Point":
     case "MultiPoint":
     case "LineString":
     case "MultiLineString":
-        return 0;
-    }
-    return 0;
+      return 0;
+  }
+  return 0;
 }
 
 function polygonArea(coords: any) {
-    let total = 0;
-    if (coords && coords.length > 0) {
-        total += Math.abs(ringArea(coords[0]));
-        for (let i = 1; i < coords.length; i++) {
-            total -= Math.abs(ringArea(coords[i]));
-        }
+  let total = 0;
+  if (coords && coords.length > 0) {
+    total += Math.abs(ringArea(coords[0]));
+    for (let i = 1; i < coords.length; i++) {
+      total -= Math.abs(ringArea(coords[i]));
     }
-    return total;
+  }
+  return total;
 }
 
 /**
@@ -77,42 +83,45 @@ function polygonArea(coords: any) {
  * @returns {number} The approximate signed geodesic area of the polygon in square meters.
  */
 function ringArea(coords: number[][]) {
-    let p1;
-    let p2;
-    let p3;
-    let lowerIndex;
-    let middleIndex;
-    let upperIndex;
-    let i;
-    let total = 0;
-    const coordsLength = coords.length;
+  let p1;
+  let p2;
+  let p3;
+  let lowerIndex;
+  let middleIndex;
+  let upperIndex;
+  let i;
+  let total = 0;
+  const coordsLength = coords.length;
 
-    if (coordsLength > 2) {
-        for (i = 0; i < coordsLength; i++) {
-            if (i === coordsLength - 2) { // i = N-2
-                lowerIndex = coordsLength - 2;
-                middleIndex = coordsLength - 1;
-                upperIndex = 0;
-            } else if (i === coordsLength - 1) { // i = N-1
-                lowerIndex = coordsLength - 1;
-                middleIndex = 0;
-                upperIndex = 1;
-            } else { // i = 0 to N-3
-                lowerIndex = i;
-                middleIndex = i + 1;
-                upperIndex = i + 2;
-            }
-            p1 = coords[lowerIndex];
-            p2 = coords[middleIndex];
-            p3 = coords[upperIndex];
-            total += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
-        }
-
-        total = total * RADIUS * RADIUS / 2;
+  if (coordsLength > 2) {
+    for (i = 0; i < coordsLength; i++) {
+      if (i === coordsLength - 2) {
+        // i = N-2
+        lowerIndex = coordsLength - 2;
+        middleIndex = coordsLength - 1;
+        upperIndex = 0;
+      } else if (i === coordsLength - 1) {
+        // i = N-1
+        lowerIndex = coordsLength - 1;
+        middleIndex = 0;
+        upperIndex = 1;
+      } else {
+        // i = 0 to N-3
+        lowerIndex = i;
+        middleIndex = i + 1;
+        upperIndex = i + 2;
+      }
+      p1 = coords[lowerIndex];
+      p2 = coords[middleIndex];
+      p3 = coords[upperIndex];
+      total += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
     }
-    return total;
+
+    total = (total * RADIUS * RADIUS) / 2;
+  }
+  return total;
 }
 
 function rad(num: number) {
-    return num * Math.PI / 180;
+  return (num * Math.PI) / 180;
 }

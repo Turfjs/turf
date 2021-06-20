@@ -1,16 +1,41 @@
-const Benchmark = require('benchmark');
-const { point, lineString, polygon, featureCollection } = require('@turf/helpers');
-const clone = require('./dist/js/index.js').default;
+const Benchmark = require("benchmark");
+const {
+  point,
+  lineString,
+  polygon,
+  featureCollection,
+} = require("@turf/helpers");
+const clone = require("./index").default;
 
 const fixtures = [
+  point([0, 20]),
+  lineString([
+    [10, 40],
+    [0, 20],
+  ]),
+  polygon([
+    [
+      [10, 40],
+      [0, 20],
+      [20, 0],
+      [10, 40],
+    ],
+  ]),
+  featureCollection([
     point([0, 20]),
-    lineString([[10, 40], [0, 20]]),
-    polygon([[[10, 40], [0, 20], [20, 0], [10, 40]]]),
-    featureCollection([
-        point([0, 20]),
-        lineString([[10, 40], [0, 20]]),
-        polygon([[[10, 40], [0, 20], [20, 0], [10, 40]]])
-    ])
+    lineString([
+      [10, 40],
+      [0, 20],
+    ]),
+    polygon([
+      [
+        [10, 40],
+        [0, 20],
+        [20, 0],
+        [10, 40],
+      ],
+    ]),
+  ]),
 ];
 
 /**
@@ -29,17 +54,19 @@ const fixtures = [
  * FeatureCollection                                x 248,164 ops/sec ±1.50% (84 runs sampled)
  * FeatureCollection -- JSON.parse + JSON.stringify x 92,873 ops/sec ±0.91% (88 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-clone');
+const suite = new Benchmark.Suite("turf-clone");
 for (const fixture of fixtures) {
-    const name = (fixture.geometry) ? fixture.geometry.type : fixture.type;
-    console.time(name);
-    clone(fixture, true);
-    console.timeEnd(name);
-    suite.add(name, () => clone(fixture));
-    suite.add(name + ' -- JSON.parse + JSON.stringify', () => JSON.parse(JSON.stringify(fixture)));
+  const name = fixture.geometry ? fixture.geometry.type : fixture.type;
+  console.time(name);
+  clone(fixture, true);
+  console.timeEnd(name);
+  suite.add(name, () => clone(fixture));
+  suite.add(name + " -- JSON.parse + JSON.stringify", () =>
+    JSON.parse(JSON.stringify(fixture))
+  );
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

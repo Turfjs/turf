@@ -1,15 +1,17 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const centroid = require('./dist/js/index.js').default;
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const centroid = require("./index").default;
 
-const fixtures = glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).map(input => {
+const fixtures = glob
+  .sync(path.join(__dirname, "test", "in", "*.geojson"))
+  .map((input) => {
     return {
-        name: path.parse(input).name,
-        geojson: load.sync(input)
-    }
-});
+      name: path.parse(input).name,
+      geojson: load.sync(input),
+    };
+  });
 
 /**
  * Single Process Benchmark
@@ -20,10 +22,10 @@ const fixtures = glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).map(
  * point: 0.012ms
  * polygon: 0.016ms
  */
-for (const {name, geojson} of fixtures) {
-    console.time(name);
-    centroid(geojson);
-    console.timeEnd(name);
+for (const { name, geojson } of fixtures) {
+  console.time(name);
+  centroid(geojson);
+  console.timeEnd(name);
 }
 
 /**
@@ -35,12 +37,12 @@ for (const {name, geojson} of fixtures) {
  * point x 4,559,430 ops/sec ±4.39% (79 runs sampled)
  * polygon x 2,741,762 ops/sec ±2.29% (85 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-centroid');
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => centroid(geojson));
+const suite = new Benchmark.Suite("turf-centroid");
+for (const { name, geojson } of fixtures) {
+  suite.add(name, () => centroid(geojson));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

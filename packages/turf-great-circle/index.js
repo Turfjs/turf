@@ -1,8 +1,10 @@
-import { getCoord } from '@turf/invariant';
-import { GreatCircle } from './lib/arc';
+import { getCoord } from "@turf/invariant";
+import { GreatCircle } from "./lib/arc";
 
 /**
- * Calculate great circles routes as {@link LineString}
+ * Calculate great circles routes as {@link LineString} or {@link MultiLineString}.
+ * If the `start` and `end` points span the antimeridian, the resulting feature will
+ * be split into a `MultiLineString`.
  *
  * @name greatCircle
  * @param {Coord} start source point feature
@@ -12,7 +14,7 @@ import { GreatCircle } from './lib/arc';
  * @param {number} [options.npoints=100] number of points
  * @param {number} [options.offset=10] offset controls the likelyhood that lines will
  * be split which cross the dateline. The higher the number the more likely.
- * @returns {Feature<LineString>} great circle line feature
+ * @returns {Feature<LineString | MultiLineString>} great circle line feature
  * @example
  * var start = turf.point([-122, 48]);
  * var end = turf.point([-77, 39]);
@@ -23,26 +25,28 @@ import { GreatCircle } from './lib/arc';
  * var addToMap = [start, end, greatCircle]
  */
 function greatCircle(start, end, options) {
-    // Optional parameters
-    options = options || {};
-    if (typeof options !== 'object') throw new Error('options is invalid');
-    var properties = options.properties;
-    var npoints = options.npoints;
-    var offset = options.offset;
+  // Optional parameters
+  options = options || {};
+  if (typeof options !== "object") throw new Error("options is invalid");
+  var properties = options.properties;
+  var npoints = options.npoints;
+  var offset = options.offset;
 
-    start = getCoord(start);
-    end = getCoord(end);
-    properties = properties || {};
-    npoints = npoints || 100;
-    offset = offset || 10;
+  start = getCoord(start);
+  end = getCoord(end);
+  properties = properties || {};
+  npoints = npoints || 100;
+  offset = offset || 10;
 
-    var generator = new GreatCircle({x: start[0], y: start[1]}, {x: end[0], y: end[1]}, properties);
+  var generator = new GreatCircle(
+    { x: start[0], y: start[1] },
+    { x: end[0], y: end[1] },
+    properties
+  );
 
-    /* eslint-disable */
-    var line = generator.Arc(npoints, {offset: offset});
-    /* eslint-enable */
+  var line = generator.Arc(npoints, { offset: offset });
 
-    return line.json();
+  return line.json();
 }
 
 export default greatCircle;

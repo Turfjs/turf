@@ -5,9 +5,6 @@
   },
   "geometry": {
     "type": "Point",
-    "coordinates": [
-      -75.343,
-      39.984
-    ]
+    "coordinates": [-75.343, 39.984]
   }
 }

@@ -1,5 +1,5 @@
-import bbox from '@turf/bbox';
-import bboxPolygon from '@turf/bbox-polygon';
+import bbox from "@turf/bbox";
+import bboxPolygon from "@turf/bbox-polygon";
 
 /**
  * Takes any number of features and returns a rectangular {@link Polygon} that encompasses all vertices.
@@ -20,7 +20,7 @@ import bboxPolygon from '@turf/bbox-polygon';
  * var addToMap = [features, enveloped];
  */
 function envelope(geojson) {
-    return bboxPolygon(bbox(geojson));
+  return bboxPolygon(bbox(geojson));
 }
 
 export default envelope;

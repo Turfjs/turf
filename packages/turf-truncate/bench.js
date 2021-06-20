@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const truncate = require('./dist/js/index.js').default;
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const truncate = require("./index").default;
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-let fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+let fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 // fixtures = fixtures.filter(fixture => fixture.name === 'polygons');
 
@@ -26,10 +26,10 @@ let fixtures = fs.readdirSync(directory).map(filename => {
  * polygon: 0.030ms
  * polygons: 0.030ms
  */
-for (const {name, geojson} of fixtures) {
-    console.time(name);
-    truncate(geojson, 6, 2, true);
-    console.timeEnd(name);
+for (const { name, geojson } of fixtures) {
+  console.time(name);
+  truncate(geojson, 6, 2, true);
+  console.timeEnd(name);
 }
 
 /**
@@ -44,12 +44,12 @@ for (const {name, geojson} of fixtures) {
  * polygon x 2,854,454 ops/sec ±0.76% (84 runs sampled)
  * polygons x 1,565,315 ops/sec ±1.89% (85 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-truncate');
-for (const {name, geojson} of fixtures) {
-    suite.add(name, () => truncate(geojson, 6, 2, true));
+const suite = new Benchmark.Suite("turf-truncate");
+for (const { name, geojson } of fixtures) {
+  suite.add(name, () => truncate(geojson, 6, 2, true));
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

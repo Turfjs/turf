@@ -23,14 +23,21 @@ import { getCoord } from "@turf/invariant";
  * point1.properties.bearing = bearing;
  * point2.properties.bearing = bearing;
  */
-function rhumbBearing(start: Coord, end: Coord, options: {final?: boolean} = {}): number {
-    let bear360;
-    if (options.final) { bear360 = calculateRhumbBearing(getCoord(end), getCoord(start));
-    } else { bear360 = calculateRhumbBearing(getCoord(start), getCoord(end)); }
+function rhumbBearing(
+  start: Coord,
+  end: Coord,
+  options: { final?: boolean } = {}
+): number {
+  let bear360;
+  if (options.final) {
+    bear360 = calculateRhumbBearing(getCoord(end), getCoord(start));
+  } else {
+    bear360 = calculateRhumbBearing(getCoord(start), getCoord(end));
+  }
 
-    const bear180 = (bear360 > 180) ? - (360 - bear360) : bear360;
+  const bear180 = bear360 > 180 ? -(360 - bear360) : bear360;
 
-    return bear180;
+  return bear180;
 }
 
 /**
@@ -47,22 +54,28 @@ function rhumbBearing(start: Coord, end: Coord, options: {final?: boolean} = {})
  * var d = p1.rhumbBearingTo(p2); // 116.7 m
  */
 function calculateRhumbBearing(from: number[], to: number[]) {
-    // φ => phi
-    // Δλ => deltaLambda
-    // Δψ => deltaPsi
-    // θ => theta
-    const phi1 = degreesToRadians(from[1]);
-    const phi2 = degreesToRadians(to[1]);
-    let deltaLambda = degreesToRadians((to[0] - from[0]));
-    // if deltaLambdaon over 180° take shorter rhumb line across the anti-meridian:
-    if (deltaLambda > Math.PI) { deltaLambda -= 2 * Math.PI; }
-    if (deltaLambda < -Math.PI) { deltaLambda += 2 * Math.PI; }
+  // φ => phi
+  // Δλ => deltaLambda
+  // Δψ => deltaPsi
+  // θ => theta
+  const phi1 = degreesToRadians(from[1]);
+  const phi2 = degreesToRadians(to[1]);
+  let deltaLambda = degreesToRadians(to[0] - from[0]);
+  // if deltaLambdaon over 180° take shorter rhumb line across the anti-meridian:
+  if (deltaLambda > Math.PI) {
+    deltaLambda -= 2 * Math.PI;
+  }
+  if (deltaLambda < -Math.PI) {
+    deltaLambda += 2 * Math.PI;
+  }
 
-    const deltaPsi = Math.log(Math.tan(phi2 / 2 + Math.PI / 4) / Math.tan(phi1 / 2 + Math.PI / 4));
+  const deltaPsi = Math.log(
+    Math.tan(phi2 / 2 + Math.PI / 4) / Math.tan(phi1 / 2 + Math.PI / 4)
+  );
 
-    const theta = Math.atan2(deltaLambda, deltaPsi);
+  const theta = Math.atan2(deltaLambda, deltaPsi);
 
-    return (radiansToDegrees(theta) + 360) % 360;
+  return (radiansToDegrees(theta) + 360) % 360;
 }
 
 export default rhumbBearing;

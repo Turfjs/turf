@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const disjoint = require('./dist/js/index.js').default;
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const disjoint = require("./index").default;
 
 /**
  * Benchmark Results
@@ -50,18 +50,20 @@ const disjoint = require('./dist/js/index.js').default;
  * PointIsDisjointFromPoly x 2,217,658 ops/sec ±1.04% (83 runs sampled)
  * PolyIsDisjointFromPoly x 551,254 ops/sec ±1.18% (90 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-disjoint');
-glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-boolean-disjoint");
+glob
+  .sync(path.join(__dirname, "test", "**", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature1, feature2] = geojson.features;
     console.time(name);
     disjoint(feature1, feature2);
     console.timeEnd(name);
     suite.add(name, () => disjoint(feature1, feature2));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

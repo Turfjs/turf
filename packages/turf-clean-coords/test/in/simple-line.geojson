@@ -1,33 +1,15 @@
 {
-	"type": "Feature",
-	"properties": {},
-	"geometry": {
-		"type": "LineString",
-		"coordinates": [
-			[
-				0,
-				0
-			],
-			[
-				0,
-				2
-			],
-			[
-				0,
-				5
-			],
-			[
-				0,
-				8
-			],
-			[
-				0,
-				10
-			],
-			[
-				0,
-				10
-			]
-		]
-	}
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [0, 0],
+      [0, 2],
+      [0, 5],
+      [0, 8],
+      [0, 10],
+      [0, 10]
+    ]
+  }
 }

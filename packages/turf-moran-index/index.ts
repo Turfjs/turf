@@ -1,5 +1,5 @@
 import spatialWeight from "@turf/distance-weight";
-import { Feature, FeatureCollection } from "@turf/helpers";
+import { FeatureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 
 /**
@@ -45,77 +45,78 @@ import { featureEach } from "@turf/meta";
  * });
  */
 
-export default function(fc: FeatureCollection<any>, options: {
-    inputField: string,
+export default function (
+  fc: FeatureCollection<any>,
+  options: {
+    inputField: string;
     threshold?: number;
     p?: number;
     binary?: boolean;
     alpha?: number;
     standardization?: boolean;
-}): {
-        moranIndex: number;
-        expectedMoranIndex: number;
-        stdNorm: number;
-        zNorm: number;
-    } {
+  }
+): {
+  moranIndex: number;
+  expectedMoranIndex: number;
+  stdNorm: number;
+  zNorm: number;
+} {
+  const inputField = options.inputField;
+  const threshold = options.threshold || 100000;
+  const p = options.p || 2;
+  const binary = options.binary || false;
+  const alpha = options.alpha || -1;
+  const standardization = options.standardization || true;
 
-    const inputField = options.inputField;
-    const threshold = options.threshold || 100000;
-    const p = options.p || 2;
-    const binary = options.binary || false;
-    const alpha = options.alpha || -1;
-    const standardization = options.standardization || true;
+  const weight = spatialWeight(fc, {
+    alpha,
+    binary,
+    p,
+    standardization,
+    threshold,
+  });
 
-    const weight = spatialWeight(fc, {
-        alpha,
-        binary,
-        p,
-        standardization,
-        threshold,
-    });
+  const y: number[] = [];
+  featureEach(fc, (feature) => {
+    const feaProperties = feature.properties || {};
+    // validate inputField exists
+    y.push(feaProperties[inputField]);
+  });
 
-    const y: number[] = [];
-    featureEach(fc, (feature) => {
-        const feaProperties = feature.properties || {};
-        // validate inputField exists
-        y.push(feaProperties[inputField]);
-    });
-
-    const yMean = mean(y);
-    const yVar = variance(y);
-    let weightSum = 0;
-    let s0: number = 0;
-    let s1: number = 0;
-    let s2: number = 0;
-    const n = weight.length;
-    // validate y.length is the same as weight.length
-    for (let i = 0; i < n; i++) {
-        let subS2 = 0;
-        for (let j = 0; j < n; j++) {
-            weightSum += weight[i][j] * (y[i] - yMean) * (y[j] - yMean);
-            s0 += weight[i][j];
-            s1 += Math.pow((weight[i][j] + weight[j][i]), 2);
-            subS2 += weight[i][j] + weight[j][i];
-        }
-        s2 += Math.pow(subS2, 2);
+  const yMean = mean(y);
+  const yVar = variance(y);
+  let weightSum = 0;
+  let s0: number = 0;
+  let s1: number = 0;
+  let s2: number = 0;
+  const n = weight.length;
+  // validate y.length is the same as weight.length
+  for (let i = 0; i < n; i++) {
+    let subS2 = 0;
+    for (let j = 0; j < n; j++) {
+      weightSum += weight[i][j] * (y[i] - yMean) * (y[j] - yMean);
+      s0 += weight[i][j];
+      s1 += Math.pow(weight[i][j] + weight[j][i], 2);
+      subS2 += weight[i][j] + weight[j][i];
     }
-    s1 = 0.5 * s1;
+    s2 += Math.pow(subS2, 2);
+  }
+  s1 = 0.5 * s1;
 
-    const moranIndex = weightSum / s0 / yVar;
-    const expectedMoranIndex = -1 / (n - 1);
-    const vNum = (n * n) * s1 - n * s2 + 3 * (s0 * s0);
-    const vDen = (n - 1) * (n + 1) * (s0 * s0);
-    const vNorm = vNum / vDen - (expectedMoranIndex * expectedMoranIndex);
-    const stdNorm = Math.sqrt(vNorm);
-    const zNorm = (moranIndex - expectedMoranIndex) / stdNorm;
+  const moranIndex = weightSum / s0 / yVar;
+  const expectedMoranIndex = -1 / (n - 1);
+  const vNum = n * n * s1 - n * s2 + 3 * (s0 * s0);
+  const vDen = (n - 1) * (n + 1) * (s0 * s0);
+  const vNorm = vNum / vDen - expectedMoranIndex * expectedMoranIndex;
+  const stdNorm = Math.sqrt(vNorm);
+  const zNorm = (moranIndex - expectedMoranIndex) / stdNorm;
 
-    return {
-        expectedMoranIndex,
-        moranIndex,
-        stdNorm,
-        zNorm,
-    };
-
+  return {
+    expectedMoranIndex,
+    moranIndex,
+    stdNorm,
+    zNorm,
+  };
 }
 
 /**
@@ -125,11 +126,11 @@ export default function(fc: FeatureCollection<any>, options: {
  *
  */
 function mean(y: number[]): number {
-    let sum = 0;
-    for (const item of y) {
-        sum += item;
-    }
-    return sum / y.length;
+  let sum = 0;
+  for (const item of y) {
+    sum += item;
+  }
+  return sum / y.length;
 }
 /**
  * get variance of a list
@@ -138,12 +139,12 @@ function mean(y: number[]): number {
  *
  */
 function variance(y: number[]): number {
-    const yMean = mean(y);
-    let sum = 0;
-    for (const item of y) {
-        sum += Math.pow(item - yMean, 2);
-    }
-    return sum / y.length;
+  const yMean = mean(y);
+  let sum = 0;
+  for (const item of y) {
+    sum += Math.pow(item - yMean, 2);
+  }
+  return sum / y.length;
 }
 
 /**

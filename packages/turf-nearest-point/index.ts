@@ -1,14 +1,14 @@
-import clone from '@turf/clone';
-import distance from '@turf/distance';
-import { featureEach } from '@turf/meta';
-import { Coord, Feature, FeatureCollection, Point } from '@turf/helpers';
+import clone from "@turf/clone";
+import distance from "@turf/distance";
+import { featureEach } from "@turf/meta";
+import { Coord, Feature, FeatureCollection, Point } from "@turf/helpers";
 
 export interface NearestPoint extends Feature<Point> {
-    properties: {
-        featureIndex: number;
-        distanceToPoint: number;
-        [key: string]: any;
-    };
+  properties: {
+    featureIndex: number;
+    distanceToPoint: number;
+    [key: string]: any;
+  };
 }
 
 /**
@@ -35,25 +35,28 @@ export interface NearestPoint extends Feature<Point> {
  * var addToMap = [targetPoint, points, nearest];
  * nearest.properties['marker-color'] = '#F00';
  */
-function nearestPoint(targetPoint: Coord, points: FeatureCollection<Point>): NearestPoint {
-    // Input validation
-    if (!targetPoint) throw new Error('targetPoint is required');
-    if (!points) throw new Error('points is required');
+function nearestPoint(
+  targetPoint: Coord,
+  points: FeatureCollection<Point>
+): NearestPoint {
+  // Input validation
+  if (!targetPoint) throw new Error("targetPoint is required");
+  if (!points) throw new Error("points is required");
 
-    let nearest: NearestPoint;
-    let minDist: number = Infinity;
-    let bestFeatureIndex: number = 0;
-    featureEach(points,  (pt, featureIndex) => {
-        const distanceToPoint = distance(targetPoint, pt);
-        if (distanceToPoint < minDist) {
-            bestFeatureIndex = featureIndex;
-            minDist = distanceToPoint;
-        }
-    });
-    nearest = clone(points.features[bestFeatureIndex]);
-    nearest.properties.featureIndex = bestFeatureIndex;
-    nearest.properties.distanceToPoint = minDist;
-    return nearest;
+  let nearest: NearestPoint;
+  let minDist: number = Infinity;
+  let bestFeatureIndex: number = 0;
+  featureEach(points, (pt, featureIndex) => {
+    const distanceToPoint = distance(targetPoint, pt);
+    if (distanceToPoint < minDist) {
+      bestFeatureIndex = featureIndex;
+      minDist = distanceToPoint;
+    }
+  });
+  nearest = clone(points.features[bestFeatureIndex]);
+  nearest.properties.featureIndex = bestFeatureIndex;
+  nearest.properties.distanceToPoint = minDist;
+  return nearest;
 }
 
 export default nearestPoint;

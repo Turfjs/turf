@@ -1,16 +1,28 @@
 import {
-    multiPoint,
-    multiLineString,
-    geometryCollection,
-    // Typescript types
-    FeatureCollection,
-    Point,
-    LineString
-} from '@turf/helpers'
-import flatten from './'
+  multiPoint,
+  multiLineString,
+  geometryCollection,
+  // Typescript types
+  FeatureCollection,
+  Point,
+  LineString,
+} from "@turf/helpers";
+import flatten from "./";
 
-const multiPt = multiPoint([[0, 0], [10, 10]])
-const multiLine = multiLineString([[[20, 20], [30, 30]], [[0, 0], [10, 10]]])
+const multiPt = multiPoint([
+  [0, 0],
+  [10, 10],
+]);
+const multiLine = multiLineString([
+  [
+    [20, 20],
+    [30, 30],
+  ],
+  [
+    [0, 0],
+    [10, 10],
+  ],
+]);
 
 let points: FeatureCollection<Point> = flatten(multiPt);
 let lines: FeatureCollection<LineString> = flatten(multiLine);

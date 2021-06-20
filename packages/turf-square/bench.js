@@ -1,18 +1,15 @@
-import fs from 'fs';
-import Benchmark from 'benchmark';
-import square from './dist/js/index.js';
+import Benchmark from "benchmark";
+import square from "./index";
 
-var bbox = [0,0,5,10];
+var bbox = [0, 0, 5, 10];
 
-var suite = new Benchmark.Suite('turf-square');
+var suite = new Benchmark.Suite("turf-square");
 suite
-  .add('turf-square',function () {
+  .add("turf-square", function () {
     square(bbox);
   })
-  .on('cycle', function (event) {
+  .on("cycle", function (event) {
     console.log(String(event.target));
   })
-  .on('complete', function () {
-
-  })
+  .on("complete", function () {})
   .run();

@@ -1,15 +1,15 @@
-import fs from 'fs';
-import path from 'path';
-import load from 'load-json-file';
-import Benchmark from 'benchmark';
-import translate from './dist/js/index.js';
+import fs from "fs";
+import path from "path";
+import load from "load-json-file";
+import Benchmark from "benchmark";
+import translate from "./index";
 
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
 
 /**
@@ -25,11 +25,15 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * polygon: 0.018ms
  * z-translation: 0.073ms
  */
-for (const {name, geojson} of fixtures) {
-    const {distance, direction, units, zTranslation} = geojson.properties || {};
-    console.time(name);
-    translate(geojson, distance, direction, {units, zTranslation, mutate: true});
-    console.timeEnd(name);
+for (const { name, geojson } of fixtures) {
+  const { distance, direction, units, zTranslation } = geojson.properties || {};
+  console.time(name);
+  translate(geojson, distance, direction, {
+    units,
+    zTranslation,
+    mutate: true,
+  });
+  console.timeEnd(name);
 }
 
 /**
@@ -45,13 +49,15 @@ for (const {name, geojson} of fixtures) {
  * polygon x 73,538 ops/sec ±5.07% (72 runs sampled)
  * z-translation x 44,638 ops/sec ±3.09% (78 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-transform-translate');
-for (const {name, geojson} of fixtures) {
-    const {distance, direction, units, zTranslation} = geojson.properties || {};
-    suite.add(name, () => translate(geojson, distance, direction, {units, zTranslation}));
+const suite = new Benchmark.Suite("turf-transform-translate");
+for (const { name, geojson } of fixtures) {
+  const { distance, direction, units, zTranslation } = geojson.properties || {};
+  suite.add(name, () =>
+    translate(geojson, distance, direction, { units, zTranslation })
+  );
 }
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

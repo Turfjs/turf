@@ -9,7 +9,11 @@ import { featureEach } from "@turf/meta";
  * @param feature2 point feature
  * @param p p-norm 1=<p<=infinity 1: Manhattan distance 2: Euclidean distance
  */
-export function pNormDistance(feature1: Feature<Point>, feature2: Feature<Point>, p: number = 2): number {
+export function pNormDistance(
+  feature1: Feature<Point>,
+  feature2: Feature<Point>,
+  p: number = 2
+): number {
   const coordinate1 = getCoord(feature1);
   const coordinate2 = getCoord(feature2);
   const xDiff = coordinate1[0] - coordinate2[0];
@@ -17,7 +21,7 @@ export function pNormDistance(feature1: Feature<Point>, feature2: Feature<Point>
   if (p === 1) {
     return Math.abs(xDiff) + Math.abs(yDiff);
   }
-  return Math.pow((Math.pow(xDiff, p) + Math.pow(yDiff, p)), 1 / p);
+  return Math.pow(Math.pow(xDiff, p) + Math.pow(yDiff, p), 1 / p);
 }
 
 /**
@@ -42,14 +46,16 @@ export function pNormDistance(feature1: Feature<Point>, feature2: Feature<Point>
  * var dataset = turf.randomPoint(100, { bbox: bbox });
  * var result = turf.distanceWeight(dataset);
  */
-export default function distanceWeight(fc: FeatureCollection<any>, options?: {
-  threshold?: number;
-  p?: number;
-  binary?: boolean;
-  alpha?: number;
-  standardization?: boolean;
-}): number[][] {
-
+export default function distanceWeight(
+  fc: FeatureCollection<any>,
+  options?: {
+    threshold?: number;
+    p?: number;
+    binary?: boolean;
+    alpha?: number;
+    standardization?: boolean;
+  }
+): number[][] {
   options = options || {};
   const threshold = options.threshold || 10000;
   const p = options.p || 2;
@@ -114,5 +120,4 @@ export default function distanceWeight(fc: FeatureCollection<any>, options?: {
   }
 
   return weights;
-
 }

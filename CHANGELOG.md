@@ -1,4 +1,52 @@
-# 6.2.0-alpha.1
+# 6.4.0
+
+## 🏅 New Features/Enhancements
+
+- [`@turf/boolean-point-on-line`](boolean-point-on-line) Added an `epislon` option to help in floating point comparison.
+  (PR https://github.com/Turfjs/turf/pull/2051 - Author @okcoker)
+
+## 🐛 Bug Fixes
+
+- [`@turf/line-slice-along`](line-slice-along) Fixed a bug where the offset distance equal to the length of the line
+  (PR https://github.com/Turfjs/turf/pull/2030 - Author @EricPKerr)
+
+- [`@turf/helpers`](helpers) Fixed the conversion ratio for converting meters to yards and vice-versa
+  (PR https://github.com/Turfjs/turf/pull/2046 - Author @anotherhale)
+
+- [`@turf/center-median`](center-median) Fixed a missing TS type import
+  (PR https://github.com/Turfjs/turf/pull/2044 - Author @Seairth)
+
+- [`@turf/bezier-spline](bezier-spline) Fix a bug ensuring the spline result reaches the end of the input
+  (PR https://github.com/Turfjs/turf/pull/2090 - Author @the-nemz)
+
+## 📖 Documentation
+- [`@turf/transform-rotate`](transform-rotate) and [`@turf/ellipse`](ellipse)) Improve documentation for angle parameter
+  (PR https://github.com/Turfjs/turf/pull/2016 - Author @pasieronen)
+
+- [`@turf/line-chunk`](line-chunk) Fix an invalid anchor
+  (PR https://github.com/Turfjs/turf/pull/2071 - Author @GraxMonzo)
+
+- [`@turf/distance`](distance) Enhance distance doco so supported inputs are clearer
+  (PR https://github.com/Turfjs/turf/pull/2032 - Author @rowanwins)
+
+## 🔔 Misc
+- [`@turf/concave`](concave) Replace deprecated topojson dependency
+  (PR https://github.com/Turfjs/turf/pull/2037 - Author @elliots)
+
+- Work towards enabling TS Strict Mode
+  (PR https://github.com/Turfjs/turf/pull/2053 - Author @mfedderly)
+
+
+# 6.3.0
+
+### Fix issues importing Turf for react-native, webpack 5, and other bundlers
+  (PR https://github.com/Turfjs/turf/pull/2004 - Author r0b0t3d)
+  (PR https://github.com/Turfjs/turf/pull/2011 - Author mfedderly)
+
+### [`@turf/turf`][turf] expose @turf/boolean-intersect
+  (PR https://github.com/Turfjs/turf/pull/2007 - Author rowanwins)
+
+# 6.2.0
 
 After a bit of hiatus, TurfJS is resuming releases.
 
@@ -6,8 +54,14 @@ After a bit of hiatus, TurfJS is resuming releases.
 
 - ES Modules available for all packages
 - Tree shaking should significantly reduce import size of @turf/turf
+- Better support for ESM modules (PR https://github.com/Turfjs/turf/pull/1942 - Author @diachedelic)
+- Clean-up of test and benchmark running to make publishing easier
+- Enforce styling using Prettier
+- Enable ESLint and get rid of unused variables
+- Upgrade rollup for more correct javascript module builds
+- Only include ES5 code
 
-## New Modules
+## 🚀 New Modules
 
 ### [`@turf/boolean-touches`][boolean-touches]
 
@@ -25,28 +79,80 @@ Performs a quadrat analysis on a set of points
 
 Creates a grid of rectangles from a bounding box
 
-## [`@turf/voroni`][voronoi]
+### [`@turf/voroni`][voronoi]
 
 Typescript types for the options parameter have been fixed
 (PR https://github.com/Turfjs/turf/pull/1424 - Author @stevage)
 
-## [`@turf/points-within-polygon`][points-within-polygon]
+### [`@turf/points-within-polygon`][points-within-polygon]
 
 Typescript types around the Feature's Properties will now be preserved.
 (PR https://github.com/Turfjs/turf/pull/1761 - Author @rugheid)
 
-## [`@turf/rewind`][rewind]
+### [`@turf/rewind`][rewind]
 
 Typescript types for the 'reverse' option are now correct. Previously it was misnamed as 'reversed'.
 (PR https://github.com/Turfjs/turf/pull/1786 - Author @jonnycornwell)
 
-## [`@turf/difference`][difference]
+### [`@turf/difference`][difference]
 
 No longer publishes an .mjs file.
 
-## [`@turf/meta`][meta]
+### [`@turf/meta`][meta]
 
 No longer publishes an .mjs file.
+
+### [`@turf/tag`][tag]
+
+Add MultiPolygon support.
+(PR https://github.com/Turfjs/turf/pull/1996 - Author bryceroney)
+
+## 🐛 Bug Fixes
+
+- [`@turf/centroid`](centroid) Don't visit first point twice when calculating centroid
+  (PR https://github.com/Turfjs/turf/pull/1894 - Author @rowanwins)
+
+- [`@turf/transform-translate`](transform-translate) Better handling of negative distances
+  (PR https://github.com/Turfjs/turf/pull/1895 - Author @rowanwins)
+
+- [`@turf/union`](union), [`@turf/difference`](difference), [`@turf/intersect`](intersect) Use polygon-clipping library to fix correctness issues
+  (PR https://github.com/Turfjs/turf/pull/1916 - Authors @mbullington, @ngottlieb)
+
+- [`@turf/buffer`](buffer) Change default number of steps to 8, and actually support the steps option
+  (PR https://github.com/Turfjs/turf/pull/1931 - Author stevenchanin)
+
+- [`@turf/buffer`](buffer) Fix projection issues that produce undersized buffers at non-equatorial latitudes
+  (PR https://github.com/Turfjs/turf/pull/1956 - Author dyakovlev)
+
+- [`@turf/helpers`](helpers) Add runtime checks to point() method, fixing an API break
+  (PR https://github.com/Turfjs/turf/pull/1964)
+
+## 🏅 New Features/Enhancements
+
+- [`@turf/boolean-overlap`](boolean-overlap) Better performance for MultiPoint geometries
+  (PR https://github.com/Turfjs/turf/pull/1910 - Author @mfedderly)
+
+- [`@turf/helpers`](helpers) Add hectares to convertArea
+  (PR https://github.com/Turfjs/turf/pull/1943 - Author @DanielJDufour)
+
+- [`@turf/great-circle`](great-circle) Update Typescript types to support MultiLineString input
+  (PR https://github.com/Turfjs/turf/pull/1928 - Author kronick)
+
+## 📖 Documentation
+
+- [`@turf/square-grid`](square-grid) Clarify inputs
+  (PR https://github.com/Turfjs/turf/pull/1885 - Author @raphael-leger)
+
+- [`@turf/greater-circle`](greater-circle) Clarify properties option example
+  (PR https://github.com/Turfjs/turf/pull/1888 - Author @chris-catignani)
+
+## ⚠️ Breaking Change
+
+- [`@turf/line-to-polygon`](line-to-polygon) no longer modifies its input unless the mutate option is true
+  (PR https://github.com/Turfjs/turf/pull/1879 - Author @MortenBirk)
+
+- [`@turf/unkink-polygon`](unkink-polygon) remove Number.prototype.modulo override
+  (PR https://github.com/Turfjs/turf/pull/1978)
 
 # 5.0.0 🎉
 

@@ -18,7 +18,7 @@ the input, or even be empty.
 -   `radius` **[number][4]** distance to draw the buffer (negative values are allowed)
 -   `options` **[Object][5]** Optional parameters (optional, default `{}`)
     -   `options.units` **[string][6]** any of the options supported by turf units (optional, default `"kilometers"`)
-    -   `options.steps` **[number][4]** number of steps (optional, default `64`)
+    -   `options.steps` **[number][4]** number of steps (optional, default `8`)
 
 **Examples**
 

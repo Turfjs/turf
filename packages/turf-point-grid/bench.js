@@ -1,15 +1,22 @@
-const Benchmark = require('benchmark');
-const { polygon } = require('@turf/helpers');
-const grid = require('./dist/js/index.js').default;
+const Benchmark = require("benchmark");
+const { polygon } = require("@turf/helpers");
+const grid = require("./index").default;
 
 var bbox = [-95, 30, -85, 40];
-var mask = polygon([[[6.5, 44.6 ], [ 9.2, 44.8 ], [ 8.3, 46.4 ], [ 6.5, 44.6 ]]]);
+var mask = polygon([
+  [
+    [6.5, 44.6],
+    [9.2, 44.8],
+    [8.3, 46.4],
+    [6.5, 44.6],
+  ],
+]);
 
-var highres = grid(bbox, 100, {units: 'miles'}).features.length;
-var midres = grid(bbox, 10, {units: 'miles'}).features.length;
-var lowres = grid(bbox, 1, {units: 'miles'}).features.length;
-var masked = grid(mask, 1, {units: 'miles', mask: mask}).features.length;
-var suite = new Benchmark.Suite('turf-square-grid');
+var highres = grid(bbox, 100, { units: "miles" }).features.length;
+var midres = grid(bbox, 10, { units: "miles" }).features.length;
+var lowres = grid(bbox, 1, { units: "miles" }).features.length;
+var masked = grid(mask, 1, { units: "miles", mask: mask }).features.length;
+var suite = new Benchmark.Suite("turf-square-grid");
 
 /**
  * Benchmark Results
@@ -20,10 +27,18 @@ var suite = new Benchmark.Suite('turf-square-grid');
  * masked  -- 7658 cells x 9,794 ops/sec ±2.08% (75 runs sampled)
  */
 suite
-  .add('highres -- ' + highres + ' cells', () => grid(bbox, 100, {units: 'miles'}))
-  .add('midres  -- ' + midres + ' cells', () => grid(bbox, 10, {units: 'miles'}))
-  .add('lowres  -- ' + lowres + ' cells', () => grid(bbox, 1, {units: 'miles'}))
-  .add('masked  -- ' + masked + ' cells', () => grid(mask, 10, {units: 'miles', mask: mask}))
-  .on('cycle', e => console.log(String(e.target)))
-  .on('complete', () => {})
+  .add("highres -- " + highres + " cells", () =>
+    grid(bbox, 100, { units: "miles" })
+  )
+  .add("midres  -- " + midres + " cells", () =>
+    grid(bbox, 10, { units: "miles" })
+  )
+  .add("lowres  -- " + lowres + " cells", () =>
+    grid(bbox, 1, { units: "miles" })
+  )
+  .add("masked  -- " + masked + " cells", () =>
+    grid(mask, 10, { units: "miles", mask: mask })
+  )
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
   .run();

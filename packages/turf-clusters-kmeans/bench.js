@@ -1,19 +1,18 @@
-const fs = require('fs');
-const path = require('path');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const clustersKmeans = require('./dist/js/index.js').default;
+const fs = require("fs");
+const path = require("path");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const clustersKmeans = require("./index").default;
 
 // Define Fixtures
-const directory = path.join(__dirname, 'test', 'in') + path.sep;
-const fixtures = fs.readdirSync(directory).map(filename => {
-    return {
-        filename,
-        name: path.parse(filename).name,
-        geojson: load.sync(directory + filename)
-    };
+const directory = path.join(__dirname, "test", "in") + path.sep;
+const fixtures = fs.readdirSync(directory).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: load.sync(directory + filename),
+  };
 });
-
 
 /**
  * Benchmark Results
@@ -29,17 +28,16 @@ const fixtures = fs.readdirSync(directory).map(filename => {
  * points1 x 66,020 ops/sec ±3.35% (84 runs sampled)
  * points2 x 38,978 ops/sec ±2.10% (88 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-clusters-kmeans');
-for (const {name, geojson} of fixtures) {
-    const {numberOfCentroids} = geojson.properties || {};
+const suite = new Benchmark.Suite("turf-clusters-kmeans");
+for (const { name, geojson } of fixtures) {
+  const { numberOfCentroids } = geojson.properties || {};
 
-    console.time(name);
-    clustersKmeans(geojson, numberOfCentroids, true);
-    console.timeEnd(name);
-    suite.add(name, () => clustersKmeans(geojson, numberOfCentroids, true));
+  console.time(name);
+  clustersKmeans(geojson, numberOfCentroids, true);
+  console.timeEnd(name);
+  suite.add(name, () => clustersKmeans(geojson, numberOfCentroids, true));
 }
 suite
-  .on('cycle', e => console.log(String(e.target)))
-  .on('complete', () => {})
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
   .run();
-

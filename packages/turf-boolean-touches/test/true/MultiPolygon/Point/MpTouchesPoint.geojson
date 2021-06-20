@@ -6,14 +6,25 @@
       "properties": {},
       "geometry": {
         "type": "MultiPolygon",
-        "coordinates": [[[[1, 1], [1, 10], [10, 10], [10, 1], [1, 1]]]]
+        "coordinates": [
+          [
+            [
+              [1, 1],
+              [1, 10],
+              [10, 10],
+              [10, 1],
+              [1, 1]
+            ]
+          ]
+        ]
       }
-    },{
+    },
+    {
       "type": "Feature",
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [1,5]
+        "coordinates": [1, 5]
       }
     }
   ]

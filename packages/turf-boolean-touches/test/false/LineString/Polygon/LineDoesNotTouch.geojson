@@ -1,12 +1,15 @@
 {
   "type": "FeatureCollection",
   "features": [
-     {
+    {
       "type": "Feature",
       "properties": {},
       "geometry": {
         "type": "LineString",
-        "coordinates": [[-1, -2], [-1, -3]]
+        "coordinates": [
+          [-1, -2],
+          [-1, -3]
+        ]
       }
     },
     {
@@ -14,7 +17,15 @@
       "properties": {},
       "geometry": {
         "type": "Polygon",
-        "coordinates": [[[1, 1], [1, 10], [10, 10], [10, 1], [1, 1]]]
+        "coordinates": [
+          [
+            [1, 1],
+            [1, 10],
+            [10, 10],
+            [10, 1],
+            [1, 1]
+          ]
+        ]
       }
     }
   ]

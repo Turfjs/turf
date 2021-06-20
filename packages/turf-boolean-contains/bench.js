@@ -1,9 +1,9 @@
-import path from 'path';
-import glob from 'glob';
-import Benchmark from 'benchmark';
-import load from 'load-json-file';
-import bbox from '@turf/bbox';
-import contains from './dist/js/index.js';
+const path = require("path");
+const glob = require("glob");
+const Benchmark = require("benchmark");
+const load = require("load-json-file");
+const bbox = require("@turf/bbox").default;
+const contains = require("./index").default;
 
 /**
  * Benchmark Results
@@ -67,9 +67,11 @@ import contains from './dist/js/index.js';
  * PolygonExactSameShape x 491,320 ops/sec ±0.84% (91 runs sampled)
  * PolygonIsContainedByPolygon x 553,878 ops/sec ±0.82% (93 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-contains');
-glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-boolean-contains");
+glob
+  .sync(path.join(__dirname, "test", "**", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature1, feature2] = geojson.features;
     feature1.bbox = bbox(feature1);
@@ -79,9 +81,9 @@ glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     contains(feature1, feature2);
     console.timeEnd(name);
     suite.add(name, () => contains(feature1, feature2));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

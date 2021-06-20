@@ -6,7 +6,11 @@
       "properties": {},
       "geometry": {
         "type": "LineString",
-        "coordinates": [[2, 2], [1, 1], [0, 0]]
+        "coordinates": [
+          [2, 2],
+          [1, 1],
+          [0, 0]
+        ]
       }
     },
     {
@@ -14,7 +18,11 @@
       "properties": {},
       "geometry": {
         "type": "LineString",
-        "coordinates": [[0, 0], [1, 1], [2, 2]]
+        "coordinates": [
+          [0, 0],
+          [1, 1],
+          [2, 2]
+        ]
       }
     }
   ]

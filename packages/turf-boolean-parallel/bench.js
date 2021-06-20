@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const booleanParallel = require('./dist/js/index.js').default;
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const booleanParallel = require("./index").default;
 
 /**
  * Benchmark Results
@@ -33,9 +33,11 @@ const booleanParallel = require('./dist/js/index.js').default;
  * segment2 x 205,418 ops/sec ±2.16% (83 runs sampled)
  * segment3 x 212,381 ops/sec ±1.79% (83 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-parallel');
-glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-boolean-parallel");
+glob
+  .sync(path.join(__dirname, "test", "**", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [line1, line2] = geojson.features;
 
@@ -43,9 +45,9 @@ glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
     booleanParallel(line1, line2);
     console.timeEnd(name);
     suite.add(name, () => booleanParallel(line1, line2));
-});
+  });
 
 suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

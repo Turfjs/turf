@@ -1,8 +1,16 @@
 {
   "type": "Feature",
-  "properties": {"foo": "bar"},
+  "properties": { "foo": "bar" },
   "geometry": {
     "type": "Polygon",
-    "coordinates": [[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]
+    "coordinates": [
+      [
+        [-50, 5],
+        [-40, -10],
+        [-50, -10],
+        [-40, 5],
+        [-50, 5]
+      ]
+    ]
   }
 }
