@@ -11,10 +11,10 @@ import {
 import clustering from "density-clustering";
 
 export type Dbscan = "core" | "edge" | "noise";
-export interface DbscanProps extends Properties {
+export type DbscanProps = Properties & {
   dbscan?: Dbscan;
   cluster?: number;
-}
+};
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters according to {@link DBSCAN's|https://en.wikipedia.org/wiki/DBSCAN} data clustering algorithm.
@@ -62,7 +62,7 @@ function clustersDbscan(
 
   // create clustered ids
   var dbscan = new clustering.DBSCAN();
-  var clusteredIds = dbscan.run(
+  var clusteredIds: number[][] = dbscan.run(
     coordAll(points),
     convertLength(maxDistance, options.units),
     options.minPoints,
@@ -74,7 +74,7 @@ function clustersDbscan(
   clusteredIds.forEach(function (clusterIds) {
     clusterId++;
     // assign cluster ids to input points
-    clusterIds.forEach(function (idx) {
+    clusterIds.forEach(function (idx: number) {
       var clusterPoint = points.features[idx];
       if (!clusterPoint.properties) clusterPoint.properties = {};
       clusterPoint.properties.cluster = clusterId;
@@ -84,14 +84,14 @@ function clustersDbscan(
 
   // handle noise points, if any
   // edges points are tagged by DBSCAN as both 'noise' and 'cluster' as they can "reach" less than 'minPoints' number of points
-  dbscan.noise.forEach(function (noiseId) {
+  dbscan.noise.forEach(function (noiseId: number) {
     var noisePoint = points.features[noiseId];
     if (!noisePoint.properties) noisePoint.properties = {};
     if (noisePoint.properties.cluster) noisePoint.properties.dbscan = "edge";
     else noisePoint.properties.dbscan = "noise";
   });
 
-  return points;
+  return points as FeatureCollection<Point, DbscanProps>;
 }
 
 export default clustersDbscan;

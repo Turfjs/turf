@@ -8,6 +8,7 @@ import {
   LineString,
   MultiLineString,
   Feature,
+  AllGeoJSON,
 } from "@turf/helpers";
 
 /**
@@ -16,7 +17,7 @@ import {
  * @param {GeoJSON} geoJson - input geoJson.
  * @throws {Error} if geoJson is invalid.
  */
-function validateGeoJson(geoJson) {
+function validateGeoJson(geoJson: AllGeoJSON) {
   if (!geoJson) throw new Error("No geojson passed");
 
   if (
@@ -153,8 +154,8 @@ export default class Graph {
 
     // Cut-edges (bridges) are edges where both edges have the same label
     this.edges.forEach((edge) => {
-      if (edge.label === edge.symetric.label) {
-        this.removeEdge(edge.symetric);
+      if (edge.label === ((edge.symetric as Edge).label as number)) {
+        this.removeEdge(edge.symetric as Edge);
         this.removeEdge(edge);
       }
     });
@@ -175,9 +176,10 @@ export default class Graph {
       );
     } else {
       node.getOuterEdges().forEach((edge, i) => {
-        node.getOuterEdge(
-          (i === 0 ? node.getOuterEdges().length : i) - 1
-        ).symetric.next = edge;
+        (
+          node.getOuterEdge((i === 0 ? node.getOuterEdges().length : i) - 1)
+            .symetric as Edge
+        ).next = edge;
       });
     }
   }
@@ -193,9 +195,9 @@ export default class Graph {
    * @param {Node} node - Node
    * @param {number} label - Ring's label
    */
-  _computeNextCCWEdges(node: Node, label: number) {
+  _computeNextCCWEdges(node: Node, label: number | undefined) {
     const edges = node.getOuterEdges();
-    let firstOutDE, prevInDE;
+    let firstOutDE: undefined | Edge, prevInDE: undefined | Edge;
 
     for (let i = edges.length - 1; i >= 0; --i) {
       let de = edges[i],
@@ -205,7 +207,7 @@ export default class Graph {
 
       if (de.label === label) outDE = de;
 
-      if (sym.label === label) inDE = sym;
+      if (((sym as Edge).label as number) === label) inDE = sym;
 
       if (!outDE || !inDE)
         // This edge is not in edgering
@@ -223,7 +225,7 @@ export default class Graph {
       }
     }
 
-    if (prevInDE) prevInDE.next = firstOutDE;
+    if (prevInDE) prevInDE.next = firstOutDE as Edge;
   }
 
   /**
@@ -234,17 +236,17 @@ export default class Graph {
    * @returns {Edge[]} edges that start rings
    */
   _findLabeledEdgeRings() {
-    const edgeRingStarts = [];
+    const edgeRingStarts: Edge[] = [];
     let label = 0;
     this.edges.forEach((edge) => {
-      if (edge.label >= 0) return;
+      if ((edge.label as number) >= 0) return;
 
       edgeRingStarts.push(edge);
 
-      let e = edge;
+      let e: Edge = edge;
       do {
         e.label = label;
-        e = e.next;
+        e = e.next as Edge;
       } while (!edge.isEqual(e));
 
       label++;
@@ -273,7 +275,7 @@ export default class Graph {
       });
     });
 
-    const edgeRingList = [];
+    const edgeRingList: EdgeRing[] = [];
 
     // find all edgerings
     this.edges.forEach((edge) => {
@@ -302,7 +304,7 @@ export default class Graph {
 
       if (degree > 1) intersectionNodes.push(edge.from);
 
-      edge = edge.next;
+      edge = edge.next as Edge;
     } while (!startEdge.isEqual(edge));
 
     return intersectionNodes;
@@ -321,7 +323,7 @@ export default class Graph {
     do {
       edgeRing.push(edge);
       edge.ring = edgeRing;
-      edge = edge.next;
+      edge = edge.next as Edge;
     } while (!startEdge.isEqual(edge));
 
     return edgeRing;
