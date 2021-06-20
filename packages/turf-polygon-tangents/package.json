@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-tangents",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf polygon tangents module",
   "author": "Turf Authors",
   "contributors": [
@@ -58,11 +58,11 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.3.0",
-    "@turf/boolean-within": "^6.3.0",
-    "@turf/explode": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0",
-    "@turf/nearest-point": "^6.3.0"
+    "@turf/bbox": "^6.4.0",
+    "@turf/boolean-within": "^6.4.0",
+    "@turf/explode": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/invariant": "^6.4.0",
+    "@turf/nearest-point": "^6.4.0"
   }
 }

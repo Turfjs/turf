@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox-polygon",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf bbox-polygon module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -55,6 +55,6 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.3.0"
+    "@turf/helpers": "^6.4.0"
   }
 }

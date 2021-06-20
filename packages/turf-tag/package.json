@@ -1,6 +1,6 @@
 {
   "name": "@turf/tag",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf tag module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -55,9 +55,9 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.3.0",
-    "@turf/clone": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/meta": "^6.3.0"
+    "@turf/boolean-point-in-polygon": "^6.4.0",
+    "@turf/clone": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/meta": "^6.4.0"
   }
 }

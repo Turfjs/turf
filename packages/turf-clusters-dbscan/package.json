@@ -1,6 +1,6 @@
 {
   "name": "@turf/clusters-dbscan",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf clusters-dbscan module",
   "author": "Turf Authors",
   "contributors": [
@@ -54,8 +54,8 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/centroid": "^6.3.0",
-    "@turf/clusters": "^6.3.0",
+    "@turf/centroid": "^6.4.0",
+    "@turf/clusters": "^6.4.0",
     "@types/tape": "*",
     "benchmark": "*",
     "chromatism": "*",
@@ -69,10 +69,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clone": "^6.3.0",
-    "@turf/distance": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/meta": "^6.3.0",
+    "@turf/clone": "^6.4.0",
+    "@turf/distance": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/meta": "^6.4.0",
     "density-clustering": "1.3.0"
   }
 }

@@ -1,7 +1,7 @@
 import booleanPointOnLine from "@turf/boolean-point-on-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
-import { Feature, Geometry } from "@turf/helpers";
+import { Feature, Geometry, LineString, Point } from "@turf/helpers";
 
 /**
  * Boolean-touches true if none of the points common to both geometries
@@ -766,7 +766,7 @@ function booleanTouches(
   }
 }
 
-function isPointOnLineEnd(point, line) {
+function isPointOnLineEnd(point: Point, line: LineString) {
   if (compareCoords(line.coordinates[0], point.coordinates)) return true;
   if (
     compareCoords(
@@ -786,7 +786,7 @@ function isPointOnLineEnd(point, line) {
  * @param {Position} pair2 point [x,y]
  * @returns {boolean} true/false if coord pairs match
  */
-function compareCoords(pair1, pair2) {
+function compareCoords(pair1: number[], pair2: number[]) {
   return pair1[0] === pair2[0] && pair1[1] === pair2[1];
 }
 

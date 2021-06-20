@@ -172,8 +172,8 @@ function getLengthOfLineString(line: Feature<LineString>, isPlanar: boolean) {
     return segmentReduce<number>(
       line,
       (previousValue?: number, segment?: Feature<LineString>): number => {
-        const coords = segment.geometry.coordinates; // the signatrue of segmentReduce has problem ?
-        return previousValue + euclideanDistance(coords);
+        const coords = segment!.geometry.coordinates; // the signatrue of segmentReduce has problem ?
+        return previousValue! + euclideanDistance(coords);
       },
       0
     );

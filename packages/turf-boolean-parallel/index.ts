@@ -1,7 +1,13 @@
 import cleanCoords from "@turf/clean-coords";
 import lineSegment from "@turf/line-segment";
 import rhumbBearing from "@turf/rhumb-bearing";
-import { bearingToAzimuth, Feature, LineString } from "@turf/helpers";
+import {
+  bearingToAzimuth,
+  Feature,
+  Geometry,
+  LineString,
+  Position,
+} from "@turf/helpers";
 
 /**
  * Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
@@ -49,7 +55,7 @@ function booleanParallel(
  * @param {Geometry|Feature<LineString>} segment2 Geometry or Feature
  * @returns {boolean} if slopes are equal
  */
-function isParallel(segment1, segment2) {
+function isParallel(segment1: Position[], segment2: Position[]) {
   var slope1 = bearingToAzimuth(rhumbBearing(segment1[0], segment1[1]));
   var slope2 = bearingToAzimuth(rhumbBearing(segment2[0], segment2[1]));
   return slope1 === slope2;
@@ -63,8 +69,9 @@ function isParallel(segment1, segment2) {
  * @param {string} name of the variable
  * @returns {string} Feature's type
  */
-function getType(geojson, name) {
-  if (geojson.geometry && geojson.geometry.type) return geojson.geometry.type;
+function getType(geojson: Geometry | Feature<any>, name: string) {
+  if ((geojson as Feature).geometry && (geojson as Feature).geometry.type)
+    return (geojson as Feature).geometry.type;
   if (geojson.type) return geojson.type; // if GeoJSON geometry
   throw new Error("Invalid GeoJSON object for " + name);
 }

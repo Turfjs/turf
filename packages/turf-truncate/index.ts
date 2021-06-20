@@ -62,7 +62,7 @@ function truncate<T extends AllGeoJSON>(
 
   // Truncate Coordinates
   coordEach(geojson, function (coords) {
-    truncateCoords(coords, factor, coordinates);
+    truncateCoords(coords, factor, coordinates!);
   });
   return geojson;
 }
@@ -76,7 +76,7 @@ function truncate<T extends AllGeoJSON>(
  * @param {number} coordinates maximum number of coordinates (primarly used to remove z coordinates)
  * @returns {Array<any>} mutated coordinates
  */
-function truncateCoords(coords, factor, coordinates) {
+function truncateCoords(coords: number[], factor: number, coordinates: number) {
   // Remove extra coordinates (usually elevation coordinates and more)
   if (coords.length > coordinates) coords.splice(coordinates, coords.length);
 

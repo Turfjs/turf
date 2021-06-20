@@ -86,25 +86,38 @@ function centerMedian(
   var meanCenter = centerMean(features, { weight: options.weight });
 
   // Calculate center of every feature:
-  var centroids: any = featureCollection([]);
+  var centroids = featureCollection<Point>([]);
   featureEach(features, function (feature) {
     centroids.features.push(
       centroid(feature, {
-        properties: { weight: feature.properties[weightTerm] },
+        properties: { weight: feature.properties?.[weightTerm!] },
       })
     );
   });
 
-  centroids.properties = {
+  const properties: MedianProperties = {
     tolerance: options.tolerance,
     medianCandidates: [],
   };
+
   return findMedian(
     meanCenter.geometry.coordinates,
     [0, 0],
     centroids,
+    properties,
     counter
-  );
+  ) as Feature<
+    Point,
+    {
+      medianCandidates: Array<Position>;
+      [key: string]: any;
+    }
+  >;
+}
+
+interface MedianProperties {
+  tolerance?: number;
+  medianCandidates: Position[];
 }
 
 /**
@@ -117,14 +130,20 @@ function centerMedian(
  * @param {number} counter how many attempts to try before quitting.
  * @returns {Feature<Point>} the median center of the dataset.
  */
-function findMedian(candidateMedian, previousCandidate, centroids, counter) {
-  var tolerance = centroids.properties.tolerance || 0.001;
+function findMedian(
+  candidateMedian: Position,
+  previousCandidate: Position,
+  centroids: FeatureCollection<Point>,
+  properties: MedianProperties,
+  counter: number
+): Feature<Point> {
+  var tolerance = properties.tolerance || 0.001;
   var candidateXsum = 0;
   var candidateYsum = 0;
   var kSum = 0;
   var centroidCount = 0;
-  featureEach(centroids, function (theCentroid: any) {
-    var weightValue = theCentroid.properties.weight;
+  featureEach(centroids, function (theCentroid) {
+    var weightValue = theCentroid.properties?.weight;
     var weight =
       weightValue === undefined || weightValue === null ? 1 : weightValue;
     weight = Number(weight);
@@ -150,14 +169,15 @@ function findMedian(candidateMedian, previousCandidate, centroids, counter) {
       Math.abs(candidateY - previousCandidate[1]) < tolerance)
   ) {
     return point([candidateX, candidateY], {
-      medianCandidates: centroids.properties.medianCandidates,
+      medianCandidates: properties.medianCandidates,
     });
   } else {
-    centroids.properties.medianCandidates.push([candidateX, candidateY]);
+    properties.medianCandidates.push([candidateX, candidateY]);
     return findMedian(
       [candidateX, candidateY],
       candidateMedian,
       centroids,
+      properties,
       counter - 1
     );
   }

@@ -69,7 +69,7 @@ export default function booleanOverlap(
     case "MultiLineString":
       segmentEach(feature1, (segment1) => {
         segmentEach(feature2, (segment2) => {
-          if (lineOverlap(segment1, segment2).features.length) overlap++;
+          if (lineOverlap(segment1!, segment2!).features.length) overlap++;
         });
       });
       break;
@@ -78,7 +78,7 @@ export default function booleanOverlap(
     case "MultiPolygon":
       segmentEach(feature1, (segment1) => {
         segmentEach(feature2, (segment2) => {
-          if (lineIntersect(segment1, segment2).features.length) overlap++;
+          if (lineIntersect(segment1!, segment2!).features.length) overlap++;
         });
       });
       break;

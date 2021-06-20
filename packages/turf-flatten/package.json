@@ -1,6 +1,6 @@
 {
   "name": "@turf/flatten",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf flatten module",
   "author": "Turf Authors",
   "contributors": [
@@ -58,7 +58,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.3.0",
-    "@turf/meta": "^6.3.0"
+    "@turf/helpers": "^6.4.0",
+    "@turf/meta": "^6.4.0"
   }
 }

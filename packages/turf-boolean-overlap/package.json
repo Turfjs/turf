@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-overlap",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf boolean-overlap module",
   "author": "Turf Authors",
   "contributors": [
@@ -63,11 +63,11 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0",
-    "@turf/line-intersect": "^6.3.0",
-    "@turf/line-overlap": "^6.3.0",
-    "@turf/meta": "^6.3.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/invariant": "^6.4.0",
+    "@turf/line-intersect": "^6.4.0",
+    "@turf/line-overlap": "^6.4.0",
+    "@turf/meta": "^6.4.0",
     "geojson-equality": "0.1.6"
   }
 }

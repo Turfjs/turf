@@ -1,6 +1,6 @@
 {
   "name": "@turf/length",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf length module",
   "author": "Turf Authors",
   "contributors": [
@@ -62,8 +62,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/distance": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/meta": "^6.3.0"
+    "@turf/distance": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/meta": "^6.4.0"
   }
 }

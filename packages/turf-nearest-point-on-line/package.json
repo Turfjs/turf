@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-point-on-line",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf nearest-point-on-line module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -40,9 +40,9 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/along": "^6.3.0",
-    "@turf/length": "^6.3.0",
-    "@turf/truncate": "^6.3.0",
+    "@turf/along": "^6.4.0",
+    "@turf/length": "^6.4.0",
+    "@turf/truncate": "^6.4.0",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -54,12 +54,12 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^6.3.0",
-    "@turf/destination": "^6.3.0",
-    "@turf/distance": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0",
-    "@turf/line-intersect": "^6.3.0",
-    "@turf/meta": "^6.3.0"
+    "@turf/bearing": "^6.4.0",
+    "@turf/destination": "^6.4.0",
+    "@turf/distance": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/invariant": "^6.4.0",
+    "@turf/line-intersect": "^6.4.0",
+    "@turf/meta": "^6.4.0"
   }
 }

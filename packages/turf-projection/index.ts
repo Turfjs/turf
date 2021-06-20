@@ -99,7 +99,7 @@ function convert(
  * @param {Array<number>} lonLat WGS84 point
  * @returns {Array<number>} Mercator [x, y] point
  */
-function convertToMercator(lonLat) {
+function convertToMercator(lonLat: number[]) {
   var D2R = Math.PI / 180,
     // 900913 properties
     A = 6378137.0,
@@ -131,7 +131,7 @@ function convertToMercator(lonLat) {
  * @param {Array<number>} xy Mercator [x, y] point
  * @returns {Array<number>} WGS84 [lon, lat] point
  */
-function convertToWgs84(xy) {
+function convertToWgs84(xy: number[]) {
   // 900913 properties.
   var R2D = 180 / Math.PI;
   var A = 6378137.0;
@@ -149,6 +149,6 @@ function convertToWgs84(xy) {
  * @param {number} x input
  * @returns {number} -1|0|1 output
  */
-function sign(x) {
+function sign(x: number) {
   return x < 0 ? -1 : x > 0 ? 1 : 0;
 }

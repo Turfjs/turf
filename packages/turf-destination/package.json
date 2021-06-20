@@ -1,6 +1,6 @@
 {
   "name": "@turf/destination",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf destination module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -47,7 +47,7 @@
     "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.3.0",
+    "@turf/truncate": "^6.4.0",
     "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",
@@ -60,7 +60,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0"
+    "@turf/helpers": "^6.4.0",
+    "@turf/invariant": "^6.4.0"
   }
 }

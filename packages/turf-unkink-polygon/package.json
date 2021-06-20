@@ -1,6 +1,6 @@
 {
   "name": "@turf/unkink-polygon",
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "turf unkink-polygon module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/kinks": "^6.3.0",
+    "@turf/kinks": "^6.4.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -55,10 +55,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^6.3.0",
-    "@turf/boolean-point-in-polygon": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/meta": "^6.3.0",
+    "@turf/area": "^6.4.0",
+    "@turf/boolean-point-in-polygon": "^6.4.0",
+    "@turf/helpers": "^6.4.0",
+    "@turf/meta": "^6.4.0",
     "rbush": "^2.0.1"
   }
 }

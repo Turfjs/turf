@@ -11,7 +11,7 @@ import { Feature, Polygon, MultiPolygon, Properties } from "@turf/helpers";
  * @param {Feature<Polygon|MultiPolygon>} polygon2 Polygon feature to difference from polygon1
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate Properties to output Feature
- * @returns {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature
+ * @returns {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature, or null if the inputs are empty
  * @example
  * var poly1 = turf.polygon([[
  *     [-82.574787, 35.594087],
@@ -37,7 +37,7 @@ function union<P = Properties>(
   poly1: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
   poly2: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
   options: { properties?: P } = {}
-): Feature<Polygon | MultiPolygon, P> {
+): Feature<Polygon | MultiPolygon, P> | null {
   const geom1 = getGeom(poly1);
   const geom2 = getGeom(poly2);
 
