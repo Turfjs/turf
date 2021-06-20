@@ -1,15 +1,15 @@
 import { point } from "@turf/helpers";
 import {
-    Feature,
-    FeatureCollection,
-    LineString,
-    MultiLineString,
-    MultiPolygon,
-    Point,
-    Polygon,
-    GeometryObject
+  Feature,
+  FeatureCollection,
+  LineString,
+  MultiLineString,
+  MultiPolygon,
+  Point,
+  Polygon,
+  Geometry,
 } from "@turf/helpers";
-import findIntersections from 'sweepline-intersections'
+import findIntersections from "./lib/sweepline-intersections";
 
 /**
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring},
@@ -33,28 +33,32 @@ import findIntersections from 'sweepline-intersections'
  * //addToMap
  * var addToMap = [poly, kinks]
  */
-export default function kinks<T extends LineString | MultiLineString | Polygon | MultiPolygon>(
-    featureIn: Feature<T> | T,
-): FeatureCollection<Point> {
-    let coordinates: any;
-    let feature: any;
-    const results: FeatureCollection<Point> = {
-        type: "FeatureCollection",
-        features: [],
-    };
+export default function kinks<
+  T extends LineString | MultiLineString | Polygon | MultiPolygon
+>(featureIn: Feature<T> | T): FeatureCollection<Point> {
+  let coordinates: any;
+  let feature: any;
+  const results: FeatureCollection<Point> = {
+    type: "FeatureCollection",
+    features: [],
+  };
 
-if (featureIn as GeometryObject).type === "Point" ||
-  featureIn as GeometryObject).type === 'MultiPoint' ||
-  (featureIn as Feature<GeometryObject>.type === 'Feature' && (
-    featureIn.geometry.type === 'Point' ||
-    featureIn.geometry.type === 'MultiPoint'))) {
-        throw new Error("Input must be a LineString, MultiLineString, " +
-            "Polygon, or MultiPolygon Feature or Geometry");
-    }
-    const intersections = findIntersections(featureIn)
-    for (let i = 0; i < intersections.length; ++i) {
-        const intersection = intersections[i]
-        results.features.push(point([intersection[0], intersection[1]]))
-    }
-    return results;
+  if (
+    (featureIn as Geometry).type === "Point" ||
+    (featureIn as Geometry).type === "MultiPoint" ||
+    (featureIn.type === "Feature" &&
+      ((featureIn as Feature).geometry.type === "Point" ||
+        (featureIn as Feature).geometry.type === "MultiPoint"))
+  ) {
+    throw new Error(
+      "Input must be a LineString, MultiLineString, " +
+        "Polygon, or MultiPolygon Feature or Geometry"
+    );
+  }
+  const intersections = findIntersections(featureIn);
+  for (let i = 0; i < intersections.length; ++i) {
+    const intersection = intersections[i];
+    results.features.push(point([intersection[0], intersection[1]]));
+  }
+  return results;
 }
