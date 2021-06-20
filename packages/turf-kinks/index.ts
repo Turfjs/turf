@@ -36,8 +36,6 @@ import findIntersections from "./lib/sweepline-intersections";
 export default function kinks<
   T extends LineString | MultiLineString | Polygon | MultiPolygon
 >(featureIn: Feature<T> | T): FeatureCollection<Point> {
-  let coordinates: any;
-  let feature: any;
   const results: FeatureCollection<Point> = {
     type: "FeatureCollection",
     features: [],
