@@ -3,5 +3,8 @@
   "compilerOptions": {
     "outDir": "dist/js"
   },
-  "files": ["index.ts"]
+  "files": [
+    "index.ts",
+    "lib/sweepline-intersections.js",
+  ]
 }

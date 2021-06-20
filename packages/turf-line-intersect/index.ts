@@ -11,7 +11,7 @@ import {
   Polygon,
 } from "@turf/helpers";
 
-import findIntersections from "./libs/sweepline-intersections";
+import findIntersections from "./lib/sweepline-intersections";
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
