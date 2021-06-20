@@ -6,5 +6,6 @@
   "files": [
     "index.ts",
     "lib/sweepline-intersections.js",
-  ]
+  ],
+  "allowJs": true
 }
