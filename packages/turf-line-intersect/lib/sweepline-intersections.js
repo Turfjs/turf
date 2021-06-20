@@ -16,7 +16,7 @@ function createCommonjsModule(fn, module) {
   return (module = { exports: {} }), fn(module, module.exports), module.exports;
 }
 
-var tinyqueue = createCommonjsModule(function (module, exports) {
+var tinyqueue = createCommonjsModule(function (module) {
   (function (global, factory) {
     module.exports = factory();
   })(commonjsGlobal, function () {
@@ -239,10 +239,6 @@ function processFeature(featureOrGeometry, eventQueue) {
   }
 
   featureId = featureId + 1;
-}
-
-function defaultCompare(a, b) {
-  return a < b ? -1 : a > b ? 1 : 0;
 }
 
 var Segment = function Segment(event) {
