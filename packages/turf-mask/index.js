@@ -36,9 +36,15 @@ function mask(polygon, mask) {
 }
 
 function unionFc(fc) {
-  const unioned = fc.features.length === 2 ? polygonClipping.union(fc.features[0].geometry.coordinates, fc.features[1].geometry.coordinates) : polygonClipping.union.apply(
-    ...fc.features.map((f) => f.geometry.coordinates)
-  );
+  const unioned =
+    fc.features.length === 2
+      ? polygonClipping.union(
+          fc.features[0].geometry.coordinates,
+          fc.features[1].geometry.coordinates
+        )
+      : polygonClipping.union.apply(
+          ...fc.features.map((f) => f.geometry.coordinates)
+        );
   return createGeomFromPolygonClippingOutput(unioned);
 }
 
