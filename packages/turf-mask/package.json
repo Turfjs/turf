@@ -53,10 +53,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.4.0",
     "@turf/helpers": "^6.4.0",
-    "@turf/meta": "^6.4.0",
-    "@turf/union": "^6.4.0",
-    "rbush": "^2.0.1"
+    "polygon-clipping": "^0.15.3"
   }
 }

@@ -5,7 +5,7 @@ import load from "load-json-file";
 import write from "write-json-file";
 import mask from "./index";
 
-const SKIP = ["multi-polygon.geojson", "overlapping.geojson"];
+const SKIP = [];
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
