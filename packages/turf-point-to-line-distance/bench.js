@@ -77,7 +77,4 @@ for (const { name, geojson } of fixtures) {
   suite.add(name, () => pointToLineDistance(point, line, { units: units }));
 }
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

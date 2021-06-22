@@ -38,5 +38,4 @@ suite
   .add("collectionOf -- fc", () => invariant.collectionOf(fc, "Point", "bench"))
   .add("getType -- pt", () => invariant.getType(pt))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

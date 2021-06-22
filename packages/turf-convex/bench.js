@@ -22,7 +22,4 @@ glob
     suite.add(path.parse(filepath).name, () => convex(geojson));
   });
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

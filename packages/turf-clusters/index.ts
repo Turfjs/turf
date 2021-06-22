@@ -247,9 +247,10 @@ export function createBins(
 
   featureEach(geojson, function (feature, i) {
     var properties = feature.properties || {};
-    if (properties.hasOwnProperty(String(property))) {
+    if (Object.prototype.hasOwnProperty.call(properties, String(property))) {
       var value = properties[property];
-      if (bins.hasOwnProperty(value)) bins[value].push(i);
+      if (Object.prototype.hasOwnProperty.call(bins, value))
+        bins[value].push(i);
       else bins[value] = [i];
     }
   });
@@ -270,7 +271,7 @@ export function applyFilter(properties: any, filter: any) {
 
   // String & Number
   if (filterType === "number" || filterType === "string")
-    return properties.hasOwnProperty(filter);
+    return Object.prototype.hasOwnProperty.call(properties, filter);
   // Array
   else if (Array.isArray(filter)) {
     for (var i = 0; i < filter.length; i++) {
@@ -329,7 +330,8 @@ export function filterProperties(
   var newProperties: Record<string, any> = {};
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i];
-    if (properties.hasOwnProperty(key)) newProperties[key] = properties[key];
+    if (Object.prototype.hasOwnProperty.call(properties, key))
+      newProperties[key] = properties[key];
   }
   return newProperties;
 }

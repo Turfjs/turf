@@ -36,7 +36,4 @@ for (const { name, start, end, options } of fixtures) {
   suite.add(name, () => shortestPath(start, end, options));
 }
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

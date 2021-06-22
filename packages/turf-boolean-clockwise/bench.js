@@ -20,7 +20,4 @@ glob
     suite.add(name, () => isClockwise(feature));
   });
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();
