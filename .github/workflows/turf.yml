@@ -1,4 +1,4 @@
-name: Turf.js Actions
+name: Turf.js CI
 
 on:
   push:
