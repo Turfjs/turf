@@ -1,8 +1,7 @@
 ![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png)
 ======
-
+[![GitHub Actions Status](https://github.com/Turfjs/turf/actions/workflows/turf.yml/badge.svg)](https://github.com/Turfjs/turf/actions/workflows/turf.yml/badge.svg)
 [![Version Badge][npm-img]][npm-url]
-[![Travis CI](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
 [![Backers on Open Collective][oc-backer-badge]](#backers) 
 [![Sponsors on Open Collective][oc-sponsor-badge]](#sponsors) [![Coverage Status](https://coveralls.io/repos/github/Turfjs/turf/badge.svg)](https://coveralls.io/github/Turfjs/turf)
