@@ -52,6 +52,7 @@
     "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
+    "@types/geojson-equality": "^0.2.0",
     "@types/tape": "*",
     "benchmark": "*",
     "boolean-shapely": "*",
