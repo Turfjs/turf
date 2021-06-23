@@ -31,5 +31,4 @@ var suite = new Benchmark.Suite("turf-points-within-polygon");
 suite
   .add("turf-points-within-polygon", () => pointsWithinPolygon(ptFC, polyFC))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

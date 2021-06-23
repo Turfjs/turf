@@ -76,7 +76,4 @@ glob
     suite.add(name, () => toWgs84(geojson));
   });
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

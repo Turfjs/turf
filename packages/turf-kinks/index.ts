@@ -50,7 +50,7 @@ export default function kinks<
   } else if (feature.type === "MultiLineString") {
     coordinates = feature.coordinates;
   } else if (feature.type === "MultiPolygon") {
-    coordinates = [].concat.apply([], feature.coordinates);
+    coordinates = [].concat(...feature.coordinates);
   } else if (feature.type === "Polygon") {
     coordinates = feature.coordinates;
   } else {

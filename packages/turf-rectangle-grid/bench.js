@@ -20,5 +20,4 @@ suite
   .add("midres  -- " + midres().features.length + " cells", midres)
   .add("lowres  -- " + lowres().features.length + " cells", lowres)
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();
