@@ -3,6 +3,7 @@
   "workspaces": [
     "packages/*"
   ],
+  "funding": "https://opencollective.com/turf",
   "scripts": {
     "lint": "npm-run-all lint:*",
     "lint:eslint": "eslint packages",
@@ -15,8 +16,7 @@
     "pretest": "npm run lint",
     "test": "lerna run test",
     "posttest": "lerna run --scope @turf/turf last-checks",
-    "docs": "node ./scripts/generate-readmes",
-    "postinstall": "opencollective postinstall"
+    "docs": "node ./scripts/generate-readmes"
   },
   "husky": {
     "hooks": {
@@ -61,13 +61,5 @@
     "ts-node": "^9.0.0",
     "typescript": "^3.8.3",
     "yamljs": "*"
-  },
-  "dependencies": {
-    "opencollective": "^1.0.3"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/turf",
-    "logo": "https://opencollective.com/turf/logo.txt"
   }
 }
