@@ -36,4 +36,5 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn --frozen-lockfile
+      - run: git diff --exit-code
       - run: yarn test
