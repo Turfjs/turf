@@ -43,7 +43,8 @@ function unionFc(fc) {
           fc.features[1].geometry.coordinates
         )
       : polygonClipping.union.apply(
-          ...fc.features.map((f) => f.geometry.coordinates)
+          polygonClipping,
+          fc.features.map((f) => f.geometry.coordinates)
         );
   return createGeomFromPolygonClippingOutput(unioned);
 }
