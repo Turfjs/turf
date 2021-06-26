@@ -19,9 +19,9 @@ import polygonClipping from "polygon-clipping";
  */
 function mask(polygon, mask) {
   // Define mask
-  const maskPolygon = createMask(mask);
+  var maskPolygon = createMask(mask);
 
-  let polygonOuters = null;
+  var polygonOuters = null;
   if (polygon.type === "FeatureCollection") polygonOuters = unionFc(polygon);
   else
     polygonOuters = createGeomFromPolygonClippingOutput(
@@ -36,7 +36,7 @@ function mask(polygon, mask) {
 }
 
 function unionFc(fc) {
-  const unioned =
+  var unioned =
     fc.features.length === 2
       ? polygonClipping.union(
           fc.features[0].geometry.coordinates,
@@ -60,7 +60,7 @@ function createGeomFromPolygonClippingOutput(unioned) {
  * @returns {Feature<Polygon>} mask coordinate
  */
 function createMask(mask) {
-  const world = [
+  var world = [
     [
       [180, 90],
       [-180, 90],
@@ -69,7 +69,7 @@ function createMask(mask) {
       [180, 90],
     ],
   ];
-  const coordinates = (mask && mask.geometry.coordinates) || world;
+  var coordinates = (mask && mask.geometry.coordinates) || world;
   return createPolygon(coordinates);
 }
 
