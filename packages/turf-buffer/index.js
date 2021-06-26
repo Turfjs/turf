@@ -1,5 +1,5 @@
 import center from "@turf/center";
-import { BufferOp, GeoJSONReader, GeoJSONWriter } from "turf-jsts";
+import { bufferOp } from "./lib/bufferOp";
 import { geomEach, featureEach } from "@turf/meta";
 import { geoAzimuthalEquidistant } from "d3-geo";
 import {
@@ -104,12 +104,8 @@ function bufferFeature(geojson, radius, units, steps) {
   };
 
   // JSTS buffer operation
-  var reader = new GeoJSONReader();
-  var geom = reader.read(projected);
   var distance = radiansToLength(lengthToRadians(radius, units), "meters");
-  var buffered = BufferOp.bufferOp(geom, distance, steps);
-  var writer = new GeoJSONWriter();
-  buffered = writer.write(buffered);
+  var buffered = bufferOp(projected, distance, steps);
 
   // Detect if empty geometries
   if (coordsIsNaN(buffered.coordinates)) return undefined;
