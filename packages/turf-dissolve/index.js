@@ -51,7 +51,7 @@ function dissolve(fc, options) {
     var uniquePropertyVals = {};
     featureEach(fc, function (feature) {
       if (
-        !uniquePropertyVals.hasOwnProperty(feature.properties[propertyName])
+        !Object.prototype.hasOwnProperty.call(uniquePropertyVals, feature.properties[propertyName])
       ) {
         uniquePropertyVals[feature.properties[propertyName]] = [];
       }
