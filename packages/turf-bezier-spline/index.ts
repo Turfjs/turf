@@ -44,7 +44,7 @@ function bezier<P = Properties>(
   const resolution = options.resolution || 10000;
   const sharpness = options.sharpness || 0.85;
 
-  const coords = [];
+  const coords: [number, number][] = [];
   const points = getGeom(line).coordinates.map((pt) => {
     return { x: pt[0], y: pt[1] };
   });

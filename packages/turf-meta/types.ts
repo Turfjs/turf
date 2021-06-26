@@ -240,7 +240,9 @@ meta.segmentReduce(
 /**
  * meta.segmentEach
  */
-const segmentEachValue: void = meta.segmentEach(poly, () => {});
+const segmentEachValue: void = meta.segmentEach(poly, () => {
+  /* no-op */
+});
 segmentEach(poly, (currentSegment) => currentSegment);
 meta.segmentEach(poly, (currentSegment) => currentSegment);
 meta.segmentEach(features, (currentSegment) => currentSegment);
@@ -261,7 +263,9 @@ meta.segmentEach(
  * meta.lineEach
  */
 // meta.lineEach(pt, () => {}) // Argument of type 'Feature<Point>' is not assignable to parameter of type 'LineString | Polygon | MultiPolygon | MultiLineString | Feature<Lines>'.
-const lineEachValue: void = meta.lineEach(line, () => {});
+const lineEachValue: void = meta.lineEach(line, () => {
+  /* no-op */
+});
 lineEach(line, (currentLine) => currentLine);
 meta.lineEach(line, (currentLine) => currentLine);
 meta.lineEach(
@@ -279,7 +283,9 @@ meta.lineEach(
 );
 
 // Able to load custom LineStrings
-lineEach(customLineString, (line) => {});
+lineEach(customLineString, (line) => {
+  /* no-op */
+});
 lineEach(customLineStrings, (line) => {
   line.properties.bar;
   // line.properties.hello // [ts] Property 'hello' does not exist on type '{ foo: string; bar: string; }'.

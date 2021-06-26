@@ -48,7 +48,7 @@ export default function booleanOverlap(
 
   // features must be not equal
   const equality = new GeojsonEquality({ precision: 6 });
-  if (equality.compare(feature1, feature2)) return false;
+  if (equality.compare(feature1 as any, feature2 as any)) return false;
 
   let overlap = 0;
 

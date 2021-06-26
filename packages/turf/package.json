@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -70,7 +71,7 @@
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "camelcase": "*",
-    "documentation": "*",
+    "documentation": "^13.2.5",
     "glob": "*",
     "rollup": "^2.34.2",
     "rollup-plugin-terser": "^7.0.2",

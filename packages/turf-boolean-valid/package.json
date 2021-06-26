@@ -16,6 +16,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -64,6 +65,7 @@
   "dependencies": {
     "@turf/bbox": "^6.4.0",
     "@turf/boolean-crosses": "^6.4.0",
+    "@turf/boolean-disjoint": "^6.4.0",
     "@turf/boolean-overlap": "^6.4.0",
     "@turf/boolean-point-in-polygon": "^6.4.0",
     "@turf/boolean-point-on-line": "^6.4.0",

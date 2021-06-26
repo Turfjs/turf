@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -59,6 +60,6 @@
   "dependencies": {
     "@turf/helpers": "^6.4.0",
     "@turf/invariant": "^6.4.0",
-    "polygon-clipping": "^0.15.2"
+    "polygon-clipping": "^0.15.3"
   }
 }

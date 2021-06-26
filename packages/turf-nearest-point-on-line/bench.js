@@ -32,7 +32,4 @@ for (const { name, geojson } of fixtures) {
   suite.add(name, () => nearestPointOnLine(line, point));
 }
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();
