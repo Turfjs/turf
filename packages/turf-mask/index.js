@@ -44,7 +44,9 @@ function unionFc(fc) {
         )
       : polygonClipping.union.apply(
           polygonClipping,
-          fc.features.map((f) => f.geometry.coordinates)
+          fc.features.map(function (f) {
+            return f.geometry.coordinates
+          })
         );
   return createGeomFromPolygonClippingOutput(unioned);
 }
