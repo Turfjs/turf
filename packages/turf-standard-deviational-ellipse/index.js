@@ -128,7 +128,8 @@ function standardDeviationalEllipse(points, options) {
     percentageWithinEllipse:
       (100 * coordAll(pointsWithinEllipse).length) / numberOfFeatures,
   };
-  theEllipse.properties.standardDeviationalEllipse = standardDeviationalEllipseProperties;
+  theEllipse.properties.standardDeviationalEllipse =
+    standardDeviationalEllipseProperties;
 
   return theEllipse;
 }

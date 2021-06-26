@@ -2,10 +2,7 @@ import Benchmark from "benchmark";
 import grid from "./dist/js/index.js";
 
 var bbox1 = [
-  -96.6357421875,
-  31.12819929911196,
-  -84.9462890625,
-  40.58058466412764,
+  -96.6357421875, 31.12819929911196, -84.9462890625, 40.58058466412764,
 ];
 
 var highres = grid(bbox1, 100, "miles").features.length;
