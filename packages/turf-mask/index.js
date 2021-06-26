@@ -1,8 +1,5 @@
-import rbush from "rbush";
-import union from "@turf/union";
-import { polygon, featureCollection } from "@turf/helpers";
-import turfBBox from "@turf/bbox";
-import { flattenEach } from "@turf/meta";
+import { polygon as createPolygon, multiPolygon } from "@turf/helpers";
+import polygonClipping from "polygon-clipping";
 
 /**
  * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
@@ -22,65 +19,37 @@ import { flattenEach } from "@turf/meta";
  */
 function mask(polygon, mask) {
   // Define mask
-  var maskPolygon = createMask(mask);
+  const maskPolygon = createMask(mask);
 
-  // Define polygon
-  var separated = separatePolygons(polygon);
-  var polygonOuters = separated[0];
-  var polygonInners = separated[1];
+  let polygonOuters = null;
+  if (polygon.type === "FeatureCollection") polygonOuters = unionFc(polygon);
+  else
+    polygonOuters = createGeomFromPolygonClippingOutput(
+      polygonClipping.union(polygon.geometry.coordinates)
+    );
 
-  // Union Outers & Inners
-  polygonOuters = unionPolygons(polygonOuters);
-  polygonInners = unionPolygons(polygonInners);
+  polygonOuters.geometry.coordinates.forEach(function (contour) {
+    maskPolygon.geometry.coordinates.push(contour[0]);
+  });
 
-  // Create masked area
-  var masked = buildMask(maskPolygon, polygonOuters, polygonInners);
-  return masked;
+  return maskPolygon;
 }
 
-/**
- * Build Mask
- *
- * @private
- * @param {Feature<Polygon>} maskPolygon Mask Outer
- * @param {FeatureCollection<Polygon>} polygonOuters Polygon Outers
- * @param {FeatureCollection<Polygon>} polygonInners Polygon Inners
- * @returns {Feature<Polygon>} Feature Polygon
- */
-function buildMask(maskPolygon, polygonOuters, polygonInners) {
-  var coordinates = [];
-  coordinates.push(maskPolygon.geometry.coordinates[0]);
-
-  flattenEach(polygonOuters, function (feature) {
-    coordinates.push(feature.geometry.coordinates[0]);
-  });
-
-  flattenEach(polygonInners, function (feature) {
-    coordinates.push(feature.geometry.coordinates[0]);
-  });
-  return polygon(coordinates);
+function unionFc(fc) {
+  const unioned =
+    fc.features.length === 2
+      ? polygonClipping.union(
+          fc.features[0].geometry.coordinates,
+          fc.features[1].geometry.coordinates
+        )
+      : polygonClipping.union.apply(
+          ...fc.features.map((f) => f.geometry.coordinates)
+        );
+  return createGeomFromPolygonClippingOutput(unioned);
 }
 
-/**
- * Separate Polygons to inners & outers
- *
- * @private
- * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} poly GeoJSON Feature
- * @returns {Array<FeatureCollection<Polygon>, FeatureCollection<Polygon>>} Outer & Inner lines
- */
-function separatePolygons(poly) {
-  var outers = [];
-  var inners = [];
-  flattenEach(poly, function (feature) {
-    var coordinates = feature.geometry.coordinates;
-    var featureOuter = coordinates[0];
-    var featureInner = coordinates.slice(1);
-    outers.push(polygon([featureOuter]));
-    featureInner.forEach(function (inner) {
-      inners.push(polygon([inner]));
-    });
-  });
-  return [featureCollection(outers), featureCollection(inners)];
+function createGeomFromPolygonClippingOutput(unioned) {
+  return multiPolygon(unioned);
 }
 
 /**
@@ -91,7 +60,7 @@ function separatePolygons(poly) {
  * @returns {Feature<Polygon>} mask coordinate
  */
 function createMask(mask) {
-  var world = [
+  const world = [
     [
       [180, 90],
       [-180, 90],
@@ -100,96 +69,8 @@ function createMask(mask) {
       [180, 90],
     ],
   ];
-  var coordinates = (mask && mask.geometry.coordinates) || world;
-  return polygon(coordinates);
-}
-
-/**
- * Union Polygons
- *
- * @private
- * @param {FeatureCollection<Polygon>} polygons collection of polygons
- * @returns {FeatureCollection<Polygon>} polygons only apply union if they collide
- */
-function unionPolygons(polygons) {
-  if (polygons.features.length <= 1) return polygons;
-
-  var tree = createIndex(polygons);
-  var results = [];
-  var removed = {};
-
-  flattenEach(polygons, function (currentFeature, currentIndex) {
-    // Exclude any removed features
-    if (removed[currentIndex]) return true;
-
-    // Don't search for itself
-    tree.remove({ index: currentIndex }, filterByIndex);
-    removed[currentIndex] = true;
-
-    // Keep applying the union operation until no more overlapping features
-    while (true) {
-      var bbox = turfBBox(currentFeature);
-      var search = tree.search({
-        minX: bbox[0],
-        minY: bbox[1],
-        maxX: bbox[2],
-        maxY: bbox[3],
-      });
-      if (search.length > 0) {
-        var polys = search.map(function (item) {
-          removed[item.index] = true;
-          tree.remove({ index: item.index }, filterByIndex);
-          return item.geojson;
-        });
-
-        for (var i = 0, l = polys.length; i < l; i++) {
-          currentFeature = union(currentFeature, polys[i]);
-        }
-      }
-      // Done
-      if (search.length === 0) break;
-    }
-    results.push(currentFeature);
-  });
-
-  return featureCollection(results);
-}
-
-/**
- * Filter by Index - RBush helper function
- *
- * @private
- * @param {Object} a remove item
- * @param {Object} b search item
- * @returns {boolean} true if matches
- */
-function filterByIndex(a, b) {
-  return a.index === b.index;
-}
-
-/**
- * Create RBush Tree Index
- *
- * @private
- * @param {FeatureCollection<any>} features GeoJSON FeatureCollection
- * @returns {RBush} RBush Tree
- */
-function createIndex(features) {
-  var tree = rbush();
-  var load = [];
-  flattenEach(features, function (feature, index) {
-    var bbox = turfBBox(feature);
-    load.push({
-      minX: bbox[0],
-      minY: bbox[1],
-      maxX: bbox[2],
-      maxY: bbox[3],
-      geojson: feature,
-      index: index,
-    });
-  });
-  tree.load(load);
-  return tree;
+  const coordinates = (mask && mask.geometry.coordinates) || world;
+  return createPolygon(coordinates);
 }
 
 export default mask;
