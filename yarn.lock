@@ -4800,11 +4800,6 @@ jsts@^1.4.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/jsts/-/jsts-1.6.0.tgz#ab5d47ca3f9962c4ef94bbe6a317efeacdb41c93"
 
-jsts@^2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/jsts/-/jsts-2.7.1.tgz#a921c0cc9eefeef588bd53e952e0a7782d812d52"
-  integrity sha512-x2wSZHEBK20CY+Wy+BPE7MrFQHW6sIsdaGUMEqmGAio+3gFzQaBYPwLRonUfQf9Ak8pBieqj9tUofX1+WtAEIg==
-
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -8227,10 +8222,6 @@ tunnel-agent@^0.6.0:
   resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.6.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
   dependencies:
     safe-buffer "^5.0.1"
-
-turf-jsts@*:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/turf-jsts/-/turf-jsts-1.2.3.tgz#59757f542afbff9a577bbf411f183b8f48d38aa4"
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
