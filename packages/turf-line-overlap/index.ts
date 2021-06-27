@@ -160,8 +160,9 @@ function concatSegment(
   else if (equal(coords[0], end)) geom.push(coords[1]);
   else if (equal(coords[1], start)) geom.unshift(coords[0]);
   else if (equal(coords[1], end)) geom.push(coords[0]);
-  else return;
+  else return; // If the overlap leaves the segment unchanged, return undefined so that this can be identified.
 
+  // Otherwise return the new line.
   return line;
 }
 
