@@ -17,9 +17,6 @@ import {
 } from "@turf/helpers";
 import equal from "deep-equal";
 
-const { inspect } = require("util");
-const log = (obj: any) => console.log(inspect(obj, true, null));
-
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.
  *
@@ -73,16 +70,8 @@ function lineOverlap<
       return;
     }
 
-    log("a");
-    log(segment);
-    log("b");
-
     // Iterate over each segments which falls within the same bounds
     featureEach(tree.search(segment), function (match) {
-      log(match);
-      log(doesOverlaps);
-      log("feats");
-      log(features);
       if (doesOverlaps === false) {
         var coordsSegment = getCoords(segment).sort();
         var coordsMatch: any = getCoords(match).sort();
@@ -92,8 +81,8 @@ function lineOverlap<
           doesOverlaps = true;
           // Overlaps already exists - only append last coordinate of segment
           if (overlapSegment) {
-            log("calling 1");
-            overlapSegment = concatSegment(overlapSegment, segment);
+            overlapSegment =
+              concatSegment(overlapSegment, segment) || overlapSegment;
           } else overlapSegment = segment;
           // Match segments which don't share nodes (Issue #901)
         } else if (
@@ -107,8 +96,8 @@ function lineOverlap<
         ) {
           doesOverlaps = true;
           if (overlapSegment) {
-            log("calling 2");
-            overlapSegment = concatSegment(overlapSegment, segment);
+            overlapSegment =
+              concatSegment(overlapSegment, segment) || overlapSegment;
           } else overlapSegment = segment;
         } else if (
           tolerance === 0
@@ -122,7 +111,6 @@ function lineOverlap<
           // Do not define (doesOverlap = true) since more matches can occur within the same segment
           // doesOverlaps = true;
           if (overlapSegment) {
-            log("calling 3");
             const combinedSegment = concatSegment(overlapSegment, match);
             if (combinedSegment) {
               overlapSegment = combinedSegment;
@@ -167,19 +155,12 @@ function concatSegment(
   var start = lineCoords[0];
   var end = lineCoords[lineCoords.length - 1];
   var geom = line.geometry.coordinates;
-  log("b4");
-  log(line);
-  log(segment);
-  log(geom);
 
   if (equal(coords[0], start)) geom.unshift(coords[1]);
   else if (equal(coords[0], end)) geom.push(coords[1]);
   else if (equal(coords[1], start)) geom.unshift(coords[0]);
   else if (equal(coords[1], end)) geom.push(coords[0]);
   else return;
-
-  log("after");
-  log(geom);
 
   return line;
 }
