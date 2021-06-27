@@ -8,7 +8,7 @@ export default class EdgeEndStar {
     this._ptInAreaLocation = [Location.NONE, Location.NONE];
   }
   getCoordinate() {
-    edge = this.getEdges()[0];
+    const edge = this.getEdges()[0];
     return edge ? edge.getCoordinate() : null;
   }
   findIndex(eSearch) {

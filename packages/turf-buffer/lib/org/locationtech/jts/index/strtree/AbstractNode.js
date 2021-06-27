@@ -5,6 +5,7 @@ export default class AbstractNode {
     this._childBoundables = [];
     this._bounds = null;
     this._level = null;
+    // eslint-disable-next-line no-empty
     if (arguments.length === 0) {
     } else if (arguments.length === 1) {
       let level = arguments[0];

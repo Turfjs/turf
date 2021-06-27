@@ -39,6 +39,7 @@ export default class RobustDeterminant {
     }
     if (y1 > 0.0) {
       if (y2 > 0.0) {
+        // eslint-disable-next-line no-empty
         if (y1 <= y2) {
         } else {
           sign = -sign;
@@ -96,6 +97,7 @@ export default class RobustDeterminant {
     }
     if (x1 > 0.0) {
       if (x2 > 0.0) {
+        // eslint-disable-next-line no-empty
         if (x1 <= x2) {
         } else {
           return sign;
