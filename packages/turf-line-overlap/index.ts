@@ -125,7 +125,7 @@ function lineOverlap<
     // Segment doesn't overlap - add overlaps to results & reset
     if (doesOverlaps === false && overlapSegment) {
       features.push(overlapSegment);
-      if (additionalSegments) {
+      if (additionalSegments.length) {
         features = features.concat(additionalSegments);
         additionalSegments = [];
       }
