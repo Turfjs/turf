@@ -3,12 +3,12 @@ import { featureCollection, multiPoint } from "@turf/helpers";
 import { geomEach, featureEach, coordEach } from "@turf/meta";
 
 /**
- * Finds {@link Points} or {@link MultiPoint} coordinates that fall within {@link (Multi)Polygon(s)}.
+ * Finds {@link Points} or {@link MultiPoint} coordinate positions that fall within {@link (Multi)Polygon(s)}.
  *
  * @name pointsWithinPolygon
  * @param {Feature|FeatureCollection<Point|MultiPoint>} points (Multi)Point(s) as input search
  * @param {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon>} polygons (Multi)Polygon(s) to check if points are within
- * @returns {FeatureCollection<Point>} (Multi)Points that land within at least one polygon
+ * @returns {FeatureCollection<Point|MultiPoint>} (Multi)Points that land within at least one polygon
  * @example
  * var points = turf.points([
  *     [-46.6318, -23.5523],
