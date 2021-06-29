@@ -120,7 +120,8 @@ test("turf-points-within-polygon -- single multipoint", (t) => {
     "multipoint result should have 1 remaining coord that was within polygon"
   );
   t.equal(
-    partCoords[0][0] === 50 && partCoords[0][1] === 50,
+    partCoords[0][0] === mpt3.geometry.coordinates[0][0] &&
+      partCoords[0][1] === mpt3.geometry.coordinates[0][1],
     true,
     "remaining coord should have expected values"
   );
