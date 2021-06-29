@@ -1,5 +1,5 @@
 import pointInPolygon from "@turf/boolean-point-in-polygon";
-import { featureCollection } from "@turf/helpers";
+import { featureCollection, multiPoint } from "@turf/helpers";
 import { geomEach, featureEach, coordEach } from "@turf/meta";
 
 /**
@@ -41,13 +41,28 @@ function pointsWithinPolygon(points, polygons) {
   var results = [];
   featureEach(points, function (point) {
     var contained = false;
-    geomEach(polygons, function (polygon) {
-      coordEach(point, function (pointCoord) {
-        if (pointInPolygon(pointCoord, polygon)) contained = true;
+    if (point.geometry.type === "Point") {
+      geomEach(polygons, function (polygon) {
+        if (pointInPolygon(point, polygon)) contained = true;
       });
-    });
-    if (contained) {
-      results.push(point);
+      if (contained) {
+        results.push(point);
+      }
+    } else if (point.geometry.type === "MultiPoint") {
+      let pointsWithin = [];
+      geomEach(polygons, function (polygon) {
+        coordEach(point, function (pointCoord) {
+          if (pointInPolygon(pointCoord, polygon)) {
+            contained = true;
+            pointsWithin.push(pointCoord);
+          }
+        });
+      });
+      if (contained) {
+        results.push(multiPoint(pointsWithin));
+      }
+    } else {
+      throw new Error("Input geometry must be a Point or MultiPoint");
     }
   });
   return featureCollection(results);

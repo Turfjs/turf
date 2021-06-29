@@ -60,7 +60,7 @@ test("turf-points-within-polygon -- single point", (t) => {
 });
 
 test("turf-points-within-polygon -- single multipoint", (t) => {
-  t.plan(8);
+  t.plan(12);
 
   const poly1 = polygon([
     [
@@ -73,10 +73,10 @@ test("turf-points-within-polygon -- single multipoint", (t) => {
   ]);
 
   const mpt1 = multiPoint([[50, 50]]); // inside poly1
-  const mpt2 = multiPoint([[1000, 1000]]); // outside poly1
+  const mpt2 = multiPoint([[150, 150]]); // outside poly1
   const mpt3 = multiPoint([
     [50, 50],
-    [1000, 1000],
+    [150, 150],
   ]); // inside and outside poly1
   const mpt1FC = featureCollection([mpt1]);
   const polyFC = featureCollection([poly1]);
@@ -113,11 +113,16 @@ test("turf-points-within-polygon -- single multipoint", (t) => {
   // multipoint with point coords both within and not within
   const mpPartWithin = pointsWithinPolygon(mpt3, polyFC);
   t.ok(mpPartWithin, "returns a featurecollection");
-  // maintains the whole multipoint, including coordinates that are outside the polygon(s)
+  const partCoords = mpPartWithin.features[0].geometry.coordinates;
   t.equal(
-    mpPartWithin.features[0].geometry.coordinates.length,
-    2,
-    "1 multipoint with 2 points in polygon"
+    partCoords.length,
+    1,
+    "multipoint result should have 1 remaining coord that was within polygon"
+  );
+  t.equal(
+    partCoords[0][0] === 50 && partCoords[0][1] === 50,
+    true,
+    "remaining coord should have expected values"
   );
 
   // multiple multipoints and multiple polygons
