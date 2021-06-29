@@ -1,5 +1,5 @@
 import pointsWithinPolygon from "./";
-import { points, polygon } from "@turf/helpers";
+import { points, polygon, multiPoint, featureCollection } from "@turf/helpers";
 
 const pts = points([
   [-46.6318, -23.5523],
@@ -8,6 +8,22 @@ const pts = points([
   [-46.663, -23.554],
   [-46.643, -23.557],
 ]);
+const mpt1 = multiPoint(
+  [
+    [50, 50],
+    [100, 100],
+  ],
+  {}
+);
+const mpt2 = multiPoint(
+  [
+    [75, 75],
+    [150, 150],
+  ],
+  {}
+);
+const mpts = featureCollection([mpt1, mpt2]);
+
 const searchWithin = polygon([
   [
     [-46.653, -23.543],
@@ -20,3 +36,4 @@ const searchWithin = polygon([
   ],
 ]);
 const ptsWithin = pointsWithinPolygon(pts, searchWithin);
+const mptsWithin = pointsWithinPolygon(mpts, searchWithin);
