@@ -1,6 +1,6 @@
 import pointInPolygon from "@turf/boolean-point-in-polygon";
 import { featureCollection } from "@turf/helpers";
-import { geomEach, featureEach } from "@turf/meta";
+import { geomEach, featureEach, coordEach } from "@turf/meta";
 
 /**
  * Finds {@link Points} that fall within {@link (Multi)Polygon(s)}.
@@ -42,7 +42,9 @@ function pointsWithinPolygon(points, polygons) {
   featureEach(points, function (point) {
     var contained = false;
     geomEach(polygons, function (polygon) {
-      if (pointInPolygon(point, polygon)) contained = true;
+      coordEach(point, function (pointCoord) {
+        if (pointInPolygon(pointCoord, polygon)) contained = true;
+      });
     });
     if (contained) {
       results.push(point);

@@ -1,10 +1,10 @@
 import test from "tape";
-import { point, points } from "@turf/helpers";
+import { multiPoint, point, points } from "@turf/helpers";
 import { polygon } from "@turf/helpers";
 import { featureCollection } from "@turf/helpers";
 import pointsWithinPolygon from "./index";
 
-test("turf-points-within-polygon", (t) => {
+test("turf-points-within-polygon -- single point", (t) => {
   t.plan(4);
 
   // test with a single point
@@ -59,7 +59,91 @@ test("turf-points-within-polygon", (t) => {
   t.equal(counted.features.length, 5, "multiple points in multiple polygons");
 });
 
-test("turf-points-within-polygon -- support extra geometry", (t) => {
+test("turf-points-within-polygon -- single multipoint", (t) => {
+  t.plan(8);
+
+  const poly1 = polygon([
+    [
+      [0, 0],
+      [0, 100],
+      [100, 100],
+      [100, 0],
+      [0, 0],
+    ],
+  ]);
+
+  const mpt1 = multiPoint([[50, 50]]); // inside poly1
+  const mpt2 = multiPoint([[1000, 1000]]); // outside poly1
+  const mpt3 = multiPoint([
+    [50, 50],
+    [1000, 1000],
+  ]); // inside and outside poly1
+  const mpt1FC = featureCollection([mpt1]);
+  const polyFC = featureCollection([poly1]);
+
+  // multipoint within
+  const mpWithin = pointsWithinPolygon(mpt1, polyFC);
+  t.ok(
+    mpWithin && mpWithin.type === "FeatureCollection",
+    "returns a featurecollection"
+  );
+  t.equal(mpWithin.features.length, 1, "1 multipoint in 1 polygon");
+  t.equal(
+    mpWithin.features[0].geometry.type,
+    "MultiPoint",
+    "1 multipoint with correct type"
+  );
+
+  // multipoint fc within
+  const fcWithin = pointsWithinPolygon(mpt1FC, polyFC);
+  t.ok(
+    fcWithin && fcWithin.type === "FeatureCollection",
+    "returns a featurecollection"
+  );
+  t.equal(fcWithin.features.length, 1, "1 multipoint in 1 polygon");
+
+  // multipoint not within
+  const mpNotWithin = pointsWithinPolygon(mpt2, polyFC);
+  t.ok(
+    mpNotWithin && mpNotWithin.type === "FeatureCollection",
+    "returns an empty featurecollection"
+  );
+  t.equal(mpNotWithin.features.length, 0, "0 multipoint in 1 polygon");
+
+  // multipoint with point coords both within and not within
+  const mpPartWithin = pointsWithinPolygon(mpt3, polyFC);
+  t.ok(mpPartWithin, "returns a featurecollection");
+  // maintains the whole multipoint, including coordinates that are outside the polygon(s)
+  t.equal(
+    mpPartWithin.features[0].geometry.coordinates.length,
+    2,
+    "1 multipoint with 2 points in polygon"
+  );
+
+  // multiple multipoints and multiple polygons
+
+  const poly2 = polygon([
+    [
+      [10, 0],
+      [20, 10],
+      [20, 20],
+      [20, 0],
+      [10, 0],
+    ],
+  ]);
+  var mptFC = featureCollection([mpt1, mpt2, mpt3]);
+  var poly2FC = featureCollection([poly1, poly2]);
+
+  var fcMultiWithin = pointsWithinPolygon(mptFC, poly2FC);
+  t.ok(fcMultiWithin, "returns a featurecollection");
+  t.equal(
+    fcMultiWithin.features.length,
+    2,
+    "multiple points in multiple polygons"
+  );
+});
+
+test("turf-points-within-polygon -- support extra point geometry", (t) => {
   const pts = points([
     [-46.6318, -23.5523],
     [-46.6246, -23.5325],
