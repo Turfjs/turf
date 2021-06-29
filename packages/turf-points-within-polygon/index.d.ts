@@ -19,4 +19,4 @@ export default function pointsWithinPolygon<
     | Feature<Point | MultiPoint, P>
     | FeatureCollection<Point | MultiPoint, P>,
   polygons: Feature<G> | FeatureCollection<G> | G
-): FeatureCollection<Point, P>;
+): FeatureCollection<Point | MultiPoint, P>;
