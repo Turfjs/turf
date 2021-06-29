@@ -12,11 +12,10 @@ import {
  * http://turfjs.org/docs/#pointswithinpolygon
  */
 export default function pointsWithinPolygon<
+  F extends Point | MultiPoint,
   G extends Polygon | MultiPolygon,
   P = Properties
 >(
-  points:
-    | Feature<Point | MultiPoint, P>
-    | FeatureCollection<Point | MultiPoint, P>,
+  points: Feature<F, P> | FeatureCollection<F, P>,
   polygons: Feature<G> | FeatureCollection<G> | G
-): FeatureCollection<Point | MultiPoint, P>;
+): FeatureCollection<F, P>;
