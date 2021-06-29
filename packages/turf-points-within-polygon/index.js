@@ -49,7 +49,7 @@ function pointsWithinPolygon(points, polygons) {
         results.push(point);
       }
     } else if (point.geometry.type === "MultiPoint") {
-      let pointsWithin = [];
+      var pointsWithin = [];
       geomEach(polygons, function (polygon) {
         coordEach(point, function (pointCoord) {
           if (pointInPolygon(pointCoord, polygon)) {
