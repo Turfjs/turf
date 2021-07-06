@@ -10,6 +10,8 @@ import { Feature, Geometry, MultiPoint } from "@turf/helpers";
  * different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString,
  * Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon.
  *
+ * In other words, it returns true if the two geometries overlap, provided that neither completely contains the other.
+ *
  * @name booleanOverlap
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature1 input
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature2 input
