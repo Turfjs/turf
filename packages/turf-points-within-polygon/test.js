@@ -4,7 +4,7 @@ import { polygon } from "@turf/helpers";
 import { featureCollection } from "@turf/helpers";
 import pointsWithinPolygon from "./index";
 
-test("turf-points-within-polygon -- single point", (t) => {
+test("turf-points-within-polygon -- point", (t) => {
   t.plan(4);
 
   // test with a single point
@@ -59,10 +59,10 @@ test("turf-points-within-polygon -- single point", (t) => {
   t.equal(counted.features.length, 5, "multiple points in multiple polygons");
 });
 
-test("turf-points-within-polygon -- single multipoint", (t) => {
+test("turf-points-within-polygon -- multipoint", (t) => {
   t.plan(12);
 
-  const poly1 = polygon([
+  var poly1 = polygon([
     [
       [0, 0],
       [0, 100],
@@ -72,17 +72,17 @@ test("turf-points-within-polygon -- single multipoint", (t) => {
     ],
   ]);
 
-  const mpt1 = multiPoint([[50, 50]]); // inside poly1
-  const mpt2 = multiPoint([[150, 150]]); // outside poly1
-  const mpt3 = multiPoint([
+  var mpt1 = multiPoint([[50, 50]]); // inside poly1
+  var mpt2 = multiPoint([[150, 150]]); // outside poly1
+  var mpt3 = multiPoint([
     [50, 50],
     [150, 150],
   ]); // inside and outside poly1
-  const mpt1FC = featureCollection([mpt1]);
-  const polyFC = featureCollection([poly1]);
+  var mpt1FC = featureCollection([mpt1]);
+  var polyFC = featureCollection([poly1]);
 
   // multipoint within
-  const mpWithin = pointsWithinPolygon(mpt1, polyFC);
+  var mpWithin = pointsWithinPolygon(mpt1, polyFC);
   t.ok(
     mpWithin && mpWithin.type === "FeatureCollection",
     "returns a featurecollection"
@@ -95,7 +95,7 @@ test("turf-points-within-polygon -- single multipoint", (t) => {
   );
 
   // multipoint fc within
-  const fcWithin = pointsWithinPolygon(mpt1FC, polyFC);
+  var fcWithin = pointsWithinPolygon(mpt1FC, polyFC);
   t.ok(
     fcWithin && fcWithin.type === "FeatureCollection",
     "returns a featurecollection"
@@ -103,7 +103,7 @@ test("turf-points-within-polygon -- single multipoint", (t) => {
   t.equal(fcWithin.features.length, 1, "1 multipoint in 1 polygon");
 
   // multipoint not within
-  const mpNotWithin = pointsWithinPolygon(mpt2, polyFC);
+  var mpNotWithin = pointsWithinPolygon(mpt2, polyFC);
   t.ok(
     mpNotWithin && mpNotWithin.type === "FeatureCollection",
     "returns an empty featurecollection"
@@ -111,9 +111,9 @@ test("turf-points-within-polygon -- single multipoint", (t) => {
   t.equal(mpNotWithin.features.length, 0, "0 multipoint in 1 polygon");
 
   // multipoint with point coords both within and not within
-  const mpPartWithin = pointsWithinPolygon(mpt3, polyFC);
+  var mpPartWithin = pointsWithinPolygon(mpt3, polyFC);
   t.ok(mpPartWithin, "returns a featurecollection");
-  const partCoords = mpPartWithin.features[0].geometry.coordinates;
+  var partCoords = mpPartWithin.features[0].geometry.coordinates;
   t.equal(
     partCoords.length,
     1,
@@ -128,7 +128,7 @@ test("turf-points-within-polygon -- single multipoint", (t) => {
 
   // multiple multipoints and multiple polygons
 
-  const poly2 = polygon([
+  var poly2 = polygon([
     [
       [10, 0],
       [20, 10],
@@ -147,6 +147,33 @@ test("turf-points-within-polygon -- single multipoint", (t) => {
     2,
     "multiple points in multiple polygons"
   );
+});
+
+test("turf-points-within-polygon -- point and multipoint", (t) => {
+  t.plan(4);
+
+  var poly = polygon([
+    [
+      [0, 0],
+      [0, 100],
+      [100, 100],
+      [100, 0],
+      [0, 0],
+    ],
+  ]);
+  var polyFC = featureCollection([poly]);
+
+  var pt = point([50, 50]);
+  var mpt1 = multiPoint([[50, 50]]); // inside poly1
+  var mpt2 = multiPoint([[150, 150]]); // outside poly1
+  var mixedFC = featureCollection([pt, mpt1, mpt2]);
+
+  var counted = pointsWithinPolygon(mixedFC, polyFC);
+
+  t.ok(counted, "returns a featurecollection");
+  t.equal(counted.features.length, 2, "1 point and 1 multipoint in 1 polygon");
+  t.equal(counted.features[0].geometry.type, "Point");
+  t.equal(counted.features[1].geometry.type, "MultiPoint");
 });
 
 test("turf-points-within-polygon -- support extra point geometry", (t) => {
