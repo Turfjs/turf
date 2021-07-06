@@ -6,12 +6,7 @@ import write from "write-json-file";
 import { polygon, point, featureCollection } from "@turf/helpers";
 import dissolve from "./index";
 
-const SKIP = [
-  "hexagons-issue#742.geojson",
-  "polysByProperty.geojson",
-  "polysWithoutProperty.geojson",
-  "simplified-issue.geojson",
-];
+const SKIP = [];
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -67,5 +62,52 @@ test("dissolve -- throw", (t) => {
     /Invalid input to dissolve: must be a Polygon, given Point/,
     "invalid collection type"
   );
+  t.end();
+});
+
+test("dissolve -- properties", (t) => {
+  var features = featureCollection([
+    polygon(
+      [
+        [
+          [0, 0],
+          [0, 1],
+          [1, 1],
+          [1, 0],
+          [0, 0],
+        ],
+      ],
+      { combine: "yes" }
+    ),
+    polygon(
+      [
+        [
+          [0, -1],
+          [0, 0],
+          [1, 0],
+          [1, -1],
+          [0, -1],
+        ],
+      ],
+      { combine: "yes" }
+    ),
+    polygon(
+      [
+        [
+          [1, -1],
+          [1, 0],
+          [2, 0],
+          [2, -1],
+          [1, -1],
+        ],
+      ],
+      { combine: "no" }
+    ),
+  ]);
+
+  var results = dissolve(features, { propertyName: "combine" });
+  t.equals(results.features[0].properties.combine, "yes");
+  t.equals(results.features[1].properties.combine, "no");
+
   t.end();
 });
