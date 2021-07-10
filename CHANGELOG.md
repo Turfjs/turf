@@ -1,3 +1,29 @@
+# 6.5.0
+
+## 🏅 New Features/Enhancements
+- [`@turf/points-with-polygon`](points-with-polygon) Add MultiPoint support
+  (PR https://github.com/Turfjs/turf/pull/2137 - Author @twelch)
+
+## 🐛 Bug Fixes
+- [`@turf/dissolve`](dissolve) Complete rewrite of the dissolve module to resolve many bugs
+  (PR https://github.com/Turfjs/turf/pull/2110 - Author @rowanwins)
+
+- [`@turf/mask`](mask) Complete rewrite of the mask module to resolve many bugs
+  (PR https://github.com/Turfjs/turf/pull/2130 - Author @rowanwins)
+
+- [`@turf/boolean-valid`](boolean-valid) Add missing dependency to
+  (PR https://github.com/Turfjs/turf/pull/2094 - Author @rycgar)
+
+
+## 📖 Documentation
+- [`@turf/boolean-overlap`](boolean-overlap) Improve clarity
+  (PR https://github.com/Turfjs/turf/pull/2133 - Author @patrickbrett)
+
+## 🔔 Misc
+- Enable TS Strict Mode
+  (PR https://github.com/Turfjs/turf/pull/2126 - Author @mfedderly)
+
+
 # 6.4.0
 
 ## 🏅 New Features/Enhancements
