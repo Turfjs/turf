@@ -1,0 +1,6 @@
+{
+  "bbox": [-180, -90, 180, 90],
+  "cellWidth": 10,
+  "cellHeight": 10,
+  "units": "degrees"
+}
