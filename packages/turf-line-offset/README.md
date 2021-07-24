@@ -6,14 +6,15 @@
 
 Takes a [line][1] and returns a [line][1] at offset by the specified distance.
 
-**Parameters**
+### Parameters
 
--   `geojson` **([Geometry][2] \| [Feature][3]&lt;([LineString][4] \| [MultiLineString][5])>)** input GeoJSON
--   `distance` **[number][6]** distance to offset the line (can be of negative value)
--   `options` **[Object][7]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][8]** can be degrees, radians, miles, kilometers, inches, yards, meters (optional, default `'kilometers'`)
+*   `geojson` **([Geometry][2] | [Feature][3]<([LineString][4] | [MultiLineString][5])>)** input GeoJSON
+*   `distance` **[number][6]** distance to offset the line (can be of negative value)
+*   `options` **[Object][7]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][8]** can be degrees, radians, miles, kilometers, inches, yards, meters (optional, default `'kilometers'`)
+
+### Examples
 
 ```javascript
 var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
@@ -25,7 +26,7 @@ var addToMap = [offsetLine, line]
 offsetLine.properties.stroke = "#00F"
 ```
 
-Returns **[Feature][3]&lt;([LineString][4] \| [MultiLineString][5])>** Line offset from the input line
+Returns **[Feature][3]<([LineString][4] | [MultiLineString][5])>** Line offset from the input line
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

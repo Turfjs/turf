@@ -6,19 +6,20 @@
 
 Takes a [Point][1] and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.
 
-**Parameters**
+### Parameters
 
--   `center` **[Coord][2]** center point
--   `xSemiAxis` **[number][3]** semi (major) axis of the ellipse along the x-axis
--   `ySemiAxis` **[number][3]** semi (minor) axis of the ellipse along the y-axis
--   `options` **[Object][4]** Optional parameters (optional, default `{}`)
-    -   `options.angle` **[number][3]** angle of rotation (along the vertical axis), from North in decimal degrees, negative clockwise (optional, default `0`)
-    -   `options.pivot` **[Coord][2]** point around which the rotation will be performed (optional, default `'origin'`)
-    -   `options.steps` **[number][3]** number of steps (optional, default `64`)
-    -   `options.units` **[string][5]** unit of measurement for axes (optional, default `'kilometers'`)
-    -   `options.properties` **[Object][4]** properties (optional, default `{}`)
+*   `center` **[Coord][2]** center point
+*   `xSemiAxis` **[number][3]** semi (major) axis of the ellipse along the x-axis
+*   `ySemiAxis` **[number][3]** semi (minor) axis of the ellipse along the y-axis
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.angle` **[number][3]** angle of rotation in decimal degrees, positive clockwise (optional, default `0`)
+    *   `options.pivot` **[Coord][2]** point around which the rotation will be performed (optional, default `'origin'`)
+    *   `options.steps` **[number][3]** number of steps (optional, default `64`)
+    *   `options.units` **[string][5]** unit of measurement for axes (optional, default `'kilometers'`)
+    *   `options.properties` **[Object][4]** properties (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var center = [-75, 40];
@@ -30,7 +31,7 @@ var ellipse = turf.ellipse(center, xSemiAxis, ySemiAxis);
 var addToMap = [turf.point(center), ellipse]
 ```
 
-Returns **[Feature][6]&lt;[Polygon][7]>** ellipse polygon
+Returns **[Feature][6]<[Polygon][7]>** ellipse polygon
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

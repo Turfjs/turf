@@ -6,12 +6,12 @@
 
 Finds the difference between two [polygons][1] by clipping the second polygon from the first.
 
-**Parameters**
+### Parameters
 
--   `polygon1` **[Feature][2]&lt;([Polygon][3] \| [MultiPolygon][4])>** input Polygon feature
--   `polygon2` **[Feature][2]&lt;([Polygon][3] \| [MultiPolygon][4])>** Polygon feature to difference from polygon1
+*   `polygon1` **[Feature][2]<([Polygon][3] | [MultiPolygon][4])>** input Polygon feature
+*   `polygon2` **[Feature][2]<([Polygon][3] | [MultiPolygon][4])>** Polygon feature to difference from polygon1
 
-**Examples**
+### Examples
 
 ```javascript
 var polygon1 = turf.polygon([[
@@ -41,7 +41,7 @@ var difference = turf.difference(polygon1, polygon2);
 var addToMap = [polygon1, polygon2, difference];
 ```
 
-Returns **([Feature][2]&lt;([Polygon][3] \| [MultiPolygon][4])> | null)** a Polygon or MultiPolygon feature showing the area of `polygon1` excluding the area of `polygon2` (if empty returns `null`)
+Returns **([Feature][2]<([Polygon][3] | [MultiPolygon][4])> | null)** a Polygon or MultiPolygon feature showing the area of `polygon1` excluding the area of `polygon2` (if empty returns `null`)
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

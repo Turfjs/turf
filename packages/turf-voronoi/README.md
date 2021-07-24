@@ -9,13 +9,14 @@ of Voronoi polygons.
 
 The Voronoi algorithim used comes from the d3-voronoi package.
 
-**Parameters**
+### Parameters
 
--   `points` **[FeatureCollection][1]&lt;[Point][2]>** to find the Voronoi polygons around.
--   `options` **[Object][3]** Optional parameters (optional, default `{}`)
-    -   `options.bbox` **[Array][4]&lt;[number][5]>** clipping rectangle, in [minX, minY, maxX, MaxY] order. (optional, default `[-180,-85,180,-85]`)
+*   `points` **[FeatureCollection][1]<[Point][2]>** to find the Voronoi polygons around.
+*   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.bbox` **[Array][4]<[number][5]>** clipping rectangle, in \[minX, minY, maxX, MaxY] order. (optional, default `[-180,-85,180,-85]`)
+
+### Examples
 
 ```javascript
 var options = {
@@ -28,7 +29,7 @@ var voronoiPolygons = turf.voronoi(points, options);
 var addToMap = [voronoiPolygons, points];
 ```
 
-Returns **[FeatureCollection][1]&lt;[Polygon][6]>** a set of polygons, one per input point.
+Returns **[FeatureCollection][1]<[Polygon][6]>** a set of polygons, one per input point.
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 

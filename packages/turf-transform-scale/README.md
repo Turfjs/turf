@@ -7,15 +7,16 @@
 Scale a GeoJSON from a given point by a factor of scaling (ex: factor=2 would make the GeoJSON 200% larger).
 If a FeatureCollection is provided, the origin point will be calculated based on each individual Feature.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][1]** GeoJSON to be scaled
--   `factor` **[number][2]** of scaling, positive or negative values greater than 0
--   `options` **[Object][3]** Optional parameters (optional, default `{}`)
-    -   `options.origin` **([string][4] \| [Coord][5])** Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid) (optional, default `'centroid'`)
-    -   `options.mutate` **[boolean][6]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+*   `geojson` **[GeoJSON][1]** GeoJSON to be scaled
+*   `factor` **[number][2]** of scaling, positive or negative values greater than 0
+*   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.origin` **([string][4] | [Coord][5])** Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid) (optional, default `'centroid'`)
+    *   `options.mutate` **[boolean][6]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+
+### Examples
 
 ```javascript
 var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);

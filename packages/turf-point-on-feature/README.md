@@ -6,15 +6,15 @@
 
 Takes a Feature or FeatureCollection and returns a [Point][1] guaranteed to be on the surface of the feature.
 
--   Given a [Polygon][2], the point will be in the area of the polygon
--   Given a [LineString][3], the point will be along the string
--   Given a [Point][1], the point will the same as the input
+*   Given a [Polygon][2], the point will be in the area of the polygon
+*   Given a [LineString][3], the point will be along the string
+*   Given a [Point][1], the point will the same as the input
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][4]** any Feature or FeatureCollection
+*   `geojson` **[GeoJSON][4]** any Feature or FeatureCollection
 
-**Examples**
+### Examples
 
 ```javascript
 var polygon = turf.polygon([[
@@ -33,7 +33,7 @@ var pointOnPolygon = turf.pointOnFeature(polygon);
 var addToMap = [polygon, pointOnPolygon];
 ```
 
-Returns **[Feature][5]&lt;[Point][6]>** a point on the surface of `input`
+Returns **[Feature][5]<[Point][6]>** a point on the surface of `input`
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

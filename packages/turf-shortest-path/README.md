@@ -7,17 +7,18 @@
 Returns the shortest [path][1] from [start][2] to [end][2] without colliding with
 any [Feature][3] in [ obstacles][4]
 
-**Parameters**
+### Parameters
 
--   `start` **[Coord][5]** point
--   `end` **[Coord][5]** point
--   `options` **[Object][6]** optional parameters (optional, default `{}`)
-    -   `options.obstacles` **([Geometry][7] \| [Feature][8] \| [FeatureCollection][9]&lt;[Polygon][10]>)?** areas which path cannot travel
-    -   `options.minDistance` **[number][11]?** minimum distance between shortest path and obstacles
-    -   `options.units` **[string][12]** unit in which resolution & minimum distance will be expressed in; it can be degrees, radians, miles, kilometers, ... (optional, default `'kilometers'`)
-    -   `options.resolution` **[number][11]** distance between matrix points on which the path will be calculated (optional, default `100`)
+*   `start` **[Coord][5]** point
+*   `end` **[Coord][5]** point
+*   `options` **[Object][6]** optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.obstacles` **([Geometry][7] | [Feature][8] | [FeatureCollection][9]<[Polygon][10]>)?** areas which path cannot travel
+    *   `options.minDistance` **[number][11]?** minimum distance between shortest path and obstacles
+    *   `options.units` **[string][12]** unit in which resolution & minimum distance will be expressed in; it can be degrees, radians, miles, kilometers, ... (optional, default `'kilometers'`)
+    *   `options.resolution` **[number][11]** distance between matrix points on which the path will be calculated (optional, default `100`)
+
+### Examples
 
 ```javascript
 var start = [-5, -6];
@@ -32,7 +33,7 @@ var path = turf.shortestPath(start, end, options);
 var addToMap = [start, end, options.obstacles, path];
 ```
 
-Returns **[Feature][8]&lt;[LineString][13]>** shortest path between start and end
+Returns **[Feature][8]<[LineString][13]>** shortest path between start and end
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

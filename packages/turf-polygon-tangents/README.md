@@ -6,12 +6,12 @@
 
 Finds the tangents of a [(Multi)Polygon][1] from a [Point][2].
 
-**Parameters**
+### Parameters
 
--   `pt` **[Coord][3]** to calculate the tangent points from
--   `polygon` **[Feature][4]&lt;([Polygon][5] \| [MultiPolygon][6])>** to get tangents from
+*   `pt` **[Coord][3]** to calculate the tangent points from
+*   `polygon` **[Feature][4]<([Polygon][5] | [MultiPolygon][6])>** to get tangents from
 
-**Examples**
+### Examples
 
 ```javascript
 var polygon = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
@@ -23,7 +23,7 @@ var tangents = turf.polygonTangents(point, polygon)
 var addToMap = [tangents, point, polygon];
 ```
 
-Returns **[FeatureCollection][7]&lt;[Point][8]>** Feature Collection containing the two tangent points
+Returns **[FeatureCollection][7]<[Point][8]>** Feature Collection containing the two tangent points
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

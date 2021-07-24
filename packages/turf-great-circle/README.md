@@ -10,12 +10,13 @@ be split into a `MultiLineString`.
 
 ### Parameters
 
--   `start` **[Coord][3]** source point feature
--   `end` **[Coord][3]** destination point feature
--   `options` **[Object][4]** Optional parameters (optional, default `{}`)
-    -   `options.properties` **[Object][4]** line feature properties (optional, default `{}`)
-    -   `options.npoints` **[number][5]** number of points (optional, default `100`)
-    -   `options.offset` **[number][5]** offset controls the likelyhood that lines will
+*   `start` **[Coord][3]** source point feature
+*   `end` **[Coord][3]** destination point feature
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
+
+    *   `options.properties` **[Object][4]** line feature properties (optional, default `{}`)
+    *   `options.npoints` **[number][5]** number of points (optional, default `100`)
+    *   `options.offset` **[number][5]** offset controls the likelyhood that lines will
         be split which cross the dateline. The higher the number the more likely. (optional, default `10`)
 
 ### Examples
@@ -30,7 +31,7 @@ var greatCircle = turf.greatCircle(start, end, {properties: {name: 'Seattle to D
 var addToMap = [start, end, greatCircle]
 ```
 
-Returns **[Feature][6]&lt;([LineString][7] \| [MultiLineString][8])>** great circle line feature
+Returns **[Feature][6]<([LineString][7] | [MultiLineString][8])>** great circle line feature
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 
