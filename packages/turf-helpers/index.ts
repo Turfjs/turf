@@ -174,7 +174,7 @@ export let areaFactors: any = {
  *
  * //=feature
  */
-export function feature<G extends GeometryObject = Geometries, P = Properties>(
+export function feature<G extends GeometryObject, P = Properties>(
   geom: G,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}

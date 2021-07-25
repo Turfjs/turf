@@ -8,6 +8,7 @@ import {
   Point,
   Polygon,
   Position,
+  GeoJsonTypes,
 } from "geojson";
 
 export {
@@ -118,7 +119,7 @@ export interface GeoJSONObject {
   /**
    * Specifies the type of GeoJSON object.
    */
-  type: string;
+  type: GeoJsonTypes;
   /**
    * Bounding box of the coordinate range of the object's Geometries, Features, or Feature Collections.
    * https://tools.ietf.org/html/rfc7946#section-5
