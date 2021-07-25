@@ -44,8 +44,8 @@
     "build:js": "tsc",
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
-    "test:tape": "ts-node -r esm test.js",
-    "test:coverage": "nyc ts-node -r esm test.js"
+    "test:coverage": "nyc ts-node -r esm test.js",
+    "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
     "@types/tape": "*",
