@@ -44,13 +44,15 @@
     "build:js": "tsc",
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
-    "test:tape": "ts-node -r esm test.js"
+    "test:tape": "ts-node -r esm test.js",
+    "test:coverage": "nyc ts-node -r esm test.js"
   },
   "devDependencies": {
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
+    "nyc": "^15.1.0",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",
