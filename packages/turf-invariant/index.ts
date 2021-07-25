@@ -235,7 +235,7 @@ export function collectionOf(
  */
 export function getGeom<G extends Geometries | GeometryCollection>(
   geojson: Feature<G> | G
-): G {
+): G | null {
   if (geojson.type === "Feature") {
     return geojson.geometry;
   }
