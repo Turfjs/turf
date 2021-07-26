@@ -2,6 +2,7 @@ import turfbbox from "@turf/bbox";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import rbush from "rbush";
 import { FeatureCollection, Polygon, Point } from "@turf/helpers";
+import { geomEach } from "@turf/meta";
 
 interface Entry {
   minX: number;
@@ -49,14 +50,23 @@ function collect(
 ): FeatureCollection<Polygon> {
   var rtree = rbush<Entry>(6);
 
-  var treeItems = points.features.map(function (item) {
-    return {
-      minX: item.geometry.coordinates[0],
-      minY: item.geometry.coordinates[1],
-      maxX: item.geometry.coordinates[0],
-      maxY: item.geometry.coordinates[1],
-      property: item.properties?.[inProperty],
-    };
+  const treeItems: {
+    minX: number;
+    minY: number;
+    maxX: number;
+    maxY: number;
+    property: any;
+  }[] = [];
+
+  geomEach(points, (geom, index, properties) => {
+    if (!geom) return true; // skip
+    treeItems.push({
+      minX: geom.coordinates[0],
+      minY: geom.coordinates[1],
+      maxX: geom.coordinates[0],
+      maxY: geom.coordinates[1],
+      property: properties?.[inProperty],
+    });
   });
 
   rtree.load(treeItems);
