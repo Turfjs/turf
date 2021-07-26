@@ -1,5 +1,11 @@
 import { featureEach } from "@turf/meta";
-import { featureCollection, Feature, FeatureCollection } from "@turf/helpers";
+import {
+  featureCollection,
+  Feature,
+  FeatureCollection,
+  GeometryObject,
+  Geometries,
+} from "@turf/helpers";
 
 /**
  * Get Cluster
@@ -30,7 +36,7 @@ import { featureCollection, Feature, FeatureCollection } from "@turf/helpers";
  * turf.getCluster(clustered, {'marker-symbol': 'square'}).length;
  * //= 1
  */
-export function getCluster<G extends any, P = any>(
+export function getCluster<G extends GeometryObject, P = any>(
   geojson: FeatureCollection<G, P>,
   filter: any
 ): FeatureCollection<G, P> {
@@ -98,7 +104,7 @@ export function getCluster<G extends any, P = any>(
  *     values.push(clusterValue);
  * });
  */
-export function clusterEach<G = any, P = any>(
+export function clusterEach<G extends GeometryObject = Geometries, P = any>(
   geojson: FeatureCollection<G, P>,
   property: number | string,
   callback: (
@@ -192,7 +198,7 @@ export function clusterEach<G = any, P = any>(
  *     return previousValue.concat(clusterValue);
  * }, []);
  */
-export function clusterReduce<G = any, P = any>(
+export function clusterReduce<G extends GeometryObject = Geometries, P = any>(
   geojson: FeatureCollection<G, P>,
   property: number | string,
   callback: (
