@@ -55,6 +55,8 @@ export default function intersect<P = Properties>(
   const geom1 = getGeom(poly1);
   const geom2 = getGeom(poly2);
 
+  if (!geom1 || !geom2) return null;
+
   const intersection = polygonClipping.intersection(
     geom1.coordinates as any,
     geom2.coordinates as any
