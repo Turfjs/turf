@@ -55,9 +55,9 @@ export default function booleanPointInPolygon<
 
   const pt = getCoord(point);
   const geom = getGeom(polygon);
-  const type = geom.type;
+  const type = geom?.type;
   const bbox = polygon.bbox;
-  let polys: any[] = geom.coordinates;
+  let polys: any[] = geom ? geom.coordinates : [];
 
   // Quick elimination if point is not inside bbox
   if (bbox && inBBox(pt, bbox) === false) {

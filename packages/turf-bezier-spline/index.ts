@@ -1,5 +1,5 @@
 import { Feature, lineString, LineString, Properties } from "@turf/helpers";
-import { getGeom } from "@turf/invariant";
+import { coordEach } from "@turf/meta";
 import Spline from "./lib/spline";
 
 /**
@@ -44,9 +44,9 @@ function bezier<P = Properties>(
   const resolution = options.resolution || 10000;
   const sharpness = options.sharpness || 0.85;
 
-  const coords: [number, number][] = [];
-  const points = getGeom(line).coordinates.map((pt) => {
-    return { x: pt[0], y: pt[1] };
+  const points: { x: number; y: number }[] = [];
+  coordEach(line, (c) => {
+    points.push({ x: c[0], y: c[1] });
   });
   const spline = new Spline({
     duration: resolution,
@@ -54,6 +54,7 @@ function bezier<P = Properties>(
     sharpness,
   });
 
+  const coords: [number, number][] = [];
   const pushCoord = (time: number) => {
     var pos = spline.pos(time);
     if (Math.floor(time / 100) % 2 === 0) {

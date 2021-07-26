@@ -2,7 +2,7 @@ import { Feature, Polygon } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 
 /**
- * Takes a polygon and return true or false as to whether it is concave or not.
+ * Takes a polygon and return true or false as to whether it is concave or not.  Returns undefined if the Feature has no geometry
  *
  * @name booleanConcave
  * @param {Feature<Polygon>} polygon to be evaluated
@@ -15,7 +15,8 @@ import { getGeom } from "@turf/invariant";
  */
 export default function booleanConcave(polygon: Feature<Polygon> | Polygon) {
   // Taken from https://stackoverflow.com/a/1881201 & https://stackoverflow.com/a/25304159
-  const coords = getGeom(polygon).coordinates;
+  const coords = getGeom(polygon)?.coordinates;
+  if (!coords) return undefined;
   if (coords[0].length <= 4) {
     return false;
   }
