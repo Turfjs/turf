@@ -2,6 +2,7 @@
 // https://github.com/ironwallaby/delaunay
 import { featureCollection, polygon } from "@turf/helpers";
 import { FeatureCollection, Point, Polygon } from "@turf/helpers";
+import { geomEach } from "@turf/meta";
 
 export interface Pt {
   x: number;
@@ -52,22 +53,23 @@ export default function tin(
 ): FeatureCollection<Polygon> {
   // break down points
   let isPointZ = false;
+  let tinPoints: Pt[] = [];
+  geomEach(points, (geom, index, properties) => {
+    if (!geom) return true; // skip
+    const point: Pt = {
+      x: geom.coordinates[0],
+      y: geom.coordinates[1],
+    };
+    if (z) {
+      point.z = properties[z];
+    } else if (geom.coordinates.length === 3) {
+      isPointZ = true;
+      point.z = geom.coordinates[2];
+    }
+    tinPoints.push(point);
+  });
   return featureCollection(
-    triangulate(
-      points.features.map((p) => {
-        const point: Pt = {
-          x: p.geometry.coordinates[0],
-          y: p.geometry.coordinates[1],
-        };
-        if (z) {
-          point.z = p.properties[z];
-        } else if (p.geometry.coordinates.length === 3) {
-          isPointZ = true;
-          point.z = p.geometry.coordinates[2];
-        }
-        return point;
-      })
-    ).map((triangle: any) => {
+    triangulate(tinPoints).map((triangle: any) => {
       const a = [triangle.a.x, triangle.a.y];
       const b = [triangle.b.x, triangle.b.y];
       const c = [triangle.c.x, triangle.c.y];
