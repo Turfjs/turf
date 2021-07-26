@@ -2,7 +2,7 @@ import { Feature, Polygon } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 
 /**
- * Takes a polygon and return true or false as to whether it is concave or not.  Returns null if the Feature has no geometry
+ * Takes a polygon and return true or false as to whether it is concave or not.  Returns null if the Feature has a null geometry
  *
  * @name booleanConcave
  * @param {Feature<Polygon>} polygon to be evaluated
