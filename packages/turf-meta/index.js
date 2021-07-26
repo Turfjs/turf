@@ -12,7 +12,7 @@ import { feature, point, lineString, isObject } from "@turf/helpers";
  */
 
 /**
- * Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
+ * Iterate over coordinates in any GeoJSON object, similar to Array.forEach().  Skips null geometries
  *
  * @name coordEach
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
@@ -488,7 +488,7 @@ export function coordAll(geojson) {
  *
  * @name geomEach
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
+ * @param {Function} callback a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId).  If currentGeometry is null, caller controls what happens next.  Returning true will continue the loop, false will exit.
  * @returns {void}
  * @example
  * var features = turf.featureCollection([

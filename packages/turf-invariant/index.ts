@@ -45,7 +45,9 @@ export function getCoord(coord: Feature<Point> | Point | number[]): number[] {
     return coord;
   }
 
-  throw new Error("coord must be GeoJSON Point or an Array of numbers");
+  throw new Error(
+    "coord must be GeoJSON Point with non-null geometry or an Array of numbers"
+  );
 }
 
 /**
