@@ -37,11 +37,15 @@ export default function polygonDissolve(
     geojson = clone(geojson);
   }
 
-  const geoms: any[] = [];
+  const geoms: (Polygon | MultiPolygon)[] = [];
   flattenEach(geojson, (feature) => {
-    geoms.push(feature.geometry);
+    if (feature.geometry) geoms.push(feature.geometry);
   });
-  const topo: any = topology({ geoms: geometryCollection(geoms).geometry });
+
+  const collGeom = geometryCollection(geoms).geometry;
+  if (!collGeom) return null;
+
+  const topo: any = topology({ geoms: collGeom });
   const merged: any = merge(topo, topo.objects.geoms.geometries);
   return merged;
 }

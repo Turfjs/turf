@@ -51,6 +51,7 @@ function concave(
   // calculate length of all edges and area of all triangles
   // and remove triangles that fail the max length test
   tinPolys.features = tinPolys.features.filter((triangle) => {
+    if (!triangle.geometry) return false;
     const pt1 = triangle.geometry.coordinates[0][0];
     const pt2 = triangle.geometry.coordinates[0][1];
     const pt3 = triangle.geometry.coordinates[0][2];

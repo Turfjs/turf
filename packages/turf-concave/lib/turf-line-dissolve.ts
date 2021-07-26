@@ -95,6 +95,10 @@ function coordId(coord: number[]) {
  * @returns {Feature<LineString>|null} Merged LineString
  */
 function mergeLineStrings(a: Feature<LineString>, b: Feature<LineString>) {
+  if (!a.geometry && !b.geometry) return null;
+  if (!a.geometry) return b;
+  if (!b.geometry) return a;
+
   const coords1 = a.geometry.coordinates;
   const coords2 = b.geometry.coordinates;
 
