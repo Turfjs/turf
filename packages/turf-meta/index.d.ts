@@ -206,7 +206,7 @@ export function segmentReduce<Reducer extends any, P = Properties>(
     | Feature<GeometryCollection, P>
     | GeometryCollection,
   callback: (
-    previousValue?: Reducer,
+    previousValue: Reducer,
     currentSegment?: Feature<LineString, P>,
     featureIndex?: number,
     multiFeatureIndex?: number,

@@ -33,8 +33,9 @@ export default function length(
   return segmentReduce(
     geojson,
     (previousValue, segment) => {
-      const coords = segment!.geometry.coordinates;
-      return previousValue! + distance(coords[0], coords[1], options);
+      const coords = segment?.geometry?.coordinates;
+      if (!coords) return previousValue;
+      return previousValue + distance(coords[0], coords[1], options);
     },
     0
   );
