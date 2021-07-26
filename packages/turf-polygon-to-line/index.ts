@@ -12,7 +12,7 @@ import { getGeom } from "@turf/invariant";
 
 /**
  * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a
- * {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
+ * {@link FeatureCollection} of {@link LineString|(Multi)LineString}.  Returns null if Feature geometry is null.
  *
  * @name polygonToLine
  * @param {Feature<Polygon|MultiPolygon>} poly Feature to convert
@@ -32,7 +32,8 @@ export default function <G extends Polygon | MultiPolygon, P = Properties>(
   options: { properties?: any } = {}
 ):
   | Feature<LineString | MultiLineString, P>
-  | FeatureCollection<LineString | MultiLineString, P> {
+  | FeatureCollection<LineString | MultiLineString, P>
+  | null {
   const geom: any = getGeom(poly);
   if (!options.properties && poly.type === "Feature") {
     options.properties = poly.properties;
@@ -53,8 +54,9 @@ export default function <G extends Polygon | MultiPolygon, P = Properties>(
 export function polygonToLine<G extends Polygon, P = Properties>(
   poly: Feature<G, P> | G,
   options: { properties?: any } = {}
-): Feature<LineString | MultiLineString, P> {
+): Feature<LineString | MultiLineString, P> | null {
   const geom = getGeom(poly);
+  if (!geom) return null;
   const coords: any[] = geom.coordinates;
   const properties: any = options.properties
     ? options.properties
@@ -71,8 +73,9 @@ export function polygonToLine<G extends Polygon, P = Properties>(
 export function multiPolygonToLine<G extends MultiPolygon, P = Properties>(
   multiPoly: Feature<G, P> | G,
   options: { properties?: P } = {}
-): FeatureCollection<LineString | MultiLineString, P> {
+): FeatureCollection<LineString | MultiLineString, P> | null {
   const geom = getGeom(multiPoly);
+  if (!geom) return null;
   const coords: any[] = geom.coordinates;
   const properties: any = options.properties
     ? options.properties

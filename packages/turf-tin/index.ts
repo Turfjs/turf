@@ -53,7 +53,7 @@ export default function tin(
 ): FeatureCollection<Polygon> {
   // break down points
   let isPointZ = false;
-  let tinPoints: Pt[] = [];
+  const tinPoints: Pt[] = [];
   geomEach(points, (geom, index, properties) => {
     if (!geom) return true; // skip
     const point: Pt = {
