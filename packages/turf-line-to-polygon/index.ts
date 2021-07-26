@@ -11,6 +11,7 @@ import {
   Properties,
   BBox,
   Position,
+  Polygon,
 } from "@turf/helpers";
 import clone from "@turf/clone";
 
@@ -81,17 +82,17 @@ function lineStringToPolygon<G extends LineString | MultiLineString>(
   properties: Properties | undefined,
   autoComplete: boolean,
   orderCoords: boolean
-) {
+): Feature<Polygon> {
   properties = properties
     ? properties
     : line.type === "Feature"
     ? line.properties
     : {};
   var geom = getGeom(line);
+  if (!geom || !geom.coordinates || !geom.coordinates.length)
+    throw new Error("line must contain geometry with coordinates");
   var coords: Position[] | Position[][] = geom.coordinates;
   var type = geom.type;
-
-  if (!coords.length) throw new Error("line must contain coordinates");
 
   switch (type) {
     case "LineString":
