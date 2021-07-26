@@ -219,10 +219,14 @@ export function isPolyInPoly(
     return false;
   }
 
-  const coords = getGeom(feature2).coordinates;
+  const geom1 = getGeom(feature1);
+  const geom2 = getGeom(feature2);
+  if (!geom1 || !geom2) return false;
+
+  const coords = geom2.coordinates;
   for (const ring of coords) {
     for (const coord of ring) {
-      if (!booleanPointInPolygon(coord, feature1)) {
+      if (!booleanPointInPolygon(coord, geom1)) {
         return false;
       }
     }
