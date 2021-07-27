@@ -16,13 +16,14 @@ import { lineclip, polygonclip } from "./lib/lineclip";
 
 /**
  * Takes a {@link Feature} and a bbox and clips the feature to the bbox using
- * [lineclip](https://github.com/mapbox/lineclip). Returns null if Feature geometry is null.
+ * [lineclip](https://github.com/mapbox/lineclip).
  * May result in degenerate edges when clipping Polygons.
  *
  * @name bboxClip
  * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature feature to clip to the bbox
  * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @returns {Feature<LineString|MultiLineString|Polygon|MultiPolygon | null>} clipped Feature
+ * @throws {Error} if input polygon has null geometry
  * @example
  * var bbox = [0, 0, 10, 10];
  * var poly = turf.polygon([[[2, 2], [8, 4], [12, 8], [3, 7], [2, 2]]]);
@@ -37,7 +38,7 @@ export default function bboxClip<
   P = Properties
 >(feature: Feature<G, P> | G, bbox: BBox) {
   const geom = getGeom(feature);
-  if (!geom) return null;
+  if (geom === null) throw new Error("Input polygon must have a geometry");
   const type = geom.type;
   const properties = feature.type === "Feature" ? feature.properties : {};
   let coords: any[] = geom.coordinates;
