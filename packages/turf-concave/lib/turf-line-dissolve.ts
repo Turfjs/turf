@@ -92,10 +92,14 @@ function coordId(coord: number[]) {
  * @private
  * @param {Feature<LineString>} a line1
  * @param {Feature<LineString>} b line2
- * @returns {Feature<LineString>|null} Merged LineString
+ * @returns {Feature<LineString>} Merged LineString
+ * @throws {Error} if lines have null geometry
  */
 function mergeLineStrings(a: Feature<LineString>, b: Feature<LineString>) {
-  if (!a.geometry && !b.geometry) return null;
+  if (a.geometry === null && b.geometry === null)
+    throw new Error(
+      "Must input at least one LineString Feature with a non-null geometry"
+    );
   if (!a.geometry) return b;
   if (!b.geometry) return a;
 
