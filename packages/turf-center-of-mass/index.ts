@@ -28,7 +28,9 @@ function centerOfMass<P = Properties>(
 ): Feature<Point, P> {
   switch (getType(geojson)) {
     case "Point":
-      return point(getCoord(geojson), options.properties);
+      var coord = getCoord(geojson);
+      if (!coord) throw new Error("Input geojson has no geometry");
+      return point(coord, options.properties);
     case "Polygon":
       var coords: Position[] = [];
       coordEach(geojson, function (coord) {
@@ -38,6 +40,7 @@ function centerOfMass<P = Properties>(
       // First, we neutralize the feature (set it around coordinates [0,0]) to prevent rounding errors
       // We take any point to translate all the points around 0
       var centre = centroid(geojson, { properties: options.properties });
+      if (!centre.geometry) throw new Error("Input geojson has no geometry");
       var translation = centre.geometry.coordinates;
       var sx = 0;
       var sy = 0;

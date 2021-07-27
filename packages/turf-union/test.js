@@ -35,3 +35,33 @@ test("union", function (t) {
   }
   t.end();
 });
+
+test("union - null geom", function (t) {
+  const geom1 = {
+    type: "Feature",
+    properties: {},
+    geometry: null,
+  };
+  const geom2 = {
+    type: "Feature",
+    properties: {},
+    geometry: null,
+  };
+  const geom3 = {
+    type: "Polygon",
+    coordinates: [
+      [
+        [0, 0],
+        [1, 0],
+        [1, 1],
+        [0, 0],
+      ],
+    ],
+  };
+  const result = union(geom1, geom2);
+  t.equal(result, null);
+
+  const result2 = union(geom1, geom3);
+  t.equal(result2, null);
+  t.end();
+});
