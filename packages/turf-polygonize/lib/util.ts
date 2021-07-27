@@ -38,12 +38,15 @@ export function orientationIndex(p1: number[], p2: number[], q: number[]) {
  *
  * @param {Feature<Polygon>} env1 - Envelope
  * @param {Feature<Polygon>} env2 - Envelope
- * @returns {boolean} - True if the envelopes are equal
+ * @returns {boolean} - True if the envelopes are equal, False if they are not equal, null if a geometry is missing a
  */
 export function envelopeIsEqual(
   env1: Feature<Polygon>,
   env2: Feature<Polygon>
 ) {
+  if (env1.geometry === null || env2.geometry === null)
+    throw new Error("Input geometries must not be null");
+
   const envX1 = env1.geometry.coordinates[0].map((c) => c[0]),
     envY1 = env1.geometry.coordinates[0].map((c) => c[1]),
     envX2 = env2.geometry.coordinates[0].map((c) => c[0]),
@@ -72,6 +75,8 @@ export function envelopeContains(
   self: Feature<Polygon>,
   env: Feature<Polygon>
 ) {
+  if (env.geometry === null || self.geometry === null)
+    throw new Error("Input geometries must not be null");
   return env.geometry.coordinates[0].every((c) =>
     booleanPointInPolygon(point(c), self)
   );
