@@ -221,7 +221,7 @@ export function isPolyInPoly(
 
   const geom1 = getGeom(feature1);
   const geom2 = getGeom(feature2);
-  if (!geom1 || !geom2) return false;
+  if (geom1 === null || geom2 === null) return false;
 
   const coords = geom2.coordinates;
   for (const ring of coords) {

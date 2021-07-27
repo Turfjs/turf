@@ -13,6 +13,7 @@ import {
  * @name getCoord
  * @param {Array<number>|Geometry<Point>|Feature<Point>} coord GeoJSON Point or an Array of numbers
  * @returns {Array<number>} coordinates
+ * @throws if coord is invalid
  * @example
  * var pt = turf.point([10, 10]);
  *
@@ -46,7 +47,7 @@ export function getCoord(coord: Feature<Point> | Point | number[]): number[] {
   }
 
   throw new Error(
-    "coord must be GeoJSON Point with non-null geometry or an Array of numbers"
+    "coord must be a GeoJSON Point Feature with non-null geometry, a Point geometry or an Array of numbers"
   );
 }
 
@@ -56,6 +57,7 @@ export function getCoord(coord: Feature<Point> | Point | number[]): number[] {
  * @name getCoords
  * @param {Array<any>|Geometry|Feature} coords Feature, Geometry Object or an Array
  * @returns {Array<any>} coordinates
+ * @throws if coords are invalid
  * @example
  * var poly = turf.polygon([[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]);
  *
@@ -82,7 +84,7 @@ export function getCoords<G extends Geometries>(
   }
 
   throw new Error(
-    "coords must be GeoJSON Feature, Geometry Object or an Array"
+    "coords must be a GeoJSON Feature with non-null geometry, a Geometry, or an Array"
   );
 }
 
