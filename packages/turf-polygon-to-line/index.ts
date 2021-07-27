@@ -12,7 +12,7 @@ import { getGeom } from "@turf/invariant";
 
 /**
  * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a
- * {@link FeatureCollection} of {@link LineString|(Multi)LineString}.  Returns null if Feature geometry is null.
+ * {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
  *
  * @name polygonToLine
  * @param {Feature<Polygon|MultiPolygon>} poly Feature to convert

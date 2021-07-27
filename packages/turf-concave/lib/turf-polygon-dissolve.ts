@@ -22,7 +22,7 @@ import { topology } from "topojson-server";
 export default function polygonDissolve(
   geojson: FeatureCollection<Polygon | MultiPolygon>,
   options: { mutate?: boolean } = {}
-): Feature<Polygon | MultiPolygon> | null {
+): Feature<Polygon | MultiPolygon> {
   // Validation
   if (getType(geojson) !== "FeatureCollection") {
     throw new Error("geojson must be a FeatureCollection");
@@ -43,7 +43,8 @@ export default function polygonDissolve(
   });
 
   const collGeom = geometryCollection(geoms).geometry;
-  if (!collGeom) return null;
+  if (!collGeom)
+    throw new Error("Input geojson did have at least one non-null geometry");
 
   const topo: any = topology({ geoms: collGeom });
   const merged: any = merge(topo, topo.objects.geoms.geometries);

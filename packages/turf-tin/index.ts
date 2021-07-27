@@ -69,18 +69,17 @@ export default function tin(
     tinPoints.push(point);
   });
   return featureCollection(
-    triangulate(tinPoints).map((triangle: any) => {
+    triangulate(tinPoints).map((triangle) => {
       const a = [triangle.a.x, triangle.a.y];
       const b = [triangle.b.x, triangle.b.y];
       const c = [triangle.c.x, triangle.c.y];
       let properties = {};
-
       // Add z coordinates to triangle points if user passed
       // them in that way otherwise add it as a property.
       if (isPointZ) {
-        a.push(triangle.a.z);
-        b.push(triangle.b.z);
-        c.push(triangle.c.z);
+        a.push(triangle.a.z!);
+        b.push(triangle.b.z!);
+        c.push(triangle.c.z!);
       } else {
         properties = {
           a: triangle.a.z,

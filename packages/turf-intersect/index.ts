@@ -20,6 +20,7 @@ import polygonClipping from "polygon-clipping";
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Feature
  * @returns {Feature|null} returns a feature representing the area they share (either a {@link Polygon} or
  * {@link MultiPolygon}). If they do not share any area, returns `null`.
+ * @throws {Error} if input polygons are invalid
  * @example
  * var poly1 = turf.polygon([[
  *   [-122.801742, 45.48565],
@@ -55,7 +56,8 @@ export default function intersect<P = Properties>(
   const geom1 = getGeom(poly1);
   const geom2 = getGeom(poly2);
 
-  if (!geom1 || !geom2) return null;
+  if (geom1 === null || geom2 === null)
+    throw new Error("Input polygons must have non-null geometries");
 
   const intersection = polygonClipping.intersection(
     geom1.coordinates as any,

@@ -38,7 +38,8 @@ export function orientationIndex(p1: number[], p2: number[], q: number[]) {
  *
  * @param {Feature<Polygon>} env1 - Envelope
  * @param {Feature<Polygon>} env2 - Envelope
- * @returns {boolean} - True if the envelopes are equal, False if they are not equal, null if a geometry is missing a
+ * @returns {boolean} - True if the envelopes are equal, False if they are not equal
+ * @throws {Error} - if input features have a null geometry
  */
 export function envelopeIsEqual(
   env1: Feature<Polygon>,
