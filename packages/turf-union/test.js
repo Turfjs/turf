@@ -36,7 +36,7 @@ test("union", function (t) {
   t.end();
 });
 
-test("union - null geom", function (t) {
+test("union - null feature geom", function (t) {
   const geom1 = {
     type: "Feature",
     properties: {},
@@ -58,10 +58,12 @@ test("union - null geom", function (t) {
       ],
     ],
   };
-  const result = union(geom1, geom2);
-  t.equal(result, null);
+  t.throws(() => {
+    union(geom1, geom2);
+  });
 
-  const result2 = union(geom1, geom3);
-  t.equal(result2, null);
+  t.throws(() => {
+    union(geom1, geom3);
+  });
   t.end();
 });
