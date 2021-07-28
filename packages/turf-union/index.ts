@@ -41,7 +41,8 @@ function union<P = Properties>(
   const geom1 = getGeom(poly1);
   const geom2 = getGeom(poly2);
 
-  if (geom1 === null || geom2 === null) return null;
+  if (geom1 === null || geom2 === null)
+    throw new Error("Input features must have non-null geometry");
 
   const unioned = polygonClipping.union(
     geom1.coordinates as any,
