@@ -388,13 +388,13 @@ test("null geometries", (t) => {
   // t.throws(() => invariant.getGeom(null), /geojson is required/, 'getGeom => geojson is required');
   t.throws(
     () => invariant.getCoords(nullFeature),
-    /coords must be GeoJSON Feature, Geometry Object or an Array/,
-    "getCoords => coords must be GeoJSON Feature, Geometry Object or an Array"
+    /coords must be a GeoJSON Feature with non-null geometry, a Geometry, or an Array/,
+    "getCoords => coords must be a GeoJSON Feature with non-null geometry, a Geometry, or an Array"
   );
   t.throws(
     () => invariant.getCoord(nullFeature),
-    /coord must be GeoJSON Point or an Array of numbers/,
-    "getCoord => coord must be GeoJSON Point or an Array of numbers"
+    /coord must be a GeoJSON Point Feature with non-null geometry, a Point geometry or an Array of numbers/,
+    "getCoord => coord must be a GeoJSON Point Feature with non-null geometry, a Point geometry or an Array of numbers"
   );
 
   // t.equal(invariant.getGeom(nullFeature), null, 'getGeom => null');
