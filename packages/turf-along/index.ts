@@ -29,6 +29,8 @@ export default function along(
 ): Feature<Point> {
   // Get Coords
   const geom = getGeom(line);
+  if (!geom)
+    throw new Error("Input line feature must have a non-null geometry");
   const coords = geom.coordinates;
   let travelled = 0;
   for (let i = 0; i < coords.length; i++) {
