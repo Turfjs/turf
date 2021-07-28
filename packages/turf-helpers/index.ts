@@ -174,7 +174,7 @@ export let areaFactors: any = {
  *
  * //=feature
  */
-export function feature<G = Geometry, P = Properties>(
+export function feature<G extends GeometryObject = Geometry, P = Properties>(
   geom: G,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -465,7 +465,10 @@ export function lineStrings<P = Properties>(
  *
  * //=collection
  */
-export function featureCollection<G = Geometry, P = Properties>(
+export function featureCollection<
+  G extends GeometryObject = Geometry,
+  P = Properties
+>(
   features: Array<Feature<G, P>>,
   options: { bbox?: BBox; id?: Id } = {}
 ): FeatureCollection<G, P> {

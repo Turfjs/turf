@@ -95,7 +95,7 @@ export function featureReduce<
 /**
  * http://turfjs.org/docs/#featureeach
  */
-export function featureEach<G extends any, P = Properties>(
+export function featureEach<G extends GeometryObject, P = Properties>(
   geojson:
     | Feature<G, P>
     | FeatureCollection<G, P>
@@ -178,7 +178,10 @@ export function flattenReduce<
 /**
  * http://turfjs.org/docs/#flatteneach
  */
-export function flattenEach<G = Geometries, P = Properties>(
+export function flattenEach<
+  G extends GeometryObject = Geometries,
+  P = Properties
+>(
   geojson:
     | Feature<G, P>
     | FeatureCollection<G, P>
