@@ -66,8 +66,8 @@ export type Corners = "sw" | "se" | "nw" | "ne" | "center" | "centroid";
 
 export type Lines = LineString | MultiLineString | Polygon | MultiPolygon;
 export type AllGeoJSON =
-  | Feature<Geometries | GeometryCollection>
-  | FeatureCollection<Geometries | GeometryCollection>
+  | Feature
+  | FeatureCollection
   | Geometry
   | GeometryCollection;
 
@@ -174,7 +174,7 @@ export let areaFactors: any = {
  *
  * //=feature
  */
-export function feature<G extends GeometryObject, P = Properties>(
+export function feature<G extends Geometry | null = Geometry, P = Properties>(
   geom: G,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -466,7 +466,7 @@ export function lineStrings<P = Properties>(
  * //=collection
  */
 export function featureCollection<
-  G extends GeometryObject = Geometries,
+  G extends Geometry | null = Geometry,
   P = Properties
 >(
   features: Array<Feature<G, P>>,
