@@ -2,7 +2,7 @@ import { BBox } from "@turf/helpers";
 import { coordEach } from "@turf/meta";
 
 /**
- * Takes a set of features, calculates the bbox of all input features, and returns a bounding box.
+ * Calculates the bounding box for any GeoJSON object, including FeatureCollection.
  *
  * @name bbox
  * @param {GeoJSON} geojson any GeoJSON object

@@ -40,7 +40,7 @@ Download the [minified file](https://npmcdn.com/@turf/turf/turf.min.js), and inc
 You can also include it directly from a CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 ```
 
 You can create light-weight turf builds with only the functions you need using the [turfjs-builder UI](https://turfjs-builder.herokuapp.com/) or using browserify as described below.
@@ -52,10 +52,6 @@ All of Turf's functions can also be installed as separate modules. This works we
 ```sh
 npm install @turf/helpers @turf/buffer
 ```
-
-### Bower [NOTE: Bower support has been dropped Jan 1st 2017]
-
-_Not recommended. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
 
 ### TypeScript
 
