@@ -1,4 +1,4 @@
-import { Feature, FeatureCollection, Geometry } from "@turf/helpers";
+import { Feature, FeatureCollection, Geometry } from "geojson";
 import { geomReduce } from "@turf/meta";
 
 // Note: change RADIUS => earthRadius

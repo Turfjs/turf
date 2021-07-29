@@ -3,9 +3,9 @@ import {
   Feature,
   Position,
   Polygon,
-  Properties,
+  GeoJsonProperties,
   Point,
-} from "@turf/helpers";
+} from "geojson";
 
 /**
  * http://turfjs.org/docs/#standarddeviational-ellipse
@@ -30,7 +30,7 @@ export interface StandardDeviationalEllipse extends Feature<Polygon> {
 export default function (
   points: FeatureCollection<Point>,
   options?: {
-    properties?: Properties;
+    properties?: GeoJsonProperties;
     weight?: string;
     steps?: number;
   }

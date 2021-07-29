@@ -1,5 +1,5 @@
+import { Feature, Geometry } from "geojson";
 import booleanDisjoint from "@turf/boolean-disjoint";
-import { Feature, Geometry } from "@turf/helpers";
 import { flattenEach } from "@turf/meta";
 
 /**

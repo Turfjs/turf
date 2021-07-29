@@ -3,15 +3,12 @@ import distance from "@turf/distance";
 import {
   BBox,
   Feature,
-  featureCollection,
   FeatureCollection,
   MultiPolygon,
-  polygon,
   Polygon,
-  Properties,
-  Units,
-} from "@turf/helpers";
-
+  GeoJsonProperties,
+} from "geojson";
+import { featureCollection, polygon, Units } from "@turf/helpers";
 /**
  * Creates a grid of rectangles from a bounding box, {@link Feature} or {@link FeatureCollection}.
  *
@@ -37,7 +34,7 @@ import {
  * //addToMap
  * var addToMap = [rectangleGrid]
  */
-function rectangleGrid<P = Properties>(
+function rectangleGrid<P = GeoJsonProperties>(
   bbox: BBox,
   cellWidth: number,
   cellHeight: number,

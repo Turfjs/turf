@@ -1,4 +1,5 @@
-import { Feature, Coord, Polygon, Units, Properties } from "@turf/helpers";
+import { Feature, Polygon, GeoJsonProperties } from "geojson";
+import { Coord, Units } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#ellipse
@@ -10,6 +11,6 @@ export default function (
   options?: {
     steps?: number;
     units?: Units;
-    properties?: Properties;
+    properties?: GeoJsonProperties;
   }
 ): Feature<Polygon>;

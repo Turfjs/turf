@@ -1,7 +1,8 @@
+import { Feature, FeatureCollection, Point } from "geojson";
+import { Coord } from "@turf/helpers";
 import clone from "@turf/clone";
 import distance from "@turf/distance";
 import { featureEach } from "@turf/meta";
-import { Coord, Feature, FeatureCollection, Point } from "@turf/helpers";
 
 export interface NearestPoint extends Feature<Point> {
   properties: {

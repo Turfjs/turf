@@ -1,5 +1,3 @@
-import clone from "@turf/clone";
-import { isObject } from "@turf/helpers";
 import {
   Feature,
   FeatureCollection,
@@ -7,7 +5,9 @@ import {
   MultiLineString,
   MultiPolygon,
   Polygon,
-} from "@turf/helpers";
+} from "geojson";
+import clone from "@turf/clone";
+import { isObject } from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { flattenEach } from "@turf/meta";
 import lineDissolve from "./turf-line-dissolve";

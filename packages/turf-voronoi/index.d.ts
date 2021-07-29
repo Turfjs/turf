@@ -1,4 +1,4 @@
-import { FeatureCollection, BBox, Point, Polygon } from "@turf/helpers";
+import { FeatureCollection, BBox, Point, Polygon } from "geojson";
 
 /**
  * http://turfjs.org/docs/#voronoi

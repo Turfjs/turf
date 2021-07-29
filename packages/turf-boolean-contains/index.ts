@@ -1,6 +1,3 @@
-import calcBbox from "@turf/bbox";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import isPointOnLine from "@turf/boolean-point-on-line";
 import {
   BBox,
   Feature,
@@ -9,7 +6,10 @@ import {
   MultiPoint,
   Point,
   Polygon,
-} from "@turf/helpers";
+} from "geojson";
+import calcBbox from "@turf/bbox";
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import isPointOnLine from "@turf/boolean-point-on-line";
 import { getGeom } from "@turf/invariant";
 
 /**

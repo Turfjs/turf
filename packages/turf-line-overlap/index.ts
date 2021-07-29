@@ -5,16 +5,15 @@ import booleanPointOnLine from "@turf/boolean-point-on-line";
 import { getCoords } from "@turf/invariant";
 import { featureEach, segmentEach } from "@turf/meta";
 import {
-  featureCollection,
-  isObject,
   FeatureCollection,
   Feature,
   LineString,
   MultiLineString,
   Polygon,
   MultiPolygon,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
+import { featureCollection, isObject } from "@turf/helpers";
 import equal from "deep-equal";
 
 /**
@@ -49,7 +48,7 @@ function lineOverlap<
   var tolerance = options.tolerance || 0;
 
   // Containers
-  var features: Feature<LineString, Properties>[] = [];
+  var features: Feature<LineString, GeoJsonProperties>[] = [];
 
   // Create Spatial Index
   var tree = rbush();

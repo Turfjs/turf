@@ -1,9 +1,9 @@
+import { FeatureCollection, Point, GeoJsonProperties } from "geojson";
 import clone from "@turf/clone";
 import { coordAll, featureEach } from "@turf/meta";
-import { FeatureCollection, Point, Properties } from "@turf/helpers";
 import skmeans from "skmeans";
 
-export type KmeansProps = Properties & {
+export type KmeansProps = GeoJsonProperties & {
   cluster?: number;
   centroid?: [number, number];
 };

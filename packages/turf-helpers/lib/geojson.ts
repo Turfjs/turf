@@ -1,20 +1,4 @@
-// Use @types/geojson as foundation
-
-export {
-  BBox,
-  Feature,
-  FeatureCollection,
-  Geometry,
-  GeometryCollection,
-  GeometryObject,
-  LineString,
-  MultiLineString,
-  MultiPoint,
-  MultiPolygon,
-  Point,
-  Polygon,
-  Position,
-} from "geojson";
+// To be contributed to @types/geojson
 
 /**
  * Id

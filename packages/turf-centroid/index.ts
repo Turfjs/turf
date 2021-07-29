@@ -1,5 +1,6 @@
+import { Feature, GeoJsonProperties, Point } from "geojson";
+import { point, AllGeoJSON } from "@turf/helpers";
 import { coordEach } from "@turf/meta";
-import { point, AllGeoJSON, Feature, Point, Properties } from "@turf/helpers";
 
 /**
  * Takes one or more features and calculates the centroid using the mean of all vertices.
@@ -18,7 +19,7 @@ import { point, AllGeoJSON, Feature, Point, Properties } from "@turf/helpers";
  * //addToMap
  * var addToMap = [polygon, centroid]
  */
-function centroid<P = Properties>(
+function centroid<P = GeoJsonProperties>(
   geojson: AllGeoJSON,
   options: {
     properties?: P;

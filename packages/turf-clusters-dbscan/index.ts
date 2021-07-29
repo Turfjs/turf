@@ -1,17 +1,12 @@
+import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import clone from "@turf/clone";
 import distance from "@turf/distance";
 import { coordAll } from "@turf/meta";
-import {
-  convertLength,
-  Properties,
-  Units,
-  FeatureCollection,
-  Point,
-} from "@turf/helpers";
+import { convertLength, Units } from "@turf/helpers";
 import clustering from "density-clustering";
 
 export type Dbscan = "core" | "edge" | "noise";
-export type DbscanProps = Properties & {
+export type DbscanProps = GeoJsonProperties & {
   dbscan?: Dbscan;
   cluster?: number;
 };

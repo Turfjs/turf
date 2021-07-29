@@ -1,10 +1,6 @@
+import { Feature, FeatureCollection, GeometryObject } from "geojson";
 import { featureEach } from "@turf/meta";
-import {
-  featureCollection,
-  Feature,
-  FeatureCollection,
-  GeometryObject,
-} from "@turf/helpers";
+import { featureCollection } from "@turf/helpers";
 
 /**
  * Get Cluster

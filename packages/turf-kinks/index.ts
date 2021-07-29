@@ -1,4 +1,3 @@
-import { point } from "@turf/helpers";
 import {
   Feature,
   FeatureCollection,
@@ -7,7 +6,8 @@ import {
   MultiPolygon,
   Point,
   Polygon,
-} from "@turf/helpers";
+} from "geojson";
+import { point } from "@turf/helpers";
 
 /**
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring},

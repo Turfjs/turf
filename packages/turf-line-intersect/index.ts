@@ -1,15 +1,13 @@
 import {
-  feature,
   Feature,
-  featureCollection,
   FeatureCollection,
   LineString,
   MultiLineString,
   MultiPolygon,
-  point,
   Point,
   Polygon,
-} from "@turf/helpers";
+} from "geojson";
+import { feature, featureCollection, point } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 import lineSegment from "@turf/line-segment";
 import { featureEach } from "@turf/meta";

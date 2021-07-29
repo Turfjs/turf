@@ -1,4 +1,5 @@
-import { Feature, LineString, Coord } from "@turf/helpers";
+import { Feature, LineString } from "geojson";
+import { Coord } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#lineslice

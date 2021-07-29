@@ -1,7 +1,3 @@
-import calcBbox from "@turf/bbox";
-import booleanPointOnLine from "@turf/boolean-point-on-line";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { getGeom } from "@turf/invariant";
 import {
   BBox,
   Feature,
@@ -11,7 +7,11 @@ import {
   MultiPolygon,
   Point,
   Polygon,
-} from "@turf/helpers";
+} from "geojson";
+import calcBbox from "@turf/bbox";
+import booleanPointOnLine from "@turf/boolean-point-on-line";
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import { getGeom } from "@turf/invariant";
 
 /**
  * Boolean-within returns true if the first geometry is completely within the second geometry.

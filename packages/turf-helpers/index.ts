@@ -1,15 +1,10 @@
 import {
   BBox,
-  CollectionTypes,
   Feature,
   FeatureCollection,
-  GeoJSONObject,
-  Geometries,
   Geometry,
   GeometryCollection,
   GeometryObject,
-  GeometryTypes,
-  Id,
   LineString,
   MultiLineString,
   MultiPoint,
@@ -17,31 +12,11 @@ import {
   Point,
   Polygon,
   Position,
-  Properties,
-  Types,
-} from "./lib/geojson";
-export {
-  Id,
-  Properties,
-  BBox,
-  Position,
-  Point,
-  LineString,
-  Polygon,
-  MultiPoint,
-  MultiLineString,
-  MultiPolygon,
-  GeometryObject,
-  GeoJSONObject,
-  GeometryCollection,
-  Geometry,
-  GeometryTypes,
-  Types,
-  CollectionTypes,
-  Geometries,
-  Feature,
-  FeatureCollection,
-};
+  GeoJsonProperties,
+} from "geojson";
+
+import { Id } from "./lib/geojson";
+export * from "./lib/geojson";
 
 // TurfJS Combined Types
 export type Coord = Feature<Point> | Point | Position;
@@ -174,7 +149,10 @@ export let areaFactors: any = {
  *
  * //=feature
  */
-export function feature<G extends GeometryObject = Geometry, P = Properties>(
+export function feature<
+  G extends GeometryObject = Geometry,
+  P = GeoJsonProperties
+>(
   geom: G,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -250,7 +228,7 @@ export function geometry(
  *
  * //=point
  */
-export function point<P = Properties>(
+export function point<P = GeoJsonProperties>(
   coordinates: Position,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -295,7 +273,7 @@ export function point<P = Properties>(
  *
  * //=points
  */
-export function points<P = Properties>(
+export function points<P = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -323,7 +301,7 @@ export function points<P = Properties>(
  *
  * //=polygon
  */
-export function polygon<P = Properties>(
+export function polygon<P = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -366,7 +344,7 @@ export function polygon<P = Properties>(
  *
  * //=polygons
  */
-export function polygons<P = Properties>(
+export function polygons<P = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -396,7 +374,7 @@ export function polygons<P = Properties>(
  * //=linestring1
  * //=linestring2
  */
-export function lineString<P = Properties>(
+export function lineString<P = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -430,7 +408,7 @@ export function lineString<P = Properties>(
  *
  * //=linestrings
  */
-export function lineStrings<P = Properties>(
+export function lineStrings<P = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -467,7 +445,7 @@ export function lineStrings<P = Properties>(
  */
 export function featureCollection<
   G extends GeometryObject = Geometry,
-  P = Properties
+  P = GeoJsonProperties
 >(
   features: Array<Feature<G, P>>,
   options: { bbox?: BBox; id?: Id } = {}
@@ -500,7 +478,7 @@ export function featureCollection<
  *
  * //=multiLine
  */
-export function multiLineString<P = Properties>(
+export function multiLineString<P = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -529,7 +507,7 @@ export function multiLineString<P = Properties>(
  *
  * //=multiPt
  */
-export function multiPoint<P = Properties>(
+export function multiPoint<P = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -559,7 +537,7 @@ export function multiPoint<P = Properties>(
  * //=multiPoly
  *
  */
-export function multiPolygon<P = Properties>(
+export function multiPolygon<P = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -589,7 +567,7 @@ export function multiPolygon<P = Properties>(
  *
  * // => collection
  */
-export function geometryCollection<P = Properties>(
+export function geometryCollection<P = GeoJsonProperties>(
   geometries: Array<
     Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
   >,

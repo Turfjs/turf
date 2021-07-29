@@ -1,7 +1,7 @@
+import { Feature, Geometry } from "geojson";
 import GeojsonEquality from "geojson-equality";
 import cleanCoords from "@turf/clean-coords";
 import { getGeom } from "@turf/invariant";
-import { Feature, Geometry } from "@turf/helpers";
 
 /**
  * Determine whether two geometries of the same type have identical X,Y coordinate values.

@@ -1,12 +1,11 @@
 // Taken from http://geomalgorithms.com/a02-_lines.html
+import { Feature, LineString } from "geojson";
 import getDistance from "@turf/distance";
 import {
   convertLength,
   Coord,
   feature,
-  Feature,
   lineString,
-  LineString,
   point,
   Units,
 } from "@turf/helpers";

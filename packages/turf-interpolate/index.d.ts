@@ -1,4 +1,5 @@
-import { Point, Polygon, Units, FeatureCollection, Grid } from "@turf/helpers";
+import { Point, Polygon, FeatureCollection } from "geojson";
+import { Units, Grid } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#interpolate

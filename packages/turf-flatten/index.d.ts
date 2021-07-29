@@ -7,8 +7,8 @@ import {
   MultiPolygon,
   Feature,
   FeatureCollection,
-  AllGeoJSON,
-} from "@turf/helpers";
+} from "geojson";
+import { AllGeoJSON } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#flatten
