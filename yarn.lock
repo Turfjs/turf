@@ -3702,13 +3702,15 @@ geojson-polygon-self-intersections@1.2.x:
     rbush "^2.0.1"
 
 geojson-rbush@3.x:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-3.1.1.tgz#dd40bdd26e92813d888d7b489e8d2980695a49b4"
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-3.2.0.tgz#8b543cf0d56f99b78faf1da52bb66acad6dfc290"
+  integrity sha512-oVltQTXolxvsz1sZnutlSuLDEcQAKYC/uXt9zDzJJ6bu0W+baTI8LZBaTup5afzibEH4N3jlq2p+a152wlBJ7w==
   dependencies:
     "@turf/bbox" "*"
     "@turf/helpers" "6.x"
     "@turf/meta" "6.x"
-    rbush "*"
+    "@types/geojson" "7946.0.8"
+    rbush "^3.0.1"
 
 geojsonhint@^1.0.0:
   version "1.2.1"
@@ -6725,6 +6727,11 @@ quickselect@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-1.0.1.tgz#1e6ceaa9db1ca7c75aafcc863c7bef2037ca62a1"
 
+quickselect@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/quickselect/-/quickselect-2.0.0.tgz#f19680a486a5eefb581303e023e98faaf25dd018"
+  integrity sha512-RKJ22hX8mHe3Y6wH/N3wCM6BWtjaxIyyUIkpHOvfFnxdI4yD4tBXEBKSbriGujF6jnSVkJrffuo6vxACiSSxIw==
+
 randombytes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
@@ -6739,11 +6746,18 @@ raw-body@~1.1.0:
     bytes "1"
     string_decoder "0.10"
 
-rbush@*, rbush@2.x, rbush@^2.0.1:
+rbush@2.x, rbush@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/rbush/-/rbush-2.0.2.tgz#bb6005c2731b7ba1d5a9a035772927d16a614605"
   dependencies:
     quickselect "^1.0.1"
+
+rbush@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/rbush/-/rbush-3.0.1.tgz#5fafa8a79b3b9afdfe5008403a720cc1de882ecf"
+  integrity sha512-XRaVO0YecOpEuIvbhbpTrZgoiI6xBlz6hnlr6EHhd+0x9ase6EmeN+hdwwUaJvLcsFFQ8iWVF1GAK1yB0BWi0w==
+  dependencies:
+    quickselect "^2.0.0"
 
 react-is@^16.8.4:
   version "16.13.0"

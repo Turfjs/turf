@@ -51,7 +51,7 @@ function lineOverlap<
   var features: Feature<LineString, GeoJsonProperties>[] = [];
 
   // Create Spatial Index
-  var tree = rbush();
+  var tree = rbush<LineString>();
 
   // To-Do -- HACK way to support typescript
   const line: any = lineSegment(line1);
