@@ -1,18 +1,11 @@
+import { Polygon, Feature, Point, Position } from "geojson";
 import {
   orientationIndex,
   envelopeIsEqual,
   envelopeContains,
   coordinatesEqual,
 } from "./util";
-import {
-  multiPoint,
-  polygon,
-  point,
-  Polygon,
-  Feature,
-  Point,
-  Position,
-} from "@turf/helpers";
+import { multiPoint, polygon, point } from "@turf/helpers";
 import envelope from "@turf/envelope";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import Edge from "./Edge";
