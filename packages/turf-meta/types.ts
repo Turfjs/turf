@@ -1,11 +1,6 @@
+import { Point, LineString } from "geojson";
 import * as helpers from "@turf/helpers";
-import {
-  featureCollection,
-  point,
-  lineString,
-  Point,
-  LineString,
-} from "@turf/helpers";
+import { featureCollection, point, lineString } from "@turf/helpers";
 import * as meta from "./";
 import {
   coordReduce,

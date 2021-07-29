@@ -1,23 +1,19 @@
+import { BBox, GeometryCollection, LineString, Polygon, Point } from "geojson";
 import {
-  BBox,
   feature,
   featureCollection,
   geometry,
   geometryCollection,
-  GeometryCollection,
   isNumber,
   isObject,
   lengthToDegrees,
   lengthToRadians,
   lineString,
-  LineString,
   multiLineString,
   multiPoint,
   multiPolygon,
   // Typescript types
   point,
-  Point,
-  Polygon,
   polygon,
   radiansToLength,
 } from "./";

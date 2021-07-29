@@ -1,11 +1,9 @@
+import { FeatureCollection, Point, LineString } from "geojson";
 import {
   multiPoint,
   multiLineString,
   geometryCollection,
   // Typescript types
-  FeatureCollection,
-  Point,
-  LineString,
 } from "@turf/helpers";
 import flatten from "./";
 
