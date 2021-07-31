@@ -25,11 +25,11 @@ export default class Node {
     this.outerEdgesSorted = false; //< {Boolean} flag that stores if the outer Edges had been sorted
   }
 
-  removeInnerEdge(edge) {
+  removeInnerEdge(edge: Edge) {
     this.innerEdges = this.innerEdges.filter((e) => e.from.id !== edge.from.id);
   }
 
-  removeOuterEdge(edge) {
+  removeOuterEdge(edge: Edge) {
     this.outerEdges = this.outerEdges.filter((e) => e.to.id !== edge.to.id);
   }
 
@@ -39,7 +39,7 @@ export default class Node {
    * @memberof Node
    * @param {Edge} edge - Edge to add as an outerEdge.
    */
-  addOuterEdge(edge) {
+  addOuterEdge(edge: Edge) {
     this.outerEdges.push(edge);
     this.outerEdgesSorted = false;
   }
@@ -115,12 +115,12 @@ export default class Node {
     return this.outerEdges;
   }
 
-  getOuterEdge(i) {
+  getOuterEdge(i: number) {
     this.sortOuterEdges();
     return this.outerEdges[i];
   }
 
-  addInnerEdge(edge) {
+  addInnerEdge(edge: Edge) {
     this.innerEdges.push(edge);
   }
 }

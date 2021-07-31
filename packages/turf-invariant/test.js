@@ -300,8 +300,12 @@ test("invariant -- getCoords", (t) => {
 
   t.throws(() => invariant.getCoords(false));
   t.throws(() => invariant.getCoords(null));
-  t.throws(() => containsNumber(invariant.getCoords(["A", "B", "C"])));
-  t.throws(() => containsNumber(invariant.getCoords([1, "foo", "bar"])));
+  t.throws(() =>
+    invariant.containsNumber(invariant.getCoords(["A", "B", "C"]))
+  );
+  t.throws(() =>
+    invariant.containsNumber(invariant.getCoords([1, "foo", "bar"]))
+  );
 
   t.deepEqual(
     invariant.getCoords({

@@ -60,7 +60,7 @@ function cleanCoords(
       var existing: Record<string, true> = {};
       getCoords(geojson).forEach(function (coord: any) {
         var key = coord.join("-");
-        if (!existing.hasOwnProperty(key)) {
+        if (!Object.prototype.hasOwnProperty.call(existing, key)) {
           newCoords.push(coord);
           existing[key] = true;
         }

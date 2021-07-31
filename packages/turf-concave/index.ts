@@ -93,7 +93,7 @@ function removeDuplicates(
       return;
     }
     const key = pt.geometry.coordinates.join("-");
-    if (!existing.hasOwnProperty(key)) {
+    if (!Object.prototype.hasOwnProperty.call(existing, key)) {
       cleaned.push(pt);
       existing[key] = true;
     }

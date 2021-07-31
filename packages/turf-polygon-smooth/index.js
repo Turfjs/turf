@@ -1,5 +1,5 @@
+import { featureCollection, multiPolygon, polygon } from "@turf/helpers";
 import { coordEach, geomEach } from "@turf/meta";
-import { featureCollection, polygon, multiPolygon } from "@turf/helpers";
 
 /**
  * Smooths a {@link Polygon} or {@link MultiPolygon}. Based on [Chaikin's algorithm](http://graphics.cs.ucdavis.edu/education/CAGDNotes/Chaikins-Algorithm/Chaikins-Algorithm.html).
@@ -19,6 +19,7 @@ import { featureCollection, polygon, multiPolygon } from "@turf/helpers";
  * var addToMap = [smoothed, polygon];
  */
 function polygonSmooth(inputPolys, options) {
+  options = options || {};
   var outPolys = [];
   // Optional parameters
   var iterations = options.iterations || 1;

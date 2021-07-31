@@ -55,7 +55,4 @@ for (const { name, geojson } of fixtures) {
   suite.add(name, () => scale(geojson, factor || 2, { origin }));
 }
 
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

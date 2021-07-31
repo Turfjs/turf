@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "turf meta module",
   "author": "Turf Authors",
   "contributors": [
@@ -17,6 +17,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -66,13 +67,13 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/random": "^6.4.0",
+    "@turf/random": "^6.5.0",
     "benchmark": "*",
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.4.0"
+    "@turf/helpers": "^6.5.0"
   }
 }

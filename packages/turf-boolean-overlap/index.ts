@@ -10,6 +10,8 @@ import { Feature, Geometry, MultiPoint } from "@turf/helpers";
  * different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString,
  * Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon.
  *
+ * In other words, it returns true if the two geometries overlap, provided that neither completely contains the other.
+ *
  * @name booleanOverlap
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature1 input
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature2 input
@@ -48,7 +50,7 @@ export default function booleanOverlap(
 
   // features must be not equal
   const equality = new GeojsonEquality({ precision: 6 });
-  if (equality.compare(feature1, feature2)) return false;
+  if (equality.compare(feature1 as any, feature2 as any)) return false;
 
   let overlap = 0;
 
