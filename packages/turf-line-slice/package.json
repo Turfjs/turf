@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-slice",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "turf line-slice module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +48,7 @@
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.4.0",
+    "@turf/truncate": "^6.5.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -56,8 +57,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.4.0",
-    "@turf/invariant": "^6.4.0",
-    "@turf/nearest-point-on-line": "^6.4.0"
+    "@turf/helpers": "^6.5.0",
+    "@turf/invariant": "^6.5.0",
+    "@turf/nearest-point-on-line": "^6.5.0"
   }
 }

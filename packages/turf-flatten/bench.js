@@ -29,7 +29,4 @@ const suite = new Benchmark.Suite("turf-flatten");
 for (const { geojson, name } of fixtures) {
   suite.add(name, () => flatten(geojson));
 }
-suite
-  .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
-  .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

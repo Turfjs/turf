@@ -12,5 +12,4 @@ suite
     greatCircle(point1, point2);
   })
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

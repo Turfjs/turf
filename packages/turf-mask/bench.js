@@ -23,9 +23,12 @@ for (const { name, geojson } of fixtures) {
   suite.add(name, () => turfMask(polygon, masking));
 }
 
+// basic x 4,627 ops/sec ±25.23% (21 runs sampled)
+// mask-outside x 3,892 ops/sec ±34.80% (15 runs sampled)
+// multi-polygon x 5,837 ops/sec ±3.03% (91 runs sampled)
+// overlapping x 22,326 ops/sec ±1.34% (90 runs sampled)
 suite
   .on("cycle", (event) => {
     console.log(String(event.target));
   })
-  .on("complete", () => {})
   .run();

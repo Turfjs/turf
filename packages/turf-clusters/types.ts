@@ -30,7 +30,9 @@ getCluster(geojson, 0);
 /**
  * ClusterEach
  */
-clusters.clusterEach(geojson, "cluster", () => {});
+clusters.clusterEach(geojson, "cluster", () => {
+  /* no-op */
+});
 clusterEach(geojson, "cluster", (cluster, clusterValue, currentIndex) => {
   //= cluster
   //= clusterValue
@@ -52,7 +54,9 @@ clusterEach(geojson, "cluster", (cluster, clusterValue: number) => {
  * ClusterReduce
  */
 const initialValue = 0;
-clusterReduce(geojson, "cluster", () => {});
+clusterReduce(geojson, "cluster", () => {
+  /* no-op */
+});
 clusterReduce(
   geojson,
   "cluster",

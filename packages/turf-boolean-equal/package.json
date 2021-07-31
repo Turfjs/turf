@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-equal",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "turf boolean-equal module",
   "author": "Turf Authors",
   "contributors": [
@@ -17,6 +17,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -52,6 +53,7 @@
     "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
+    "@types/geojson-equality": "^0.2.0",
     "@types/tape": "*",
     "benchmark": "*",
     "boolean-shapely": "*",
@@ -64,9 +66,9 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "^6.4.0",
-    "@turf/helpers": "^6.4.0",
-    "@turf/invariant": "^6.4.0",
+    "@turf/clean-coords": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
+    "@turf/invariant": "^6.5.0",
     "geojson-equality": "0.1.6"
   }
 }

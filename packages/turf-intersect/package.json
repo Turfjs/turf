@@ -1,6 +1,6 @@
 {
   "name": "@turf/intersect",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "turf intersect module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -57,8 +58,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.4.0",
-    "@turf/invariant": "^6.4.0",
-    "polygon-clipping": "^0.15.2"
+    "@turf/helpers": "^6.5.0",
+    "@turf/invariant": "^6.5.0",
+    "polygon-clipping": "^0.15.3"
   }
 }

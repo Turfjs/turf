@@ -992,11 +992,14 @@ test("lineEach & lineReduce -- assert", (t) => {
     [0, 0],
     [10, 10],
   ]);
-  meta.lineEach(pt, () => {}); // Point geometry is supported
-  meta.lineEach(multiPt, () => {}); // MultiPoint geometry is supported
-  meta.lineReduce(pt, () => {}); // Point geometry is supported
-  meta.lineReduce(multiPt, () => {}); // MultiPoint geometry is supported
-  meta.lineReduce(geomCollection, () => {}); // GeometryCollection is is supported
+  const noop = () => {
+    /* no-op */
+  };
+  meta.lineEach(pt, noop); // Point geometry is supported
+  meta.lineEach(multiPt, noop); // MultiPoint geometry is supported
+  meta.lineReduce(pt, noop); // Point geometry is supported
+  meta.lineReduce(multiPt, noop); // MultiPoint geometry is supported
+  meta.lineReduce(geomCollection, noop); // GeometryCollection is is supported
   meta.lineReduce(
     featureCollection([
       lineString([
@@ -1004,9 +1007,9 @@ test("lineEach & lineReduce -- assert", (t) => {
         [0, 0],
       ]),
     ]),
-    () => {}
+    noop
   ); // FeatureCollection is is supported
-  meta.lineReduce(feature(null), () => {}); // Feature with null geometry is supported
+  meta.lineReduce(feature(null), noop); // Feature with null geometry is supported
   t.end();
 });
 

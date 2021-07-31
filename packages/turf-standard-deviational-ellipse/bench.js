@@ -22,5 +22,4 @@ suite
     standardDeviationalEllipse(randomPoint(600, properties))
   )
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();
