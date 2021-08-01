@@ -44,6 +44,7 @@
     "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
+    "coverage": "nyc ts-node -r esm test.js",
     "test:tape": "node -r esm test.js",
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
@@ -55,7 +56,8 @@
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "nyc": "*"
   },
   "dependencies": {
     "@turf/bbox": "^6.5.0",

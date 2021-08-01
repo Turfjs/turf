@@ -52,7 +52,7 @@
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
-    "nyc": "^15.1.0",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",

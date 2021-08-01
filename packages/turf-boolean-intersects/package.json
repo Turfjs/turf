@@ -45,6 +45,7 @@
     "build": "npm-run-all build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
+    "coverage": "nyc ts-node -r esm test.js",
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "ts-node -r esm test.js"
@@ -58,7 +59,8 @@
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",
-    "typescript": "*"
+    "typescript": "*",
+    "nyc": "*"
   },
   "dependencies": {
     "@turf/boolean-disjoint": "^6.5.0",

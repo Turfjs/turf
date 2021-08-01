@@ -54,7 +54,8 @@
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
-    "write-json-file": "*"
+    "write-json-file": "*",
+    "nyc": "*"
   },
   "dependencies": {
     "@turf/helpers": "^6.5.0",
