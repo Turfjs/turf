@@ -78,7 +78,7 @@ jobs:
         run: echo "::set-output name=dir::$(yarn cache dir)"
       # cache the yarn data to speed up builds
       - uses: actions/cache@v2
-        id: yarn-cache
+        id: yarn-cache-master
         with:
           path: ${{ steps.yarn-cache-dir-path-master.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
