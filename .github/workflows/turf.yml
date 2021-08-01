@@ -43,15 +43,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Coverage (Master)
-        uses: actions/checkout@v2
-        with:
-          path: master
-          node-version: "14.x"
-        run: yarn run coverage
-
       - name: Coverage (Current Branch)
         uses: actions/checkout@v2
         with:
           node-version: "14.x"
-        run: yarn run coverage
+      - run: yarn run coverage
+
+      - name: Coverage (Master)
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          node-version: "14.x"
+      - run: yarn run coverage
