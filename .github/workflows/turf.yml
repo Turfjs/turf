@@ -38,3 +38,17 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: git diff --exit-code
       - run: yarn test
+
+  coverage:
+    - name: Coverage (Master)
+      uses: actions/checkout@v2
+      with:
+        path: master
+        node-version: "14.x"
+      run: yarn run coverage
+
+    - name: Coverage (Current Branch)
+      uses: actions/checkout@v2
+      with:
+        node-version: "14.x"
+      run: yarn run coverage
