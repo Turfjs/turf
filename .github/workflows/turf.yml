@@ -63,7 +63,7 @@ jobs:
       - run: yarn --frozen-lockfile
       # Run coverage on current branch
       - name: Run Coverage (Current Branch)
-      - run: yarn run coverages
+        run: yarn run coverages
 
       # Master
       - name: Checkout Master Branch
@@ -87,4 +87,4 @@ jobs:
       - run: yarn --frozen-lockfile
       # Run coverage on master
       - name: Run Coverage (Master Branch)
-      - run: yarn run coverage
+        run: yarn run coverage
