@@ -1,6 +1,6 @@
 {
   "name": "@turf/mask",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "turf mask module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -53,10 +54,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.4.0",
-    "@turf/helpers": "^6.4.0",
-    "@turf/meta": "^6.4.0",
-    "@turf/union": "^6.4.0",
-    "rbush": "^2.0.1"
+    "@turf/helpers": "^6.5.0",
+    "polygon-clipping": "^0.15.3"
   }
 }

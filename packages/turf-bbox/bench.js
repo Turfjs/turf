@@ -15,5 +15,4 @@ const line = lineString([
 new Benchmark.Suite("turf-bbox")
   .add("line", () => bbox(line))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

@@ -25,5 +25,4 @@ suite
     ellipse(center, xSemiAxis, ySemiAxis, { steps: 256 })
   )
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

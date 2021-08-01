@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-contains",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "turf boolean-contains module",
   "author": "Turf Authors",
   "contributors": [
@@ -16,6 +16,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -62,10 +63,10 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.4.0",
-    "@turf/boolean-point-in-polygon": "^6.4.0",
-    "@turf/boolean-point-on-line": "^6.4.0",
-    "@turf/helpers": "^6.4.0",
-    "@turf/invariant": "^6.4.0"
+    "@turf/bbox": "^6.5.0",
+    "@turf/boolean-point-in-polygon": "^6.5.0",
+    "@turf/boolean-point-on-line": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
+    "@turf/invariant": "^6.5.0"
   }
 }
