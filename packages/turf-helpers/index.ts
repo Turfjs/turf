@@ -334,6 +334,11 @@ export function polygon<P = Properties>(
         "Each LinearRing of a Polygon must have 4 or more Positions."
       );
     }
+
+    if (ring[ring.length - 1].length !== ring[0].length) {
+      throw new Error("First and last Position are not equivalent.");
+    }
+
     for (let j = 0; j < ring[ring.length - 1].length; j++) {
       // Check if first point of Polygon contains two numbers
       if (ring[ring.length - 1][j] !== ring[0][j]) {
