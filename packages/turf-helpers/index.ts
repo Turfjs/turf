@@ -93,7 +93,7 @@ export const earthRadius = 6371008.8;
  * @memberof helpers
  * @type {Object}
  */
-export const factors = {
+export const factors: { [key: string]: number } = {
   centimeters: earthRadius * 100,
   centimetres: earthRadius * 100,
   degrees: earthRadius / 111325,
@@ -109,7 +109,7 @@ export const factors = {
   nauticalmiles: earthRadius / 1852,
   radians: 1,
   yards: earthRadius * 1.0936,
-} as const;
+};
 
 /**
  * Units of measurement factors based on 1 meter.
@@ -117,7 +117,7 @@ export const factors = {
  * @memberof helpers
  * @type {Object}
  */
-export const unitsFactors = {
+export const unitsFactors: { [key: string]: number } = {
   centimeters: 100,
   centimetres: 100,
   degrees: 1 / 111325,
@@ -133,7 +133,7 @@ export const unitsFactors = {
   nauticalmiles: 1 / 1852,
   radians: 1 / earthRadius,
   yards: 1.0936133,
-} as const;
+};
 
 /**
  * Area of measurement factors based on 1 square meter.
@@ -141,7 +141,7 @@ export const unitsFactors = {
  * @memberof helpers
  * @type {Object}
  */
-export const areaFactors = {
+export const areaFactors: { [key: string]: number } = {
   acres: 0.000247105,
   centimeters: 10000,
   centimetres: 10000,
@@ -156,7 +156,7 @@ export const areaFactors = {
   millimeters: 1000000,
   millimetres: 1000000,
   yards: 1.195990046,
-} as const;
+};
 
 /**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
