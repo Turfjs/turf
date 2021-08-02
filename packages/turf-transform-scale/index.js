@@ -103,7 +103,9 @@ function defineOrigin(geojson, origin) {
     return getCoord(origin);
 
   // Define BBox
-  var bbox = geojson.bbox ? geojson.bbox : turfBBox(geojson);
+  var bbox = geojson.bbox
+    ? geojson.bbox
+    : turfBBox(geojson, { recalculate: true });
   var west = bbox[0];
   var south = bbox[1];
   var east = bbox[2];

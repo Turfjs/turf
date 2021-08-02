@@ -11,6 +11,7 @@ import {
   polygon,
   Polygon,
   Position,
+  validateBBox,
 } from "@turf/helpers";
 
 /**
@@ -19,11 +20,18 @@ import {
  * @name randomPosition
  * @param {Array<number>} [bbox=[-180, -90, 180, 90]] a bounding box inside of which positions are placed.
  * @returns {Array<number>} Position [longitude, latitude]
+ * @throws {Error} if bbox is invalid
  * @example
  * var position = turf.randomPosition([-180, -90, 180, 90])
  * // => position
  */
 export function randomPosition(bbox?: BBox | { bbox: BBox }): Position {
+  checkBBox(bbox);
+  return randomPositionUnchecked(bbox);
+}
+
+// does not check bbox for validity, that is handled by the exported functions
+function randomPositionUnchecked(bbox?: BBox | { bbox: BBox }): Position {
   if (Array.isArray(bbox)) {
     return coordInBBox(bbox);
   }
@@ -31,6 +39,16 @@ export function randomPosition(bbox?: BBox | { bbox: BBox }): Position {
     return coordInBBox(bbox.bbox);
   }
   return [lon(), lat()];
+}
+
+function checkBBox(bbox?: BBox | { bbox: BBox }) {
+  if (bbox == null) {
+    return;
+  } else if (Array.isArray(bbox)) {
+    validateBBox(bbox);
+  } else if (bbox.bbox != null) {
+    validateBBox(bbox.bbox);
+  }
 }
 
 /**
@@ -41,6 +59,7 @@ export function randomPosition(bbox?: BBox | { bbox: BBox }): Position {
  * @param {Object} [options={}] Optional parameters
  * @param {Array<number>} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
  * @returns {FeatureCollection<Point>} GeoJSON FeatureCollection of points
+ * @throws {Error} if bbox is invalid
  * @example
  * var points = turf.randomPoint(25, {bbox: [-180, -90, 180, 90]})
  * // => points
@@ -51,12 +70,13 @@ export function randomPoint(
     bbox?: BBox;
   } = {}
 ): FeatureCollection<Point, any> {
+  checkBBox(options.bbox);
   if (count === undefined || count === null) {
     count = 1;
   }
   const features = [];
   for (let i = 0; i < count; i++) {
-    features.push(point(randomPosition(options.bbox)));
+    features.push(point(randomPositionUnchecked(options.bbox)));
   }
   return featureCollection(features);
 }
@@ -72,6 +92,7 @@ export function randomPoint(
  * @param {number} [options.max_radial_length=10] is the maximum number of decimal degrees latitude or longitude that a
  * vertex can reach out of the center of the Polygon.
  * @returns {FeatureCollection<Polygon>} GeoJSON FeatureCollection of polygons
+ * @throws {Error} if bbox is invalid
  * @example
  * var polygons = turf.randomPolygon(25, {bbox: [-180, -90, 180, 90]})
  * // => polygons
@@ -84,6 +105,7 @@ export function randomPolygon(
     max_radial_length?: number;
   } = {}
 ): FeatureCollection<Polygon, any> {
+  checkBBox(options.bbox);
   // Default param
   if (count === undefined || count === null) {
     count = 1;
@@ -120,7 +142,9 @@ export function randomPolygon(
     vertices[vertices.length - 1] = vertices[0]; // close the ring
 
     // center the polygon around something
-    vertices = vertices.map(vertexToCoordinate(randomPosition(options.bbox)));
+    vertices = vertices.map(
+      vertexToCoordinate(randomPositionUnchecked(options.bbox))
+    );
     features.push(polygon([vertices]));
   }
   return featureCollection(features);
@@ -139,6 +163,7 @@ export function randomPolygon(
  * @param {number} [options.max_rotation=Math.PI / 8] is the maximum number of radians that a
  * line segment can turn from the previous segment.
  * @returns {FeatureCollection<LineString>} GeoJSON FeatureCollection of linestrings
+ * @throws {Error} if bbox is invalid
  * @example
  * var lineStrings = turf.randomLineString(25, {bbox: [-180, -90, 180, 90]})
  * // => lineStrings
@@ -158,6 +183,7 @@ export function randomLineString(
     throw new Error("options is invalid");
   }
   const bbox = options.bbox;
+  checkBBox(bbox);
   let num_vertices = options.num_vertices;
   let max_length = options.max_length;
   let max_rotation = options.max_rotation;
@@ -182,7 +208,7 @@ export function randomLineString(
 
   const features = [];
   for (let i = 0; i < count; i++) {
-    const startingPoint = randomPosition(bbox);
+    const startingPoint = randomPositionUnchecked(bbox);
     const vertices = [startingPoint];
     for (let j = 0; j < num_vertices - 1; j++) {
       const priorAngle =

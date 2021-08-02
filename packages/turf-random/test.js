@@ -1,5 +1,10 @@
 const test = require("tape");
-const { randomPoint, randomPolygon } = require("./dist/js/index.js");
+const {
+  randomPoint,
+  randomPolygon,
+  randomLineString,
+  randomPosition,
+} = require("./index");
 
 test("random(points)", (t) => {
   var points = randomPoint();
@@ -47,5 +52,28 @@ test("random(points, 10, {bbox})", (t) => {
     [0, 0],
     "feature type correct"
   );
+  t.end();
+});
+
+test("bbox input gets validated", (t) => {
+  const bbox = [
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+  ]; // this is invalid
+
+  t.throws(() => {
+    randomPoint(1, { bbox });
+  }, "randomPoint checks bbox validity");
+  t.throws(() => {
+    randomPolygon(1, { bbox });
+  }, "randomPolygon checks bbox validity");
+  t.throws(() => {
+    randomLineString(1, { bbox });
+  }, "randomLineString checks bbox validity");
+  t.throws(() => {
+    randomPosition(bbox);
+  }, "randomPosition checks bbox validity");
   t.end();
 });

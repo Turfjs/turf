@@ -803,7 +803,7 @@ export function isObject(input: any): boolean {
  * @private
  * @param {Array<number>} bbox BBox to validate
  * @returns {void}
- * @throws Error if BBox is not valid
+ * @throws {Error} if BBox is not valid
  * @example
  * validateBBox([-180, -40, 110, 50])
  * //=OK
@@ -841,7 +841,7 @@ export function validateBBox(bbox: any): void {
  * @private
  * @param {string|number} id Id to validate
  * @returns {void}
- * @throws Error if Id is not valid
+ * @throws {Error} if Id is not valid
  * @example
  * validateId([-180, -40, 110, 50])
  * //=Error
