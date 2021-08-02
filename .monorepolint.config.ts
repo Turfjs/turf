@@ -246,6 +246,9 @@ module.exports = {
       },
       {
         options: {
+          dependencies: {
+            tslib: "^2.3.0",
+          },
           devDependencies: {
             "ts-node": "*",
             typescript: "*",
