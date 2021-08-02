@@ -15,7 +15,7 @@ import { getCoord, getCoords, getType } from "@turf/invariant";
  *
  * @name transformScale
  * @param {GeoJSON} geojson GeoJSON to be scaled
- * @param {number} factor of scaling, positive or negative values greater than 0
+ * @param {number} factor of scaling, positive values greater than 0
  * @param {Object} [options={}] Optional parameters
  * @param {string|Coord} [options.origin='centroid'] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
@@ -37,7 +37,7 @@ function transformScale(geojson, factor, options) {
 
   // Input validation
   if (!geojson) throw new Error("geojson required");
-  if (typeof factor !== "number" || factor === 0)
+  if (typeof factor !== "number" || factor <= 0)
     throw new Error("invalid factor");
   var originIsPoint = Array.isArray(origin) || typeof origin === "object";
 

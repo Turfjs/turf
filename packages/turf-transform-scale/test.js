@@ -220,6 +220,19 @@ test("scale -- geometry support", (t) => {
   t.end();
 });
 
+test("scale -- factor 0 or less throws error", (t) => {
+  const pt = point([10, 10]);
+  t.throws(() => {
+    scale(pt, 0);
+  }, "should throw for zero");
+
+  t.throws(() => {
+    scale(pt, -1);
+  }, "should throw for negative");
+
+  t.end();
+});
+
 // style result
 function colorize(geojson) {
   featureEach(geojson, (feature, index) => {
