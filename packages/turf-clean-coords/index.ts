@@ -37,19 +37,19 @@ function cleanCoords(
 
   switch (type) {
     case "LineString":
-      newCoords = cleanLine(geojson);
+      newCoords = cleanLine(geojson, type);
       break;
     case "MultiLineString":
     case "Polygon":
       getCoords(geojson).forEach(function (line) {
-        newCoords.push(cleanLine(line));
+        newCoords.push(cleanLine(line, type));
       });
       break;
     case "MultiPolygon":
       getCoords(geojson).forEach(function (polygons: any) {
         var polyPoints: Position[] = [];
         polygons.forEach(function (ring: Position[]) {
-          polyPoints.push(cleanLine(ring));
+          polyPoints.push(cleanLine(ring, type));
         });
         newCoords.push(polyPoints);
       });
@@ -94,9 +94,10 @@ function cleanCoords(
  *
  * @private
  * @param {Array<number>|LineString} line Line
+ * @param {string} type Type of geometry
  * @returns {Array<number>} Cleaned coordinates
  */
-function cleanLine(line: Position[]) {
+function cleanLine(line: Position[], type: string) {
   var points = getCoords(line);
   // handle "clean" segment
   if (points.length === 2 && !equals(points[0], points[1])) return points;
@@ -129,10 +130,17 @@ function cleanLine(line: Position[]) {
     }
   }
   newPoints.push(points[points.length - 1]);
-
   newPointsLength = newPoints.length;
-  if (equals(points[0], points[points.length - 1]) && newPointsLength < 4)
+
+  // (Multi)Polygons must have at least 4 points, but a closed LineString with only 3 points is acceptable
+  if (
+    (type === "Polygon" || type === "MultiPolygon") &&
+    equals(points[0], points[points.length - 1]) &&
+    newPointsLength < 4
+  ) {
     throw new Error("invalid polygon");
+  }
+
   if (
     isPointOnLineSegment(
       newPoints[newPointsLength - 3],
