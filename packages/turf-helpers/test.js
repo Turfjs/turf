@@ -623,6 +623,7 @@ test("turf-helpers -- isObject", (t) => {
   t.true(isObject({ a: 1 }));
   t.true(isObject({}));
   t.true(point([0, 1]));
+  t.true(isObject(new Object()));
 
   // false
   t.false(isObject(123));
@@ -635,6 +636,11 @@ test("turf-helpers -- isObject", (t) => {
   t.false(isObject([1, 2, 3]));
   t.false(isObject([]));
   t.false(isObject(isNumber));
+  t.false(
+    isObject(function () {
+      /*noop*/
+    })
+  );
   t.end();
 });
 
