@@ -1,15 +1,14 @@
 // Taken from http://geomalgorithms.com/a02-_lines.html
 import getDistance from "@turf/distance";
 import {
-    convertLength,
-    Coord,
-    feature,
-    Feature,
-    lineString,
-    LineString,
-    point,
-    Point,
-    Units,
+  convertLength,
+  Coord,
+  feature,
+  Feature,
+  lineString,
+  LineString,
+  point,
+  Units,
 } from "@turf/helpers";
 import { featureOf } from "@turf/invariant";
 import { segmentEach } from "@turf/meta";
@@ -35,34 +34,56 @@ import getPlanarDistance from "@turf/rhumb-distance";
  * var distance = turf.pointToLineDistance(pt, line, {units: 'miles'});
  * //=69.11854715938406
  */
-function pointToLineDistance(pt: Coord, line: Feature<LineString> | LineString, options: {
-    units?: Units,
-    method?: "geodesic" | "planar",
-} = {}): number {
-    // Optional parameters
-    if (!options.method) { options.method = "geodesic"; }
-    if (!options.units) { options.units = "kilometers"; }
+function pointToLineDistance(
+  pt: Coord,
+  line: Feature<LineString> | LineString,
+  options: {
+    units?: Units;
+    method?: "geodesic" | "planar";
+  } = {}
+): number {
+  // Optional parameters
+  if (!options.method) {
+    options.method = "geodesic";
+  }
+  if (!options.units) {
+    options.units = "kilometers";
+  }
 
-    // validation
-    if (!pt) { throw new Error("pt is required"); }
-    if (Array.isArray(pt)) { pt = point(pt);
-    } else if (pt.type === "Point") { pt = feature(pt);
-    } else { featureOf(pt, "Point", "point"); }
+  // validation
+  if (!pt) {
+    throw new Error("pt is required");
+  }
+  if (Array.isArray(pt)) {
+    pt = point(pt);
+  } else if (pt.type === "Point") {
+    pt = feature(pt);
+  } else {
+    featureOf(pt, "Point", "point");
+  }
 
-    if (!line) { throw new Error("line is required"); }
-    if (Array.isArray(line)) { line = lineString(line);
-    } else if (line.type === "LineString") { line = feature(line);
-    } else { featureOf(line, "LineString", "line"); }
+  if (!line) {
+    throw new Error("line is required");
+  }
+  if (Array.isArray(line)) {
+    line = lineString(line);
+  } else if (line.type === "LineString") {
+    line = feature(line);
+  } else {
+    featureOf(line, "LineString", "line");
+  }
 
-    let distance = Infinity;
-    const p = pt.geometry.coordinates;
-    segmentEach(line, (segment) => {
-        const a = segment!.geometry.coordinates[0];
-        const b = segment!.geometry.coordinates[1];
-        const d = distanceToSegment(p, a, b, options);
-        if (d < distance) { distance = d; }
-    });
-    return convertLength(distance, "degrees", options.units);
+  let distance = Infinity;
+  const p = pt.geometry.coordinates;
+  segmentEach(line, (segment) => {
+    const a = segment!.geometry.coordinates[0];
+    const b = segment!.geometry.coordinates[1];
+    const d = distanceToSegment(p, a, b, options);
+    if (d < distance) {
+      distance = d;
+    }
+  });
+  return convertLength(distance, "degrees", options.units);
 }
 
 /**
@@ -75,25 +96,36 @@ function pointToLineDistance(pt: Coord, line: Feature<LineString> | LineString, 
  * @param {Object} [options={}] Optional parameters
  * @returns {number} distance
  */
-function distanceToSegment(p: number[], a: number[], b: number[], options: any) {
-    const v = [b[0] - a[0],  b[1] - a[1]];
-    const w = [p[0] - a[0],  p[1] - a[1]];
+function distanceToSegment(
+  p: number[],
+  a: number[],
+  b: number[],
+  options: any
+) {
+  const v = [b[0] - a[0], b[1] - a[1]];
+  const w = [p[0] - a[0], p[1] - a[1]];
 
-    const c1 = dot(w, v);
-    if (c1 <= 0) { return calcDistance(p, a, {method: options.method, units: "degrees"}); }
-    const c2 = dot(v, v);
-    if (c2 <= c1) { return calcDistance(p, b, {method: options.method, units: "degrees"}); }
-    const b2 = c1 / c2;
-    const Pb = [a[0] + (b2 * v[0]), a[1] + (b2 * v[1])];
-    return calcDistance(p, Pb, {method: options.method, units: "degrees"});
+  const c1 = dot(w, v);
+  if (c1 <= 0) {
+    return calcDistance(p, a, { method: options.method, units: "degrees" });
+  }
+  const c2 = dot(v, v);
+  if (c2 <= c1) {
+    return calcDistance(p, b, { method: options.method, units: "degrees" });
+  }
+  const b2 = c1 / c2;
+  const Pb = [a[0] + b2 * v[0], a[1] + b2 * v[1]];
+  return calcDistance(p, Pb, { method: options.method, units: "degrees" });
 }
 
 function dot(u: number[], v: number[]) {
-    return (u[0] * v[0] + u[1] * v[1]);
+  return u[0] * v[0] + u[1] * v[1];
 }
 
 function calcDistance(a: number[], b: number[], options: any) {
-    return options.method === "planar" ? getPlanarDistance(a, b, options) : getDistance(a, b, options);
+  return options.method === "planar"
+    ? getPlanarDistance(a, b, options)
+    : getDistance(a, b, options);
 }
 
 export default pointToLineDistance;

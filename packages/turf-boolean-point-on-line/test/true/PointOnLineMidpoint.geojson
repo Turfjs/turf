@@ -6,10 +6,7 @@
       "properties": {},
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          2,
-          2
-        ]
+        "coordinates": [2, 2]
       }
     },
     {
@@ -18,16 +15,9 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [
-			       0,0
-          ],
-          [
-			       3,3
-          ],
-          [
-            38.3203125,
-            5.965753671065536
-          ]
+          [0, 0],
+          [3, 3],
+          [38.3203125, 5.965753671065536]
         ]
       }
     }

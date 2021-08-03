@@ -1,37 +1,25 @@
 {
-	"type": "FeatureCollection",
-	"features": [
-		{
-			"type": "Feature",
-			"properties": {
-				"stroke": "#ff0000",
-				"fill": "#F00",
-				"stroke-width": 6,
-				"fill-opacity": 0.5
-			},
-			"geometry": {
-				"type": "Polygon",
-				"coordinates": [
-					[
-						[
-							0,
-							0
-						],
-						[
-							2,
-							0
-						],
-						[
-							1,
-							1
-						],
-						[
-							0,
-							0
-						]
-					]
-				]
-			}
-		}
-	]
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#ff0000",
+        "fill": "#F00",
+        "stroke-width": 6,
+        "fill-opacity": 0.5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [0, 0],
+            [2, 0],
+            [1, 1],
+            [0, 0]
+          ]
+        ]
+      }
+    }
+  ]
 }

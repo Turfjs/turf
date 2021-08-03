@@ -1,35 +1,26 @@
 {
-	"type": "FeatureCollection",
-	"features": [
-		{
-			"type": "Feature",
-			"properties": {
-				"marker-symbol": "circle"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					4.860076904296875,
-					45.75919915723537
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						4.86020565032959,
-						45.76884015325622
-					],
-					[
-						4.85994815826416,
-						45.749558161214516
-					]
-				]
-			}
-		}
-	]
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-symbol": "circle"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [4.860076904296875, 45.75919915723537]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [4.86020565032959, 45.76884015325622],
+          [4.85994815826416, 45.749558161214516]
+        ]
+      }
+    }
+  ]
 }

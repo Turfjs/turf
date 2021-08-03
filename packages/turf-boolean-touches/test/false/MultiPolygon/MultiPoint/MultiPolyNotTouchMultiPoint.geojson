@@ -1,22 +1,42 @@
 {
   "type": "FeatureCollection",
   "features": [
-        {
+    {
       "type": "Feature",
       "properties": {},
       "geometry": {
         "type": "MultiPolygon",
         "coordinates": [
-          [[[1, 1], [1, 10], [10, 10], [10, 1], [1, 1]]],
-          [[[-1, -1], [-1, -10], [-10, -10], [-10, -1], [-1, -1]]]
+          [
+            [
+              [1, 1],
+              [1, 10],
+              [10, 10],
+              [10, 1],
+              [1, 1]
+            ]
+          ],
+          [
+            [
+              [-1, -1],
+              [-1, -10],
+              [-10, -10],
+              [-10, -1],
+              [-1, -1]
+            ]
+          ]
         ]
       }
-    },{
+    },
+    {
       "type": "Feature",
       "properties": {},
       "geometry": {
         "type": "MultiPoint",
-        "coordinates": [[10, 14], [-14, -14]]
+        "coordinates": [
+          [10, 14],
+          [-14, -14]
+        ]
       }
     }
   ]

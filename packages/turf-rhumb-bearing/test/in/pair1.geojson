@@ -8,10 +8,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          -75,
-          45
-        ]
+        "coordinates": [-75, 45]
       }
     },
     {
@@ -21,10 +18,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          20,
-          60
-        ]
+        "coordinates": [20, 60]
       }
     }
   ]

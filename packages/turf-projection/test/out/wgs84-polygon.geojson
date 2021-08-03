@@ -1,31 +1,16 @@
 {
-	"type": "Feature",
-	"properties": {},
-	"geometry": {
-		"type": "Polygon",
-		"coordinates": [
-			[
-				[
-					-116,
-					58
-				],
-				[
-					-90,
-					58
-				],
-				[
-					-90,
-					66
-				],
-				[
-					-116,
-					66
-				],
-				[
-					-116,
-					58
-				]
-			]
-		]
-	}
+  "type": "Feature",
+  "properties": {},
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-116, 58],
+        [-90, 58],
+        [-90, 66],
+        [-116, 66],
+        [-116, 58]
+      ]
+    ]
+  }
 }

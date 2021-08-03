@@ -1,13 +1,11 @@
 ![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png)
 ======
-
+[![GitHub Actions Status](https://github.com/Turfjs/turf/actions/workflows/turf.yml/badge.svg)](https://github.com/Turfjs/turf/actions/workflows/turf.yml/badge.svg)
 [![Version Badge][npm-img]][npm-url]
-[![Travis CI](https://travis-ci.org/Turfjs/turf.svg?branch=master)](https://travis-ci.org/Turfjs/turf)
 [![Gitter chat][gitter-img]][gitter-url]
 [![Backers on Open Collective][oc-backer-badge]](#backers) 
 [![Sponsors on Open Collective][oc-sponsor-badge]](#sponsors) [![Coverage Status](https://coveralls.io/repos/github/Turfjs/turf/badge.svg)](https://coveralls.io/github/Turfjs/turf)
-[![Greenkeeper badge](https://badges.greenkeeper.io/Turfjs/turf.svg)](https://greenkeeper.io/)
-
+ 
 [npm-img]: https://img.shields.io/npm/v/@turf/turf.svg
 [npm-url]: https://www.npmjs.com/package/@turf/turf
 [gitter-img]: https://badges.gitter.im/Turfjs/turf.svg
@@ -42,7 +40,7 @@ Download the [minified file](https://npmcdn.com/@turf/turf/turf.min.js), and inc
 You can also include it directly from a CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 ```
 
 You can create light-weight turf builds with only the functions you need using the [turfjs-builder UI](https://turfjs-builder.herokuapp.com/) or using browserify as described below.
@@ -54,10 +52,6 @@ All of Turf's functions can also be installed as separate modules. This works we
 ```sh
 npm install @turf/helpers @turf/buffer
 ```
-
-### Bower [NOTE: Bower support has been dropped Jan 1st 2017]
-
-_Not recommended. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
 
 ### TypeScript
 

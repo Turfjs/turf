@@ -1,88 +1,55 @@
 {
-	"type": "FeatureCollection",
-	"features": [
-		{
-			"type": "Feature",
-			"properties": {
-				"stroke": "#0F0",
-				"fill": "#0F0",
-				"stroke-width": 25
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						125,
-						-30
-					],
-					[
-						135,
-						-30
-					],
-					[
-						145,
-						-35
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"stroke": "#F00",
-				"stroke-width": 10,
-				"stroke-opacity": 1
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						115,
-						-35
-					],
-					[
-						125,
-						-30
-					],
-					[
-						135,
-						-30
-					],
-					[
-						145,
-						-35
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"stroke": "#00F",
-				"stroke-width": 3,
-				"stroke-opacity": 1
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						115,
-						-25
-					],
-					[
-						125,
-						-30
-					],
-					[
-						135,
-						-30
-					],
-					[
-						145,
-						-35
-					]
-				]
-			}
-		}
-	]
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#0F0",
+        "fill": "#0F0",
+        "stroke-width": 25
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [125, -30],
+          [135, -30],
+          [145, -35]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#F00",
+        "stroke-width": 10,
+        "stroke-opacity": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [115, -35],
+          [125, -30],
+          [135, -30],
+          [145, -35]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#00F",
+        "stroke-width": 3,
+        "stroke-opacity": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [115, -25],
+          [125, -30],
+          [135, -30],
+          [145, -35]
+        ]
+      }
+    }
+  ]
 }

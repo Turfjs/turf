@@ -1,8 +1,7 @@
 import area from "@turf/area";
 import turfBBox from "@turf/bbox";
 import bboxPolygon from "@turf/bbox-polygon";
-import { round } from "@turf/helpers";
-import { BBox, Feature, FeatureCollection, GeometryObject, Point } from "@turf/helpers";
+import { BBox, FeatureCollection, Point } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 import squareGrid from "@turf/square-grid";
 
@@ -54,11 +53,13 @@ export interface QuadratAnalysisResult {
  * var result = turf.quadratAnalysis(dataset);
  *
  */
-export default function quadratAnalysis(pointFeatureSet: FeatureCollection<Point>, options: {
-  studyBbox?: [number, number, number, number]
-  confidenceLevel?: 20 | 15 | 10 | 5 | 2 | 1,
-}): QuadratAnalysisResult {
-
+export default function quadratAnalysis(
+  pointFeatureSet: FeatureCollection<Point>,
+  options: {
+    studyBbox?: [number, number, number, number];
+    confidenceLevel?: 20 | 15 | 10 | 5 | 2 | 1;
+  }
+): QuadratAnalysisResult {
   options = options || {};
   const studyBbox = options.studyBbox || turfBBox(pointFeatureSet);
   const confidenceLevel = options.confidenceLevel || 20;
@@ -74,7 +75,7 @@ export default function quadratAnalysis(pointFeatureSet: FeatureCollection<Point
   const quadrats = grid.features;
 
   // count the number of features in each quadrat
-  const quadratIdDict: {[key: string]: {box: BBox, cnt: number}} = {};
+  const quadratIdDict: { [key: string]: { box: BBox; cnt: number } } = {};
   for (let i = 0; i < quadrats.length; i++) {
     quadratIdDict[i] = {
       box: turfBBox(quadrats[i]),
@@ -110,7 +111,8 @@ export default function quadratAnalysis(pointFeatureSet: FeatureCollection<Point
   // get the cumulative probability of the random distribution
   let cumulativeProbility = 0.0;
   for (let x = 0; x < maxCnt + 1; x++) {
-    cumulativeProbility += Math.exp(-lambda) * Math.pow(lambda, x) / factorial(x);
+    cumulativeProbility +=
+      (Math.exp(-lambda) * Math.pow(lambda, x)) / factorial(x);
     expectedDistribution.push(cumulativeProbility);
   }
 
@@ -130,7 +132,9 @@ export default function quadratAnalysis(pointFeatureSet: FeatureCollection<Point
   // get the largest absolute difference between two distributions
   let maxDifference = 0;
   for (let x = 0; x < maxCnt + 1; x++) {
-    const difference = Math.abs(expectedDistribution[x] - observedDistribution[x]);
+    const difference = Math.abs(
+      expectedDistribution[x] - observedDistribution[x]
+    );
     if (difference > maxDifference) {
       maxDifference = difference;
     }
@@ -147,7 +151,9 @@ export default function quadratAnalysis(pointFeatureSet: FeatureCollection<Point
     observedDistribution,
   };
 
-  if (maxDifference > criticalValue) { result.isRandom = false; }
+  if (maxDifference > criticalValue) {
+    result.isRandom = false;
+  }
 
   return result;
 }
@@ -166,7 +172,7 @@ const K_TABLE = {
   20: 1.07275,
   15: 1.13795,
   10: 1.22385,
-  5: 1.35810,
+  5: 1.3581,
   2: 1.51743,
   1: 1.62762,
 };
@@ -190,10 +196,9 @@ const K_TABLE = {
  * @returns {boolean} true/false if point is inside BBox
  */
 function inBBox(pt: number[], bbox: BBox) {
-  return bbox[0] <= pt[0] &&
-    bbox[1] <= pt[1] &&
-    bbox[2] >= pt[0] &&
-    bbox[3] >= pt[1];
+  return (
+    bbox[0] <= pt[0] && bbox[1] <= pt[1] && bbox[2] >= pt[0] && bbox[3] >= pt[1]
+  );
 }
 
 /**
@@ -211,7 +216,7 @@ function factorial(num: number) {
     if (f[n] > 0) {
       return f[n];
     }
-    return f[n] = inner(n - 1) * n;
+    return (f[n] = inner(n - 1) * n);
   }
   return inner(num);
 }

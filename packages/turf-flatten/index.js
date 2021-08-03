@@ -1,5 +1,5 @@
-import { flattenEach } from '@turf/meta';
-import { featureCollection } from '@turf/helpers';
+import { flattenEach } from "@turf/meta";
+import { featureCollection } from "@turf/helpers";
 
 /**
  * Flattens any {@link GeoJSON} to a {@link FeatureCollection} inspired by [geojson-flatten](https://github.com/tmcw/geojson-flatten).
@@ -20,13 +20,13 @@ import { featureCollection } from '@turf/helpers';
  * var addToMap = [flatten]
  */
 function flatten(geojson) {
-    if (!geojson) throw new Error('geojson is required');
+  if (!geojson) throw new Error("geojson is required");
 
-    var results = [];
-    flattenEach(geojson, function (feature) {
-        results.push(feature);
-    });
-    return featureCollection(results);
+  var results = [];
+  flattenEach(geojson, function (feature) {
+    results.push(feature);
+  });
+  return featureCollection(results);
 }
 
 export default flatten;

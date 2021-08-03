@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const load = require('load-json-file');
-const Benchmark = require('benchmark');
-const cleanCoords = require('./dist/js/index.js').default;
+const path = require("path");
+const glob = require("glob");
+const load = require("load-json-file");
+const Benchmark = require("benchmark");
+const cleanCoords = require("./index").default;
 
 /**
  * Benchmark Results
@@ -61,17 +61,16 @@ const cleanCoords = require('./dist/js/index.js').default;
  * simple-line x 7,109,682 ops/sec ±1.52% (87 runs sampled)
  * triangle x 3,116,940 ops/sec ±0.71% (87 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-clean-coords');
-glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-clean-coords");
+glob
+  .sync(path.join(__dirname, "test", "in", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     console.time(name);
     cleanCoords(geojson);
     console.timeEnd(name);
     suite.add(name, () => cleanCoords(geojson, true));
-});
+  });
 
-suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

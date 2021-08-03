@@ -9,12 +9,17 @@
         "coordinates": [2.5, 2.5]
       }
     },
-      {
+    {
       "type": "Feature",
       "properties": {},
       "geometry": {
         "type": "LineString",
-        "coordinates": [[1, 1], [2, 2], [3, 3], [4, 4]]
+        "coordinates": [
+          [1, 1],
+          [2, 2],
+          [3, 3],
+          [4, 4]
+        ]
       }
     }
   ]

@@ -1,11 +1,6 @@
 {
-    "bbox": [
-        -5.1,
-        -5.1,
-        5.1,
-        5.1
-    ],
-    "cellWidth": 1,
-    "cellHeight": 1,
-    "units": "degrees"
+  "bbox": [-5.1, -5.1, 5.1, 5.1],
+  "cellWidth": 1,
+  "cellHeight": 1,
+  "units": "degrees"
 }

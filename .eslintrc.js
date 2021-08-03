@@ -1,17 +1,61 @@
+const rules = {
+  "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+
+  "@typescript-eslint/explicit-module-boundary-types": "off",
+  "@typescript-eslint/no-explicit-any": "off",
+  "@typescript-eslint/no-non-null-assertion": "off",
+  "@typescript-eslint/no-var-requires": "off",
+  "no-constant-condition": "off",
+  "no-redeclare": "off",
+  "no-var": "off",
+  "prefer-const": "off",
+};
+
 module.exports = {
-  extends: 'mourner',
+  root: true,
+  ignorePatterns: ["**/dist/**"],
+  plugins: ["@typescript-eslint"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+  ],
   parserOptions: {
-    sourceType: 'module'
+    ecmaVersion: 6,
+    sourceType: "module",
   },
-  rules: {
-    strict: [0],
-    camelcase: [0],
-    'no-loop-func': [0],
-    'object-curly-spacing': [0],
-    'consistent-return': [0],
-    'valid-jsdoc': [2, {
-      prefer: {'return': 'returns'},
-      requireReturn: false
-    }]
-  }
+  env: { es6: true },
+  rules,
+
+  overrides: [
+    {
+      files: ["packages/*/types.ts"],
+      rules: {
+        // these are meant to test the typescript typings, unused variables are expected
+        "@typescript-eslint/no-unused-vars": "off",
+      },
+    },
+    {
+      files: [
+        ".eslintrc.js",
+        "packages/*/bench.js",
+        "packages/*/test.js",
+        "packages/turf/rollup.config.js",
+      ],
+      env: {
+        node: true,
+      },
+    },
+    {
+      files: [
+        // a few files use browser global variables
+        "packages/turf-isobands/lib/marchingsquares-isobands.js",
+        "packages/turf-isolines/lib/marchingsquares-isocontours.js",
+      ],
+      env: {
+        browser: true,
+      },
+    },
+  ],
 };

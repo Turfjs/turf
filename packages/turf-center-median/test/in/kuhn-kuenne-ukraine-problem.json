@@ -8,10 +8,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          28,
-          54
-        ]
+        "coordinates": [28, 54]
       },
       "properties": {
         "name": "Minsk",
@@ -22,10 +19,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          24,
-          50
-        ]
+        "coordinates": [24, 50]
       },
       "properties": {
         "name": "Lvov",
@@ -36,10 +30,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          28,
-          47
-        ]
+        "coordinates": [28, 47]
       },
       "properties": {
         "name": "Kishinev",
@@ -50,10 +41,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          31,
-          46
-        ]
+        "coordinates": [31, 46]
       },
       "properties": {
         "name": "Odessa",
@@ -64,10 +52,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          32,
-          47
-        ]
+        "coordinates": [32, 47]
       },
       "properties": {
         "name": "Nikolaev",
@@ -78,10 +63,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          33,
-          47
-        ]
+        "coordinates": [33, 47]
       },
       "properties": {
         "name": "Kherson",
@@ -92,10 +74,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          34,
-          45
-        ]
+        "coordinates": [34, 45]
       },
       "properties": {
         "name": "Sevastopol",
@@ -106,10 +85,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          34,
-          45
-        ]
+        "coordinates": [34, 45]
       },
       "properties": {
         "name": "Simferopol",
@@ -120,10 +96,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          34,
-          46
-        ]
+        "coordinates": [34, 46]
       },
       "properties": {
         "name": "Krivoi Rog",
@@ -134,10 +107,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          35,
-          48
-        ]
+        "coordinates": [35, 48]
       },
       "properties": {
         "name": "Dneprodzerhinsk",
@@ -148,10 +118,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          35,
-          48
-        ]
+        "coordinates": [35, 48]
       },
       "properties": {
         "name": "Dnepropetrovsk",
@@ -162,10 +129,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          36,
-          48
-        ]
+        "coordinates": [36, 48]
       },
       "properties": {
         "name": "Zaporozhe",
@@ -176,10 +140,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          38,
-          47
-        ]
+        "coordinates": [38, 47]
       },
       "properties": {
         "name": "Zhdanov",
@@ -190,10 +151,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          37,
-          48
-        ]
+        "coordinates": [37, 48]
       },
       "properties": {
         "name": "Stalino",
@@ -204,10 +162,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          38,
-          48
-        ]
+        "coordinates": [38, 48]
       },
       "properties": {
         "name": "Makeyevka",
@@ -218,10 +173,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          38,
-          48
-        ]
+        "coordinates": [38, 48]
       },
       "properties": {
         "name": "Gorlovka",
@@ -232,10 +184,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          39,
-          47
-        ]
+        "coordinates": [39, 47]
       },
       "properties": {
         "name": "Taganrog",
@@ -246,10 +195,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          29,
-          45
-        ]
+        "coordinates": [29, 45]
       },
       "properties": {
         "name": "Krasnodar",
@@ -260,10 +206,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          40,
-          47
-        ]
+        "coordinates": [40, 47]
       },
       "properties": {
         "name": "Rostov",
@@ -274,10 +217,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          40,
-          48
-        ]
+        "coordinates": [40, 48]
       },
       "properties": {
         "name": "Shakhty",
@@ -288,10 +228,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          39,
-          49
-        ]
+        "coordinates": [39, 49]
       },
       "properties": {
         "name": "Kadiyevka",
@@ -302,10 +239,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          37,
-          51
-        ]
+        "coordinates": [37, 51]
       },
       "properties": {
         "name": "Kharkhov",
@@ -316,10 +250,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          31,
-          50
-        ]
+        "coordinates": [31, 50]
       },
       "properties": {
         "name": "Kiev",
@@ -330,10 +261,7 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          31,
-          52
-        ]
+        "coordinates": [31, 52]
       },
       "properties": {
         "name": "Gomel",

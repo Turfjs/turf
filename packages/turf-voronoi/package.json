@@ -1,6 +1,6 @@
 {
   "name": "@turf/voronoi",
-  "version": "6.2.0-alpha.1",
+  "version": "6.5.0",
   "description": "turf voronoi module",
   "author": "Turf Authors",
   "contributors": [
@@ -18,6 +18,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -30,6 +31,13 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
+  },
   "types": "index.d.ts",
   "sideEffects": false,
   "files": [
@@ -37,12 +45,10 @@
     "index.d.ts"
   ],
   "scripts": {
-    "bench": "npm-run-all prepare bench:run",
-    "bench:run": "node bench.js",
+    "bench": "node -r esm bench.js",
+    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "docs": "node ../../scripts/generate-readmes",
-    "posttest": "node -r esm ../../scripts/validate-es5-dependencies.js",
-    "prepare": "rollup -c ../../rollup.config.js",
-    "test": "npm-run-all prepare test:*",
+    "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js"
   },
   "devDependencies": {
@@ -55,8 +61,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.2.0-alpha.1",
-    "@turf/invariant": "^6.2.0-alpha.1",
+    "@turf/helpers": "^6.5.0",
+    "@turf/invariant": "^6.5.0",
     "d3-voronoi": "1.1.2"
   }
 }

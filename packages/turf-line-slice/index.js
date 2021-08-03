@@ -1,6 +1,6 @@
-import { getCoords, getType } from '@turf/invariant';
-import { lineString as linestring } from '@turf/helpers';
-import nearestPointOnLine from '@turf/nearest-point-on-line';
+import { getCoords, getType } from "@turf/invariant";
+import { lineString as linestring } from "@turf/helpers";
+import nearestPointOnLine from "@turf/nearest-point-on-line";
 
 /**
  * Takes a {@link LineString|line}, a start {@link Point}, and a stop point
@@ -32,24 +32,29 @@ import nearestPointOnLine from '@turf/nearest-point-on-line';
  * var addToMap = [start, stop, line]
  */
 function lineSlice(startPt, stopPt, line) {
-    // Validation
-    var coords = getCoords(line);
-    if (getType(line) !== 'LineString') throw new Error('line must be a LineString');
+  // Validation
+  var coords = getCoords(line);
+  if (getType(line) !== "LineString")
+    throw new Error("line must be a LineString");
 
-    var startVertex = nearestPointOnLine(line, startPt);
-    var stopVertex = nearestPointOnLine(line, stopPt);
-    var ends;
-    if (startVertex.properties.index <= stopVertex.properties.index) {
-        ends = [startVertex, stopVertex];
-    } else {
-        ends = [stopVertex, startVertex];
-    }
-    var clipCoords = [ends[0].geometry.coordinates];
-    for (var i = ends[0].properties.index + 1; i < ends[1].properties.index + 1; i++) {
-        clipCoords.push(coords[i]);
-    }
-    clipCoords.push(ends[1].geometry.coordinates);
-    return linestring(clipCoords, line.properties);
+  var startVertex = nearestPointOnLine(line, startPt);
+  var stopVertex = nearestPointOnLine(line, stopPt);
+  var ends;
+  if (startVertex.properties.index <= stopVertex.properties.index) {
+    ends = [startVertex, stopVertex];
+  } else {
+    ends = [stopVertex, startVertex];
+  }
+  var clipCoords = [ends[0].geometry.coordinates];
+  for (
+    var i = ends[0].properties.index + 1;
+    i < ends[1].properties.index + 1;
+    i++
+  ) {
+    clipCoords.push(coords[i]);
+  }
+  clipCoords.push(ends[1].geometry.coordinates);
+  return linestring(clipCoords, line.properties);
 }
 
 export default lineSlice;

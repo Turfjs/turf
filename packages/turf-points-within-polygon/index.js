@@ -1,14 +1,14 @@
-import pointInPolygon from '@turf/boolean-point-in-polygon';
-import { featureCollection } from '@turf/helpers';
-import { geomEach, featureEach } from '@turf/meta';
+import pointInPolygon from "@turf/boolean-point-in-polygon";
+import { featureCollection, multiPoint } from "@turf/helpers";
+import { geomEach, featureEach, coordEach } from "@turf/meta";
 
 /**
- * Finds {@link Points} that fall within {@link (Multi)Polygon(s)}.
+ * Finds {@link Points} or {@link MultiPoint} coordinate positions that fall within {@link (Multi)Polygon(s)}.
  *
  * @name pointsWithinPolygon
- * @param {Feature|FeatureCollection<Point>} points Points as input search
- * @param {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon>} polygons Points must be within these (Multi)Polygon(s)
- * @returns {FeatureCollection<Point>} points that land within at least one polygon
+ * @param {Feature|FeatureCollection<Point|MultiPoint>} points Point(s) or MultiPoint(s) as input search
+ * @param {FeatureCollection|Geometry|Feature<Polygon|MultiPolygon>} polygons (Multi)Polygon(s) to check if points are within
+ * @returns {FeatureCollection<Point|MultiPoint>} Point(s) or MultiPoint(s) with positions that land within at least one polygon.  The geometry type will match what was passsed in
  * @example
  * var points = turf.points([
  *     [-46.6318, -23.5523],
@@ -38,17 +38,34 @@ import { geomEach, featureEach } from '@turf/meta';
  * });
  */
 function pointsWithinPolygon(points, polygons) {
-    var results = [];
-    featureEach(points, function (point) {
-        var contained = false;
-        geomEach(polygons, function (polygon) {
-            if (pointInPolygon(point, polygon)) contained = true;
+  var results = [];
+  featureEach(points, function (point) {
+    var contained = false;
+    if (point.geometry.type === "Point") {
+      geomEach(polygons, function (polygon) {
+        if (pointInPolygon(point, polygon)) contained = true;
+      });
+      if (contained) {
+        results.push(point);
+      }
+    } else if (point.geometry.type === "MultiPoint") {
+      var pointsWithin = [];
+      geomEach(polygons, function (polygon) {
+        coordEach(point, function (pointCoord) {
+          if (pointInPolygon(pointCoord, polygon)) {
+            contained = true;
+            pointsWithin.push(pointCoord);
+          }
         });
-        if (contained) {
-            results.push(point);
-        }
-    });
-    return featureCollection(results);
+      });
+      if (contained) {
+        results.push(multiPoint(pointsWithin));
+      }
+    } else {
+      throw new Error("Input geometry must be a Point or MultiPoint");
+    }
+  });
+  return featureCollection(results);
 }
 
 export default pointsWithinPolygon;

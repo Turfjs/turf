@@ -1,50 +1,38 @@
 {
-	"type": "FeatureCollection",
-	"features": [
-		{
-			"type": "Feature",
-			"properties": {
-				"stroke": "#F00",
-				"stroke-width": 4
-			},
-			"geometry": {
-				"type": "LineString",
-				"coordinates": [
-					[
-						-75,
-						38.100961
-					],
-					[
-						-75,
-						39.000281
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
-				"bearing": 0,
-				"marker-color": "#F00"
-			},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-75,
-					38.10096062273525
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {},
-			"geometry": {
-				"type": "Point",
-				"coordinates": [
-					-75,
-					39.00028098645979
-				]
-			}
-		}
-	]
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#F00",
+        "stroke-width": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-75, 38.100961],
+          [-75, 39.000281]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bearing": 0,
+        "marker-color": "#F00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75, 38.10096062273525]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75, 39.00028098645979]
+      }
+    }
+  ]
 }

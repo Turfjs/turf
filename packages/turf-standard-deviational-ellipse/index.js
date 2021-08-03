@@ -1,9 +1,9 @@
-import { coordAll, featureEach } from '@turf/meta';
-import { getCoords } from '@turf/invariant';
-import { featureCollection, isObject, isNumber } from '@turf/helpers';
-import centerMean from '@turf/center-mean';
-import pointsWithinPolygon from '@turf/points-within-polygon';
-import ellipse from '@turf/ellipse';
+import { coordAll, featureEach } from "@turf/meta";
+import { getCoords } from "@turf/invariant";
+import { featureCollection, isObject, isNumber } from "@turf/helpers";
+import centerMean from "@turf/center-mean";
+import pointsWithinPolygon from "@turf/points-within-polygon";
+import ellipse from "@turf/ellipse";
 
 /**
  * Takes a {@link FeatureCollection} and returns a standard deviational ellipse,
@@ -44,76 +44,93 @@ import ellipse from '@turf/ellipse';
  *
  */
 function standardDeviationalEllipse(points, options) {
-    // Optional params
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var steps = options.steps || 64;
-    var weightTerm = options.weight;
-    var properties = options.properties || {};
+  // Optional params
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var steps = options.steps || 64;
+  var weightTerm = options.weight;
+  var properties = options.properties || {};
 
-    // Validation:
-    if (!isNumber(steps)) throw new Error('steps must be a number');
-    if (!isObject(properties)) throw new Error('properties must be a number');
+  // Validation:
+  if (!isNumber(steps)) throw new Error("steps must be a number");
+  if (!isObject(properties)) throw new Error("properties must be a number");
 
-    // Calculate mean center & number of features:
-    var numberOfFeatures = coordAll(points).length;
-    var meanCenter = centerMean(points, {weight: weightTerm});
+  // Calculate mean center & number of features:
+  var numberOfFeatures = coordAll(points).length;
+  var meanCenter = centerMean(points, { weight: weightTerm });
 
-    // Calculate angle of rotation:
-    // [X, Y] = mean center of all [x, y].
-    // theta = arctan( (A + B) / C )
-    // A = sum((x - X)^2) - sum((y - Y)^2)
-    // B = sqrt(A^2 + 4(sum((x - X)(y - Y))^2))
-    // C = 2(sum((x - X)(y - Y)))
+  // Calculate angle of rotation:
+  // [X, Y] = mean center of all [x, y].
+  // theta = arctan( (A + B) / C )
+  // A = sum((x - X)^2) - sum((y - Y)^2)
+  // B = sqrt(A^2 + 4(sum((x - X)(y - Y))^2))
+  // C = 2(sum((x - X)(y - Y)))
 
-    var xDeviationSquaredSum = 0;
-    var yDeviationSquaredSum = 0;
-    var xyDeviationSum = 0;
+  var xDeviationSquaredSum = 0;
+  var yDeviationSquaredSum = 0;
+  var xyDeviationSum = 0;
 
-    featureEach(points, function (point) {
-        var weight = point.properties[weightTerm] || 1;
-        var deviation = getDeviations(getCoords(point), getCoords(meanCenter));
-        xDeviationSquaredSum += Math.pow(deviation.x, 2) * weight;
-        yDeviationSquaredSum += Math.pow(deviation.y, 2) * weight;
-        xyDeviationSum += deviation.x * deviation.y * weight;
-    });
+  featureEach(points, function (point) {
+    var weight = point.properties[weightTerm] || 1;
+    var deviation = getDeviations(getCoords(point), getCoords(meanCenter));
+    xDeviationSquaredSum += Math.pow(deviation.x, 2) * weight;
+    yDeviationSquaredSum += Math.pow(deviation.y, 2) * weight;
+    xyDeviationSum += deviation.x * deviation.y * weight;
+  });
 
-    var bigA = xDeviationSquaredSum - yDeviationSquaredSum;
-    var bigB = Math.sqrt(Math.pow(bigA, 2) + 4 * Math.pow(xyDeviationSum, 2));
-    var bigC = 2 * xyDeviationSum;
-    var theta = Math.atan((bigA + bigB) / bigC);
-    var thetaDeg = theta * 180 / Math.PI;
+  var bigA = xDeviationSquaredSum - yDeviationSquaredSum;
+  var bigB = Math.sqrt(Math.pow(bigA, 2) + 4 * Math.pow(xyDeviationSum, 2));
+  var bigC = 2 * xyDeviationSum;
+  var theta = Math.atan((bigA + bigB) / bigC);
+  var thetaDeg = (theta * 180) / Math.PI;
 
-    // Calculate axes:
-    // sigmaX = sqrt((1 / n - 2) * sum((((x - X) * cos(theta)) - ((y - Y) * sin(theta)))^2))
-    // sigmaY = sqrt((1 / n - 2) * sum((((x - X) * sin(theta)) - ((y - Y) * cos(theta)))^2))
-    var sigmaXsum = 0;
-    var sigmaYsum = 0;
-    var weightsum = 0;
-    featureEach(points, function (point) {
-        var weight = point.properties[weightTerm] || 1;
-        var deviation = getDeviations(getCoords(point), getCoords(meanCenter));
-        sigmaXsum += Math.pow((deviation.x * Math.cos(theta)) - (deviation.y * Math.sin(theta)), 2) * weight;
-        sigmaYsum += Math.pow((deviation.x * Math.sin(theta)) + (deviation.y * Math.cos(theta)), 2) * weight;
-        weightsum += weight;
-    });
+  // Calculate axes:
+  // sigmaX = sqrt((1 / n - 2) * sum((((x - X) * cos(theta)) - ((y - Y) * sin(theta)))^2))
+  // sigmaY = sqrt((1 / n - 2) * sum((((x - X) * sin(theta)) - ((y - Y) * cos(theta)))^2))
+  var sigmaXsum = 0;
+  var sigmaYsum = 0;
+  var weightsum = 0;
+  featureEach(points, function (point) {
+    var weight = point.properties[weightTerm] || 1;
+    var deviation = getDeviations(getCoords(point), getCoords(meanCenter));
+    sigmaXsum +=
+      Math.pow(
+        deviation.x * Math.cos(theta) - deviation.y * Math.sin(theta),
+        2
+      ) * weight;
+    sigmaYsum +=
+      Math.pow(
+        deviation.x * Math.sin(theta) + deviation.y * Math.cos(theta),
+        2
+      ) * weight;
+    weightsum += weight;
+  });
 
-    var sigmaX = Math.sqrt(2 * sigmaXsum / weightsum);
-    var sigmaY = Math.sqrt(2 * sigmaYsum / weightsum);
+  var sigmaX = Math.sqrt((2 * sigmaXsum) / weightsum);
+  var sigmaY = Math.sqrt((2 * sigmaYsum) / weightsum);
 
-    var theEllipse = ellipse(meanCenter, sigmaX, sigmaY, {units: 'degrees', angle: thetaDeg, steps: steps, properties: properties});
-    var pointsWithinEllipse = pointsWithinPolygon(points, featureCollection([theEllipse]));
-    var standardDeviationalEllipseProperties = {
-        meanCenterCoordinates: getCoords(meanCenter),
-        semiMajorAxis: sigmaX,
-        semiMinorAxis: sigmaY,
-        numberOfFeatures: numberOfFeatures,
-        angle: thetaDeg,
-        percentageWithinEllipse: 100 * coordAll(pointsWithinEllipse).length / numberOfFeatures
-    };
-    theEllipse.properties.standardDeviationalEllipse = standardDeviationalEllipseProperties;
+  var theEllipse = ellipse(meanCenter, sigmaX, sigmaY, {
+    units: "degrees",
+    angle: thetaDeg,
+    steps: steps,
+    properties: properties,
+  });
+  var pointsWithinEllipse = pointsWithinPolygon(
+    points,
+    featureCollection([theEllipse])
+  );
+  var standardDeviationalEllipseProperties = {
+    meanCenterCoordinates: getCoords(meanCenter),
+    semiMajorAxis: sigmaX,
+    semiMinorAxis: sigmaY,
+    numberOfFeatures: numberOfFeatures,
+    angle: thetaDeg,
+    percentageWithinEllipse:
+      (100 * coordAll(pointsWithinEllipse).length) / numberOfFeatures,
+  };
+  theEllipse.properties.standardDeviationalEllipse = standardDeviationalEllipseProperties;
 
-    return theEllipse;
+  return theEllipse;
 }
 
 /**
@@ -125,11 +142,10 @@ function standardDeviationalEllipse(points, options) {
  * @returns {Object} { x: n, y: m }
  */
 function getDeviations(coordinates, center) {
-    return {
-        x: coordinates[0] - center[0],
-        y: coordinates[1] - center[1]
-    };
+  return {
+    x: coordinates[0] - center[0],
+    y: coordinates[1] - center[1],
+  };
 }
-
 
 export default standardDeviationalEllipse;

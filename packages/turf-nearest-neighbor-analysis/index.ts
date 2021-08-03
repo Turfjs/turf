@@ -1,27 +1,34 @@
-import area from '@turf/area';
-import bbox from '@turf/bbox';
-import bboxPolygon from '@turf/bbox-polygon';
-import centroid from '@turf/centroid';
-import distance from '@turf/distance';
-import nearestPoint from '@turf/nearest-point';
-import { featureEach } from '@turf/meta';
-import { convertArea, featureCollection } from '@turf/helpers';
-import { FeatureCollection, Feature, Point, Polygon, Units, Properties } from '@turf/helpers';
+import area from "@turf/area";
+import bbox from "@turf/bbox";
+import bboxPolygon from "@turf/bbox-polygon";
+import centroid from "@turf/centroid";
+import distance from "@turf/distance";
+import nearestPoint from "@turf/nearest-point";
+import { featureEach } from "@turf/meta";
+import { convertArea, featureCollection } from "@turf/helpers";
+import {
+  FeatureCollection,
+  Feature,
+  Point,
+  Polygon,
+  Units,
+  Properties,
+} from "@turf/helpers";
 
 export interface NearestNeighborStatistics {
-    units: Units;
-    arealUnits: string;
-    observedMeanDistance: number;
-    expectedMeanDistance: number;
-    numberOfPoints: number;
-    zScore: number;
+  units: Units;
+  arealUnits: string;
+  observedMeanDistance: number;
+  expectedMeanDistance: number;
+  numberOfPoints: number;
+  zScore: number;
 }
 
 export interface NearestNeighborStudyArea extends Feature<Polygon> {
-    properties: {
-        nearestNeighborAnalysis: NearestNeighborStatistics;
-        [key: string]: any;
-    };
+  properties: {
+    nearestNeighborAnalysis: NearestNeighborStatistics;
+    [key: string]: any;
+  };
 }
 
 /**
@@ -75,46 +82,60 @@ export interface NearestNeighborStudyArea extends Feature<Polygon> {
  * //addToMap
  * var addToMap = [dataset, nearestNeighborStudyArea];
  */
-function nearestNeighborAnalysis(dataset: FeatureCollection<any>, options?: {
+function nearestNeighborAnalysis(
+  dataset: FeatureCollection<any>,
+  options?: {
     studyArea?: Feature<Polygon>;
     units?: Units;
     properties?: Properties;
-}): NearestNeighborStudyArea {
-    // Optional params
-    options = options || {};
-    const studyArea = options.studyArea || bboxPolygon(bbox(dataset));
-    const properties = options.properties || {};
-    const units = options.units || 'kilometers';
+  }
+): NearestNeighborStudyArea {
+  // Optional params
+  options = options || {};
+  const studyArea = options.studyArea || bboxPolygon(bbox(dataset));
+  const properties = options.properties || {};
+  const units = options.units || "kilometers";
 
-    const features: Array<Feature<Point>> = [];
-    featureEach(dataset, (feature) => {
-        features.push(centroid(feature));
-    });
-    const n = features.length;
-    const observedMeanDistance = features.map((feature, index) => {
-        const otherFeatures = featureCollection<Point>(features.filter((f, i) => {
+  const features: Array<Feature<Point>> = [];
+  featureEach(dataset, (feature) => {
+    features.push(centroid(feature));
+  });
+  const n = features.length;
+  const observedMeanDistance =
+    features
+      .map((feature, index) => {
+        const otherFeatures = featureCollection<Point>(
+          features.filter((f, i) => {
             return i !== index;
-        }));
+          })
+        );
         // Have to add the ! to make typescript validation pass
         // see https://stackoverflow.com/a/40350534/1979085
-        return distance(feature, nearestPoint(feature, otherFeatures).geometry!.coordinates, {units});
-    }).reduce((sum, value) => { return sum + value; }, 0) / n;
+        return distance(
+          feature,
+          nearestPoint(feature, otherFeatures).geometry!.coordinates,
+          { units }
+        );
+      })
+      .reduce((sum, value) => {
+        return sum + value;
+      }, 0) / n;
 
-    const populationDensity = n / convertArea(area(studyArea), 'meters', units);
-    const expectedMeanDistance = 1 / (2 * Math.sqrt(populationDensity));
-    const variance = 0.26136 / (Math.sqrt(n * populationDensity));
-    properties.nearestNeighborAnalysis = {
-        units: units,
-        arealUnits: units + '²',
-        observedMeanDistance: observedMeanDistance,
-        expectedMeanDistance: expectedMeanDistance,
-        nearestNeighborIndex: observedMeanDistance / expectedMeanDistance,
-        numberOfPoints: n,
-        zScore: (observedMeanDistance - expectedMeanDistance) / variance,
-    };
-    studyArea.properties = properties;
+  const populationDensity = n / convertArea(area(studyArea), "meters", units);
+  const expectedMeanDistance = 1 / (2 * Math.sqrt(populationDensity));
+  const variance = 0.26136 / Math.sqrt(n * populationDensity);
+  properties.nearestNeighborAnalysis = {
+    units: units,
+    arealUnits: units + "²",
+    observedMeanDistance: observedMeanDistance,
+    expectedMeanDistance: expectedMeanDistance,
+    nearestNeighborIndex: observedMeanDistance / expectedMeanDistance,
+    numberOfPoints: n,
+    zScore: (observedMeanDistance - expectedMeanDistance) / variance,
+  };
+  studyArea.properties = properties;
 
-    return studyArea as NearestNeighborStudyArea;
+  return studyArea as NearestNeighborStudyArea;
 }
 
 export default nearestNeighborAnalysis;

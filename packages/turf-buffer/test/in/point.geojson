@@ -3,9 +3,6 @@
   "properties": {},
   "geometry": {
     "type": "Point",
-    "coordinates": [
-      135,
-      -25
-    ]
+    "coordinates": [135, -25]
   }
 }

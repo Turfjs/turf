@@ -1,11 +1,17 @@
-import centerMean from '@turf/center-mean';
-import distance from '@turf/distance';
-import centroid from '@turf/centroid';
+import centerMean from "@turf/center-mean";
+import distance from "@turf/distance";
+import centroid from "@turf/centroid";
 import {
-    isNumber, point, isObject, featureCollection,
-    FeatureCollection, Feature, Point
-} from '@turf/helpers';
-import { featureEach } from '@turf/meta';
+  isNumber,
+  point,
+  isObject,
+  featureCollection,
+  FeatureCollection,
+  Feature,
+  Point,
+  Position,
+} from "@turf/helpers";
+import { featureEach } from "@turf/meta";
 
 /**
  * Takes a {@link FeatureCollection} of points and calculates the median center,
@@ -60,33 +66,58 @@ import { featureEach } from '@turf/meta';
  * var addToMap = [points, medianCenter]
  */
 function centerMedian(
-    features: FeatureCollection<any>,
-    options: { weight?: string, tolerance?: number, counter?: number} = {}
-): Feature<Point, {
-    medianCandidates: Array<Position>,
-    [key: string]: any
-}> {
-    // Optional params
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var counter = options.counter || 10;
-    if (!isNumber(counter)) throw new Error('counter must be a number');
-    var weightTerm = options.weight;
+  features: FeatureCollection<any>,
+  options: { weight?: string; tolerance?: number; counter?: number } = {}
+): Feature<
+  Point,
+  {
+    medianCandidates: Array<Position>;
+    [key: string]: any;
+  }
+> {
+  // Optional params
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var counter = options.counter || 10;
+  if (!isNumber(counter)) throw new Error("counter must be a number");
+  var weightTerm = options.weight;
 
-    // Calculate mean center:
-    var meanCenter = centerMean(features, {weight: options.weight});
+  // Calculate mean center:
+  var meanCenter = centerMean(features, { weight: options.weight });
 
-    // Calculate center of every feature:
-    var centroids: any = featureCollection([]);
-    featureEach(features, function (feature) {
-        centroids.features.push(centroid(feature, {properties: {weight: feature.properties[weightTerm]}}));
-    });
+  // Calculate center of every feature:
+  var centroids = featureCollection<Point>([]);
+  featureEach(features, function (feature) {
+    centroids.features.push(
+      centroid(feature, {
+        properties: { weight: feature.properties?.[weightTerm!] },
+      })
+    );
+  });
 
-    centroids.properties = {
-        tolerance: options.tolerance,
-        medianCandidates: []
-    };
-    return findMedian(meanCenter.geometry.coordinates, [0, 0], centroids, counter);
+  const properties: MedianProperties = {
+    tolerance: options.tolerance,
+    medianCandidates: [],
+  };
+
+  return findMedian(
+    meanCenter.geometry.coordinates,
+    [0, 0],
+    centroids,
+    properties,
+    counter
+  ) as Feature<
+    Point,
+    {
+      medianCandidates: Array<Position>;
+      [key: string]: any;
+    }
+  >;
+}
+
+interface MedianProperties {
+  tolerance?: number;
+  medianCandidates: Position[];
 }
 
 /**
@@ -99,37 +130,57 @@ function centerMedian(
  * @param {number} counter how many attempts to try before quitting.
  * @returns {Feature<Point>} the median center of the dataset.
  */
-function findMedian(candidateMedian, previousCandidate, centroids, counter) {
-    var tolerance = centroids.properties.tolerance || 0.001;
-    var candidateXsum = 0;
-    var candidateYsum = 0;
-    var kSum = 0;
-    var centroidCount = 0;
-    featureEach(centroids, function (theCentroid: any) {
-        var weightValue = theCentroid.properties.weight;
-        var weight = (weightValue === undefined || weightValue === null) ? 1 : weightValue;
-        weight = Number(weight);
-        if (!isNumber(weight)) throw new Error('weight value must be a number');
-        if (weight > 0) {
-            centroidCount += 1;
-            var distanceFromCandidate = weight * distance(theCentroid, candidateMedian);
-            if (distanceFromCandidate === 0) distanceFromCandidate = 1;
-            var k = weight / distanceFromCandidate;
-            candidateXsum += theCentroid.geometry.coordinates[0] * k;
-            candidateYsum += theCentroid.geometry.coordinates[1] * k;
-            kSum += k;
-        }
-    });
-    if (centroidCount < 1) throw new Error('no features to measure');
-    var candidateX = candidateXsum / kSum;
-    var candidateY = candidateYsum / kSum;
-    if (centroidCount === 1 || counter === 0 || (Math.abs(candidateX - previousCandidate[0]) < tolerance && Math.abs(candidateY - previousCandidate[1]) < tolerance)) {
-        return point([candidateX, candidateY], {medianCandidates: centroids.properties.medianCandidates});
-    } else {
-        centroids.properties.medianCandidates.push([candidateX, candidateY]);
-        return findMedian([candidateX, candidateY], candidateMedian, centroids, counter - 1);
+function findMedian(
+  candidateMedian: Position,
+  previousCandidate: Position,
+  centroids: FeatureCollection<Point>,
+  properties: MedianProperties,
+  counter: number
+): Feature<Point> {
+  var tolerance = properties.tolerance || 0.001;
+  var candidateXsum = 0;
+  var candidateYsum = 0;
+  var kSum = 0;
+  var centroidCount = 0;
+  featureEach(centroids, function (theCentroid) {
+    var weightValue = theCentroid.properties?.weight;
+    var weight =
+      weightValue === undefined || weightValue === null ? 1 : weightValue;
+    weight = Number(weight);
+    if (!isNumber(weight)) throw new Error("weight value must be a number");
+    if (weight > 0) {
+      centroidCount += 1;
+      var distanceFromCandidate =
+        weight * distance(theCentroid, candidateMedian);
+      if (distanceFromCandidate === 0) distanceFromCandidate = 1;
+      var k = weight / distanceFromCandidate;
+      candidateXsum += theCentroid.geometry.coordinates[0] * k;
+      candidateYsum += theCentroid.geometry.coordinates[1] * k;
+      kSum += k;
     }
+  });
+  if (centroidCount < 1) throw new Error("no features to measure");
+  var candidateX = candidateXsum / kSum;
+  var candidateY = candidateYsum / kSum;
+  if (
+    centroidCount === 1 ||
+    counter === 0 ||
+    (Math.abs(candidateX - previousCandidate[0]) < tolerance &&
+      Math.abs(candidateY - previousCandidate[1]) < tolerance)
+  ) {
+    return point([candidateX, candidateY], {
+      medianCandidates: properties.medianCandidates,
+    });
+  } else {
+    properties.medianCandidates.push([candidateX, candidateY]);
+    return findMedian(
+      [candidateX, candidateY],
+      candidateMedian,
+      centroids,
+      properties,
+      counter - 1
+    );
+  }
 }
 
 export default centerMedian;
-

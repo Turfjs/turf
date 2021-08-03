@@ -3,14 +3,20 @@
   "workspaces": [
     "packages/*"
   ],
+  "funding": "https://opencollective.com/turf",
   "scripts": {
-    "lint": "echo 'eslint will be moved to TSLint'",
+    "lint": "npm-run-all lint:*",
+    "lint:eslint": "eslint packages",
+    "lint:prettier": "prettier --check .",
+    "lint:mrl": "mrl check",
+    "lint:escheck-js": "es-check es5 packages/*/dist/js/index.js packages/turf/turf.min.js",
+    "lint:escheck-es": "es-check --module es5 packages/*/dist/es/index.js",
     "postlint": "documentation lint packages/turf-*/index.js",
-    "pretest": "lerna bootstrap --use-workspaces && npm run lint",
+    "prepare": "lerna bootstrap && lerna run build && node ./scripts/add-import-extensions.js",
+    "pretest": "npm run lint",
     "test": "lerna run test",
     "posttest": "lerna run --scope @turf/turf last-checks",
-    "docs": "node ./scripts/generate-readmes",
-    "postinstall": "opencollective postinstall"
+    "docs": "node ./scripts/generate-readmes"
   },
   "husky": {
     "hooks": {
@@ -18,41 +24,42 @@
     }
   },
   "lint-staged": {
-    "**/package.json": [
+    "package.json": [
       "mrl check --paths"
-    ]
+    ],
+    "**/*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
     "@types/geojson": "*",
     "@types/node": "*",
+    "@typescript-eslint/eslint-plugin": "^4.8.0",
+    "@typescript-eslint/parser": "^4.8.0",
     "camelcase": "*",
     "d3-queue": "*",
     "decamelize": "*",
-    "documentation": "*",
-    "eslint": "*",
-    "eslint-config-mourner": "*",
+    "documentation": "^13.2.5",
+    "es-check": "^5.1.4",
+    "eslint": "~7.13.0",
+    "eslint-config-prettier": "^6.15.0",
     "esm": "^3.2.25",
     "fs-extra": "*",
     "husky": "^4.2.3",
-    "lerna": "^3.20.2",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.0.8",
     "load-json-file": "*",
     "meow": "*",
     "monorepolint": "^0.5.0-alpha.20",
     "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
     "progress": "*",
-    "rollup": "*",
-    "rollup-plugin-typescript": "*",
+    "rollup": "^2.34.2",
     "tape": "*",
+    "ts-node": "^9.0.0",
     "typescript": "^3.8.3",
     "yamljs": "*"
-  },
-  "dependencies": {
-    "opencollective": "^1.0.3"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/turf",
-    "logo": "https://opencollective.com/turf/logo.txt"
   }
 }

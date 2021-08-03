@@ -1,37 +1,17 @@
 {
-	"type": "Feature",
-	"bbox": [
-		-1,
-		-1,
-		1,
-		1
-	],
-	"properties": {},
-	"geometry": {
-		"type": "Polygon",
-		"coordinates": [
-			[
-				[
-					-1,
-					-1
-				],
-				[
-					1,
-					-1
-				],
-				[
-					1,
-					1
-				],
-				[
-					-1,
-					1
-				],
-				[
-					-1,
-					-1
-				]
-			]
-		]
-	}
+  "type": "Feature",
+  "bbox": [-1, -1, 1, 1],
+  "properties": {},
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-1, -1],
+        [1, -1],
+        [1, 1],
+        [-1, 1],
+        [-1, -1]
+      ]
+    ]
+  }
 }

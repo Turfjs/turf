@@ -1,8 +1,8 @@
-const path = require('path');
-const glob = require('glob');
-const Benchmark = require('benchmark');
-const load = require('load-json-file');
-const concave = require('./dist/js/index.js').default;
+const path = require("path");
+const glob = require("glob");
+const Benchmark = require("benchmark");
+const load = require("load-json-file");
+const concave = require("./index").default;
 
 /**
  * Benchmark Results
@@ -12,15 +12,14 @@ const concave = require('./dist/js/index.js').default;
  * polygon x 3,422,036 ops/sec ±0.42% (91 runs sampled)
  * polygon2 x 2,412,660 ops/sec ±1.66% (85 runs sampled)
  */
-const suite = new Benchmark.Suite('turf-boolean-is-concave');
-glob.sync(path.join(__dirname, 'test', '**', '*.geojson')).forEach(filepath => {
-    const {name} = path.parse(filepath);
+const suite = new Benchmark.Suite("turf-boolean-is-concave");
+glob
+  .sync(path.join(__dirname, "test", "**", "*.geojson"))
+  .forEach((filepath) => {
+    const { name } = path.parse(filepath);
     const geojson = load.sync(filepath);
     const [feature] = geojson.features;
     suite.add(name, () => concave(feature));
-});
+  });
 
-suite
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+suite.on("cycle", (e) => console.log(String(e.target))).run();

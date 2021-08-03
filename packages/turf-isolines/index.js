@@ -1,10 +1,10 @@
-import bbox from '@turf/bbox';
-import { coordEach } from '@turf/meta';
-import { collectionOf } from '@turf/invariant';
-import { multiLineString, featureCollection, isObject } from '@turf/helpers';
-import objectAssign from 'object-assign';
-import isoContours from './lib/marchingsquares-isocontours';
-import gridToMatrix from './lib/grid-to-matrix';
+import bbox from "@turf/bbox";
+import { coordEach } from "@turf/meta";
+import { collectionOf } from "@turf/invariant";
+import { multiLineString, featureCollection, isObject } from "@turf/helpers";
+import objectAssign from "object-assign";
+import isoContours from "./lib/marchingsquares-isocontours";
+import gridToMatrix from "./lib/grid-to-matrix";
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -36,26 +36,34 @@ import gridToMatrix from './lib/grid-to-matrix';
  * var addToMap = [lines];
  */
 function isolines(pointGrid, breaks, options) {
-    // Optional parameters
-    options = options || {};
-    if (!isObject(options)) throw new Error('options is invalid');
-    var zProperty = options.zProperty || 'elevation';
-    var commonProperties = options.commonProperties || {};
-    var breaksProperties = options.breaksProperties || [];
+  // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  var zProperty = options.zProperty || "elevation";
+  var commonProperties = options.commonProperties || {};
+  var breaksProperties = options.breaksProperties || [];
 
-    // Input validation
-    collectionOf(pointGrid, 'Point', 'Input must contain Points');
-    if (!breaks) throw new Error('breaks is required');
-    if (!Array.isArray(breaks)) throw new Error('breaks must be an Array');
-    if (!isObject(commonProperties)) throw new Error('commonProperties must be an Object');
-    if (!Array.isArray(breaksProperties)) throw new Error('breaksProperties must be an Array');
+  // Input validation
+  collectionOf(pointGrid, "Point", "Input must contain Points");
+  if (!breaks) throw new Error("breaks is required");
+  if (!Array.isArray(breaks)) throw new Error("breaks must be an Array");
+  if (!isObject(commonProperties))
+    throw new Error("commonProperties must be an Object");
+  if (!Array.isArray(breaksProperties))
+    throw new Error("breaksProperties must be an Array");
 
-    // Isoline methods
-    var matrix = gridToMatrix(pointGrid, {zProperty: zProperty, flip: true});
-    var createdIsoLines = createIsoLines(matrix, breaks, zProperty, commonProperties, breaksProperties);
-    var scaledIsolines = rescaleIsolines(createdIsoLines, matrix, pointGrid);
+  // Isoline methods
+  var matrix = gridToMatrix(pointGrid, { zProperty: zProperty, flip: true });
+  var createdIsoLines = createIsoLines(
+    matrix,
+    breaks,
+    zProperty,
+    commonProperties,
+    breaksProperties
+  );
+  var scaledIsolines = rescaleIsolines(createdIsoLines, matrix, pointGrid);
 
-    return featureCollection(scaledIsolines);
+  return featureCollection(scaledIsolines);
 }
 
 /**
@@ -73,22 +81,24 @@ function isolines(pointGrid, breaks, options) {
  * @param {Object} [breaksProperties=[]] GeoJSON properties passed to the correspondent isoline
  * @returns {Array<MultiLineString>} isolines
  */
-function createIsoLines(matrix, breaks, zProperty, commonProperties, breaksProperties) {
-    var results = [];
-    for (var i = 1; i < breaks.length; i++) {
-        var threshold = +breaks[i]; // make sure it's a number
+function createIsoLines(
+  matrix,
+  breaks,
+  zProperty,
+  commonProperties,
+  breaksProperties
+) {
+  var results = [];
+  for (var i = 1; i < breaks.length; i++) {
+    var threshold = +breaks[i]; // make sure it's a number
 
-        var properties = objectAssign(
-            {},
-            commonProperties,
-            breaksProperties[i]
-        );
-        properties[zProperty] = threshold;
-        var isoline = multiLineString(isoContours(matrix, threshold), properties);
+    var properties = objectAssign({}, commonProperties, breaksProperties[i]);
+    properties[zProperty] = threshold;
+    var isoline = multiLineString(isoContours(matrix, threshold), properties);
 
-        results.push(isoline);
-    }
-    return results;
+    results.push(isoline);
+  }
+  return results;
 }
 
 /**
@@ -101,34 +111,33 @@ function createIsoLines(matrix, breaks, zProperty, commonProperties, breaksPrope
  * @returns {Array<MultiLineString>} isolines
  */
 function rescaleIsolines(createdIsoLines, matrix, points) {
+  // get dimensions (on the map) of the original grid
+  var gridBbox = bbox(points); // [ minX, minY, maxX, maxY ]
+  var originalWidth = gridBbox[2] - gridBbox[0];
+  var originalHeigth = gridBbox[3] - gridBbox[1];
 
-    // get dimensions (on the map) of the original grid
-    var gridBbox = bbox(points); // [ minX, minY, maxX, maxY ]
-    var originalWidth = gridBbox[2] - gridBbox[0];
-    var originalHeigth = gridBbox[3] - gridBbox[1];
+  // get origin, which is the first point of the last row on the rectangular data on the map
+  var x0 = gridBbox[0];
+  var y0 = gridBbox[1];
 
-    // get origin, which is the first point of the last row on the rectangular data on the map
-    var x0 = gridBbox[0];
-    var y0 = gridBbox[1];
+  // get number of cells per side
+  var matrixWidth = matrix[0].length - 1;
+  var matrixHeight = matrix.length - 1;
 
-    // get number of cells per side
-    var matrixWidth = matrix[0].length - 1;
-    var matrixHeight = matrix.length - 1;
+  // calculate the scaling factor between matrix and rectangular grid on the map
+  var scaleX = originalWidth / matrixWidth;
+  var scaleY = originalHeigth / matrixHeight;
 
-    // calculate the scaling factor between matrix and rectangular grid on the map
-    var scaleX = originalWidth / matrixWidth;
-    var scaleY = originalHeigth / matrixHeight;
+  var resize = function (point) {
+    point[0] = point[0] * scaleX + x0;
+    point[1] = point[1] * scaleY + y0;
+  };
 
-    var resize = function (point) {
-        point[0] = point[0] * scaleX + x0;
-        point[1] = point[1] * scaleY + y0;
-    };
-
-    // resize and shift each point/line of the createdIsoLines
-    createdIsoLines.forEach(function (isoline) {
-        coordEach(isoline, resize);
-    });
-    return createdIsoLines;
+  // resize and shift each point/line of the createdIsoLines
+  createdIsoLines.forEach(function (isoline) {
+    coordEach(isoline, resize);
+  });
+  return createdIsoLines;
 }
 
 export default isolines;

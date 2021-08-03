@@ -12,9 +12,9 @@
  * @returns {Array<number>} coordinates [x, y]
  */
 function ab(segment) {
-    var start = segment[0];
-    var end = segment[1];
-    return [end[0] - start[0], end[1] - start[1]];
+  var start = segment[0];
+  var end = segment[1];
+  return [end[0] - start[0], end[1] - start[1]];
 }
 
 /**
@@ -26,7 +26,7 @@ function ab(segment) {
  * @returns {Array<number>} Cross Product
  */
 function crossProduct(v1, v2) {
-    return (v1[0] * v2[1]) - (v2[0] * v1[1]);
+  return v1[0] * v2[1] - v2[0] * v1[1];
 }
 
 /**
@@ -38,7 +38,7 @@ function crossProduct(v1, v2) {
  * @returns {Array<number>} Add
  */
 function add(v1, v2) {
-    return [v1[0] + v2[0], v1[1] + v2[1]];
+  return [v1[0] + v2[0], v1[1] + v2[1]];
 }
 
 /**
@@ -50,7 +50,7 @@ function add(v1, v2) {
  * @returns {Array<number>} Sub
  */
 function sub(v1, v2) {
-    return [v1[0] - v2[0], v1[1] - v2[1]];
+  return [v1[0] - v2[0], v1[1] - v2[1]];
 }
 
 /**
@@ -62,7 +62,7 @@ function sub(v1, v2) {
  * @returns {Array<number>} scalarMult
  */
 function scalarMult(s, v) {
-    return [s * v[0], s * v[1]];
+  return [s * v[0], s * v[1]];
 }
 
 /**
@@ -74,17 +74,17 @@ function scalarMult(s, v) {
  * @returns {Array<number>} intersection
  */
 function intersectSegments(a, b) {
-    var p = a[0];
-    var r = ab(a);
-    var q = b[0];
-    var s = ab(b);
+  var p = a[0];
+  var r = ab(a);
+  var q = b[0];
+  var s = ab(b);
 
-    var cross = crossProduct(r, s);
-    var qmp = sub(q, p);
-    var numerator = crossProduct(qmp, s);
-    var t = numerator / cross;
-    var intersection = add(p, scalarMult(t, r));
-    return intersection;
+  var cross = crossProduct(r, s);
+  var qmp = sub(q, p);
+  var numerator = crossProduct(qmp, s);
+  var t = numerator / cross;
+  var intersection = add(p, scalarMult(t, r));
+  return intersection;
 }
 
 /**
@@ -96,9 +96,9 @@ function intersectSegments(a, b) {
  * @returns {boolean} true if a and b are parallel (or co-linear)
  */
 function isParallel(a, b) {
-    var r = ab(a);
-    var s = ab(b);
-    return (crossProduct(r, s) === 0);
+  var r = ab(a);
+  var s = ab(b);
+  return crossProduct(r, s) === 0;
 }
 
 /**
@@ -110,6 +110,6 @@ function isParallel(a, b) {
  * @returns {Array<number>|boolean} true if a and b are parallel (or co-linear)
  */
 export default function intersection(a, b) {
-    if (isParallel(a, b)) return false;
-    return intersectSegments(a, b);
+  if (isParallel(a, b)) return false;
+  return intersectSegments(a, b);
 }
