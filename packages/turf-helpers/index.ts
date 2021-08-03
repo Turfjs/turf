@@ -86,13 +86,15 @@ export let earthRadius = 6371008.8;
 /**
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
  *
+ * Keys are the name of the unit, values are the number of that unit in a single radian
+ *
  * @memberof helpers
  * @type {Object}
  */
 export let factors: { [key: string]: number } = {
   centimeters: earthRadius * 100,
   centimetres: earthRadius * 100,
-  degrees: earthRadius / 111325,
+  degrees: 360 / (2 * Math.PI),
   feet: earthRadius * 3.28084,
   inches: earthRadius * 39.37,
   kilometers: earthRadius / 1000,
@@ -105,30 +107,6 @@ export let factors: { [key: string]: number } = {
   nauticalmiles: earthRadius / 1852,
   radians: 1,
   yards: earthRadius * 1.0936,
-};
-
-/**
- * Units of measurement factors based on 1 meter.
- *
- * @memberof helpers
- * @type {Object}
- */
-export let unitsFactors: { [key: string]: number } = {
-  centimeters: 100,
-  centimetres: 100,
-  degrees: 1 / 111325,
-  feet: 3.28084,
-  inches: 39.37,
-  kilometers: 1 / 1000,
-  kilometres: 1 / 1000,
-  meters: 1,
-  metres: 1,
-  miles: 1 / 1609.344,
-  millimeters: 1000,
-  millimetres: 1000,
-  nauticalmiles: 1 / 1852,
-  radians: 1 / earthRadius,
-  yards: 1.0936133,
 };
 
 /**

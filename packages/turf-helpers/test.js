@@ -527,6 +527,17 @@ test("convertLength", (t) => {
   t.equal(convertLength(1, "meters", "yards"), 1.0936);
   t.equal(convertLength(1, "yards", "meters"), 0.91441111923921);
   // t.throws(() => convertLength(1, 'foo'), 'invalid units');
+
+  t.equal(
+    convertLength(Math.PI, "radians", "degrees"),
+    180,
+    "PI Radians is 180 degrees"
+  );
+  t.equal(
+    convertLength(180, "degrees", "radians"),
+    Math.PI,
+    "180 Degrees is PI Radians"
+  );
   t.end();
 });
 
