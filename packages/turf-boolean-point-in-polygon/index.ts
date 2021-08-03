@@ -1,6 +1,13 @@
-import pip from 'point-in-polygon-hao'
-import { BBox, Coord, Feature, MultiPolygon, Polygon, Properties } from "@turf/helpers";
-import { getCoord, getCoords, getGeom } from "@turf/invariant";
+import pip from "point-in-polygon-hao";
+import {
+  BBox,
+  Coord,
+  Feature,
+  MultiPolygon,
+  Polygon,
+  Properties,
+} from "@turf/helpers";
+import { getCoord, getGeom } from "@turf/invariant";
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -55,20 +62,20 @@ export default function booleanPointInPolygon<
 
   // Quick elimination if point is not inside bbox
   if (bbox && inBBox(pt, bbox) === false) {
-      return false;
+    return false;
   }
 
-  if (type === 'Polygon') {
-      polys = [polys]
+  if (type === "Polygon") {
+    polys = [polys];
   }
-  let result = false
+  let result = false;
   for (var i = 0; i < polys.length; ++i) {
-      const polyResult = pip(pt, polys[i])
-      if (polyResult === 0) return options.ignoreBoundary ? false : true
-      else if (polyResult) result = true
+    const polyResult = pip(pt, polys[i]);
+    if (polyResult === 0) return options.ignoreBoundary ? false : true;
+    else if (polyResult) result = true;
   }
 
-  return result
+  return result;
 }
 
 /**
