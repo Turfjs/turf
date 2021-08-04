@@ -49,9 +49,13 @@ export type Coord = Feature<Point> | Point | Position;
 // TurfJS String Types
 export type Units =
   | "meters"
+  | "metres"
   | "millimeters"
+  | "millimetres"
   | "centimeters"
+  | "centimetres"
   | "kilometers"
+  | "kilometres"
   | "acres"
   | "miles"
   | "nauticalmiles"
@@ -81,18 +85,20 @@ export type AllGeoJSON =
  * @memberof helpers
  * @type {number}
  */
-export let earthRadius = 6371008.8;
+export const earthRadius = 6371008.8;
 
 /**
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
  *
+ * Keys are the name of the unit, values are the number of that unit in a single radian
+ *
  * @memberof helpers
  * @type {Object}
  */
-export let factors: { [key: string]: number } = {
+export const factors: { [key: string]: number } = {
   centimeters: earthRadius * 100,
   centimetres: earthRadius * 100,
-  degrees: earthRadius / 111325,
+  degrees: 360 / (2 * Math.PI),
   feet: earthRadius * 3.28084,
   inches: earthRadius * 39.37,
   kilometers: earthRadius / 1000,
@@ -108,36 +114,13 @@ export let factors: { [key: string]: number } = {
 };
 
 /**
- * Units of measurement factors based on 1 meter.
- *
- * @memberof helpers
- * @type {Object}
- */
-export let unitsFactors: { [key: string]: number } = {
-  centimeters: 100,
-  centimetres: 100,
-  degrees: 1 / 111325,
-  feet: 3.28084,
-  inches: 39.37,
-  kilometers: 1 / 1000,
-  kilometres: 1 / 1000,
-  meters: 1,
-  metres: 1,
-  miles: 1 / 1609.344,
-  millimeters: 1000,
-  millimetres: 1000,
-  nauticalmiles: 1 / 1852,
-  radians: 1 / earthRadius,
-  yards: 1.0936133,
-};
 
-/**
  * Area of measurement factors based on 1 square meter.
  *
  * @memberof helpers
  * @type {Object}
  */
-export let areaFactors: any = {
+export const areaFactors: { [key: string]: number } = {
   acres: 0.000247105,
   centimeters: 10000,
   centimetres: 10000,
@@ -791,7 +774,7 @@ export function isNumber(num: any): boolean {
  * isObject
  *
  * @param {*} input variable to validate
- * @returns {boolean} true/false
+ * @returns {boolean} true/false, including false for Arrays and Functions
  * @example
  * turf.isObject({elevation: 10})
  * //=true
@@ -799,7 +782,7 @@ export function isNumber(num: any): boolean {
  * //=false
  */
 export function isObject(input: any): boolean {
-  return !!input && input.constructor === Object;
+  return input !== null && typeof input === "object" && !Array.isArray(input);
 }
 
 /**
