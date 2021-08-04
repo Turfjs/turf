@@ -42,10 +42,10 @@ function lineIntersect<
 ): FeatureCollection<Point> {
   let removeDuplicates = true;
   if ("removeDuplicates" in options) {
-    removeDuplicates = options.removeDuplicates;
+    removeDuplicates = options.removeDuplicates!;
   }
 
-  let features = [];
+  let features: Feature<any>[] = [];
   if (line1.type === "FeatureCollection")
     features = features.concat(line1.features);
   else if (line1.type === "Feature") features.push(line1);
@@ -71,9 +71,9 @@ function lineIntersect<
   }
 
   const intersections = findIntersections(featureCollection(features), false);
-  let results = [];
+  let results: any[] = [];
   if (removeDuplicates) {
-    const unique = {};
+    const unique: { [key: string]: any } = {};
     intersections.forEach((intersection) => {
       const key = intersection.join(",");
       if (!unique[key]) {
