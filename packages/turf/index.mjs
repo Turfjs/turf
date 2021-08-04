@@ -46,7 +46,7 @@ export { default as lineSliceAlong } from "@turf/line-slice-along";
 export { default as pointGrid } from "@turf/point-grid";
 export { default as truncate } from "@turf/truncate";
 export { default as flatten } from "@turf/flatten";
-export { default as lineIntersect } from "@turf/line-intersect";
+export { default as intersectionPoints } from "@turf/intersection-points";
 export { default as lineChunk } from "@turf/line-chunk";
 export { default as unkinkPolygon } from "@turf/unkink-polygon";
 export { default as greatCircle } from "@turf/great-circle";
@@ -122,3 +122,6 @@ export { default as mask } from "@turf/mask";
 export { default as squareGrid } from "@turf/square-grid";
 export { default as triangleGrid } from "@turf/triangle-grid";
 export { default as interpolate } from "@turf/interpolate";
+
+// Renamed modules (Backwards compatible with 6.x)
+export { default as lineIntersect } from "@turf/line-intersect";

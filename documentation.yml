@@ -58,7 +58,7 @@ toc:
   - kinks
   - lineArc
   - lineChunk
-  - lineIntersect
+  - intersection-points
   - lineOverlap
   - lineSegment
   - lineSlice

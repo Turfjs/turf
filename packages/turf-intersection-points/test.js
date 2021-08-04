@@ -10,7 +10,7 @@ const {
   lineString,
   polygon,
 } = require("@turf/helpers");
-const lineIntersect = require("./index").default;
+const intersectionPoints = require("./index").default;
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -25,10 +25,10 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   };
 });
 
-test("turf-line-intersect", (t) => {
+test("turf-intersection-points", (t) => {
   for (const { filename, name, geojson } of fixtures) {
     const [line1, line2] = geojson.features;
-    const results = truncate(lineIntersect(line1, line2));
+    const results = truncate(intersectionPoints(line1, line2));
     results.features.push(line1);
     results.features.push(line2);
 
@@ -38,7 +38,7 @@ test("turf-line-intersect", (t) => {
   t.end();
 });
 
-test("turf-line-intersect - prevent input mutation", (t) => {
+test("turf-intersection-points - prevent input mutation", (t) => {
   const line1 = lineString([
     [7, 50],
     [8, 50],
@@ -52,13 +52,13 @@ test("turf-line-intersect - prevent input mutation", (t) => {
   const before1 = JSON.parse(JSON.stringify(line1));
   const before2 = JSON.parse(JSON.stringify(line2));
 
-  lineIntersect(line1, line2);
+  intersectionPoints(line1, line2);
   t.deepEqual(line1, before1, "line1 input should not be mutated");
   t.deepEqual(line2, before2, "line2 input should not be mutated");
   t.end();
 });
 
-test("turf-line-intersect - Geometry Objects", (t) => {
+test("turf-intersection-points - Geometry Objects", (t) => {
   const line1 = lineString([
     [7, 50],
     [9, 50],
@@ -68,16 +68,16 @@ test("turf-line-intersect - Geometry Objects", (t) => {
     [8, 51],
   ]);
   t.ok(
-    lineIntersect(line1.geometry, line2.geometry).features.length,
+    intersectionPoints(line1.geometry, line2.geometry).features.length,
     "support Geometry Objects"
   );
   t.ok(
-    lineIntersect(featureCollection([line1]), featureCollection([line2]))
+    intersectionPoints(featureCollection([line1]), featureCollection([line2]))
       .features.length,
     "support Feature Collection"
   );
   // t.ok(
-  //   lineIntersect(
+  //   intersectionPoints(
   //     geometryCollection([line1.geometry]),
   //     geometryCollection([line2.geometry])
   //   ).features.length,
@@ -86,7 +86,7 @@ test("turf-line-intersect - Geometry Objects", (t) => {
   t.end();
 });
 
-test("turf-line-intersect - same point #688", (t) => {
+test("turf-intersection-points - same point #688", (t) => {
   const line1 = lineString([
     [7, 50],
     [8, 50],
@@ -98,10 +98,10 @@ test("turf-line-intersect - same point #688", (t) => {
     [8, 51],
   ]);
 
-  const results = lineIntersect(line1, line2);
+  const results = intersectionPoints(line1, line2);
   t.equal(results.features.length, 1, "should return single point");
 
-  const results2 = lineIntersect(line1, line2, {
+  const results2 = intersectionPoints(line1, line2, {
     removeDuplicates: false,
   });
   t.equal(results2.features.length, 3, "should return three points");
@@ -109,7 +109,7 @@ test("turf-line-intersect - same point #688", (t) => {
   t.end();
 });
 
-test("turf-line-intersect - polygon support #586", (t) => {
+test("turf-intersection-points - polygon support #586", (t) => {
   const poly1 = polygon([
     [
       [7, 50],
@@ -127,7 +127,7 @@ test("turf-line-intersect - polygon support #586", (t) => {
     ],
   ]);
 
-  const results = lineIntersect(poly1, poly2);
+  const results = intersectionPoints(poly1, poly2);
   t.equal(results.features.length, 1, "should return single point");
   t.end();
 });

@@ -1,6 +1,6 @@
 import { Feature, Geometry, LineString, Point, Polygon } from "geojson";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import lineIntersect from "@turf/line-intersect";
+import intersectionPoints from "@turf/intersection-points";
 import { flattenEach } from "@turf/meta";
 import polygonToLine from "@turf/polygon-to-line";
 
@@ -96,7 +96,7 @@ function isPointOnLine(lineString: LineString, pt: Point) {
 }
 
 function isLineOnLine(lineString1: LineString, lineString2: LineString) {
-  const doLinesIntersect = lineIntersect(lineString1, lineString2);
+  const doLinesIntersect = intersectionPoints(lineString1, lineString2);
   if (doLinesIntersect.features.length > 0) {
     return true;
   }
@@ -109,7 +109,10 @@ function isLineInPoly(polygon: Polygon, lineString: LineString) {
       return true;
     }
   }
-  const doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon));
+  const doLinesIntersect = intersectionPoints(
+    lineString,
+    polygonToLine(polygon)
+  );
   if (doLinesIntersect.features.length > 0) {
     return true;
   }
@@ -137,7 +140,7 @@ function isPolyInPoly(feature1: Polygon, feature2: Polygon) {
       return true;
     }
   }
-  const doLinesIntersect = lineIntersect(
+  const doLinesIntersect = intersectionPoints(
     polygonToLine(feature1),
     polygonToLine(feature2)
   );

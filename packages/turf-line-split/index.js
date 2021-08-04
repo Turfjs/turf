@@ -3,7 +3,7 @@ import square from "@turf/square";
 import bbox from "@turf/bbox";
 import truncate from "@turf/truncate";
 import lineSegment from "@turf/line-segment";
-import lineIntersect from "@turf/line-intersect";
+import intersectionPoints from "@turf/intersection-points";
 import nearestPointOnLine from "@turf/nearest-point-on-line";
 import { getCoords, getCoord, getType } from "@turf/invariant";
 import { featureEach, featureReduce, flattenEach } from "@turf/meta";
@@ -53,7 +53,7 @@ function lineSplit(line, splitter) {
     case "MultiPolygon":
       return splitLineWithPoints(
         line,
-        lineIntersect(line, truncatedSplitter, {
+        intersectionPoints(line, truncatedSplitter, {
           ignoreSelfIntersections: true,
         })
       );

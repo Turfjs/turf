@@ -3,7 +3,7 @@ import { getGeom } from "@turf/invariant";
 import { polygon, lineString } from "@turf/helpers";
 import booleanDisjoint from "@turf/boolean-disjoint";
 import booleanCrosses from "@turf/boolean-crosses";
-import lineIntersect from "@turf/line-intersect";
+import intersectionPoints from "@turf/intersection-points";
 import isPointOnLine from "@turf/boolean-point-on-line";
 
 /**
@@ -54,8 +54,8 @@ export default function booleanValid(feature: Feature<any> | Geometry) {
         if (checkRingsForSpikesPunctures(coords[i])) return false;
         if (i > 0) {
           if (
-            lineIntersect(polygon([coords[0]]), polygon([coords[i]])).features
-              .length > 1
+            intersectionPoints(polygon([coords[0]]), polygon([coords[i]]))
+              .features.length > 1
           )
             return false;
         }
@@ -75,8 +75,8 @@ export default function booleanValid(feature: Feature<any> | Geometry) {
           }
           if (ii > 0) {
             if (
-              lineIntersect(polygon([poly[0]]), polygon([poly[ii]])).features
-                .length > 1
+              intersectionPoints(polygon([poly[0]]), polygon([poly[ii]]))
+                .features.length > 1
             )
               return false;
           }

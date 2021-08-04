@@ -16,7 +16,7 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
 /**
  * Benchmark Results
  *
- * ==after (@turf/line-intersect)==
+ * ==after (@turf/intersection-points)==
  * line1 x 234,231 ops/sec ±1.78% (88 runs sampled)
  * route1 x 161 ops/sec ±1.53% (80 runs sampled)
  * route2 x 184 ops/sec ±1.96% (80 runs sampled)

@@ -2,7 +2,7 @@ import { Feature, Geometry, MultiPoint } from "geojson";
 import { segmentEach } from "@turf/meta";
 import { getGeom } from "@turf/invariant";
 import lineOverlap from "@turf/line-overlap";
-import lineIntersect from "@turf/line-intersect";
+import intersectionPoints from "@turf/intersection-points";
 import GeojsonEquality from "geojson-equality";
 
 /**
@@ -80,7 +80,8 @@ export default function booleanOverlap(
     case "MultiPolygon":
       segmentEach(feature1, (segment1) => {
         segmentEach(feature2, (segment2) => {
-          if (lineIntersect(segment1!, segment2!).features.length) overlap++;
+          if (intersectionPoints(segment1!, segment2!).features.length)
+            overlap++;
         });
       });
       break;

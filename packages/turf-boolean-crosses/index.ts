@@ -1,5 +1,4 @@
-import { Feature, Geometry, Polygon, LineString, MultiPoint } from "geojson";
-import lineIntersect from "@turf/line-intersect";
+import intersectionPoints from "@turf/intersection-points";
 import { polygonToLine } from "@turf/polygon-to-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
@@ -101,7 +100,7 @@ function doMultiPointAndLineStringCross(
 }
 
 function doLineStringsCross(lineString1: LineString, lineString2: LineString) {
-  var doLinesIntersect = lineIntersect(lineString1, lineString2);
+  var doLinesIntersect = intersectionPoints(lineString1, lineString2);
   if (doLinesIntersect.features.length > 0) {
     for (var i = 0; i < lineString1.coordinates.length - 1; i++) {
       for (var i2 = 0; i2 < lineString2.coordinates.length - 1; i2++) {
@@ -127,7 +126,7 @@ function doLineStringsCross(lineString1: LineString, lineString2: LineString) {
 
 function doLineStringAndPolygonCross(lineString: LineString, polygon: Polygon) {
   const line: any = polygonToLine(polygon);
-  const doLinesIntersect = lineIntersect(lineString, line);
+  const doLinesIntersect = intersectionPoints(lineString, line);
   if (doLinesIntersect.features.length > 0) {
     return true;
   }
