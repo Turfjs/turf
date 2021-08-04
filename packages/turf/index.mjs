@@ -124,4 +124,4 @@ export { default as triangleGrid } from "@turf/triangle-grid";
 export { default as interpolate } from "@turf/interpolate";
 
 // Renamed modules (Backwards compatible with 6.x)
-export { default as lineIntersect } from "@turf/line-intersect";
+export { default as lineIntersect } from "@turf/intersection-points";

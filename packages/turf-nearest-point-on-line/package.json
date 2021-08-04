@@ -60,8 +60,8 @@
     "@turf/destination": "^7.0.0-alpha.1",
     "@turf/distance": "^7.0.0-alpha.1",
     "@turf/helpers": "^7.0.0-alpha.1",
-    "@turf/invariant": "^7.0.0-alpha.1",
     "@turf/intersection-points": "^7.0.0-alpha.1",
+    "@turf/invariant": "^7.0.0-alpha.1",
     "@turf/meta": "^7.0.0-alpha.1",
     "tslib": "^2.3.0"
   }

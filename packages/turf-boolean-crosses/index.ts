@@ -1,3 +1,4 @@
+import { Feature, Geometry, LineString, MultiPoint, Polygon } from "geojson";
 import intersectionPoints from "@turf/intersection-points";
 import { polygonToLine } from "@turf/polygon-to-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
