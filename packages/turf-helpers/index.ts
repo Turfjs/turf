@@ -49,9 +49,13 @@ export type Coord = Feature<Point> | Point | Position;
 // TurfJS String Types
 export type Units =
   | "meters"
+  | "metres"
   | "millimeters"
+  | "millimetres"
   | "centimeters"
+  | "centimetres"
   | "kilometers"
+  | "kilometres"
   | "acres"
   | "miles"
   | "nauticalmiles"
@@ -81,7 +85,7 @@ export type AllGeoJSON =
  * @memberof helpers
  * @type {number}
  */
-export let earthRadius = 6371008.8;
+export const earthRadius = 6371008.8;
 
 /**
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
@@ -91,7 +95,7 @@ export let earthRadius = 6371008.8;
  * @memberof helpers
  * @type {Object}
  */
-export let factors: { [key: string]: number } = {
+export const factors: { [key: string]: number } = {
   centimeters: earthRadius * 100,
   centimetres: earthRadius * 100,
   degrees: 360 / (2 * Math.PI),
@@ -110,12 +114,13 @@ export let factors: { [key: string]: number } = {
 };
 
 /**
+
  * Area of measurement factors based on 1 square meter.
  *
  * @memberof helpers
  * @type {Object}
  */
-export let areaFactors: any = {
+export const areaFactors: { [key: string]: number } = {
   acres: 0.000247105,
   centimeters: 10000,
   centimetres: 10000,
