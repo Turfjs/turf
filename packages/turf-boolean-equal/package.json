@@ -69,6 +69,7 @@
     "@turf/clean-coords": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@turf/invariant": "^6.5.0",
-    "geojson-equality": "0.1.6"
+    "geojson-equality": "0.1.6",
+    "tslib": "^2.3.0"
   }
 }

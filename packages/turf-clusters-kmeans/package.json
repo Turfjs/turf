@@ -76,6 +76,7 @@
     "@turf/helpers": "^6.5.0",
     "@turf/invariant": "^6.5.0",
     "@turf/meta": "^6.5.0",
-    "skmeans": "0.9.7"
+    "skmeans": "0.9.7",
+    "tslib": "^2.3.0"
   }
 }
