@@ -3,9 +3,9 @@
 [![GitHub Actions Status](https://github.com/Turfjs/turf/actions/workflows/turf.yml/badge.svg)](https://github.com/Turfjs/turf/actions/workflows/turf.yml/badge.svg)
 [![Version Badge][npm-img]][npm-url]
 [![Gitter chat][gitter-img]][gitter-url]
-[![Backers on Open Collective][oc-backer-badge]](#backers) 
+[![Backers on Open Collective][oc-backer-badge]](#backers)
 [![Sponsors on Open Collective][oc-sponsor-badge]](#sponsors) [![Coverage Status](https://coveralls.io/repos/github/Turfjs/turf/badge.svg)](https://coveralls.io/github/Turfjs/turf)
- 
+
 [npm-img]: https://img.shields.io/npm/v/@turf/turf.svg
 [npm-url]: https://www.npmjs.com/package/@turf/turf
 [gitter-img]: https://badges.gitter.im/Turfjs/turf.svg
@@ -26,7 +26,12 @@
 ### In Node.js
 
 ```bash
+# get all of turf
 npm install @turf/turf
+
+# or get individual packages
+npm install @turf/helpers
+npm install @turf/buffer
 ```
 
 ### In browser
@@ -40,26 +45,12 @@ Download the [minified file](https://npmcdn.com/@turf/turf/turf.min.js), and inc
 You can also include it directly from a CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
 ```
-
-You can create light-weight turf builds with only the functions you need using the [turfjs-builder UI](https://turfjs-builder.herokuapp.com/) or using browserify as described below.
-
-### Browserify
-
-All of Turf's functions can also be installed as separate modules. This works well with tools like [browserify](http://browserify.org/) where you want to install only the code you need. It also allows you to mix and match modules. This is the recommended usage pattern for most production environments. For example, to install the *point* and *buffer* modules use:
-
-```sh
-npm install @turf/helpers @turf/buffer
-```
-
-### Bower [NOTE: Bower support has been dropped Jan 1st 2017]
-
-_Not recommended. Please don't use Bower. Use Browserify, Webpack, or the CDN instead._
 
 ### TypeScript
 
-TypeScript is supported internally within each module, no installs required.
+TypeScript definitions are packaged with each module. No DefinitelyTyped packages required.
 
 ### Other languages
 
@@ -103,7 +94,8 @@ var point2 = {
 
 ## Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+This project exists thanks to all the people who contribute. If you are interested in helping, check out the [Contributing Guide](CONTRIBUTING.md).
+
 <a href="https://github.com/Turfjs/turf/graphs/contributors"><img src="https://opencollective.com/turf/contributors.svg?width=890&button=false" /></a>
 
 
@@ -128,5 +120,3 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/turf/sponsor/7/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/7/avatar.svg"></a>
 <a href="https://opencollective.com/turf/sponsor/8/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/turf/sponsor/9/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/9/avatar.svg"></a>
-
-

@@ -1,6 +1,6 @@
 {
   "name": "@turf/area",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "turf area module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -57,7 +57,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.4.0",
-    "@turf/meta": "^6.4.0"
+    "@turf/helpers": "^6.5.0",
+    "@turf/meta": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }
