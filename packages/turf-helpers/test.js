@@ -86,6 +86,38 @@ test("polygon", (t) => {
       t.equal(
         polygon([
           [
+            [1, 2, 3],
+            [4, 5],
+            [6, 7],
+            [1, 2],
+          ],
+        ]).message
+      );
+    },
+    /First and last Position are not equivalent/,
+    "invalid ring - z coordinate"
+  );
+  t.throws(
+    () => {
+      t.equal(
+        polygon([
+          [
+            [1, 2],
+            [4, 5],
+            [6, 7],
+            [1, 2, 3],
+          ],
+        ]).message
+      );
+    },
+    /First and last Position are not equivalent/,
+    "invalid ring - z coordinate #2"
+  );
+  t.throws(
+    () => {
+      t.equal(
+        polygon([
+          [
             [20.0, 0.0],
             [101.0, 0.0],
           ],
@@ -527,6 +559,17 @@ test("convertLength", (t) => {
   t.equal(convertLength(1, "meters", "yards"), 1.0936);
   t.equal(convertLength(1, "yards", "meters"), 0.91441111923921);
   // t.throws(() => convertLength(1, 'foo'), 'invalid units');
+
+  t.equal(
+    convertLength(Math.PI, "radians", "degrees"),
+    180,
+    "PI Radians is 180 degrees"
+  );
+  t.equal(
+    convertLength(180, "degrees", "radians"),
+    Math.PI,
+    "180 Degrees is PI Radians"
+  );
   t.end();
 });
 
@@ -623,6 +666,7 @@ test("turf-helpers -- isObject", (t) => {
   t.true(isObject({ a: 1 }));
   t.true(isObject({}));
   t.true(point([0, 1]));
+  t.true(isObject(new Object()));
 
   // false
   t.false(isObject(123));
@@ -635,6 +679,11 @@ test("turf-helpers -- isObject", (t) => {
   t.false(isObject([1, 2, 3]));
   t.false(isObject([]));
   t.false(isObject(isNumber));
+  t.false(
+    isObject(function () {
+      /*noop*/
+    })
+  );
   t.end();
 });
 
