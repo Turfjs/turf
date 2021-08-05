@@ -570,7 +570,7 @@ function isUnique(array) {
   var u = {};
   var isUnique = 1;
   for (var i = 0, l = array.length; i < l; ++i) {
-    if (u.hasOwnProperty(array[i])) {
+    if (Object.prototype.hasOwnProperty.call(u, array[i])) {
       isUnique = 0;
       break;
     }

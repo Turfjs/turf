@@ -1,6 +1,6 @@
 {
   "name": "@turf/points-within-polygon",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "turf points-within-polygon module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -52,8 +53,8 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.4.0",
-    "@turf/helpers": "^6.4.0",
-    "@turf/meta": "^6.4.0"
+    "@turf/boolean-point-in-polygon": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
+    "@turf/meta": "^6.5.0"
   }
 }

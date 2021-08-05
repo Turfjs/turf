@@ -40,7 +40,6 @@ export default function kinks<
     type: "FeatureCollection",
     features: [],
   };
-
   if (
     (featureIn as Geometry).type === "Point" ||
     (featureIn as Geometry).type === "MultiPoint" ||

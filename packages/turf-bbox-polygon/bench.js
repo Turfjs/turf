@@ -9,5 +9,4 @@ const bboxpolygon = require("./index").default;
 new Benchmark.Suite("turf-bbox-polygon")
   .add("turf-bbox-polygon", () => bboxpolygon([0, 0, 10, 10]))
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();
