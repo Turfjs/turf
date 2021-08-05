@@ -1,10 +1,8 @@
-### :bug: [How to report a bug](http://polite.technology/reportabug.html)
+## Bug Reporting :bug:
 
-## Please note
+One of the most important things you can do is report bugs. Please reference [how to report a bug](http://polite.technology/reportabug.html) and follow the issue templates when adding new bugs.
 
-The high-level structure of Turf is undergoing discussion at [#1428](https://github.com/Turfjs/turf/issues/1428). Currently (June 2018), there is a partial conversion to Typescript, and the contribution documentation does not completely reflect the current status. 
-
-## How To Contribute
+## Development
 
 - Most work happens in sub modules. These are found in the `packages` directory prefixed with "turf-".
 - If you would like to propose a new feature, open an issue in Turfjs/turf.
@@ -18,14 +16,11 @@ The high-level structure of Turf is undergoing discussion at [#1428](https://git
 
 ## Code Style
 
-To ensure code style, at the `turf` root level run
+We have lots of tooling dedicated to ensuring consistent code. We use [Prettier](https://prettier.io/), [Typescript](https://www.typescriptlang.org/), and [ESLint](https://eslint.org/) to help us deliver quality code. These are checked by the build system and should be enforced at commit time by [Husky](https://typicode.github.io/husky/#/).
 
-```sh
-$ npm run lint
-```
+Some of the modules are written in Typescript, others are still plain Javascript. In the javascript modules and any dependencies we include, it is important to only write ES5 code. This ensures good browser compatability for Turf users, and is checked at build time.
 
-* Follow the [AirBNB JavaScript code style](https://github.com/airbnb/javascript).
-* Turf aims to use ES5 features where rational. We do not use ES6 features.
+Making sure that the monorepo packages can be managed at scale, we use [Monorepolint](https://github.com/monorepolint/monorepolint) which allows us to programatically manage the various files in each package.
 
 ## Structure of a turf module
 
@@ -61,6 +56,8 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 * `index.d.ts` - This is a [TypeScript](https://www.typescriptlang.org/) file
   that describes your function’s signature. For more on the types supported in
   TypeScript, see…
+* `index.ts` - If you prefer to write Typescript instead of Javascript, use this
+  instead of index.js and index.d.ts.
 * `bench.js` - This file uses [Benchmark](https://benchmarkjs.com/) to time
   your function.
 * `test.js` - This file includes your [tape](https://github.com/substack/tape)
@@ -69,7 +66,7 @@ it will create a new folder inside `packages` with a simple boilerplate for your
   [environment variable is set](https://askubuntu.com/a/58828) to `true`. If
   `REGEN` is set to a different value, then running `npm t` will compare the
   output of the tests to the files already present in `./test/out`.
-* `types.ts` - A file that lists the custom TypeScript types used in
+* `types.ts` - A file that tests the custom TypeScript types declared in
   `index.d.ts`.
 * `package.json` - The [node](http://nodejs.org) metadata container file.
   Modules imported in `index.js` should be listed here under `dependencies`,
@@ -92,17 +89,37 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 
 ## Publishing
 
-Install lerna:
+### Prerelease
 
-```bash
-$ npm install -g lerna@2.0.0-beta.34
-```
+- create a new branch with some name
+- write up changelog changes (manually), commit that
+- yarn lerna version --no-push --no-commit-hooks 6.2.0-alpha.2
+  This lets lerna update the package.json versions (and dependencies) and commits the result as well as adds a tag
+  --no-push because we can't push to master
+  --no-commit-hooks because otherwise the commit hooks will prevent the commit
+- git push origin --follow-tags \$branch
+- make PR
+- merge PR
+- re-fetch the new master and check it out locally
+- yarn install
+- yarn lerna publish --dist-tag prerelease --ignore-scripts from-package
+  - --dist-tag is important to avoid tagging this release as the stable release
+  - --ignore-scripts skips the build steps since they already ran during yarn install
+  - you will likely need to publish several times as your OTP expires
+  - you might get rate limited as well
+  - between publish attempts, you'll have to undo the gitHead changes in the package.json files
 
-Publish a test release:
+### Release
+- create new branch with some name
+- write up changelog changes (manually), commit that
+- make PR (don't merge)
+- yarn lerna version --no-push --no-commit-hooks 6.2.0
+- git push origin --follow-tags \$branch
+- merge PR
+- re-fetch the new master and check it out locally
+- yarn install
+- yarn lerna publish --ignore-scripts from-package
 
-```bash
-$ lerna publish --canary
-```
 
 ## Documentation
 
@@ -142,6 +159,10 @@ Building Docs: @turf/bezier-spline
 Building Docs: @turf/boolean-clockwise
 ....
 ```
+
+### Public website
+
+[turfjs.org](http://turfjs.org/) is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
 
 ## Other Dependencies
 - Turf uses [Yarn](https://yarnpkg.com) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
