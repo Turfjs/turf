@@ -49,10 +49,11 @@ jobs:
         with:
           node-version: "14.x"
       # figure out the yarn cache directory
-      - name: Get yarn cache directory path
+      - name: Get Yarn Cache Directory Path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
       # cache the yarn data to speed up builds
+      - name: Restore Yarn Cache
       - uses: actions/cache@v2
         id: yarn-cache
         with:
@@ -60,31 +61,8 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: Yarn Install (Frozen Lockfile)
       - run: yarn --frozen-lockfile
       # Run coverage on current branch
       - name: Run Coverage (Current Branch)
-        run: yarn run coverage
-
-      # Master
-      - name: Checkout Master Branch
-        uses: actions/checkout@v2
-        with:
-          ref: master
-          node-version:
-            "14.x"
-            # figure out the yarn cache directory
-      - name: Get yarn cache directory path (master)
-        id: yarn-cache-dir-path-master
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      # cache the yarn data to speed up builds
-      - uses: actions/cache@v2
-        id: yarn-cache-master
-        with:
-          path: ${{ steps.yarn-cache-dir-path-master.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - run: yarn --frozen-lockfile
-      # Run coverage on master
-      - name: Run Coverage (Master Branch)
         run: yarn run coverage
