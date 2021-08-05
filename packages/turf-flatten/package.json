@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "@turf/helpers": "^6.5.0",
-    "@turf/meta": "^6.5.0"
+    "@turf/meta": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

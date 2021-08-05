@@ -70,6 +70,7 @@
     "@turf/meta": "^6.5.0",
     "@turf/point-grid": "^6.5.0",
     "@turf/square-grid": "^6.5.0",
-    "@turf/triangle-grid": "^6.5.0"
+    "@turf/triangle-grid": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

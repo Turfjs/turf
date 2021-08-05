@@ -67,6 +67,7 @@
     "@turf/helpers": "^6.5.0",
     "@turf/invariant": "^6.5.0",
     "@turf/meta": "^6.5.0",
-    "@turf/rhumb-destination": "^6.5.0"
+    "@turf/rhumb-destination": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

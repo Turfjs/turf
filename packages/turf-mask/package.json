@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@turf/helpers": "^6.5.0",
-    "polygon-clipping": "^0.15.3"
+    "polygon-clipping": "^0.15.3",
+    "tslib": "^2.3.0"
   }
 }

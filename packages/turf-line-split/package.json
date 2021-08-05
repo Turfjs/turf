@@ -68,6 +68,7 @@
     "@turf/nearest-point-on-line": "^6.5.0",
     "@turf/square": "^6.5.0",
     "@turf/truncate": "^6.5.0",
-    "geojson-rbush": "3.x"
+    "geojson-rbush": "3.x",
+    "tslib": "^2.3.0"
   }
 }
