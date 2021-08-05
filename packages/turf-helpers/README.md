@@ -10,10 +10,6 @@ Earth Radius used with the Harvesine formula and approximates using a spherical 
 
 Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
 
-## unitsFactors
-
-Units of measurement factors based on 1 meter.
-
 ## areaFactors
 
 Area of measurement factors based on 1 square meter.

@@ -30,10 +30,10 @@ export function getCoord(coord: Feature<Point> | Point | number[]): number[] {
       coord.geometry !== null &&
       coord.geometry.type === "Point"
     ) {
-      return coord.geometry.coordinates;
+      return [...coord.geometry.coordinates];
     }
     if (coord.type === "Point") {
-      return coord.coordinates;
+      return [...coord.coordinates];
     }
   }
   if (
@@ -42,7 +42,7 @@ export function getCoord(coord: Feature<Point> | Point | number[]): number[] {
     !Array.isArray(coord[0]) &&
     !Array.isArray(coord[1])
   ) {
-    return coord;
+    return [...coord];
   }
 
   throw new Error("coord must be GeoJSON Point or an Array of numbers");
