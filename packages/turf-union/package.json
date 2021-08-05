@@ -45,7 +45,6 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
-    "@turf/combine": "^6.5.0",
     "@types/tape": "*",
     "benchmark": "*",
     "glob": "*",

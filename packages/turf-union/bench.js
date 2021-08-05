@@ -21,7 +21,7 @@ const suite = new Benchmark.Suite("turf-union");
 
 for (const { name, geojson } of fixtures) {
   suite.add(name, () => {
-    union.apply(this, geojson.features);
+    union(geojson.features);
   });
 }
 

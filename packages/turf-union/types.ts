@@ -17,4 +17,4 @@ const poly2 = polygon([
     [20, 30],
   ],
 ]);
-union(poly1, poly2);
+union([poly1, poly2]);
