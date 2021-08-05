@@ -15,7 +15,7 @@ import { getCoord, getCoords, getType } from "@turf/invariant";
  *
  * @name transformScale
  * @param {GeoJSON} geojson GeoJSON to be scaled
- * @param {number} factor of scaling, positive values greater than 0
+ * @param {number} factor of scaling, positive values greater than 0. Numbers between 0 and 1 will shrink the geojson, numbers greater than 1 will expand it, a factor of 1 will not change the geojson.
  * @param {Object} [options={}] Optional parameters
  * @param {string|Coord} [options.origin='centroid'] Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid)
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
