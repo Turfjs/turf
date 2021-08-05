@@ -72,6 +72,7 @@
     "@turf/helpers": "^6.5.0",
     "@turf/invariant": "^6.5.0",
     "@turf/line-intersect": "^6.5.0",
-    "geojson-polygon-self-intersections": "1.2.x"
+    "geojson-polygon-self-intersections": "1.2.x",
+    "tslib": "^2.3.0"
   }
 }

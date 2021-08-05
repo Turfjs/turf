@@ -67,6 +67,7 @@
     "@turf/boolean-within": "^6.5.0",
     "@turf/distance": "^6.5.0",
     "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0"
+    "@turf/invariant": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

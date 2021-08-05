@@ -63,6 +63,7 @@
     "@turf/clean-coords": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@turf/line-segment": "^6.5.0",
-    "@turf/rhumb-bearing": "^6.5.0"
+    "@turf/rhumb-bearing": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }
