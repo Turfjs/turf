@@ -60,5 +60,8 @@
     "ts-node": "*",
     "tslint": "*",
     "typescript": "*"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   }
 }

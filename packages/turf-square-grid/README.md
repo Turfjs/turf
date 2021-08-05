@@ -8,26 +8,26 @@ Creates a square grid from a bounding box.
 
 **Parameters**
 
--   `bbox` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
--   `cellSide` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** of each cell, in units
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees,
-        radians, miles, or kilometers (optional, default `'kilometers'`)
-    -   `options.mask` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>?** if passed a Polygon or MultiPolygon,
-        the grid Points will be created only inside it
-    -   `options.properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each point of the grid (optional, default `{}`)
+- `bbox` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** extent in [minX, minY, maxX, maxY] order
+- `cellSide` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** of each cell, in units
+- `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+  - `options.units` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** used in calculating cellSide, can be degrees,
+    radians, miles, or kilometers (optional, default `'kilometers'`)
+  - `options.mask` **[Feature](https://tools.ietf.org/html/rfc7946#section-3.2)&lt;([Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6) \| [MultiPolygon](https://tools.ietf.org/html/rfc7946#section-3.1.7))>?** if passed a Polygon or MultiPolygon,
+    the grid Points will be created only inside it
+  - `options.properties` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** passed to each point of the grid (optional, default `{}`)
 
 **Examples**
 
 ```javascript
-var bbox = [-95, 30 ,-85, 40];
+var bbox = [-95, 30, -85, 40];
 var cellSide = 50;
-var options = {units: 'miles'};
+var options = { units: "miles" };
 
 var squareGrid = turf.squareGrid(bbox, cellSide, options);
 
 //addToMap
-var addToMap = [squareGrid]
+var addToMap = [squareGrid];
 ```
 
 Returns **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;[Polygon](https://tools.ietf.org/html/rfc7946#section-3.1.6)>** grid a grid of polygons

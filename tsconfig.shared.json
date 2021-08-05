@@ -5,6 +5,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "strict": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "importHelpers": true
   }
 }

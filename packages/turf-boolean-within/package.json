@@ -69,6 +69,7 @@
     "@turf/boolean-point-in-polygon": "^6.5.0",
     "@turf/boolean-point-on-line": "^6.5.0",
     "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0"
+    "@turf/invariant": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

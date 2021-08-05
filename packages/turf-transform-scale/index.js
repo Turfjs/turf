@@ -83,6 +83,8 @@ function scale(feature, factor, origin) {
     if (coord.length === 3) coord[2] *= factor;
   });
 
+  delete feature.bbox;
+
   return feature;
 }
 

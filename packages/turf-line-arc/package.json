@@ -57,6 +57,7 @@
   "dependencies": {
     "@turf/circle": "^6.5.0",
     "@turf/destination": "^6.5.0",
-    "@turf/helpers": "^6.5.0"
+    "@turf/helpers": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

@@ -70,6 +70,7 @@
     "@turf/line-intersect": "^6.5.0",
     "@turf/line-overlap": "^6.5.0",
     "@turf/meta": "^6.5.0",
-    "geojson-equality": "0.1.6"
+    "geojson-equality": "0.1.6",
+    "tslib": "^2.3.0"
   }
 }
