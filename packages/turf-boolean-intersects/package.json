@@ -56,11 +56,11 @@
     "boolean-shapely": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",
-    "typescript": "*",
-    "nyc": "*"
+    "typescript": "*"
   },
   "dependencies": {
     "@turf/boolean-disjoint": "^6.5.0",

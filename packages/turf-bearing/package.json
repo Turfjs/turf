@@ -49,11 +49,11 @@
     "@types/tape": "*",
     "benchmark": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",
     "typescript": "*",
-    "nyc": "*",
     "write-json-file": "*"
   },
   "dependencies": {

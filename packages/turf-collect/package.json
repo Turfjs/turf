@@ -56,11 +56,11 @@
     "@types/tape": "*",
     "benchmark": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",
-    "typescript": "*",
-    "nyc": "*"
+    "typescript": "*"
   },
   "dependencies": {
     "@turf/bbox": "^6.5.0",

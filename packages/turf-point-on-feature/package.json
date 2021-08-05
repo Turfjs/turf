@@ -42,7 +42,7 @@
   "scripts": {
     "bench": "node -r esm bench.js",
     "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
-    "coverage": "nyc ts-node -r esm test.js",
+    "coverage": "nyc  node -r esm test.js",
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js"
@@ -52,9 +52,9 @@
     "@turf/truncate": "^6.5.0",
     "benchmark": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "rollup": "*",
-    "tape": "*",
-    "nyc": "*"
+    "tape": "*"
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "^6.5.0",

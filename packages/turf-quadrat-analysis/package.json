@@ -44,9 +44,9 @@
     "build:js": "tsc",
     "coverage": "nyc ts-node -r esm test.js",
     "docs": "node ../../scripts/generate-readmes",
+    "nyc": "*",
     "test": "npm-run-all test:*",
-    "test:tape": "ts-node -r esm test.js",
-    "nyc": "*"
+    "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
     "@turf/nearest-neighbor-analysis": "^6.5.0",
@@ -54,6 +54,7 @@
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",

@@ -57,12 +57,12 @@
     "glob": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",
     "typescript": "*",
-    "write-json-file": "*",
-    "nyc": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/bbox": "^6.5.0",

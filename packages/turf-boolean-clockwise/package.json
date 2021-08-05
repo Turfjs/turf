@@ -57,11 +57,11 @@
     "glob": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",
-    "typescript": "*",
-    "nyc": "*"
+    "typescript": "*"
   },
   "dependencies": {
     "@turf/helpers": "^6.5.0",

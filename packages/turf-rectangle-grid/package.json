@@ -56,12 +56,12 @@
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "rollup": "*",
     "tape": "*",
     "ts-node": "*",
     "typescript": "*",
-    "write-json-file": "*",
-    "nyc": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/boolean-intersects": "^6.5.0",

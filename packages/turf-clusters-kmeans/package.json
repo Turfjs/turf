@@ -66,12 +66,12 @@
     "load-json-file": "*",
     "matrix-to-grid": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",
     "typescript": "*",
-    "write-json-file": "*",
-    "nyc": "*"
+    "write-json-file": "*"
   },
   "dependencies": {
     "@turf/clone": "^6.5.0",

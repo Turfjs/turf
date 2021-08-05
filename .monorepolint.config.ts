@@ -174,6 +174,22 @@ module.exports = {
       {
         options: {
           scripts: {
+            coverage: "nyc ts-node -r esm test.js",
+          },
+        },
+        includePackages: [...TS_PACKAGES],
+      },
+      {
+        options: {
+          scripts: {
+            coverage: "nyc  node -r esm test.js",
+          },
+        },
+        includePackages: [...JS_PACKAGES],
+      },
+      {
+        options: {
+          scripts: {
             build:
               'rollup -c ../../rollup.config.js && echo \'{"type":"module"}\' > dist/es/package.json',
           },
@@ -249,6 +265,14 @@ module.exports = {
           dependencies: {
             tslib: "^2.3.0",
           },
+          devDependencies: {
+            nyc: "*",
+          },
+        },
+        includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      },
+      {
+        options: {
           devDependencies: {
             "ts-node": "*",
             typescript: "*",

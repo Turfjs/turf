@@ -57,6 +57,7 @@
     "@types/tape": "*",
     "benchmark": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",
