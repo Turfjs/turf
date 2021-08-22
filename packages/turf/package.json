@@ -183,6 +183,7 @@
     "@turf/truncate": "^6.5.0",
     "@turf/union": "^6.5.0",
     "@turf/unkink-polygon": "^6.5.0",
-    "@turf/voronoi": "^6.5.0"
+    "@turf/voronoi": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

@@ -46,7 +46,7 @@
   "scripts": {
     "bench": "node -r esm bench.js",
     "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
-    "coverage": "nyc  node -r esm test.js",
+    "coverage": "nyc node -r esm test.js",
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js",
@@ -66,7 +66,6 @@
     "@turf/clone": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@turf/invariant": "^6.5.0",
-    "@turf/meta": "^6.5.0",
-    "tslib": "^2.3.0"
+    "@turf/meta": "^6.5.0"
   }
 }

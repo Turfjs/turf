@@ -182,7 +182,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            coverage: "nyc  node -r esm test.js",
+            coverage: "nyc node -r esm test.js",
           },
         },
         includePackages: [...JS_PACKAGES],
@@ -256,6 +256,7 @@ module.exports = {
         options: {
           devDependencies: {
             "npm-run-all": "*",
+            nyc: "*",
           },
         },
         includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
@@ -265,14 +266,6 @@ module.exports = {
           dependencies: {
             tslib: "^2.3.0",
           },
-          devDependencies: {
-            nyc: "*",
-          },
-        },
-        includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
-      },
-      {
-        options: {
           devDependencies: {
             "ts-node": "*",
             typescript: "*",
