@@ -142,13 +142,13 @@ function isMultiPointInPoly(multiPoint: MultiPoint, polygon: Polygon) {
   var oneInside = false;
   var isInside = false;
   for (var i = 0; i < multiPoint.coordinates.length; i++) {
-    isInside = booleanPointInPolygon(multiPoint.coordinates[1], polygon);
+    isInside = booleanPointInPolygon(multiPoint.coordinates[i], polygon);
     if (!isInside) {
       output = false;
       break;
     }
     if (!oneInside) {
-      isInside = booleanPointInPolygon(multiPoint.coordinates[1], polygon, {
+      isInside = booleanPointInPolygon(multiPoint.coordinates[i], polygon, {
         ignoreBoundary: true,
       });
     }
