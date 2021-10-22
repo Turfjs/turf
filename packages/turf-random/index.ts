@@ -101,10 +101,7 @@ export function randomPolygon(
   const features = [];
   for (let i = 0; i < count; i++) {
     let vertices: any[] = [];
-    const circleOffsets = Array.apply(
-      null,
-      new Array(options.num_vertices + 1)
-    ).map(Math.random);
+    const circleOffsets = [...Array(options.num_vertices + 1)].map(Math.random);
 
     // Sum Offsets
     circleOffsets.forEach((cur: any, index: number, arr: any[]) => {

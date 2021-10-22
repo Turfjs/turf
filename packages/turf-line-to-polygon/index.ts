@@ -9,6 +9,8 @@ import {
   MultiLineString,
   LineString,
   Properties,
+  BBox,
+  Position,
 } from "@turf/helpers";
 import clone from "@turf/clone";
 
@@ -42,14 +44,9 @@ function lineToPolygon<G extends LineString | MultiLineString>(
 ) {
   // Optional parameters
   var properties = options.properties;
-  var autoComplete = options.autoComplete;
-  var orderCoords = options.orderCoords;
-  var mutate = options.mutate;
-
-  // default params
-  autoComplete = autoComplete !== undefined ? autoComplete : true;
-  orderCoords = orderCoords !== undefined ? orderCoords : true;
-  mutate = mutate !== undefined ? mutate : false;
+  var autoComplete = options.autoComplete ?? true;
+  var orderCoords = options.orderCoords ?? true;
+  var mutate = options.mutate ?? false;
 
   if (!mutate) {
     lines = clone(lines);
@@ -57,7 +54,7 @@ function lineToPolygon<G extends LineString | MultiLineString>(
 
   switch (lines.type) {
     case "FeatureCollection":
-      var coords = [];
+      var coords: number[][][][] = [];
       lines.features.forEach(function (line) {
         coords.push(
           getCoords(lineStringToPolygon(line, {}, autoComplete, orderCoords))
@@ -81,7 +78,7 @@ function lineToPolygon<G extends LineString | MultiLineString>(
  */
 function lineStringToPolygon<G extends LineString | MultiLineString>(
   line: Feature<G> | G,
-  properties: Properties,
+  properties: Properties | undefined,
   autoComplete: boolean,
   orderCoords: boolean
 ) {
@@ -91,20 +88,20 @@ function lineStringToPolygon<G extends LineString | MultiLineString>(
     ? line.properties
     : {};
   var geom = getGeom(line);
-  var coords: any = geom.coordinates;
+  var coords: Position[] | Position[][] = geom.coordinates;
   var type = geom.type;
 
   if (!coords.length) throw new Error("line must contain coordinates");
 
   switch (type) {
     case "LineString":
-      if (autoComplete) coords = autoCompleteCoords(coords);
-      return polygon([coords], properties);
+      if (autoComplete) coords = autoCompleteCoords(coords as Position[]);
+      return polygon([coords as Position[]], properties);
     case "MultiLineString":
-      var multiCoords = [];
+      var multiCoords: number[][][] = [];
       var largestArea = 0;
 
-      coords.forEach(function (coord) {
+      (coords as Position[][]).forEach(function (coord) {
         if (autoComplete) coord = autoCompleteCoords(coord);
 
         // Largest LineString to be placed in the first position of the coordinates array
@@ -131,7 +128,7 @@ function lineStringToPolygon<G extends LineString | MultiLineString>(
  * @param {Array<Array<number>>} coords Coordinates
  * @returns {Array<Array<number>>} auto completed coordinates
  */
-function autoCompleteCoords(coords) {
+function autoCompleteCoords(coords: Position[]) {
   var first = coords[0];
   var x1 = first[0];
   var y1 = first[1];
@@ -151,7 +148,7 @@ function autoCompleteCoords(coords) {
  * @param {Array<number>} bbox BBox [west, south, east, north]
  * @returns {number} very quick area calculation
  */
-function calculateArea(bbox) {
+function calculateArea(bbox: BBox) {
   var west = bbox[0];
   var south = bbox[1];
   var east = bbox[2];

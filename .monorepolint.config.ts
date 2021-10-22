@@ -60,6 +60,7 @@ module.exports = {
           "bugs",
           "homepage",
           "repository",
+          "funding",
           "publishConfig",
           "keywords",
           "main",
@@ -139,6 +140,13 @@ module.exports = {
           },
         },
         includePackages: JS_PACKAGES,
+      },
+      {
+        options: {
+          entries: {
+            funding: "https://opencollective.com/turf",
+          },
+        },
       },
     ],
 
@@ -238,6 +246,9 @@ module.exports = {
       },
       {
         options: {
+          dependencies: {
+            tslib: "^2.3.0",
+          },
           devDependencies: {
             "ts-node": "*",
             typescript: "*",

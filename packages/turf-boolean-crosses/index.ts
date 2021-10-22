@@ -2,7 +2,14 @@ import lineIntersect from "@turf/line-intersect";
 import { polygonToLine } from "@turf/polygon-to-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
-import { point, Feature, Geometry, Polygon } from "@turf/helpers";
+import {
+  point,
+  Feature,
+  Geometry,
+  Polygon,
+  LineString,
+  MultiPoint,
+} from "@turf/helpers";
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -10,6 +17,7 @@ import { point, Feature, Geometry, Polygon } from "@turf/helpers";
  * both source geometries.
  *
  * Boolean-Crosses returns t (TRUE) for only multipoint/polygon, multipoint/linestring, linestring/linestring, linestring/polygon, and linestring/multipolygon comparisons.
+ * Other comparisons are not supported as they are outside the OpenGIS Simple Features spec and may give unexpected results.
  *
  * @name booleanCrosses
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
@@ -66,7 +74,10 @@ function booleanCrosses(
   }
 }
 
-function doMultiPointAndLineStringCross(multiPoint, lineString) {
+function doMultiPointAndLineStringCross(
+  multiPoint: MultiPoint,
+  lineString: LineString
+) {
   var foundIntPoint = false;
   var foundExtPoint = false;
   var pointLength = multiPoint.coordinates.length;
@@ -95,7 +106,7 @@ function doMultiPointAndLineStringCross(multiPoint, lineString) {
   return foundIntPoint && foundExtPoint;
 }
 
-function doLineStringsCross(lineString1, lineString2) {
+function doLineStringsCross(lineString1: LineString, lineString2: LineString) {
   var doLinesIntersect = lineIntersect(lineString1, lineString2);
   if (doLinesIntersect.features.length > 0) {
     for (var i = 0; i < lineString1.coordinates.length - 1; i++) {
@@ -120,7 +131,7 @@ function doLineStringsCross(lineString1, lineString2) {
   return false;
 }
 
-function doLineStringAndPolygonCross(lineString, polygon: Polygon) {
+function doLineStringAndPolygonCross(lineString: LineString, polygon: Polygon) {
   const line: any = polygonToLine(polygon);
   const doLinesIntersect = lineIntersect(lineString, line);
   if (doLinesIntersect.features.length > 0) {
@@ -129,21 +140,19 @@ function doLineStringAndPolygonCross(lineString, polygon: Polygon) {
   return false;
 }
 
-function doesMultiPointCrossPoly(multiPoint, polygon) {
+function doesMultiPointCrossPoly(multiPoint: MultiPoint, polygon: Polygon) {
   var foundIntPoint = false;
   var foundExtPoint = false;
-  var pointLength = multiPoint.coordinates[0].length;
-  var i = 0;
-  while (i < pointLength && foundIntPoint && foundExtPoint) {
-    if (booleanPointInPolygon(point(multiPoint.coordinates[0][i]), polygon)) {
+  var pointLength = multiPoint.coordinates.length;
+  for (let i = 0; i < pointLength && (!foundIntPoint || !foundExtPoint); i++) {
+    if (booleanPointInPolygon(point(multiPoint.coordinates[i]), polygon)) {
       foundIntPoint = true;
     } else {
       foundExtPoint = true;
     }
-    i++;
   }
 
-  return foundExtPoint && foundExtPoint;
+  return foundExtPoint && foundIntPoint;
 }
 
 /**
@@ -158,7 +167,12 @@ function doesMultiPointCrossPoly(multiPoint, polygon) {
  * @param {boolean} incEnd whether the point is allowed to fall on the line ends
  * @returns {boolean} true/false
  */
-function isPointOnLineSegment(lineSegmentStart, lineSegmentEnd, pt, incEnd) {
+function isPointOnLineSegment(
+  lineSegmentStart: number[],
+  lineSegmentEnd: number[],
+  pt: number[],
+  incEnd: boolean
+) {
   var dxc = pt[0] - lineSegmentStart[0];
   var dyc = pt[1] - lineSegmentStart[1];
   var dxl = lineSegmentEnd[0] - lineSegmentStart[0];

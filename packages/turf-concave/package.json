@@ -1,6 +1,6 @@
 {
   "name": "@turf/concave",
-  "version": "6.3.0",
+  "version": "6.5.0",
   "description": "turf concave module",
   "author": "Turf Authors",
   "contributors": [
@@ -23,6 +23,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -57,7 +58,8 @@
   },
   "devDependencies": {
     "@types/tape": "*",
-    "@types/topojson": "*",
+    "@types/topojson-client": "^3.0.0",
+    "@types/topojson-server": "^3.0.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -68,13 +70,14 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clone": "^6.3.0",
-    "@turf/distance": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0",
-    "@turf/meta": "^6.3.0",
-    "@turf/tin": "^6.3.0",
+    "@turf/clone": "^6.5.0",
+    "@turf/distance": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
+    "@turf/invariant": "^6.5.0",
+    "@turf/meta": "^6.5.0",
+    "@turf/tin": "^6.5.0",
     "topojson-client": "3.x",
-    "topojson-server": "3.x"
+    "topojson-server": "3.x",
+    "tslib": "^2.3.0"
   }
 }

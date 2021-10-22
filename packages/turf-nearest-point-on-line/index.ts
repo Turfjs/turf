@@ -66,16 +66,16 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     for (let i = 0; i < coords.length - 1; i++) {
       //start
       const start = point(coords[i]);
-      start.properties.dist = distance(pt, start, options);
+      start.properties!.dist = distance(pt, start, options);
       //stop
       const stop = point(coords[i + 1]);
-      stop.properties.dist = distance(pt, stop, options);
+      stop.properties!.dist = distance(pt, stop, options);
       // sectionLength
       const sectionLength = distance(start, stop, options);
       //perpendicular
       const heightDistance = Math.max(
-        start.properties.dist,
-        stop.properties.dist
+        start.properties!.dist,
+        stop.properties!.dist
       );
       const direction = bearing(start, stop);
       const perpendicularPt1 = destination(
@@ -100,24 +100,24 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
       let intersectPt = null;
       if (intersect.features.length > 0) {
         intersectPt = intersect.features[0];
-        intersectPt.properties.dist = distance(pt, intersectPt, options);
-        intersectPt.properties.location =
+        intersectPt.properties!.dist = distance(pt, intersectPt, options);
+        intersectPt.properties!.location =
           length + distance(start, intersectPt, options);
       }
 
-      if (start.properties.dist < closestPt.properties.dist) {
+      if (start.properties!.dist < closestPt.properties.dist) {
         closestPt = start;
         closestPt.properties.index = i;
         closestPt.properties.location = length;
       }
-      if (stop.properties.dist < closestPt.properties.dist) {
+      if (stop.properties!.dist < closestPt.properties.dist) {
         closestPt = stop;
         closestPt.properties.index = i + 1;
         closestPt.properties.location = length + sectionLength;
       }
       if (
         intersectPt &&
-        intersectPt.properties.dist < closestPt.properties.dist
+        intersectPt.properties!.dist < closestPt.properties.dist
       ) {
         closestPt = intersectPt;
         closestPt.properties.index = i;

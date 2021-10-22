@@ -1,6 +1,6 @@
 {
   "name": "@turf/invariant",
-  "version": "6.3.0",
+  "version": "6.5.0",
   "description": "turf invariant module",
   "author": "Turf Authors",
   "contributors": [
@@ -16,6 +16,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -57,6 +58,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.3.0"
+    "@turf/helpers": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

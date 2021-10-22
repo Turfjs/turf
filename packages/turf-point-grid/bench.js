@@ -40,5 +40,4 @@ suite
     grid(mask, 10, { units: "miles", mask: mask })
   )
   .on("cycle", (e) => console.log(String(e.target)))
-  .on("complete", () => {})
   .run();

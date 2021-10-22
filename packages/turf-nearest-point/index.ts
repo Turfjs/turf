@@ -44,8 +44,8 @@ function nearestPoint(
   if (!points) throw new Error("points is required");
 
   let nearest: NearestPoint;
-  let minDist: number = Infinity;
-  let bestFeatureIndex: number = 0;
+  let minDist = Infinity;
+  let bestFeatureIndex = 0;
   featureEach(points, (pt, featureIndex) => {
     const distanceToPoint = distance(targetPoint, pt);
     if (distanceToPoint < minDist) {

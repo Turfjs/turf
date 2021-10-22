@@ -58,12 +58,12 @@ export default function directionalMean(
     segment?: boolean;
   } = {}
 ): DirectionalMeanLine {
-  const isPlanar: boolean = !!options.planar; // you can't use options.planar || true here.
+  const isPlanar = !!options.planar; // you can't use options.planar || true here.
   const isSegment: boolean = options.segment || false;
-  let sigmaSin: number = 0;
-  let sigmaCos: number = 0;
-  let countOfLines: number = 0;
-  let sumOfLen: number = 0;
+  let sigmaSin = 0;
+  let sigmaCos = 0;
+  let countOfLines = 0;
+  let sumOfLen = 0;
   const centroidList: Array<Feature<Point>> = [];
 
   if (isSegment) {
@@ -172,8 +172,8 @@ function getLengthOfLineString(line: Feature<LineString>, isPlanar: boolean) {
     return segmentReduce<number>(
       line,
       (previousValue?: number, segment?: Feature<LineString>): number => {
-        const coords = segment.geometry.coordinates; // the signatrue of segmentReduce has problem ?
-        return previousValue + euclideanDistance(coords);
+        const coords = segment!.geometry.coordinates; // the signatrue of segmentReduce has problem ?
+        return previousValue! + euclideanDistance(coords);
       },
       0
     );
@@ -231,7 +231,7 @@ function getCosAndSin(
 }
 
 function getAngleBySinAndCos(sin1: number, cos1: number): number {
-  let angle: number = 0;
+  let angle = 0;
   if (Math.abs(cos1) < 0.000000001) {
     angle = 90;
   } else {

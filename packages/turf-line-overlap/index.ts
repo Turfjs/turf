@@ -13,6 +13,7 @@ import {
   MultiLineString,
   Polygon,
   MultiPolygon,
+  Properties,
 } from "@turf/helpers";
 import equal from "deep-equal";
 
@@ -48,7 +49,7 @@ function lineOverlap<
   var tolerance = options.tolerance || 0;
 
   // Containers
-  var features = [];
+  var features: Feature<LineString, Properties>[] = [];
 
   // Create Spatial Index
   var tree = rbush();
@@ -56,13 +57,18 @@ function lineOverlap<
   // To-Do -- HACK way to support typescript
   const line: any = lineSegment(line1);
   tree.load(line);
-  var overlapSegment;
+  var overlapSegment: Feature<LineString> | undefined;
+  let additionalSegments: Feature<LineString>[] = [];
 
   // Line Intersection
 
   // Iterate over line segments
   segmentEach(line2, function (segment) {
     var doesOverlaps = false;
+
+    if (!segment) {
+      return;
+    }
 
     // Iterate over each segments which falls within the same bounds
     featureEach(tree.search(segment), function (match) {
@@ -74,37 +80,44 @@ function lineOverlap<
         if (equal(coordsSegment, coordsMatch)) {
           doesOverlaps = true;
           // Overlaps already exists - only append last coordinate of segment
-          if (overlapSegment)
-            overlapSegment = concatSegment(overlapSegment, segment);
-          else overlapSegment = segment;
+          if (overlapSegment) {
+            overlapSegment =
+              concatSegment(overlapSegment, segment) || overlapSegment;
+          } else overlapSegment = segment;
           // Match segments which don't share nodes (Issue #901)
         } else if (
           tolerance === 0
             ? booleanPointOnLine(coordsSegment[0], match) &&
               booleanPointOnLine(coordsSegment[1], match)
-            : nearestPointOnLine(match, coordsSegment[0]).properties.dist <=
+            : nearestPointOnLine(match, coordsSegment[0]).properties.dist! <=
                 tolerance &&
-              nearestPointOnLine(match, coordsSegment[1]).properties.dist <=
+              nearestPointOnLine(match, coordsSegment[1]).properties.dist! <=
                 tolerance
         ) {
           doesOverlaps = true;
-          if (overlapSegment)
-            overlapSegment = concatSegment(overlapSegment, segment);
-          else overlapSegment = segment;
+          if (overlapSegment) {
+            overlapSegment =
+              concatSegment(overlapSegment, segment) || overlapSegment;
+          } else overlapSegment = segment;
         } else if (
           tolerance === 0
             ? booleanPointOnLine(coordsMatch[0], segment) &&
               booleanPointOnLine(coordsMatch[1], segment)
-            : nearestPointOnLine(segment, coordsMatch[0]).properties.dist <=
+            : nearestPointOnLine(segment, coordsMatch[0]).properties.dist! <=
                 tolerance &&
-              nearestPointOnLine(segment, coordsMatch[1]).properties.dist <=
+              nearestPointOnLine(segment, coordsMatch[1]).properties.dist! <=
                 tolerance
         ) {
           // Do not define (doesOverlap = true) since more matches can occur within the same segment
           // doesOverlaps = true;
-          if (overlapSegment)
-            overlapSegment = concatSegment(overlapSegment, match);
-          else overlapSegment = match;
+          if (overlapSegment) {
+            const combinedSegment = concatSegment(overlapSegment, match);
+            if (combinedSegment) {
+              overlapSegment = combinedSegment;
+            } else {
+              additionalSegments.push(match);
+            }
+          } else overlapSegment = match;
         }
       }
     });
@@ -112,6 +125,10 @@ function lineOverlap<
     // Segment doesn't overlap - add overlaps to results & reset
     if (doesOverlaps === false && overlapSegment) {
       features.push(overlapSegment);
+      if (additionalSegments.length) {
+        features = features.concat(additionalSegments);
+        additionalSegments = [];
+      }
       overlapSegment = undefined;
     }
   });
@@ -129,7 +146,10 @@ function lineOverlap<
  * @param {Feature<LineString>} segment 2-vertex LineString
  * @returns {Feature<LineString>} concat linestring
  */
-function concatSegment(line, segment) {
+function concatSegment(
+  line: Feature<LineString>,
+  segment: Feature<LineString>
+) {
   var coords = getCoords(segment);
   var lineCoords = getCoords(line);
   var start = lineCoords[0];
@@ -140,6 +160,9 @@ function concatSegment(line, segment) {
   else if (equal(coords[0], end)) geom.push(coords[1]);
   else if (equal(coords[1], start)) geom.unshift(coords[0]);
   else if (equal(coords[1], end)) geom.push(coords[0]);
+  else return; // If the overlap leaves the segment unchanged, return undefined so that this can be identified.
+
+  // Otherwise return the mutated line.
   return line;
 }
 

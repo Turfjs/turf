@@ -3,10 +3,10 @@ import { coordAll, featureEach } from "@turf/meta";
 import { FeatureCollection, Point, Properties } from "@turf/helpers";
 import skmeans from "skmeans";
 
-export interface KmeansProps extends Properties {
+export type KmeansProps = Properties & {
   cluster?: number;
   centroid?: [number, number];
-}
+};
 
 /**
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .
@@ -58,19 +58,22 @@ function clustersKmeans(
   var skmeansResult = skmeans(data, options.numberOfClusters, initialCentroids);
 
   // store centroids {clusterId: [number, number]}
-  var centroids = {};
-  skmeansResult.centroids.forEach(function (coord, idx) {
+  var centroids: Record<string, number[]> = {};
+  (skmeansResult.centroids as number[][]).forEach(function (
+    coord: number[],
+    idx: number
+  ) {
     centroids[idx] = coord;
   });
 
   // add associated cluster number
   featureEach(points, function (point, index) {
     var clusterId = skmeansResult.idxs[index];
-    point.properties.cluster = clusterId;
-    point.properties.centroid = centroids[clusterId];
+    point.properties!.cluster = clusterId;
+    point.properties!.centroid = centroids[clusterId];
   });
 
-  return points;
+  return points as FeatureCollection<Point, KmeansProps>;
 }
 
 export default clustersKmeans;

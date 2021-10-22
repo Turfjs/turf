@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-overlap",
-  "version": "6.3.0",
+  "version": "6.5.0",
   "description": "turf line-overlap module",
   "author": "Turf Authors",
   "contributors": [
@@ -15,6 +15,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -50,6 +51,7 @@
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
+    "@types/deep-equal": "^1.0.1",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -61,13 +63,14 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-on-line": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0",
-    "@turf/line-segment": "^6.3.0",
-    "@turf/meta": "^6.3.0",
-    "@turf/nearest-point-on-line": "^6.3.0",
+    "@turf/boolean-point-on-line": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
+    "@turf/invariant": "^6.5.0",
+    "@turf/line-segment": "^6.5.0",
+    "@turf/meta": "^6.5.0",
+    "@turf/nearest-point-on-line": "^6.5.0",
     "deep-equal": "1.x",
-    "geojson-rbush": "3.x"
+    "geojson-rbush": "3.x",
+    "tslib": "^2.3.0"
   }
 }

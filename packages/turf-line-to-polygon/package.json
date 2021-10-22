@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-to-polygon",
-  "version": "6.3.0",
+  "version": "6.5.0",
   "description": "turf line-to-polygon module",
   "author": "Turf Authors",
   "contributors": [
@@ -15,6 +15,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -61,9 +62,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.3.0",
-    "@turf/clone": "^6.3.0",
-    "@turf/helpers": "^6.3.0",
-    "@turf/invariant": "^6.3.0"
+    "@turf/bbox": "^6.5.0",
+    "@turf/clone": "^6.5.0",
+    "@turf/helpers": "^6.5.0",
+    "@turf/invariant": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

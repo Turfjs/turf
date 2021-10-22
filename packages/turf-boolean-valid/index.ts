@@ -1,5 +1,11 @@
 import { getGeom } from "@turf/invariant";
-import { polygon, lineString, Feature, Geometry } from "@turf/helpers";
+import {
+  polygon,
+  lineString,
+  Feature,
+  Geometry,
+  Position,
+} from "@turf/helpers";
 import booleanDisjoint from "@turf/boolean-disjoint";
 import booleanCrosses from "@turf/boolean-crosses";
 import lineIntersect from "@turf/line-intersect";
@@ -87,14 +93,14 @@ export default function booleanValid(feature: Feature<any> | Geometry) {
   }
 }
 
-function checkRingsClose(geom) {
+function checkRingsClose(geom: Position[]) {
   return (
     geom[0][0] === geom[geom.length - 1][0] ||
     geom[0][1] === geom[geom.length - 1][1]
   );
 }
 
-function checkRingsForSpikesPunctures(geom) {
+function checkRingsForSpikesPunctures(geom: Position[]) {
   for (var i = 0; i < geom.length - 1; i++) {
     var point = geom[i];
     for (var ii = i + 1; ii < geom.length - 2; ii++) {
@@ -105,7 +111,11 @@ function checkRingsForSpikesPunctures(geom) {
   return false;
 }
 
-function checkPolygonAgainstOthers(poly, geom, index) {
+function checkPolygonAgainstOthers(
+  poly: Position[][],
+  geom: Position[][][],
+  index: number
+) {
   var polyToCheck = polygon(poly);
   for (var i = index + 1; i < geom.length; i++) {
     if (!booleanDisjoint(polyToCheck, polygon(geom[i]))) {

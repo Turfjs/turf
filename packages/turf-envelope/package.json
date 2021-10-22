@@ -1,6 +1,6 @@
 {
   "name": "@turf/envelope",
-  "version": "6.3.0",
+  "version": "6.5.0",
   "description": "turf envelope module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git://github.com/Turfjs/turf.git"
   },
+  "funding": "https://opencollective.com/turf",
   "publishConfig": {
     "access": "public"
   },
@@ -52,8 +53,8 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.3.0",
-    "@turf/bbox-polygon": "^6.3.0",
-    "@turf/helpers": "^6.3.0"
+    "@turf/bbox": "^6.5.0",
+    "@turf/bbox-polygon": "^6.5.0",
+    "@turf/helpers": "^6.5.0"
   }
 }

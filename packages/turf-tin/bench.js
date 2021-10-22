@@ -11,5 +11,4 @@ const suite = new Benchmark.Suite("turf-tin");
 suite
   .add("turf-tin", () => tin(points, "elevation"))
   .on("cycle", (event) => console.log(String(event.target)))
-  .on("complete", () => {})
   .run();

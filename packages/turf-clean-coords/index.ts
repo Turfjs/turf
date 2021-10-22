@@ -1,4 +1,4 @@
-import { feature } from "@turf/helpers";
+import { feature, Position } from "@turf/helpers";
 import { getCoords, getType } from "@turf/invariant";
 
 // To-Do => Improve Typescript GeoJSON handling
@@ -37,19 +37,19 @@ function cleanCoords(
 
   switch (type) {
     case "LineString":
-      newCoords = cleanLine(geojson);
+      newCoords = cleanLine(geojson, type);
       break;
     case "MultiLineString":
     case "Polygon":
       getCoords(geojson).forEach(function (line) {
-        newCoords.push(cleanLine(line));
+        newCoords.push(cleanLine(line, type));
       });
       break;
     case "MultiPolygon":
       getCoords(geojson).forEach(function (polygons: any) {
-        var polyPoints = [];
-        polygons.forEach(function (ring) {
-          polyPoints.push(cleanLine(ring));
+        var polyPoints: Position[] = [];
+        polygons.forEach(function (ring: Position[]) {
+          polyPoints.push(cleanLine(ring, type));
         });
         newCoords.push(polyPoints);
       });
@@ -57,10 +57,10 @@ function cleanCoords(
     case "Point":
       return geojson;
     case "MultiPoint":
-      var existing = {};
+      var existing: Record<string, true> = {};
       getCoords(geojson).forEach(function (coord: any) {
         var key = coord.join("-");
-        if (!existing.hasOwnProperty(key)) {
+        if (!Object.prototype.hasOwnProperty.call(existing, key)) {
           newCoords.push(coord);
           existing[key] = true;
         }
@@ -94,9 +94,10 @@ function cleanCoords(
  *
  * @private
  * @param {Array<number>|LineString} line Line
+ * @param {string} type Type of geometry
  * @returns {Array<number>} Cleaned coordinates
  */
-function cleanLine(line) {
+function cleanLine(line: Position[], type: string) {
   var points = getCoords(line);
   // handle "clean" segment
   if (points.length === 2 && !equals(points[0], points[1])) return points;
@@ -129,10 +130,17 @@ function cleanLine(line) {
     }
   }
   newPoints.push(points[points.length - 1]);
-
   newPointsLength = newPoints.length;
-  if (equals(points[0], points[points.length - 1]) && newPointsLength < 4)
+
+  // (Multi)Polygons must have at least 4 points, but a closed LineString with only 3 points is acceptable
+  if (
+    (type === "Polygon" || type === "MultiPolygon") &&
+    equals(points[0], points[points.length - 1]) &&
+    newPointsLength < 4
+  ) {
     throw new Error("invalid polygon");
+  }
+
   if (
     isPointOnLineSegment(
       newPoints[newPointsLength - 3],
@@ -153,7 +161,7 @@ function cleanLine(line) {
  * @param {Position} pt2 point
  * @returns {boolean} true if they are equals
  */
-function equals(pt1, pt2) {
+function equals(pt1: Position, pt2: Position) {
   return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
 
@@ -167,7 +175,7 @@ function equals(pt1, pt2) {
  * @param {Position} point coord pair of point to check
  * @returns {boolean} true/false
  */
-function isPointOnLineSegment(start, end, point) {
+function isPointOnLineSegment(start: Position, end: Position, point: Position) {
   var x = point[0],
     y = point[1];
   var startX = start[0],
