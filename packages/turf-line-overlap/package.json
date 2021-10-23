@@ -70,6 +70,7 @@
     "@turf/line-segment": "^6.5.0",
     "@turf/meta": "^6.5.0",
     "@turf/nearest-point-on-line": "^6.5.0",
-    "deep-equal": "1.x"
+    "deep-equal": "1.x",
+    "tslib": "^2.3.0"
   }
 }

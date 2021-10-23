@@ -5,5 +5,5 @@ import { FeatureCollection, BBox, Point, Polygon } from "geojson";
  */
 export default function voronoi(
   points: FeatureCollection<Point>,
-  options: { bbox: BBox }
+  options?: { bbox: BBox }
 ): FeatureCollection<Polygon>;

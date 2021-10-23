@@ -91,6 +91,13 @@ test("bbox", (t) => {
   const multiPolyBBox = bbox(multiPoly);
   t.deepEqual(multiPolyBBox, [100, 0, 103, 3], "multiPolygon");
 
+  t.deepEqual(bbox({ ...pt, bbox: [] }), [], "uses built-in bbox by default");
+  t.deepEqual(
+    bbox({ ...pt, bbox: [] }, { recompute: true }),
+    [102, 0.5, 102, 0.5],
+    "recomputes bbox with recompute option"
+  );
+
   t.end();
 });
 

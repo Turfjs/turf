@@ -11,6 +11,7 @@ import { point } from "@turf/helpers";
  * both source geometries.
  *
  * Boolean-Crosses returns t (TRUE) for only multipoint/polygon, multipoint/linestring, linestring/linestring, linestring/polygon, and linestring/multipolygon comparisons.
+ * Other comparisons are not supported as they are outside the OpenGIS Simple Features spec and may give unexpected results.
  *
  * @name booleanCrosses
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry

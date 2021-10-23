@@ -57,6 +57,7 @@ function lineOverlap<
   const line: any = lineSegment(line1);
   tree.load(line);
   var overlapSegment: Feature<LineString> | undefined;
+  let additionalSegments: Feature<LineString>[] = [];
 
   // Line Intersection
 
@@ -78,9 +79,10 @@ function lineOverlap<
         if (equal(coordsSegment, coordsMatch)) {
           doesOverlaps = true;
           // Overlaps already exists - only append last coordinate of segment
-          if (overlapSegment)
-            overlapSegment = concatSegment(overlapSegment, segment);
-          else overlapSegment = segment;
+          if (overlapSegment) {
+            overlapSegment =
+              concatSegment(overlapSegment, segment) || overlapSegment;
+          } else overlapSegment = segment;
           // Match segments which don't share nodes (Issue #901)
         } else if (
           tolerance === 0
@@ -92,9 +94,10 @@ function lineOverlap<
                 tolerance
         ) {
           doesOverlaps = true;
-          if (overlapSegment)
-            overlapSegment = concatSegment(overlapSegment, segment);
-          else overlapSegment = segment;
+          if (overlapSegment) {
+            overlapSegment =
+              concatSegment(overlapSegment, segment) || overlapSegment;
+          } else overlapSegment = segment;
         } else if (
           tolerance === 0
             ? booleanPointOnLine(coordsMatch[0], segment) &&
@@ -106,9 +109,14 @@ function lineOverlap<
         ) {
           // Do not define (doesOverlap = true) since more matches can occur within the same segment
           // doesOverlaps = true;
-          if (overlapSegment)
-            overlapSegment = concatSegment(overlapSegment, match);
-          else overlapSegment = match;
+          if (overlapSegment) {
+            const combinedSegment = concatSegment(overlapSegment, match);
+            if (combinedSegment) {
+              overlapSegment = combinedSegment;
+            } else {
+              additionalSegments.push(match);
+            }
+          } else overlapSegment = match;
         }
       }
     });
@@ -116,6 +124,10 @@ function lineOverlap<
     // Segment doesn't overlap - add overlaps to results & reset
     if (doesOverlaps === false && overlapSegment) {
       features.push(overlapSegment);
+      if (additionalSegments.length) {
+        features = features.concat(additionalSegments);
+        additionalSegments = [];
+      }
       overlapSegment = undefined;
     }
   });
@@ -147,6 +159,9 @@ function concatSegment(
   else if (equal(coords[0], end)) geom.push(coords[1]);
   else if (equal(coords[1], start)) geom.unshift(coords[0]);
   else if (equal(coords[1], end)) geom.push(coords[0]);
+  else return; // If the overlap leaves the segment unchanged, return undefined so that this can be identified.
+
+  // Otherwise return the mutated line.
   return line;
 }
 
