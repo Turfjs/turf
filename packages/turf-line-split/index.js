@@ -1,4 +1,4 @@
-import rbush from "geojson-rbush";
+import rbush from "@turf/geojson-rbush";
 import square from "@turf/square";
 import bbox from "@turf/bbox";
 import truncate from "@turf/truncate";

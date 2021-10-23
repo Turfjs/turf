@@ -11,7 +11,7 @@ import { feature, featureCollection, point } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 import lineSegment from "@turf/line-segment";
 import { featureEach } from "@turf/meta";
-import rbush from "geojson-rbush";
+import rbush from "@turf/geojson-rbush";
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).

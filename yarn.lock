@@ -1174,6 +1174,17 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
+"@turf/geojson-rbush@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@turf/geojson-rbush/-/geojson-rbush-3.2.0.tgz#325a86348e62364c685f8f1548e1ff6b4f0b339b"
+  integrity sha512-1OGzZpjSiy7i/ZfFAV9859l1SdLpUshNyvTZCLbdSbDOrXc3ePsBeuJ4+MBDRbAF0p1ms6FdjAKcWT4nYjgWXg==
+  dependencies:
+    "@turf/bbox" "*"
+    "@turf/helpers" "6.x"
+    "@turf/meta" "6.x"
+    "@types/geojson" "7946.0.8"
+    rbush "^3.0.1"
+
 "@turf/helpers@5.x", "@turf/helpers@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-5.1.5.tgz#153405227ab933d004a5bb9641a9ed999fcbe0cf"
@@ -3700,17 +3711,6 @@ geojson-polygon-self-intersections@1.2.x:
   resolved "https://registry.yarnpkg.com/geojson-polygon-self-intersections/-/geojson-polygon-self-intersections-1.2.0.tgz#451c49e89e0103588c6252363c598d73716b1746"
   dependencies:
     rbush "^2.0.1"
-
-geojson-rbush@3.x:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/geojson-rbush/-/geojson-rbush-3.2.0.tgz#8b543cf0d56f99b78faf1da52bb66acad6dfc290"
-  integrity sha512-oVltQTXolxvsz1sZnutlSuLDEcQAKYC/uXt9zDzJJ6bu0W+baTI8LZBaTup5afzibEH4N3jlq2p+a152wlBJ7w==
-  dependencies:
-    "@turf/bbox" "*"
-    "@turf/helpers" "6.x"
-    "@turf/meta" "6.x"
-    "@types/geojson" "7946.0.8"
-    rbush "^3.0.1"
 
 geojsonhint@^1.0.0:
   version "1.2.1"

@@ -63,10 +63,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
+    "@turf/geojson-rbush": "^3.2.0",
     "@turf/helpers": "^6.5.0",
     "@turf/invariant": "^6.5.0",
     "@turf/line-segment": "^6.5.0",
-    "@turf/meta": "^6.5.0",
-    "geojson-rbush": "3.x"
+    "@turf/meta": "^6.5.0"
   }
 }
