@@ -1,14 +1,18 @@
 import intersect from "@turf/boolean-intersects";
 import {
   BBox,
-  convertLength,
   Feature,
   FeatureCollection,
   MultiPolygon,
   Polygon,
   GeoJsonProperties,
 } from "geojson";
-import { featureCollection, polygon, Units } from "@turf/helpers";
+import {
+  convertLength,
+  featureCollection,
+  polygon,
+  Units,
+} from "@turf/helpers";
 /**
  * Creates a grid of rectangles from a bounding box, {@link Feature} or {@link FeatureCollection}.
  *
