@@ -7,7 +7,7 @@ import {
   MultiLineString,
   Polygon,
   MultiPolygon,
-} from "@turf/helpers";
+} from "geojson";
 
 export type Splitter = Feature<
   Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon

@@ -1,4 +1,5 @@
-import { BBox, polygon } from "@turf/helpers";
+import { BBox } from "geojson";
+import { polygon } from "@turf/helpers";
 import pointGrid from "./dist/js/index";
 
 const cellSide = 50;

@@ -1,18 +1,10 @@
+import { Feature, Point, LineString, MultiLineString } from "geojson";
 import bearing from "@turf/bearing";
 import distance from "@turf/distance";
 import destination from "@turf/destination";
 import lineIntersects from "@turf/line-intersect";
 import { flattenEach } from "@turf/meta";
-import {
-  point,
-  lineString,
-  Feature,
-  Point,
-  LineString,
-  MultiLineString,
-  Coord,
-  Units,
-} from "@turf/helpers";
+import { point, lineString, Coord, Units } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 
 export interface NearestPointOnLine extends Feature<Point> {

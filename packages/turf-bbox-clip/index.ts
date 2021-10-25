@@ -2,14 +2,17 @@ import {
   BBox,
   Feature,
   LineString,
+  MultiLineString,
+  MultiPolygon,
+  GeoJsonProperties,
+  Polygon,
+} from "geojson";
+
+import {
   lineString,
   multiLineString,
-  MultiLineString,
   multiPolygon,
-  MultiPolygon,
   polygon,
-  Polygon,
-  Properties,
 } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 import { lineclip, polygonclip } from "./lib/lineclip";
@@ -34,7 +37,7 @@ import { lineclip, polygonclip } from "./lib/lineclip";
  */
 export default function bboxClip<
   G extends Polygon | MultiPolygon | LineString | MultiLineString,
-  P = Properties
+  P = GeoJsonProperties
 >(feature: Feature<G, P> | G, bbox: BBox) {
   const geom = getGeom(feature);
   const type = geom.type;

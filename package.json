@@ -34,7 +34,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
-    "@types/geojson": "*",
+    "@types/geojson": "7946.0.8",
     "@types/node": "*",
     "@typescript-eslint/eslint-plugin": "^4.8.0",
     "@typescript-eslint/parser": "^4.8.0",

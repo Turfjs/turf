@@ -5,7 +5,7 @@ import {
   Point,
   Polygon,
   Position,
-} from "@turf/helpers";
+} from "geojson";
 import * as invariant from "./index";
 
 /**

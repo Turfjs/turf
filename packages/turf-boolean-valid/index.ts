@@ -1,11 +1,6 @@
+import { Feature, Geometry, Position } from "geojson";
 import { getGeom } from "@turf/invariant";
-import {
-  polygon,
-  lineString,
-  Feature,
-  Geometry,
-  Position,
-} from "@turf/helpers";
+import { polygon, lineString } from "@turf/helpers";
 import booleanDisjoint from "@turf/boolean-disjoint";
 import booleanCrosses from "@turf/boolean-crosses";
 import lineIntersect from "@turf/line-intersect";

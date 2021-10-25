@@ -1,17 +1,15 @@
-import turfBBox from "@turf/bbox";
-import { getCoords, getGeom } from "@turf/invariant";
 import {
-  polygon,
-  multiPolygon,
-  lineString,
   Feature,
   FeatureCollection,
   MultiLineString,
   LineString,
-  Properties,
+  GeoJsonProperties,
   BBox,
   Position,
-} from "@turf/helpers";
+} from "geojson";
+import turfBBox from "@turf/bbox";
+import { getCoords, getGeom } from "@turf/invariant";
+import { polygon, multiPolygon, lineString } from "@turf/helpers";
 import clone from "@turf/clone";
 
 /**
@@ -36,7 +34,7 @@ import clone from "@turf/clone";
 function lineToPolygon<G extends LineString | MultiLineString>(
   lines: Feature<G> | FeatureCollection<G> | G,
   options: {
-    properties?: Properties;
+    properties?: GeoJsonProperties;
     autoComplete?: boolean;
     orderCoords?: boolean;
     mutate?: boolean;
@@ -78,7 +76,7 @@ function lineToPolygon<G extends LineString | MultiLineString>(
  */
 function lineStringToPolygon<G extends LineString | MultiLineString>(
   line: Feature<G> | G,
-  properties: Properties | undefined,
+  properties: GeoJsonProperties | undefined,
   autoComplete: boolean,
   orderCoords: boolean
 ) {

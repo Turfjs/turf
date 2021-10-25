@@ -1,5 +1,6 @@
+import { Point } from "geojson";
 import * as clusters from "./";
-import { featureCollection, point, Point } from "@turf/helpers";
+import { featureCollection, point } from "@turf/helpers";
 import { getCluster, clusterEach, clusterReduce } from "./index";
 
 /**
