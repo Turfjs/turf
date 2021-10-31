@@ -4,7 +4,19 @@
 
 ## buffer
 
-Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
+Calculates a buffer for input features for a given radius. Units supported are:
+
+*   centimeters or centimetres
+*   degrees
+*   feet
+*   inches
+*   kilometers or kilometres
+*   meters, metres
+*   miles
+*   millimeters, millimetres
+*   nauticalmiles
+*   radians
+*   yards
 
 When using a negative radius, the resulting geometry may be invalid if
 it's too small compared to the radius magnitude. If the input is a
@@ -12,15 +24,16 @@ FeatureCollection, only valid members will be returned in the output
 FeatureCollection - i.e., the output collection may have fewer members than
 the input, or even be empty.
 
-**Parameters**
+### Parameters
 
--   `geojson` **([FeatureCollection][1] \| [Geometry][2] \| [Feature][3]&lt;any>)** input to be buffered
--   `radius` **[number][4]** distance to draw the buffer (negative values are allowed)
--   `options` **[Object][5]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][6]** any of the options supported by turf units (optional, default `"kilometers"`)
-    -   `options.steps` **[number][4]** number of steps (optional, default `8`)
+*   `geojson` **([FeatureCollection][1] | [Geometry][2] | [Feature][3]\<any>)** input to be buffered
+*   `radius` **[number][4]** distance to draw the buffer (negative values are allowed)
+*   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][6]** any of the options supported by turf units (optional, default `"kilometers"`)
+    *   `options.steps` **[number][4]** number of steps (optional, default `8`)
+
+### Examples
 
 ```javascript
 var point = turf.point([-90.548630, 14.616599]);
@@ -30,7 +43,7 @@ var buffered = turf.buffer(point, 500, {units: 'miles'});
 var addToMap = [point, buffered]
 ```
 
-Returns **([FeatureCollection][1] \| [Feature][3]&lt;([Polygon][7] \| [MultiPolygon][8])> | [undefined][9])** buffered features
+Returns **([FeatureCollection][1] | [Feature][3]<([Polygon][7] | [MultiPolygon][8])> | [undefined][9])** buffered features
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 
