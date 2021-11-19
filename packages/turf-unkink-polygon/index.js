@@ -1,7 +1,6 @@
 import { flattenEach, featureEach } from "@turf/meta";
 import { polygon, featureCollection } from "@turf/helpers";
 import simplepolygon from "./lib/simplepolygon";
-import { FeatureCollection, Polygon, Feature, MultiPolygon } from "geojson";
 
 /**
  * Takes a kinked polygon and returns a feature collection of polygons that have no kinks.
@@ -18,15 +17,11 @@ import { FeatureCollection, Polygon, Feature, MultiPolygon } from "geojson";
  * //addToMap
  * var addToMap = [poly, result]
  */
-function unkinkPolygon(
-  geojson:
-    | FeatureCollection<Polygon | MultiPolygon>
-    | Feature<Polygon | MultiPolygon>
-) {
+function unkinkPolygon(geojson) {
   var features = [];
   flattenEach(geojson, function (feature) {
     if (feature.geometry.type !== "Polygon") return;
-    featureEach(simplepolygon(feature), function (poly: Feature<Polygon>) {
+    featureEach(simplepolygon(feature), function (poly) {
       features.push(polygon(poly.geometry.coordinates, feature.properties));
     });
   });

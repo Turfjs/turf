@@ -1,15 +1,6 @@
-import { FeatureCollection, Polygon, Point } from "geojson";
-import turfbbox from "@turf/bbox";
+import { FeatureCollection, Polygon, Point, Feature } from "geojson";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import rbush from "rbush";
-
-interface Entry {
-  minX: number;
-  minY: number;
-  maxX: number;
-  maxY: number;
-  property: any;
-}
+import rbush from "@turf/geojson-rbush";
 
 /**
  * Merges a specified property from a FeatureCollection of points into a
@@ -47,34 +38,24 @@ function collect(
   inProperty: string,
   outProperty: string
 ): FeatureCollection<Polygon> {
-  var rtree = new rbush<Entry>(6);
+  const rtree = rbush(6);
 
-  var treeItems = points.features.map(function (item) {
-    return {
-      minX: item.geometry.coordinates[0],
-      minY: item.geometry.coordinates[1],
-      maxX: item.geometry.coordinates[0],
-      maxY: item.geometry.coordinates[1],
-      property: item.properties?.[inProperty],
-    };
-  });
-
-  rtree.load(treeItems);
+  rtree.load(points);
   polygons.features.forEach(function (poly) {
     if (!poly.properties) {
       poly.properties = {};
     }
-    var bbox = turfbbox(poly);
-    var potentialPoints = rtree.search({
-      minX: bbox[0],
-      minY: bbox[1],
-      maxX: bbox[2],
-      maxY: bbox[3],
-    });
+
+    var potentialPoints = rtree.search(poly) as FeatureCollection<Point>;
     var values: any[] = [];
-    potentialPoints.forEach(function (pt) {
-      if (booleanPointInPolygon([pt.minX, pt.minY], poly)) {
-        values.push(pt.property);
+    potentialPoints.features.forEach((pt: Feature<Point>) => {
+      if (
+        booleanPointInPolygon(
+          [pt.geometry.coordinates[0], pt.geometry.coordinates[1]],
+          poly
+        )
+      ) {
+        values.push(pt.properties?.[inProperty]);
       }
     });
 

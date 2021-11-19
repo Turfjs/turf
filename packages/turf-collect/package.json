@@ -51,7 +51,6 @@
     "test:tape": "ts-node -r esm test.js"
   },
   "devDependencies": {
-    "@types/rbush": "^2.0.3",
     "@types/tape": "*",
     "benchmark": "*",
     "npm-run-all": "*",
@@ -63,9 +62,8 @@
   "dependencies": {
     "@turf/bbox": "^6.5.0",
     "@turf/boolean-point-in-polygon": "^6.5.0",
+    "@turf/geojson-rbush": "^3.2.0",
     "@turf/helpers": "^6.5.0",
-    "@types/rbush": "3.0.0",
-    "rbush": "3.0.1",
     "tslib": "^2.3.0"
   }
 }
