@@ -47,7 +47,7 @@ function collect(
   inProperty: string,
   outProperty: string
 ): FeatureCollection<Polygon> {
-  var rtree = rbush<Entry>(6);
+  var rtree = new rbush<Entry>(6);
 
   var treeItems = points.features.map(function (item) {
     return {
