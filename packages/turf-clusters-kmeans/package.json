@@ -61,7 +61,7 @@
     "@types/tape": "*",
     "benchmark": "*",
     "chromatism": "*",
-    "concaveman": "1.2.1",
+    "concaveman": "1.1.1",
     "load-json-file": "*",
     "matrix-to-grid": "*",
     "npm-run-all": "*",
