@@ -42,6 +42,7 @@ module.exports = {
         "packages/*/bench.js",
         "packages/*/test.js",
         "packages/turf/rollup.config.js",
+        "scripts/check-dependencies.js",
       ],
       env: {
         node: true,

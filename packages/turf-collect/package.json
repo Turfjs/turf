@@ -64,7 +64,7 @@
     "@turf/bbox": "^6.5.0",
     "@turf/boolean-point-in-polygon": "^6.5.0",
     "@turf/helpers": "^6.5.0",
-    "rbush": "2.x",
+    "rbush": "^3.0.1",
     "tslib": "^2.3.0"
   }
 }
