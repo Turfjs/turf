@@ -6,6 +6,7 @@ import polygonClipping from "polygon-clipping";
 /**
  * Takes two {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
  * finds their polygonal intersection. If they don't intersect, returns null.
+ * Sharing a border is considered not touching and will return null as well.
  *
  * @name intersect
  * @param {Feature<Polygon | MultiPolygon>} poly1 the first polygon or multipolygon
@@ -54,7 +55,12 @@ export default function intersect<P = GeoJsonProperties>(
     geom2.coordinates as any
   );
   if (intersection.length === 0) return null;
-  if (intersection.length === 1)
+  if (intersection.length === 1) {
+    if (intersection[0][0].length < 4) {
+      // The polygons touch, but don't intersect
+      return null;
+    }
     return polygon(intersection[0], options.properties);
+  }
   return multiPolygon(intersection, options.properties);
 }
