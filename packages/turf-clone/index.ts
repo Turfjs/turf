@@ -13,7 +13,7 @@ import { AllGeoJSON } from "@turf/helpers";
  *
  * var lineCloned = turf.clone(line);
  */
-function clone(geojson: AllGeoJSON) {
+function clone<T extends AllGeoJSON>(geojson: T): T {
   if (!geojson) {
     throw new Error("geojson is required");
   }

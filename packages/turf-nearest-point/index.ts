@@ -44,7 +44,6 @@ function nearestPoint(
   if (!targetPoint) throw new Error("targetPoint is required");
   if (!points) throw new Error("points is required");
 
-  let nearest: NearestPoint;
   let minDist = Infinity;
   let bestFeatureIndex = 0;
   featureEach(points, (pt, featureIndex) => {
@@ -54,10 +53,16 @@ function nearestPoint(
       minDist = distanceToPoint;
     }
   });
-  nearest = clone(points.features[bestFeatureIndex]);
-  nearest.properties.featureIndex = bestFeatureIndex;
-  nearest.properties.distanceToPoint = minDist;
-  return nearest;
+  const nearestPoint = clone(points.features[bestFeatureIndex]);
+
+  return {
+    ...nearestPoint,
+    properties: {
+      ...nearestPoint.properties,
+      featureIndex: bestFeatureIndex,
+      distanceToPoint: minDist,
+    },
+  };
 }
 
 export default nearestPoint;
