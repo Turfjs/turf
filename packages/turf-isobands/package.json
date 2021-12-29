@@ -37,11 +37,10 @@
       "require": "./dist/js/index.js"
     }
   },
-  "types": "index.d.ts",
+  "types": "dist/js/index.d.ts",
   "sideEffects": false,
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
     "bench": "ts-node bench.js",
@@ -65,6 +64,9 @@
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
+    "ts-node": "*",
+    "tslint": "*",
+    "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
@@ -74,6 +76,7 @@
     "@turf/explode": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@turf/invariant": "^6.5.0",
-    "@turf/meta": "^6.5.0"
+    "@turf/meta": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }
