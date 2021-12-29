@@ -4,7 +4,13 @@ import { collectionOf } from "@turf/invariant";
 import { multiLineString, featureCollection, isObject } from "@turf/helpers";
 import isoContours from "./lib/marchingsquares-isocontours";
 import gridToMatrix from "./lib/grid-to-matrix";
-import { FeatureCollection, Point, MultiLineString, Feature } from "geojson";
+import {
+  FeatureCollection,
+  Point,
+  MultiLineString,
+  Feature,
+  GeoJsonProperties,
+} from "geojson";
 
 /**
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -35,21 +41,21 @@ import { FeatureCollection, Point, MultiLineString, Feature } from "geojson";
  * //addToMap
  * var addToMap = [lines];
  */
-function isolines<CommonProps, BreakProps>(
+function isolines(
   pointGrid: FeatureCollection<Point>,
   breaks: number[],
   options?: {
-    zProperty: string;
-    commonProperties: CommonProps;
-    breaksProperties: BreakProps[];
+    zProperty?: string;
+    commonProperties?: GeoJsonProperties;
+    breaksProperties?: GeoJsonProperties[];
   }
 ) {
   // Optional parameters
-  options = options || ({} as typeof options);
+  options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
   const zProperty = options.zProperty || "elevation";
-  const commonProperties = options.commonProperties || ({} as CommonProps);
-  const breaksProperties = options.breaksProperties || ([] as BreakProps[]);
+  const commonProperties = options.commonProperties || {};
+  const breaksProperties = options.breaksProperties || [];
 
   // Input validation
   collectionOf(pointGrid, "Point", "Input must contain Points");
@@ -62,7 +68,7 @@ function isolines<CommonProps, BreakProps>(
 
   // Isoline methods
   const matrix = gridToMatrix(pointGrid, { zProperty: zProperty, flip: true });
-  const createdIsoLines = createIsoLines<CommonProps, BreakProps>(
+  const createdIsoLines = createIsoLines(
     matrix,
     breaks,
     zProperty,
@@ -89,18 +95,18 @@ function isolines<CommonProps, BreakProps>(
  * @param {Object} [breaksProperties=[]] GeoJSON properties passed to the correspondent isoline
  * @returns {Array<MultiLineString>} isolines
  */
-function createIsoLines<CommonProps, BreakProps>(
+function createIsoLines(
   matrix: number[][],
   breaks: number[],
   zProperty: string,
-  commonProperties: CommonProps,
-  breaksProperties: BreakProps[]
+  commonProperties: GeoJsonProperties,
+  breaksProperties: GeoJsonProperties[]
 ): Feature<MultiLineString>[] {
   const results = [];
   for (let i = 1; i < breaks.length; i++) {
     const threshold = +breaks[i]; // make sure it's a number
 
-    const properties = { ...{}, ...commonProperties, ...breaksProperties[i] };
+    const properties = { ...commonProperties, ...breaksProperties[i] };
     properties[zProperty] = threshold;
     const isoline = multiLineString(isoContours(matrix, threshold), properties);
 
@@ -140,7 +146,7 @@ function rescaleIsolines(
   const scaleX = originalWidth / matrixWidth;
   const scaleY = originalHeigth / matrixHeight;
 
-  const resize = (point) => {
+  const resize = (point: number[]) => {
     point[0] = point[0] * scaleX + x0;
     point[1] = point[1] * scaleY + y0;
   };

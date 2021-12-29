@@ -9,8 +9,7 @@ import {
   featureCollection,
   isObject,
 } from "@turf/helpers";
-import gridToMatrix from "./lib/grid-to-matrix";
-import isoBands from "./lib/marchingsquares-isobands";
+
 import {
   FeatureCollection,
   Point,
@@ -20,6 +19,9 @@ import {
   Polygon,
   Feature,
 } from "geojson";
+
+import gridToMatrix from "./lib/grid-to-matrix";
+import isoBands from "./lib/marchingsquares-isobands";
 
 /**
  * Takes a square or rectangular grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
@@ -64,16 +66,16 @@ function isobands(
   let contours = createContourLines(matrix, breaks, zProperty);
   contours = rescaleContours(contours, matrix, pointGrid);
 
-  const multipolygons = contours.map(function (contour, index) {
+  const multipolygons = contours.map((contour, index) => {
     if (breaksProperties[index] && !isObject(breaksProperties[index])) {
       throw new Error("Each mappedProperty is required to be an Object");
     }
     // collect all properties
     const contourProperties = {
-      ...{},
       ...commonProperties,
       ...breaksProperties[index],
     };
+
     contourProperties[zProperty] = contour[zProperty];
     const multiP = multiPolygon(contour.groupedRings, contourProperties);
     return multiP;
@@ -101,6 +103,7 @@ function createContourLines(
   property: string
 ): {
   groupedRings: Position[][][];
+  [prop: string]: any;
 }[] {
   const contours: { groupedRings: Position[][][] }[] = [];
   for (let i = 1; i < breaks.length; i++) {
@@ -114,7 +117,10 @@ function createContourLines(
     // this avoids rendering issues of the MultiPolygons on the map
     const nestedRings = orderByArea(isobandsCoords);
     const groupedRings = groupNestedRings(nestedRings);
-    const obj: { groupedRings: Position[][][] } = {
+    const obj: {
+      groupedRings: Position[][][];
+      [prop: string]: string | Position[][][];
+    } = {
       groupedRings: groupedRings,
     };
 
@@ -157,7 +163,7 @@ function rescaleContours(
   const scaleX = originalWidth / matrixWidth;
   const scaleY = originalHeigth / matrixHeight;
 
-  const resize = (point) => {
+  const resize = (point: Position) => {
     point[0] = point[0] * scaleX + x0;
     point[1] = point[1] * scaleY + y0;
   };
