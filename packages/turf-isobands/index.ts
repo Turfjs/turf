@@ -23,6 +23,13 @@ import {
 import gridToMatrix from "./lib/grid-to-matrix";
 import isoBands from "./lib/marchingsquares-isobands";
 
+type GroupRingProps = { [prop: string]: string };
+type GroupedRings =
+  | {
+      groupedRings: Position[][][];
+    }
+  | GroupRingProps;
+
 /**
  * Takes a square or rectangular grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
  * value breaks and generates filled contour isobands.
@@ -76,8 +83,12 @@ function isobands(
       ...breaksProperties[index],
     };
 
-    contourProperties[zProperty] = contour[zProperty];
-    const multiP = multiPolygon(contour.groupedRings, contourProperties);
+    contourProperties[zProperty] = (contour as GroupRingProps)[zProperty];
+
+    const multiP = multiPolygon(
+      contour.groupedRings as Position[][][],
+      contourProperties
+    );
     return multiP;
   });
 
@@ -101,11 +112,8 @@ function createContourLines(
   matrix: number[][],
   breaks: number[],
   property: string
-): {
-  groupedRings: Position[][][];
-  [prop: string]: any;
-}[] {
-  const contours: { groupedRings: Position[][][] }[] = [];
+): GroupedRings[] {
+  const contours: GroupedRings[] = [];
   for (let i = 1; i < breaks.length; i++) {
     const lowerBand = +breaks[i - 1]; // make sure the breaks value is a number
     const upperBand = +breaks[i];
@@ -117,15 +125,11 @@ function createContourLines(
     // this avoids rendering issues of the MultiPolygons on the map
     const nestedRings = orderByArea(isobandsCoords);
     const groupedRings = groupNestedRings(nestedRings);
-    const obj: {
-      groupedRings: Position[][][];
-      [prop: string]: string | Position[][][];
-    } = {
-      groupedRings: groupedRings,
-    };
 
-    obj[property] = lowerBand + "-" + upperBand;
-    contours.push(obj);
+    contours.push({
+      groupedRings: groupedRings as Position[][][],
+      [property]: lowerBand + "-" + upperBand,
+    });
   }
   return contours;
 }
@@ -140,14 +144,10 @@ function createContourLines(
  * @returns {Array<any>} contours
  */
 function rescaleContours(
-  contours: {
-    groupedRings: Position[][][];
-  }[],
+  contours: GroupedRings[],
   matrix: number[][],
   points: FeatureCollection<Point>
-): {
-  groupedRings: Position[][][];
-}[] {
+): GroupedRings[] {
   // get dimensions (on the map) of the original grid
   const gridBbox = bbox(points); // [ minX, minY, maxX, maxY ]
   const originalWidth = gridBbox[2] - gridBbox[0];
@@ -170,7 +170,7 @@ function rescaleContours(
 
   // resize and shift each point/line of the isobands
   contours.forEach(function (contour) {
-    contour.groupedRings.forEach(function (lineRingSet) {
+    (contour.groupedRings as Position[][][]).forEach(function (lineRingSet) {
       lineRingSet.forEach(function (lineRing) {
         lineRing.forEach(resize);
       });
