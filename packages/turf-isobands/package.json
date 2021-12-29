@@ -72,7 +72,6 @@
     "@turf/explode": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@turf/invariant": "^6.5.0",
-    "@turf/meta": "^6.5.0",
-    "object-assign": "*"
+    "@turf/meta": "^6.5.0"
   }
 }
