@@ -1,4 +1,5 @@
-import { Coord, Feature, LineString } from "@turf/helpers";
+import { Feature, LineString } from "geojson";
+import { Coord } from "@turf/helpers";
 import { getCoord, getCoords } from "@turf/invariant";
 
 /**

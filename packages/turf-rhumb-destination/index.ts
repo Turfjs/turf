@@ -1,13 +1,11 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
+import { Feature, Point, GeoJsonProperties } from "geojson";
 import {
   convertLength,
   Coord,
   degreesToRadians,
   earthRadius,
-  Feature,
   point,
-  Point,
-  Properties,
   Units,
 } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
@@ -36,7 +34,7 @@ import { getCoord } from "@turf/invariant";
  * var addToMap = [pt, destination]
  * destination.properties['marker-color'] = '#00F';
  */
-function rhumbDestination<P = Properties>(
+function rhumbDestination<P = GeoJsonProperties>(
   origin: Coord,
   distance: number,
   bearing: number,

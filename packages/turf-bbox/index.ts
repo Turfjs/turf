@@ -1,4 +1,5 @@
-import { AllGeoJSON, BBox } from "@turf/helpers";
+import { BBox } from "geojson";
+import { AllGeoJSON } from "@turf/helpers";
 import { coordEach } from "@turf/meta";
 
 /**

@@ -1,11 +1,11 @@
 import {
   BBox,
-  Coord,
   Feature,
   MultiPolygon,
   Polygon,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
+import { Coord } from "@turf/helpers";
 import { getCoord, getGeom } from "@turf/invariant";
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
@@ -37,7 +37,7 @@ import { getCoord, getGeom } from "@turf/invariant";
  */
 export default function booleanPointInPolygon<
   G extends Polygon | MultiPolygon,
-  P = Properties
+  P = GeoJsonProperties
 >(
   point: Coord,
   polygon: Feature<G, P> | G,
