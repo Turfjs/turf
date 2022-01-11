@@ -55,6 +55,35 @@ test("turf-line-overlap - Geometry Object", (t) => {
   t.end();
 });
 
+test("turf-line-overlap - multiple segments on same line", (t) => {
+  const line1 = lineString([
+    [0, 1],
+    [1, 1],
+    [1, 0],
+    [2, 0],
+    [2, 1],
+    [3, 1],
+    [3, 0],
+    [4, 0],
+    [4, 1],
+    [4, 0],
+  ]);
+  const line2 = lineString([
+    [0, 0],
+    [6, 0],
+  ]);
+
+  t.true(
+    lineOverlap(line1.geometry, line2.geometry).features.length === 2,
+    "multiple segments on same line"
+  );
+  t.true(
+    lineOverlap(line2.geometry, line1.geometry).features.length === 2,
+    "multiple segments on same line - swapped order"
+  );
+  t.end();
+});
+
 function colorize(features, color = "#F00", width = 25) {
   const results = [];
   featureEach(features, (feature) => {

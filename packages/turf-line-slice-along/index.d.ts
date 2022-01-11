@@ -1,4 +1,5 @@
-import { Units, LineString, Feature } from "@turf/helpers";
+import { LineString, Feature } from "geojson";
+import { Units } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/

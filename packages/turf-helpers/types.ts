@@ -1,23 +1,19 @@
+import { BBox, GeometryCollection, LineString, Polygon, Point } from "geojson";
 import {
-  BBox,
   feature,
   featureCollection,
   geometry,
   geometryCollection,
-  GeometryCollection,
   isNumber,
   isObject,
   lengthToDegrees,
   lengthToRadians,
   lineString,
-  LineString,
   multiLineString,
   multiPoint,
   multiPolygon,
   // Typescript types
   point,
-  Point,
-  Polygon,
   polygon,
   radiansToLength,
 } from "./";
@@ -38,7 +34,7 @@ const poly = polygon([
     [0, 1],
   ],
 ]);
-const feat = feature({ coordinates: [1, 0], type: "point" });
+const feat = feature({ coordinates: [1, 0], type: "Point" });
 const multiPt = multiPoint([
   [0, 1],
   [2, 3],
@@ -81,7 +77,8 @@ polygon([
     [0, 1],
   ],
 ]);
-feature({ coordinates: [1, 0], type: "point" });
+feature({ coordinates: [1, 0], type: "Point" });
+feature(null);
 multiPoint([
   [0, 1],
   [2, 3],

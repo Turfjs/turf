@@ -1,13 +1,15 @@
 import {
-  feature,
-  featureCollection,
+  GeoJsonProperties,
+  FeatureCollection,
+  LineString,
   MultiLineString,
   MultiPoint,
   MultiPolygon,
-  Properties,
-} from "@turf/helpers";
+  Point,
+  Polygon,
+} from "geojson";
+import { feature, featureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
-import { Point, LineString, Polygon, FeatureCollection } from "@turf/helpers";
 
 /**
  * Combines a {@link FeatureCollection} of {@link Point}, {@link LineString}, or {@link Polygon} features
@@ -35,15 +37,15 @@ function combine(
   var groups = {
     MultiPoint: {
       coordinates: [] as number[][],
-      properties: [] as Properties[],
+      properties: [] as GeoJsonProperties[],
     },
     MultiLineString: {
       coordinates: [] as number[][][],
-      properties: [] as Properties[],
+      properties: [] as GeoJsonProperties[],
     },
     MultiPolygon: {
       coordinates: [] as number[][][][],
-      properties: [] as Properties[],
+      properties: [] as GeoJsonProperties[],
     },
   };
 
@@ -87,7 +89,10 @@ function combine(
       })
       .sort()
       .map(function (key) {
-        var geometry = { type: key, coordinates: groups[key].coordinates };
+        var geometry = { type: key, coordinates: groups[key].coordinates } as
+          | MultiPoint
+          | MultiLineString
+          | MultiPolygon;
         var properties = { collectedProperties: groups[key].properties };
         return feature(geometry, properties);
       })

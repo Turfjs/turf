@@ -1,15 +1,12 @@
 import {
-  feature,
   Feature,
-  featureCollection,
   FeatureCollection,
   LineString,
   MultiLineString,
   MultiPolygon,
-  point,
   Point,
   Polygon,
-} from "@turf/helpers";
+} from "geojson";
 
 import findIntersections from "./lib/sweepline-intersections";
 

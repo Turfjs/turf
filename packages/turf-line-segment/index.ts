@@ -1,14 +1,13 @@
 import {
   BBox,
   Feature,
-  featureCollection,
   FeatureCollection,
-  lineString,
   LineString,
   MultiLineString,
   MultiPolygon,
   Polygon,
-} from "@turf/helpers";
+} from "geojson";
+import { featureCollection, lineString } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 import { flattenEach } from "@turf/meta";
 

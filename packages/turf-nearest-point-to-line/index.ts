@@ -4,9 +4,9 @@ import {
   GeometryCollection,
   LineString,
   Point,
-  Properties,
-  Units,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
+import { Units } from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { featureEach, geomEach } from "@turf/meta";
 import pointToLineDistance from "@turf/point-to-line-distance";
@@ -43,7 +43,7 @@ function nearestPointToLine<P = { dist: number; [key: string]: any }>(
   line: Feature<LineString> | LineString,
   options: {
     units?: Units;
-    properties?: Properties;
+    properties?: GeoJsonProperties;
   } = {}
 ): Feature<Point, P> {
   const units = options.units;

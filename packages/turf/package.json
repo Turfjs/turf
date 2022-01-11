@@ -96,6 +96,7 @@
     "@turf/boolean-parallel": "^6.5.0",
     "@turf/boolean-point-in-polygon": "^6.5.0",
     "@turf/boolean-point-on-line": "^6.5.0",
+    "@turf/boolean-touches": "^6.5.0",
     "@turf/boolean-within": "^6.5.0",
     "@turf/buffer": "^6.5.0",
     "@turf/center": "^6.5.0",

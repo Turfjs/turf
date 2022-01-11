@@ -1,17 +1,18 @@
 import intersect from "@turf/boolean-intersects";
-import distance from "@turf/distance";
 import {
   BBox,
   Feature,
-  featureCollection,
   FeatureCollection,
   MultiPolygon,
-  polygon,
   Polygon,
-  Properties,
+  GeoJsonProperties,
+} from "geojson";
+import {
+  convertLength,
+  featureCollection,
+  polygon,
   Units,
 } from "@turf/helpers";
-
 /**
  * Creates a grid of rectangles from a bounding box, {@link Feature} or {@link FeatureCollection}.
  *
@@ -37,7 +38,7 @@ import {
  * //addToMap
  * var addToMap = [rectangleGrid]
  */
-function rectangleGrid<P = Properties>(
+function rectangleGrid<P = GeoJsonProperties>(
   bbox: BBox,
   cellWidth: number,
   cellHeight: number,
@@ -54,17 +55,14 @@ function rectangleGrid<P = Properties>(
   const east = bbox[2];
   const north = bbox[3];
 
-  const xFraction = cellWidth / distance([west, south], [east, south], options);
-  const cellWidthDeg = xFraction * (east - west);
-  const yFraction =
-    cellHeight / distance([west, south], [west, north], options);
-  const cellHeightDeg = yFraction * (north - south);
-
-  // rows & columns
   const bboxWidth = east - west;
+  const cellWidthDeg = convertLength(cellWidth, options.units, "degrees");
+
   const bboxHeight = north - south;
-  const columns = Math.floor(bboxWidth / cellWidthDeg);
-  const rows = Math.floor(bboxHeight / cellHeightDeg);
+  const cellHeightDeg = convertLength(cellHeight, options.units, "degrees");
+
+  const columns = Math.floor(Math.abs(bboxWidth) / cellWidthDeg);
+  const rows = Math.floor(Math.abs(bboxHeight) / cellHeightDeg);
 
   // if the grid does not fill the bbox perfectly, center it.
   const deltaX = (bboxWidth - columns * cellWidthDeg) / 2;

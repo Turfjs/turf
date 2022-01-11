@@ -6,8 +6,8 @@ import {
   MultiPolygon,
   Point,
   Polygon,
-  Units,
-} from "@turf/helpers";
+} from "geojson";
+import { Units } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 import tin from "@turf/tin";
 import dissolve from "./lib/turf-dissolve";

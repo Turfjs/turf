@@ -1,20 +1,19 @@
-import rbush from "geojson-rbush";
+import rbush from "@turf/geojson-rbush";
 import lineSegment from "@turf/line-segment";
 import nearestPointOnLine from "@turf/nearest-point-on-line";
 import booleanPointOnLine from "@turf/boolean-point-on-line";
 import { getCoords } from "@turf/invariant";
 import { featureEach, segmentEach } from "@turf/meta";
 import {
-  featureCollection,
-  isObject,
   FeatureCollection,
   Feature,
   LineString,
   MultiLineString,
   Polygon,
   MultiPolygon,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
+import { featureCollection, isObject } from "@turf/helpers";
 import equal from "deep-equal";
 
 /**
@@ -49,15 +48,16 @@ function lineOverlap<
   var tolerance = options.tolerance || 0;
 
   // Containers
-  var features: Feature<LineString, Properties>[] = [];
+  var features: Feature<LineString, GeoJsonProperties>[] = [];
 
   // Create Spatial Index
-  var tree = rbush();
+  var tree = rbush<LineString>();
 
   // To-Do -- HACK way to support typescript
   const line: any = lineSegment(line1);
   tree.load(line);
   var overlapSegment: Feature<LineString> | undefined;
+  let additionalSegments: Feature<LineString>[] = [];
 
   // Line Intersection
 
@@ -79,9 +79,10 @@ function lineOverlap<
         if (equal(coordsSegment, coordsMatch)) {
           doesOverlaps = true;
           // Overlaps already exists - only append last coordinate of segment
-          if (overlapSegment)
-            overlapSegment = concatSegment(overlapSegment, segment);
-          else overlapSegment = segment;
+          if (overlapSegment) {
+            overlapSegment =
+              concatSegment(overlapSegment, segment) || overlapSegment;
+          } else overlapSegment = segment;
           // Match segments which don't share nodes (Issue #901)
         } else if (
           tolerance === 0
@@ -93,9 +94,10 @@ function lineOverlap<
                 tolerance
         ) {
           doesOverlaps = true;
-          if (overlapSegment)
-            overlapSegment = concatSegment(overlapSegment, segment);
-          else overlapSegment = segment;
+          if (overlapSegment) {
+            overlapSegment =
+              concatSegment(overlapSegment, segment) || overlapSegment;
+          } else overlapSegment = segment;
         } else if (
           tolerance === 0
             ? booleanPointOnLine(coordsMatch[0], segment) &&
@@ -107,9 +109,14 @@ function lineOverlap<
         ) {
           // Do not define (doesOverlap = true) since more matches can occur within the same segment
           // doesOverlaps = true;
-          if (overlapSegment)
-            overlapSegment = concatSegment(overlapSegment, match);
-          else overlapSegment = match;
+          if (overlapSegment) {
+            const combinedSegment = concatSegment(overlapSegment, match);
+            if (combinedSegment) {
+              overlapSegment = combinedSegment;
+            } else {
+              additionalSegments.push(match);
+            }
+          } else overlapSegment = match;
         }
       }
     });
@@ -117,6 +124,10 @@ function lineOverlap<
     // Segment doesn't overlap - add overlaps to results & reset
     if (doesOverlaps === false && overlapSegment) {
       features.push(overlapSegment);
+      if (additionalSegments.length) {
+        features = features.concat(additionalSegments);
+        additionalSegments = [];
+      }
       overlapSegment = undefined;
     }
   });
@@ -148,6 +159,9 @@ function concatSegment(
   else if (equal(coords[0], end)) geom.push(coords[1]);
   else if (equal(coords[1], start)) geom.unshift(coords[0]);
   else if (equal(coords[1], end)) geom.push(coords[0]);
+  else return; // If the overlap leaves the segment unchanged, return undefined so that this can be identified.
+
+  // Otherwise return the mutated line.
   return line;
 }
 

@@ -68,6 +68,7 @@
     "@turf/meta": "^6.5.0",
     "@turf/projection": "^6.5.0",
     "@turf/rhumb-bearing": "^6.5.0",
-    "@turf/rhumb-distance": "^6.5.0"
+    "@turf/rhumb-distance": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }

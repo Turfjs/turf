@@ -1,3 +1,10 @@
+import {
+  FeatureCollection,
+  Feature,
+  Point,
+  Polygon,
+  GeoJsonProperties,
+} from "geojson";
 import area from "@turf/area";
 import bbox from "@turf/bbox";
 import bboxPolygon from "@turf/bbox-polygon";
@@ -6,14 +13,7 @@ import distance from "@turf/distance";
 import nearestPoint from "@turf/nearest-point";
 import { featureEach } from "@turf/meta";
 import { convertArea, featureCollection } from "@turf/helpers";
-import {
-  FeatureCollection,
-  Feature,
-  Point,
-  Polygon,
-  Units,
-  Properties,
-} from "@turf/helpers";
+import { Units } from "@turf/helpers";
 
 export interface NearestNeighborStatistics {
   units: Units;
@@ -87,7 +87,7 @@ function nearestNeighborAnalysis(
   options?: {
     studyArea?: Feature<Polygon>;
     units?: Units;
-    properties?: Properties;
+    properties?: GeoJsonProperties;
   }
 ): NearestNeighborStudyArea {
   // Optional params

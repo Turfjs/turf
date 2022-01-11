@@ -1,4 +1,4 @@
-import { Feature, Polygon } from "@turf/helpers";
+import { Feature, Polygon } from "geojson";
 import { getGeom } from "@turf/invariant";
 
 /**
