@@ -42,7 +42,9 @@
     "build": "npm-run-all build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
+    "coverage": "nyc ts-node -r esm test.js",
     "docs": "node ../../scripts/generate-readmes",
+    "nyc": "*",
     "test": "npm-run-all test:*",
     "test:tape": "ts-node -r esm test.js"
   },
@@ -52,6 +54,7 @@
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
+    "nyc": "*",
     "tape": "*",
     "ts-node": "*",
     "tslint": "*",

@@ -38,3 +38,31 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: git diff --exit-code
       - run: yarn test
+
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Current Branch
+      - name: Checkout Current Branch
+        uses: actions/checkout@v2
+        with:
+          node-version: "14.x"
+      # Figure out the yarn cache directory
+      - name: Get Yarn Cache Directory Path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      # Cache the yarn data to speed up builds
+      - name: Restore Yarn Cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Yarn Install (Frozen Lockfile)
+        run: yarn --frozen-lockfile
+      # Run coverage on current branch
+      - name: Run Coverage (Current Branch)
+        run: yarn run coverage
