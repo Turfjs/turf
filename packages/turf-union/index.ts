@@ -1,14 +1,19 @@
 import polygonClipping from "polygon-clipping";
-import { getGeom } from "@turf/invariant";
 import { multiPolygon, polygon } from "@turf/helpers";
-import { Feature, Polygon, MultiPolygon, GeoJsonProperties } from "geojson";
+import { geomEach } from "@turf/meta";
+import {
+  FeatureCollection,
+  Feature,
+  Polygon,
+  MultiPolygon,
+  GeoJsonProperties,
+} from "geojson";
 
 /**
- * Takes two {@link (Multi)Polygon(s)} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
+ * Takes input {@link (Multi)Polygon(s)} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
  * @name union
- * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon feature
- * @param {Feature<Polygon|MultiPolygon>} polygon2 Polygon feature to difference from polygon1
+ * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon features
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate Properties to output Feature
  * @returns {Feature<(Polygon|MultiPolygon)>} a combined {@link Polygon} or {@link MultiPolygon} feature, or null if the inputs are empty
@@ -34,17 +39,19 @@ import { Feature, Polygon, MultiPolygon, GeoJsonProperties } from "geojson";
  * var addToMap = [poly1, poly2, union];
  */
 function union<P = GeoJsonProperties>(
-  poly1: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
-  poly2: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
+  features: FeatureCollection<Polygon | MultiPolygon>,
   options: { properties?: P } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {
-  const geom1 = getGeom(poly1);
-  const geom2 = getGeom(poly2);
+  const geoms: polygonClipping.Geom[] = [];
+  geomEach(features, (geom) => {
+    geoms.push(geom.coordinates as polygonClipping.Geom);
+  });
 
-  const unioned = polygonClipping.union(
-    geom1.coordinates as any,
-    geom2.coordinates as any
-  );
+  if (geoms.length < 2) {
+    throw new Error("Must have at least 2 geometries");
+  }
+
+  const unioned = polygonClipping.union(geoms[0], ...geoms.slice(1));
   if (unioned.length === 0) return null;
   if (unioned.length === 1) return polygon(unioned[0], options.properties);
   else return multiPolygon(unioned, options.properties);
