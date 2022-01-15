@@ -1,13 +1,12 @@
 import polygonClipping from "polygon-clipping";
 import { polygon, multiPolygon } from "@turf/helpers";
-import { getGeom } from "@turf/invariant";
+import { geomEach } from "@turf/meta";
 
 /**
- * Finds the difference between two {@link Polygon|polygons} by clipping the second polygon from the first.
+ * Finds the difference between multiple {@link Polygon|polygons} by clipping the subsequent polygon from the first.
  *
  * @name difference
- * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon feature
- * @param {Feature<Polygon|MultiPolygon>} polygon2 Polygon feature to difference from polygon1
+ * @param {FeatureCollection<Polygon|MultiPolygon>} features input Polygon features
  * @returns {Feature<Polygon|MultiPolygon>|null} a Polygon or MultiPolygon feature showing the area of `polygon1` excluding the area of `polygon2` (if empty returns `null`)
  * @example
  * var polygon1 = turf.polygon([[
@@ -36,15 +35,20 @@ import { getGeom } from "@turf/invariant";
  * //addToMap
  * var addToMap = [polygon1, polygon2, difference];
  */
-function difference(polygon1, polygon2) {
-  var geom1 = getGeom(polygon1);
-  var geom2 = getGeom(polygon2);
-  var properties = polygon1.properties || {};
+function difference(features) {
+  const geoms = [];
 
-  var differenced = polygonClipping.difference(
-    geom1.coordinates,
-    geom2.coordinates
-  );
+  geomEach(features, (geom) => {
+    geoms.push(geom.coordinates);
+  });
+
+  if (geoms.length < 2) {
+    throw new Error("Must have at least two features");
+  }
+
+  var properties = features.features[0].properties || {};
+
+  var differenced = polygonClipping.difference(geoms[0], ...geoms.slice(1));
   if (differenced.length === 0) return null;
   if (differenced.length === 1) return polygon(differenced[0], properties);
   return multiPolygon(differenced, properties);
