@@ -36,7 +36,7 @@ function triangleGrid<P = GeoJsonProperties>(
   options: {
     units?: Units;
     properties?: P;
-    mask?: Feature<Polygon> | Polygon;
+    mask?: Feature<Polygon>;
   } = {}
 ): FeatureCollection<Polygon, P> {
   // Containers
@@ -162,9 +162,9 @@ function triangleGrid<P = GeoJsonProperties>(
         );
       }
       if (options.mask) {
-        if (intersect(options.mask, cellTriangle1!))
+        if (intersect(featureCollection([options.mask, cellTriangle1!])))
           results.push(cellTriangle1!);
-        if (intersect(options.mask, cellTriangle2!))
+        if (intersect(featureCollection([options.mask, cellTriangle2!])))
           results.push(cellTriangle2!);
       } else {
         results.push(cellTriangle1!);

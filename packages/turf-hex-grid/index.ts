@@ -41,7 +41,7 @@ function hexGrid<P = GeoJsonProperties>(
     units?: Units;
     triangles?: boolean;
     properties?: P;
-    mask?: Feature<Polygon> | Polygon;
+    mask?: Feature<Polygon>;
   } = {}
 ): FeatureCollection<Polygon, P> {
   // Issue => https://github.com/Turfjs/turf/issues/1284
@@ -121,7 +121,8 @@ function hexGrid<P = GeoJsonProperties>(
           sines
         ).forEach(function (triangle) {
           if (options.mask) {
-            if (intersect(options.mask, triangle)) results.push(triangle);
+            if (intersect(featureCollection([options.mask, triangle])))
+              results.push(triangle);
           } else {
             results.push(triangle);
           }
@@ -136,7 +137,8 @@ function hexGrid<P = GeoJsonProperties>(
           sines
         );
         if (options.mask) {
-          if (intersect(options.mask, hex)) results.push(hex);
+          if (intersect(featureCollection([options.mask, hex])))
+            results.push(hex);
         } else {
           results.push(hex);
         }
