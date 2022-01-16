@@ -9,8 +9,8 @@ import {
   GeometryCollection,
   Feature,
   FeatureCollection,
-  Units,
-} from "@turf/helpers";
+} from "geojson";
+import { Units } from "@turf/helpers";
 
 interface Options {
   units?: Units;

@@ -1,11 +1,5 @@
-import {
-  Feature,
-  multiPolygon,
-  MultiPolygon,
-  polygon,
-  Polygon,
-  Properties,
-} from "@turf/helpers";
+import { Feature, GeoJsonProperties, MultiPolygon, Polygon } from "geojson";
+import { multiPolygon, polygon } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 import polygonClipping from "polygon-clipping";
 
@@ -45,7 +39,7 @@ import polygonClipping from "polygon-clipping";
  * //addToMap
  * var addToMap = [poly1, poly2, intersection];
  */
-export default function intersect<P = Properties>(
+export default function intersect<P = GeoJsonProperties>(
   poly1: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
   poly2: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
   options: {

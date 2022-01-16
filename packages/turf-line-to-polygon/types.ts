@@ -1,10 +1,5 @@
-import {
-  featureCollection,
-  lineString,
-  multiLineString,
-  LineString,
-  MultiLineString,
-} from "@turf/helpers";
+import { LineString, MultiLineString } from "geojson";
+import { featureCollection, lineString, multiLineString } from "@turf/helpers";
 import lineToPolygon from "./index";
 
 // Fixtures

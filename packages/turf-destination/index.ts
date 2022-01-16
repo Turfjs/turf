@@ -1,13 +1,11 @@
 // http://en.wikipedia.org/wiki/Haversine_formula
 // http://www.movable-type.co.uk/scripts/latlong.html
+import { Feature, Point, GeoJsonProperties } from "geojson";
 import {
   Coord,
   degreesToRadians,
-  Feature,
   lengthToRadians,
   point,
-  Point,
-  Properties,
   radiansToDegrees,
   Units,
 } from "@turf/helpers";
@@ -39,7 +37,7 @@ import { getCoord } from "@turf/invariant";
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
  */
-export default function destination<P = Properties>(
+export default function destination<P = GeoJsonProperties>(
   origin: Coord,
   distance: number,
   bearing: number,

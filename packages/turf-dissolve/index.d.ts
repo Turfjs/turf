@@ -1,4 +1,4 @@
-import { FeatureCollection, Polygon } from "@turf/helpers";
+import { FeatureCollection, Polygon } from "geojson";
 
 /**
  * http://turfjs.org/docs.html#dissolve

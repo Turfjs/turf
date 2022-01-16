@@ -1,16 +1,18 @@
 import {
   BBox,
-  featureCollection,
   FeatureCollection,
-  isNumber,
-  isObject,
   LineString,
-  lineString,
-  point,
   Point,
-  polygon,
   Polygon,
   Position,
+} from "geojson";
+import {
+  featureCollection,
+  isNumber,
+  isObject,
+  lineString,
+  point,
+  polygon,
 } from "@turf/helpers";
 
 /**

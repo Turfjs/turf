@@ -232,3 +232,42 @@ test("turf-points-within-polygon -- no duplicates when multiple geometry contain
   );
   t.end();
 });
+
+test("turf-points-within-polygon -- multipoint with properties", (t) => {
+  t.plan(5);
+
+  var poly1 = polygon([
+    [
+      [0, 0],
+      [0, 100],
+      [100, 100],
+      [100, 0],
+      [0, 0],
+    ],
+  ]);
+
+  var mpt1 = multiPoint(
+    [
+      [50, 50],
+      [150, 150],
+    ],
+    { prop: "yes" }
+  ); // inside and outside poly1
+  var polyFC = featureCollection([poly1]);
+
+  // multipoint within
+  var mpWithin = pointsWithinPolygon(mpt1, polyFC);
+  t.ok(mpWithin, "returns a featurecollection");
+  t.equal(mpWithin.features.length, 1, "1 multipoint in 1 polygon");
+  t.equal(
+    mpWithin.features[0].properties.constructor,
+    Object,
+    "properties found"
+  );
+  t.ok("prop" in mpWithin.features[0].properties, "1 property key found");
+  t.equal(
+    mpWithin.features[0].properties.prop,
+    "yes",
+    "1 property value found"
+  );
+});

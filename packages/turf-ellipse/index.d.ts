@@ -1,4 +1,5 @@
-import { Feature, Coord, Polygon, Units, Properties } from "@turf/helpers";
+import { Feature, Polygon, GeoJsonProperties } from "geojson";
+import { Coord, Units } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#ellipse
@@ -12,7 +13,7 @@ export default function (
     steps?: number;
     /** default kilometers */
     units?: Units;
-    properties?: Properties;
+    properties?: GeoJsonProperties;
     /**
      * Angle of rotation in decimal degrees, positive clockwise
      * default 0

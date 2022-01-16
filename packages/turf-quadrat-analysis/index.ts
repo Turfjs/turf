@@ -1,7 +1,7 @@
+import { BBox, FeatureCollection, Point } from "geojson";
 import area from "@turf/area";
 import turfBBox from "@turf/bbox";
 import bboxPolygon from "@turf/bbox-polygon";
-import { BBox, FeatureCollection, Point } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 import squareGrid from "@turf/square-grid";
 

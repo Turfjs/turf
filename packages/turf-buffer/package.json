@@ -66,9 +66,9 @@
     "@turf/bbox": "^6.5.0",
     "@turf/center": "^6.5.0",
     "@turf/helpers": "^6.5.0",
+    "@turf/jsts": "^2.7.1",
     "@turf/meta": "^6.5.0",
     "@turf/projection": "^6.5.0",
-    "d3-geo": "1.7.1",
-    "turf-jsts": "*"
+    "d3-geo": "1.7.1"
   }
 }

@@ -1,15 +1,9 @@
+import { Feature, Geometry, Polygon, LineString, MultiPoint } from "geojson";
 import lineIntersect from "@turf/line-intersect";
 import { polygonToLine } from "@turf/polygon-to-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
-import {
-  point,
-  Feature,
-  Geometry,
-  Polygon,
-  LineString,
-  MultiPoint,
-} from "@turf/helpers";
+import { point } from "@turf/helpers";
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than

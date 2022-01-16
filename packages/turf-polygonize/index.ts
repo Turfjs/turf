@@ -1,11 +1,11 @@
-import { featureCollection } from "@turf/helpers";
 import {
   Feature,
   FeatureCollection,
   LineString,
   MultiLineString,
   Polygon,
-} from "@turf/helpers";
+} from "geojson";
+import { featureCollection } from "@turf/helpers";
 import Graph from "./lib/Graph";
 import EdgeRing from "./lib/EdgeRing";
 

@@ -2,8 +2,8 @@ import {
   Point,
   MultiLineString,
   FeatureCollection,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
 
 /**
  * http://turfjs.org/docs/#isolines
@@ -13,7 +13,7 @@ export default function isolines(
   breaks: number[],
   options?: {
     zProperty?: string;
-    commonProperties?: Properties;
-    breaksProperties?: Properties[];
+    commonProperties?: GeoJsonProperties;
+    breaksProperties?: GeoJsonProperties[];
   }
 ): FeatureCollection<MultiLineString>;
