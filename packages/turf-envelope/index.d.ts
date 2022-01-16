@@ -1,4 +1,5 @@
-import { Feature, AllGeoJSON, Polygon } from "@turf/helpers";
+import { Feature, Polygon } from "geojson";
+import { AllGeoJSON } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#envelope

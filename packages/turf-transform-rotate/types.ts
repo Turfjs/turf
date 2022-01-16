@@ -1,12 +1,9 @@
+import { Point, Feature, Polygon, FeatureCollection } from "geojson";
 import {
   polygon,
   point,
-  Point,
   featureCollection,
   geometryCollection,
-  Feature,
-  Polygon,
-  FeatureCollection,
 } from "@turf/helpers";
 import rotate from "./";
 

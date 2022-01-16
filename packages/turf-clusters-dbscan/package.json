@@ -61,7 +61,7 @@
     "@types/tape": "*",
     "benchmark": "*",
     "chromatism": "*",
-    "concaveman": "*",
+    "concaveman": "^1.2.1",
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
@@ -75,6 +75,7 @@
     "@turf/distance": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "@turf/meta": "^6.5.0",
-    "density-clustering": "1.3.0"
+    "density-clustering": "1.3.0",
+    "tslib": "^2.3.0"
   }
 }

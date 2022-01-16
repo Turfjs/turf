@@ -1,4 +1,5 @@
-import { BBox, Feature, Id, polygon, Polygon, Properties } from "@turf/helpers";
+import { BBox, Feature, Polygon, GeoJsonProperties } from "geojson";
+import { polygon, Id } from "@turf/helpers";
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
@@ -17,7 +18,7 @@ import { BBox, Feature, Id, polygon, Polygon, Properties } from "@turf/helpers";
  * //addToMap
  * var addToMap = [poly]
  */
-export default function bboxPolygon<P = Properties>(
+export default function bboxPolygon<P = GeoJsonProperties>(
   bbox: BBox,
   options: {
     properties?: P;

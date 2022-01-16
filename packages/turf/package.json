@@ -68,6 +68,9 @@
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "camelcase": "*",
@@ -96,6 +99,7 @@
     "@turf/boolean-parallel": "^6.5.0",
     "@turf/boolean-point-in-polygon": "^6.5.0",
     "@turf/boolean-point-on-line": "^6.5.0",
+    "@turf/boolean-touches": "^6.5.0",
     "@turf/boolean-within": "^6.5.0",
     "@turf/buffer": "^6.5.0",
     "@turf/center": "^6.5.0",

@@ -1,6 +1,7 @@
+import { Feature, GeoJsonProperties, Point, Position } from "geojson";
 import convex from "@turf/convex";
 import centroid from "@turf/centroid";
-import { point, Properties, Feature, Point, Position } from "@turf/helpers";
+import { point } from "@turf/helpers";
 import { getType, getCoord } from "@turf/invariant";
 import { coordEach } from "@turf/meta";
 
@@ -20,7 +21,7 @@ import { coordEach } from "@turf/meta";
  * //addToMap
  * var addToMap = [polygon, center]
  */
-function centerOfMass<P = Properties>(
+function centerOfMass<P = GeoJsonProperties>(
   geojson: any,
   options: {
     properties?: P;

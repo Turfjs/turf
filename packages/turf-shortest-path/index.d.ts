@@ -1,11 +1,5 @@
-import {
-  Polygon,
-  Feature,
-  FeatureCollection,
-  Coord,
-  LineString,
-  Units,
-} from "@turf/helpers";
+import { Polygon, Feature, FeatureCollection, LineString } from "geojson";
+import { Coord, Units } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#shortestpath

@@ -59,7 +59,7 @@ function pointsWithinPolygon(points, polygons) {
         });
       });
       if (contained) {
-        results.push(multiPoint(pointsWithin));
+        results.push(multiPoint(pointsWithin, point.properties || {}));
       }
     } else {
       throw new Error("Input geometry must be a Point or MultiPoint");

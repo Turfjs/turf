@@ -1,15 +1,13 @@
 import distance from "@turf/distance";
 import intersect from "@turf/intersect";
 import {
-  polygon,
-  featureCollection,
   Feature,
   FeatureCollection,
-  Units,
-  Properties,
+  GeoJsonProperties,
   Polygon,
   BBox,
-} from "@turf/helpers";
+} from "geojson";
+import { polygon, featureCollection, Units } from "@turf/helpers";
 
 /**
  * Takes a bounding box and the diameter of the cell and returns a {@link FeatureCollection} of flat-topped
@@ -36,7 +34,7 @@ import {
  * //addToMap
  * var addToMap = [hexgrid];
  */
-function hexGrid<P = Properties>(
+function hexGrid<P = GeoJsonProperties>(
   bbox: BBox,
   cellSide: number,
   options: {
@@ -165,7 +163,7 @@ function hexagon(
   center: number[],
   rx: number,
   ry: number,
-  properties: Properties,
+  properties: GeoJsonProperties,
   cosines: number[],
   sines: number[]
 ) {
@@ -196,7 +194,7 @@ function hexTriangles(
   center: number[],
   rx: number,
   ry: number,
-  properties: Properties,
+  properties: GeoJsonProperties,
   cosines: number[],
   sines: number[]
 ) {

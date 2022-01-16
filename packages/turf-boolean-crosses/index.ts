@@ -1,15 +1,9 @@
+import { Feature, Geometry, Polygon, LineString, MultiPoint } from "geojson";
 import lineIntersect from "@turf/line-intersect";
 import { polygonToLine } from "@turf/polygon-to-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
-import {
-  point,
-  Feature,
-  Geometry,
-  Polygon,
-  LineString,
-  MultiPoint,
-} from "@turf/helpers";
+import { point } from "@turf/helpers";
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -17,6 +11,7 @@ import {
  * both source geometries.
  *
  * Boolean-Crosses returns t (TRUE) for only multipoint/polygon, multipoint/linestring, linestring/linestring, linestring/polygon, and linestring/multipolygon comparisons.
+ * Other comparisons are not supported as they are outside the OpenGIS Simple Features spec and may give unexpected results.
  *
  * @name booleanCrosses
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry

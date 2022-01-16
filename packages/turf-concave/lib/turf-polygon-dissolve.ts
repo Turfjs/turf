@@ -1,11 +1,6 @@
+import { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
 import clone from "@turf/clone";
 import { geometryCollection } from "@turf/helpers";
-import {
-  Feature,
-  FeatureCollection,
-  MultiPolygon,
-  Polygon,
-} from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { flattenEach } from "@turf/meta";
 import { merge } from "topojson-client";

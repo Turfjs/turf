@@ -2,9 +2,9 @@ import {
   LineString,
   MultiLineString,
   Feature,
-  Coord,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
+import { Coord } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#greatcircle
@@ -13,7 +13,7 @@ export default function greatCircle(
   start: Coord,
   end: Coord,
   options?: {
-    properties?: Properties;
+    properties?: GeoJsonProperties;
     npoints?: number;
     offset?: number;
   }

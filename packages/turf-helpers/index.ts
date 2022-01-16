@@ -1,15 +1,10 @@
 import {
   BBox,
-  CollectionTypes,
   Feature,
   FeatureCollection,
-  GeoJSONObject,
-  Geometries,
   Geometry,
   GeometryCollection,
   GeometryObject,
-  GeometryTypes,
-  Id,
   LineString,
   MultiLineString,
   MultiPoint,
@@ -17,31 +12,11 @@ import {
   Point,
   Polygon,
   Position,
-  Properties,
-  Types,
-} from "./lib/geojson";
-export {
-  Id,
-  Properties,
-  BBox,
-  Position,
-  Point,
-  LineString,
-  Polygon,
-  MultiPoint,
-  MultiLineString,
-  MultiPolygon,
-  GeometryObject,
-  GeoJSONObject,
-  GeometryCollection,
-  Geometry,
-  GeometryTypes,
-  Types,
-  CollectionTypes,
-  Geometries,
-  Feature,
-  FeatureCollection,
-};
+  GeoJsonProperties,
+} from "geojson";
+
+import { Id } from "./lib/geojson";
+export * from "./lib/geojson";
 
 // TurfJS Combined Types
 export type Coord = Feature<Point> | Point | Position;
@@ -49,9 +24,13 @@ export type Coord = Feature<Point> | Point | Position;
 // TurfJS String Types
 export type Units =
   | "meters"
+  | "metres"
   | "millimeters"
+  | "millimetres"
   | "centimeters"
+  | "centimetres"
   | "kilometers"
+  | "kilometres"
   | "acres"
   | "miles"
   | "nauticalmiles"
@@ -81,18 +60,20 @@ export type AllGeoJSON =
  * @memberof helpers
  * @type {number}
  */
-export let earthRadius = 6371008.8;
+export const earthRadius = 6371008.8;
 
 /**
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
  *
+ * Keys are the name of the unit, values are the number of that unit in a single radian
+ *
  * @memberof helpers
  * @type {Object}
  */
-export let factors: { [key: string]: number } = {
+export const factors: { [key: string]: number } = {
   centimeters: earthRadius * 100,
   centimetres: earthRadius * 100,
-  degrees: earthRadius / 111325,
+  degrees: 360 / (2 * Math.PI),
   feet: earthRadius * 3.28084,
   inches: earthRadius * 39.37,
   kilometers: earthRadius / 1000,
@@ -108,36 +89,13 @@ export let factors: { [key: string]: number } = {
 };
 
 /**
- * Units of measurement factors based on 1 meter.
- *
- * @memberof helpers
- * @type {Object}
- */
-export let unitsFactors: { [key: string]: number } = {
-  centimeters: 100,
-  centimetres: 100,
-  degrees: 1 / 111325,
-  feet: 3.28084,
-  inches: 39.37,
-  kilometers: 1 / 1000,
-  kilometres: 1 / 1000,
-  meters: 1,
-  metres: 1,
-  miles: 1 / 1609.344,
-  millimeters: 1000,
-  millimetres: 1000,
-  nauticalmiles: 1 / 1852,
-  radians: 1 / earthRadius,
-  yards: 1.0936133,
-};
 
-/**
  * Area of measurement factors based on 1 square meter.
  *
  * @memberof helpers
  * @type {Object}
  */
-export let areaFactors: any = {
+export const areaFactors: { [key: string]: number } = {
   acres: 0.000247105,
   centimeters: 10000,
   centimetres: 10000,
@@ -174,7 +132,10 @@ export let areaFactors: any = {
  *
  * //=feature
  */
-export function feature<G = Geometry, P = Properties>(
+export function feature<
+  G extends GeometryObject = Geometry,
+  P = GeoJsonProperties
+>(
   geom: G,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -250,7 +211,7 @@ export function geometry(
  *
  * //=point
  */
-export function point<P = Properties>(
+export function point<P = GeoJsonProperties>(
   coordinates: Position,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -295,7 +256,7 @@ export function point<P = Properties>(
  *
  * //=points
  */
-export function points<P = Properties>(
+export function points<P = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -323,7 +284,7 @@ export function points<P = Properties>(
  *
  * //=polygon
  */
-export function polygon<P = Properties>(
+export function polygon<P = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -334,6 +295,11 @@ export function polygon<P = Properties>(
         "Each LinearRing of a Polygon must have 4 or more Positions."
       );
     }
+
+    if (ring[ring.length - 1].length !== ring[0].length) {
+      throw new Error("First and last Position are not equivalent.");
+    }
+
     for (let j = 0; j < ring[ring.length - 1].length; j++) {
       // Check if first point of Polygon contains two numbers
       if (ring[ring.length - 1][j] !== ring[0][j]) {
@@ -366,7 +332,7 @@ export function polygon<P = Properties>(
  *
  * //=polygons
  */
-export function polygons<P = Properties>(
+export function polygons<P = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -396,7 +362,7 @@ export function polygons<P = Properties>(
  * //=linestring1
  * //=linestring2
  */
-export function lineString<P = Properties>(
+export function lineString<P = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -430,7 +396,7 @@ export function lineString<P = Properties>(
  *
  * //=linestrings
  */
-export function lineStrings<P = Properties>(
+export function lineStrings<P = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -465,7 +431,10 @@ export function lineStrings<P = Properties>(
  *
  * //=collection
  */
-export function featureCollection<G = Geometry, P = Properties>(
+export function featureCollection<
+  G extends GeometryObject = Geometry,
+  P = GeoJsonProperties
+>(
   features: Array<Feature<G, P>>,
   options: { bbox?: BBox; id?: Id } = {}
 ): FeatureCollection<G, P> {
@@ -497,7 +466,7 @@ export function featureCollection<G = Geometry, P = Properties>(
  *
  * //=multiLine
  */
-export function multiLineString<P = Properties>(
+export function multiLineString<P = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -526,7 +495,7 @@ export function multiLineString<P = Properties>(
  *
  * //=multiPt
  */
-export function multiPoint<P = Properties>(
+export function multiPoint<P = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -556,7 +525,7 @@ export function multiPoint<P = Properties>(
  * //=multiPoly
  *
  */
-export function multiPolygon<P = Properties>(
+export function multiPolygon<P = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -586,7 +555,7 @@ export function multiPolygon<P = Properties>(
  *
  * // => collection
  */
-export function geometryCollection<P = Properties>(
+export function geometryCollection<P = GeoJsonProperties>(
   geometries: Array<
     Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
   >,
@@ -786,7 +755,7 @@ export function isNumber(num: any): boolean {
  * isObject
  *
  * @param {*} input variable to validate
- * @returns {boolean} true/false
+ * @returns {boolean} true/false, including false for Arrays and Functions
  * @example
  * turf.isObject({elevation: 10})
  * //=true
@@ -794,7 +763,7 @@ export function isNumber(num: any): boolean {
  * //=false
  */
 export function isObject(input: any): boolean {
-  return !!input && input.constructor === Object;
+  return input !== null && typeof input === "object" && !Array.isArray(input);
 }
 
 /**

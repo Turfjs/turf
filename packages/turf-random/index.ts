@@ -1,13 +1,17 @@
 import {
   BBox,
-  featureCollection,
   FeatureCollection,
+  LineString,
+  Point,
+  Polygon,
+  Position,
+} from "geojson";
+import {
+  featureCollection,
   isNumber,
   isObject,
-  LineString,
   lineString,
   point,
-  Point,
   polygon,
   Polygon,
   Position,

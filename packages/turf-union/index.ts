@@ -1,7 +1,7 @@
 import polygonClipping from "polygon-clipping";
 import { getGeom } from "@turf/invariant";
 import { multiPolygon, polygon } from "@turf/helpers";
-import { Feature, Polygon, MultiPolygon, Properties } from "@turf/helpers";
+import { Feature, Polygon, MultiPolygon, GeoJsonProperties } from "geojson";
 
 /**
  * Takes two {@link (Multi)Polygon(s)} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
@@ -33,7 +33,7 @@ import { Feature, Polygon, MultiPolygon, Properties } from "@turf/helpers";
  * //addToMap
  * var addToMap = [poly1, poly2, union];
  */
-function union<P = Properties>(
+function union<P = GeoJsonProperties>(
   poly1: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
   poly2: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
   options: { properties?: P } = {}

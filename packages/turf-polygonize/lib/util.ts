@@ -1,5 +1,6 @@
+import { Feature, Polygon } from "geojson";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { Feature, point, Polygon } from "@turf/helpers";
+import { point } from "@turf/helpers";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign#Polyfill
 function mathSign(x: number) {

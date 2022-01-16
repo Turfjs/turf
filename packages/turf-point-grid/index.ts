@@ -1,17 +1,15 @@
-import within from "@turf/boolean-within";
-import distance from "@turf/distance";
 import {
-  point,
-  featureCollection,
   BBox,
   Feature,
   Polygon,
   MultiPolygon,
   FeatureCollection,
   Point,
-  Properties,
-  Units,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
+import within from "@turf/boolean-within";
+import distance from "@turf/distance";
+import { point, featureCollection, Units } from "@turf/helpers";
 
 /**
  * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
@@ -34,7 +32,7 @@ import {
  * //addToMap
  * var addToMap = [grid];
  */
-function pointGrid<P = Properties>(
+function pointGrid<P = GeoJsonProperties>(
   bbox: BBox,
   cellSide: number,
   options: {

@@ -64,6 +64,7 @@
   "dependencies": {
     "@turf/distance": "^6.5.0",
     "@turf/helpers": "^6.5.0",
-    "@turf/intersect": "^6.5.0"
+    "@turf/intersect": "^6.5.0",
+    "tslib": "^2.3.0"
   }
 }
