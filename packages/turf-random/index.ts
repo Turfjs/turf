@@ -13,8 +13,6 @@ import {
   lineString,
   point,
   polygon,
-  Polygon,
-  Position,
   validateBBox,
 } from "@turf/helpers";
 
