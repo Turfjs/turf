@@ -30,7 +30,7 @@ import { geomEach } from "@turf/meta";
  *   "fill-opacity": 0.1
  * });
  *
- * var difference = turf.difference(polygon1, polygon2);
+ * var difference = turf.difference(turf.featureCollection([polygon1, polygon2]));
  *
  * //addToMap
  * var addToMap = [polygon1, polygon2, difference];

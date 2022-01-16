@@ -39,7 +39,7 @@ import polygonClipping from "polygon-clipping";
  *   [-122.520217, 45.535693]
  * ]]);
  *
- * var intersection = turf.intersect(poly1, poly2);
+ * var intersection = turf.intersect(turf.featureCollection([poly1, poly2]));
  *
  * //addToMap
  * var addToMap = [poly1, poly2, intersection];

@@ -33,7 +33,7 @@ import {
  *     [-82.560024, 35.585153]
  * ]], {"fill": "#00f"});
  *
- * var union = turf.union(poly1, poly2);
+ * var union = turf.union(turf.featureCollection([poly1, poly2]));
  *
  * //addToMap
  * var addToMap = [poly1, poly2, union];
