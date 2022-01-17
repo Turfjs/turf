@@ -9,7 +9,7 @@ import {
   Polygon,
 } from "geojson";
 
-import findIntersections from "./lib/sweepline-intersections";
+import findIntersections from "sweepline-intersections";
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
@@ -68,7 +68,10 @@ function lineIntersect<
     features.push(feature(line2));
   }
 
-  const intersections = findIntersections(featureCollection(features), false);
+  const intersections: any[] = findIntersections(
+    featureCollection(features),
+    false
+  );
   let results: any[] = [];
   if (removeDuplicates) {
     const unique: { [key: string]: any } = {};

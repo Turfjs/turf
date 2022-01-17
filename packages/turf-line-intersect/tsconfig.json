@@ -1,12 +1,12 @@
 {
   "extends": "../../tsconfig.shared.json",
   "compilerOptions": {
+    "strict": false,
     "allowJs": true,
-    "outDir": "dist/js"
+    "outDir": "dist/js",
+    "typeRoots": [ "./types"]
   },
   "files": [
     "index.ts",
-    "lib/sweepline-intersections.js",
-  ],
-  
+  ],  
 }
