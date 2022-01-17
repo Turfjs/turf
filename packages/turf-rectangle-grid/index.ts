@@ -1,17 +1,18 @@
 import intersect from "@turf/boolean-intersects";
 import {
   BBox,
-  convertLength,
   Feature,
-  featureCollection,
   FeatureCollection,
   MultiPolygon,
-  polygon,
   Polygon,
-  Properties,
+  GeoJsonProperties,
+} from "geojson";
+import {
+  convertLength,
+  featureCollection,
+  polygon,
   Units,
 } from "@turf/helpers";
-
 /**
  * Creates a grid of rectangles from a bounding box, {@link Feature} or {@link FeatureCollection}.
  *
@@ -37,7 +38,7 @@ import {
  * //addToMap
  * var addToMap = [rectangleGrid]
  */
-function rectangleGrid<P = Properties>(
+function rectangleGrid<P = GeoJsonProperties>(
   bbox: BBox,
   cellWidth: number,
   cellHeight: number,

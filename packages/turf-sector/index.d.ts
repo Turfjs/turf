@@ -1,4 +1,5 @@
-import { Feature, Polygon, Units, Coord, Properties } from "@turf/helpers";
+import { Feature, Polygon, GeoJsonProperties } from "geojson";
+import { Units, Coord } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#sector
@@ -11,6 +12,6 @@ export default function sector(
   options?: {
     steps?: number;
     units?: Units;
-    properties?: Properties;
+    properties?: GeoJsonProperties;
   }
 ): Feature<Polygon>;

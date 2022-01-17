@@ -1,5 +1,5 @@
+import { Feature, Geometry, LineString, Point, Polygon } from "geojson";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import { Feature, Geometry, LineString, Point, Polygon } from "@turf/helpers";
 import lineIntersect from "@turf/line-intersect";
 import { flattenEach } from "@turf/meta";
 import polygonToLine from "@turf/polygon-to-line";

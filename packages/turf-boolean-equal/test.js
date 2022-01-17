@@ -15,7 +15,8 @@ test("turf-boolean-equal", (t) => {
       const geojson = load.sync(filepath);
       const feature1 = geojson.features[0];
       const feature2 = geojson.features[1];
-      const result = equal(feature1, feature2);
+      const options = geojson.properties;
+      const result = equal(feature1, feature2, options);
 
       if (process.env.SHAPELY)
         shapely
@@ -31,7 +32,8 @@ test("turf-boolean-equal", (t) => {
       const geojson = load.sync(filepath);
       const feature1 = geojson.features[0];
       const feature2 = geojson.features[1];
-      const result = equal(feature1, feature2);
+      const options = geojson.properties;
+      const result = equal(feature1, feature2, options);
 
       if (process.env.SHAPELY)
         shapely
@@ -90,7 +92,15 @@ test("turf-boolean-equal -- geometries", (t) => {
 });
 
 test("turf-boolean-equal -- throws", (t) => {
-  // t.throws(() => equal(null, line1), /feature1 is required/, 'missing feature1');
-  // t.throws(() => equal(line1, null), /feature2 is required/, 'missing feature2');
+  //t.throws(() => equal(null, line1), /feature1 is required/, 'missing feature1');
+  //t.throws(() => equal(line1, null), /feature2 is required/, 'missing feature2');
+  t.throws(
+    () => equal(line1.geometry, line2.geometry, { precision: "1" }),
+    "precision must be a number"
+  );
+  t.throws(
+    () => equal(line1.geometry, line2.geometry, { precision: -1 }),
+    "precision must be positive"
+  );
   t.end();
 });

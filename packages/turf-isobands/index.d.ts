@@ -2,8 +2,8 @@ import {
   Point,
   MultiPolygon,
   FeatureCollection,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
 
 /**
  * http://turfjs.org/docs/#isobands
@@ -13,7 +13,7 @@ export default function isobands(
   breaks: number[],
   options?: {
     zProperty?: string;
-    commonProperties?: Properties;
-    breaksProperties?: Properties[];
+    commonProperties?: GeoJsonProperties;
+    breaksProperties?: GeoJsonProperties[];
   }
 ): FeatureCollection<MultiPolygon>;

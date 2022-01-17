@@ -1,15 +1,13 @@
-import distance from "@turf/distance";
-import intersect from "@turf/intersect";
 import {
-  polygon,
-  featureCollection,
-  Units,
   BBox,
   Feature,
   Polygon,
   FeatureCollection,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
+import distance from "@turf/distance";
+import intersect from "@turf/intersect";
+import { polygon, featureCollection, Units } from "@turf/helpers";
 
 /**
  * Takes a bounding box and a cell depth and returns a set of triangular {@link Polygon|polygons} in a grid.
@@ -32,13 +30,13 @@ import {
  * //addToMap
  * var addToMap = [triangleGrid];
  */
-function triangleGrid<P = Properties>(
+function triangleGrid<P = GeoJsonProperties>(
   bbox: BBox,
   cellSide: number,
   options: {
     units?: Units;
     properties?: P;
-    mask?: Feature<Polygon> | Polygon;
+    mask?: Feature<Polygon>;
   } = {}
 ): FeatureCollection<Polygon, P> {
   // Containers
@@ -164,9 +162,9 @@ function triangleGrid<P = Properties>(
         );
       }
       if (options.mask) {
-        if (intersect(options.mask, cellTriangle1!))
+        if (intersect(featureCollection([options.mask, cellTriangle1!])))
           results.push(cellTriangle1!);
-        if (intersect(options.mask, cellTriangle2!))
+        if (intersect(featureCollection([options.mask, cellTriangle2!])))
           results.push(cellTriangle2!);
       } else {
         results.push(cellTriangle1!);

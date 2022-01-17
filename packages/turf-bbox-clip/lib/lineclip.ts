@@ -1,7 +1,6 @@
 // Cohen-Sutherland line clipping algorithm, adapted to efficiently
 // handle polylines rather than just segments
-
-import { BBox } from "@turf/helpers";
+import { BBox } from "geojson";
 
 export function lineclip(
   points: number[][],

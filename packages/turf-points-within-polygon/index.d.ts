@@ -5,8 +5,8 @@ import {
   MultiPolygon,
   MultiPoint,
   Point,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
 
 /**
  * http://turfjs.org/docs/#pointswithinpolygon
@@ -14,7 +14,7 @@ import {
 export default function pointsWithinPolygon<
   F extends Point | MultiPoint,
   G extends Polygon | MultiPolygon,
-  P = Properties
+  P = GeoJsonProperties
 >(
   points: Feature<F, P> | FeatureCollection<F, P>,
   polygons: Feature<G> | FeatureCollection<G> | G

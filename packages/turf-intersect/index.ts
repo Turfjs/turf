@@ -1,21 +1,20 @@
 import {
   Feature,
-  multiPolygon,
+  GeoJsonProperties,
   MultiPolygon,
-  polygon,
   Polygon,
-  Properties,
-} from "@turf/helpers";
-import { getGeom } from "@turf/invariant";
+  FeatureCollection,
+} from "geojson";
+import { multiPolygon, polygon } from "@turf/helpers";
+import { geomEach } from "@turf/meta";
 import polygonClipping from "polygon-clipping";
 
 /**
- * Takes two {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
+ * Takes {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
  * finds their polygonal intersection. If they don't intersect, returns null.
  *
  * @name intersect
- * @param {Feature<Polygon | MultiPolygon>} poly1 the first polygon or multipolygon
- * @param {Feature<Polygon | MultiPolygon>} poly2 the second polygon or multipolygon
+ * @param {FeatureCollection<Polygon | MultiPolygon>} features the features to intersect
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Feature
  * @returns {Feature|null} returns a feature representing the area they share (either a {@link Polygon} or
@@ -40,24 +39,29 @@ import polygonClipping from "polygon-clipping";
  *   [-122.520217, 45.535693]
  * ]]);
  *
- * var intersection = turf.intersect(poly1, poly2);
+ * var intersection = turf.intersect(turf.featureCollection([poly1, poly2]));
  *
  * //addToMap
  * var addToMap = [poly1, poly2, intersection];
  */
-export default function intersect<P = Properties>(
-  poly1: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
-  poly2: Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
+export default function intersect<P = GeoJsonProperties>(
+  features: FeatureCollection<Polygon | MultiPolygon>,
   options: {
     properties?: P;
   } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {
-  const geom1 = getGeom(poly1);
-  const geom2 = getGeom(poly2);
+  const geoms: polygonClipping.Geom[] = [];
 
+  geomEach(features, (geom) => {
+    geoms.push(geom.coordinates as polygonClipping.Geom);
+  });
+
+  if (geoms.length < 2) {
+    throw new Error("Must specify at least 2 geometries");
+  }
   const intersection = polygonClipping.intersection(
-    geom1.coordinates as any,
-    geom2.coordinates as any
+    geoms[0],
+    ...geoms.slice(1)
   );
   if (intersection.length === 0) return null;
   if (intersection.length === 1)

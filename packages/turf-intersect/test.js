@@ -30,7 +30,7 @@ test("turf-intersect", (t) => {
     });
 
     const results = featureCollection([polygon1, polygon2]);
-    const result = intersect(polygon1, polygon2);
+    const result = intersect(results);
     if (result) {
       // Green Polygon
       result.properties = { "fill-opacity": 1, fill: "#0F0" };

@@ -1,4 +1,5 @@
-import { Feature, lineString, LineString, point, Point } from "@turf/helpers";
+import { Feature, LineString, Point } from "geojson";
+import { lineString, point } from "@turf/helpers";
 import clone from "./index";
 
 const pt = point([0, 20]);
