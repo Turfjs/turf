@@ -188,7 +188,7 @@ export default function (feature) {
       index: i,
     }); // could pass isect: isectList[i], but not necessary
   }
-  var isectRbushTree = rbush();
+  var isectRbushTree = new rbush();
   isectRbushTree.load(allIsectsAsIsectRbushTreeItem);
 
   // Now we will teach each intersection in isectList which is the next intersection along both it's [ring, edge]'s, in two steps.
