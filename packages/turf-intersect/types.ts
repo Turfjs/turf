@@ -1,4 +1,4 @@
-import { polygon } from "@turf/helpers";
+import { featureCollection, polygon } from "@turf/helpers";
 import intersect from "./index";
 
 const poly1 = polygon([
@@ -18,8 +18,8 @@ const poly2 = polygon([
   ],
 ]);
 
-const match = intersect(poly1, poly2);
+const match = intersect(featureCollection([poly1, poly2]));
 
 if (match === null) console.log("foo");
 
-const foo = intersect(poly1, poly2) || "bar";
+const foo = intersect(featureCollection([poly1, poly2])) || "bar";

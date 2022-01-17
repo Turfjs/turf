@@ -3,6 +3,7 @@ const path = require("path");
 const load = require("load-json-file");
 const Benchmark = require("benchmark");
 const union = require("./index").default;
+const { featureCollection } = require("@turf/helpers");
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -21,7 +22,7 @@ const suite = new Benchmark.Suite("turf-union");
 
 for (const { name, geojson } of fixtures) {
   suite.add(name, () => {
-    union.apply(this, geojson.features);
+    union(featureCollection(geojson.features));
   });
 }
 
