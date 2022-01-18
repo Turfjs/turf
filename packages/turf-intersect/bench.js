@@ -18,11 +18,7 @@ const simple = load.sync(
  * turf-intersect#armenia x 45,824 ops/sec ±2.42% (88 runs sampled)
  */
 new Benchmark.Suite("turf-intersect")
-  .add("turf-intersect#simple", () =>
-    intersect(simple.features[0], simple.features[1])
-  )
-  .add("turf-intersect#armenia", () =>
-    intersect(armenia.features[0], armenia.features[1])
-  )
+  .add("turf-intersect#simple", () => intersect(simple))
+  .add("turf-intersect#armenia", () => intersect(armenia))
   .on("cycle", (e) => console.log(String(e.target)))
   .run();

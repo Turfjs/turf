@@ -1,4 +1,4 @@
-import { polygon } from "@turf/helpers";
+import { polygon, featureCollection } from "@turf/helpers";
 import union from "./index";
 
 const poly1 = polygon([
@@ -17,4 +17,4 @@ const poly2 = polygon([
     [20, 30],
   ],
 ]);
-union(poly1, poly2);
+union(featureCollection([poly1, poly2]));
