@@ -1,4 +1,5 @@
-import { polygon, Feature, Polygon } from "@turf/helpers";
+import { Feature, Polygon } from "geojson";
+import { polygon } from "@turf/helpers";
 import simplify from "./";
 
 const poly = polygon([

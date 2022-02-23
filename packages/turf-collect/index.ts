@@ -1,7 +1,7 @@
+import { FeatureCollection, Polygon, Point } from "geojson";
 import turfbbox from "@turf/bbox";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import rbush from "rbush";
-import { FeatureCollection, Polygon, Point } from "@turf/helpers";
 
 interface Entry {
   minX: number;
@@ -47,7 +47,7 @@ function collect(
   inProperty: string,
   outProperty: string
 ): FeatureCollection<Polygon> {
-  var rtree = rbush<Entry>(6);
+  var rtree = new rbush<Entry>(6);
 
   var treeItems = points.features.map(function (item) {
     return {

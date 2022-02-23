@@ -8,8 +8,8 @@ import {
   LineString,
   MultiLineString,
   Feature,
-  GeoJSONObject,
-} from "@turf/helpers";
+} from "geojson";
+import { AllGeoJSON } from "@turf/helpers";
 
 /**
  * Validates the geoJson.
@@ -17,7 +17,7 @@ import {
  * @param {GeoJSON} geoJson - input geoJson.
  * @throws {Error} if geoJson is invalid.
  */
-function validateGeoJson(geoJson: GeoJSONObject) {
+function validateGeoJson(geoJson: AllGeoJSON) {
   if (!geoJson) throw new Error("No geojson passed");
 
   if (

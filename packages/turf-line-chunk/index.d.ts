@@ -2,10 +2,10 @@ import {
   LineString,
   MultiLineString,
   GeometryCollection,
-  Units,
   Feature,
   FeatureCollection,
-} from "@turf/helpers";
+} from "geojson";
+import { Units } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#lineChunk

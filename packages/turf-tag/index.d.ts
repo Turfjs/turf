@@ -1,4 +1,4 @@
-import { Point, FeatureCollection, Polygon, MultiPolygon } from "@turf/helpers";
+import { Point, FeatureCollection, Polygon, MultiPolygon } from "geojson";
 
 /**
  * http://turfjs.org/docs/#tag

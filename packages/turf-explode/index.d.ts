@@ -1,4 +1,5 @@
-import { AllGeoJSON, FeatureCollection, Point } from "@turf/helpers";
+import { FeatureCollection, Point } from "geojson";
+import { AllGeoJSON } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#explode

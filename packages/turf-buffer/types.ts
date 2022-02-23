@@ -7,9 +7,8 @@ import {
   multiPolygon,
   featureCollection,
   geometryCollection,
-  Point,
-  LineString,
 } from "@turf/helpers";
+import { Point, LineString } from "geojson";
 import buffer from "./";
 
 // Standard Geometry

@@ -9,8 +9,8 @@ import {
   GeometryCollection,
   Feature,
   FeatureCollection,
-  Units,
-} from "@turf/helpers";
+} from "geojson";
+import { Units } from "@turf/helpers";
 
 interface Options {
   units?: Units;
@@ -21,42 +21,22 @@ interface Options {
 /**
  * http://turfjs.org/docs/#buffer
  */
-declare function buffer<Geom extends Point | LineString | Polygon>(
-  feature: Feature<Geom> | Geom,
-  radius?: number,
-  options?: Options
-): Feature<Polygon>;
-declare function buffer<
-  Geom extends MultiPoint | MultiLineString | MultiPolygon
->(
-  feature: Feature<Geom> | Geom,
-  radius?: number,
-  options?: Options
-): Feature<MultiPolygon>;
-declare function buffer<Geom extends Point | LineString | Polygon>(
-  feature: FeatureCollection<Geom>,
-  radius?: number,
-  options?: Options
-): FeatureCollection<Polygon>;
-declare function buffer<
-  Geom extends MultiPoint | MultiLineString | MultiPolygon
->(
-  feature: FeatureCollection<Geom>,
-  radius?: number,
-  options?: Options
-): FeatureCollection<MultiPolygon>;
 declare function buffer(
   feature:
-    | FeatureCollection<any>
-    | Feature<GeometryCollection>
-    | GeometryCollection,
-  radius?: number,
-  options?: Options
-): FeatureCollection<Polygon | MultiPolygon>;
-declare function buffer(
-  feature: Feature<any> | GeometryObject,
+    | Feature<GeometryObject>
+    | Point
+    | LineString
+    | Polygon
+    | MultiPoint
+    | MultiLineString
+    | MultiPolygon,
   radius?: number,
   options?: Options
 ): Feature<Polygon | MultiPolygon>;
+declare function buffer(
+  feature: FeatureCollection<GeometryObject> | GeometryCollection,
+  radius?: number,
+  options?: Options
+): FeatureCollection<Polygon | MultiPolygon>;
 
 export default buffer;

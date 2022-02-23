@@ -92,6 +92,17 @@ var point2 = {
 };
 ```
 
+## Browser support
+
+Turf packages are compiled to target ES2017. However, the browser version of @turf/turf is transpiled to also include support for IE11. If you are using these packages and need to target IE11, please transpile the following packages as part of your build:
+
+```
+@turf/*
+robust-predicates
+rbush
+tinyqueue
+```
+
 ## Contributors
 
 This project exists thanks to all the people who contribute. If you are interested in helping, check out the [Contributing Guide](CONTRIBUTING.md).

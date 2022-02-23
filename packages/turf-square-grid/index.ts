@@ -2,11 +2,11 @@ import {
   FeatureCollection,
   Polygon,
   BBox,
-  Units,
   Feature,
   MultiPolygon,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
+import { Units } from "@turf/helpers";
 
 import rectangleGrid from "@turf/rectangle-grid";
 
@@ -34,7 +34,7 @@ import rectangleGrid from "@turf/rectangle-grid";
  * var addToMap = [squareGrid]
  */
 
-export default function squareGrid<P = Properties>(
+export default function squareGrid<P = GeoJsonProperties>(
   bbox: BBox,
   cellSide: number,
   options: {

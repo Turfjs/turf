@@ -1,10 +1,5 @@
-import {
-  AllGeoJSON,
-  Feature,
-  polygon,
-  Polygon,
-  Properties,
-} from "@turf/helpers";
+import { Feature, GeoJsonProperties, Polygon } from "geojson";
+import { AllGeoJSON, polygon } from "@turf/helpers";
 import { coordEach } from "@turf/meta";
 import concaveman from "concaveman";
 
@@ -36,7 +31,7 @@ import concaveman from "concaveman";
  * //addToMap
  * var addToMap = [points, hull]
  */
-export default function convex<P = Properties>(
+export default function convex<P = GeoJsonProperties>(
   geojson: AllGeoJSON,
   options: {
     concavity?: number;

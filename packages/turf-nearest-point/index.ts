@@ -1,7 +1,8 @@
+import { Feature, FeatureCollection, Point } from "geojson";
+import { Coord } from "@turf/helpers";
 import clone from "@turf/clone";
 import distance from "@turf/distance";
 import { featureEach } from "@turf/meta";
-import { Coord, Feature, FeatureCollection, Point } from "@turf/helpers";
 
 export interface NearestPoint extends Feature<Point> {
   properties: {
@@ -43,7 +44,6 @@ function nearestPoint(
   if (!targetPoint) throw new Error("targetPoint is required");
   if (!points) throw new Error("points is required");
 
-  let nearest: NearestPoint;
   let minDist = Infinity;
   let bestFeatureIndex = 0;
   featureEach(points, (pt, featureIndex) => {
@@ -53,10 +53,16 @@ function nearestPoint(
       minDist = distanceToPoint;
     }
   });
-  nearest = clone(points.features[bestFeatureIndex]);
-  nearest.properties.featureIndex = bestFeatureIndex;
-  nearest.properties.distanceToPoint = minDist;
-  return nearest;
+  const nearestPoint = clone(points.features[bestFeatureIndex]);
+
+  return {
+    ...nearestPoint,
+    properties: {
+      ...nearestPoint.properties,
+      featureIndex: bestFeatureIndex,
+      distanceToPoint: minDist,
+    },
+  };
 }
 
 export default nearestPoint;

@@ -1,20 +1,19 @@
-import rbush from "geojson-rbush";
+import rbush from "@turf/geojson-rbush";
 import lineSegment from "@turf/line-segment";
 import nearestPointOnLine from "@turf/nearest-point-on-line";
 import booleanPointOnLine from "@turf/boolean-point-on-line";
 import { getCoords } from "@turf/invariant";
 import { featureEach, segmentEach } from "@turf/meta";
 import {
-  featureCollection,
-  isObject,
   FeatureCollection,
   Feature,
   LineString,
   MultiLineString,
   Polygon,
   MultiPolygon,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
+import { featureCollection, isObject } from "@turf/helpers";
 import equal from "deep-equal";
 
 /**
@@ -49,10 +48,10 @@ function lineOverlap<
   var tolerance = options.tolerance || 0;
 
   // Containers
-  var features: Feature<LineString, Properties>[] = [];
+  var features: Feature<LineString, GeoJsonProperties>[] = [];
 
   // Create Spatial Index
-  var tree = rbush();
+  var tree = rbush<LineString>();
 
   // To-Do -- HACK way to support typescript
   const line: any = lineSegment(line1);

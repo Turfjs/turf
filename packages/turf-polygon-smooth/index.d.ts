@@ -1,9 +1,4 @@
-import {
-  Feature,
-  FeatureCollection,
-  Polygon,
-  MultiPolygon,
-} from "@turf/helpers";
+import { Feature, FeatureCollection, Polygon, MultiPolygon } from "geojson";
 
 /**
  * http://turfjs.org/docs/#polygonSmooth
