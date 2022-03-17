@@ -37,7 +37,7 @@ function lineIntersect<
   line2: FeatureCollection<G2> | Feature<G2> | G2,
   options: {
     removeDuplicates?: boolean;
-    ignoreSelfIntersections? : boolean;
+    ignoreSelfIntersections?: boolean;
   } = {}
 ): FeatureCollection<Point> {
   let removeDuplicates = true;
