@@ -69,7 +69,6 @@
     "@turf/invariant": "^6.5.0",
     "@turf/meta": "^6.5.0",
     "@turf/point-to-line-distance": "^6.5.0",
-    "object-assign": "*",
     "tslib": "^2.3.0"
   }
 }

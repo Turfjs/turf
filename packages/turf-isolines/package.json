@@ -36,18 +36,19 @@
       "require": "./dist/js/index.js"
     }
   },
-  "types": "index.d.ts",
+  "types": "dist/js/index.d.ts",
   "sideEffects": false,
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
-    "bench": "node -r esm bench.js",
-    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "bench": "ts-node bench.js",
+    "build": "npm-run-all build:*",
+    "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build:js": "tsc",
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js",
+    "test:tape": "ts-node -r esm test.js",
     "test:types": "tsc --esModuleInterop --noEmit types.ts"
   },
   "devDependencies": {
@@ -62,6 +63,9 @@
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
+    "ts-node": "*",
+    "tslint": "*",
+    "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
@@ -69,6 +73,6 @@
     "@turf/helpers": "^6.5.0",
     "@turf/invariant": "^6.5.0",
     "@turf/meta": "^6.5.0",
-    "object-assign": "*"
+    "tslib": "^2.3.0"
   }
 }
