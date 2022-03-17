@@ -36,9 +36,14 @@ test("turf-buffer", (t) => {
     const radius = properties.radius || 50;
     const units = properties.units || "miles";
     const steps = properties.steps;
+    const endCapStyle = properties.endCapStyle;
 
     const buffered = truncate(
-      buffer(geojson, radius, { units: units, steps: steps })
+      buffer(geojson, radius, {
+        units: units,
+        steps: steps,
+        endCapStyle: endCapStyle,
+      })
     );
 
     // Add Results to FeatureCollection

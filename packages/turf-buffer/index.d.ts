@@ -15,6 +15,7 @@ import { Units } from "@turf/helpers";
 interface Options {
   units?: Units;
   steps?: number;
+  endCapStyle?: string;
 }
 
 /**
