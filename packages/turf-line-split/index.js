@@ -51,7 +51,9 @@ function lineSplit(line, splitter) {
     case "MultiLineString":
     case "Polygon":
     case "MultiPolygon":
-      return splitLineWithPoints(line, lineIntersect(line, truncatedSplitter));
+      return splitLineWithPoints(line, lineIntersect(line, truncatedSplitter, {
+        ignoreSelfIntersections: true
+      }));
   }
 }
 
