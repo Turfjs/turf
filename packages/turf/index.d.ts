@@ -69,6 +69,7 @@ export { default as transformScale } from "@turf/transform-scale";
 export { default as transformTranslate } from "@turf/transform-translate";
 export { default as lineOffset } from "@turf/line-offset";
 export { default as polygonize } from "@turf/polygonize";
+export { default as booleanConcave } from "@turf/boolean-concave";
 export { default as booleanDisjoint } from "@turf/boolean-disjoint";
 export { default as booleanContains } from "@turf/boolean-contains";
 export { default as booleanCrosses } from "@turf/boolean-crosses";
