@@ -40,15 +40,8 @@ function lineIntersect<
     ignoreSelfIntersections?: boolean;
   } = {}
 ): FeatureCollection<Point> {
-  let removeDuplicates = true;
-  let ignoreSelfIntersections = false;
-  if ("removeDuplicates" in options) {
-    removeDuplicates = options.removeDuplicates!;
-  }
-  if ("ignoreSelfIntersections" in options) {
-    ignoreSelfIntersections = options.ignoreSelfIntersections!;
-  }
-  let features: Feature<any>[] = [];
+  const { removeDuplicates = true, ignoreSelfIntersections = false } = options;
+  let features: Feature<G1 | G2>[] = [];
   if (line1.type === "FeatureCollection")
     features = features.concat(line1.features);
   else if (line1.type === "Feature") features.push(line1);
@@ -73,13 +66,14 @@ function lineIntersect<
     features.push(feature(line2));
   }
 
-  const intersections: any[] = findIntersections(
+  const intersections = findIntersections(
     featureCollection(features),
     ignoreSelfIntersections
-  );
-  let results: any[] = [];
+  ) as [number, number][];
+
+  let results = [];
   if (removeDuplicates) {
-    const unique: { [key: string]: any } = {};
+    const unique: Record<string, boolean> = {};
     intersections.forEach((intersection) => {
       const key = intersection.join(",");
       if (!unique[key]) {
