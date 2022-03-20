@@ -66,12 +66,17 @@ function lineIntersect<
     features.push(feature(line2));
   }
 
+  /**
+   * Intersection point between two geometries
+   */
+  type Intersection = [number, number];
+
   const intersections = findIntersections(
     featureCollection(features),
     ignoreSelfIntersections
-  ) as [number, number][];
+  ) as Intersection[];
 
-  let results = [];
+  let results: Intersection[] = [];
   if (removeDuplicates) {
     const unique: Record<string, boolean> = {};
     intersections.forEach((intersection) => {
