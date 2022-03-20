@@ -1,12 +1,7 @@
 {
   "extends": "../../tsconfig.shared.json",
   "compilerOptions": {
-    "strict": false,
-    "allowJs": true,
-    "outDir": "dist/js",
-    "typeRoots": [ "./types"]
+    "outDir": "dist/js"
   },
-  "files": [
-    "index.ts",
-  ],  
+  "files": ["index.ts"]
 }
