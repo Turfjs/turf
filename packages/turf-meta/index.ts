@@ -64,7 +64,7 @@ export function coordEach(
     geometryIndex: number
   ) => boolean | void,
   excludeWrapCoord = false
-) {
+): false | void {
   // Handles null Geometry -- Skips this GeoJSON
   if (geojson === null) {
     return;
@@ -348,7 +348,7 @@ export function coordReduce<T = Position>(
 export function propEach(
   geojson: FeatureCollection | Feature,
   callback: (properties: GeoJsonProperties, index: number) => boolean | void
-) {
+): void {
   switch (geojson.type) {
     case "FeatureCollection":
       for (let i = 0; i < geojson.features.length; i++) {
@@ -458,7 +458,7 @@ export function propReduce<T = GeoJsonProperties>(
 export function featureEach(
   geojson: Feature | FeatureCollection,
   callback: (feature: Feature, featureIndex: number) => boolean | void
-) {
+): void {
   if (geojson.type === "Feature") {
     callback(geojson, 0);
   } else if (geojson.type === "FeatureCollection") {
@@ -600,7 +600,7 @@ export function geomEach(
     featureBBox: BBox | undefined,
     featureId: string | number | undefined
   ) => boolean | void
-) {
+): false | void {
   let featureIndex = 0;
   let isFeatureCollection = geojson.type === "FeatureCollection";
   let isFeature = geojson.type === "Feature";
@@ -847,13 +847,12 @@ export function flattenEach(
     featureIndex: number,
     multiFeatureIndex: number
   ) => boolean | void
-) {
+): void {
   geomEach(geojson, function (geometry, featureIndex, properties, bbox, id) {
     // Callback for single geometry
     const type = geometry === null ? null : geometry.type;
     switch (type) {
       case null:
-        return;
       case "Point":
       case "LineString":
       case "Polygon":
@@ -1024,7 +1023,7 @@ export function segmentEach(
     geometryIndex: number,
     segmentIndex: number
   ) => boolean | void
-) {
+): void {
   flattenEach(geojson, function (feature, featureIndex, multiFeatureIndex) {
     let segmentIndex = 0;
 
@@ -1217,7 +1216,7 @@ export function lineEach(
     multiFeatureIndex: number,
     geometryIndex: number
   ) => boolean | void
-) {
+): void {
   // validation
   if (!geojson) throw new Error("geojson is required");
 
