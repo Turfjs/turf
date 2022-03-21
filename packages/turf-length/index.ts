@@ -33,5 +33,5 @@ export default function length(
       return previousValue! + distance(coords[0], coords[1], options);
     },
     0
-  );
+  ) as number;
 }

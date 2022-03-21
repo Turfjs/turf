@@ -92,9 +92,9 @@ function removeDuplicates(
     if (!pt.geometry) {
       return;
     }
-    const key = pt.geometry.coordinates.join("-");
+    const key = (pt as Feature<Point>).geometry.coordinates.join("-");
     if (!Object.prototype.hasOwnProperty.call(existing, key)) {
-      cleaned.push(pt);
+      cleaned.push(pt as Feature<Point>);
       existing[key] = true;
     }
   });

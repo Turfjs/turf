@@ -53,7 +53,9 @@ export default function intersect<P = GeoJsonProperties>(
   const geoms: polygonClipping.Geom[] = [];
 
   geomEach(features, (geom) => {
-    geoms.push(geom.coordinates as polygonClipping.Geom);
+    if (geom != null) {
+      geoms.push(geom.coordinates as polygonClipping.Geom);
+    }
   });
 
   if (geoms.length < 2) {

@@ -65,7 +65,7 @@ function nearestPointToLine<P = { dist: number; [key: string]: any }>(
   let pt: any = null;
 
   featureEach(pts, (point) => {
-    const d = pointToLineDistance(point, line, { units });
+    const d = pointToLineDistance(point as Feature<Point>, line, { units });
     if (d < dist) {
       dist = d;
       pt = point;
@@ -96,7 +96,7 @@ function normalize(points: any): FeatureCollection<Point> {
   switch (type) {
     case "GeometryCollection":
       geomEach(points, (geom) => {
-        if (geom.type === "Point") {
+        if (geom != null && geom.type === "Point") {
           features.push({ type: "Feature", properties: {}, geometry: geom });
         }
       });

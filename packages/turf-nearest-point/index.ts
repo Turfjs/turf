@@ -47,7 +47,7 @@ function nearestPoint(
   let minDist = Infinity;
   let bestFeatureIndex = 0;
   featureEach(points, (pt, featureIndex) => {
-    const distanceToPoint = distance(targetPoint, pt);
+    const distanceToPoint = distance(targetPoint, pt as Feature<Point>);
     if (distanceToPoint < minDist) {
       bestFeatureIndex = featureIndex;
       minDist = distanceToPoint;

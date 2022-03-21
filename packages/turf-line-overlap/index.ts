@@ -70,10 +70,11 @@ function lineOverlap<
     }
 
     // Iterate over each segments which falls within the same bounds
-    featureEach(tree.search(segment), function (match) {
+    featureEach(tree.search(segment), function (matchUntyped) {
+      const match = matchUntyped as Feature<LineString>;
       if (doesOverlaps === false) {
         var coordsSegment = getCoords(segment).sort();
-        var coordsMatch: any = getCoords(match).sort();
+        var coordsMatch = getCoords(match).sort();
 
         // Segment overlaps feature
         if (equal(coordsSegment, coordsMatch)) {

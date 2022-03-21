@@ -43,7 +43,7 @@ function centerMean<P = GeoJsonProperties>(
         "weight value must be a number for feature index " + featureIndex
       );
     weight = Number(weight);
-    if (weight > 0) {
+    if (weight > 0 && geom != null) {
       coordEach(geom, function (coord) {
         sumXs += coord[0] * weight;
         sumYs += coord[1] * weight;

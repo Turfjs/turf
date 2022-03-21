@@ -87,7 +87,7 @@ export default function directionalMean(
     // planar and segment
   } else {
     // planar and non-segment
-    featureEach(lines, (currentFeature: Feature<LineString>) => {
+    featureEach(lines, (currentFeature) => {
       if (currentFeature.geometry.type !== "LineString") {
         throw new Error("shold to support MultiLineString?");
       }
@@ -95,7 +95,10 @@ export default function directionalMean(
         currentFeature.geometry.coordinates,
         isPlanar
       );
-      const lenOfLine = getLengthOfLineString(currentFeature, isPlanar);
+      const lenOfLine = getLengthOfLineString(
+        currentFeature as Feature<LineString>,
+        isPlanar
+      );
       if (isNaN(sin1) || isNaN(cos1)) {
         return;
       } else {
@@ -176,7 +179,7 @@ function getLengthOfLineString(line: Feature<LineString>, isPlanar: boolean) {
         return previousValue! + euclideanDistance(coords);
       },
       0
-    );
+    ) as number;
   } else {
     return length(line, {
       units: "meters",

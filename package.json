@@ -62,7 +62,7 @@
     "rollup": "^2.34.2",
     "tape": "*",
     "ts-node": "^9.0.0",
-    "typescript": "^3.8.3",
+    "typescript": "^4.6.2",
     "yamljs": "*"
   }
 }

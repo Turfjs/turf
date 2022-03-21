@@ -23,10 +23,13 @@ export default function area(
   return geomReduce(
     geojson,
     (value, geom) => {
+      if (geom == null) {
+        return value;
+      }
       return value + calculateArea(geom);
     },
     0
-  );
+  ) as number;
 }
 
 /**

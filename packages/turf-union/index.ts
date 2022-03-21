@@ -44,7 +44,9 @@ function union<P = GeoJsonProperties>(
 ): Feature<Polygon | MultiPolygon, P> | null {
   const geoms: polygonClipping.Geom[] = [];
   geomEach(features, (geom) => {
-    geoms.push(geom.coordinates as polygonClipping.Geom);
+    if (geom != null) {
+      geoms.push(geom.coordinates as polygonClipping.Geom);
+    }
   });
 
   if (geoms.length < 2) {
