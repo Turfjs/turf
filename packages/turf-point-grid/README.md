@@ -6,16 +6,17 @@
 
 Creates a [Point][1] grid from a bounding box, [FeatureCollection][2] or [Feature][3].
 
-**Parameters**
+### Parameters
 
--   `bbox` **[Array][4]&lt;[number][5]>** extent in [minX, minY, maxX, maxY] order
--   `cellSide` **[number][5]** the distance between points, in units
--   `options` **[Object][6]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][7]** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
-    -   `options.mask` **[Feature][8]&lt;([Polygon][9] \| [MultiPolygon][10])>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
-    -   `options.properties` **[Object][6]** passed to each point of the grid (optional, default `{}`)
+*   `bbox` **[Array][4]<[number][5]>** extent in \[minX, minY, maxX, maxY] order
+*   `cellSide` **[number][5]** the distance between points, in units
+*   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][7]** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.mask` **[Feature][8]<([Polygon][9] | [MultiPolygon][10])>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
+    *   `options.properties` **[Object][6]** passed to each point of the grid (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
@@ -28,7 +29,7 @@ var grid = turf.pointGrid(extent, cellSide, options);
 var addToMap = [grid];
 ```
 
-Returns **[FeatureCollection][11]&lt;[Point][12]>** grid of points
+Returns **[FeatureCollection][11]<[Point][12]>** grid of points
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

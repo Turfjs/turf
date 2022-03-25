@@ -9,77 +9,96 @@ The method reveal whether similar values tend to occur near each other,
 or whether high or low values are interspersed.
 
 Moran's I > 0 means a clusterd pattern.
-Moran's I &lt; 0 means a dispersed pattern.
+Moran's I < 0 means a dispersed pattern.
 Moran's I = 0 means a random pattern.
 
 In order to test the significance of the result. The z score is calculated.
 A positive enough z-score (ex. >1.96) indicates clustering,
-while a negative enough z-score (ex. &lt;-1.96) indicates a dispersed pattern.
+while a negative enough z-score (ex. <-1.96) indicates a dispersed pattern.
 
 the z-score can be calculated based on a normal or random assumption.
 
-**Bibliography\***
+**Bibliography**\*
 
-1.  [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I)
+1.  [Moran's I][1]
 
-2.  [pysal](http://pysal.readthedocs.io/en/latest/index.html)
+2.  [pysal][2]
 
 3.  Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
 
-**Parameters**
+### Parameters
 
--   `fc` **[FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)&lt;any>** 
--   `options` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
-    -   `options.inputField` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the property name, must contain numeric values
-    -   `options.threshold` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the distance threshold (optional, default `100000`)
-    -   `options.p` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the Minkowski p-norm distance parameter (optional, default `2`)
-    -   `options.binary` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether transfrom the distance to binary (optional, default `false`)
-    -   `options.alpha` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the distance decay parameter (optional, default `-1`)
-    -   `options.standardization` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** wheter row standardization the distance (optional, default `true`)
+*   `fc` **[FeatureCollection][3]\<any>** 
+*   `options` **[Object][4]** 
 
-**Examples**
+    *   `options.inputField` **[string][5]** the property name, must contain numeric values
+    *   `options.threshold` **[number][6]** the distance threshold (optional, default `100000`)
+    *   `options.p` **[number][6]** the Minkowski p-norm distance parameter (optional, default `2`)
+    *   `options.binary` **[boolean][7]** whether transfrom the distance to binary (optional, default `false`)
+    *   `options.alpha` **[number][6]** the distance decay parameter (optional, default `-1`)
+    *   `options.standardization` **[boolean][7]** wheter row standardization the distance (optional, default `true`)
+
+### Examples
 
 ```javascript
 const bbox = [-65, 40, -63, 42];
 const dataset = turf.randomPoint(100, { bbox: bbox });
 
-const result = moranIndex(pts, {
+const result = turf.moranIndex(dataset, {
   inputField: 'CRIME',
 });
 ```
 
-Returns **[MoranIndex](#moranindex)** 
+Returns **[MoranIndex][8]** 
 
 ## mean
 
 get mean of a list
 
-**Parameters**
+### Parameters
 
--   `y` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+*   `y` **[Array][9]<[number][6]>** 
 
-Returns **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+Returns **[number][6]** 
 
 ## variance
 
 get variance of a list
 
-**Parameters**
+### Parameters
 
--   `y` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+*   `y` **[Array][9]<[number][6]>** 
 
-Returns **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+Returns **[number][6]** 
 
 ## MoranIndex
 
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+Type: [Object][4]
 
-**Properties**
+### Properties
 
--   `moranIndex` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the moran's Index of the observed feature set
--   `expectedMoranIndex` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the moran's Index of the random distribution
--   `stdNorm` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the standard devitaion of the random distribution
--   `zNorm` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the z-score of the observe samples with regard to the random distribution
+*   `moranIndex` **[number][6]** the moran's Index of the observed feature set
+*   `expectedMoranIndex` **[number][6]** the moran's Index of the random distribution
+*   `stdNorm` **[number][6]** the standard devitaion of the random distribution
+*   `zNorm` **[number][6]** the z-score of the observe samples with regard to the random distribution
+
+[1]: https://en.wikipedia.org/wiki/Moran%27s_I
+
+[2]: http://pysal.readthedocs.io/en/latest/index.html
+
+[3]: https://tools.ietf.org/html/rfc7946#section-3.3
+
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[8]: #moranindex
+
+[9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
 <!-- This file is automatically generated. Please don't edit it directly:
 if you find an error, edit the source file (likely index.js), and re-run

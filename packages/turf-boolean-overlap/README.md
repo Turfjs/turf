@@ -8,12 +8,14 @@ Compares two geometries of the same dimension and returns true if their intersec
 different from both but of the same dimension. It applies to Polygon/Polygon, LineString/LineString,
 Multipoint/Multipoint, MultiLineString/MultiLineString and MultiPolygon/MultiPolygon.
 
-**Parameters**
+In other words, it returns true if the two geometries overlap, provided that neither completely contains the other.
 
--   `feature1` **([Geometry][1] \| [Feature][2]&lt;([LineString][3] \| [MultiLineString][4] \| [Polygon][5] \| [MultiPolygon][6])>)** input
--   `feature2` **([Geometry][1] \| [Feature][2]&lt;([LineString][3] \| [MultiLineString][4] \| [Polygon][5] \| [MultiPolygon][6])>)** input
+### Parameters
 
-**Examples**
+*   `feature1` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4] | [Polygon][5] | [MultiPolygon][6])>)** input
+*   `feature2` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4] | [Polygon][5] | [MultiPolygon][6])>)** input
+
+### Examples
 
 ```javascript
 var poly1 = turf.polygon([[[0,0],[0,5],[5,5],[5,0],[0,0]]]);

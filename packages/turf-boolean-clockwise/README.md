@@ -6,11 +6,11 @@
 
 Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
 
-**Parameters**
+### Parameters
 
--   `line` **([Feature][1]&lt;[LineString][2]> | [LineString][2] \| [Array][3]&lt;[Array][3]&lt;[number][4]>>)** to be evaluated
+*   `line` **([Feature][1]<[LineString][2]> | [LineString][2] | [Array][3]<[Array][3]<[number][4]>>)** to be evaluated
 
-**Examples**
+### Examples
 
 ```javascript
 var clockwiseRing = turf.lineString([[0,0],[1,1],[1,0],[0,0]]);

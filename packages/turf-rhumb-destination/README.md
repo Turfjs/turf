@@ -7,16 +7,17 @@
 Returns the destination [Point][1] having travelled the given distance along a Rhumb line from the
 origin Point with the (varant) given bearing.
 
-**Parameters**
+### Parameters
 
--   `origin` **[Coord][2]** starting point
--   `distance` **[number][3]** distance from the starting point
--   `bearing` **[number][3]** varant bearing angle ranging from -180 to 180 degrees from north
--   `options` **[Object][4]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][5]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
-    -   `options.properties` **[Object][4]** translate properties to destination point (optional, default `{}`)
+*   `origin` **[Coord][2]** starting point
+*   `distance` **[number][3]** distance from the starting point
+*   `bearing` **[number][3]** varant bearing angle ranging from -180 to 180 degrees from north
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][5]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.properties` **[Object][4]** translate properties to destination point (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var pt = turf.point([-75.343, 39.984], {"marker-color": "F00"});
@@ -31,7 +32,7 @@ var addToMap = [pt, destination]
 destination.properties['marker-color'] = '#00F';
 ```
 
-Returns **[Feature][6]&lt;[Point][7]>** Destination point.
+Returns **[Feature][6]<[Point][7]>** Destination point.
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

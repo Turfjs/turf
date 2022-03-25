@@ -4,16 +4,16 @@
 
 ## union
 
-Takes two [(Multi)Polygon(s)][1] and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon][2] feature.
+Takes input [(Multi)Polygon(s)][1] and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon][2] feature.
 
-**Parameters**
+### Parameters
 
--   `polygon1` **[Feature][3]&lt;([Polygon][4] \| [MultiPolygon][5])>** input Polygon feature
--   `polygon2` **[Feature][3]&lt;([Polygon][4] \| [MultiPolygon][5])>** Polygon feature to difference from polygon1
--   `options` **[Object][6]** Optional Parameters (optional, default `{}`)
-    -   `options.properties` **[Object][6]** Translate Properties to output Feature (optional, default `{}`)
+*   `polygon1` **[Feature][3]<([Polygon][4] | [MultiPolygon][5])>** input Polygon features
+*   `options` **[Object][6]** Optional Parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.properties` **[Object][6]** Translate Properties to output Feature (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var poly1 = turf.polygon([[
@@ -31,13 +31,13 @@ var poly2 = turf.polygon([[
     [-82.560024, 35.585153]
 ]], {"fill": "#00f"});
 
-var union = turf.union(poly1, poly2);
+var union = turf.union(turf.featureCollection([poly1, poly2]));
 
 //addToMap
 var addToMap = [poly1, poly2, union];
 ```
 
-Returns **[Feature][3]&lt;([Polygon][4] \| [MultiPolygon][5])>** a combined [Polygon][1] or [MultiPolygon][2] feature
+Returns **[Feature][3]<([Polygon][4] | [MultiPolygon][5])>** a combined [Polygon][1] or [MultiPolygon][2] feature, or null if the inputs are empty
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

@@ -6,17 +6,18 @@
 
 Takes a set of points and estimates their 'property' values on a grid using the [Inverse Distance Weighting (IDW) method][1].
 
-**Parameters**
+### Parameters
 
--   `points` **[FeatureCollection][2]&lt;[Point][3]>** with known value
--   `cellSize` **[number][4]** the distance across each grid point
--   `options` **[Object][5]** Optional parameters (optional, default `{}`)
-    -   `options.gridType` **[string][6]** defines the output format based on a Grid Type (options: 'square' | 'point' | 'hex' | 'triangle') (optional, default `'square'`)
-    -   `options.property` **[string][6]** the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists. (optional, default `'elevation'`)
-    -   `options.units` **[string][6]** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
-    -   `options.weight` **[number][4]** exponent regulating the distance-decay weighting (optional, default `1`)
+*   `points` **[FeatureCollection][2]<[Point][3]>** with known value
+*   `cellSize` **[number][4]** the distance across each grid point
+*   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.gridType` **[string][6]** defines the output format based on a Grid Type (options: 'square' | 'point' | 'hex' | 'triangle') (optional, default `'square'`)
+    *   `options.property` **[string][6]** the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists. (optional, default `'elevation'`)
+    *   `options.units` **[string][6]** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.weight` **[number][4]** exponent regulating the distance-decay weighting (optional, default `1`)
+
+### Examples
 
 ```javascript
 var points = turf.randomPoint(30, {bbox: [50, 30, 70, 50]});
@@ -32,7 +33,7 @@ var grid = turf.interpolate(points, 100, options);
 var addToMap = [grid];
 ```
 
-Returns **[FeatureCollection][2]&lt;([Point][3] \| [Polygon][7])>** grid of points or polygons with interpolated 'property'
+Returns **[FeatureCollection][2]<([Point][3] | [Polygon][7])>** grid of points or polygons with interpolated 'property'
 
 [1]: https://en.wikipedia.org/wiki/Inverse_distance_weighting
 

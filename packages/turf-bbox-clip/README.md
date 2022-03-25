@@ -4,15 +4,16 @@
 
 ## bboxClip
 
-Takes a [Feature][1] and a bbox and clips the feature to the bbox using [lineclip][2].
+Takes a [Feature][1] and a bbox and clips the feature to the bbox using
+[lineclip][2].
 May result in degenerate edges when clipping Polygons.
 
-**Parameters**
+### Parameters
 
--   `feature` **[Feature][3]&lt;([LineString][4] \| [MultiLineString][5] \| [Polygon][6] \| [MultiPolygon][7])>** feature to clip to the bbox
--   `bbox` **[BBox][8]** extent in [minX, minY, maxX, maxY] order
+*   `feature` **[Feature][3]<([LineString][4] | [MultiLineString][5] | [Polygon][6] | [MultiPolygon][7])>** feature to clip to the bbox
+*   `bbox` **[BBox][8]** extent in \[minX, minY, maxX, maxY] order
 
-**Examples**
+### Examples
 
 ```javascript
 var bbox = [0, 0, 10, 10];
@@ -24,7 +25,7 @@ var clipped = turf.bboxClip(poly, bbox);
 var addToMap = [bbox, poly, clipped]
 ```
 
-Returns **[Feature][3]&lt;([LineString][4] \| [MultiLineString][5] \| [Polygon][6] \| [MultiPolygon][7])>** clipped Feature
+Returns **[Feature][3]<([LineString][4] | [MultiLineString][5] | [Polygon][6] | [MultiPolygon][7])>** clipped Feature
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.2
 

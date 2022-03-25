@@ -6,13 +6,14 @@
 
 Removes redundant coordinates from any GeoJSON Geometry.
 
-**Parameters**
+### Parameters
 
--   `geojson` **([Geometry][1] \| [Feature][2])** Feature or Geometry
--   `options` **[Object][3]** Optional parameters (optional, default `{}`)
-    -   `options.mutate` **[boolean][4]** allows GeoJSON input to be mutated (optional, default `false`)
+*   `geojson` **([Geometry][1] | [Feature][2])** Feature or Geometry
+*   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.mutate` **[boolean][4]** allows GeoJSON input to be mutated (optional, default `false`)
+
+### Examples
 
 ```javascript
 var line = turf.lineString([[0, 0], [0, 2], [0, 5], [0, 8], [0, 8], [0, 10]]);
@@ -25,7 +26,7 @@ turf.cleanCoords(multiPoint).geometry.coordinates;
 //= [[0, 0], [2, 2]]
 ```
 
-Returns **([Geometry][1] \| [Feature][2])** the cleaned input Feature/Geometry
+Returns **([Geometry][1] | [Feature][2])** the cleaned input Feature/Geometry
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1
 

@@ -6,12 +6,12 @@
 
 Takes a [FeatureCollection][1] and returns a FeatureCollection with given number of [features][2] at random.
 
-**Parameters**
+### Parameters
 
--   `featurecollection` **[FeatureCollection][3]** set of input features
--   `num` **[number][4]** number of features to select
+*   `featurecollection` **[FeatureCollection][3]** set of input features
+*   `num` **[number][4]** number of features to select
 
-**Examples**
+### Examples
 
 ```javascript
 var points = turf.randomPoint(100, {bbox: [-80, 30, -60, 60]});

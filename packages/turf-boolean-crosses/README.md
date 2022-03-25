@@ -9,13 +9,14 @@ the maximum dimension of the two source geometries and the intersection set is i
 both source geometries.
 
 Boolean-Crosses returns t (TRUE) for only multipoint/polygon, multipoint/linestring, linestring/linestring, linestring/polygon, and linestring/multipolygon comparisons.
+Other comparisons are not supported as they are outside the OpenGIS Simple Features spec and may give unexpected results.
 
-**Parameters**
+### Parameters
 
--   `feature1` **([Geometry][1] \| [Feature][2]&lt;any>)** GeoJSON Feature or Geometry
--   `feature2` **([Geometry][1] \| [Feature][2]&lt;any>)** GeoJSON Feature or Geometry
+*   `feature1` **([Geometry][1] | [Feature][2]\<any>)** GeoJSON Feature or Geometry
+*   `feature2` **([Geometry][1] | [Feature][2]\<any>)** GeoJSON Feature or Geometry
 
-**Examples**
+### Examples
 
 ```javascript
 var line1 = turf.lineString([[-2, 2], [4, 2]]);

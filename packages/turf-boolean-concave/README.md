@@ -6,11 +6,11 @@
 
 Takes a polygon and return true or false as to whether it is concave or not.
 
-**Parameters**
+### Parameters
 
--   `polygon` **[Feature][1]&lt;[Polygon][2]>** to be evaluated
+*   `polygon` **[Feature][1]<[Polygon][2]>** to be evaluated
 
-**Examples**
+### Examples
 
 ```javascript
 var convexPolygon = turf.polygon([[[0,0],[0,1],[1,1],[1,0],[0,0]]]);

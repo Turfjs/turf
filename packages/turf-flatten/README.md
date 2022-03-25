@@ -6,11 +6,11 @@
 
 Flattens any [GeoJSON][1] to a [FeatureCollection][2] inspired by [geojson-flatten][3].
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][4]** any valid GeoJSON Object
+*   `geojson` **[GeoJSON][4]** any valid GeoJSON Object
 
-**Examples**
+### Examples
 
 ```javascript
 var multiGeometry = turf.multiPolygon([
@@ -25,7 +25,7 @@ var flatten = turf.flatten(multiGeometry);
 var addToMap = [flatten]
 ```
 
-Returns **[FeatureCollection][5]&lt;any>** all Multi-Geometries are flattened into single Features
+Returns **[FeatureCollection][5]\<any>** all Multi-Geometries are flattened into single Features
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3
 

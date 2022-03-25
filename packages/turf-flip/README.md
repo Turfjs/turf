@@ -6,13 +6,14 @@
 
 Takes input features and flips all of their coordinates from `[x, y]` to `[y, x]`.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][1]** input features
--   `options` **[Object][2]** Optional parameters (optional, default `{}`)
-    -   `options.mutate` **[boolean][3]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+*   `geojson` **[GeoJSON][1]** input features
+*   `options` **[Object][2]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.mutate` **[boolean][3]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+
+### Examples
 
 ```javascript
 var serbia = turf.point([20.566406, 43.421008]);

@@ -7,14 +7,15 @@
 Calculates the distance along a rhumb line between two [points][1] in degrees, radians,
 miles, or kilometers.
 
-**Parameters**
+### Parameters
 
--   `from` **[Coord][2]** origin point
--   `to` **[Coord][2]** destination point
--   `options` **[Object][3]?** Optional parameters
-    -   `options.units` **[string][4]** can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+*   `from` **[Coord][2]** origin point
+*   `to` **[Coord][2]** destination point
+*   `options` **[Object][3]?** Optional parameters
 
-**Examples**
+    *   `options.units` **[string][4]** can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+
+### Examples
 
 ```javascript
 var from = turf.point([-75.343, 39.984]);

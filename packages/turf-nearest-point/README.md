@@ -9,12 +9,12 @@ with Point geometries and returns the
 point from the FeatureCollection closest to the reference. This calculation
 is geodesic.
 
-**Parameters**
+### Parameters
 
--   `targetPoint` **[Coord][2]** the reference point
--   `points` **[FeatureCollection][3]&lt;[Point][4]>** against input point set
+*   `targetPoint` **[Coord][2]** the reference point
+*   `points` **[FeatureCollection][3]<[Point][4]>** against input point set
 
-**Examples**
+### Examples
 
 ```javascript
 var targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0F0"});
@@ -31,7 +31,7 @@ var addToMap = [targetPoint, points, nearest];
 nearest.properties['marker-color'] = '#F00';
 ```
 
-Returns **[Feature][5]&lt;[Point][4]>** the closest point in the set to the reference point
+Returns **[Feature][5]<[Point][4]>** the closest point in the set to the reference point
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

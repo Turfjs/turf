@@ -5,13 +5,13 @@
 ## clone
 
 Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
-~3-5x faster than the common JSON.parse + JSON.stringify combo method.
+\~3-5x faster than the common JSON.parse + JSON.stringify combo method.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][1]** GeoJSON Object
+*   `geojson` **[GeoJSON][1]** GeoJSON Object
 
-**Examples**
+### Examples
 
 ```javascript
 var line = turf.lineString([[-74, 40], [-78, 42], [-82, 35]], {color: 'red'});
