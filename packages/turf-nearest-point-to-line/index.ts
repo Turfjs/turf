@@ -65,7 +65,7 @@ function nearestPointToLine<P = { dist: number; [key: string]: any }>(
   let pt: any = null;
 
   featureEach(pts, (point) => {
-    const d = pointToLineDistance(point as Feature<Point>, line, { units });
+    const d = pointToLineDistance(point, line, { units });
     if (d < dist) {
       dist = d;
       pt = point;
