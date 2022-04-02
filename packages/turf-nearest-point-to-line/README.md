@@ -4,18 +4,20 @@
 
 ## nearestPointToLine
 
-Returns the closest [point][1], of a [collection][2] of points, to a [line][3].
-The returned point has a `dist` property indicating its distance to the line.
+Returns the closest [point][1], of a [collection][2] of points,
+to a [line][3]. The returned point has a `dist` property indicating its distance to the line.
 
-**Parameters**
+### Parameters
 
--   `points` **([FeatureCollection][4] \| [GeometryCollection][5]&lt;[Point][6]>)** Point Collection
--   `line` **([Feature][7] \| [Geometry][8]&lt;[LineString][9]>)** Line Feature
--   `options` **[Object][10]?** Optional parameters
-    -   `options.units` **[string][11]** unit of the output distance property, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
-    -   `options.properties` **[Object][10]** Translate Properties to Point (optional, default `{}`)
+*   `points` **([FeatureCollection][4] | [GeometryCollection][5]<[Point][6]>)** Point Collection
+*   `line` **([Feature][7] | [Geometry][8]<[LineString][9]>)** Line Feature
+*   `options` **[Object][10]?** Optional parameters
 
-**Examples**
+    *   `options.units` **[string][11]** unit of the output distance property
+        (eg: degrees, radians, miles, or kilometers) (optional, default `'kilometers'`)
+    *   `options.properties` **[Object][10]** Translate Properties to Point (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var pt1 = turf.point([0, 0]);
@@ -29,14 +31,15 @@ var nearest = turf.nearestPointToLine(points, line);
 var addToMap = [nearest, line];
 ```
 
-Returns **[Feature][7]&lt;[Point][6]>** the closest point
+Returns **[Feature][7]<[Point][6]>** the closest point
 
 ## pt
 
 Translate Properties to final Point, priorities:
-1\. options.properties
-2\. inherent Point properties
-3\. dist custom properties created by NearestPointToLine
+
+1.  options.properties
+2.  inherent Point properties
+3.  dist custom properties created by NearestPointToLine
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

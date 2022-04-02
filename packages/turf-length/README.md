@@ -6,13 +6,14 @@
 
 Takes a [GeoJSON][1] and measures its length in the specified units, [(Multi)Point][2]'s distance are ignored.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[Feature][3]&lt;([LineString][4] \| [MultiLineString][5])>** GeoJSON to measure
--   `options` **[Object][6]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][7]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+*   `geojson` **[Feature][3]<([LineString][4] | [MultiLineString][5])>** GeoJSON to measure
+*   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][7]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+
+### Examples
 
 ```javascript
 var line = turf.lineString([[115, -32], [131, -22], [143, -25], [150, -34]]);

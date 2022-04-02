@@ -6,14 +6,15 @@
 
 Takes a [LineString][1] and returns a [Point][2] at a specified distance along the line.
 
-**Parameters**
+### Parameters
 
--   `line` **[Feature][3]&lt;[LineString][4]>** input line
--   `distance` **[number][5]** distance along the line
--   `options` **[Object][6]?** Optional parameters
-    -   `options.units` **[string][7]** can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+*   `line` **[Feature][3]<[LineString][4]>** input line
+*   `distance` **[number][5]** distance along the line
+*   `options` **[Object][6]?** Optional parameters
 
-**Examples**
+    *   `options.units` **[string][7]** can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+
+### Examples
 
 ```javascript
 var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]]);
@@ -25,7 +26,7 @@ var along = turf.along(line, 200, options);
 var addToMap = [along, line]
 ```
 
-Returns **[Feature][3]&lt;[Point][8]>** Point `distance` `units` along the line
+Returns **[Feature][3]<[Point][8]>** Point `distance` `units` along the line
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

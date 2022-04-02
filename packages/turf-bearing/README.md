@@ -7,14 +7,15 @@
 Takes two [points][1] and finds the geographic bearing between them,
 i.e. the angle measured in degrees from the north line (0 degrees)
 
-**Parameters**
+### Parameters
 
--   `start` **[Coord][2]** starting Point
--   `end` **[Coord][2]** ending Point
--   `options` **[Object][3]** Optional parameters (optional, default `{}`)
-    -   `options.final` **[boolean][4]** calculates the final bearing if true (optional, default `false`)
+*   `start` **[Coord][2]** starting Point
+*   `end` **[Coord][2]** ending Point
+*   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.final` **[boolean][4]** calculates the final bearing if true (optional, default `false`)
+
+### Examples
 
 ```javascript
 var point1 = turf.point([-75.343, 39.984]);

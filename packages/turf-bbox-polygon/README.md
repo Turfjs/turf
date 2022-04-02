@@ -6,14 +6,15 @@
 
 Takes a bbox and returns an equivalent [polygon][1].
 
-**Parameters**
+### Parameters
 
--   `bbox` **[BBox][2]** extent in [minX, minY, maxX, maxY] order
--   `options` **[Object][3]** Optional parameters (optional, default `{}`)
-    -   `options.properties` **Properties** Translate properties to Polygon (optional, default `{}`)
-    -   `options.id` **([string][4] \| [number][5])** Translate Id to Polygon (optional, default `{}`)
+*   `bbox` **[BBox][2]** extent in \[minX, minY, maxX, maxY] order
+*   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.properties` **Properties** Translate properties to Polygon (optional, default `{}`)
+    *   `options.id` **([string][4] | [number][5])** Translate Id to Polygon (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var bbox = [0, 0, 10, 10];
@@ -24,7 +25,7 @@ var poly = turf.bboxPolygon(bbox);
 var addToMap = [poly]
 ```
 
-Returns **[Feature][6]&lt;[Polygon][7]>** a Polygon representation of the bounding box
+Returns **[Feature][6]<[Polygon][7]>** a Polygon representation of the bounding box
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

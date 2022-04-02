@@ -4,17 +4,19 @@
 
 ## booleanPointInPolygon
 
-Takes a [Point][1] and a [Polygon][2] or [MultiPolygon][3] and determines if the point resides inside the polygon. The polygon can
-be convex or concave. The function accounts for holes.
+Takes a [Point][1] and a [Polygon][2] or [MultiPolygon][3] and determines if the point
+resides inside the polygon. The polygon can be convex or concave. The function accounts for holes.
 
-**Parameters**
+### Parameters
 
--   `point` **[Coord][4]** input point
--   `polygon` **[Feature][5]&lt;([Polygon][6] \| [MultiPolygon][7])>** input polygon or multipolygon
--   `options` **[Object][8]** Optional parameters (optional, default `{}`)
-    -   `options.ignoreBoundary` **[boolean][9]** True if polygon boundary should be ignored when determining if the point is inside the polygon otherwise false. (optional, default `false`)
+*   `point` **[Coord][4]** input point
+*   `polygon` **[Feature][5]<([Polygon][6] | [MultiPolygon][7])>** input polygon or multipolygon
+*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.ignoreBoundary` **[boolean][9]** True if polygon boundary should be ignored when determining if
+        the point is inside the polygon otherwise false. (optional, default `false`)
+
+### Examples
 
 ```javascript
 var pt = turf.point([-77, 44]);

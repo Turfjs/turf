@@ -7,13 +7,14 @@
 Smooths a [Polygon][1] or [MultiPolygon][2]. Based on [Chaikin's algorithm][3].
 Warning: may create degenerate polygons.
 
-**Parameters**
+### Parameters
 
--   `inputPolys` **([FeatureCollection][4] \| [Feature][5]&lt;([Polygon][6] \| [MultiPolygon][7])>)** (Multi)Polygon(s) to smooth
--   `options` **[Object][8]** Optional parameters (optional, default `{}`)
-    -   `options.iterations` **[string][9]** THe number of times to smooth the polygon. A higher value means a smoother polygon. (optional, default `1`)
+*   `inputPolys` **([FeatureCollection][4] | [Feature][5]<([Polygon][6] | [MultiPolygon][7])>)** (Multi)Polygon(s) to smooth
+*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.iterations` **[string][9]** THe number of times to smooth the polygon. A higher value means a smoother polygon. (optional, default `1`)
+
+### Examples
 
 ```javascript
 var polygon = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
@@ -24,7 +25,7 @@ var smoothed = turf.polygonSmooth(polygon, {iterations: 3})
 var addToMap = [smoothed, polygon];
 ```
 
-Returns **[FeatureCollection][4]&lt;[Polygon][6]>** FeatureCollection containing the smoothed polygon/poylgons
+Returns **[FeatureCollection][4]<[Polygon][6]>** FeatureCollection containing the smoothed polygon/poylgons
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

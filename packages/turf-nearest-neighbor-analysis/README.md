@@ -8,45 +8,49 @@ Nearest Neighbor Analysis calculates an index based the average distances
 between points in the dataset, thereby providing inference as to whether the
 data is clustered, dispersed, or randomly distributed within the study area.
 
-It returns a [Feature&lt;Polygon>][1] of the study area, with the results of
+It returns a [Feature\<Polygon>][1] of the study area, with the results of
 the analysis attached as part of of the `nearestNeighborAnalysis` property
 of the study area's `properties`. The attached
-[_z_-score][2] indicates how many
+[*z*-score][2] indicates how many
 standard deviations above or below the expected mean distance the data's
 observed mean distance is. The more negative, the more clustered. The more
-positive, the more evenly dispersed. A _z_-score between -2 and 2 indicates
-a seemingly random distribution. That is, within _p_ of less than 0.05, the
+positive, the more evenly dispersed. A *z*-score between -2 and 2 indicates
+a seemingly random distribution. That is, within *p* of less than 0.05, the
 distribution appears statistically significantly neither clustered nor
 dispersed.
 
 **Remarks**
 
--   Though the analysis will work on any [FeatureCollection][3] type, it
-    works best with [Point][4] collections.
+*   Though the analysis will work on any [FeatureCollection][3] type, it
 
--   This analysis is _very_ sensitive to the study area provided. If no [Feature&lt;Polygon>][1] is passed as the study area, the function draws a box
-    around the data, which may distort the findings. This analysis works best
-    with a bounded area of interest within with the data is either clustered,
-    dispersed, or randomly distributed. For example, a city's subway stops may
-    look extremely clustered if the study area is an entire state. On the other
-    hand, they may look rather evenly dispersed if the study area is limited to
-    the city's downtown.
+works best with [Point][4] collections.
+
+*   This analysis is *very* sensitive to the study area provided.
+
+If no [Feature\<Polygon>][1] is passed as the study area, the function draws a box
+around the data, which may distort the findings. This analysis works best
+with a bounded area of interest within with the data is either clustered,
+dispersed, or randomly distributed. For example, a city's subway stops may
+look extremely clustered if the study area is an entire state. On the other
+hand, they may look rather evenly dispersed if the study area is limited to
+the city's downtown.
 
 **Bibliography**
 
 Philip J. Clark and Francis C. Evans, “Distance to Nearest Neighbor as a
-Measure of Spatial Relationships in Populations,” _Ecology_ 35, no. 4
+Measure of Spatial Relationships in Populations,” *Ecology* 35, no. 4
 (1954): 445–453, doi:[10.2307/1931034][5].
 
-**Parameters**
+### Parameters
 
--   `dataset` **[FeatureCollection][6]&lt;any>** FeatureCollection (pref. of points) to study
--   `options` **[Object][7]** Optional parameters (optional, default `{}`)
-    -   `options.studyArea` **[Feature][8]&lt;[Polygon][9]>?** polygon representing the study area
-    -   `options.units` **[string][10]** unit of measurement for distances and, squared, area. (optional, default `'kilometers'`)
-    -   `options.properties` **[Object][7]** properties (optional, default `{}`)
+*   `dataset` **[FeatureCollection][6]\<any>** FeatureCollection (pref. of points) to study
+*   `options` **[Object][7]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.studyArea` **[Feature][8]<[Polygon][9]>?** polygon representing the study area
+    *   `options.units` **[string][10]** unit of measurement for distances and, squared, area. (optional, default `'kilometers'`)
+    *   `options.properties` **[Object][7]** properties (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var bbox = [-65, 40, -63, 42];
@@ -57,7 +61,7 @@ var nearestNeighborStudyArea = turf.nearestNeighborAnalysis(dataset);
 var addToMap = [dataset, nearestNeighborStudyArea];
 ```
 
-Returns **[Feature][8]&lt;[Polygon][9]>** A polygon of the study area or an approximation of one.
+Returns **[Feature][8]<[Polygon][9]>** A polygon of the study area or an approximation of one.
 
 [1]: Feature<Polygon>
 

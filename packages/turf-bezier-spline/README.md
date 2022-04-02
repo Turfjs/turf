@@ -10,15 +10,16 @@ algorithm.
 
 The bezier spline implementation is by [Leszek Rybicki][3].
 
-**Parameters**
+### Parameters
 
--   `line` **[Feature][4]&lt;[LineString][5]>** input LineString
--   `options` **[Object][6]** Optional parameters (optional, default `{}`)
-    -   `options.properties` **[Object][6]** Translate properties to output (optional, default `{}`)
-    -   `options.resolution` **[number][7]** time in milliseconds between points (optional, default `10000`)
-    -   `options.sharpness` **[number][7]** a measure of how curvy the path should be between splines (optional, default `0.85`)
+*   `line` **[Feature][4]<[LineString][5]>** input LineString
+*   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.properties` **[Object][6]** Translate properties to output (optional, default `{}`)
+    *   `options.resolution` **[number][7]** time in milliseconds between points (optional, default `10000`)
+    *   `options.sharpness` **[number][7]** a measure of how curvy the path should be between splines (optional, default `0.85`)
+
+### Examples
 
 ```javascript
 var line = turf.lineString([
@@ -37,7 +38,7 @@ var addToMap = [line, curved]
 curved.properties = { stroke: '#0F0' };
 ```
 
-Returns **[Feature][4]&lt;[LineString][5]>** curved line
+Returns **[Feature][4]<[LineString][5]>** curved line
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

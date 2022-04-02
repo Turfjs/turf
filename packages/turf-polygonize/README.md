@@ -13,17 +13,18 @@ noded, i.e., they must only meet at their endpoints.
 
 The implementation correctly handles:
 
--   Dangles: edges which have one or both ends which are not incident on another edge endpoint.
--   Cut Edges (bridges): edges that are connected at both ends but which do not form part of a polygon.
+*   Dangles: edges which have one or both ends which are not incident on another edge endpoint.
+*   Cut Edges (bridges): edges that are connected at both ends but which do not form part of a polygon.
 
-**Parameters**
+### Parameters
 
--   `geoJson` **([FeatureCollection][3] \| [Geometry][4] \| [Feature][5]&lt;([LineString][6] \| [MultiLineString][7])>)** Lines in order to polygonize
+*   `geoJson` **([FeatureCollection][3] | [Geometry][4] | [Feature][5]<([LineString][6] | [MultiLineString][7])>)** Lines in order to polygonize
 
+<!---->
 
--   Throws **[Error][8]** if geoJson is invalid.
+*   Throws **[Error][8]** if geoJson is invalid.
 
-Returns **[FeatureCollection][3]&lt;[Polygon][9]>** Polygons created
+Returns **[FeatureCollection][3]<[Polygon][9]>** Polygons created
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

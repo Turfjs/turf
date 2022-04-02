@@ -6,17 +6,18 @@
 
 Takes a set of [points][1] and partition them into clusters according to [https://en.wikipedia.org/wiki/DBSCAN][2] data clustering algorithm.
 
-**Parameters**
+### Parameters
 
--   `points` **[FeatureCollection][3]&lt;[Point][4]>** to be clustered
--   `maxDistance` **[number][5]** Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
--   `options` **[Object][6]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][7]** in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
-    -   `options.mutate` **[boolean][8]** Allows GeoJSON input to be mutated (optional, default `false`)
-    -   `options.minPoints` **[number][5]** Minimum number of points to generate a single cluster,
+*   `points` **[FeatureCollection][3]<[Point][4]>** to be clustered
+*   `maxDistance` **[number][5]** Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
+*   `options` **[Object][6]** Optional parameters (optional, default `{}`)
+
+    *   `options.units` **[string][7]** in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+    *   `options.mutate` **[boolean][8]** Allows GeoJSON input to be mutated (optional, default `false`)
+    *   `options.minPoints` **[number][5]** Minimum number of points to generate a single cluster,
         points which do not meet this requirement will be classified as an 'edge' or 'noise'. (optional, default `3`)
 
-**Examples**
+### Examples
 
 ```javascript
 // create random points with random z-values in their properties
@@ -28,8 +29,8 @@ var clustered = turf.clustersDbscan(points, maxDistance);
 var addToMap = [clustered];
 ```
 
-Returns **[FeatureCollection][3]&lt;[Point][4]>** Clustered Points with an additional two properties associated to each Feature:-   {number} cluster - the associated clusterId
--   {string} dbscan - type of point it has been classified as ('core'|'edge'|'noise')
+Returns **[FeatureCollection][3]<[Point][4]>** Clustered Points with an additional two properties associated to each Feature:*   {number} cluster - the associated clusterId
+*   {string} dbscan - type of point it has been classified as ('core'|'edge'|'noise')
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

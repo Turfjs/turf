@@ -7,15 +7,16 @@
 Divides a [LineString][1] into chunks of a specified length.
 If the line is shorter than the segment length then the original line is returned.
 
-**Parameters**
+### Parameters
 
--   `geojson` **([FeatureCollection][2] \| [Geometry][3] \| [Feature][4]&lt;([LineString][5] \| [MultiLineString][6])>)** the lines to split
--   `segmentLength` **[number][7]** how long to make each segment
--   `options` **[Object][8]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][9]** units can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
-    -   `options.reverse` **[boolean][10]** reverses coordinates to start the first chunked segment at the end (optional, default `false`)
+*   `geojson` **([FeatureCollection][2] | [Geometry][3] | [Feature][4]<([LineString][5] | [MultiLineString][6])>)** the lines to split
+*   `segmentLength` **[number][7]** how long to make each segment
+*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][9]** units can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.reverse` **[boolean][10]** reverses coordinates to start the first chunked segment at the end (optional, default `false`)
+
+### Examples
 
 ```javascript
 var line = turf.lineString([[-95, 40], [-93, 45], [-85, 50]]);
@@ -26,7 +27,7 @@ var chunk = turf.lineChunk(line, 15, {units: 'miles'});
 var addToMap = [chunk];
 ```
 
-Returns **[FeatureCollection][2]&lt;[LineString][5]>** collection of line segments
+Returns **[FeatureCollection][2]<[LineString][5]>** collection of line segments
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

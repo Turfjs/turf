@@ -6,11 +6,11 @@
 
 Takes a feature or set of features and returns all positions as [points][1].
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][2]** input features
+*   `geojson` **[GeoJSON][2]** input features
 
-**Examples**
+### Examples
 
 ```javascript
 var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
@@ -21,9 +21,9 @@ var explode = turf.explode(polygon);
 var addToMap = [polygon, explode]
 ```
 
--   Throws **[Error][3]** if it encounters an unknown geometry type
+*   Throws **[Error][3]** if it encounters an unknown geometry type
 
-Returns **[FeatureCollection][4]&lt;point>** points representing the exploded input features
+Returns **[FeatureCollection][4]\<point>** points representing the exploded input features
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

@@ -13,13 +13,13 @@ If an optional z-value property is provided then it is added as properties calle
 and `c` representing its value at each of the points that represent the corners of the
 triangle.
 
-**Parameters**
+### Parameters
 
--   `points` **[FeatureCollection][3]&lt;[Point][4]>** input points
--   `z` **[String][5]?** name of the property from which to pull z values
+*   `points` **[FeatureCollection][3]<[Point][4]>** input points
+*   `z` **[String][5]?** name of the property from which to pull z values
     This is optional: if not given, then there will be no extra data added to the derived triangles.
 
-**Examples**
+### Examples
 
 ```javascript
 // generate some random point data
@@ -39,7 +39,7 @@ for (var i = 0; i < tin.features.length; i++) {
 }
 ```
 
-Returns **[FeatureCollection][3]&lt;[Polygon][6]>** TIN output
+Returns **[FeatureCollection][3]<[Polygon][6]>** TIN output
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

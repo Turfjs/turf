@@ -7,11 +7,11 @@
 Takes a bounding box and calculates the minimum square bounding box that
 would contain the input.
 
-**Parameters**
+### Parameters
 
--   `bbox` **[BBox][1]** extent in [west, south, east, north] order
+*   `bbox` **[BBox][1]** extent in \[west, south, east, north] order
 
-**Examples**
+### Examples
 
 ```javascript
 var bbox = [-20, -20, -15, 0];

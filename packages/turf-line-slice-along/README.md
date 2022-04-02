@@ -10,15 +10,16 @@ and returns a subsection of the line in-between those points.
 
 This can be useful for extracting only the part of a route between two distances.
 
-**Parameters**
+### Parameters
 
--   `line` **([Feature][3]&lt;[LineString][4]> | [LineString][4])** input line
--   `startDist` **[number][5]** distance along the line to starting point
--   `stopDist` **[number][5]** distance along the line to ending point
--   `options` **[Object][6]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][7]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+*   `line` **([Feature][3]<[LineString][4]> | [LineString][4])** input line
+*   `startDist` **[number][5]** distance along the line to starting point
+*   `stopDist` **[number][5]** distance along the line to ending point
+*   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][7]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+
+### Examples
 
 ```javascript
 var line = turf.lineString([[7, 45], [9, 45], [14, 40], [14, 41]]);
@@ -30,7 +31,7 @@ var sliced = turf.lineSliceAlong(line, start, stop, {units: 'miles'});
 var addToMap = [line, start, stop, sliced]
 ```
 
-Returns **[Feature][3]&lt;[LineString][4]>** sliced line
+Returns **[Feature][3]<[LineString][4]>** sliced line
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

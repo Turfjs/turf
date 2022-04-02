@@ -6,16 +6,17 @@
 
 Takes a [Feature][1] or [FeatureCollection][2] and returns the mean center. Can be weighted.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][3]** GeoJSON to be centered
--   `options` **[Object][4]** Optional parameters (optional, default `{}`)
-    -   `options.properties` **[Object][4]** Translate GeoJSON Properties to Point (optional, default `{}`)
-    -   `options.bbox` **[Object][4]** Translate GeoJSON BBox to Point (optional, default `{}`)
-    -   `options.id` **[Object][4]** Translate GeoJSON Id to Point (optional, default `{}`)
-    -   `options.weight` **[string][5]?** the property name used to weight the center
+*   `geojson` **[GeoJSON][3]** GeoJSON to be centered
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.properties` **[Object][4]** Translate GeoJSON Properties to Point (optional, default `{}`)
+    *   `options.bbox` **[Object][4]** Translate GeoJSON BBox to Point (optional, default `{}`)
+    *   `options.id` **[Object][4]** Translate GeoJSON Id to Point (optional, default `{}`)
+    *   `options.weight` **[string][5]?** the property name used to weight the center
+
+### Examples
 
 ```javascript
 var features = turf.featureCollection([
@@ -33,7 +34,7 @@ mean.properties['marker-size'] = 'large';
 mean.properties['marker-color'] = '#000';
 ```
 
-Returns **[Feature][6]&lt;[Point][7]>** a Point feature at the mean center point of all input features
+Returns **[Feature][6]<[Point][7]>** a Point feature at the mean center point of all input features
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.2
 

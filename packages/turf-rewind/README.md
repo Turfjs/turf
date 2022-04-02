@@ -6,14 +6,15 @@
 
 Rewind [(Multi)LineString][1] or [(Multi)Polygon][2] outer ring counterclockwise and inner rings clockwise (Uses [Shoelace Formula][3]).
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][4]** input GeoJSON Polygon
--   `options` **[Object][5]** Optional parameters (optional, default `{}`)
-    -   `options.reverse` **[boolean][6]** enable reverse winding (optional, default `false`)
-    -   `options.mutate` **[boolean][6]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+*   `geojson` **[GeoJSON][4]** input GeoJSON Polygon
+*   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.reverse` **[boolean][6]** enable reverse winding (optional, default `false`)
+    *   `options.mutate` **[boolean][6]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+
+### Examples
 
 ```javascript
 var polygon = turf.polygon([[[121, -29], [138, -29], [138, -18], [121, -18], [121, -29]]]);

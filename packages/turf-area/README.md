@@ -6,11 +6,11 @@
 
 Takes one or more features and returns their area in square meters.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][1]** input GeoJSON feature(s)
+*   `geojson` **[GeoJSON][1]** input GeoJSON feature(s)
 
-**Examples**
+### Examples
 
 ```javascript
 var polygon = turf.polygon([[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]);

@@ -6,14 +6,15 @@
 
 Takes a [Point][1] and a [LineString][2] and calculates the closest Point on the (Multi)LineString.
 
-**Parameters**
+### Parameters
 
--   `lines` **([Geometry][3] \| [Feature][4]&lt;([LineString][5] \| [MultiLineString][6])>)** lines to snap to
--   `pt` **([Geometry][3] \| [Feature][4]&lt;[Point][7]> | [Array][8]&lt;[number][9]>)** point to snap from
--   `options` **[Object][10]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][11]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+*   `lines` **([Geometry][3] | [Feature][4]<([LineString][5] | [MultiLineString][6])>)** lines to snap to
+*   `pt` **([Geometry][3] | [Feature][4]<[Point][7]> | [Array][8]<[number][9]>)** point to snap from
+*   `options` **[Object][10]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][11]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+
+### Examples
 
 ```javascript
 var line = turf.lineString([
@@ -33,7 +34,7 @@ var addToMap = [line, pt, snapped];
 snapped.properties['marker-color'] = '#00f';
 ```
 
-Returns **[Feature][4]&lt;[Point][7]>** closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
+Returns **[Feature][4]<[Point][7]>** closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
