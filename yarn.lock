@@ -9405,10 +9405,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-sweepline-intersections@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/sweepline-intersections/-/sweepline-intersections-1.3.1.tgz#a1ec86e96d929f34c56ea02c84b8d93a6e3de8aa"
-  integrity sha512-5+e8gDZ7aWx/tymFqrUzAvMDhpMq1EM3gSFY9D08dIbMAEFB7X7g0J0piNkuxlhsSfbnyvvHqH5R+dBq4gRKZg==
+sweepline-intersections@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/sweepline-intersections/-/sweepline-intersections-1.4.0.tgz#9a9843e0fd4829e83e48907506aef27256c564ab"
+  integrity sha512-OSqsMTRINvMQq9v/6KGaPnpXn2anbbm0lWR1bxa4OVScq7UBi7spK0jQE1q64/bYXZ478onjAa9lgdKLYL5HHQ==
   dependencies:
     tinyqueue "^2.0.0"
 
