@@ -1,6 +1,7 @@
 import { Feature, LineString } from "geojson";
 import { Coord } from "@turf/helpers";
 import { getCoord, getCoords } from "@turf/invariant";
+import { orient2d } from "robust-predicates";
 
 /**
  * Returns true if a point is on a line. Accepts a optional parameter to ignore the
@@ -11,7 +12,6 @@ import { getCoord, getCoords } from "@turf/invariant";
  * @param {Feature<LineString>} line GeoJSON LineString
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.ignoreEndVertices=false] whether to ignore the start and end vertices.
- * @param {number} [options.epsilon] Fractional number to compare with the cross product result. Useful for dealing with floating points such as lng/lat points
  * @returns {boolean} true/false
  * @example
  * var pt = turf.point([0, 0]);
@@ -50,8 +50,7 @@ function booleanPointOnLine(
         lineCoords[i],
         lineCoords[i + 1],
         ptCoords,
-        ignoreBoundary,
-        typeof options.epsilon === "undefined" ? null : options.epsilon
+        ignoreBoundary
       )
     ) {
       return true;
@@ -68,7 +67,6 @@ function booleanPointOnLine(
  * @param {Position} lineSegmentEnd coord pair of end of line
  * @param {Position} pt coord pair of point to check
  * @param {boolean|string} excludeBoundary whether the point is allowed to fall on the line ends.
- * @param {number} epsilon Fractional number to compare with the cross product result. Useful for dealing with floating points such as lng/lat points
  * If true which end to ignore.
  * @returns {boolean} true/false
  */
@@ -76,8 +74,7 @@ function isPointOnLineSegment(
   lineSegmentStart: number[],
   lineSegmentEnd: number[],
   pt: number[],
-  excludeBoundary: string | boolean,
-  epsilon: number | null
+  excludeBoundary: string | boolean
 ): boolean {
   const x = pt[0];
   const y = pt[1];
@@ -85,40 +82,22 @@ function isPointOnLineSegment(
   const y1 = lineSegmentStart[1];
   const x2 = lineSegmentEnd[0];
   const y2 = lineSegmentEnd[1];
-  const dxc = pt[0] - x1;
-  const dyc = pt[1] - y1;
-  const dxl = x2 - x1;
-  const dyl = y2 - y1;
-  const cross = dxc * dyl - dyc * dxl;
-  if (epsilon !== null) {
-    if (Math.abs(cross) > epsilon) {
+  const isColinear = orient2d(x1, y1, x2, y2, x, y) === 0;
+  if (!isColinear) return false;
+  const minX = Math.min(x1, x2);
+  const maxX = Math.min(x1, x2);
+  const minY = Math.min(y1, y2);
+  const maxY = Math.min(y1, y2);
+  if (excludeBoundary) {
+    if (x < minX || x > maxX || y < minY || y > maxY) {
       return false;
     }
-  } else if (cross !== 0) {
-    return false;
+  } else {
+    if (x <= minX || x >= maxX || y <= minY || y >= maxY) {
+      return false;
+    }
   }
-  if (!excludeBoundary) {
-    if (Math.abs(dxl) >= Math.abs(dyl)) {
-      return dxl > 0 ? x1 <= x && x <= x2 : x2 <= x && x <= x1;
-    }
-    return dyl > 0 ? y1 <= y && y <= y2 : y2 <= y && y <= y1;
-  } else if (excludeBoundary === "start") {
-    if (Math.abs(dxl) >= Math.abs(dyl)) {
-      return dxl > 0 ? x1 < x && x <= x2 : x2 <= x && x < x1;
-    }
-    return dyl > 0 ? y1 < y && y <= y2 : y2 <= y && y < y1;
-  } else if (excludeBoundary === "end") {
-    if (Math.abs(dxl) >= Math.abs(dyl)) {
-      return dxl > 0 ? x1 <= x && x < x2 : x2 < x && x <= x1;
-    }
-    return dyl > 0 ? y1 <= y && y < y2 : y2 < y && y <= y1;
-  } else if (excludeBoundary === "both") {
-    if (Math.abs(dxl) >= Math.abs(dyl)) {
-      return dxl > 0 ? x1 < x && x < x2 : x2 < x && x < x1;
-    }
-    return dyl > 0 ? y1 < y && y < y2 : y2 < y && y < y1;
-  }
-  return false;
+  return true;
 }
 
 export default booleanPointOnLine;
