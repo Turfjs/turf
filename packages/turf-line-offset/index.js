@@ -1,4 +1,4 @@
-import { center } from "@turf/center";
+import center from "@turf/center";
 import { flattenEach } from "@turf/meta";
 import { getCoords, getType } from "@turf/invariant";
 import { geoAzimuthalEquidistant } from "d3-geo";
@@ -76,8 +76,8 @@ function lineOffsetFeature(line, distance, units) {
   // Project GeoJSON to Azimuthal Equidistant projection (convert to Meters)
   var projection = defineProjection(line);
   var projected = {
-    type: line.type,
-    coordinates: projectCoords(line.coordinates, projection),
+    type: line.geometry.type,
+    coordinates: projectCoords(line.geometry.coordinates, projection),
   };
 
   //offset the line
@@ -113,10 +113,10 @@ function lineOffsetFeature(line, distance, units) {
   // Unproject coordinates (convert to Degrees)
 
   var result = {
-    type: line.type,
+    type: projected.type,
     coordinates: unprojectCoords(offsetLine, projection),
   };
-  return lineString(result, line.properties);
+  return lineString(result.coordinates, line.properties);
 }
 
 /**
