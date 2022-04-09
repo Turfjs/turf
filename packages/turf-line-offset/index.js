@@ -1,10 +1,14 @@
+import { center } from "@turf/center";
 import { flattenEach } from "@turf/meta";
 import { getCoords, getType } from "@turf/invariant";
+import { geoAzimuthalEquidistant } from "d3-geo";
 import {
   isObject,
   lineString,
   multiLineString,
-  lengthToDegrees,
+  radiansToLength,
+  lengthToRadians,
+  earthRadius,
 } from "@turf/helpers";
 import intersection from "./lib/intersection";
 
@@ -67,16 +71,21 @@ function lineOffset(geojson, distance, options) {
  */
 function lineOffsetFeature(line, distance, units) {
   var segments = [];
-  var offsetDegrees = lengthToDegrees(distance, units);
-  var coords = getCoords(line);
-  var finalCoords = [];
+  var distance = radiansToLength(lengthToRadians(distance, units), "meters");
+
+  // Project GeoJSON to Azimuthal Equidistant projection (convert to Meters)
+  var projection = defineProjection(line);
+  var projected = {
+    type: line.type,
+    coordinates: projectCoords(line.coordinates, projection),
+  };
+
+  //offset the line
+  var coords = getCoords(projected);
+  var offsetLine = [];
   coords.forEach(function (currentCoords, index) {
     if (index !== coords.length - 1) {
-      var segment = processSegment(
-        currentCoords,
-        coords[index + 1],
-        offsetDegrees
-      );
+      var segment = processSegment(currentCoords, coords[index + 1], distance);
       segments.push(segment);
       if (index > 0) {
         var seg2Coords = segments[index - 1];
@@ -88,20 +97,26 @@ function lineOffsetFeature(line, distance, units) {
           segment[0] = intersects;
         }
 
-        finalCoords.push(seg2Coords[0]);
+        offsetLine.push(seg2Coords[0]);
         if (index === coords.length - 2) {
-          finalCoords.push(segment[0]);
-          finalCoords.push(segment[1]);
+          offsetLine.push(segment[0]);
+          offsetLine.push(segment[1]);
         }
       }
       // Handling for lines that only have 1 segment
       if (coords.length === 2) {
-        finalCoords.push(segment[0]);
-        finalCoords.push(segment[1]);
+        offsetLine.push(segment[0]);
+        offsetLine.push(segment[1]);
       }
     }
   });
-  return lineString(finalCoords, line.properties);
+  // Unproject coordinates (convert to Degrees)
+
+  var result = {
+    type: line.type,
+    coordinates: unprojectCoords(offsetLine, projection),
+  };
+  return lineString(result, line.properties);
 }
 
 /**
@@ -130,4 +145,46 @@ function processSegment(point1, point2, offset) {
   ];
 }
 
+/**
+ * Project coordinates to projection
+ *
+ * @private
+ * @param {Array<any>} coords to project
+ * @param {GeoProjection} proj D3 Geo Projection
+ * @returns {Array<any>} projected coordinates
+ */
+function projectCoords(coords, proj) {
+  if (typeof coords[0] !== "object") return proj(coords);
+  return coords.map(function (coord) {
+    return projectCoords(coord, proj);
+  });
+}
+
+/**
+ * Un-Project coordinates to projection
+ *
+ * @private
+ * @param {Array<any>} coords to un-project
+ * @param {GeoProjection} proj D3 Geo Projection
+ * @returns {Array<any>} un-projected coordinates
+ */
+function unprojectCoords(coords, proj) {
+  if (typeof coords[0] !== "object") return proj.invert(coords);
+  return coords.map(function (coord) {
+    return unprojectCoords(coord, proj);
+  });
+}
+
+/**
+ * Define Azimuthal Equidistant projection
+ *
+ * @private
+ * @param {Geometry|Feature<any>} geojson Base projection on center of GeoJSON
+ * @returns {GeoProjection} D3 Geo Azimuthal Equidistant Projection
+ */
+function defineProjection(geojson) {
+  var coords = center(geojson).geometry.coordinates;
+  var rotation = [-coords[0], -coords[1]];
+  return geoAzimuthalEquidistant().rotate(rotation).scale(earthRadius);
+}
 export default lineOffset;
