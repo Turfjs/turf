@@ -146,10 +146,8 @@ function findMedian(
         weight * distance(theCentroid, candidateMedian);
       if (distanceFromCandidate === 0) distanceFromCandidate = 1;
       var k = weight / distanceFromCandidate;
-      candidateXsum +=
-        (theCentroid).geometry.coordinates[0] * k;
-      candidateYsum +=
-        (theCentroid).geometry.coordinates[1] * k;
+      candidateXsum += theCentroid.geometry.coordinates[0] * k;
+      candidateYsum += theCentroid.geometry.coordinates[1] * k;
       kSum += k;
     }
   });
