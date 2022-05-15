@@ -96,7 +96,7 @@ export default function directionalMean(
         isPlanar
       );
       const lenOfLine = getLengthOfLineString(
-        currentFeature as Feature<LineString>,
+        currentFeature,
         isPlanar
       );
       if (isNaN(sin1) || isNaN(cos1)) {

@@ -46,7 +46,7 @@ export function getCluster<G extends GeometryObject, P = any>(
   var features: Feature<G, P>[] = [];
   featureEach(geojson, function (feature) {
     if (applyFilter(feature.properties, filter))
-      features.push(feature as Feature<G, P>);
+      features.push(feature);
   });
   return featureCollection(features);
 }

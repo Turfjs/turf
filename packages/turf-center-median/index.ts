@@ -143,13 +143,13 @@ function findMedian(
     if (weight > 0) {
       centroidCount += 1;
       var distanceFromCandidate =
-        weight * distance(theCentroid as Feature<Point>, candidateMedian);
+        weight * distance(theCentroid, candidateMedian);
       if (distanceFromCandidate === 0) distanceFromCandidate = 1;
       var k = weight / distanceFromCandidate;
       candidateXsum +=
-        (theCentroid as Feature<Point>).geometry.coordinates[0] * k;
+        (theCentroid).geometry.coordinates[0] * k;
       candidateYsum +=
-        (theCentroid as Feature<Point>).geometry.coordinates[1] * k;
+        (theCentroid).geometry.coordinates[1] * k;
       kSum += k;
     }
   });
