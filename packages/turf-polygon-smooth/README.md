@@ -12,7 +12,7 @@ Warning: may create degenerate polygons.
 *   `inputPolys` **([FeatureCollection][4] | [Feature][5]<([Polygon][6] | [MultiPolygon][7])>)** (Multi)Polygon(s) to smooth
 *   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-    *   `options.iterations` **[string][9]** THe number of times to smooth the polygon. A higher value means a smoother polygon. (optional, default `1`)
+    *   `options.iterations` **[string][9]** The number of times to smooth the polygon. A higher value means a smoother polygon. (optional, default `1`)
 
 ### Examples
 
