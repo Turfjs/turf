@@ -8,7 +8,7 @@ import { coordEach, geomEach } from "@turf/meta";
  * @name polygonSmooth
  * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} inputPolys (Multi)Polygon(s) to smooth
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.iterations=1] THe number of times to smooth the polygon. A higher value means a smoother polygon.
+ * @param {string} [options.iterations=1] The number of times to smooth the polygon. A higher value means a smoother polygon.
  * @returns {FeatureCollection<Polygon>} FeatureCollection containing the smoothed polygon/poylgons
  * @example
  * var polygon = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
