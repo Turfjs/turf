@@ -9,9 +9,9 @@ import { getCoords } from "@turf/invariant";
 
 export interface NearestPointOnLine extends Feature<Point> {
   properties: {
-    index?: number;
-    dist?: number;
-    location?: number;
+    dist: number;
+    index: number;
+    location: number;
     [key: string]: any;
   };
 }
@@ -47,8 +47,17 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
   pt: Coord,
   options: { units?: Units } = {}
 ): NearestPointOnLine {
-  let closestPt: any = point([Infinity, Infinity], {
+  if (!lines || !pt) {
+    throw new Error("lines and pt are required arguments");
+  }
+
+  let closestPt: Feature<
+    Point,
+    { dist: number; index: number; location: number }
+  > = point([Infinity, Infinity], {
     dist: Infinity,
+    index: -1,
+    location: -1,
   });
 
   let length = 0.0;
@@ -57,17 +66,17 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
 
     for (let i = 0; i < coords.length - 1; i++) {
       //start
-      const start = point(coords[i]);
-      start.properties!.dist = distance(pt, start, options);
+      const start: Feature<Point, { dist: number }> = point(coords[i]);
+      start.properties.dist = distance(pt, start, options);
       //stop
-      const stop = point(coords[i + 1]);
-      stop.properties!.dist = distance(pt, stop, options);
+      const stop: Feature<Point, { dist: number }> = point(coords[i + 1]);
+      stop.properties.dist = distance(pt, stop, options);
       // sectionLength
       const sectionLength = distance(start, stop, options);
       //perpendicular
       const heightDistance = Math.max(
-        start.properties!.dist,
-        stop.properties!.dist
+        start.properties.dist,
+        stop.properties.dist
       );
       const direction = bearing(start, stop);
       const perpendicularPt1 = destination(
@@ -89,30 +98,47 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         ]),
         lineString([start.geometry.coordinates, stop.geometry.coordinates])
       );
-      let intersectPt = null;
-      if (intersect.features.length > 0) {
-        intersectPt = intersect.features[0];
-        intersectPt.properties!.dist = distance(pt, intersectPt, options);
-        intersectPt.properties!.location =
-          length + distance(start, intersectPt, options);
+      let intersectPt:
+        | Feature<Point, { dist: number; location: number }>
+        | undefined;
+
+      if (intersect.features.length > 0 && intersect.features[0]) {
+        intersectPt = {
+          ...intersect.features[0],
+          properties: {
+            dist: distance(pt, intersect.features[0], options),
+            location: length + distance(start, intersect.features[0], options),
+          },
+        };
       }
 
-      if (start.properties!.dist < closestPt.properties.dist) {
-        closestPt = start;
-        closestPt.properties.index = i;
-        closestPt.properties.location = length;
+      if (start.properties.dist < closestPt.properties.dist) {
+        closestPt = {
+          ...start,
+          properties: { ...start.properties, index: i, location: length },
+        };
       }
-      if (stop.properties!.dist < closestPt.properties.dist) {
-        closestPt = stop;
-        closestPt.properties.index = i + 1;
-        closestPt.properties.location = length + sectionLength;
+
+      if (stop.properties.dist < closestPt.properties.dist) {
+        closestPt = {
+          ...stop,
+          properties: {
+            ...stop.properties,
+            index: i + 1,
+            location: length + sectionLength,
+          },
+        };
       }
+
       if (
         intersectPt &&
-        intersectPt.properties!.dist < closestPt.properties.dist
+        intersectPt.properties &&
+        intersectPt.properties.dist < closestPt.properties.dist
       ) {
-        closestPt = intersectPt;
-        closestPt.properties.index = i;
+        closestPt = {
+          ...intersectPt,
+          properties: { ...intersectPt.properties, index: i },
+        };
       }
       // update length
       length += sectionLength;

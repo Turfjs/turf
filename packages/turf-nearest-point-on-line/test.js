@@ -48,6 +48,13 @@ test("turf-linestring-to-polygon", (t) => {
   t.end();
 });
 
+test("turf-point-on-line - throws error if invalid arguments", (t) => {
+  t.throws(() => {
+    nearestPointOnLine(undefined, undefined);
+  });
+  t.end();
+});
+
 test("turf-point-on-line - first point", (t) => {
   const line = lineString([
     [-122.457175, 37.720033],
