@@ -132,7 +132,6 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
 
       if (
         intersectPt &&
-        intersectPt.properties &&
         intersectPt.properties.dist < closestPt.properties.dist
       ) {
         closestPt = {
