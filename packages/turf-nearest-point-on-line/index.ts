@@ -7,15 +7,6 @@ import { flattenEach } from "@turf/meta";
 import { point, lineString, Coord, Units } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 
-export interface NearestPointOnLine extends Feature<Point> {
-  properties: {
-    dist: number;
-    index: number;
-    location: number;
-    [key: string]: any;
-  };
-}
-
 /**
  * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the (Multi)LineString.
  *
@@ -46,7 +37,15 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
   lines: Feature<G> | G,
   pt: Coord,
   options: { units?: Units } = {}
-): NearestPointOnLine {
+): Feature<
+  Point,
+  {
+    dist: number;
+    index: number;
+    location: number;
+    [key: string]: any;
+  }
+> {
   if (!lines || !pt) {
     throw new Error("lines and pt are required arguments");
   }
