@@ -302,3 +302,20 @@ test("turf-clone -- Preserve all properties -- FeatureCollection", (t) => {
   t.deepEqual(fc.bbox, [0, 20, 0, 20]);
   t.end();
 });
+
+test("turf-clone -- Feature with null geometry", (t) => {
+  const fc = featureCollection([
+    {
+      type: "Feature",
+      geometry: { type: "Point", coordinates: [102.0, 0.5] },
+      properties: { prop0: "value0" },
+    },
+    { type: "Feature", geometry: null, properties: { prop0: "value1" } },
+  ]);
+
+  // Clone
+  const cloned = clone(fc);
+
+  t.deepEqual(fc, cloned);
+  t.end();
+});

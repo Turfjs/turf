@@ -58,7 +58,11 @@ function cloneFeature(geojson: any) {
   });
   // Add properties & geometry last
   cloned.properties = cloneProperties(geojson.properties);
-  cloned.geometry = cloneGeometry(geojson.geometry);
+  if (geojson.geometry == null) {
+    cloned.geometry = null;
+  } else {
+    cloned.geometry = cloneGeometry(geojson.geometry);
+  }
   return cloned;
 }
 
