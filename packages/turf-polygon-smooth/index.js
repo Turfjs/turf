@@ -34,7 +34,7 @@ function polygonSmooth(inputPolys, options) {
       case "Polygon":
         outCoords = [[]];
         for (var i = 0; i < iterations; i++) {
-          tempOutput = [[]];
+          tempOutput = [];
           poly = geom;
           if (i > 0) poly = polygon(outCoords).geometry;
           processPolygon(poly, tempOutput);
@@ -45,7 +45,7 @@ function polygonSmooth(inputPolys, options) {
       case "MultiPolygon":
         outCoords = [[[]]];
         for (var y = 0; y < iterations; y++) {
-          tempOutput = [[[]]];
+          tempOutput = [];
           poly = geom;
           if (y > 0) poly = multiPolygon(outCoords).geometry;
           processMultiPolygon(poly, tempOutput);
@@ -66,8 +66,8 @@ function polygonSmooth(inputPolys, options) {
  * @private
  */
 function processPolygon(poly, tempOutput) {
-  var prevGeomIndex = 0;
-  var subtractCoordIndex = 0;
+  var previousCoord = null;
+  var previousGeometryIndex = null;
 
   coordEach(
     poly,
@@ -78,27 +78,26 @@ function processPolygon(poly, tempOutput) {
       multiFeatureIndex,
       geometryIndex
     ) {
-      if (geometryIndex > prevGeomIndex) {
-        prevGeomIndex = geometryIndex;
-        subtractCoordIndex = coordIndex;
+      if (previousGeometryIndex !== geometryIndex) {
         tempOutput.push([]);
+      } else {
+        var p0x = previousCoord[0];
+        var p0y = previousCoord[1];
+        var p1x = currentCoord[0];
+        var p1y = currentCoord[1];
+        tempOutput[geometryIndex].push([
+          0.75 * p0x + 0.25 * p1x,
+          0.75 * p0y + 0.25 * p1y,
+        ]);
+        tempOutput[geometryIndex].push([
+          0.25 * p0x + 0.75 * p1x,
+          0.25 * p0y + 0.75 * p1y,
+        ]);
       }
-      var realCoordIndex = coordIndex - subtractCoordIndex;
-      var p1 = poly.coordinates[geometryIndex][realCoordIndex + 1];
-      var p0x = currentCoord[0];
-      var p0y = currentCoord[1];
-      var p1x = p1[0];
-      var p1y = p1[1];
-      tempOutput[geometryIndex].push([
-        0.75 * p0x + 0.25 * p1x,
-        0.75 * p0y + 0.25 * p1y,
-      ]);
-      tempOutput[geometryIndex].push([
-        0.25 * p0x + 0.75 * p1x,
-        0.25 * p0y + 0.75 * p1y,
-      ]);
+      previousCoord = currentCoord;
+      previousGeometryIndex = geometryIndex;
     },
-    true
+    false
   );
   tempOutput.forEach(function (ring) {
     ring.push(ring[0]);
@@ -111,9 +110,9 @@ function processPolygon(poly, tempOutput) {
  * @private
  */
 function processMultiPolygon(poly, tempOutput) {
-  var prevGeomIndex = 0;
-  var subtractCoordIndex = 0;
-  var prevMultiIndex = 0;
+  var previousCoord = null;
+  var previousMultiFeatureIndex = null;
+  var previousGeometryIndex = null;
 
   coordEach(
     poly,
@@ -124,35 +123,30 @@ function processMultiPolygon(poly, tempOutput) {
       multiFeatureIndex,
       geometryIndex
     ) {
-      if (multiFeatureIndex > prevMultiIndex) {
-        prevMultiIndex = multiFeatureIndex;
-        subtractCoordIndex = coordIndex;
+      if (previousMultiFeatureIndex !== multiFeatureIndex) {
         tempOutput.push([[]]);
-      }
-      if (geometryIndex > prevGeomIndex) {
-        prevGeomIndex = geometryIndex;
-        subtractCoordIndex = coordIndex;
+      } else if (previousGeometryIndex !== geometryIndex) {
         tempOutput[multiFeatureIndex].push([]);
+      } else {
+        var p0x = previousCoord[0];
+        var p0y = previousCoord[1];
+        var p1x = currentCoord[0];
+        var p1y = currentCoord[1];
+        tempOutput[multiFeatureIndex][geometryIndex].push([
+          0.75 * p0x + 0.25 * p1x,
+          0.75 * p0y + 0.25 * p1y,
+        ]);
+        tempOutput[multiFeatureIndex][geometryIndex].push([
+          0.25 * p0x + 0.75 * p1x,
+          0.25 * p0y + 0.75 * p1y,
+        ]);
       }
-      var realCoordIndex = coordIndex - subtractCoordIndex;
-      var p1 =
-        poly.coordinates[multiFeatureIndex][geometryIndex][realCoordIndex + 1];
-      var p0x = currentCoord[0];
-      var p0y = currentCoord[1];
-      var p1x = p1[0];
-      var p1y = p1[1];
-      tempOutput[multiFeatureIndex][geometryIndex].push([
-        0.75 * p0x + 0.25 * p1x,
-        0.75 * p0y + 0.25 * p1y,
-      ]);
-      tempOutput[multiFeatureIndex][geometryIndex].push([
-        0.25 * p0x + 0.75 * p1x,
-        0.25 * p0y + 0.75 * p1y,
-      ]);
+      previousCoord = currentCoord;
+      previousMultiFeatureIndex = multiFeatureIndex;
+      previousGeometryIndex = geometryIndex;
     },
-    true
+    false
   );
-
   tempOutput.forEach(function (poly) {
     poly.forEach(function (ring) {
       ring.push(ring[0]);
