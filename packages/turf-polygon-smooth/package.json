@@ -54,6 +54,7 @@
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
+    "typescript": "^3.8.3",
     "write-json-file": "*"
   },
   "dependencies": {
