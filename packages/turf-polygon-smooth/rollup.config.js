@@ -1,4 +1,4 @@
-import typescript from "./rollup-plugins/typescript-export";
+import typescript from "typescript-export";
 
 export default {
   input: "index.js",
