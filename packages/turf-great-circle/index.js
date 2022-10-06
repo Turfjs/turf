@@ -6,7 +6,7 @@ import { GreatCircle } from "./lib/arc";
  * Calculate great circles routes as {@link LineString} or {@link MultiLineString}.
  * If the `start` and `end` points span the antimeridian, the resulting feature will
  * be split into a `MultiLineString`. If the `start` and `end` positions are the same
- * then a `LineString` with 2 points will be returned and `npoints` option will be ignored.
+ * then a `LineString` will be returned with duplicate coordinates the length of the `npoints` option.
  *
  * @name greatCircle
  * @param {Coord} start source point feature
@@ -38,11 +38,14 @@ function greatCircle(start, end, options) {
   end = getCoord(end);
 
   properties = properties || {};
+  npoints = npoints || 100;
+
   if (start[0] === end[0] && start[1] === end[1]) {
-    return lineString([start, end], properties);
+    const arr = Array(npoints);
+    arr.fill([start[0], start[1]]);
+    return lineString(arr, properties);
   }
 
-  npoints = npoints || 100;
   offset = offset || 10;
 
   var generator = new GreatCircle(
