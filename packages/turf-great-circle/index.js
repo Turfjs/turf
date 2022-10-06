@@ -6,7 +6,7 @@ import { GreatCircle } from "./lib/arc";
  * Calculate great circles routes as {@link LineString} or {@link MultiLineString}.
  * If the `start` and `end` points span the antimeridian, the resulting feature will
  * be split into a `MultiLineString`. If the `start` and `end` positions are the same
- * then a `LineString` with only 2 points will be returned and `npoints` option will be ignored.
+ * then a `LineString` with 2 points will be returned and `npoints` option will be ignored.
  *
  * @name greatCircle
  * @param {Coord} start source point feature
