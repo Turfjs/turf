@@ -10,14 +10,14 @@ for polygons, this finds every point that lies within each polygon, collects the
 `inProperty` values from those points, and adds them as an array to `outProperty`
 on the polygon.
 
-**Parameters**
+### Parameters
 
--   `polygons` **[FeatureCollection][1]&lt;[Polygon][2]>** polygons with values on which to aggregate
--   `points` **[FeatureCollection][1]&lt;[Point][3]>** points to be aggregated
--   `inProperty` **[string][4]** property to be nested from
--   `outProperty` **[string][4]** property to be nested into
+*   `polygons` **[FeatureCollection][1]<[Polygon][2]>** polygons with values on which to aggregate
+*   `points` **[FeatureCollection][1]<[Point][3]>** points to be aggregated
+*   `inProperty` **[string][4]** property to be nested from
+*   `outProperty` **[string][4]** property to be nested into
 
-**Examples**
+### Examples
 
 ```javascript
 var poly1 = turf.polygon([[[0,0],[10,0],[10,10],[0,10],[0,0]]]);
@@ -37,7 +37,7 @@ var values = collected.features[0].properties.values
 var addToMap = [pointFC, collected]
 ```
 
-Returns **[FeatureCollection][1]&lt;[Polygon][2]>** polygons with properties listed based on `outField`
+Returns **[FeatureCollection][1]<[Polygon][2]>** polygons with properties listed based on `outField`
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 

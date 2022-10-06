@@ -6,15 +6,16 @@
 
 Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][1]** any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
--   `options` **[Object][2]** Optional parameters (optional, default `{}`)
-    -   `options.precision` **[number][3]** coordinate decimal precision (optional, default `6`)
-    -   `options.coordinates` **[number][3]** maximum number of coordinates (primarly used to remove z coordinates) (optional, default `3`)
-    -   `options.mutate` **[boolean][4]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+*   `geojson` **[GeoJSON][1]** any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
+*   `options` **[Object][2]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.precision` **[number][3]** coordinate decimal precision (optional, default `6`)
+    *   `options.coordinates` **[number][3]** maximum number of coordinates (primarly used to remove z coordinates) (optional, default `3`)
+    *   `options.mutate` **[boolean][4]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+
+### Examples
 
 ```javascript
 var point = turf.point([

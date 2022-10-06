@@ -6,8 +6,8 @@ import {
   MultiLineString,
   MultiPolygon,
   Polygon,
-  Properties,
-} from "@turf/helpers";
+  GeoJsonProperties,
+} from "geojson";
 import { getGeom } from "@turf/invariant";
 
 /**
@@ -27,7 +27,10 @@ import { getGeom } from "@turf/invariant";
  * //addToMap
  * var addToMap = [line];
  */
-export default function <G extends Polygon | MultiPolygon, P = Properties>(
+export default function <
+  G extends Polygon | MultiPolygon,
+  P = GeoJsonProperties
+>(
   poly: Feature<G, P> | G,
   options: { properties?: any } = {}
 ):
@@ -50,7 +53,7 @@ export default function <G extends Polygon | MultiPolygon, P = Properties>(
 /**
  * @private
  */
-export function polygonToLine<G extends Polygon, P = Properties>(
+export function polygonToLine<G extends Polygon, P = GeoJsonProperties>(
   poly: Feature<G, P> | G,
   options: { properties?: any } = {}
 ): Feature<LineString | MultiLineString, P> {
@@ -68,7 +71,10 @@ export function polygonToLine<G extends Polygon, P = Properties>(
 /**
  * @private
  */
-export function multiPolygonToLine<G extends MultiPolygon, P = Properties>(
+export function multiPolygonToLine<
+  G extends MultiPolygon,
+  P = GeoJsonProperties
+>(
   multiPoly: Feature<G, P> | G,
   options: { properties?: P } = {}
 ): FeatureCollection<LineString | MultiLineString, P> {
@@ -90,7 +96,7 @@ export function multiPolygonToLine<G extends MultiPolygon, P = Properties>(
 /**
  * @private
  */
-export function coordsToLine<P = Properties>(
+export function coordsToLine<P = GeoJsonProperties>(
   coords: number[][][],
   properties: P
 ): Feature<LineString | MultiLineString, P> {

@@ -1,11 +1,15 @@
 import {
   Feature,
   FeatureCollection,
-  Geometries,
-  GeometryCollection,
-  isNumber,
+  Geometry,
+  LineString,
+  MultiPoint,
+  MultiLineString,
+  MultiPolygon,
   Point,
-} from "@turf/helpers";
+  Polygon,
+} from "geojson";
+import { isNumber } from "@turf/helpers";
 
 /**
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
@@ -60,9 +64,15 @@ export function getCoord(coord: Feature<Point> | Point | number[]): number[] {
  * var coords = turf.getCoords(poly);
  * //= [[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]
  */
-export function getCoords<G extends Geometries>(
-  coords: any[] | Feature<G> | G
-): any[] {
+export function getCoords<
+  G extends
+    | Point
+    | LineString
+    | Polygon
+    | MultiPoint
+    | MultiLineString
+    | MultiPolygon
+>(coords: any[] | Feature<G> | G): any[] {
   if (Array.isArray(coords)) {
     return coords;
   }
@@ -233,9 +243,7 @@ export function collectionOf(
  * var geom = turf.getGeom(point)
  * //={"type": "Point", "coordinates": [110, 40]}
  */
-export function getGeom<G extends Geometries | GeometryCollection>(
-  geojson: Feature<G> | G
-): G {
+export function getGeom<G extends Geometry>(geojson: Feature<G> | G): G {
   if (geojson.type === "Feature") {
     return geojson.geometry;
   }
@@ -261,11 +269,7 @@ export function getGeom<G extends Geometries | GeometryCollection>(
  * //="Point"
  */
 export function getType(
-  geojson:
-    | Feature<any>
-    | FeatureCollection<any>
-    | Geometries
-    | GeometryCollection,
+  geojson: Feature<any> | FeatureCollection<any> | Geometry,
   _name?: string
 ): string {
   if (geojson.type === "FeatureCollection") {

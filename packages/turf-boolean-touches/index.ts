@@ -1,7 +1,7 @@
+import { Feature, Geometry, LineString, Point } from "geojson";
 import booleanPointOnLine from "@turf/boolean-point-on-line";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
-import { Feature, Geometry, LineString, Point } from "@turf/helpers";
 
 /**
  * Boolean-touches true if none of the points common to both geometries

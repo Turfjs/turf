@@ -1,4 +1,5 @@
-import { AllGeoJSON, Feature, Properties } from "@turf/helpers";
+import { Feature, GeoJsonProperties } from "geojson";
+import { AllGeoJSON } from "@turf/helpers";
 
 /**
  * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
@@ -12,7 +13,7 @@ import { AllGeoJSON, Feature, Properties } from "@turf/helpers";
  *
  * var lineCloned = turf.clone(line);
  */
-function clone(geojson: AllGeoJSON) {
+function clone<T extends AllGeoJSON>(geojson: T): T {
   if (!geojson) {
     throw new Error("geojson is required");
   }
@@ -57,7 +58,11 @@ function cloneFeature(geojson: any) {
   });
   // Add properties & geometry last
   cloned.properties = cloneProperties(geojson.properties);
-  cloned.geometry = cloneGeometry(geojson.geometry);
+  if (geojson.geometry == null) {
+    cloned.geometry = null;
+  } else {
+    cloned.geometry = cloneGeometry(geojson.geometry);
+  }
   return cloned;
 }
 
@@ -68,7 +73,7 @@ function cloneFeature(geojson: any) {
  * @param {Object} properties GeoJSON Properties
  * @returns {Object} cloned Properties
  */
-function cloneProperties(properties: Properties) {
+function cloneProperties(properties: GeoJsonProperties) {
   const cloned: { [key: string]: any } = {};
   if (!properties) {
     return cloned;

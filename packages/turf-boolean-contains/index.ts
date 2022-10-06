@@ -1,15 +1,16 @@
-import calcBbox from "@turf/bbox";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import isPointOnLine from "@turf/boolean-point-on-line";
 import {
   BBox,
   Feature,
   Geometry,
   LineString,
   MultiPoint,
+  MultiPolygon,
   Point,
   Polygon,
-} from "@turf/helpers";
+} from "geojson";
+import calcBbox from "@turf/bbox";
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import isPointOnLine from "@turf/boolean-point-on-line";
 import { getGeom } from "@turf/invariant";
 
 /**
@@ -81,9 +82,25 @@ export default function booleanContains(
         default:
           throw new Error("feature2 " + type2 + " geometry not supported");
       }
+    case "MultiPolygon":
+      switch (type2) {
+        case "Polygon":
+          return isPolygonInMultiPolygon(geom1, geom2);
+        default:
+          throw new Error("feature2 " + type2 + " geometry not supported");
+      }
     default:
       throw new Error("feature1 " + type1 + " geometry not supported");
   }
+}
+
+export function isPolygonInMultiPolygon(
+  multiPolygon: MultiPolygon,
+  polygon: Polygon
+) {
+  return multiPolygon.coordinates.some((coords) =>
+    isPolyInPoly({ type: "Polygon", coordinates: coords }, polygon)
+  );
 }
 
 export function isPointInMultiPoint(multiPoint: MultiPoint, pt: Point) {

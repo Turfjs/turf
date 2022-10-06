@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const load = require("load-json-file");
 const Benchmark = require("benchmark");
-const difference = require("./index");
+const difference = require("./index").default;
 
 const directory = path.join(__dirname, "test", "in") + path.sep;
 let fixtures = fs.readdirSync(directory).map((filename) => {
@@ -29,7 +29,7 @@ let fixtures = fs.readdirSync(directory).map((filename) => {
  */
 const suite = new Benchmark.Suite("turf-difference");
 for (const { name, geojson } of fixtures) {
-  suite.add(name, () => difference(geojson.features[0], geojson.features[1]));
+  suite.add(name, () => difference(geojson));
 }
 
 suite.on("cycle", (e) => console.log(String(e.target))).run();

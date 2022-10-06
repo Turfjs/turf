@@ -1,9 +1,9 @@
+import { Feature, Geometry, MultiPoint } from "geojson";
 import { segmentEach } from "@turf/meta";
 import { getGeom } from "@turf/invariant";
 import lineOverlap from "@turf/line-overlap";
 import lineIntersect from "@turf/line-intersect";
 import GeojsonEquality from "geojson-equality";
-import { Feature, Geometry, MultiPoint } from "@turf/helpers";
 
 /**
  * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry

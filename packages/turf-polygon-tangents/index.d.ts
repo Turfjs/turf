@@ -1,11 +1,11 @@
 import {
   Feature,
   FeatureCollection,
-  Coord,
   Point,
   Polygon,
   MultiPolygon,
-} from "@turf/helpers";
+} from "geojson";
+import { Coord } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#polygontangents

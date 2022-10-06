@@ -1,11 +1,6 @@
+import { Point } from "geojson";
 import { getCoord } from "@turf/invariant";
-import {
-  radiansToLength,
-  degreesToRadians,
-  Coord,
-  Units,
-  Point,
-} from "@turf/helpers";
+import { radiansToLength, degreesToRadians, Coord, Units } from "@turf/helpers";
 
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html

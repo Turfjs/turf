@@ -6,16 +6,17 @@
 
 Takes a [Point][1] and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
 
-**Parameters**
+### Parameters
 
--   `center` **([Feature][2]&lt;[Point][3]> | [Array][4]&lt;[number][5]>)** center point
--   `radius` **[number][5]** radius of the circle
--   `options` **[Object][6]** Optional parameters (optional, default `{}`)
-    -   `options.steps` **[number][5]** number of steps (optional, default `64`)
-    -   `options.units` **[string][7]** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
-    -   `options.properties` **[Object][6]** properties (optional, default `{}`)
+*   `center` **([Feature][2]<[Point][3]> | [Array][4]<[number][5]>)** center point
+*   `radius` **[number][5]** radius of the circle
+*   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.steps` **[number][5]** number of steps (optional, default `64`)
+    *   `options.units` **[string][7]** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
+    *   `options.properties` **[Object][6]** properties (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var center = [-75.343, 39.984];
@@ -27,7 +28,7 @@ var circle = turf.circle(center, radius, options);
 var addToMap = [turf.point(center), circle]
 ```
 
-Returns **[Feature][2]&lt;[Polygon][8]>** circle polygon
+Returns **[Feature][2]<[Polygon][8]>** circle polygon
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

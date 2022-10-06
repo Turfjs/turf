@@ -6,12 +6,12 @@
 
 Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
 
-**Parameters**
+### Parameters
 
--   `line1` **([Geometry][1] \| [Feature][2]&lt;[LineString][3]>)** GeoJSON Feature or Geometry
--   `line2` **([Geometry][1] \| [Feature][2]&lt;[LineString][3]>)** GeoJSON Feature or Geometry
+*   `line1` **([Geometry][1] | [Feature][2]<[LineString][3]>)** GeoJSON Feature or Geometry
+*   `line2` **([Geometry][1] | [Feature][2]<[LineString][3]>)** GeoJSON Feature or Geometry
 
-**Examples**
+### Examples
 
 ```javascript
 var line1 = turf.lineString([[0, 0], [0, 1]]);

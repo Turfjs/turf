@@ -4,16 +4,16 @@
 
 ## centroid
 
-Takes one or more features and calculates the centroid using the mean of all vertices.
-This lessens the effect of small islands and artifacts when calculating the centroid of a set of polygons.
+Computes the centroid as the mean of all vertices within the object.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][1]** GeoJSON to be centered
--   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
-    -   `options.properties` **[Object][2]** an Object that is used as the [Feature][3]'s properties (optional, default `{}`)
+*   `geojson` **[GeoJSON][1]** GeoJSON to be centered
+*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.properties` **[Object][2]** an Object that is used as the [Feature][3]'s properties (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
@@ -24,7 +24,7 @@ var centroid = turf.centroid(polygon);
 var addToMap = [polygon, centroid]
 ```
 
-Returns **[Feature][4]&lt;[Point][5]>** the centroid of the input features
+Returns **[Feature][4]<[Point][5]>** the centroid of the input object
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3
 

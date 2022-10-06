@@ -31,7 +31,7 @@ test("turf-difference", (t) => {
 
     const results = featureCollection([polygon1, polygon2]);
 
-    const result = difference(polygon1, polygon2);
+    const result = difference(results);
     if (result) {
       // Green Polygon
       result.properties = { "fill-opacity": 1, fill: "#0F0" };
@@ -44,7 +44,7 @@ test("turf-difference", (t) => {
   t.end();
 });
 
-test("turf-difference - support Geometry Objects", (t) => {
+test("turf-difference - support specific polygons", (t) => {
   const poly1 = polygon([
     [
       [121, -31],
@@ -65,7 +65,7 @@ test("turf-difference - support Geometry Objects", (t) => {
   ]);
 
   t.assert(
-    difference(poly1.geometry, poly2.geometry),
+    difference(featureCollection([poly1, poly2])),
     "geometry object support"
   );
   t.end();
@@ -93,7 +93,7 @@ test("turf-difference - prevent input mutation", (t) => {
   const before1 = JSON.parse(JSON.stringify(poly1));
   const before2 = JSON.parse(JSON.stringify(poly2));
 
-  difference(poly1, poly2);
+  difference(featureCollection([poly1, poly2]));
   t.deepEqual(poly1, before1, "polygon1 should not mutate");
   t.deepEqual(poly2, before2, "polygon2 should not mutate");
   t.end();
@@ -110,7 +110,7 @@ test("turf-difference - complete overlap", (t) => {
     ],
   ]);
 
-  const result = difference(poly, poly);
+  const result = difference(featureCollection([poly, poly]));
   t.deepEqual(result, null, "difference should be null");
   t.end();
 });

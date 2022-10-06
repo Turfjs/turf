@@ -6,12 +6,12 @@
 
 Boolean-intersects returns (TRUE) two geometries intersect.
 
-**Parameters**
+### Parameters
 
--   `feature1` **([Geometry][1] \| [Feature][2]&lt;any>)** GeoJSON Feature or Geometry
--   `feature2` **([Geometry][1] \| [Feature][2]&lt;any>)** GeoJSON Feature or Geometry
+*   `feature1` **([Geometry][1] | [Feature][2]\<any>)** GeoJSON Feature or Geometry
+*   `feature2` **([Geometry][1] | [Feature][2]\<any>)** GeoJSON Feature or Geometry
 
-**Examples**
+### Examples
 
 ```javascript
 var point = turf.point([2, 2]);

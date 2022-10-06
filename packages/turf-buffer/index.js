@@ -1,5 +1,5 @@
 import center from "@turf/center";
-import { BufferOp, GeoJSONReader, GeoJSONWriter } from "turf-jsts";
+import { BufferOp, GeoJSONReader, GeoJSONWriter } from "@turf/jsts";
 import { geomEach, featureEach } from "@turf/meta";
 import { geoAzimuthalEquidistant } from "d3-geo";
 import {

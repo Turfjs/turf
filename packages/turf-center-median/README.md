@@ -27,29 +27,30 @@ points are more important than others.
 
 `@turf/center-median` takes the mean center and tries to find, iteratively,
 a new point that requires the least amount of travel from all the points in
-the dataset. It is not as sensitive to outliers as `@turf/center`, but it is
+the dataset. It is not as sensitive to outliers as `@turf/center-mean`, but it is
 attracted to clustered data. It, too, can be weighted.
 
 **Bibliography**
 
 Harold W. Kuhn and Robert E. Kuenne, “An Efficient Algorithm for the
 Numerical Solution of the Generalized Weber Problem in Spatial
-Economics,” _Journal of Regional Science_ 4, no. 2 (1962): 21–33,
-doi:[https://doi.org/10.1111/j.1467-9787.1962.tb00902.x][2].
+Economics,” *Journal of Regional Science* 4, no. 2 (1962): 21–33,
+doi:{@link [https://doi.org/10.1111/j.1467-9787.1962.tb00902.x}][2].
 
-James E. Burt, Gerald M. Barber, and David L. Rigby, _Elementary
-Statistics for Geographers_, 3rd ed., New York: The Guilford
+James E. Burt, Gerald M. Barber, and David L. Rigby, *Elementary
+Statistics for Geographers*, 3rd ed., New York: The Guilford
 Press, 2009, 150–151.
 
-**Parameters**
+### Parameters
 
--   `features` **[FeatureCollection][3]&lt;any>** Any GeoJSON Feature Collection
--   `options` **[Object][4]** Optional parameters (optional, default `{}`)
-    -   `options.weight` **[string][5]?** the property name used to weight the center
-    -   `options.tolerance` **[number][6]** the difference in distance between candidate medians at which point the algorighim stops iterating. (optional, default `0.001`)
-    -   `options.counter` **[number][6]** how many attempts to find the median, should the tolerance be insufficient. (optional, default `10`)
+*   `features` **[FeatureCollection][3]\<any>** Any GeoJSON Feature Collection
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.weight` **[string][5]?** the property name used to weight the center
+    *   `options.tolerance` **[number][6]** the difference in distance between candidate medians at which point the algorighim stops iterating. (optional, default `0.001`)
+    *   `options.counter` **[number][6]** how many attempts to find the median, should the tolerance be insufficient. (optional, default `10`)
+
+### Examples
 
 ```javascript
 var points = turf.points([[0, 0], [1, 0], [0, 1], [5, 8]]);
@@ -59,11 +60,11 @@ var medianCenter = turf.centerMedian(points);
 var addToMap = [points, medianCenter]
 ```
 
-Returns **[Feature][7]&lt;[Point][8]>** The median center of the collection
+Returns **[Feature][7]<[Point][8]>** The median center of the collection
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 
-[2]: https://doi.org/10.1111/j.1467-9787.1962.tb00902.x
+[2]: https://doi.org/10.1111/j.1467-9787.1962.tb00902.x}
 
 [3]: https://tools.ietf.org/html/rfc7946#section-3.3
 

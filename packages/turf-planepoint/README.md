@@ -11,12 +11,12 @@ that define the values at its three corners. Alternatively, the z-values
 of each triangle point can be provided by their respective 3rd coordinate
 if their values are not provided as properties.
 
-**Parameters**
+### Parameters
 
--   `point` **[Coord][3]** the Point for which a z-value will be calculated
--   `triangle` **[Feature][4]&lt;[Polygon][5]>** a Polygon feature with three vertices
+*   `point` **[Coord][3]** the Point for which a z-value will be calculated
+*   `triangle` **[Feature][4]<[Polygon][5]>** a Polygon feature with three vertices
 
-**Examples**
+### Examples
 
 ```javascript
 var point = turf.point([-75.3221, 39.529]);

@@ -9,8 +9,9 @@
     "lint:eslint": "eslint packages",
     "lint:prettier": "prettier --check .",
     "lint:mrl": "mrl check",
-    "lint:escheck-js": "es-check es5 packages/*/dist/js/index.js packages/turf/turf.min.js",
-    "lint:escheck-es": "es-check --module es5 packages/*/dist/es/index.js",
+    "lint:escheck-require": "es-check es8 packages/*/dist/js/index.js packages/turf/turf.min.js",
+    "lint:escheck-esm": "es-check --module es8 packages/*/dist/es/index.js",
+    "lint:escheck-es5": "es-check es5 packages/turf/turf.min.js",
     "postlint": "documentation lint packages/turf-*/index.js",
     "prepare": "lerna bootstrap && lerna run build && node ./scripts/add-import-extensions.js",
     "pretest": "npm run lint",
@@ -31,16 +32,21 @@
       "eslint --fix",
       "prettier --write"
     ],
+    "packages/*/index.{js,ts}": [
+      "./scripts/generate-readmes"
+    ],
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
-    "@types/geojson": "*",
-    "@types/node": "*",
+    "@types/geojson": "7946.0.8",
+    "@types/node": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^4.8.0",
     "@typescript-eslint/parser": "^4.8.0",
+    "acorn": "^7.4.1",
     "camelcase": "*",
     "d3-queue": "*",
     "decamelize": "*",
+    "dependency-tree": "^8.1.2",
     "documentation": "^13.2.5",
     "es-check": "^5.1.4",
     "eslint": "~7.13.0",

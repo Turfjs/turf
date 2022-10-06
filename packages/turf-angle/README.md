@@ -7,16 +7,17 @@
 Finds the angle formed by two adjacent segments defined by 3 points. The result will be the (positive clockwise)
 angle with origin on the `startPoint-midPoint` segment, or its explementary angle if required.
 
-**Parameters**
+### Parameters
 
--   `startPoint` **[Coord][1]** Start Point Coordinates
--   `midPoint` **[Coord][1]** Mid Point Coordinates
--   `endPoint` **[Coord][1]** End Point Coordinates
--   `options` **[Object][2]** Optional parameters (optional, default `{}`)
-    -   `options.explementary` **[boolean][3]** Returns the explementary angle instead (360 - angle) (optional, default `false`)
-    -   `options.mercator` **[boolean][3]** if calculations should be performed over Mercator or WGS84 projection (optional, default `false`)
+*   `startPoint` **[Coord][1]** Start Point Coordinates
+*   `midPoint` **[Coord][1]** Mid Point Coordinates
+*   `endPoint` **[Coord][1]** End Point Coordinates
+*   `options` **[Object][2]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.explementary` **[boolean][3]** Returns the explementary angle instead (360 - angle) (optional, default `false`)
+    *   `options.mercator` **[boolean][3]** if calculations should be performed over Mercator or WGS84 projection (optional, default `false`)
+
+### Examples
 
 ```javascript
 turf.angle([5, 5], [5, 6], [3, 4]);

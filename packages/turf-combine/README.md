@@ -7,11 +7,11 @@
 Combines a [FeatureCollection][1] of [Point][2], [LineString][3], or [Polygon][4] features
 into [MultiPoint][5], [MultiLineString][6], or [MultiPolygon][7] features.
 
-**Parameters**
+### Parameters
 
--   `fc` **[FeatureCollection][8]&lt;([Point][9] \| [LineString][10] \| [Polygon][11])>** a FeatureCollection of any type
+*   `fc` **[FeatureCollection][8]<([Point][9] | [LineString][10] | [Polygon][11])>** a FeatureCollection of any type
 
-**Examples**
+### Examples
 
 ```javascript
 var fc = turf.featureCollection([
@@ -25,7 +25,7 @@ var combined = turf.combine(fc);
 var addToMap = [combined]
 ```
 
-Returns **[FeatureCollection][8]&lt;([MultiPoint][12] \| [MultiLineString][13] \| [MultiPolygon][14])>** a FeatureCollection of corresponding type to input
+Returns **[FeatureCollection][8]<([MultiPoint][12] | [MultiLineString][13] | [MultiPolygon][14])>** a FeatureCollection of corresponding type to input
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 

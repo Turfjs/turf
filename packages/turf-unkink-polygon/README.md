@@ -7,11 +7,11 @@
 Takes a kinked polygon and returns a feature collection of polygons that have no kinks.
 Uses [simplepolygon][1] internally.
 
-**Parameters**
+### Parameters
 
--   `geojson` **([FeatureCollection][2] \| [Feature][3]&lt;([Polygon][4] \| [MultiPolygon][5])>)** GeoJSON Polygon or MultiPolygon
+*   `geojson` **([FeatureCollection][2] | [Feature][3]<([Polygon][4] | [MultiPolygon][5])>)** GeoJSON Polygon or MultiPolygon
 
-**Examples**
+### Examples
 
 ```javascript
 var poly = turf.polygon([[[0, 0], [2, 0], [0, 2], [2, 2], [0, 0]]]);
@@ -22,7 +22,7 @@ var result = turf.unkinkPolygon(poly);
 var addToMap = [poly, result]
 ```
 
-Returns **[FeatureCollection][2]&lt;[Polygon][4]>** Unkinked polygons
+Returns **[FeatureCollection][2]<[Polygon][4]>** Unkinked polygons
 
 [1]: https://github.com/mclaeysb/simplepolygon
 

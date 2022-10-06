@@ -1,4 +1,5 @@
-import { Feature, lineString, LineString, Properties } from "@turf/helpers";
+import { Feature, LineString, GeoJsonProperties } from "geojson";
+import { lineString } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 import Spline from "./lib/spline";
 
@@ -32,7 +33,7 @@ import Spline from "./lib/spline";
  * var addToMap = [line, curved]
  * curved.properties = { stroke: '#0F0' };
  */
-function bezier<P = Properties>(
+function bezier<P = GeoJsonProperties>(
   line: Feature<LineString> | LineString,
   options: {
     properties?: P;

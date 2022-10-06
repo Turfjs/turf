@@ -1,4 +1,3 @@
-import { point } from "@turf/helpers";
 import {
   Feature,
   FeatureCollection,
@@ -8,8 +7,9 @@ import {
   Point,
   Polygon,
   Geometry,
-} from "@turf/helpers";
+} from "geojson";
 import findIntersections from "sweepline-intersections";
+import { point } from "@turf/helpers";
 
 /**
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring},

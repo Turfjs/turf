@@ -7,17 +7,18 @@
 Takes a [Feature][1] or a [FeatureCollection][2] and returns a convex hull [Polygon][3].
 
 Internally this uses
-the [convex-hull][4] module that
-implements a [monotone chain hull][5].
+the [convex-hull][4] module that implements a
+[monotone chain hull][5].
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][6]** input Feature or FeatureCollection
--   `options` **[Object][7]** Optional parameters (optional, default `{}`)
-    -   `options.concavity` **[number][8]** 1 - thin shape. Infinity - convex hull. (optional, default `Infinity`)
-    -   `options.properties` **[Object][7]** Translate Properties to Feature (optional, default `{}`)
+*   `geojson` **[GeoJSON][6]** input Feature or FeatureCollection
+*   `options` **[Object][7]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.concavity` **[number][8]** 1 - thin shape. Infinity - convex hull. (optional, default `Infinity`)
+    *   `options.properties` **[Object][7]** Translate Properties to Feature (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var points = turf.featureCollection([
@@ -35,7 +36,7 @@ var hull = turf.convex(points);
 var addToMap = [points, hull]
 ```
 
-Returns **[Feature][9]&lt;[Polygon][10]>** a convex hull
+Returns **[Feature][9]<[Polygon][10]>** a convex hull
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.2
 

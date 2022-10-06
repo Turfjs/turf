@@ -6,11 +6,11 @@
 
 Takes any number of features and returns a rectangular [Polygon][1] that encompasses all vertices.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][2]** input features
+*   `geojson` **[GeoJSON][2]** input features
 
-**Examples**
+### Examples
 
 ```javascript
 var features = turf.featureCollection([
@@ -25,7 +25,7 @@ var enveloped = turf.envelope(features);
 var addToMap = [features, enveloped];
 ```
 
-Returns **[Feature][3]&lt;[Polygon][4]>** a rectangular Polygon feature that encompasses all vertices
+Returns **[Feature][3]<[Polygon][4]>** a rectangular Polygon feature that encompasses all vertices
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

@@ -6,15 +6,16 @@
 
 Takes a [Feature][1] or [FeatureCollection][2] and returns the absolute center point of all features.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][3]** GeoJSON to be centered
--   `options` **[Object][4]** Optional parameters (optional, default `{}`)
-    -   `options.properties` **[Object][4]** Translate GeoJSON Properties to Point (optional, default `{}`)
-    -   `options.bbox` **[Object][4]** Translate GeoJSON BBox to Point (optional, default `{}`)
-    -   `options.id` **[Object][4]** Translate GeoJSON Id to Point (optional, default `{}`)
+*   `geojson` **[GeoJSON][3]** GeoJSON to be centered
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.properties` **[Object][4]** Translate GeoJSON Properties to Point (optional, default `{}`)
+    *   `options.bbox` **[Object][4]** Translate GeoJSON BBox to Point (optional, default `{}`)
+    *   `options.id` **[Object][4]** Translate GeoJSON Id to Point (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var features = turf.points([
@@ -31,7 +32,7 @@ center.properties['marker-size'] = 'large';
 center.properties['marker-color'] = '#000';
 ```
 
-Returns **[Feature][5]&lt;[Point][6]>** a Point feature at the absolute center point of all input features
+Returns **[Feature][5]<[Point][6]>** a Point feature at the absolute center point of all input features
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.2
 

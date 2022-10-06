@@ -6,13 +6,14 @@
 
 Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
 
-**Parameters**
+### Parameters
 
--   `geojson` **([GeoJSON][1] | Position)** WGS84 GeoJSON object
--   `options` **[Object][2]?** Optional parameters
-    -   `options.mutate` **[boolean][3]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+*   `geojson` **([GeoJSON][1] | Position)** WGS84 GeoJSON object
+*   `options` **[Object][2]?** Optional parameters
 
-**Examples**
+    *   `options.mutate` **[boolean][3]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+
+### Examples
 
 ```javascript
 var pt = turf.point([-71,41]);
@@ -28,13 +29,14 @@ Returns **[GeoJSON][1]** Projected GeoJSON
 
 Converts a Mercator (EPSG:900913) GeoJSON object into WGS84 projection
 
-**Parameters**
+### Parameters
 
--   `geojson` **([GeoJSON][1] | Position)** Mercator GeoJSON object
--   `options` **[Object][2]?** Optional parameters
-    -   `options.mutate` **[boolean][3]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+*   `geojson` **([GeoJSON][1] | Position)** Mercator GeoJSON object
+*   `options` **[Object][2]?** Optional parameters
 
-**Examples**
+    *   `options.mutate` **[boolean][3]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+
+### Examples
 
 ```javascript
 var pt = turf.point([-7903683.846322424, 5012341.663847514]);
