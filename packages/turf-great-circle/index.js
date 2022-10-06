@@ -39,7 +39,7 @@ function greatCircle(start, end, options) {
 
   properties = properties || {};
   if (start[0] === end[0] && start[1] === end[1]) {
-    return lineString([start, end], properties)
+    return lineString([start, end], properties);
   }
 
   npoints = npoints || 100;

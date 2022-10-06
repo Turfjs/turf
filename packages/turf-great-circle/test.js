@@ -37,11 +37,17 @@ test("turf-great-circle", (t) => {
 });
 
 test("turf-great-circle with same input and output", (t) => {
-    const start = point([0, 0])
-    const end = point([0, 0]);
-    const line = greatCircle(start, end);
+  const start = point([0, 0]);
+  const end = point([0, 0]);
+  const line = greatCircle(start, end);
 
-    t.deepEquals(lineString([[0,0], [0,0]]), line);
+  t.deepEquals(
+    lineString([
+      [0, 0],
+      [0, 0],
+    ]),
+    line
+  );
 
   t.end();
 });
