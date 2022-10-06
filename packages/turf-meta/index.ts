@@ -455,9 +455,9 @@ export function propReduce<T = GeoJsonProperties>(
  *   //=featureIndex
  * });
  */
-export function featureEach<T extends Geometry>(
-  geojson: Feature<T> | FeatureCollection<T>,
-  callback: (feature: Feature<T>, featureIndex: number) => boolean | void
+export function featureEach<T extends Geometry, P extends GeoJsonProperties>(
+  geojson: Feature<T, P> | FeatureCollection<T, P>,
+  callback: (feature: Feature<T, P>, featureIndex: number) => boolean | void
 ): void {
   if (geojson.type === "Feature") {
     callback(geojson, 0);
