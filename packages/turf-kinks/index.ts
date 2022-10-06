@@ -6,7 +6,6 @@ import {
   MultiPolygon,
   Point,
   Polygon,
-  Geometry,
 } from "geojson";
 import findIntersections from "sweepline-intersections";
 import { point } from "@turf/helpers";
@@ -35,17 +34,15 @@ import { point } from "@turf/helpers";
  */
 export default function kinks<
   T extends LineString | MultiLineString | Polygon | MultiPolygon
->(featureIn: Feature<T> | T): FeatureCollection<Point> {
+>(featureIn: Feature<T>): FeatureCollection<Point> {
   const results: FeatureCollection<Point> = {
     type: "FeatureCollection",
     features: [],
   };
   if (
-    (featureIn as Geometry).type === "Point" ||
-    (featureIn as Geometry).type === "MultiPoint" ||
-    (featureIn.type === "Feature" &&
-      ((featureIn as Feature).geometry.type === "Point" ||
-        (featureIn as Feature).geometry.type === "MultiPoint"))
+    featureIn.type === "Feature" &&
+    ((featureIn as Feature).geometry.type === "Point" ||
+      (featureIn as Feature).geometry.type === "MultiPoint")
   ) {
     throw new Error(
       "Input must be a LineString, MultiLineString, " +
