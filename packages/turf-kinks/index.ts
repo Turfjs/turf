@@ -9,7 +9,7 @@ import {
   Polygon,
   Geometry,
 } from "@turf/helpers";
-import findIntersections from "./lib/sweepline-intersections";
+import findIntersections from "sweepline-intersections";
 
 /**
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring},
@@ -52,7 +52,7 @@ export default function kinks<
         "Polygon, or MultiPolygon Feature or Geometry"
     );
   }
-  const intersections = findIntersections(featureIn);
+  const intersections = findIntersections(featureIn, false);
   for (let i = 0; i < intersections.length; ++i) {
     const intersection = intersections[i];
     results.features.push(point([intersection[0], intersection[1]]));
