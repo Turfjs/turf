@@ -2,7 +2,7 @@
 ## 🏅 New Features/Enhancements
 
 ## 🐛 Bug Fixes
-- [`@turf/great-circle`](great-circle) Prevent array of `NaN`'s being generated when `start` and `end` are the same.
+- [`@turf/great-circle`](great-circle) Prevent array of `NaN`'s being generated when `start` and `end` arguments are the same.
   (PR https://github.com/Turfjs/turf/pull/2343 - Author @rowanwins)
 
 ## 📖 Documentation
