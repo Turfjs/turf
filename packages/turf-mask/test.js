@@ -5,7 +5,7 @@ import load from "load-json-file";
 import write from "write-json-file";
 import mask from "./index";
 
-const SKIP = ["multi-polygon.geojson", "overlapping.geojson"];
+const SKIP = [];
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -32,5 +32,55 @@ test("turf-mask", (t) => {
     if (process.env.REGEN) write.sync(directories.out + filename, results);
     t.deepEquals(results, load.sync(directories.out + filename), name);
   }
+  t.end();
+});
+
+test("turf-mask-ignoreHoles", (t) => {
+  const { name, geojson } = fixtures.find(
+    (f) => f.name === "polygon-with-hole"
+  );
+  const [polygon, masking] = geojson.features;
+  const results = mask(polygon, masking, {
+    ignoreHoles: false,
+  });
+
+  t.deepEquals(
+    results,
+    {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "MultiPolygon",
+        coordinates: [
+          [
+            [
+              [180, 90],
+              [-180, 90],
+              [-180, -90],
+              [180, -90],
+              [180, 90],
+            ],
+            [
+              [0, 0],
+              [16, 0],
+              [16, 16],
+              [0, 16],
+              [0, 0],
+            ],
+          ],
+          [
+            [
+              [6, 6],
+              [6, 10],
+              [10, 10],
+              [10, 6],
+              [6, 6],
+            ],
+          ],
+        ],
+      },
+    },
+    name
+  );
   t.end();
 });
