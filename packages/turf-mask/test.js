@@ -84,3 +84,53 @@ test("turf-mask-ignoreHoles", (t) => {
   );
   t.end();
 });
+
+test("turf-mask with options but no mask", (t) => {
+  const { name, geojson } = fixtures.find(
+    (f) => f.name === "polygon-with-hole"
+  );
+  const [polygon] = geojson.features;
+  const results = mask(polygon, undefined, {
+    ignoreHoles: false,
+  });
+
+  t.deepEquals(
+    results,
+    {
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "MultiPolygon",
+        coordinates: [
+          [
+            [
+              [180, 90],
+              [-180, 90],
+              [-180, -90],
+              [180, -90],
+              [180, 90],
+            ],
+            [
+              [0, 0],
+              [16, 0],
+              [16, 16],
+              [0, 16],
+              [0, 0],
+            ],
+          ],
+          [
+            [
+              [6, 6],
+              [6, 10],
+              [10, 10],
+              [10, 6],
+              [6, 6],
+            ],
+          ],
+        ],
+      },
+    },
+    name
+  );
+  t.end();
+});

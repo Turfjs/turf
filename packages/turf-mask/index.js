@@ -21,7 +21,14 @@ import polygonClipping from "polygon-clipping";
  * var addToMap = [masked]
  */
 function mask(polygon, mask, options) {
+  // Handling in case someone doesn't pass in a mask but they do provide options
+  if (typeof mask === "object" && options === undefined) {
+    options = mask;
+    mask = undefined;
+  }
+
   options = options || {};
+
   var ignoreHoles = "ignoreHoles" in options ? options.ignoreHoles : true;
   // Define mask
   var maskPolygon = createMask(mask, ignoreHoles);
@@ -86,7 +93,6 @@ function createMask(mask, ignoreHoles) {
       [180, 90],
     ],
   ];
-
   var coordinates = (mask && mask.geometry.coordinates) || world;
 
   return ignoreHoles ? createPolygon(coordinates) : multiPolygon([coordinates]);
