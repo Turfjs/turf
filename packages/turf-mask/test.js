@@ -90,7 +90,7 @@ test("turf-mask with options but no mask", (t) => {
     (f) => f.name === "polygon-with-hole"
   );
   const [polygon] = geojson.features;
-  const results = mask(polygon, undefined, {
+  const results = mask(polygon, {
     ignoreHoles: false,
   });
 

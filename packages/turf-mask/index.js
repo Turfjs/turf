@@ -22,7 +22,7 @@ import polygonClipping from "polygon-clipping";
  */
 function mask(polygon, mask, options) {
   // Handling in case someone doesn't pass in a mask but they do provide options
-  if (typeof mask === "object" && options === undefined) {
+  if (typeof mask === "object" && !("type" in mask) && options === undefined) {
     options = mask;
     mask = undefined;
   }
