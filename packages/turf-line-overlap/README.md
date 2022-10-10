@@ -6,14 +6,15 @@
 
 Takes any LineString or Polygon and returns the overlapping lines between both features.
 
-**Parameters**
+### Parameters
 
--   `line1` **([Geometry][1] \| [Feature][2]&lt;([LineString][3] \| [MultiLineString][4] \| [Polygon][5] \| [MultiPolygon][6])>)** any LineString or Polygon
--   `line2` **([Geometry][1] \| [Feature][2]&lt;([LineString][3] \| [MultiLineString][4] \| [Polygon][5] \| [MultiPolygon][6])>)** any LineString or Polygon
--   `options` **[Object][7]** Optional parameters (optional, default `{}`)
-    -   `options.tolerance` **[number][8]** Tolerance distance to match overlapping line segments (in kilometers) (optional, default `0`)
+*   `line1` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4] | [Polygon][5] | [MultiPolygon][6])>)** any LineString or Polygon
+*   `line2` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4] | [Polygon][5] | [MultiPolygon][6])>)** any LineString or Polygon
+*   `options` **[Object][7]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.tolerance` **[number][8]** Tolerance distance to match overlapping line segments (in kilometers) (optional, default `0`)
+
+### Examples
 
 ```javascript
 var line1 = turf.lineString([[115, -35], [125, -30], [135, -30], [145, -35]]);
@@ -25,7 +26,7 @@ var overlapping = turf.lineOverlap(line1, line2);
 var addToMap = [line1, line2, overlapping]
 ```
 
-Returns **[FeatureCollection][9]&lt;[LineString][3]>** lines(s) that are overlapping between both features
+Returns **[FeatureCollection][9]<[LineString][3]>** lines(s) that are overlapping between both features
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1
 

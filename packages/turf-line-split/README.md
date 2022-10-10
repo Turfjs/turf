@@ -6,12 +6,12 @@
 
 Split a LineString by another GeoJSON Feature.
 
-**Parameters**
+### Parameters
 
--   `line` **[Feature][1]&lt;[LineString][2]>** LineString Feature to split
--   `splitter` **[Feature][1]&lt;any>** Feature used to split line
+*   `line` **[Feature][1]<[LineString][2]>** LineString Feature to split
+*   `splitter` **[Feature][1]\<any>** Feature used to split line
 
-**Examples**
+### Examples
 
 ```javascript
 var line = turf.lineString([[120, -25], [145, -25]]);
@@ -23,7 +23,7 @@ var split = turf.lineSplit(line, splitter);
 var addToMap = [line, splitter]
 ```
 
-Returns **[FeatureCollection][3]&lt;[LineString][2]>** Split LineStrings
+Returns **[FeatureCollection][3]<[LineString][2]>** Split LineStrings
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.2
 

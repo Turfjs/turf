@@ -32,6 +32,9 @@
       "eslint --fix",
       "prettier --write"
     ],
+    "packages/*/index.{js,ts}": [
+      "./scripts/generate-readmes"
+    ],
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {

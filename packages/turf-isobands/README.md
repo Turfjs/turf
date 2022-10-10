@@ -7,16 +7,17 @@
 Takes a square or rectangular grid [FeatureCollection][1] of [Point][2] features with z-values and an array of
 value breaks and generates filled contour isobands.
 
-**Parameters**
+### Parameters
 
--   `pointGrid` **[FeatureCollection][3]&lt;[Point][4]>** input points - must be square or rectangular
--   `breaks` **[Array][5]&lt;[number][6]>** where to draw contours
--   `options` **[Object][7]** options on output (optional, default `{}`)
-    -   `options.zProperty` **[string][8]** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
-    -   `options.commonProperties` **[Object][7]** GeoJSON properties passed to ALL isobands (optional, default `{}`)
-    -   `options.breaksProperties` **[Array][5]&lt;[Object][7]>** GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks) (optional, default `[]`)
+*   `pointGrid` **[FeatureCollection][3]<[Point][4]>** input points - must be square or rectangular
+*   `breaks` **[Array][5]<[number][6]>** where to draw contours
+*   `options` **[Object][7]** options on output (optional, default `{}`)
 
-Returns **[FeatureCollection][3]&lt;[MultiPolygon][9]>** a FeatureCollection of [MultiPolygon][10] features representing isobands
+    *   `options.zProperty` **[string][8]** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
+    *   `options.commonProperties` **[Object][7]** GeoJSON properties passed to ALL isobands (optional, default `{}`)
+    *   `options.breaksProperties` **[Array][5]<[Object][7]>** GeoJSON properties passed, in order, to the correspondent isoband (order defined by breaks) (optional, default `[]`)
+
+Returns **[FeatureCollection][3]<[MultiPolygon][9]>** a FeatureCollection of [MultiPolygon][10] features representing isobands
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 

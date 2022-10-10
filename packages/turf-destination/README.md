@@ -4,18 +4,21 @@
 
 ## destination
 
-Takes a [Point][1] and calculates the location of a destination point given a distance in degrees, radians, miles, or kilometers; and bearing in degrees. This uses the [Haversine formula][2] to account for global curvature.
+Takes a [Point][1] and calculates the location of a destination point given a distance in
+degrees, radians, miles, or kilometers; and bearing in degrees.
+This uses the [Haversine formula][2] to account for global curvature.
 
-**Parameters**
+### Parameters
 
--   `origin` **[Coord][3]** starting point
--   `distance` **[number][4]** distance from the origin point
--   `bearing` **[number][4]** ranging from -180 to 180
--   `options` **[Object][5]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][6]** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
-    -   `options.properties` **[Object][5]** Translate properties to Point (optional, default `{}`)
+*   `origin` **[Coord][3]** starting point
+*   `distance` **[number][4]** distance from the origin point
+*   `bearing` **[number][4]** ranging from -180 to 180
+*   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][6]** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
+    *   `options.properties` **[Object][5]** Translate properties to Point (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var point = turf.point([-75.343, 39.984]);
@@ -31,7 +34,7 @@ destination.properties['marker-color'] = '#f00';
 point.properties['marker-color'] = '#0f0';
 ```
 
-Returns **[Feature][7]&lt;[Point][8]>** destination point
+Returns **[Feature][7]<[Point][8]>** destination point
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

@@ -6,13 +6,14 @@
 
 Takes any [Feature][1] or a [FeatureCollection][2] and returns its [center of mass][3] using this formula: [Centroid of Polygon][4].
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][5]** GeoJSON to be centered
--   `options` **[Object][6]** Optional Parameters (optional, default `{}`)
-    -   `options.properties` **[Object][6]** Translate Properties to Feature (optional, default `{}`)
+*   `geojson` **[GeoJSON][5]** GeoJSON to be centered
+*   `options` **[Object][6]** Optional Parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.properties` **[Object][6]** Translate Properties to Feature (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
@@ -23,7 +24,7 @@ var center = turf.centerOfMass(polygon);
 var addToMap = [polygon, center]
 ```
 
-Returns **[Feature][7]&lt;[Point][8]>** the center of mass
+Returns **[Feature][7]<[Point][8]>** the center of mass
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.2
 

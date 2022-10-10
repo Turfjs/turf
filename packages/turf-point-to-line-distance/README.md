@@ -7,15 +7,18 @@
 Returns the minimum distance between a [Point][1] and a [LineString][2], being the distance from a line the
 minimum distance between the point and any segment of the `LineString`.
 
-**Parameters**
+### Parameters
 
--   `pt` **([Feature][3]&lt;[Point][4]> | [Array][5]&lt;[number][6]>)** Feature or Geometry
--   `line` **[Feature][3]&lt;[LineString][7]>** GeoJSON Feature or Geometry
--   `options` **[Object][8]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][9]** can be anything supported by turf/convertLength, eg degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
-    -   `options.method` **[string][9]** wehther to calculate the distance based on geodesic (spheroid) or planar (flat) method. Valid options are 'geodesic' or 'planar'. (optional, default `'geodesic'`)
+*   `pt` **([Feature][3]<[Point][4]> | [Array][5]<[number][6]>)** Feature or Geometry
+*   `line` **[Feature][3]<[LineString][7]>** GeoJSON Feature or Geometry
+*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][9]** can be anything supported by turf/convertLength
+        (ex: degrees, radians, miles, or kilometers) (optional, default `"kilometers"`)
+    *   `options.method` **[string][9]** wether to calculate the distance based on geodesic (spheroid) or
+        planar (flat) method. Valid options are 'geodesic' or 'planar'. (optional, default `"geodesic"`)
+
+### Examples
 
 ```javascript
 var pt = turf.point([0, 0]);

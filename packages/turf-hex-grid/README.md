@@ -8,18 +8,19 @@ Takes a bounding box and the diameter of the cell and returns a [FeatureCollecti
 hexagons or triangles ([Polygon][2] features) aligned in an "odd-q" vertical grid as
 described in [Hexagonal Grids][3].
 
-**Parameters**
+### Parameters
 
--   `bbox` **[BBox][4]** extent in [minX, minY, maxX, maxY] order
--   `cellSide` **[number][5]** length of the side of the the hexagons or triangles, in units. It will also coincide with the
+*   `bbox` **[BBox][4]** extent in \[minX, minY, maxX, maxY] order
+*   `cellSide` **[number][5]** length of the side of the the hexagons or triangles, in units. It will also coincide with the
     radius of the circumcircle of the hexagons.
--   `options` **[Object][6]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][7]** used in calculating cell size, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
-    -   `options.properties` **[Object][6]** passed to each hexagon or triangle of the grid (optional, default `{}`)
-    -   `options.mask` **[Feature][8]&lt;[Polygon][9]>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
-    -   `options.triangles` **[boolean][10]** whether to return as triangles instead of hexagons (optional, default `false`)
+*   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][7]** used in calculating cell size, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.properties` **[Object][6]** passed to each hexagon or triangle of the grid (optional, default `{}`)
+    *   `options.mask` **[Feature][8]<[Polygon][9]>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
+    *   `options.triangles` **[boolean][10]** whether to return as triangles instead of hexagons (optional, default `false`)
+
+### Examples
 
 ```javascript
 var bbox = [-96,31,-84,40];
@@ -32,7 +33,7 @@ var hexgrid = turf.hexGrid(bbox, cellSide, options);
 var addToMap = [hexgrid];
 ```
 
-Returns **[FeatureCollection][11]&lt;[Polygon][9]>** a hexagonal grid
+Returns **[FeatureCollection][11]<[Polygon][9]>** a hexagonal grid
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 

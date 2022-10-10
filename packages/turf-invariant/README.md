@@ -6,11 +6,11 @@
 
 Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
 
-**Parameters**
+### Parameters
 
--   `coord` **([Array][1]&lt;[number][2]> | [Geometry][3]&lt;[Point][4]> | [Feature][5]&lt;[Point][4]>)** GeoJSON Point or an Array of numbers
+*   `coord` **([Array][1]<[number][2]> | [Geometry][3]<[Point][4]> | [Feature][5]<[Point][4]>)** GeoJSON Point or an Array of numbers
 
-**Examples**
+### Examples
 
 ```javascript
 var pt = turf.point([10, 10]);
@@ -19,17 +19,17 @@ var coord = turf.getCoord(pt);
 //= [10, 10]
 ```
 
-Returns **[Array][1]&lt;[number][2]>** coordinates
+Returns **[Array][1]<[number][2]>** coordinates
 
 ## getCoords
 
 Unwrap coordinates from a Feature, Geometry Object or an Array
 
-**Parameters**
+### Parameters
 
--   `coords` **([Array][1]&lt;any> | [Geometry][3] \| [Feature][5])** Feature, Geometry Object or an Array
+*   `coords` **([Array][1]\<any> | [Geometry][3] | [Feature][5])** Feature, Geometry Object or an Array
 
-**Examples**
+### Examples
 
 ```javascript
 var poly = turf.polygon([[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]);
@@ -38,15 +38,15 @@ var coords = turf.getCoords(poly);
 //= [[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]
 ```
 
-Returns **[Array][1]&lt;any>** coordinates
+Returns **[Array][1]\<any>** coordinates
 
 ## containsNumber
 
 Checks if coordinates contains a number
 
-**Parameters**
+### Parameters
 
--   `coordinates` **[Array][1]&lt;any>** GeoJSON Coordinates
+*   `coordinates` **[Array][1]\<any>** GeoJSON Coordinates
 
 Returns **[boolean][6]** true if Array contains a number
 
@@ -54,52 +54,55 @@ Returns **[boolean][6]** true if Array contains a number
 
 Enforce expectations about types of GeoJSON objects for Turf.
 
-**Parameters**
+### Parameters
 
--   `value` **[GeoJSON][7]** any GeoJSON object
--   `type` **[string][8]** expected GeoJSON type
--   `name` **[string][8]** name of calling function
+*   `value` **[GeoJSON][7]** any GeoJSON object
+*   `type` **[string][8]** expected GeoJSON type
+*   `name` **[string][8]** name of calling function
 
+<!---->
 
--   Throws **[Error][9]** if value is not the expected type.
+*   Throws **[Error][9]** if value is not the expected type.
 
 ## featureOf
 
 Enforce expectations about types of [Feature][10] inputs for Turf.
 Internally this uses [geojsonType][11] to judge geometry types.
 
-**Parameters**
+### Parameters
 
--   `feature` **[Feature][5]** a feature with an expected geometry type
--   `type` **[string][8]** expected GeoJSON type
--   `name` **[string][8]** name of calling function
+*   `feature` **[Feature][5]** a feature with an expected geometry type
+*   `type` **[string][8]** expected GeoJSON type
+*   `name` **[string][8]** name of calling function
 
+<!---->
 
--   Throws **[Error][9]** error if value is not the expected type.
+*   Throws **[Error][9]** error if value is not the expected type.
 
 ## collectionOf
 
 Enforce expectations about types of [FeatureCollection][12] inputs for Turf.
 Internally this uses [geojsonType][11] to judge geometry types.
 
-**Parameters**
+### Parameters
 
--   `featureCollection` **[FeatureCollection][13]** a FeatureCollection for which features will be judged
--   `type` **[string][8]** expected GeoJSON type
--   `name` **[string][8]** name of calling function
+*   `featureCollection` **[FeatureCollection][13]** a FeatureCollection for which features will be judged
+*   `type` **[string][8]** expected GeoJSON type
+*   `name` **[string][8]** name of calling function
 
+<!---->
 
--   Throws **[Error][9]** if value is not the expected type.
+*   Throws **[Error][9]** if value is not the expected type.
 
 ## getGeom
 
 Get Geometry from Feature or Geometry Object
 
-**Parameters**
+### Parameters
 
--   `geojson` **([Feature][5] \| [Geometry][3])** GeoJSON Feature or Geometry Object
+*   `geojson` **([Feature][5] | [Geometry][3])** GeoJSON Feature or Geometry Object
 
-**Examples**
+### Examples
 
 ```javascript
 var point = {
@@ -114,26 +117,21 @@ var geom = turf.getGeom(point)
 //={"type": "Point", "coordinates": [110, 40]}
 ```
 
--   Throws **[Error][9]** if geojson is not a Feature or Geometry Object
+*   Throws **[Error][9]** if geojson is not a Feature or Geometry Object
 
 Returns **([Geometry][3] | null)** GeoJSON Geometry Object
-
-## getGeomType
-
-Get Geometry Type from Feature or Geometry Object
-
--   Throws **[Error][9]** **DEPRECATED** in v5.0.0 in favor of getType
 
 ## getType
 
 Get GeoJSON object's type, Geometry type is prioritize.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][7]** GeoJSON object
--   `name` **[string][8]** name of the variable to display in error message (optional, default `"geojson"`)
+*   `geojson` **[GeoJSON][7]** GeoJSON object
+*   `_name` **[string][8]?** 
+*   `name` **[string][8]** name of the variable to display in error message (unused) (optional, default `"geojson"`)
 
-**Examples**
+### Examples
 
 ```javascript
 var point = {

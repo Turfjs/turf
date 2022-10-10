@@ -7,17 +7,18 @@
 Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
 on the provided direction angle.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][1]** object to be translated
--   `distance` **[number][2]** length of the motion; negative values determine motion in opposite direction
--   `direction` **[number][2]** of the motion; angle from North in decimal degrees, positive clockwise
--   `options` **[Object][3]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][4]** in which `distance` will be express; miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
-    -   `options.zTranslation` **[number][2]** length of the vertical motion, same unit of distance (optional, default `0`)
-    -   `options.mutate` **[boolean][5]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+*   `geojson` **[GeoJSON][1]** object to be translated
+*   `distance` **[number][2]** length of the motion; negative values determine motion in opposite direction
+*   `direction` **[number][2]** of the motion; angle from North in decimal degrees, positive clockwise
+*   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][4]** in which `distance` will be express; miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
+    *   `options.zTranslation` **[number][2]** length of the vertical motion, same unit of distance (optional, default `0`)
+    *   `options.mutate` **[boolean][5]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+
+### Examples
 
 ```javascript
 var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);

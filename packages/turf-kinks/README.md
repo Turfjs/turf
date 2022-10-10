@@ -4,13 +4,15 @@
 
 ## kinks
 
-Takes a [linestring][1], [multi-linestring][2], [multi-polygon][3], or [polygon][4] and returns [points][5] at all self-intersections.
+Takes a [linestring][1], [multi-linestring][2],
+[multi-polygon][3] or [polygon][4] and
+returns [points][5] at all self-intersections.
 
-**Parameters**
+### Parameters
 
--   `featureIn` **[Feature][6]&lt;([LineString][7] \| [MultiLineString][8] \| [MultiPolygon][9] \| [Polygon][10])>** input feature
+*   `featureIn` **[Feature][6]<([LineString][7] | [MultiLineString][8] | [MultiPolygon][9] | [Polygon][10])>** input feature
 
-**Examples**
+### Examples
 
 ```javascript
 var poly = turf.polygon([[
@@ -27,7 +29,7 @@ var kinks = turf.kinks(poly);
 var addToMap = [poly, kinks]
 ```
 
-Returns **[FeatureCollection][11]&lt;[Point][12]>** self-intersections
+Returns **[FeatureCollection][11]<[Point][12]>** self-intersections
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

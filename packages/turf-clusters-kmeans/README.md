@@ -7,14 +7,15 @@
 Takes a set of [points][1] and partition them into clusters using the k-mean .
 It uses the [k-means algorithm][2]
 
-**Parameters**
+### Parameters
 
--   `points` **[FeatureCollection][3]&lt;[Point][4]>** to be clustered
--   `options` **[Object][5]** Optional parameters (optional, default `{}`)
-    -   `options.numberOfClusters` **[number][6]** numberOfClusters that will be generated (optional, default `Math.sqrt(numberOfPoints/2)`)
-    -   `options.mutate` **[boolean][7]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+*   `points` **[FeatureCollection][3]<[Point][4]>** to be clustered
+*   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.numberOfClusters` **[number][6]** numberOfClusters that will be generated (optional, default `Math.sqrt(numberOfPoints/2)`)
+    *   `options.mutate` **[boolean][7]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+
+### Examples
 
 ```javascript
 // create random points with random z-values in their properties
@@ -26,8 +27,8 @@ var clustered = turf.clustersKmeans(points, options);
 var addToMap = [clustered];
 ```
 
-Returns **[FeatureCollection][3]&lt;[Point][4]>** Clustered Points with an additional two properties associated to each Feature:-   {number} cluster - the associated clusterId
--   {[number, number]} centroid - Centroid of the cluster [Longitude, Latitude]
+Returns **[FeatureCollection][3]<[Point][4]>** Clustered Points with an additional two properties associated to each Feature:*   {number} cluster - the associated clusterId
+*   {\[number, number]} centroid - Centroid of the cluster \[Longitude, Latitude]
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

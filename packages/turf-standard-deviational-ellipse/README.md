@@ -16,22 +16,23 @@ in ArcGIS and the [QGIS Standard Deviational Ellipse Plugin][3]
 **Bibliography**
 
 • Robert S. Yuill, “The Standard Deviational Ellipse; An Updated Tool for
-Spatial Description,” _Geografiska Annaler_ 53, no. 1 (1971): 28–39,
-doi:[10.2307/490885][4].
+Spatial Description,” *Geografiska Annaler* 53, no. 1 (1971): 28–39,
+doi:{@link [https://doi.org/10.2307/490885|10.2307/490885}][4].
 
 • Paul Hanly Furfey, “A Note on Lefever’s “Standard Deviational Ellipse,”
-_American Journal of Sociology_ 33, no. 1 (1927): 94—98,
-doi:[10.1086/214336][5].
+*American Journal of Sociology* 33, no. 1 (1927): 94—98,
+doi:{@link [https://doi.org/10.1086/214336|10.1086/214336}][5].
 
-**Parameters**
+### Parameters
 
--   `points` **[FeatureCollection][6]&lt;[Point][7]>** GeoJSON points
--   `options` **[Object][8]** Optional parameters (optional, default `{}`)
-    -   `options.weight` **[string][9]?** the property name used to weight the center
-    -   `options.steps` **[number][10]** number of steps for the polygon (optional, default `64`)
-    -   `options.properties` **[Object][8]** properties to pass to the resulting ellipse (optional, default `{}`)
+*   `points` **[FeatureCollection][6]<[Point][7]>** GeoJSON points
+*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.weight` **[string][9]?** the property name used to weight the center
+    *   `options.steps` **[number][10]** number of steps for the polygon (optional, default `64`)
+    *   `options.properties` **[Object][8]** properties to pass to the resulting ellipse (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var bbox = [-74, 40.72, -73.98, 40.74];
@@ -42,7 +43,7 @@ var sdEllipse = turf.standardDeviationalEllipse(points);
 var addToMap = [points, sdEllipse];
 ```
 
-Returns **[Feature][11]&lt;[Polygon][12]>** an elliptical Polygon that includes approximately 1 SD of the dataset within it.
+Returns **[Feature][11]<[Polygon][12]>** an elliptical Polygon that includes approximately 1 SD of the dataset within it.
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 
@@ -50,9 +51,9 @@ Returns **[Feature][11]&lt;[Polygon][12]>** an elliptical Polygon that includes 
 
 [3]: http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/
 
-[4]: https://doi.org/10.2307/490885
+[4]: https://doi.org/10.2307/490885|10.2307/490885}
 
-[5]: https://doi.org/10.1086/214336
+[5]: https://doi.org/10.1086/214336|10.1086/214336}
 
 [6]: https://tools.ietf.org/html/rfc7946#section-3.3
 

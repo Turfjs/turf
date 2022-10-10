@@ -9,12 +9,12 @@ The interiors of both geometries must intersect and, the interior and boundary o
 must not intersect the exterior of the secondary (geometry b).
 Boolean-within returns the exact opposite result of the `@turf/boolean-contains`.
 
-**Parameters**
+### Parameters
 
--   `feature1` **([Geometry][1] \| [Feature][2]&lt;any>)** GeoJSON Feature or Geometry
--   `feature2` **([Geometry][1] \| [Feature][2]&lt;any>)** GeoJSON Feature or Geometry
+*   `feature1` **([Geometry][1] | [Feature][2]\<any>)** GeoJSON Feature or Geometry
+*   `feature2` **([Geometry][1] | [Feature][2]\<any>)** GeoJSON Feature or Geometry
 
-**Examples**
+### Examples
 
 ```javascript
 var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);

@@ -4,15 +4,17 @@
 
 ## polygonToLine
 
-Converts a [Polygon][1] to [(Multi)LineString][2] or [MultiPolygon][3] to a [FeatureCollection][4] of [(Multi)LineString][2].
+Converts a [Polygon][1] to [(Multi)LineString][2] or [MultiPolygon][3] to a
+[FeatureCollection][4] of [(Multi)LineString][2].
 
-**Parameters**
+### Parameters
 
--   `poly` **[Feature][5]&lt;([Polygon][6] \| [MultiPolygon][7])>** Feature to convert
--   `options` **[Object][8]** Optional parameters (optional, default `{}`)
-    -   `options.properties` **[Object][8]** translates GeoJSON properties to Feature (optional, default `{}`)
+*   `poly` **[Feature][5]<([Polygon][6] | [MultiPolygon][7])>** Feature to convert
+*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.properties` **[Object][8]** translates GeoJSON properties to Feature (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var poly = turf.polygon([[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]);
@@ -23,7 +25,7 @@ var line = turf.polygonToLine(poly);
 var addToMap = [line];
 ```
 
-Returns **([FeatureCollection][9] \| [Feature][5]&lt;([LineString][10] | MultiLinestring)>)** converted (Multi)Polygon to (Multi)LineString
+Returns **([FeatureCollection][9] | [Feature][5]<([LineString][10] | MultiLinestring)>)** converted (Multi)Polygon to (Multi)LineString
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

@@ -7,14 +7,16 @@
 Takes a set of [points][1] and returns a concave hull Polygon or MultiPolygon.
 Internally, this uses [turf-tin][2] to generate geometries.
 
-**Parameters**
+### Parameters
 
--   `points` **[FeatureCollection][3]&lt;[Point][4]>** input points
--   `options` **[Object][5]** Optional parameters (optional, default `{}`)
-    -   `options.maxEdge` **[number][6]** the length (in 'units') of an edge necessary for part of the hull to become concave. (optional, default `Infinity`)
-    -   `options.units` **[string][7]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+*   `points` **[FeatureCollection][3]<[Point][4]>** input points
+*   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.maxEdge` **[number][6]** the length (in 'units') of an edge necessary for part of the
+        hull to become concave. (optional, default `Infinity`)
+    *   `options.units` **[string][7]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+
+### Examples
 
 ```javascript
 var points = turf.featureCollection([
@@ -33,7 +35,7 @@ var hull = turf.concave(points, options);
 var addToMap = [points, hull]
 ```
 
-Returns **([Feature][8]&lt;([Polygon][9] \| [MultiPolygon][10])> | null)** a concave hull (null value is returned if unable to compute hull)
+Returns **([Feature][8]<([Polygon][9] | [MultiPolygon][10])> | null)** a concave hull (null value is returned if unable to compute hull)
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

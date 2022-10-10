@@ -7,15 +7,16 @@
 Takes a [GeoJSON][1] object and returns a simplified version. Internally uses
 [simplify-js][2] to perform simplification using the Ramer-Douglas-Peucker algorithm.
 
-**Parameters**
+### Parameters
 
--   `geojson` **[GeoJSON][3]** object to be simplified
--   `options` **[Object][4]** Optional parameters (optional, default `{}`)
-    -   `options.tolerance` **[number][5]** simplification tolerance (optional, default `1`)
-    -   `options.highQuality` **[boolean][6]** whether or not to spend more time to create a higher-quality simplification with a different algorithm (optional, default `false`)
-    -   `options.mutate` **[boolean][6]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+*   `geojson` **[GeoJSON][3]** object to be simplified
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.tolerance` **[number][5]** simplification tolerance (optional, default `1`)
+    *   `options.highQuality` **[boolean][6]** whether or not to spend more time to create a higher-quality simplification with a different algorithm (optional, default `false`)
+    *   `options.mutate` **[boolean][6]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+
+### Examples
 
 ```javascript
 var geojson = turf.polygon([[

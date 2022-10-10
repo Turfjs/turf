@@ -6,12 +6,12 @@
 
 Get Cluster
 
-**Parameters**
+### Parameters
 
--   `geojson` **[FeatureCollection][1]** GeoJSON Features
--   `filter` **any** Filter used on GeoJSON properties to get Cluster
+*   `geojson` **[FeatureCollection][1]** GeoJSON Features
+*   `filter` **any** Filter used on GeoJSON properties to get Cluster
 
-**Examples**
+### Examples
 
 ```javascript
 var geojson = turf.featureCollection([
@@ -44,11 +44,11 @@ Callback for clusterEach
 
 Type: [Function][2]
 
-**Parameters**
+### Parameters
 
--   `cluster` **[FeatureCollection][1]?** The current cluster being processed.
--   `clusterValue` **any?** Value used to create cluster being processed.
--   `currentIndex` **[number][3]?** The index of the current element being processed in the array.Starts at index 0
+*   `cluster` **[FeatureCollection][1]?** The current cluster being processed.
+*   `clusterValue` **any?** Value used to create cluster being processed.
+*   `currentIndex` **[number][3]?** The index of the current element being processed in the array.Starts at index 0
 
 Returns **void** 
 
@@ -56,13 +56,13 @@ Returns **void**
 
 clusterEach
 
-**Parameters**
+### Parameters
 
--   `geojson` **[FeatureCollection][1]** GeoJSON Features
--   `property` **([string][4] \| [number][3])** GeoJSON property key/value used to create clusters
--   `callback` **[Function][2]** a method that takes (cluster, clusterValue, currentIndex)
+*   `geojson` **[FeatureCollection][1]** GeoJSON Features
+*   `property` **([string][4] | [number][3])** GeoJSON property key/value used to create clusters
+*   `callback` **[Function][2]** a method that takes (cluster, clusterValue, currentIndex)
 
-**Examples**
+### Examples
 
 ```javascript
 var geojson = turf.featureCollection([
@@ -107,37 +107,37 @@ on whether the reduce method has an initialValue argument.
 
 If an initialValue is provided to the reduce method:
 
--   The previousValue argument is initialValue.
--   The currentValue argument is the value of the first element present in the array.
+*   The previousValue argument is initialValue.
+*   The currentValue argument is the value of the first element present in the array.
 
 If an initialValue is not provided:
 
--   The previousValue argument is the value of the first element present in the array.
--   The currentValue argument is the value of the second element present in the array.
+*   The previousValue argument is the value of the first element present in the array.
+*   The currentValue argument is the value of the second element present in the array.
 
 Type: [Function][2]
 
-**Parameters**
+### Parameters
 
--   `previousValue` **any?** The accumulated value previously returned in the last invocation
+*   `previousValue` **any?** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
--   `cluster` **[FeatureCollection][1]?** The current cluster being processed.
--   `clusterValue` **any?** Value used to create cluster being processed.
--   `currentIndex` **[number][3]?** The index of the current element being processed in the
+*   `cluster` **[FeatureCollection][1]?** The current cluster being processed.
+*   `clusterValue` **any?** Value used to create cluster being processed.
+*   `currentIndex` **[number][3]?** The index of the current element being processed in the
     array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
 
 ## clusterReduce
 
 Reduce clusters in GeoJSON Features, similar to Array.reduce()
 
-**Parameters**
+### Parameters
 
--   `geojson` **[FeatureCollection][1]** GeoJSON Features
--   `property` **([string][4] \| [number][3])** GeoJSON property key/value used to create clusters
--   `callback` **[Function][2]** a method that takes (previousValue, cluster, clusterValue, currentIndex)
--   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+*   `geojson` **[FeatureCollection][1]** GeoJSON Features
+*   `property` **([string][4] | [number][3])** GeoJSON property key/value used to create clusters
+*   `callback` **[Function][2]** a method that takes (previousValue, cluster, clusterValue, currentIndex)
+*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
-**Examples**
+### Examples
 
 ```javascript
 var geojson = turf.featureCollection([

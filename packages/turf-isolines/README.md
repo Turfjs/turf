@@ -7,17 +7,18 @@
 Takes a grid [FeatureCollection][1] of [Point][2] features with z-values and an array of
 value breaks and generates [isolines][3].
 
-**Parameters**
+### Parameters
 
--   `pointGrid` **[FeatureCollection][4]&lt;[Point][5]>** input points
--   `breaks` **[Array][6]&lt;[number][7]>** values of `zProperty` where to draw isolines
--   `options` **[Object][8]** Optional parameters (optional, default `{}`)
-    -   `options.zProperty` **[string][9]** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
-    -   `options.commonProperties` **[Object][8]** GeoJSON properties passed to ALL isolines (optional, default `{}`)
-    -   `options.breaksProperties` **[Array][6]&lt;[Object][8]>** GeoJSON properties passed, in order, to the correspondent isoline;
+*   `pointGrid` **[FeatureCollection][4]<[Point][5]>** input points
+*   `breaks` **[Array][6]<[number][7]>** values of `zProperty` where to draw isolines
+*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
+
+    *   `options.zProperty` **[string][9]** the property name in `points` from which z-values will be pulled (optional, default `'elevation'`)
+    *   `options.commonProperties` **[Object][8]** GeoJSON properties passed to ALL isolines (optional, default `{}`)
+    *   `options.breaksProperties` **[Array][6]<[Object][8]>** GeoJSON properties passed, in order, to the correspondent isoline;
         the breaks array will define the order in which the isolines are created (optional, default `[]`)
 
-**Examples**
+### Examples
 
 ```javascript
 // create a grid of points with random z-values in their properties
@@ -36,13 +37,13 @@ var lines = turf.isolines(pointGrid, breaks, {zProperty: 'temperature'});
 var addToMap = [lines];
 ```
 
-Returns **[FeatureCollection][4]&lt;[MultiLineString][10]>** a FeatureCollection of [MultiLineString][11] features representing isolines
+Returns **[FeatureCollection][4]<[MultiLineString][10]>** a FeatureCollection of [MultiLineString][11] features representing isolines
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 
 [2]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[3]: http://en.wikipedia.org/wiki/Isoline
+[3]: https://en.wikipedia.org/wiki/Contour_line
 
 [4]: https://tools.ietf.org/html/rfc7946#section-3.3
 

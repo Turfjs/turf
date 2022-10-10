@@ -10,13 +10,13 @@ The start & stop points don't need to fall exactly on the line.
 
 This can be useful for extracting only the part of a route between waypoints.
 
-**Parameters**
+### Parameters
 
--   `startPt` **[Coord][3]** starting point
--   `stopPt` **[Coord][3]** stopping point
--   `line` **([Feature][4]&lt;[LineString][5]> | [LineString][5])** line to slice
+*   `startPt` **[Coord][3]** starting point
+*   `stopPt` **[Coord][3]** stopping point
+*   `line` **([Feature][4]<[LineString][5]> | [LineString][5])** line to slice
 
-**Examples**
+### Examples
 
 ```javascript
 var line = turf.lineString([
@@ -36,7 +36,7 @@ var sliced = turf.lineSlice(start, stop, line);
 var addToMap = [start, stop, line]
 ```
 
-Returns **[Feature][4]&lt;[LineString][5]>** sliced line
+Returns **[Feature][4]<[LineString][5]>** sliced line
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

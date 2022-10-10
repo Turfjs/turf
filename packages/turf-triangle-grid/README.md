@@ -6,16 +6,17 @@
 
 Takes a bounding box and a cell depth and returns a set of triangular [polygons][1] in a grid.
 
-**Parameters**
+### Parameters
 
--   `bbox` **[Array][2]&lt;[number][3]>** extent in [minX, minY, maxX, maxY] order
--   `cellSide` **[number][3]** dimension of each cell
--   `options` **[Object][4]** Optional parameters (optional, default `{}`)
-    -   `options.units` **[string][5]** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
-    -   `options.mask` **[Feature][6]&lt;[Polygon][7]>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
-    -   `options.properties` **[Object][4]** passed to each point of the grid (optional, default `{}`)
+*   `bbox` **[Array][2]<[number][3]>** extent in \[minX, minY, maxX, maxY] order
+*   `cellSide` **[number][3]** dimension of each cell
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-**Examples**
+    *   `options.units` **[string][5]** used in calculating cellSide, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.mask` **[Feature][6]<[Polygon][7]>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
+    *   `options.properties` **[Object][4]** passed to each point of the grid (optional, default `{}`)
+
+### Examples
 
 ```javascript
 var bbox = [-95, 30 ,-85, 40];
@@ -28,7 +29,7 @@ var triangleGrid = turf.triangleGrid(bbox, cellSide, options);
 var addToMap = [triangleGrid];
 ```
 
-Returns **[FeatureCollection][8]&lt;[Polygon][7]>** grid of polygons
+Returns **[FeatureCollection][8]<[Polygon][7]>** grid of polygons
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

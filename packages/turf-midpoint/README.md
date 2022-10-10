@@ -7,12 +7,12 @@
 Takes two [points][1] and returns a point midway between them.
 The midpoint is calculated geodesically, meaning the curvature of the earth is taken into account.
 
-**Parameters**
+### Parameters
 
--   `point1` **[Coord][2]** first point
--   `point2` **[Coord][2]** second point
+*   `point1` **[Coord][2]** first point
+*   `point2` **[Coord][2]** second point
 
-**Examples**
+### Examples
 
 ```javascript
 var point1 = turf.point([144.834823, -37.771257]);
@@ -25,7 +25,7 @@ var addToMap = [point1, point2, midpoint];
 midpoint.properties['marker-color'] = '#f00';
 ```
 
-Returns **[Feature][3]&lt;[Point][4]>** a point midway between `pt1` and `pt2`
+Returns **[Feature][3]<[Point][4]>** a point midway between `pt1` and `pt2`
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

@@ -4,14 +4,14 @@
 
 ## tesselate
 
-Tesselates a [Feature&lt;Polygon>][1] into a [FeatureCollection&lt;Polygon>][2] of triangles
+Tesselates a [Feature\<Polygon>][1] into a [FeatureCollection\<Polygon>][2] of triangles
 using [earcut][3].
 
-**Parameters**
+### Parameters
 
--   `poly` **[Feature][4]&lt;[Polygon][5]>** the polygon to tesselate
+*   `poly` **[Feature][4]<[Polygon][5]>** the polygon to tesselate
 
-**Examples**
+### Examples
 
 ```javascript
 var poly = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
@@ -21,7 +21,7 @@ var triangles = turf.tesselate(poly);
 var addToMap = [poly, triangles]
 ```
 
-Returns **[FeatureCollection][6]&lt;[Polygon][5]>** a geometrycollection feature
+Returns **[FeatureCollection][6]<[Polygon][5]>** a geometrycollection feature
 
 [1]: Feature<Polygon>
 
