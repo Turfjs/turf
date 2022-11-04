@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@turf/helpers": "^6.5.0",
+    "sweepline-intersections": "^1.5.0",
     "tslib": "^2.3.0"
   }
 }
