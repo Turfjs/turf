@@ -2,17 +2,17 @@ const path = require("path");
 const glob = require("glob");
 const fs = require("fs");
 
-const TS_PACKAGES = []; // projects that use typescript to build
-const JS_PACKAGES = []; // projects that use javascript/rollup to build
+const TS_PACKAGES: string[] = []; // projects that use typescript to build
+const JS_PACKAGES: string[] = []; // projects that use javascript/rollup to build
 const MAIN_PACKAGE = "@turf/turf";
 
-const TAPE_PACKAGES = []; // projects that have tape tests
-const TYPES_PACKAGES = []; // projects that have types tests
-const BENCH_PACKAGES = []; // projects that have benchmarks
+const TAPE_PACKAGES: string[] = []; // projects that have tape tests
+const TYPES_PACKAGES: string[] = []; // projects that have types tests
+const BENCH_PACKAGES: string[] = []; // projects that have benchmarks
 
 // iterate all the packages and figure out what buckets everything falls into
 glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
-  const name = JSON.parse(
+  const name: string = JSON.parse(
     fs.readFileSync(path.join(pk, "package.json"), "utf8")
   ).name;
 
