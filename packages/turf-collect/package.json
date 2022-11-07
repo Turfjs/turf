@@ -1,6 +1,6 @@
 {
   "name": "@turf/collect",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf collect module",
   "author": "Turf Authors",
   "contributors": [
@@ -61,9 +61,9 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.5.0",
-    "@turf/boolean-point-in-polygon": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
+    "@turf/bbox": "^7.0.0-alpha.0",
+    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
     "rbush": "^3.0.1",
     "tslib": "^2.3.0"
   }
