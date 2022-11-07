@@ -224,7 +224,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            "test:types": "tsc --esModuleInterop --noEmit types.ts",
+            "test:types": "tsc --esModuleInterop --noEmit --strict types.ts",
           },
         },
         includePackages: TYPES_PACKAGES,
