@@ -48,7 +48,7 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "ts-node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
     "@turf/circle": "^6.5.0",

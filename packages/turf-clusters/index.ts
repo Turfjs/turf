@@ -103,7 +103,7 @@ export function clusterEach<G extends GeometryObject, P = any>(
   geojson: FeatureCollection<G, P>,
   property: number | string,
   callback: (
-    cluster?: FeatureCollection<G, P>,
+    cluster: FeatureCollection<G, P>,
     clusterValue?: any,
     currentIndex?: number
   ) => void
@@ -197,8 +197,8 @@ export function clusterReduce<G extends GeometryObject, P = any>(
   geojson: FeatureCollection<G, P>,
   property: number | string,
   callback: (
-    previousValue?: any,
-    cluster?: FeatureCollection<G, P>,
+    previousValue: any | undefined,
+    cluster: FeatureCollection<G, P>,
     clusterValue?: any,
     currentIndex?: number
   ) => void,
