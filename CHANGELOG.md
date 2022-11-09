@@ -1,3 +1,73 @@
+# 7.0.0 (prerelease)
+
+We intend to keep making breaking changes before 7.0.0 is fully released. If you intend to take a dependency on the 7.0 prereleases consider pinning the exact version dependency to avoid unintended breaks.
+
+## ⚠️  Breaking
+- Move to @types/geojson package instead of declaring our own (#2158)
+- Move distribution JS to target ES2017 (#2237)
+- [`@turf/helpers`](helpers) Correct the conversion factor for degrees (#2177)
+- [`@turf/helpers`](helpers) polygon() will now throw if the first and last coordinates are not the same (#2173)
+- [`@turf/area`](area) Fix earth radius to use WGS84 median earth radius (#2166)
+- [`@turf/turf`](turf) Remove re-exports for turf 4.x compatability (#2183)
+- [`@turf/rectangle-grid`](rectangle-grid) Fix correctness for large areas (#2106)
+- [`@turf/square-grid](square-grid) Fix correctness for large areas (#2106)
+- [`@turf/union`](union) Accept FeatureCollection for multiple inputs (#2247)
+- [`@turf/difference`](difference) Accept FeatureCollection for multiple inputs (#2247)
+- [`@turf/intersect`](intersect) Accept FeatureCollection for multiple inputs (#2247)
+
+## 🏅 New Features/Enhancements
+- [`@turf/kinks`](kinks) Move to sweepline-intersections library for performance (#1896)
+- [`@turf/buffer](buffer) Reduce bundle size by moving from turf-jsts to @turf/jsts (#2217)
+- [`@turf/boolean-equal`](boolean-equal) Add option for precision (#2231)
+- [`@turf/boolean-point-in-polygon`](boolean-point-in-polygon) Move to point-in-polygon-hao library for performance and correctness (#1893)
+- [`@turf/line-intersect`][line-intersect] Move to sweepline-intersections library for performance (#2033)
+- [`@turf/boolean-contains`](boolean-contains) Add multipolygon support (#2338)
+
+## 🐛 Bug Fixes
+- [`@turf/polygon-smooth`](polygon-smooth) Options argument is now actually optional (#2149)
+- [`@turf/polygon-smooth`](polygon-smooth) Fix crashes with polygons containing multiple holes (#2323)
+- [`@turf/line-arc`](line-arc) Ensure all points are generated when the first and last points are the same (#2142)
+- [`@turf/clone`](clone) Fix cloning of features with null geometries (#2316)
+- [`@turf/dissolve`](dissolve) Now correctly depends on @turf/flatten (#2345)
+- [`@turf/clean-coords`](clean-coords) Allow 3 coordinate closed LineStrings (#2178)
+- [`@turf/helpers`](helpers) Add alternate spellings for Units: millimetres, centimetres, metres, kilometres (#2168)
+- [`@turf/ellipse`](ellipse) Add pivot and angle options to typescript (#2174)
+- [`@turf/quadrat-analysis`](quadrat-analysis) Fix test flake (#2182)
+- [`@turf/bbox`](bbox) Use input bbox instead of computing it (#2171)
+- [`@turf/transform-scale`](transform-scale) Removes invalid bbox when scaling (#2171)
+- [`@turf/invariant`](invariant) getCoord now shallow clones its result to prevent accidental mutations (#2167)
+- [`@turf/line-overlap`](line-overlap) Identify multiple overlaps on a single segment (#2134)
+- [`@turf/transform-scale`](transform-scale) Fix factor to allow only numbers >= 0 (#2169)
+- [`@turf/voronoi`](voronoi) Make options optional (#2195)
+- [`@turf/boolean-within`](boolean-within) Fix multipoint checks (#2216)
+- [`@turf/points-within-polygon`](points-within-polygon) Fix dropped properties on MultiPoint results (#2227)
+- [`@turf/random`](random) Throws error on invalid bbox inputs (#2172)
+
+## 📖 Documentation
+- [`@turf/bbox`][bbox] Improve documentation (#2153)
+- [`@turf/great-circle`][great-circle] Add license for arc.js (#2175)
+- [`@turf/boolean-crosses`](boolean-crosses) Document OpenGIS Simple Feature Spec requirement (#2184)
+- [`@turf/turf-clone`](clone) Now has more useful Typescript inference (#2239)
+- [`@turf/centroid`](centroid) Improve docs (#2213)
+- [`@turf/buffer`](buffer) Clean up Typescript types (#2188)
+- [`@turf/polygon-smooth`](polygon-smooth) Clean up a typo (#2293)
+- [`@turf/nearest-point-on-line`](nearest-point-on-line) Clean up typescript types (#2296)
+- Remove Bower references (#2146)
+- Fix typo in README (#2313)
+- Lots of cleanup for CONTRIBUTING, README, and RELEASING (#2186)
+- Fix docs generation (#2279)
+- Add a link to turf_dart (#2286)
+
+## 🔔 Misc
+- [`@turf/turf](turf) Add booleanIntersects typescript export (#2157)
+- [`@turf/turf](turf) Add booleanTouches export (#2170)
+- [`@turf/turf](turf) Add booleanConcave export (#2265)
+- [`@turf/helpers](helpers) Make isObject a little more accurate (#2176)
+- types.ts tests are now run in strict mode (#2363)
+- Uses tslib now for smaller bundles (#2165)
+- Remove object-assign dependency from all packages (#2241)
+- Lots of dependencies have been upgraded
+
 # 6.5.0
 
 ## 🏅 New Features/Enhancements
@@ -13,7 +83,6 @@
 
 - [`@turf/boolean-valid`](boolean-valid) Add missing dependency to
   (PR https://github.com/Turfjs/turf/pull/2094 - Author @rycgar)
-
 
 ## 📖 Documentation
 - [`@turf/boolean-overlap`](boolean-overlap) Improve clarity

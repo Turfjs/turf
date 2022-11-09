@@ -1,6 +1,6 @@
 {
   "name": "@turf/clusters-kmeans",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf clusters-kmeans module",
   "author": "Turf Authors",
   "contributors": [
@@ -54,9 +54,9 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/centroid": "^6.5.0",
-    "@turf/clusters": "^6.5.0",
-    "@turf/random": "^6.5.0",
+    "@turf/centroid": "^7.0.0-alpha.0",
+    "@turf/clusters": "^7.0.0-alpha.0",
+    "@turf/random": "^7.0.0-alpha.0",
     "@types/skmeans": "^0.11.2",
     "@types/tape": "*",
     "benchmark": "*",
@@ -72,10 +72,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clone": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
-    "@turf/meta": "^6.5.0",
+    "@turf/clone": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/invariant": "^7.0.0-alpha.0",
+    "@turf/meta": "^7.0.0-alpha.0",
     "skmeans": "0.9.7",
     "tslib": "^2.3.0"
   }
