@@ -1,6 +1,6 @@
 {
   "name": "@turf/points-within-polygon",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf points-within-polygon module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -44,7 +44,7 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
     "benchmark": "*",
@@ -53,8 +53,8 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/meta": "^6.5.0"
+    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/meta": "^7.0.0-alpha.0"
   }
 }

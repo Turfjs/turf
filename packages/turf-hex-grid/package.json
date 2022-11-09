@@ -1,6 +1,6 @@
 {
   "name": "@turf/hex-grid",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf hex-grid module",
   "author": "Turf Authors",
   "contributors": [
@@ -54,11 +54,11 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "ts-node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "^6.5.0",
-    "@turf/truncate": "^6.5.0",
+    "@turf/bbox-polygon": "^7.0.0-alpha.0",
+    "@turf/truncate": "^7.0.0-alpha.0",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -70,10 +70,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/distance": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/intersect": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
+    "@turf/distance": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/intersect": "^7.0.0-alpha.0",
+    "@turf/invariant": "^7.0.0-alpha.0",
     "tslib": "^2.3.0"
   }
 }

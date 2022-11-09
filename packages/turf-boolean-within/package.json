@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-within",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf boolean-within module",
   "author": "Turf Authors",
   "contributors": [
@@ -49,7 +49,7 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "ts-node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
     "@types/tape": "*",
@@ -65,11 +65,11 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.5.0",
-    "@turf/boolean-point-in-polygon": "^6.5.0",
-    "@turf/boolean-point-on-line": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
+    "@turf/bbox": "^7.0.0-alpha.0",
+    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.0",
+    "@turf/boolean-point-on-line": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/invariant": "^7.0.0-alpha.0",
     "tslib": "^2.3.0"
   }
 }

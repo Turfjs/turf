@@ -136,7 +136,7 @@ export function feature<
   G extends GeometryObject = Geometry,
   P = GeoJsonProperties
 >(
-  geom: G,
+  geom: G | null,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
 ): Feature<G, P> {

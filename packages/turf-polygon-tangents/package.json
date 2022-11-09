@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-tangents",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf polygon tangents module",
   "author": "Turf Authors",
   "contributors": [
@@ -48,7 +48,7 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
     "benchmark": "*",
@@ -59,11 +59,11 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.5.0",
-    "@turf/boolean-within": "^6.5.0",
-    "@turf/explode": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
-    "@turf/nearest-point": "^6.5.0"
+    "@turf/bbox": "^7.0.0-alpha.0",
+    "@turf/boolean-within": "^7.0.0-alpha.0",
+    "@turf/explode": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/invariant": "^7.0.0-alpha.0",
+    "@turf/nearest-point": "^7.0.0-alpha.0"
   }
 }

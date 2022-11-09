@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf meta module",
   "author": "Turf Authors",
   "contributors": [
@@ -64,16 +64,16 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/random": "^6.5.0",
+    "@turf/random": "^7.0.0-alpha.0",
     "benchmark": "*",
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.5.0"
+    "@turf/helpers": "^7.0.0-alpha.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-to-line-distance",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf point-to-line-distance module",
   "author": "Turf Authors",
   "contributors": [
@@ -46,10 +46,10 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "ts-node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/circle": "^6.5.0",
+    "@turf/circle": "^7.0.0-alpha.0",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -61,14 +61,14 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^6.5.0",
-    "@turf/distance": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
-    "@turf/meta": "^6.5.0",
-    "@turf/projection": "^6.5.0",
-    "@turf/rhumb-bearing": "^6.5.0",
-    "@turf/rhumb-distance": "^6.5.0",
+    "@turf/bearing": "^7.0.0-alpha.0",
+    "@turf/distance": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/invariant": "^7.0.0-alpha.0",
+    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/projection": "^7.0.0-alpha.0",
+    "@turf/rhumb-bearing": "^7.0.0-alpha.0",
+    "@turf/rhumb-distance": "^7.0.0-alpha.0",
     "tslib": "^2.3.0"
   }
 }

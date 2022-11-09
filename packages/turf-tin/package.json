@@ -1,6 +1,6 @@
 {
   "name": "@turf/tin",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf tin module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -43,7 +43,7 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "ts-node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
     "@types/tape": "*",
@@ -55,7 +55,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.5.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
     "tslib": "^2.3.0"
   }
 }

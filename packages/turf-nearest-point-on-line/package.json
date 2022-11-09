@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-point-on-line",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf nearest-point-on-line module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -38,12 +38,12 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "ts-node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/along": "^6.5.0",
-    "@turf/length": "^6.5.0",
-    "@turf/truncate": "^6.5.0",
+    "@turf/along": "^7.0.0-alpha.0",
+    "@turf/length": "^7.0.0-alpha.0",
+    "@turf/truncate": "^7.0.0-alpha.0",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -55,13 +55,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^6.5.0",
-    "@turf/destination": "^6.5.0",
-    "@turf/distance": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
-    "@turf/line-intersect": "^6.5.0",
-    "@turf/meta": "^6.5.0",
+    "@turf/bearing": "^7.0.0-alpha.0",
+    "@turf/destination": "^7.0.0-alpha.0",
+    "@turf/distance": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/invariant": "^7.0.0-alpha.0",
+    "@turf/line-intersect": "^7.0.0-alpha.0",
+    "@turf/meta": "^7.0.0-alpha.0",
     "tslib": "^2.3.0"
   }
 }

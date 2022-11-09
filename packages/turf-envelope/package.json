@@ -1,6 +1,6 @@
 {
   "name": "@turf/envelope",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf envelope module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -53,8 +53,8 @@
     "tape": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^6.5.0",
-    "@turf/bbox-polygon": "^6.5.0",
-    "@turf/helpers": "^6.5.0"
+    "@turf/bbox": "^7.0.0-alpha.0",
+    "@turf/bbox-polygon": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0"
   }
 }
