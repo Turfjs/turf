@@ -63,6 +63,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/turf](turf) Add booleanTouches export (#2170)
 - [`@turf/turf](turf) Add booleanConcave export (#2265)
 - [`@turf/helpers](helpers) Make isObject a little more accurate (#2176)
+- [`@turf/circle](circle) Improve units option typing (#2387)
 - types.ts tests are now run in strict mode (#2363)
 - Uses tslib now for smaller bundles (#2165)
 - Remove object-assign dependency from all packages (#2241)

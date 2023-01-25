@@ -27,7 +27,7 @@ function circle<P = GeoJsonProperties>(
   radius: number,
   options: {
     steps?: number;
-    units?: Units;
+    units?: Extract<Units, "miles" | "kilometers" | "degrees" | "radians">;
     properties?: P;
   } = {}
 ): Feature<Polygon, P> {
