@@ -12,8 +12,12 @@ import centroid from "@turf/centroid";
 import distance from "@turf/distance";
 import nearestPoint from "@turf/nearest-point";
 import { featureEach } from "@turf/meta";
-import { convertArea, featureCollection, AreaUnits } from "@turf/helpers";
-import { Units } from "@turf/helpers";
+import {
+  convertArea,
+  featureCollection,
+  Units,
+  AreaUnits,
+} from "@turf/helpers";
 
 export interface NearestNeighborStatistics {
   units: Units & AreaUnits;
