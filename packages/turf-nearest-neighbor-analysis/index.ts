@@ -12,11 +12,11 @@ import centroid from "@turf/centroid";
 import distance from "@turf/distance";
 import nearestPoint from "@turf/nearest-point";
 import { featureEach } from "@turf/meta";
-import { convertArea, featureCollection } from "@turf/helpers";
+import { convertArea, featureCollection, AreaUnits } from "@turf/helpers";
 import { Units } from "@turf/helpers";
 
 export interface NearestNeighborStatistics {
-  units: Units;
+  units: Units & AreaUnits;
   arealUnits: string;
   observedMeanDistance: number;
   expectedMeanDistance: number;
@@ -86,7 +86,7 @@ function nearestNeighborAnalysis(
   dataset: FeatureCollection<any>,
   options?: {
     studyArea?: Feature<Polygon>;
-    units?: Units;
+    units?: Units & AreaUnits;
     properties?: GeoJsonProperties;
   }
 ): NearestNeighborStudyArea {
