@@ -60,7 +60,13 @@ function voronoi(points, options) {
         [bbox[2], bbox[3]],
       ])
       .polygons(points.features)
-      .map(coordsToPolygon)
+      .map(function (coords, index) {
+        return Object.assign(coordsToPolygon(coords), {
+          properties: JSON.parse(
+            JSON.stringify(points.features[index].properties)
+          ),
+        });
+      })
   );
 }
 
