@@ -95,6 +95,7 @@ module.exports = {
             exports: {
               "./package.json": "./package.json",
               ".": {
+                types: "./index.d.ts",
                 import: "./dist/es/index.js",
                 require: "./dist/js/index.js",
               },
@@ -115,6 +116,7 @@ module.exports = {
             exports: {
               "./package.json": "./package.json",
               ".": {
+                types: "./index.d.ts",
                 import: "./dist/es/index.js",
                 require: "./dist/js/index.js",
               },
