@@ -14,7 +14,7 @@ Boolean-intersects returns (TRUE) two geometries intersect.
 ### Examples
 
 ```javascript
-var point = turf.point([2, 2]);
+var point = turf.point([1, 2]);
 var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
 
 turf.booleanIntersects(line, point);

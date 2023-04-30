@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-disjoint",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf boolean-disjoint module",
   "author": "Turf Authors",
   "contributors": [
@@ -31,6 +31,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
@@ -61,11 +62,11 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/line-intersect": "^6.5.0",
-    "@turf/meta": "^6.5.0",
-    "@turf/polygon-to-line": "^6.5.0",
+    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/line-intersect": "^7.0.0-alpha.0",
+    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/polygon-to-line": "^7.0.0-alpha.0",
     "tslib": "^2.3.0"
   }
 }

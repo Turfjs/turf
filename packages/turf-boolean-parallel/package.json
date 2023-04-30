@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-parallel",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf boolean-parallel module",
   "author": "Turf Authors",
   "contributors": [
@@ -30,6 +30,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
@@ -60,10 +61,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/line-segment": "^6.5.0",
-    "@turf/rhumb-bearing": "^6.5.0",
+    "@turf/clean-coords": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/line-segment": "^7.0.0-alpha.0",
+    "@turf/rhumb-bearing": "^7.0.0-alpha.0",
     "tslib": "^2.3.0"
   }
 }

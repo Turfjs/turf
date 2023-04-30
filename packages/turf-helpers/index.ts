@@ -31,14 +31,16 @@ export type Units =
   | "centimetres"
   | "kilometers"
   | "kilometres"
-  | "acres"
   | "miles"
   | "nauticalmiles"
   | "inches"
   | "yards"
   | "feet"
   | "radians"
-  | "degrees"
+  | "degrees";
+export type AreaUnits =
+  | Exclude<Units, "radians" | "degrees">
+  | "acres"
   | "hectares";
 export type Grid = "point" | "square" | "hex" | "triangle";
 export type Corners = "sw" | "se" | "nw" | "ne" | "center" | "centroid";
@@ -70,7 +72,7 @@ export const earthRadius = 6371008.8;
  * @memberof helpers
  * @type {Object}
  */
-export const factors: { [key: string]: number } = {
+export const factors: Record<Units, number> = {
   centimeters: earthRadius * 100,
   centimetres: earthRadius * 100,
   degrees: 360 / (2 * Math.PI),
@@ -95,7 +97,7 @@ export const factors: { [key: string]: number } = {
  * @memberof helpers
  * @type {Object}
  */
-export const areaFactors: { [key: string]: number } = {
+export const areaFactors: Record<AreaUnits, number> = {
   acres: 0.000247105,
   centimeters: 10000,
   centimetres: 10000,
@@ -107,6 +109,7 @@ export const areaFactors: { [key: string]: number } = {
   meters: 1,
   metres: 1,
   miles: 3.86e-7,
+  nauticalmiles: 2.9155334959812285e-7,
   millimeters: 1000000,
   millimetres: 1000000,
   yards: 1.195990046,
@@ -136,7 +139,7 @@ export function feature<
   G extends GeometryObject = Geometry,
   P = GeoJsonProperties
 >(
-  geom: G,
+  geom: G | null,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
 ): Feature<G, P> {
@@ -716,8 +719,8 @@ export function convertLength(
  */
 export function convertArea(
   area: number,
-  originalUnit: Units = "meters",
-  finalUnit: Units = "kilometers"
+  originalUnit: AreaUnits = "meters",
+  finalUnit: AreaUnits = "kilometers"
 ): number {
   if (!(area >= 0)) {
     throw new Error("area must be a positive number");

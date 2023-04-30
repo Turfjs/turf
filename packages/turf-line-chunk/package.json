@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-chunk",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf line-chunk module",
   "author": "Turf Authors",
   "contributors": [
@@ -34,6 +34,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
@@ -50,10 +51,10 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.5.0",
+    "@turf/truncate": "^7.0.0-alpha.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -62,9 +63,9 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.5.0",
-    "@turf/length": "^6.5.0",
-    "@turf/line-slice-along": "^6.5.0",
-    "@turf/meta": "^6.5.0"
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/length": "^7.0.0-alpha.0",
+    "@turf/line-slice-along": "^7.0.0-alpha.0",
+    "@turf/meta": "^7.0.0-alpha.0"
   }
 }

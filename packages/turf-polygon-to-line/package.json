@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-to-line",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf polygon-to-line module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -28,6 +28,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
@@ -58,8 +59,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/invariant": "^7.0.0-alpha.0",
     "tslib": "^2.3.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/rewind",
-  "version": "6.5.0",
+  "version": "7.0.0-alpha.0",
   "description": "turf rewind module",
   "author": "Turf Authors",
   "contributors": [
@@ -33,6 +33,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
@@ -49,7 +50,7 @@
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
     "benchmark": "*",
@@ -60,10 +61,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/boolean-clockwise": "^6.5.0",
-    "@turf/clone": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
-    "@turf/meta": "^6.5.0"
+    "@turf/boolean-clockwise": "^7.0.0-alpha.0",
+    "@turf/clone": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/invariant": "^7.0.0-alpha.0",
+    "@turf/meta": "^7.0.0-alpha.0"
   }
 }

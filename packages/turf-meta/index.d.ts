@@ -258,7 +258,7 @@ export function lineEach<P = GeoJsonProperties>(
     | Feature<GeometryCollection, P>
     | GeometryCollection,
   callback: (
-    currentLine?: Feature<LineString, P>,
+    currentLine: Feature<LineString, P>,
     featureIndex?: number,
     multiFeatureIndex?: number,
     geometryIndex?: number

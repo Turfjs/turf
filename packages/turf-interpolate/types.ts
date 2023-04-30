@@ -18,7 +18,7 @@ const grid = interpolate(points, cellSize, {
   units,
   weight,
 });
-grid.features[0].properties.pressure;
+grid.features[0].properties?.pressure;
 
 // Optional properties
 interpolate(points, cellSize, { gridType, property, units });
