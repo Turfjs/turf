@@ -22,6 +22,7 @@ export interface NearestPoint extends Feature<Point> {
  * @param {Coord} targetPoint the reference point
  * @param {FeatureCollection<Point>} points against input point set
  * @param {Object} [options={}] Optional parameters
+ * @param {string} [options.units='kilometers'] the units of the numeric result
  * @returns {Feature<Point>} the closest point in the set to the reference point
  * @example
  * var targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0F0"});
