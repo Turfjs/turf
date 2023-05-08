@@ -143,6 +143,7 @@ toc:
   - booleanParallel
   - booleanPointInPolygon
   - booleanPointOnLine
+  - booleanTouches
   - booleanWithin
   - name: Unit Conversion
   - bearingToAzimuth

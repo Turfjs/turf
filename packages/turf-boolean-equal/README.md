@@ -4,7 +4,7 @@
 
 ## booleanEqual
 
-Determine whether two geometries of the same type have identical X,Y coordinate values.
+Determines whether two geometries or features of the same type have identical X,Y coordinate values and properties.
 See [http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relations.htm][1]
 
 ### Parameters
@@ -21,11 +21,17 @@ See [http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relatio
 var pt1 = turf.point([0, 0]);
 var pt2 = turf.point([0, 0]);
 var pt3 = turf.point([1, 1]);
+var pt4 = turf.point([0, 0], {prop: 'A'});
+var pt5 = turf.point([0, 0], {prop: 'B'});
 
 turf.booleanEqual(pt1, pt2);
 //= true
 turf.booleanEqual(pt2, pt3);
 //= false
+turf.booleanEqual(pt4, pt5);
+//= false
+turf.booleanEqual(pt4.geometry, pt5.geometry);
+//= true
 ```
 
 Returns **[boolean][6]** true if the objects are equal, false otherwise

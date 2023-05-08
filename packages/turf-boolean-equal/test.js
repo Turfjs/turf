@@ -55,24 +55,30 @@ const line2 = lineString([
   [8, 50],
   [9, 50],
 ]);
-const poly1 = polygon([
+const poly1 = polygon(
   [
-    [8.5, 50],
-    [9.5, 50],
-    [9.5, 49],
-    [8.5, 49],
-    [8.5, 50],
+    [
+      [8.5, 50],
+      [9.5, 50],
+      [9.5, 49],
+      [8.5, 49],
+      [8.5, 50],
+    ],
   ],
-]);
-const poly2 = polygon([
+  { prop: "A" }
+);
+const poly2 = polygon(
   [
-    [8.5, 50],
-    [9.5, 50],
-    [9.5, 49],
-    [8.5, 49],
-    [8.5, 50],
+    [
+      [8.5, 50],
+      [9.5, 50],
+      [9.5, 49],
+      [8.5, 49],
+      [8.5, 50],
+    ],
   ],
-]);
+  { prop: "B" }
+);
 const poly3 = polygon([
   [
     [10, 50],
@@ -82,12 +88,26 @@ const poly3 = polygon([
     [10, 50],
   ],
 ]);
+const poly4 = polygon(
+  [
+    [
+      [8.5, 50],
+      [9.5, 50],
+      [9.5, 49],
+      [8.5, 49],
+      [8.5, 50],
+    ],
+  ],
+  { prop: "A" }
+);
 
 test("turf-boolean-equal -- geometries", (t) => {
   t.true(equal(line1.geometry, line2.geometry), "[true] LineString geometry");
   t.true(equal(poly1.geometry, poly2.geometry), "[true] Polygon geometry");
+  t.true(equal(poly1, poly4), "[true] Polygon feature");
   t.false(equal(poly1.geometry, poly3.geometry), "[false] Polygon geometry");
   t.false(equal(pt, line1), "[false] different types");
+  t.false(equal(poly1, poly2), "[false] different properties");
   t.end();
 });
 
