@@ -83,11 +83,6 @@ function splitLineWithPoints(line, splitter) {
     // First Point - doesn't need to handle any previous line results
     if (!results.length) {
       results = splitLineWithPoint(line, point).features;
-
-      // Add BBox to each feature for GeoJSON-RBush
-      results.forEach(function (feature) {
-        if (!feature.bbox) feature.bbox = bbox(feature);
-      });
       tree.load(featureCollection(results));
       // Split with remaining points - lines might needed to be split multiple times
     } else {
