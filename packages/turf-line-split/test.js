@@ -26,7 +26,7 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
     geojson: load.sync(directories.in + filename),
   };
 });
-// fixtures = fixtures.filter(name => name === 'issue-#1075')
+// fixtures = fixtures.filter(({ name }) => name === 'issue-#1075')
 
 test("turf-line-split", (t) => {
   for (const { filename, name, geojson } of fixtures) {
