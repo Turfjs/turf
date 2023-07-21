@@ -1,5 +1,4 @@
 import rbush from "@turf/geojson-rbush";
-import square from "@turf/square";
 import bbox from "@turf/bbox";
 import truncate from "@turf/truncate";
 import lineSegment from "@turf/line-segment";
@@ -81,9 +80,9 @@ function splitLineWithPoints(line, splitter) {
     if (!results.length) {
       results = splitLineWithPoint(line, point).features;
 
-      // Add Square BBox to each feature for GeoJSON-RBush
+      // Add BBox to each feature for GeoJSON-RBush
       results.forEach(function (feature) {
-        if (!feature.bbox) feature.bbox = square(bbox(feature));
+        if (!feature.bbox) feature.bbox = bbox(feature);
       });
       tree.load(featureCollection(results));
       // Split with remaining points - lines might needed to be split multiple times
