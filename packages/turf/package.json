@@ -159,5 +159,8 @@
     "tape": "^4.7.0",
     "uglify-js": "^2.7.5"
   },
-  "homepage": "https://github.com/Turfjs/turf"
+  "homepage": "https://github.com/Turfjs/turf",
+  "overrides": {
+    "robust-orientation": "^1.2.1"
+  }
 }

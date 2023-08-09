@@ -53,5 +53,8 @@
     "@turf/invariant": "^4.7.3",
     "@turf/meta": "^4.7.3",
     "density-clustering": "1.3.0"
+  },
+  "overrides": {
+    "robust-orientation": "^1.2.1"
   }
 }

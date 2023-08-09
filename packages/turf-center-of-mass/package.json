@@ -40,5 +40,8 @@
     "@turf/helpers": "^4.7.3",
     "@turf/invariant": "^4.7.3",
     "@turf/meta": "^4.7.3"
+  },
+  "overrides": {
+    "robust-orientation": "^1.2.1"
   }
 }
