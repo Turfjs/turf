@@ -3,7 +3,7 @@ const path = require("path");
 const test = require("tape");
 const load = require("load-json-file");
 const write = require("write-json-file");
-const { point } = require("@turf/helpers");
+import { datums, point } from "@turf/helpers";
 const distance = require("./index").default;
 
 const directories = {
@@ -54,5 +54,43 @@ test("distance -- throws", (t) => {
     () => distance(point([0, 0]), point([10, 10]), { units: "foo" }),
     /units is invalid/
   );
+  t.end();
+});
+
+test("distance -- Issue #1726 line between poles", (t) => {
+  const p1 = point([-33.6, 81.1]);
+  const p2 = point([64.5, -80.8]);
+
+  let overallDistance = distance(p1, p2, {
+    units: "meters",
+    datum: datums.WGS84,
+  });
+
+  const expected = 18682436.875; // m from QGIS
+  const tolerance = 0.01; // 1 cm expressed as m
+  t.true(
+    Math.abs(overallDistance - expected) < tolerance,
+    `${overallDistance} within ${tolerance} of ${expected}`
+  );
+
+  t.end();
+});
+
+test("distance -- Issue #1726 line near equator", (t) => {
+  const p1 = point([34, 15.9]);
+  const p2 = point([21, 0.2]);
+
+  let overallDistance = distance(p1, p2, {
+    units: "meters",
+    datum: datums.WGS84,
+  });
+
+  const expected = 2248334.18; // m from QGIS
+  const tolerance = 1; // 1 cm expressed as m
+  t.true(
+    Math.abs(overallDistance - expected) < tolerance,
+    `${overallDistance} within ${tolerance} of ${expected}`
+  );
+
   t.end();
 });

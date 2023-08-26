@@ -54,6 +54,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
+    "@types/geodesy": "1.1.3",
     "@types/tape": "*",
     "benchmark": "*",
     "npm-run-all": "*",
@@ -63,6 +64,7 @@
     "typescript": "*"
   },
   "dependencies": {
+    "geodesy": "1.1.3",
     "tslib": "^2.3.0"
   }
 }
