@@ -113,14 +113,6 @@ module.exports = {
             publishConfig: {
               access: "public",
             },
-            exports: {
-              "./package.json": "./package.json",
-              ".": {
-                types: "./index.d.ts",
-                import: "./dist/es/index.js",
-                require: "./dist/js/index.js",
-              },
-            },
           },
         },
         includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
@@ -130,6 +122,14 @@ module.exports = {
           entries: {
             types: "dist/js/index.d.ts",
             files: ["dist"],
+            exports: {
+              "./package.json": "./package.json",
+              ".": {
+                types: "./dist/js/index.d.ts",
+                import: "./dist/es/index.js",
+                require: "./dist/js/index.js",
+              },
+            },
           },
         },
         includePackages: TS_PACKAGES,
@@ -139,6 +139,14 @@ module.exports = {
           entries: {
             types: "index.d.ts",
             files: ["dist", "index.d.ts"],
+            exports: {
+              "./package.json": "./package.json",
+              ".": {
+                types: "./index.d.ts",
+                import: "./dist/es/index.js",
+                require: "./dist/js/index.js",
+              },
+            },
           },
         },
         includePackages: JS_PACKAGES,
