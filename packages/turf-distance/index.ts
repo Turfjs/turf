@@ -1,14 +1,15 @@
 import { Point } from "geojson";
 import { getCoord } from "@turf/invariant";
+import type { Coord, Datum, Units } from "@turf/helpers";
 import {
+  datums,
   radiansToLength,
   degreesToRadians,
-  datums,
-  Coord,
-  Datum,
-  Units,
   convertLength,
 } from "@turf/helpers";
+// Unable to find an equivalent import statement that works. Fails when building
+// index.mjs → turf.min.js in packages/turf/
+// import { LatLonEllipsoidal as LatLon } from "geodesy";
 const LatLon = require("geodesy").LatLonEllipsoidal;
 
 //http://en.wikipedia.org/wiki/Haversine_formula
@@ -142,7 +143,10 @@ function geodesic_ellipsoid_distance(
     fromLatLon.datum = datums.WGS84;
   }
 
-  const meters = fromLatLon.distanceTo(toLatLon);
+  // LatLonEllipsoidal types don't properly list all base LatLon functions
+  // e.g. distanceTo. Should be able to remove when we can move to a newer
+  // version of geodesy.
+  const meters = (fromLatLon as any).distanceTo(toLatLon);
   // geodesy lib result is in meters
   return convertLength(meters, "meters", options.units);
 }

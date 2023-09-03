@@ -3,7 +3,7 @@ const path = require("path");
 const test = require("tape");
 const load = require("load-json-file");
 const write = require("write-json-file");
-import { datums, point } from "@turf/helpers";
+const { datums, point } = require("@turf/helpers");
 const distance = require("./index").default;
 
 const directories = {

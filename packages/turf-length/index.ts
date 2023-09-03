@@ -1,6 +1,6 @@
 import { Feature, FeatureCollection, GeometryCollection } from "geojson";
 import distance from "@turf/distance";
-import { Datum, Units } from "@turf/helpers";
+import type { Datum, Units } from "@turf/helpers";
 import { segmentReduce } from "@turf/meta";
 
 /**
