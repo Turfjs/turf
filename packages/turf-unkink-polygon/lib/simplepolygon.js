@@ -37,10 +37,10 @@ export default function (feature) {
     throw new Error("The input must be a geojson Polygon");
 
   // Process input
-  var numRings = feature.geometry.coordinates.length;
-  var vertices = [];
-  for (var i = 0; i < numRings; i++) {
-    var ring = feature.geometry.coordinates[i];
+  let numRings = feature.geometry.coordinates.length;
+  let vertices = [];
+  for (let i = 0; i < numRings; i++) {
+    let ring = feature.geometry.coordinates[i];
     if (!equalArrays(ring[0], ring[ring.length - 1])) {
       ring.push(ring[0]); // Close input ring if it is not
     }
@@ -50,10 +50,10 @@ export default function (feature) {
     throw new Error(
       "The input polygon may not have duplicate vertices (except for the first and last vertex of each ring)"
     );
-  var numvertices = vertices.length; // number of input ring vertices, with the last closing vertices not counted
+  let numvertices = vertices.length; // number of input ring vertices, with the last closing vertices not counted
 
   // Compute self-intersections
-  var selfIsectsData = isects(
+  let selfIsectsData = isects(
     feature,
     function filterFn(
       isect,
@@ -85,12 +85,12 @@ export default function (feature) {
       ];
     }
   );
-  var numSelfIsect = selfIsectsData.length;
+  let numSelfIsect = selfIsectsData.length;
 
   // If no self-intersections are found, the input rings are the output rings. Hence, we must only compute their winding numbers, net winding numbers and (since ohers rings could lie outside the first ring) parents.
   if (numSelfIsect == 0) {
-    var outputFeatureArray = [];
-    for (var i = 0; i < numRings; i++) {
+    let outputFeatureArray = [];
+    for (let i = 0; i < numRings; i++) {
       outputFeatureArray.push(
         polygon([feature.geometry.coordinates[i]], {
           parent: -1,
@@ -98,7 +98,7 @@ export default function (feature) {
         })
       );
     }
-    var output = featureCollection(outputFeatureArray);
+    let output = featureCollection(outputFeatureArray);
     determineParents();
     setNetWinding();
 
@@ -108,13 +108,13 @@ export default function (feature) {
   // If self-intersections are found, we will compute the output rings with the help of two intermediate variables
   // First, we build the pseudo vertex list and intersection list
   // The Pseudo vertex list is an array with for each ring an array with for each edge an array containing the pseudo-vertices (as made by their constructor) that have this ring and edge as ringAndEdgeIn, sorted for each edge by their fractional distance on this edge. It's length hence equals numRings.
-  var pseudoVtxListByRingAndEdge = [];
+  let pseudoVtxListByRingAndEdge = [];
   // The intersection list is an array containing intersections (as made by their constructor). First all numvertices ring-vertex-intersections, then all self-intersections (intra- and inter-ring). The order of the latter is not important but is permanent once given.
-  var isectList = [];
+  let isectList = [];
   // Adding ring-pseudo-vertices to pseudoVtxListByRingAndEdge and ring-vertex-intersections to isectList
-  for (var i = 0; i < numRings; i++) {
+  for (let i = 0; i < numRings; i++) {
     pseudoVtxListByRingAndEdge.push([]);
-    for (var j = 0; j < feature.geometry.coordinates[i].length - 1; j++) {
+    for (let j = 0; j < feature.geometry.coordinates[i].length - 1; j++) {
       // Each edge will feature one ring-pseudo-vertex in its array, on the last position. i.e. edge j features the ring-pseudo-vertex of the ring vertex j+1, which has ringAndEdgeIn = [i,j], on the last position.
       pseudoVtxListByRingAndEdge[i].push([
         new PseudoVtx(
@@ -142,7 +142,7 @@ export default function (feature) {
     }
   }
   // Adding intersection-pseudo-vertices to pseudoVtxListByRingAndEdge and self-intersections to isectList
-  for (var i = 0; i < numSelfIsect; i++) {
+  for (let i = 0; i < numSelfIsect; i++) {
     // Adding intersection-pseudo-vertices made using selfIsectsData to pseudoVtxListByRingAndEdge's array corresponding to the incomming ring and edge
     pseudoVtxListByRingAndEdge[selfIsectsData[i][1]][selfIsectsData[i][2]].push(
       new PseudoVtx(
@@ -167,10 +167,10 @@ export default function (feature) {
         )
       );
   }
-  var numIsect = isectList.length;
+  let numIsect = isectList.length;
   // Sort edge arrays of pseudoVtxListByRingAndEdge by the fractional distance 'param'
-  for (var i = 0; i < pseudoVtxListByRingAndEdge.length; i++) {
-    for (var j = 0; j < pseudoVtxListByRingAndEdge[i].length; j++) {
+  for (let i = 0; i < pseudoVtxListByRingAndEdge.length; i++) {
+    for (let j = 0; j < pseudoVtxListByRingAndEdge[i].length; j++) {
       pseudoVtxListByRingAndEdge[i][j].sort(function (a, b) {
         return a.param < b.param ? -1 : 1;
       });
@@ -178,8 +178,8 @@ export default function (feature) {
   }
 
   // Make a spatial index of intersections, in preperation for the following two steps
-  var allIsectsAsIsectRbushTreeItem = [];
-  for (var i = 0; i < numIsect; i++) {
+  let allIsectsAsIsectRbushTreeItem = [];
+  for (let i = 0; i < numIsect; i++) {
     allIsectsAsIsectRbushTreeItem.push({
       minX: isectList[i].coord[0],
       minY: isectList[i].coord[1],
@@ -188,16 +188,16 @@ export default function (feature) {
       index: i,
     }); // could pass isect: isectList[i], but not necessary
   }
-  var isectRbushTree = new rbush();
+  let isectRbushTree = new rbush();
   isectRbushTree.load(allIsectsAsIsectRbushTreeItem);
 
   // Now we will teach each intersection in isectList which is the next intersection along both it's [ring, edge]'s, in two steps.
   // First, we find the next intersection for each pseudo-vertex in pseudoVtxListByRingAndEdge:
   // For each pseudovertex in pseudoVtxListByRingAndEdge (3 loops) look at the next pseudovertex on that edge and find the corresponding intersection by comparing coordinates
-  for (var i = 0; i < pseudoVtxListByRingAndEdge.length; i++) {
-    for (var j = 0; j < pseudoVtxListByRingAndEdge[i].length; j++) {
-      for (var k = 0; k < pseudoVtxListByRingAndEdge[i][j].length; k++) {
-        var coordToFind;
+  for (let i = 0; i < pseudoVtxListByRingAndEdge.length; i++) {
+    for (let j = 0; j < pseudoVtxListByRingAndEdge[i].length; j++) {
+      for (let k = 0; k < pseudoVtxListByRingAndEdge[i][j].length; k++) {
+        let coordToFind;
         if (k == pseudoVtxListByRingAndEdge[i][j].length - 1) {
           // If it's the last pseudoVertex on that edge, then the next pseudoVertex is the first one on the next edge of that ring.
           coordToFind =
@@ -207,7 +207,7 @@ export default function (feature) {
         } else {
           coordToFind = pseudoVtxListByRingAndEdge[i][j][k + 1].coord;
         }
-        var IsectRbushTreeItemFound = isectRbushTree.search({
+        let IsectRbushTreeItemFound = isectRbushTree.search({
           minX: coordToFind[0],
           minY: coordToFind[1],
           maxX: coordToFind[0],
