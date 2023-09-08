@@ -2,9 +2,9 @@
 // This is used to create the list of packages that require transpilation when using @turf/* packages,
 // which is documented in the root README.md file
 
-var dependencyTree = require("dependency-tree");
-var acorn = require("acorn");
-var fs = require("fs");
+let dependencyTree = require("dependency-tree");
+let acorn = require("acorn");
+let fs = require("fs");
 
 const acornOpts = {
   ecmaVersion: 5,
@@ -12,7 +12,7 @@ const acornOpts = {
 };
 
 // from @turf/turf's cjs root, spider all of the .js dependencies
-var files = dependencyTree
+let files = dependencyTree
   .toList({
     filename: "packages/turf/dist/js/index.js",
     directory: __dirname,
@@ -30,7 +30,7 @@ var files = dependencyTree
 
 // same as above, but run through the esm files instead, since they can be different
 acornOpts.sourceType = "module";
-var files2 = dependencyTree
+let files2 = dependencyTree
   .toList({
     filename: "packages/turf/dist/es/index.js",
     directory: __dirname,
@@ -52,7 +52,7 @@ var files2 = dependencyTree
 // take the files from the steps above and transform them into their package name
 // filter out the ones that are @turf/* since we're just going to claim all of them
 // as needing transpilation
-var needsTranspile = Array.from(new Set([...files, ...files2]))
+let needsTranspile = Array.from(new Set([...files, ...files2]))
   .map((file) => {
     const match = file.match(/node_modules(.*)$/);
     const partial = match[1].substring(1);
@@ -65,7 +65,7 @@ var needsTranspile = Array.from(new Set([...files, ...files2]))
   .filter((package) => !package.startsWith("@turf/"));
 
 // get the unique list of modules and then add @turf/* to the front of the list
-var simpleNeedsTranspile = Array.from(new Set(needsTranspile));
+let simpleNeedsTranspile = Array.from(new Set(needsTranspile));
 simpleNeedsTranspile.unshift("@turf/*");
 
 // output the list of modules that need to be transpiled
