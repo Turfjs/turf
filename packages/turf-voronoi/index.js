@@ -38,7 +38,7 @@ function voronoi(points, options) {
   // Optional params
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  var bbox = options.bbox || [-180, -85, 180, 85];
+  let bbox = options.bbox || [-180, -85, 180, 85];
 
   // Input Validation
   if (!points) throw new Error("points is required");
