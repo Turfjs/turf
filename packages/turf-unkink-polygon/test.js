@@ -37,7 +37,7 @@ test("unkink-polygon", (t) => {
 });
 
 test("unkink-polygon -- throws", (t) => {
-  var array = [1, 2, 3, 4, 5];
+  let array = [1, 2, 3, 4, 5];
   for (const value in array) {
     t.true(value !== "isUnique", "isUnique");
     t.true(value !== "getUnique", "getUnique");
