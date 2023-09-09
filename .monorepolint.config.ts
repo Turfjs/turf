@@ -270,6 +270,7 @@ module.exports = {
         options: {
           devDependencies: {
             rollup: "*",
+            tsx: "*",
           },
         },
         includePackages: JS_PACKAGES,
