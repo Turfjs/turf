@@ -38,13 +38,13 @@
     "dist"
   ],
   "scripts": {
-    "bench": "ts-node bench.js",
+    "bench": "tsx bench.js",
     "build": "npm-run-all build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
-    "docs": "node ../../scripts/generate-readmes",
+    "docs": "tsx ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
-    "test:tape": "ts-node -r esm test.js"
+    "test:tape": "tsx test.js"
   },
   "devDependencies": {
     "@types/tape": "*",
@@ -52,8 +52,8 @@
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "ts-node": "*",
     "tslint": "*",
+    "tsx": "*",
     "typescript": "*",
     "write-json-file": "*"
   },
