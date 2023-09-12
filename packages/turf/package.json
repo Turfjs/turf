@@ -64,8 +64,8 @@
   "scripts": {
     "build": "rollup -c rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "last-checks": "npm-run-all last-checks:testjs last-checks:example",
-    "last-checks:example": "node test.example.js",
-    "last-checks:testjs": "node test.js",
+    "last-checks:example": "tsx test.example.js",
+    "last-checks:testjs": "tsx test.js",
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {
@@ -79,7 +79,8 @@
     "glob": "*",
     "rollup": "^2.34.2",
     "rollup-plugin-terser": "^7.0.2",
-    "tape": "*"
+    "tape": "*",
+    "tsx": "*"
   },
   "dependencies": {
     "@turf/along": "^7.0.0-alpha.0",

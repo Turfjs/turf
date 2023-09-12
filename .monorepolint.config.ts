@@ -164,7 +164,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            docs: "node ../../scripts/generate-readmes",
+            docs: "tsx ../../scripts/generate-readmes",
             test: "npm-run-all test:*",
           },
         },
@@ -202,7 +202,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            "test:tape": "node -r esm test.js",
+            "test:tape": "tsx test.js",
           },
         },
         includePackages: JS_TAPE_PACKAGES,
@@ -210,7 +210,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            "test:tape": "ts-node -r esm test.js",
+            "test:tape": "tsx test.js",
           },
         },
         includePackages: TS_TAPE_PACKAGES,
@@ -218,7 +218,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            bench: "node -r esm bench.js",
+            bench: "tsx bench.js",
           },
         },
         includePackages: JS_TAPE_PACKAGES,
@@ -226,7 +226,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            bench: "ts-node bench.js",
+            bench: "tsx bench.js",
           },
         },
         includePackages: TS_TAPE_PACKAGES,
@@ -260,7 +260,7 @@ module.exports = {
             tslib: "^2.3.0",
           },
           devDependencies: {
-            "ts-node": "*",
+            tsx: "*",
             typescript: "*",
           },
         },
@@ -270,6 +270,7 @@ module.exports = {
         options: {
           devDependencies: {
             rollup: "*",
+            tsx: "*",
           },
         },
         includePackages: JS_PACKAGES,
