@@ -15,10 +15,7 @@ import {
   GeoJsonProperties,
 } from "geojson";
 import type { Datum } from "geodesy";
-// Unable to find an equivalent import statement that works. Fails when building
-// index.mjs → turf.min.js in packages/turf/
-// import { LatLonEllipsoidal as LatLon } from "geodesy";
-const LatLon = require("geodesy").LatLonEllipsoidal;
+import LatLonEllipsoidalVincenty from "geodesy/latlon-ellipsoidal-vincenty.js";
 
 import { Id } from "./lib/geojson";
 export * from "./lib/geojson";
@@ -126,7 +123,7 @@ export const areaFactors: Record<AreaUnits, number> = {
  * @memberof helpers
  * @type {Object}
  */
-const datums = LatLon.datum;
+const datums = LatLonEllipsoidalVincenty.datums;
 export { datums };
 
 // Re-export type from geodesy so clients don't need to refer directly to

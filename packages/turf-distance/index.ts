@@ -7,11 +7,7 @@ import {
   degreesToRadians,
   convertLength,
 } from "@turf/helpers";
-// Unable to find an equivalent import statement that works. Fails when building
-// index.mjs → turf.min.js in packages/turf/
-// import { LatLonEllipsoidal as LatLon } from "geodesy";
-const LatLon = require("geodesy").LatLonEllipsoidal;
-
+import LatLon from "geodesy/latlon-ellipsoidal-vincenty.js";
 //http://en.wikipedia.org/wiki/Haversine_formula
 //http://www.movable-type.co.uk/scripts/latlong.html
 
@@ -48,9 +44,12 @@ function distance(
   } = {}
 ) {
   if (options?.datum) {
-    return geodesic_ellipsoid_distance(from, to, options);
+    return geodesicEllipsoidDistance(from, to, {
+      datum: options.datum, // Must pass a datum option
+      ...options,
+    });
   } else {
-    return great_circle_distance(from, to, options);
+    return greatCircleDistance(from, to, options);
   }
 }
 
@@ -58,7 +57,7 @@ function distance(
  * Calculates the distance between two {@link Point|points} in degrees, radians, miles, or kilometers.
  * Performs a great circle calculation using the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
- * @name distance
+ * @name greatCircleDistance
  * @param {Coord | Point} from origin point or coordinate
  * @param {Coord | Point} to destination point or coordinate
  * @param {Object} [options={}] Optional parameters
@@ -69,14 +68,14 @@ function distance(
  * var to = turf.point([-75.534, 39.123]);
  * var options = {units: 'miles'};
  *
- * var distance = turf.distance(from, to, options);
+ * var distance = turf.greatCircleDistance(from, to, options);
  *
  * //addToMap
  * var addToMap = [from, to];
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-function great_circle_distance(
+function greatCircleDistance(
   from: Coord | Point,
   to: Coord | Point,
   options: {
@@ -104,7 +103,7 @@ function great_circle_distance(
  * Calculates the distance between two {@link Point|points}.
  * Performs a geodesic ellipsoid calculation using [Vincenty's formulae](https://en.wikipedia.org/wiki/Vincenty%27s_formulae) to account for speroidal curvature.
  *
- * @name geodesic_ellipsoid_distance
+ * @name geodesicEllipsoidDistance
  * @param {Coord | Point} from origin point or coordinate
  * @param {Coord | Point} to destination point or coordinate
  * @param {Object} [options={}] Optional parameters
@@ -116,40 +115,35 @@ function great_circle_distance(
  * var to = turf.point([-75.534, 39.123]);
  * var options = {units: 'miles', datum: datums.WGS84};
  *
- * var distance = turf.distance(from, to, options);
+ * var distance = turf.geodesicEllipsoidDistance(from, to, options);
  *
  * //addToMap
  * var addToMap = [from, to];
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */
-function geodesic_ellipsoid_distance(
+function geodesicEllipsoidDistance(
   from: Coord | Point,
   to: Coord | Point,
   options: {
     units?: Units;
-    datum?: Datum;
-  } = {}
+    datum: Datum;
+  } = { datum: datums.WGS84 }
 ) {
   const fromCoord = getCoord(from);
   const toCoord = getCoord(to);
+
+  const datum = options.datum;
+
   const fromLatLon = new LatLon(fromCoord[1], fromCoord[0]);
+  // datum on from point sets the tone.
+  fromLatLon.datum = datum;
   const toLatLon = new LatLon(toCoord[1], toCoord[0]);
 
-  if (options?.datum) {
-    // datum on from point sets the tone.
-    fromLatLon.datum = options.datum;
-  } else {
-    fromLatLon.datum = datums.WGS84;
-  }
-
-  // LatLonEllipsoidal types don't properly list all base LatLon functions
-  // e.g. distanceTo. Should be able to remove when we can move to a newer
-  // version of geodesy.
-  const meters = (fromLatLon as any).distanceTo(toLatLon);
+  const meters = fromLatLon.distanceTo(toLatLon);
   // geodesy lib result is in meters
   return convertLength(meters, "meters", options.units);
 }
 
-export { great_circle_distance, geodesic_ellipsoid_distance };
+export { greatCircleDistance, geodesicEllipsoidDistance };
 export default distance;

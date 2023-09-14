@@ -2327,10 +2327,10 @@
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
   integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
 
-"@types/geodesy@1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@types/geodesy/-/geodesy-1.1.3.tgz#26999ade11f47cada7b529d19e38bba76f164665"
-  integrity sha512-migQ5GRDj53SNVU+HZ8ajxRoPtTWY/vXwvQFP6OIL7WJywtBquRgtHwAUuOS/C+fLNtIi+XixdqghAvT2JeRqA==
+"@types/geodesy@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@types/geodesy/-/geodesy-2.2.3.tgz#70ff892715cb69607469c50347421151331a9198"
+  integrity sha512-zpgJ6W/PH8nQN5fyiynfRGLa7X9Fij8QuvBzZhN+/63+nrLaj6sLF7KbgKf55HBGryCuyuA8fEB8QUeAFCPWrg==
 
 "@types/geojson-equality@^0.2.0":
   version "0.2.0"
@@ -5113,10 +5113,10 @@ gensync@^1.0.0-beta.1, gensync@^1.0.0-beta.2:
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
 
-geodesy@1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.3.tgz#a0cbd5db5c0cf8ac045e749f754f61b450382de9"
-  integrity sha512-H/0XSd1KjKZGZ2YGZcOYzRyY/foYAawwTEumNSo+YUwf+u5d4CfvBRg2i2Qimrx9yUEjWR8hLvMnhghuVFN0Zg==
+geodesy@^2.3.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-2.4.0.tgz#6a0ad3dab3c1f95d8430aaa04fbe620b639c3e48"
+  integrity sha512-tHjQ1sXq8UAIEg1V0Pa6mznUxGU0R+3H5PIF6NULr0yPCAVLKqJro93Bbr19jSE18BMfyjN4osWDI4sm92m0kw==
 
 geojson-equality@0.1.6:
   version "0.1.6"
