@@ -54,6 +54,9 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/buffer`](buffer) Clean up Typescript types (#2188)
 - [`@turf/polygon-smooth`](polygon-smooth) Clean up a typo (#2293)
 - [`@turf/nearest-point-on-line`](nearest-point-on-line) Clean up typescript types (#2296)
+- [`@turf/boolean-touches`](boolean-touches) Add boolean-touches to docs (#2431)
+- [`@turf/boolean-equals`](boolean-equals) Improve docs (#2412)
+
 - Remove Bower references (#2146)
 - Fix typo in README (#2313)
 - Lots of cleanup for CONTRIBUTING, README, and RELEASING (#2186)
@@ -65,6 +68,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/turf](turf) Add booleanTouches export (#2170)
 - [`@turf/turf](turf) Add booleanConcave export (#2265)
 - [`@turf/helpers](helpers) Make isObject a little more accurate (#2176)
+- Add custom types entry point to exports, required by Typescript for node16, nodenext and bundler module resolution strategies (#2400, #2452)
 - types.ts tests are now run in strict mode (#2363)
 - Uses tslib now for smaller bundles (#2165)
 - Remove object-assign dependency from all packages (#2241)
