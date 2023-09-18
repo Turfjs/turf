@@ -7,6 +7,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - Move distribution JS to target ES2017 (#2237)
 - [`@turf/helpers`](helpers) Correct the conversion factor for degrees (#2177)
 - [`@turf/helpers`](helpers) polygon() will now throw if the first and last coordinates are not the same (#2173)
+- [`@turf/helpers`](helpers) Separate AreaUnits into its own type (#2393)
 - [`@turf/area`](area) Fix earth radius to use WGS84 median earth radius (#2166)
 - [`@turf/turf`](turf) Remove re-exports for turf 4.x compatability (#2183)
 - [`@turf/rectangle-grid`](rectangle-grid) Fix correctness for large areas (#2106)
@@ -22,6 +23,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/boolean-point-in-polygon`](boolean-point-in-polygon) Move to point-in-polygon-hao library for performance and correctness (#1893)
 - [`@turf/line-intersect`][line-intersect] Move to sweepline-intersections library for performance (#2033)
 - [`@turf/boolean-contains`](boolean-contains) Add multipolygon support (#2338)
+- [`@turf/nearest-point`](nearest-point) Add unit option (#2415)
 
 ## 🐛 Bug Fixes
 - [`@turf/polygon-smooth`](polygon-smooth) Options argument is now actually optional (#2149)
