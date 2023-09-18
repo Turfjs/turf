@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-of-mass",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.1",
   "description": "turf center-of-mass module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -58,11 +58,11 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/centroid": "^7.0.0-alpha.0",
-    "@turf/convex": "^7.0.0-alpha.0",
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/invariant": "^7.0.0-alpha.0",
-    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/centroid": "^7.0.0-alpha.1",
+    "@turf/convex": "^7.0.0-alpha.1",
+    "@turf/helpers": "^7.0.0-alpha.1",
+    "@turf/invariant": "^7.0.0-alpha.1",
+    "@turf/meta": "^7.0.0-alpha.1",
     "tslib": "^2.3.0"
   }
 }

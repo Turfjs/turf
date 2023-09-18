@@ -1,6 +1,6 @@
 {
   "name": "@turf/clusters",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.1",
   "description": "turf clusters module",
   "author": "Turf Authors",
   "contributors": [
@@ -61,8 +61,8 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.1",
+    "@turf/meta": "^7.0.0-alpha.1",
     "tslib": "^2.3.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/directional-mean",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.1",
   "description": "turf directional-mean module",
   "author": "Turf Authors",
   "contributors": [
@@ -59,13 +59,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^7.0.0-alpha.0",
-    "@turf/centroid": "^7.0.0-alpha.0",
-    "@turf/destination": "^7.0.0-alpha.0",
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/invariant": "^7.0.0-alpha.0",
-    "@turf/length": "^7.0.0-alpha.0",
-    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/bearing": "^7.0.0-alpha.1",
+    "@turf/centroid": "^7.0.0-alpha.1",
+    "@turf/destination": "^7.0.0-alpha.1",
+    "@turf/helpers": "^7.0.0-alpha.1",
+    "@turf/invariant": "^7.0.0-alpha.1",
+    "@turf/length": "^7.0.0-alpha.1",
+    "@turf/meta": "^7.0.0-alpha.1",
     "tslib": "^2.3.0"
   }
 }
