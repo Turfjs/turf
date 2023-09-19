@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.1",
   "description": "turf dissolve module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -56,10 +56,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/flatten": "^7.0.0-alpha.0",
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/invariant": "^7.0.0-alpha.0",
-    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/flatten": "^7.0.0-alpha.1",
+    "@turf/helpers": "^7.0.0-alpha.1",
+    "@turf/invariant": "^7.0.0-alpha.1",
+    "@turf/meta": "^7.0.0-alpha.1",
     "polygon-clipping": "^0.15.3"
   }
 }

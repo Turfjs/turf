@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-neighbor-analysis",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.1",
   "description": "turf nearest-neighbor-analysis module",
   "author": "Turf Authors",
   "contributors": [
@@ -48,7 +48,7 @@
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "@turf/truncate": "^7.0.0-alpha.0",
+    "@turf/truncate": "^7.0.0-alpha.1",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -60,14 +60,14 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^7.0.0-alpha.0",
-    "@turf/bbox": "^7.0.0-alpha.0",
-    "@turf/bbox-polygon": "^7.0.0-alpha.0",
-    "@turf/centroid": "^7.0.0-alpha.0",
-    "@turf/distance": "^7.0.0-alpha.0",
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/meta": "^7.0.0-alpha.0",
-    "@turf/nearest-point": "^7.0.0-alpha.0",
+    "@turf/area": "^7.0.0-alpha.1",
+    "@turf/bbox": "^7.0.0-alpha.1",
+    "@turf/bbox-polygon": "^7.0.0-alpha.1",
+    "@turf/centroid": "^7.0.0-alpha.1",
+    "@turf/distance": "^7.0.0-alpha.1",
+    "@turf/helpers": "^7.0.0-alpha.1",
+    "@turf/meta": "^7.0.0-alpha.1",
+    "@turf/nearest-point": "^7.0.0-alpha.1",
     "tslib": "^2.3.0"
   }
 }

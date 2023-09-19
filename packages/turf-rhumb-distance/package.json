@@ -1,6 +1,6 @@
 {
   "name": "@turf/rhumb-distance",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.1",
   "description": "turf rhumb-distance module",
   "author": "Turf Authors",
   "contributors": [
@@ -55,7 +55,7 @@
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "@turf/distance": "^7.0.0-alpha.0",
+    "@turf/distance": "^7.0.0-alpha.1",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -67,8 +67,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/invariant": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.1",
+    "@turf/invariant": "^7.0.0-alpha.1",
     "tslib": "^2.3.0"
   }
 }
