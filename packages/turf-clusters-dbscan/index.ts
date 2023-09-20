@@ -1,14 +1,21 @@
-import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
+import { GeoJsonProperties, FeatureCollection, Point, BBox } from "geojson";
 import clone from "@turf/clone";
 import distance from "@turf/distance";
-import { coordAll } from "@turf/meta";
 import { convertLength, Units } from "@turf/helpers";
-import clustering from "density-clustering";
+import RBush from "rbush";
 
 export type Dbscan = "core" | "edge" | "noise";
 export type DbscanProps = GeoJsonProperties & {
   dbscan?: Dbscan;
   cluster?: number;
+};
+
+type IndexedPoint = {
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
+  index: number;
 };
 
 /**
@@ -41,7 +48,7 @@ function clustersDbscan(
     units?: Units;
     minPoints?: number;
     mutate?: boolean;
-  } = {}
+  } = {},
 ): FeatureCollection<Point, DbscanProps> {
   // Input validation being handled by Typescript
   // collectionOf(points, 'Point', 'points must consist of a FeatureCollection of only Points');
@@ -53,37 +60,95 @@ function clustersDbscan(
   if (options.mutate !== true) points = clone(points);
 
   // Defaults
-  options.minPoints = options.minPoints || 3;
+  const minPoints = options.minPoints || 3;
 
-  // create clustered ids
-  var dbscan = new clustering.DBSCAN();
-  var clusteredIds = dbscan.run(
-    coordAll(points),
-    convertLength(maxDistance, options.units),
-    options.minPoints,
-    distance
-  );
+  var tree = new RBush(points.features.length);
 
-  // Tag points to Clusters ID
-  var clusterId = -1;
-  clusteredIds.forEach(function (clusterIds) {
-    clusterId++;
-    // assign cluster ids to input points
-    clusterIds.forEach(function (idx) {
-      var clusterPoint = points.features[idx];
-      if (!clusterPoint.properties) clusterPoint.properties = {};
-      clusterPoint.properties.cluster = clusterId;
-      clusterPoint.properties.dbscan = "core";
-    });
+  const distanceInDegrees = convertLength(maxDistance, options.units);
+
+  points.features.forEach((point, index) => {
+    const [x, y] = point.geometry.coordinates;
+    tree.insert({
+      minX: x,
+      minY: y,
+      maxX: x,
+      maxY: y,
+      index: index,
+    } as IndexedPoint);
   });
 
-  // handle noise points, if any
-  // edges points are tagged by DBSCAN as both 'noise' and 'cluster' as they can "reach" less than 'minPoints' number of points
-  dbscan.noise.forEach(function (noiseId) {
-    var noisePoint = points.features[noiseId];
-    if (!noisePoint.properties) noisePoint.properties = {};
-    if (noisePoint.properties.cluster) noisePoint.properties.dbscan = "edge";
-    else noisePoint.properties.dbscan = "noise";
+  const regionQuery = (index: number): IndexedPoint[] => {
+    const point = points.features[index];
+    const [x, y] = point.geometry.coordinates;
+    const bbox = {
+      minX: x - distanceInDegrees,
+      minY: y - distanceInDegrees,
+      maxX: x + distanceInDegrees,
+      maxY: y + distanceInDegrees,
+    };
+    const neighbors = tree
+      .search(bbox)
+      .map((neighbor) => neighbor as IndexedPoint)
+      .filter((neighbor) => {
+        const neighborIndex = neighbor.index;
+        const neighborPoint = points.features[neighborIndex];
+        const distanceInKm = distance(point, neighborPoint, {
+          units: "kilometers",
+        });
+        return distanceInKm <= maxDistance;
+      });
+    return neighbors;
+  };
+
+  var visited = points.features.map((_) => false);
+  var assigned = points.features.map((_) => false);
+  var isnoise = points.features.map((_) => false);
+  var clusterIds: number[] = points.features.map((_) => -1);
+
+  const expandCluster = (clusteredId: number, neighbors: IndexedPoint[]) => {
+    neighbors.forEach((neighbor) => {
+      const neighborIndex = neighbor.index;
+      if (!visited[neighborIndex]) {
+        visited[neighborIndex] = true;
+        const nextNeighbors = regionQuery(neighborIndex);
+        if (nextNeighbors.length >= minPoints) {
+          expandCluster(clusteredId, nextNeighbors);
+        }
+      }
+      if (!assigned[neighborIndex]) {
+        clusterIds[neighborIndex] = clusteredId;
+        assigned[neighborIndex] = true;
+      }
+    });
+  };
+
+  // calculate dbscan
+  var nextClusteredId = 0;
+  points.features.forEach((_, index) => {
+    if (visited[index]) return;
+    const neighbors = regionQuery(index);
+    if (neighbors.length >= minPoints) {
+      const clusteredId = nextClusteredId;
+      nextClusteredId++;
+      visited[index] = true;
+      expandCluster(clusteredId, neighbors);
+    } else {
+      isnoise[index] = true;
+    }
+  });
+
+  points.features.forEach((_, index) => {
+    var clusterPoint = points.features[index];
+    if (!clusterPoint.properties) {
+      clusterPoint.properties = {};
+    }
+
+    if (clusterIds[index] >= 0) {
+      clusterPoint.properties.dbscan = isnoise[index] ? "edge" : "core";
+      clusterPoint.properties.cluster = clusterIds[index];
+    } else {
+      clusterPoint.properties.dbscan = "noise";
+    }
   });
 
   return points as FeatureCollection<Point, DbscanProps>;
