@@ -1,4 +1,4 @@
-import { GeoJsonProperties, FeatureCollection, Point, BBox } from "geojson";
+import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import clone from "@turf/clone";
 import distance from "@turf/distance";
 import { convertLength, Units } from "@turf/helpers";
@@ -10,6 +10,7 @@ export type DbscanProps = GeoJsonProperties & {
   cluster?: number;
 };
 
+// Structure of a point in the spatial index
 type IndexedPoint = {
   minX: number;
   minY: number;
@@ -62,10 +63,25 @@ function clustersDbscan(
   // Defaults
   const minPoints = options.minPoints || 3;
 
+  // Create a spatial index
   var tree = new RBush(points.features.length);
 
+  // Calculate the distance in degrees for region queries
   const distanceInDegrees = convertLength(maxDistance, options.units);
 
+  // Keeps track of whether a point has been visited or not.
+  var visited = points.features.map((_) => false);
+
+  // Keeps track of whether a point is assigned to a cluster or not.
+  var assigned = points.features.map((_) => false);
+
+  // Keeps track of whether a point is noise|edge or not.
+  var isnoise = points.features.map((_) => false);
+
+  // Keeps track of the clusterId for each point
+  var clusterIds: number[] = points.features.map((_) => -1);
+
+  // Index each point for spatial queries
   points.features.forEach((point, index) => {
     const [x, y] = point.geometry.coordinates;
     tree.insert({
@@ -77,6 +93,7 @@ function clustersDbscan(
     } as IndexedPoint);
   });
 
+  // Function to find neighbors of a point within a given distance
   const regionQuery = (index: number): IndexedPoint[] => {
     const point = points.features[index];
     const [x, y] = point.geometry.coordinates;
@@ -100,11 +117,7 @@ function clustersDbscan(
     return neighbors;
   };
 
-  var visited = points.features.map((_) => false);
-  var assigned = points.features.map((_) => false);
-  var isnoise = points.features.map((_) => false);
-  var clusterIds: number[] = points.features.map((_) => -1);
-
+  // Recursive function to expand a cluster
   const expandCluster = (clusteredId: number, neighbors: IndexedPoint[]) => {
     neighbors.forEach((neighbor) => {
       const neighborIndex = neighbor.index;
@@ -122,7 +135,7 @@ function clustersDbscan(
     });
   };
 
-  // calculate dbscan
+  // Main DBSCAN clustering algorithm
   var nextClusteredId = 0;
   points.features.forEach((_, index) => {
     if (visited[index]) return;
@@ -137,6 +150,7 @@ function clustersDbscan(
     }
   });
 
+  // Assign DBSCAN properties to each point
   points.features.forEach((_, index) => {
     var clusterPoint = points.features[index];
     if (!clusterPoint.properties) {
