@@ -82,16 +82,18 @@ function clustersDbscan(
   var clusterIds: number[] = points.features.map((_) => -1);
 
   // Index each point for spatial queries
-  points.features.forEach((point, index) => {
-    const [x, y] = point.geometry.coordinates;
-    tree.insert({
-      minX: x,
-      minY: y,
-      maxX: x,
-      maxY: y,
-      index: index,
-    } as IndexedPoint);
-  });
+  tree.load(
+    points.features.map((point, index) => {
+      const [x, y] = point.geometry.coordinates;
+      return {
+        minX: x,
+        minY: y,
+        maxX: x,
+        maxY: y,
+        index: index,
+      } as IndexedPoint;
+    }),
+  );
 
   // Function to find neighbors of a point within a given distance
   const regionQuery = (index: number): IndexedPoint[] => {
