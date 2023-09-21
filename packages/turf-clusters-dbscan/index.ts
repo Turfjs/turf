@@ -1,7 +1,7 @@
 import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import clone from "@turf/clone";
 import distance from "@turf/distance";
-import { convertLength, Units } from "@turf/helpers";
+import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
 import RBush from "rbush";
 
 export type Dbscan = "core" | "edge" | "noise";
@@ -67,7 +67,7 @@ function clustersDbscan(
   var tree = new RBush(points.features.length);
 
   // Calculate the distance in degrees for region queries
-  const distanceInDegrees = convertLength(maxDistance, options.units);
+  const latDistanceInDegrees = lengthToDegrees(maxDistance, options.units);
 
   // Keeps track of whether a point has been visited or not.
   var visited = points.features.map((_) => false);
@@ -97,11 +97,24 @@ function clustersDbscan(
   const regionQuery = (index: number): IndexedPoint[] => {
     const point = points.features[index];
     const [x, y] = point.geometry.coordinates;
+    const minY = y - latDistanceInDegrees;
+    const maxY = y + latDistanceInDegrees;
+    const lonDistanceInDegrees = (function () {
+      if (minY < 0 && maxY > 0) {
+        return latDistanceInDegrees;
+      } else {
+        const minYLonDistanceInDegrees =
+          latDistanceInDegrees / Math.cos(degreesToRadians(minY));
+        const maxYLonDistanceInDegrees =
+          latDistanceInDegrees / Math.cos(degreesToRadians(maxY));
+        return Math.max(minYLonDistanceInDegrees, maxYLonDistanceInDegrees);
+      }
+    })();
     const bbox = {
-      minX: x - distanceInDegrees,
-      minY: y - distanceInDegrees,
-      maxX: x + distanceInDegrees,
-      maxY: y + distanceInDegrees,
+      minX: x - lonDistanceInDegrees,
+      minY: y - latDistanceInDegrees,
+      maxX: x + lonDistanceInDegrees,
+      maxY: y + latDistanceInDegrees,
     };
     const neighbors = tree
       .search(bbox)
@@ -117,22 +130,23 @@ function clustersDbscan(
     return neighbors;
   };
 
-  // Recursive function to expand a cluster
+  // Function to expand a cluster
   const expandCluster = (clusteredId: number, neighbors: IndexedPoint[]) => {
-    neighbors.forEach((neighbor) => {
+    for (var i = 0; i < neighbors.length; i++) {
+      var neighbor = neighbors[i];
       const neighborIndex = neighbor.index;
       if (!visited[neighborIndex]) {
         visited[neighborIndex] = true;
         const nextNeighbors = regionQuery(neighborIndex);
         if (nextNeighbors.length >= minPoints) {
-          expandCluster(clusteredId, nextNeighbors);
+          neighbors.push(...nextNeighbors);
         }
       }
       if (!assigned[neighborIndex]) {
-        clusterIds[neighborIndex] = clusteredId;
         assigned[neighborIndex] = true;
+        clusterIds[neighborIndex] = clusteredId;
       }
-    });
+    }
   };
 
   // Main DBSCAN clustering algorithm
