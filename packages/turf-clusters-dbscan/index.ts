@@ -63,11 +63,11 @@ function clustersDbscan(
   // Defaults
   const minPoints = options.minPoints || 3;
 
-  // Create a spatial index
-  var tree = new RBush(points.features.length);
-
   // Calculate the distance in degrees for region queries
   const latDistanceInDegrees = lengthToDegrees(maxDistance, options.units);
+
+  // Create a spatial index
+  var tree = new RBush(points.features.length);
 
   // Keeps track of whether a point has been visited or not.
   var visited = points.features.map((_) => false);
@@ -99,37 +99,58 @@ function clustersDbscan(
   const regionQuery = (index: number): IndexedPoint[] => {
     const point = points.features[index];
     const [x, y] = point.geometry.coordinates;
+
     const minY = y - latDistanceInDegrees;
     const maxY = y + latDistanceInDegrees;
     const lonDistanceInDegrees = (function () {
+      // Handle the case where the bounding box crosses the poles
       if (minY < 0 && maxY > 0) {
         return latDistanceInDegrees;
-      } else {
-        const minYLonDistanceInDegrees =
-          latDistanceInDegrees / Math.cos(degreesToRadians(minY));
-        const maxYLonDistanceInDegrees =
-          latDistanceInDegrees / Math.cos(degreesToRadians(maxY));
-        return Math.max(minYLonDistanceInDegrees, maxYLonDistanceInDegrees);
       }
+      const minYLonDistanceInDegrees =
+        latDistanceInDegrees / Math.cos(degreesToRadians(minY));
+      const maxYLonDistanceInDegrees =
+        latDistanceInDegrees / Math.cos(degreesToRadians(maxY));
+      return Math.max(minYLonDistanceInDegrees, maxYLonDistanceInDegrees);
     })();
-    const bbox = {
-      minX: x - lonDistanceInDegrees,
-      minY: y - latDistanceInDegrees,
-      maxX: x + lonDistanceInDegrees,
-      maxY: y + latDistanceInDegrees,
+
+    // Calculate the bounding box for the region query
+    const baseBbox = {
+      minX: Math.max(x - lonDistanceInDegrees, -360.0),
+      minY: Math.max(minY, -90.0),
+      maxX: Math.min(x + lonDistanceInDegrees, 360.0),
+      maxY: Math.min(maxY, 90.0)
     };
-    const neighbors = tree
-      .search(bbox)
-      .map((neighbor) => neighbor as IndexedPoint)
-      .filter((neighbor) => {
-        const neighborIndex = neighbor.index;
-        const neighborPoint = points.features[neighborIndex];
-        const distanceInKm = distance(point, neighborPoint, {
-          units: "kilometers",
+
+    const bboxes = function() {
+      if(baseBbox.minX >= -180 && baseBbox.maxX <= 180) {
+        return [baseBbox];
+      }
+      // Handle the case where the bounding box crosses the antimeridian
+      var bboxes = [];
+      for(var ib = (baseBbox.minX < -180 ? -1:0); ib <= (baseBbox.maxX > 180 ? 1:0); ib++) {
+        bboxes.push({
+          minX: baseBbox.minX + ib * 360,
+          minY: baseBbox.minY,
+          maxX: baseBbox.maxX + ib * 360,
+          maxY: baseBbox.maxY
         });
-        return distanceInKm <= maxDistance;
-      });
-    return neighbors;
+      }
+      return bboxes;
+    }();
+
+    const neighbors = bboxes.map((bbox) => {
+      return tree.search(bbox)
+        .filter((neighbor) => {
+          const neighborIndex = (neighbor as IndexedPoint).index;
+          const neighborPoint = points.features[neighborIndex];
+          const distanceInKm = distance(point, neighborPoint, {
+            units: "kilometers",
+          });
+          return distanceInKm <= maxDistance;
+        });
+    }).flat();
+    return neighbors as IndexedPoint[];
   };
 
   // Function to expand a cluster
