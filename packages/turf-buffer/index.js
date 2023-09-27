@@ -1,5 +1,5 @@
 import center from "@turf/center";
-import { BufferOp, GeoJSONReader, GeoJSONWriter } from "@turf/jsts";
+import jsts from "@turf/jsts";
 import { geomEach, featureEach } from "@turf/meta";
 import { geoAzimuthalEquidistant } from "d3-geo";
 import {
@@ -9,6 +9,8 @@ import {
   lengthToRadians,
   earthRadius,
 } from "@turf/helpers";
+
+const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
 
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
