@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-median",
-  "version": "7.0.0-alpha.1",
+  "version": "7.0.0-alpha.2",
   "description": "turf center-median module",
   "author": "Turf Authors",
   "contributors": [
@@ -48,10 +48,10 @@
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "@turf/center": "^7.0.0-alpha.1",
-    "@turf/center-of-mass": "^7.0.0-alpha.1",
-    "@turf/random": "^7.0.0-alpha.1",
-    "@turf/truncate": "^7.0.0-alpha.1",
+    "@turf/center": "^7.0.0-alpha.2",
+    "@turf/center-of-mass": "^7.0.0-alpha.2",
+    "@turf/random": "^7.0.0-alpha.2",
+    "@turf/truncate": "^7.0.0-alpha.2",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -63,11 +63,11 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/center-mean": "^7.0.0-alpha.1",
-    "@turf/centroid": "^7.0.0-alpha.1",
-    "@turf/distance": "^7.0.0-alpha.1",
-    "@turf/helpers": "^7.0.0-alpha.1",
-    "@turf/meta": "^7.0.0-alpha.1",
+    "@turf/center-mean": "^7.0.0-alpha.2",
+    "@turf/centroid": "^7.0.0-alpha.2",
+    "@turf/distance": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/meta": "^7.0.0-alpha.2",
     "tslib": "^2.3.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/transform-translate",
-  "version": "7.0.0-alpha.1",
+  "version": "7.0.0-alpha.2",
   "description": "turf transform-translate module",
   "author": "Turf Authors",
   "contributors": [
@@ -53,7 +53,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^7.0.0-alpha.1",
+    "@turf/truncate": "^7.0.0-alpha.2",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -63,10 +63,10 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/clone": "^7.0.0-alpha.1",
-    "@turf/helpers": "^7.0.0-alpha.1",
-    "@turf/invariant": "^7.0.0-alpha.1",
-    "@turf/meta": "^7.0.0-alpha.1",
-    "@turf/rhumb-destination": "^7.0.0-alpha.1"
+    "@turf/clone": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/meta": "^7.0.0-alpha.2",
+    "@turf/rhumb-destination": "^7.0.0-alpha.2"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-valid",
-  "version": "7.0.0-alpha.1",
+  "version": "7.0.0-alpha.2",
   "description": "turf boolean-valid module",
   "author": "Turf Authors",
   "contributors": [
@@ -64,15 +64,15 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^7.0.0-alpha.1",
-    "@turf/boolean-crosses": "^7.0.0-alpha.1",
-    "@turf/boolean-disjoint": "^7.0.0-alpha.1",
-    "@turf/boolean-overlap": "^7.0.0-alpha.1",
-    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.1",
-    "@turf/boolean-point-on-line": "^7.0.0-alpha.1",
-    "@turf/helpers": "^7.0.0-alpha.1",
-    "@turf/invariant": "^7.0.0-alpha.1",
-    "@turf/line-intersect": "^7.0.0-alpha.1",
+    "@turf/bbox": "^7.0.0-alpha.2",
+    "@turf/boolean-crosses": "^7.0.0-alpha.2",
+    "@turf/boolean-disjoint": "^7.0.0-alpha.2",
+    "@turf/boolean-overlap": "^7.0.0-alpha.2",
+    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.2",
+    "@turf/boolean-point-on-line": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/line-intersect": "^7.0.0-alpha.2",
     "geojson-polygon-self-intersections": "1.2.x",
     "tslib": "^2.3.0"
   }

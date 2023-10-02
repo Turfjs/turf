@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-slice-along",
-  "version": "7.0.0-alpha.1",
+  "version": "7.0.0-alpha.2",
   "description": "turf line-slice-along module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -45,7 +45,7 @@
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "@turf/along": "^7.0.0-alpha.1",
+    "@turf/along": "^7.0.0-alpha.2",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -54,9 +54,9 @@
     "tsx": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^7.0.0-alpha.1",
-    "@turf/destination": "^7.0.0-alpha.1",
-    "@turf/distance": "^7.0.0-alpha.1",
-    "@turf/helpers": "^7.0.0-alpha.1"
+    "@turf/bearing": "^7.0.0-alpha.2",
+    "@turf/destination": "^7.0.0-alpha.2",
+    "@turf/distance": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2"
   }
 }

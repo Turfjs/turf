@@ -1,6 +1,6 @@
 {
   "name": "@turf/square-grid",
-  "version": "7.0.0-alpha.1",
+  "version": "7.0.0-alpha.2",
   "description": "turf square-grid module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -48,8 +48,8 @@
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "^7.0.0-alpha.1",
-    "@turf/truncate": "^7.0.0-alpha.1",
+    "@turf/bbox-polygon": "^7.0.0-alpha.2",
+    "@turf/truncate": "^7.0.0-alpha.2",
     "@types/tape": "*",
     "benchmark": "*",
     "npm-run-all": "*",
@@ -60,8 +60,8 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.1",
-    "@turf/rectangle-grid": "^7.0.0-alpha.1",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/rectangle-grid": "^7.0.0-alpha.2",
     "tslib": "^2.3.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/shortest-path",
-  "version": "7.0.0-alpha.1",
+  "version": "7.0.0-alpha.2",
   "description": "turf shortest-path module",
   "author": "Turf Authors",
   "contributors": [
@@ -50,7 +50,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^7.0.0-alpha.1",
+    "@turf/truncate": "^7.0.0-alpha.2",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -60,14 +60,14 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^7.0.0-alpha.1",
-    "@turf/bbox-polygon": "^7.0.0-alpha.1",
-    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.1",
-    "@turf/clean-coords": "^7.0.0-alpha.1",
-    "@turf/distance": "^7.0.0-alpha.1",
-    "@turf/helpers": "^7.0.0-alpha.1",
-    "@turf/invariant": "^7.0.0-alpha.1",
-    "@turf/meta": "^7.0.0-alpha.1",
-    "@turf/transform-scale": "^7.0.0-alpha.1"
+    "@turf/bbox": "^7.0.0-alpha.2",
+    "@turf/bbox-polygon": "^7.0.0-alpha.2",
+    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.2",
+    "@turf/clean-coords": "^7.0.0-alpha.2",
+    "@turf/distance": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/meta": "^7.0.0-alpha.2",
+    "@turf/transform-scale": "^7.0.0-alpha.2"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/standard-deviational-ellipse",
-  "version": "7.0.0-alpha.1",
+  "version": "7.0.0-alpha.2",
   "description": "turf standard-deviational-ellipse module",
   "author": "Turf Authors",
   "contributors": [
@@ -50,8 +50,8 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/random": "^7.0.0-alpha.1",
-    "@turf/truncate": "^7.0.0-alpha.1",
+    "@turf/random": "^7.0.0-alpha.2",
+    "@turf/truncate": "^7.0.0-alpha.2",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -61,11 +61,11 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/center-mean": "^7.0.0-alpha.1",
-    "@turf/ellipse": "^7.0.0-alpha.1",
-    "@turf/helpers": "^7.0.0-alpha.1",
-    "@turf/invariant": "^7.0.0-alpha.1",
-    "@turf/meta": "^7.0.0-alpha.1",
-    "@turf/points-within-polygon": "^7.0.0-alpha.1"
+    "@turf/center-mean": "^7.0.0-alpha.2",
+    "@turf/ellipse": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/meta": "^7.0.0-alpha.2",
+    "@turf/points-within-polygon": "^7.0.0-alpha.2"
   }
 }

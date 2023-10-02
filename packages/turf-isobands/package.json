@@ -1,6 +1,6 @@
 {
   "name": "@turf/isobands",
-  "version": "7.0.0-alpha.1",
+  "version": "7.0.0-alpha.2",
   "description": "turf isobands module",
   "author": "Turf Authors",
   "contributors": [
@@ -53,11 +53,11 @@
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "@turf/envelope": "^7.0.0-alpha.1",
-    "@turf/point-grid": "^7.0.0-alpha.1",
-    "@turf/random": "^7.0.0-alpha.1",
-    "@turf/rhumb-destination": "^7.0.0-alpha.1",
-    "@turf/truncate": "^7.0.0-alpha.1",
+    "@turf/envelope": "^7.0.0-alpha.2",
+    "@turf/point-grid": "^7.0.0-alpha.2",
+    "@turf/random": "^7.0.0-alpha.2",
+    "@turf/rhumb-destination": "^7.0.0-alpha.2",
+    "@turf/truncate": "^7.0.0-alpha.2",
     "benchmark": "*",
     "chroma-js": "*",
     "load-json-file": "*",
@@ -71,13 +71,13 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^7.0.0-alpha.1",
-    "@turf/bbox": "^7.0.0-alpha.1",
-    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.1",
-    "@turf/explode": "^7.0.0-alpha.1",
-    "@turf/helpers": "^7.0.0-alpha.1",
-    "@turf/invariant": "^7.0.0-alpha.1",
-    "@turf/meta": "^7.0.0-alpha.1",
+    "@turf/area": "^7.0.0-alpha.2",
+    "@turf/bbox": "^7.0.0-alpha.2",
+    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.2",
+    "@turf/explode": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/meta": "^7.0.0-alpha.2",
     "tslib": "^2.3.0"
   }
 }
