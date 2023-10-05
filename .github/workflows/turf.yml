@@ -2,9 +2,9 @@ name: Turf.js CI
 
 on:
   push:
-    branches: [master]
+    branches: [master, support/6.x]
   pull_request:
-    branches: [master]
+    branches: [master, support/6.x]
 
 permissions:
   contents: read
