@@ -2240,10 +2240,10 @@
   version "9.4.6"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.6.tgz#d8176d864ee48753d053783e4e463aec86b8d82e"
 
-"@types/node@17.0.21":
-  version "17.0.21"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.21.tgz#864b987c0c68d07b4345845c3e63b75edd143644"
-  integrity sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==
+"@types/node@^17.0.21":
+  version "17.0.45"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.45.tgz#2c0fafd78705e7a18b7906b5201a522719dc5190"
+  integrity sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -4488,52 +4488,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-documentation@14.0.2:
-  version "14.0.2"
-  resolved "https://registry.yarnpkg.com/documentation/-/documentation-14.0.2.tgz#d8c379ba08835953ba5c3b9bd5f9db66a62e66a3"
-  integrity sha512-hWoTf8/u4pOjib02L7w94hwmhPfcSwyJNGtlPdGVe8GFyq8HkzcFzQQltaaikKunHEp0YSwDAbwBAO7nxrWIfA==
-  dependencies:
-    "@babel/core" "^7.18.10"
-    "@babel/generator" "^7.18.10"
-    "@babel/parser" "^7.18.11"
-    "@babel/traverse" "^7.18.11"
-    "@babel/types" "^7.18.10"
-    chalk "^5.0.1"
-    chokidar "^3.5.3"
-    diff "^5.1.0"
-    doctrine-temporary-fork "2.1.0"
-    git-url-parse "^13.1.0"
-    github-slugger "1.4.0"
-    glob "^8.0.3"
-    globals-docs "^2.4.1"
-    highlight.js "^11.6.0"
-    ini "^3.0.0"
-    js-yaml "^4.1.0"
-    konan "^2.1.1"
-    lodash "^4.17.21"
-    mdast-util-find-and-replace "^2.2.1"
-    mdast-util-inject "^1.1.0"
-    micromark-util-character "^1.1.0"
-    parse-filepath "^1.0.2"
-    pify "^6.0.0"
-    read-pkg-up "^9.1.0"
-    remark "^14.0.2"
-    remark-gfm "^3.0.1"
-    remark-html "^15.0.1"
-    remark-reference-links "^6.0.1"
-    remark-toc "^8.0.1"
-    resolve "^1.22.1"
-    strip-json-comments "^5.0.0"
-    unist-builder "^3.0.0"
-    unist-util-visit "^4.1.0"
-    vfile "^5.3.4"
-    vfile-reporter "^7.0.4"
-    vfile-sort "^3.0.0"
-    yargs "^17.5.1"
-  optionalDependencies:
-    "@vue/compiler-sfc" "^3.2.37"
-    vue-template-compiler "^2.7.8"
-
 documentation@^13.2.5:
   version "13.2.5"
   resolved "https://registry.yarnpkg.com/documentation/-/documentation-13.2.5.tgz#2d4c8a94ce60a0342d6981d34488ad6184e463a0"
@@ -4588,6 +4542,52 @@ documentation@^13.2.5:
   optionalDependencies:
     "@vue/compiler-sfc" "^3.0.11"
     vue-template-compiler "^2.6.12"
+
+documentation@^14.0.2:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/documentation/-/documentation-14.0.2.tgz#d8c379ba08835953ba5c3b9bd5f9db66a62e66a3"
+  integrity sha512-hWoTf8/u4pOjib02L7w94hwmhPfcSwyJNGtlPdGVe8GFyq8HkzcFzQQltaaikKunHEp0YSwDAbwBAO7nxrWIfA==
+  dependencies:
+    "@babel/core" "^7.18.10"
+    "@babel/generator" "^7.18.10"
+    "@babel/parser" "^7.18.11"
+    "@babel/traverse" "^7.18.11"
+    "@babel/types" "^7.18.10"
+    chalk "^5.0.1"
+    chokidar "^3.5.3"
+    diff "^5.1.0"
+    doctrine-temporary-fork "2.1.0"
+    git-url-parse "^13.1.0"
+    github-slugger "1.4.0"
+    glob "^8.0.3"
+    globals-docs "^2.4.1"
+    highlight.js "^11.6.0"
+    ini "^3.0.0"
+    js-yaml "^4.1.0"
+    konan "^2.1.1"
+    lodash "^4.17.21"
+    mdast-util-find-and-replace "^2.2.1"
+    mdast-util-inject "^1.1.0"
+    micromark-util-character "^1.1.0"
+    parse-filepath "^1.0.2"
+    pify "^6.0.0"
+    read-pkg-up "^9.1.0"
+    remark "^14.0.2"
+    remark-gfm "^3.0.1"
+    remark-html "^15.0.1"
+    remark-reference-links "^6.0.1"
+    remark-toc "^8.0.1"
+    resolve "^1.22.1"
+    strip-json-comments "^5.0.0"
+    unist-builder "^3.0.0"
+    unist-util-visit "^4.1.0"
+    vfile "^5.3.4"
+    vfile-reporter "^7.0.4"
+    vfile-sort "^3.0.0"
+    yargs "^17.5.1"
+  optionalDependencies:
+    "@vue/compiler-sfc" "^3.2.37"
+    vue-template-compiler "^2.7.8"
 
 dot-prop@^5.1.0:
   version "5.3.0"
@@ -4825,7 +4825,7 @@ es-abstract@^1.22.1:
     unbox-primitive "^1.0.2"
     which-typed-array "^1.1.11"
 
-es-check@7.1.1:
+es-check@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/es-check/-/es-check-7.1.1.tgz#c2f8f609fd136d20e5047a4a185f80167e2498bf"
   integrity sha512-rgwR2wdJp437Exq28Emwc4x5+Qn6ORDliN9daWo0wTCg5jOQxJsIZieqxVi4AfDEIN4OwMwYhld9b13mnRocUQ==
@@ -11595,7 +11595,7 @@ tape@*:
     string.prototype.trim "~1.1.2"
     through "~2.3.8"
 
-tape@5.7.0:
+tape@^5.7.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/tape/-/tape-5.7.0.tgz#7f31bf116159d3cdbc6f65baa11aaa025d34ccfc"
   integrity sha512-6EZoHjMDUUhet8+k32w/9onULL1U8idXKvBCnZxuZF2iFe+tMYOsKo4bpCtXbTSngZmYBnkU08TMhJwsKaHhaw==
