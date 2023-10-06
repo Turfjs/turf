@@ -1,16 +1,9 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "npmClient": "yarn",
+  "version": "7.0.0-alpha.2",
   "command": {
-    "bootstrap": {
-      "useWorkspaces": true,
-      "ignoreScripts": true
-    },
     "publish": {
       "registry": "https://registry.npmjs.org"
     }
-  },
-  "npmClient": "yarn",
-  "version": "7.0.0-alpha.2"
+  }
 }
