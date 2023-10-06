@@ -45,7 +45,7 @@
     "bench": "tsx bench.js",
     "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "docs": "tsx ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
+    "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.js",
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },

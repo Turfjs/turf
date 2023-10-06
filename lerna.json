@@ -1,8 +1,5 @@
 {
   "npmClient": "yarn",
-  "packages": [
-    "packages/*"
-  ],
   "version": "7.0.0-alpha.2",
   "command": {
     "publish": {

@@ -1,0 +1,52 @@
+{
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "build:es",
+          "build:js",
+          "test",
+          "test:tape",
+          "test:types",
+          "last-checks",
+          "last-checks:example",
+          "last-checks:testjs"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "build:es": {
+      "dependsOn": ["^build:es"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "build:js": {
+      "dependsOn": ["^build:js"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "test:tape": {
+      "dependsOn": ["^test:tape"]
+    },
+    "test:types": {
+      "dependsOn": ["^test:types"]
+    },
+    "last-checks": {
+      "dependsOn": ["^last-checks"]
+    },
+    "last-checks:example": {
+      "dependsOn": ["^last-checks:example"]
+    },
+    "last-checks:testjs": {
+      "dependsOn": ["^last-checks:testjs"]
+    }
+  }
+}
