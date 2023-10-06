@@ -49,7 +49,7 @@ function clustersDbscan(
     units?: Units;
     minPoints?: number;
     mutate?: boolean;
-  } = {},
+  } = {}
 ): FeatureCollection<Point, DbscanProps> {
   // Input validation being handled by Typescript
   // collectionOf(points, 'Point', 'points must consist of a FeatureCollection of only Points');
@@ -84,7 +84,7 @@ function clustersDbscan(
   // Index each point for spatial queries
   tree.load(
     points.features.map((point, index) => {
-      const [x, y] = point.geometry.coordinates;
+      var [x, y] = point.geometry.coordinates;
       return {
         minX: x,
         minY: y,
@@ -92,7 +92,7 @@ function clustersDbscan(
         maxY: y,
         index: index,
       } as IndexedPoint;
-    }),
+    })
   );
 
   // Function to find neighbors of a point within a given distance
@@ -119,42 +119,15 @@ function clustersDbscan(
     const maxX = Math.min(x + lonDistanceInDegrees, 360.0);
 
     // Calculate the bounding box for the region query
-    const baseBbox = { minX, minY, maxX, maxY };
-
-    const bboxes = (function () {
-      if (baseBbox.minX >= -180 && baseBbox.maxX <= 180) {
-        return [baseBbox];
-      }
-      // Handle the case where the bounding box crosses the antimeridian
-      var bboxes = [];
-      for (
-        var ib = baseBbox.minX < -180 ? -1 : 0;
-        ib <= (baseBbox.maxX > 180 ? 1 : 0);
-        ib++
-      ) {
-        bboxes.push({
-          minX: baseBbox.minX + ib * 360,
-          minY: baseBbox.minY,
-          maxX: baseBbox.maxX + ib * 360,
-          maxY: baseBbox.maxY,
-        });
-      }
-      return bboxes;
-    })();
-
-    const neighbors = bboxes
-      .map((bbox) => {
-        return tree.search(bbox).filter((neighbor) => {
-          const neighborIndex = (neighbor as IndexedPoint).index;
-          const neighborPoint = points.features[neighborIndex];
-          const distanceInKm = distance(point, neighborPoint, {
-            units: "kilometers",
-          });
-          return distanceInKm <= maxDistance;
-        });
-      })
-      .flat();
-    return neighbors as IndexedPoint[];
+    const bbox = { minX, minY, maxX, maxY };
+    return tree.search(bbox).filter((neighbor) => {
+      const neighborIndex = (neighbor as IndexedPoint).index;
+      const neighborPoint = points.features[neighborIndex];
+      const distanceInKm = distance(point, neighborPoint, {
+        units: "kilometers",
+      });
+      return distanceInKm <= maxDistance;
+    }) as IndexedPoint[];
   };
 
   // Function to expand a cluster
