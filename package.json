@@ -63,7 +63,7 @@
     "prettier": "^2.1.2",
     "progress": "*",
     "rollup": "^2.34.2",
-    "tape": "*",
+    "tape": "5.7.0",
     "ts-node": "^9.0.0",
     "tsx": "^3.12.8",
     "typescript": "^3.8.3",
