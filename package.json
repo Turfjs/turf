@@ -48,7 +48,7 @@
     "decamelize": "*",
     "dependency-tree": "^8.1.2",
     "documentation": "14.0.2",
-    "es-check": "^5.1.4",
+    "es-check": "7.1.1",
     "eslint": "~7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "esm": "^3.2.25",
