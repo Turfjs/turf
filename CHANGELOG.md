@@ -45,6 +45,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/points-within-polygon`](points-within-polygon) Fix dropped properties on MultiPoint results (#2227)
 - [`@turf/random`](random) Throws error on invalid bbox inputs (#2172)
 - [`@turf/boolean-parallel`](boolean-parallel) Lines with 180 degree angle between them are also considered parallel (#2475)
+- [`@turf/unkink-polygon`](unkink-polygon) Fix a maximum call stack size exceeded error with very large polygons (#2504)
 
 ## 📖 Documentation
 - [`@turf/bbox`][bbox] Improve documentation (#2153)
