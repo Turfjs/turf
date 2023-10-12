@@ -176,7 +176,7 @@ module.exports = {
             build: "npm-run-all --npm-path npm build:*",
             "build:js": "tsc",
             "build:es":
-              'tsc --outDir dist/es --module esnext --declaration false && echo \'{"type":"module"}\' > dist/es/package.json',
+              'tsc --outDir dist/es --module esnext && echo \'{"type":"module"}\' > dist/es/package.json',
           },
         },
         includePackages: TS_PACKAGES,

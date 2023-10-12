@@ -42,7 +42,7 @@
   "scripts": {
     "bench": "tsx bench.js",
     "build": "npm-run-all --npm-path npm build:*",
-    "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build:es": "tsc --outDir dist/es --module esnext && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes",
     "test": "npm-run-all --npm-path npm test:*",
