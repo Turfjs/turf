@@ -18,7 +18,9 @@ import { polygon, Id } from "@turf/helpers";
  * //addToMap
  * var addToMap = [poly]
  */
-export default function bboxPolygon<P = GeoJsonProperties>(
+export default function bboxPolygon<
+  P extends GeoJsonProperties = GeoJsonProperties
+>(
   bbox: BBox,
   options: {
     properties?: P;

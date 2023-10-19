@@ -1,4 +1,9 @@
-import { Feature, FeatureCollection, GeometryObject } from "geojson";
+import {
+  Feature,
+  FeatureCollection,
+  GeoJsonProperties,
+  GeometryObject,
+} from "geojson";
 import { featureEach } from "@turf/meta";
 import { featureCollection } from "@turf/helpers";
 
@@ -31,10 +36,10 @@ import { featureCollection } from "@turf/helpers";
  * turf.getCluster(clustered, {'marker-symbol': 'square'}).length;
  * //= 1
  */
-export function getCluster<G extends GeometryObject, P = any>(
-  geojson: FeatureCollection<G, P>,
-  filter: any
-): FeatureCollection<G, P> {
+export function getCluster<
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties
+>(geojson: FeatureCollection<G, P>, filter: any): FeatureCollection<G, P> {
   // Validation
   if (!geojson) throw new Error("geojson is required");
   if (geojson.type !== "FeatureCollection")
@@ -99,7 +104,10 @@ export function getCluster<G extends GeometryObject, P = any>(
  *     values.push(clusterValue);
  * });
  */
-export function clusterEach<G extends GeometryObject, P = any>(
+export function clusterEach<
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties
+>(
   geojson: FeatureCollection<G, P>,
   property: number | string,
   callback: (
@@ -193,7 +201,10 @@ export function clusterEach<G extends GeometryObject, P = any>(
  *     return previousValue.concat(clusterValue);
  * }, []);
  */
-export function clusterReduce<G extends GeometryObject, P = any>(
+export function clusterReduce<
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties
+>(
   geojson: FeatureCollection<G, P>,
   property: number | string,
   callback: (

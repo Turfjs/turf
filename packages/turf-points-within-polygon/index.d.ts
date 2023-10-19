@@ -14,7 +14,7 @@ import {
 export default function pointsWithinPolygon<
   F extends Point | MultiPoint,
   G extends Polygon | MultiPolygon,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties
 >(
   points: Feature<F, P> | FeatureCollection<F, P>,
   polygons: Feature<G> | FeatureCollection<G> | G

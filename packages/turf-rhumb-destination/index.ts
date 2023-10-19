@@ -34,7 +34,7 @@ import { getCoord } from "@turf/invariant";
  * var addToMap = [pt, destination]
  * destination.properties['marker-color'] = '#00F';
  */
-function rhumbDestination<P = GeoJsonProperties>(
+function rhumbDestination<P extends GeoJsonProperties = GeoJsonProperties>(
   origin: Coord,
   distance: number,
   bearing: number,

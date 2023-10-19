@@ -26,7 +26,7 @@ import { point, Id, AllGeoJSON } from "@turf/helpers";
  * center.properties['marker-size'] = 'large';
  * center.properties['marker-color'] = '#000';
  */
-function center<P = GeoJsonProperties>(
+function center<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: AllGeoJSON,
   options: { properties?: P; bbox?: BBox; id?: Id } = {}
 ): Feature<Point, P> {
