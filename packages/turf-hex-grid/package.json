@@ -65,7 +65,6 @@
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "tslint": "*",
     "tsx": "*",
     "typescript": "*",
     "write-json-file": "*"
