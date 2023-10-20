@@ -152,7 +152,7 @@ isNumber(-123);
 isNumber("123");
 isNumber(+"123");
 isNumber("1e10000");
-isNumber(1e10000);
+isNumber(1e100);
 isNumber(Infinity);
 isNumber(-Infinity);
 
