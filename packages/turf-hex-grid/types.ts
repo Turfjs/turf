@@ -1,6 +1,7 @@
 import { BBox } from "geojson";
 import hexGrid from "./index";
 
+// prettier-ignore
 const bbox: BBox = [
   -96.6357421875,
   31.12819929911196,

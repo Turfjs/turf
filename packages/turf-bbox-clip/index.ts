@@ -37,7 +37,7 @@ import { lineclip, polygonclip } from "./lib/lineclip";
  */
 export default function bboxClip<
   G extends Polygon | MultiPolygon | LineString | MultiLineString,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(feature: Feature<G, P> | G, bbox: BBox) {
   const geom = getGeom(feature);
   const type = geom.type;

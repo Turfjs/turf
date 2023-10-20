@@ -26,7 +26,7 @@ import { flattenEach } from "@turf/meta";
  * var addToMap = [polygon, segments]
  */
 function lineSegment<
-  G extends LineString | MultiLineString | Polygon | MultiPolygon
+  G extends LineString | MultiLineString | Polygon | MultiPolygon,
 >(
   geojson: Feature<G> | FeatureCollection<G> | G
 ): FeatureCollection<LineString> {

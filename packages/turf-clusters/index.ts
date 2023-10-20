@@ -38,7 +38,7 @@ import { featureCollection } from "@turf/helpers";
  */
 export function getCluster<
   G extends GeometryObject,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(geojson: FeatureCollection<G, P>, filter: any): FeatureCollection<G, P> {
   // Validation
   if (!geojson) throw new Error("geojson is required");
@@ -106,7 +106,7 @@ export function getCluster<
  */
 export function clusterEach<
   G extends GeometryObject,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson: FeatureCollection<G, P>,
   property: number | string,
@@ -203,7 +203,7 @@ export function clusterEach<
  */
 export function clusterReduce<
   G extends GeometryObject,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson: FeatureCollection<G, P>,
   property: number | string,

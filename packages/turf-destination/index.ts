@@ -38,7 +38,7 @@ import { getCoord } from "@turf/invariant";
  * point.properties['marker-color'] = '#0f0';
  */
 export default function destination<
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   origin: Coord,
   distance: number,

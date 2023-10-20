@@ -58,7 +58,7 @@ export function propEach<Props extends GeoJsonProperties>(
  */
 export function propReduce<
   Reducer,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson: Feature<any, P> | FeatureCollection<any, P> | Geometry,
   callback: (
@@ -75,7 +75,7 @@ export function propReduce<
 export function featureReduce<
   Reducer,
   G extends GeometryObject,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson:
     | Feature<G, P>
@@ -94,7 +94,7 @@ export function featureReduce<
  */
 export function featureEach<
   G extends GeometryObject,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson:
     | Feature<G, P>
@@ -114,7 +114,7 @@ export function coordAll(geojson: AllGeoJSON): number[][];
 export function geomReduce<
   Reducer,
   G extends GeometryObject,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson:
     | Feature<G, P>
@@ -138,7 +138,7 @@ export function geomReduce<
  */
 export function geomEach<
   G extends GeometryObject | null,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson:
     | Feature<G, P>
@@ -161,7 +161,7 @@ export function geomEach<
 export function flattenReduce<
   Reducer,
   G extends GeometryObject,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson:
     | Feature<G, P>
@@ -183,7 +183,7 @@ export function flattenReduce<
  */
 export function flattenEach<
   G extends GeometryObject = GeometryObject,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson:
     | Feature<G, P>
@@ -203,7 +203,7 @@ export function flattenEach<
  */
 export function segmentReduce<
   Reducer,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson:
     | FeatureCollection<Lines, P>
@@ -241,7 +241,7 @@ export function segmentEach<P extends GeoJsonProperties = GeoJsonProperties>(
  */
 export function lineReduce<
   Reducer,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson:
     | FeatureCollection<Lines, P>
@@ -282,7 +282,7 @@ export function lineEach<P extends GeoJsonProperties = GeoJsonProperties>(
  */
 export function findSegment<
   G extends LineString | MultiLineString | Polygon | MultiPolygon,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson: Feature<G, P> | FeatureCollection<G, P> | G,
   options?: {
@@ -301,7 +301,7 @@ export function findSegment<
  */
 export function findPoint<
   G extends GeometryObject,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson: Feature<G, P> | FeatureCollection<G, P> | G,
   options?: {

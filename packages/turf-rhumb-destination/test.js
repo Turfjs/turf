@@ -77,9 +77,9 @@ test("turf-rhumb-destintation -- add properties", (t) => {
 test("turf-rhumb-destintation -- allows negative distance", (t) => {
   const pt = point([12, -54]);
   const out = rhumbDestination(pt, -100, 45);
-  t.deepEqual(out.geometry.coordinates, [
-    10.90974456038191,
-    -54.63591552764877,
-  ]);
+  t.deepEqual(
+    out.geometry.coordinates,
+    [10.90974456038191, -54.63591552764877]
+  );
   t.end();
 });

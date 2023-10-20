@@ -35,7 +35,7 @@ import rectangleGrid from "@turf/rectangle-grid";
  */
 
 export default function squareGrid<
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   bbox: BBox,
   cellSide: number,

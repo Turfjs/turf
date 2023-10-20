@@ -137,7 +137,7 @@ export const areaFactors: Record<AreaUnits, number> = {
  */
 export function feature<
   G extends GeometryObject = Geometry,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geom: G | null,
   properties?: P,
@@ -436,7 +436,7 @@ export function lineStrings<P extends GeoJsonProperties = GeoJsonProperties>(
  */
 export function featureCollection<
   G extends GeometryObject = Geometry,
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   features: Array<Feature<G, P>>,
   options: { bbox?: BBox; id?: Id } = {}
@@ -470,7 +470,7 @@ export function featureCollection<
  * //=multiLine
  */
 export function multiLineString<
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   coordinates: Position[][],
   properties?: P,
@@ -561,7 +561,7 @@ export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
  * // => collection
  */
 export function geometryCollection<
-  P extends GeoJsonProperties = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geometries: Array<
     Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
