@@ -15,8 +15,16 @@ import { Id, polygon, Units } from "@turf/helpers";
  * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
  * @param {string|number} [options.id] Identifier associated with the Feature
  * @returns {Feature<Polygon>} circle polygon
+ * @example
+ * var center = [-75.343, 39.984];
+ * var radius = 5;
+ * var options = {steps: 10, units: 'kilometers', properties: {foo: 'bar'}};
+ * var circle = turf.circle(center, radius, options);
+ *
+ * //addToMap
+ * var addToMap = [turf.point(center), circle]
  */
-function circle<P = GeoJsonProperties>(
+function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   center: number[] | Point | Feature<Point, P>,
   radius: number,
   options: {
@@ -24,7 +32,7 @@ function circle<P = GeoJsonProperties>(
     units?: Units;
     properties?: P;
     bbox?: BBox;
-    id?: Id
+    id?: Id;
   } = {}
 ): Feature<Polygon, P> {
   // default params
@@ -44,11 +52,11 @@ function circle<P = GeoJsonProperties>(
   bboxValue = bboxValue || options.bbox;
   idValue = idValue || options.id;
 
-  let _options: { bbox?: BBox; id?: Id; } | undefined;
+  let _options: { bbox?: BBox; id?: Id } | undefined;
   if (bboxValue || idValue) {
     _options = {
       ...(bboxValue ? { bbox: bboxValue } : {}),
-      ...(idValue ? { id: idValue } : {})
+      ...(idValue ? { id: idValue } : {}),
     };
   }
 
