@@ -78,6 +78,15 @@ const FACTOR = (earthRadius * earthRadius) / 2;
 
 /**
  * @private
+ * A constant used for converting degrees to radians.
+ * Represents the ratio of PI to 180.
+ *
+ * @type {number}
+ */
+const PI_OVER_180 = Math.PI / 180;
+
+/**
+ * @private
  * Calculate the approximate area of the polygon were it projected onto the earth.
  * Note that this area will be positive if ring is oriented clockwise, otherwise it will be negative.
  *
@@ -89,49 +98,27 @@ const FACTOR = (earthRadius * earthRadius) / 2;
  * @param {Array<Array<number>>} coords Ring Coordinates
  * @returns {number} The approximate signed geodesic area of the polygon in square meters.
  */
-function ringArea(coords: number[][]) {
-    // it's a ring - ignore the last one
-    const coordsLength = coords.length - 1;
+function ringArea(coords: number[][]): number {
+  let total = 0;
+  const coordsLength = coords.length;
 
-    if (coordsLength < 3) {
-        return 0;
-    }
+  if (coordsLength <= 2) return 0;
 
-    let total = 0;
+  let i = 0;
+  while (i < coordsLength) {
+    const lower = coords[i];
+    const middle = coords[i + 1 === coordsLength ? 0 : i + 1];
+    const upper =
+      coords[i + 2 >= coordsLength ? (i + 2) % coordsLength : i + 2];
 
-    const f_x = rad(coords[0][0]), f_y = rad(coords[0][1]);
-    const s_x = rad(coords[1][0]), s_y = rad(coords[1][1]);
+    const lowerX = lower[0] * PI_OVER_180;
+    const middleY = middle[1] * PI_OVER_180;
+    const upperX = upper[0] * PI_OVER_180;
 
-    let l_x = f_x, l_y = f_y;
-    let m_x = s_x, m_y = s_y;
+    total += (upperX - lowerX) * Math.sin(middleY);
 
-    let u_x = 0, u_y = 0;
+    i++;
+  }
 
-    for (let i = 2; i < coordsLength; i++) {
-        u_x = rad(coords[i][0]); u_y = rad(coords[i][1]);
-
-        total += (u_x - l_x) * Math.sin(m_y);
-
-        l_x = m_x; l_y = m_y;
-        m_x = u_x; m_y = u_y;
-    }
-
-    // handle 2 extra triangles (since we started from i = 2)
-
-    u_x = f_x; u_y = f_y;
-
-    total += (u_x - l_x) * Math.sin(m_y);
-
-    l_x = m_x; l_y = m_y;
-    m_x = u_x; m_y = u_y;
-
-    u_x = s_x; u_y = s_y;
-
-    total += (u_x - l_x) * Math.sin(m_y);
-
-    return total * FACTOR;
-}
-
-function rad(num: number) {
-  return (num * Math.PI) / 180;
+  return total * FACTOR;
 }
