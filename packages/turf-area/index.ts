@@ -99,10 +99,10 @@ const PI_OVER_180 = Math.PI / 180;
  * @returns {number} The approximate signed geodesic area of the polygon in square meters.
  */
 function ringArea(coords: number[][]): number {
-  let total = 0;
   const coordsLength = coords.length;
 
   if (coordsLength <= 2) return 0;
+  let total = 0;
 
   let i = 0;
   while (i < coordsLength) {
