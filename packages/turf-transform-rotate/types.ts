@@ -30,11 +30,7 @@ rotate(poly, 100, { pivot: pt });
 rotate(poly, 100, { pivot: pt.geometry });
 rotate(poly.geometry, 100, { pivot: pt.geometry.coordinates });
 rotate(featureCollection([poly]), 100, { pivot: pt.geometry });
-rotate(
-  featureCollection<Polygon | Point>([poly, pt]),
-  100,
-  { pivot: pt }
-);
+rotate(featureCollection<Polygon | Point>([poly, pt]), 100, { pivot: pt });
 rotate(geometryCollection([poly.geometry]).geometry, 100, {
   pivot: pt.geometry,
 });

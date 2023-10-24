@@ -65,7 +65,6 @@
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
-    "tslint": "*",
     "tsx": "*",
     "typescript": "*",
     "write-json-file": "*"

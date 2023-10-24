@@ -38,7 +38,7 @@ import {
  * //addToMap
  * var addToMap = [rectangleGrid]
  */
-function rectangleGrid<P = GeoJsonProperties>(
+function rectangleGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,
   cellWidth: number,
   cellHeight: number,
