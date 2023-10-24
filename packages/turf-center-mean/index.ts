@@ -28,7 +28,7 @@ import { isNumber, point, Id } from "@turf/helpers";
  * mean.properties['marker-size'] = 'large';
  * mean.properties['marker-color'] = '#000';
  */
-function centerMean<P = GeoJsonProperties>(
+function centerMean<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: any, // To-Do include Typescript AllGeoJSON
   options: { properties?: P; bbox?: BBox; id?: Id; weight?: string } = {}
 ): Feature<Point, P> {

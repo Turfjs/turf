@@ -34,7 +34,7 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
  * //addToMap
  * var addToMap = [hexgrid];
  */
-function hexGrid<P = GeoJsonProperties>(
+function hexGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,
   cellSide: number,
   options: {

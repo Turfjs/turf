@@ -18,7 +18,7 @@ import { coordEach } from "@turf/meta";
  * //addToMap
  * var addToMap = [polygon, centroid]
  */
-function centroid<P = GeoJsonProperties>(
+function centroid<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: AllGeoJSON,
   options: {
     properties?: P;

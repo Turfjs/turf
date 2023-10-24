@@ -32,7 +32,7 @@ import { point, featureCollection, Units } from "@turf/helpers";
  * //addToMap
  * var addToMap = [grid];
  */
-function pointGrid<P = GeoJsonProperties>(
+function pointGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,
   cellSide: number,
   options: {

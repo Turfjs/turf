@@ -51,7 +51,6 @@
     "benchmark": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "tslint": "*",
     "tsx": "*",
     "typescript": "*"
   },
