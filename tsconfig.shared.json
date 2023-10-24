@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "strict": true,
     "moduleResolution": "node",
-    "importHelpers": true
+    "importHelpers": true,
+    "skipLibCheck": true
   }
 }

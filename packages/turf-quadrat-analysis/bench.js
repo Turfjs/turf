@@ -1,7 +1,7 @@
 const Benchmark = require("benchmark");
 const { randomPoint } = require("@turf/random");
-const nearestNeighborAnalysis = require("@turf/nearest-neighbor-analysis")
-  .default;
+const nearestNeighborAnalysis =
+  require("@turf/nearest-neighbor-analysis").default;
 const quadratAnalysis = require("./index").default;
 
 /**

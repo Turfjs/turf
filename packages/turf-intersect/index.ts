@@ -44,7 +44,9 @@ import polygonClipping from "polygon-clipping";
  * //addToMap
  * var addToMap = [poly1, poly2, intersection];
  */
-export default function intersect<P = GeoJsonProperties>(
+export default function intersect<
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
   features: FeatureCollection<Polygon | MultiPolygon>,
   options: {
     properties?: P;

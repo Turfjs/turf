@@ -33,7 +33,7 @@ import Spline from "./lib/spline";
  * var addToMap = [line, curved]
  * curved.properties = { stroke: '#0F0' };
  */
-function bezier<P = GeoJsonProperties>(
+function bezier<P extends GeoJsonProperties = GeoJsonProperties>(
   line: Feature<LineString> | LineString,
   options: {
     properties?: P;
