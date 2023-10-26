@@ -1,6 +1,6 @@
-const Benchmark = require('benchmark');
-const {randomPoint, randomPolygon} = require('@turf/random');
-const geojsonRbush = require('./').default;
+const Benchmark = require("benchmark");
+const { randomPoint, randomPolygon } = require("@turf/random");
+const geojsonRbush = require("./").default;
 
 // Fixtures
 const points = randomPoint(3);
@@ -22,17 +22,17 @@ polygonsTree.load(polygons);
  * search.points x 5,986,675 ops/sec ±7.95% (77 runs sampled)
  * search.polygons x 6,481,248 ops/sec ±0.93% (90 runs sampled)
  */
-new Benchmark.Suite('geojson-rbush')
-    .add('rbush.points', () => {
-        const tree = geojsonRbush();
-        tree.load(points);
-    })
-    .add('rbush.polygons', () => {
-        const tree = geojsonRbush();
-        tree.load(polygons);
-    })
-    .add('search.points', () => pointsTree.search(point))
-    .add('search.polygons', () => polygonsTree.search(polygon))
-    .on('cycle', e => console.log(String(e.target)))
-    .on('complete', () => {})
-    .run();
+new Benchmark.Suite("geojson-rbush")
+  .add("rbush.points", () => {
+    const tree = geojsonRbush();
+    tree.load(points);
+  })
+  .add("rbush.polygons", () => {
+    const tree = geojsonRbush();
+    tree.load(polygons);
+  })
+  .add("search.points", () => pointsTree.search(point))
+  .add("search.polygons", () => polygonsTree.search(polygon))
+  .on("cycle", (e) => console.log(String(e.target)))
+  .on("complete", () => {})
+  .run();

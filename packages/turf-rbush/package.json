@@ -1,18 +1,25 @@
 {
-  "name": "@turf/geojson-rbush",
-  "version": "3.2.1",
+  "name": "@turf/rbush",
+  "version": "7.0.0-alpha.2",
   "description": "GeoJSON implementation of RBush",
-  "main": "index",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.d.ts"
+  "author": "Turf Authors",
+  "contributors": [
+    "Vladimir Agafonkin <@mourner>",
+    "Denis Carriere <@DenisCarriere>",
+    "Jordan Rousseau <@jvrousseau>"
   ],
-  "scripts": {
-    "pretest": "tsc types.ts",
-    "test": "node test.js --coverage",
-    "bench": "node bench.js",
-    "docs": "documentation readme index.js --section=API"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "funding": "https://opencollective.com/turf",
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "geojson",
@@ -21,29 +28,46 @@
     "spatial",
     "rbush"
   ],
-  "author": "Denis Carriere <@DenisCarriere>",
-  "contributors": [
-    "Vladimir Agafonkin <@mourner>",
-    "Denis Carriere <@DenisCarriere>",
-    "Jordan Rousseau <@jvrousseau>"
+  "main": "dist/js/index.js",
+  "module": "dist/es/index.js",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./dist/es/index.js",
+      "require": "./dist/js/index.js"
+    }
+  },
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "index.d.ts"
   ],
-  "license": "MIT",
+  "scripts": {
+    "bench": "tsx bench.js",
+    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "docs": "tsx ../../scripts/generate-readmes",
+    "test": "npm-run-all --npm-path npm test:*",
+    "test:tape": "tsx test.js",
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
+  },
   "devDependencies": {
-    "@turf/bbox-polygon": "*",
-    "@turf/random": "*",
-    "@types/node": "*",
+    "@turf/bbox-polygon": "^7.0.0-alpha.2",
+    "@turf/random": "^7.0.0-alpha.2",
     "benchmark": "*",
-    "documentation": "*",
     "load-json-file": "*",
-    "tap": "*",
+    "npm-run-all": "*",
+    "rollup": "*",
     "tape": "*",
+    "tsx": "*",
     "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "*",
-    "@turf/helpers": "6.x",
-    "@turf/meta": "6.x",
+    "@turf/bbox": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/meta": "^7.0.0-alpha.2",
     "@types/geojson": "7946.0.8",
     "rbush": "^3.0.1"
   }

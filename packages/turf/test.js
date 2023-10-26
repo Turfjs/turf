@@ -128,7 +128,7 @@ test("turf -- MIT license", (t) => {
     const { license } = pckg;
     if (license !== "MIT") t.fail(`${name} (license) must be "MIT"`);
     if (fs.readFileSync(path.join(dir, "LICENSE"), "utf8") !== text)
-      t.fail(`${name} (LICENSE) is different from @turf/turf`);
+      t.fail(`${name} (LICENSE) content is different from @turf/turf`);
   }
   t.end();
 });
