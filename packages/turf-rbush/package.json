@@ -1,0 +1,50 @@
+{
+  "name": "@turf/geojson-rbush",
+  "version": "3.2.1",
+  "description": "GeoJSON implementation of RBush",
+  "main": "index",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "pretest": "tsc types.ts",
+    "test": "node test.js --coverage",
+    "bench": "node bench.js",
+    "docs": "documentation readme index.js --section=API"
+  },
+  "keywords": [
+    "geojson",
+    "index",
+    "tree",
+    "spatial",
+    "rbush"
+  ],
+  "author": "Denis Carriere <@DenisCarriere>",
+  "contributors": [
+    "Vladimir Agafonkin <@mourner>",
+    "Denis Carriere <@DenisCarriere>",
+    "Jordan Rousseau <@jvrousseau>"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@turf/bbox-polygon": "*",
+    "@turf/random": "*",
+    "@types/node": "*",
+    "benchmark": "*",
+    "documentation": "*",
+    "load-json-file": "*",
+    "tap": "*",
+    "tape": "*",
+    "typescript": "*",
+    "write-json-file": "*"
+  },
+  "dependencies": {
+    "@turf/bbox": "*",
+    "@turf/helpers": "6.x",
+    "@turf/meta": "6.x",
+    "@types/geojson": "7946.0.8",
+    "rbush": "^3.0.1"
+  }
+}

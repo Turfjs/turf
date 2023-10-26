@@ -1,0 +1,22 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-86.8359375,
+					42.8115217450979
+				]
+			},
+			"bbox": [
+				-86.8359375,
+				42.8115217450979,
+				-86.8359375,
+				42.8115217450979
+			]
+		}
+	]
+}
