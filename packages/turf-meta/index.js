@@ -16,7 +16,7 @@ import { feature, point, lineString, isObject } from "@turf/helpers";
  *
  * @name coordEach
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
+ * @param {Function} callback a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex, indexInRing)
  * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
  * @returns {void}
  * @example
@@ -25,12 +25,13 @@ import { feature, point, lineString, isObject } from "@turf/helpers";
  *   turf.point([36, 53], {"hello": "world"})
  * ]);
  *
- * turf.coordEach(features, function (currentCoord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) {
+ * turf.coordEach(features, function (currentCoord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex, indexInRing) {
  *   //=currentCoord
  *   //=coordIndex
  *   //=featureIndex
  *   //=multiFeatureIndex
  *   //=geometryIndex
+ *   //=indexInRing
  * });
  */
 export function coordEach(geojson, callback, excludeWrapCoord) {
@@ -120,7 +121,8 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
                 coordIndex,
                 featureIndex,
                 multiFeatureIndex,
-                geometryIndex
+                geometryIndex,
+                j
               ) === false
             )
               return false;
@@ -139,7 +141,8 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
                   coordIndex,
                   featureIndex,
                   multiFeatureIndex,
-                  geometryIndex
+                  geometryIndex,
+                  k
                 ) === false
               )
                 return false;
@@ -161,7 +164,8 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
                     coordIndex,
                     featureIndex,
                     multiFeatureIndex,
-                    geometryIndex
+                    geometryIndex,
+                    l
                   ) === false
                 )
                   return false;

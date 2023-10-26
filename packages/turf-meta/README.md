@@ -10,11 +10,11 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentCoord` **[Array][2]<[number][3]>** The current coordinate being processed.
-*   `coordIndex` **[number][3]** The current index of the coordinate being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
-*   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
+- `currentCoord` **[Array][2]<[number][3]>** The current coordinate being processed.
+- `coordIndex` **[number][3]** The current index of the coordinate being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
+- `geometryIndex` **[number][3]** The current index of the Geometry being processed.
 
 ## coordEach
 
@@ -22,28 +22,37 @@ Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
-*   `excludeWrapCoord` **[boolean][7]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
+- `excludeWrapCoord` **[boolean][7]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-  turf.point([26, 37], {"foo": "bar"}),
-  turf.point([36, 53], {"hello": "world"})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.point([36, 53], { hello: "world" }),
 ]);
 
-turf.coordEach(features, function (currentCoord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) {
-  //=currentCoord
-  //=coordIndex
-  //=featureIndex
-  //=multiFeatureIndex
-  //=geometryIndex
-});
+turf.coordEach(
+  features,
+  function (
+    currentCoord,
+    coordIndex,
+    featureIndex,
+    multiFeatureIndex,
+    geometryIndex
+  ) {
+    //=currentCoord
+    //=coordIndex
+    //=featureIndex
+    //=multiFeatureIndex
+    //=geometryIndex
+  }
+);
 ```
 
-Returns **void** 
+Returns **void**
 
 ## coordReduceCallback
 
@@ -54,26 +63,26 @@ on whether the reduce method has an initialValue argument.
 
 If an initialValue is provided to the reduce method:
 
-*   The previousValue argument is initialValue.
-*   The currentValue argument is the value of the first element present in the array.
+- The previousValue argument is initialValue.
+- The currentValue argument is the value of the first element present in the array.
 
 If an initialValue is not provided:
 
-*   The previousValue argument is the value of the first element present in the array.
-*   The currentValue argument is the value of the second element present in the array.
+- The previousValue argument is the value of the first element present in the array.
+- The currentValue argument is the value of the second element present in the array.
 
 Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
-*   `currentCoord` **[Array][2]<[number][3]>** The current coordinate being processed.
-*   `coordIndex` **[number][3]** The current index of the coordinate being processed.
-    Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
-*   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
+- `previousValue` **any** The accumulated value previously returned in the last invocation
+  of the callback, or initialValue, if supplied.
+- `currentCoord` **[Array][2]<[number][3]>** The current coordinate being processed.
+- `coordIndex` **[number][3]** The current index of the coordinate being processed.
+  Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
+- `geometryIndex` **[number][3]** The current index of the Geometry being processed.
 
 ## coordReduce
 
@@ -81,28 +90,38 @@ Reduce coordinates in any GeoJSON object, similar to Array.reduce()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Geometry][6] | [Feature][5])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentCoord, coordIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
-*   `excludeWrapCoord` **[boolean][7]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
+- `geojson` **([FeatureCollection][4] | [Geometry][6] | [Feature][5])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (previousValue, currentCoord, coordIndex)
+- `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+- `excludeWrapCoord` **[boolean][7]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-  turf.point([26, 37], {"foo": "bar"}),
-  turf.point([36, 53], {"hello": "world"})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.point([36, 53], { hello: "world" }),
 ]);
 
-turf.coordReduce(features, function (previousValue, currentCoord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) {
-  //=previousValue
-  //=currentCoord
-  //=coordIndex
-  //=featureIndex
-  //=multiFeatureIndex
-  //=geometryIndex
-  return currentCoord;
-});
+turf.coordReduce(
+  features,
+  function (
+    previousValue,
+    currentCoord,
+    coordIndex,
+    featureIndex,
+    multiFeatureIndex,
+    geometryIndex
+  ) {
+    //=previousValue
+    //=currentCoord
+    //=coordIndex
+    //=featureIndex
+    //=multiFeatureIndex
+    //=geometryIndex
+    return currentCoord;
+  }
+);
 ```
 
 Returns **any** The value that results from the reduction.
@@ -115,8 +134,8 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentProperties` **[Object][8]** The current Properties being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `currentProperties` **[Object][8]** The current Properties being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
 
 ## propEach
 
@@ -124,15 +143,15 @@ Iterate over properties in any GeoJSON object, similar to Array.forEach()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentProperties, featureIndex)
+- `geojson` **([FeatureCollection][4] | [Feature][5])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (currentProperties, featureIndex)
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-    turf.point([26, 37], {foo: 'bar'}),
-    turf.point([36, 53], {hello: 'world'})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.point([36, 53], { hello: "world" }),
 ]);
 
 turf.propEach(features, function (currentProperties, featureIndex) {
@@ -141,7 +160,7 @@ turf.propEach(features, function (currentProperties, featureIndex) {
 });
 ```
 
-Returns **void** 
+Returns **void**
 
 ## propReduceCallback
 
@@ -152,22 +171,22 @@ on whether the reduce method has an initialValue argument.
 
 If an initialValue is provided to the reduce method:
 
-*   The previousValue argument is initialValue.
-*   The currentValue argument is the value of the first element present in the array.
+- The previousValue argument is initialValue.
+- The currentValue argument is the value of the first element present in the array.
 
 If an initialValue is not provided:
 
-*   The previousValue argument is the value of the first element present in the array.
-*   The currentValue argument is the value of the second element present in the array.
+- The previousValue argument is the value of the first element present in the array.
+- The currentValue argument is the value of the second element present in the array.
 
 Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
-*   `currentProperties` **any** The current Properties being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `previousValue` **any** The accumulated value previously returned in the last invocation
+  of the callback, or initialValue, if supplied.
+- `currentProperties` **any** The current Properties being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
 
 ## propReduce
 
@@ -177,24 +196,27 @@ the reduction, so an array of all properties is unnecessary.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentProperties, featureIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+- `geojson` **([FeatureCollection][4] | [Feature][5])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (previousValue, currentProperties, featureIndex)
+- `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-    turf.point([26, 37], {foo: 'bar'}),
-    turf.point([36, 53], {hello: 'world'})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.point([36, 53], { hello: "world" }),
 ]);
 
-turf.propReduce(features, function (previousValue, currentProperties, featureIndex) {
-  //=previousValue
-  //=currentProperties
-  //=featureIndex
-  return currentProperties
-});
+turf.propReduce(
+  features,
+  function (previousValue, currentProperties, featureIndex) {
+    //=previousValue
+    //=currentProperties
+    //=featureIndex
+    return currentProperties;
+  }
+);
 ```
 
 Returns **any** The value that results from the reduction.
@@ -207,8 +229,8 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentFeature` **[Feature][5]\<any>** The current Feature being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `currentFeature` **[Feature][5]\<any>** The current Feature being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
 
 ## featureEach
 
@@ -217,15 +239,15 @@ Array.forEach.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentFeature, featureIndex)
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (currentFeature, featureIndex)
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-  turf.point([26, 37], {foo: 'bar'}),
-  turf.point([36, 53], {hello: 'world'})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.point([36, 53], { hello: "world" }),
 ]);
 
 turf.featureEach(features, function (currentFeature, featureIndex) {
@@ -234,7 +256,7 @@ turf.featureEach(features, function (currentFeature, featureIndex) {
 });
 ```
 
-Returns **void** 
+Returns **void**
 
 ## featureReduceCallback
 
@@ -245,22 +267,22 @@ on whether the reduce method has an initialValue argument.
 
 If an initialValue is provided to the reduce method:
 
-*   The previousValue argument is initialValue.
-*   The currentValue argument is the value of the first element present in the array.
+- The previousValue argument is initialValue.
+- The currentValue argument is the value of the first element present in the array.
 
 If an initialValue is not provided:
 
-*   The previousValue argument is the value of the first element present in the array.
-*   The currentValue argument is the value of the second element present in the array.
+- The previousValue argument is the value of the first element present in the array.
+- The currentValue argument is the value of the second element present in the array.
 
 Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
-*   `currentFeature` **[Feature][5]** The current Feature being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `previousValue` **any** The accumulated value previously returned in the last invocation
+  of the callback, or initialValue, if supplied.
+- `currentFeature` **[Feature][5]** The current Feature being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
 
 ## featureReduce
 
@@ -268,24 +290,27 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentFeature, featureIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (previousValue, currentFeature, featureIndex)
+- `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-  turf.point([26, 37], {"foo": "bar"}),
-  turf.point([36, 53], {"hello": "world"})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.point([36, 53], { hello: "world" }),
 ]);
 
-turf.featureReduce(features, function (previousValue, currentFeature, featureIndex) {
-  //=previousValue
-  //=currentFeature
-  //=featureIndex
-  return currentFeature
-});
+turf.featureReduce(
+  features,
+  function (previousValue, currentFeature, featureIndex) {
+    //=previousValue
+    //=currentFeature
+    //=featureIndex
+    return currentFeature;
+  }
+);
 ```
 
 Returns **any** The value that results from the reduction.
@@ -296,14 +321,14 @@ Get all coordinates from any GeoJSON object.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-  turf.point([26, 37], {foo: 'bar'}),
-  turf.point([36, 53], {hello: 'world'})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.point([36, 53], { hello: "world" }),
 ]);
 
 var coords = turf.coordAll(features);
@@ -320,11 +345,11 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentGeometry` **[Geometry][6]** The current Geometry being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `featureProperties` **[Object][8]** The current Feature Properties being processed.
-*   `featureBBox` **[Array][2]<[number][3]>** The current Feature BBox being processed.
-*   `featureId` **([number][3] | [string][9])** The current Feature Id being processed.
+- `currentGeometry` **[Geometry][6]** The current Geometry being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `featureProperties` **[Object][8]** The current Feature Properties being processed.
+- `featureBBox` **[Array][2]<[number][3]>** The current Feature BBox being processed.
+- `featureId` **([number][3] | [string][9])** The current Feature Id being processed.
 
 ## geomEach
 
@@ -332,27 +357,36 @@ Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-    turf.point([26, 37], {foo: 'bar'}),
-    turf.point([36, 53], {hello: 'world'})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.point([36, 53], { hello: "world" }),
 ]);
 
-turf.geomEach(features, function (currentGeometry, featureIndex, featureProperties, featureBBox, featureId) {
-  //=currentGeometry
-  //=featureIndex
-  //=featureProperties
-  //=featureBBox
-  //=featureId
-});
+turf.geomEach(
+  features,
+  function (
+    currentGeometry,
+    featureIndex,
+    featureProperties,
+    featureBBox,
+    featureId
+  ) {
+    //=currentGeometry
+    //=featureIndex
+    //=featureProperties
+    //=featureBBox
+    //=featureId
+  }
+);
 ```
 
-Returns **void** 
+Returns **void**
 
 ## geomReduceCallback
 
@@ -363,25 +397,25 @@ on whether the reduce method has an initialValue argument.
 
 If an initialValue is provided to the reduce method:
 
-*   The previousValue argument is initialValue.
-*   The currentValue argument is the value of the first element present in the array.
+- The previousValue argument is initialValue.
+- The currentValue argument is the value of the first element present in the array.
 
 If an initialValue is not provided:
 
-*   The previousValue argument is the value of the first element present in the array.
-*   The currentValue argument is the value of the second element present in the array.
+- The previousValue argument is the value of the first element present in the array.
+- The currentValue argument is the value of the second element present in the array.
 
 Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
-*   `currentGeometry` **[Geometry][6]** The current Geometry being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `featureProperties` **[Object][8]** The current Feature Properties being processed.
-*   `featureBBox` **[Array][2]<[number][3]>** The current Feature BBox being processed.
-*   `featureId` **([number][3] | [string][9])** The current Feature Id being processed.
+- `previousValue` **any** The accumulated value previously returned in the last invocation
+  of the callback, or initialValue, if supplied.
+- `currentGeometry` **[Geometry][6]** The current Geometry being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `featureProperties` **[Object][8]** The current Feature Properties being processed.
+- `featureBBox` **[Array][2]<[number][3]>** The current Feature BBox being processed.
+- `featureId` **([number][3] | [string][9])** The current Feature Id being processed.
 
 ## geomReduce
 
@@ -389,27 +423,37 @@ Reduce geometry in any GeoJSON object, similar to Array.reduce().
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (previousValue, currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
+- `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-    turf.point([26, 37], {foo: 'bar'}),
-    turf.point([36, 53], {hello: 'world'})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.point([36, 53], { hello: "world" }),
 ]);
 
-turf.geomReduce(features, function (previousValue, currentGeometry, featureIndex, featureProperties, featureBBox, featureId) {
-  //=previousValue
-  //=currentGeometry
-  //=featureIndex
-  //=featureProperties
-  //=featureBBox
-  //=featureId
-  return currentGeometry
-});
+turf.geomReduce(
+  features,
+  function (
+    previousValue,
+    currentGeometry,
+    featureIndex,
+    featureProperties,
+    featureBBox,
+    featureId
+  ) {
+    //=previousValue
+    //=currentGeometry
+    //=featureIndex
+    //=featureProperties
+    //=featureBBox
+    //=featureId
+    return currentGeometry;
+  }
+);
 ```
 
 Returns **any** The value that results from the reduction.
@@ -422,9 +466,9 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentFeature` **[Feature][5]** The current flattened feature being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
+- `currentFeature` **[Feature][5]** The current flattened feature being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
 
 ## flattenEach
 
@@ -433,22 +477,31 @@ Array.forEach.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentFeature, featureIndex, multiFeatureIndex)
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (currentFeature, featureIndex, multiFeatureIndex)
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-    turf.point([26, 37], {foo: 'bar'}),
-    turf.multiPoint([[40, 30], [36, 53]], {hello: 'world'})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.multiPoint(
+    [
+      [40, 30],
+      [36, 53],
+    ],
+    { hello: "world" }
+  ),
 ]);
 
-turf.flattenEach(features, function (currentFeature, featureIndex, multiFeatureIndex) {
-  //=currentFeature
-  //=featureIndex
-  //=multiFeatureIndex
-});
+turf.flattenEach(
+  features,
+  function (currentFeature, featureIndex, multiFeatureIndex) {
+    //=currentFeature
+    //=featureIndex
+    //=multiFeatureIndex
+  }
+);
 ```
 
 ## flattenReduceCallback
@@ -460,23 +513,23 @@ on whether the reduce method has an initialValue argument.
 
 If an initialValue is provided to the reduce method:
 
-*   The previousValue argument is initialValue.
-*   The currentValue argument is the value of the first element present in the array.
+- The previousValue argument is initialValue.
+- The currentValue argument is the value of the first element present in the array.
 
 If an initialValue is not provided:
 
-*   The previousValue argument is the value of the first element present in the array.
-*   The currentValue argument is the value of the second element present in the array.
+- The previousValue argument is the value of the first element present in the array.
+- The currentValue argument is the value of the second element present in the array.
 
 Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
-*   `currentFeature` **[Feature][5]** The current Feature being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
+- `previousValue` **any** The accumulated value previously returned in the last invocation
+  of the callback, or initialValue, if supplied.
+- `currentFeature` **[Feature][5]** The current Feature being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
 
 ## flattenReduce
 
@@ -484,25 +537,34 @@ Reduce flattened features in any GeoJSON object, similar to Array.reduce().
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentFeature, featureIndex, multiFeatureIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
+- `callback` **[Function][1]** a method that takes (previousValue, currentFeature, featureIndex, multiFeatureIndex)
+- `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
 ```javascript
 var features = turf.featureCollection([
-    turf.point([26, 37], {foo: 'bar'}),
-    turf.multiPoint([[40, 30], [36, 53]], {hello: 'world'})
+  turf.point([26, 37], { foo: "bar" }),
+  turf.multiPoint(
+    [
+      [40, 30],
+      [36, 53],
+    ],
+    { hello: "world" }
+  ),
 ]);
 
-turf.flattenReduce(features, function (previousValue, currentFeature, featureIndex, multiFeatureIndex) {
-  //=previousValue
-  //=currentFeature
-  //=featureIndex
-  //=multiFeatureIndex
-  return currentFeature
-});
+turf.flattenReduce(
+  features,
+  function (previousValue, currentFeature, featureIndex, multiFeatureIndex) {
+    //=previousValue
+    //=currentFeature
+    //=featureIndex
+    //=multiFeatureIndex
+    return currentFeature;
+  }
+);
 ```
 
 Returns **any** The value that results from the reduction.
@@ -515,13 +577,13 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentSegment` **[Feature][5]<[LineString][10]>** The current Segment being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
-*   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
-*   `segmentIndex` **[number][3]** The current index of the Segment being processed.
+- `currentSegment` **[Feature][5]<[LineString][10]>** The current Segment being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
+- `geometryIndex` **[number][3]** The current index of the Geometry being processed.
+- `segmentIndex` **[number][3]** The current index of the Segment being processed.
 
-Returns **void** 
+Returns **void**
 
 ## segmentEach
 
@@ -530,31 +592,48 @@ Iterate over 2-vertex line segment in any GeoJSON object, similar to Array.forEa
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON
-*   `callback` **[Function][1]** a method that takes (currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex)
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON
+- `callback` **[Function][1]** a method that takes (currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex)
 
 ### Examples
 
 ```javascript
-var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
+var polygon = turf.polygon([
+  [
+    [-50, 5],
+    [-40, -10],
+    [-50, -10],
+    [-40, 5],
+    [-50, 5],
+  ],
+]);
 
 // Iterate over GeoJSON by 2-vertex segments
-turf.segmentEach(polygon, function (currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex) {
-  //=currentSegment
-  //=featureIndex
-  //=multiFeatureIndex
-  //=geometryIndex
-  //=segmentIndex
-});
+turf.segmentEach(
+  polygon,
+  function (
+    currentSegment,
+    featureIndex,
+    multiFeatureIndex,
+    geometryIndex,
+    segmentIndex
+  ) {
+    //=currentSegment
+    //=featureIndex
+    //=multiFeatureIndex
+    //=geometryIndex
+    //=segmentIndex
+  }
+);
 
 // Calculate the total number of segments
 var total = 0;
 turf.segmentEach(polygon, function () {
-    total++;
+  total++;
 });
 ```
 
-Returns **void** 
+Returns **void**
 
 ## segmentReduceCallback
 
@@ -565,25 +644,25 @@ on whether the reduce method has an initialValue argument.
 
 If an initialValue is provided to the reduce method:
 
-*   The previousValue argument is initialValue.
-*   The currentValue argument is the value of the first element present in the array.
+- The previousValue argument is initialValue.
+- The currentValue argument is the value of the first element present in the array.
 
 If an initialValue is not provided:
 
-*   The previousValue argument is the value of the first element present in the array.
-*   The currentValue argument is the value of the second element present in the array.
+- The previousValue argument is the value of the first element present in the array.
+- The currentValue argument is the value of the second element present in the array.
 
 Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
-*   `currentSegment` **[Feature][5]<[LineString][10]>** The current Segment being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
-*   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
-*   `segmentIndex` **[number][3]** The current index of the Segment being processed.
+- `previousValue` **any** The accumulated value previously returned in the last invocation
+  of the callback, or initialValue, if supplied.
+- `currentSegment` **[Feature][5]<[LineString][10]>** The current Segment being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed.
+- `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
+- `geometryIndex` **[number][3]** The current index of the Geometry being processed.
+- `segmentIndex` **[number][3]** The current index of the Segment being processed.
 
 ## segmentReduce
 
@@ -592,35 +671,57 @@ Reduce 2-vertex line segment in any GeoJSON object, similar to Array.reduce()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON
-*   `callback` **[Function][1]** a method that takes (previousValue, currentSegment, currentIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON
+- `callback` **[Function][1]** a method that takes (previousValue, currentSegment, currentIndex)
+- `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
 ```javascript
-var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
+var polygon = turf.polygon([
+  [
+    [-50, 5],
+    [-40, -10],
+    [-50, -10],
+    [-40, 5],
+    [-50, 5],
+  ],
+]);
 
 // Iterate over GeoJSON by 2-vertex segments
-turf.segmentReduce(polygon, function (previousSegment, currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex) {
-  //= previousSegment
-  //= currentSegment
-  //= featureIndex
-  //= multiFeatureIndex
-  //= geometryIndex
-  //= segmentIndex
-  return currentSegment
-});
+turf.segmentReduce(
+  polygon,
+  function (
+    previousSegment,
+    currentSegment,
+    featureIndex,
+    multiFeatureIndex,
+    geometryIndex,
+    segmentIndex
+  ) {
+    //= previousSegment
+    //= currentSegment
+    //= featureIndex
+    //= multiFeatureIndex
+    //= geometryIndex
+    //= segmentIndex
+    return currentSegment;
+  }
+);
 
 // Calculate the total number of segments
-var initialValue = 0
-var total = turf.segmentReduce(polygon, function (previousValue) {
+var initialValue = 0;
+var total = turf.segmentReduce(
+  polygon,
+  function (previousValue) {
     previousValue++;
     return previousValue;
-}, initialValue);
+  },
+  initialValue
+);
 ```
 
-Returns **void** 
+Returns **void**
 
 ## lineEachCallback
 
@@ -630,10 +731,10 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentLine` **[Feature][5]<[LineString][10]>** The current LineString|LinearRing being processed
-*   `featureIndex` **[number][3]** The current index of the Feature being processed
-*   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed
-*   `geometryIndex` **[number][3]** The current index of the Geometry being processed
+- `currentLine` **[Feature][5]<[LineString][10]>** The current LineString|LinearRing being processed
+- `featureIndex` **[number][3]** The current index of the Feature being processed
+- `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed
+- `geometryIndex` **[number][3]** The current index of the Geometry being processed
 
 ## lineEach
 
@@ -642,23 +743,33 @@ similar to Array.forEach.
 
 ### Parameters
 
-*   `geojson` **([Geometry][6] | [Feature][5]<([LineString][10] | [Polygon][11] | [MultiLineString][12] | [MultiPolygon][13])>)** object
-*   `callback` **[Function][1]** a method that takes (currentLine, featureIndex, multiFeatureIndex, geometryIndex)
+- `geojson` **([Geometry][6] | [Feature][5]<([LineString][10] | [Polygon][11] | [MultiLineString][12] | [MultiPolygon][13])>)** object
+- `callback` **[Function][1]** a method that takes (currentLine, featureIndex, multiFeatureIndex, geometryIndex)
 
 ### Examples
 
 ```javascript
 var multiLine = turf.multiLineString([
-  [[26, 37], [35, 45]],
-  [[36, 53], [38, 50], [41, 55]]
+  [
+    [26, 37],
+    [35, 45],
+  ],
+  [
+    [36, 53],
+    [38, 50],
+    [41, 55],
+  ],
 ]);
 
-turf.lineEach(multiLine, function (currentLine, featureIndex, multiFeatureIndex, geometryIndex) {
-  //=currentLine
-  //=featureIndex
-  //=multiFeatureIndex
-  //=geometryIndex
-});
+turf.lineEach(
+  multiLine,
+  function (currentLine, featureIndex, multiFeatureIndex, geometryIndex) {
+    //=currentLine
+    //=featureIndex
+    //=multiFeatureIndex
+    //=geometryIndex
+  }
+);
 ```
 
 ## lineReduceCallback
@@ -670,24 +781,24 @@ on whether the reduce method has an initialValue argument.
 
 If an initialValue is provided to the reduce method:
 
-*   The previousValue argument is initialValue.
-*   The currentValue argument is the value of the first element present in the array.
+- The previousValue argument is initialValue.
+- The currentValue argument is the value of the first element present in the array.
 
 If an initialValue is not provided:
 
-*   The previousValue argument is the value of the first element present in the array.
-*   The currentValue argument is the value of the second element present in the array.
+- The previousValue argument is the value of the first element present in the array.
+- The currentValue argument is the value of the second element present in the array.
 
 Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
-    of the callback, or initialValue, if supplied.
-*   `currentLine` **[Feature][5]<[LineString][10]>** The current LineString|LinearRing being processed.
-*   `featureIndex` **[number][3]** The current index of the Feature being processed
-*   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed
-*   `geometryIndex` **[number][3]** The current index of the Geometry being processed
+- `previousValue` **any** The accumulated value previously returned in the last invocation
+  of the callback, or initialValue, if supplied.
+- `currentLine` **[Feature][5]<[LineString][10]>** The current LineString|LinearRing being processed.
+- `featureIndex` **[number][3]** The current index of the Feature being processed
+- `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed
+- `geometryIndex` **[number][3]** The current index of the Geometry being processed
 
 ## lineReduce
 
@@ -695,26 +806,56 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 
 ### Parameters
 
-*   `geojson` **([Geometry][6] | [Feature][5]<([LineString][10] | [Polygon][11] | [MultiLineString][12] | [MultiPolygon][13])>)** object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentLine, featureIndex, multiFeatureIndex, geometryIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+- `geojson` **([Geometry][6] | [Feature][5]<([LineString][10] | [Polygon][11] | [MultiLineString][12] | [MultiPolygon][13])>)** object
+- `callback` **[Function][1]** a method that takes (previousValue, currentLine, featureIndex, multiFeatureIndex, geometryIndex)
+- `initialValue` **any?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
 ```javascript
 var multiPoly = turf.multiPolygon([
-  turf.polygon([[[12,48],[2,41],[24,38],[12,48]], [[9,44],[13,41],[13,45],[9,44]]]),
-  turf.polygon([[[5, 5], [0, 0], [2, 2], [4, 4], [5, 5]]])
+  turf.polygon([
+    [
+      [12, 48],
+      [2, 41],
+      [24, 38],
+      [12, 48],
+    ],
+    [
+      [9, 44],
+      [13, 41],
+      [13, 45],
+      [9, 44],
+    ],
+  ]),
+  turf.polygon([
+    [
+      [5, 5],
+      [0, 0],
+      [2, 2],
+      [4, 4],
+      [5, 5],
+    ],
+  ]),
 ]);
 
-turf.lineReduce(multiPoly, function (previousValue, currentLine, featureIndex, multiFeatureIndex, geometryIndex) {
-  //=previousValue
-  //=currentLine
-  //=featureIndex
-  //=multiFeatureIndex
-  //=geometryIndex
-  return currentLine
-});
+turf.lineReduce(
+  multiPoly,
+  function (
+    previousValue,
+    currentLine,
+    featureIndex,
+    multiFeatureIndex,
+    geometryIndex
+  ) {
+    //=previousValue
+    //=currentLine
+    //=featureIndex
+    //=multiFeatureIndex
+    //=geometryIndex
+    return currentLine;
+  }
+);
 ```
 
 Returns **any** The value that results from the reduction.
@@ -728,23 +869,31 @@ Point & MultiPoint will always return null.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** Any GeoJSON Feature or Geometry
-*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** Any GeoJSON Feature or Geometry
+- `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-    *   `options.featureIndex` **[number][3]** Feature Index (optional, default `0`)
-    *   `options.multiFeatureIndex` **[number][3]** Multi-Feature Index (optional, default `0`)
-    *   `options.geometryIndex` **[number][3]** Geometry Index (optional, default `0`)
-    *   `options.segmentIndex` **[number][3]** Segment Index (optional, default `0`)
-    *   `options.properties` **[Object][8]** Translate Properties to output LineString (optional, default `{}`)
-    *   `options.bbox` **[BBox][14]** Translate BBox to output LineString (optional, default `{}`)
-    *   `options.id` **([number][3] | [string][9])** Translate Id to output LineString (optional, default `{}`)
+  - `options.featureIndex` **[number][3]** Feature Index (optional, default `0`)
+  - `options.multiFeatureIndex` **[number][3]** Multi-Feature Index (optional, default `0`)
+  - `options.geometryIndex` **[number][3]** Geometry Index (optional, default `0`)
+  - `options.segmentIndex` **[number][3]** Segment Index (optional, default `0`)
+  - `options.properties` **[Object][8]** Translate Properties to output LineString (optional, default `{}`)
+  - `options.bbox` **[BBox][14]** Translate BBox to output LineString (optional, default `{}`)
+  - `options.id` **([number][3] | [string][9])** Translate Id to output LineString (optional, default `{}`)
 
 ### Examples
 
 ```javascript
 var multiLine = turf.multiLineString([
-    [[10, 10], [50, 30], [30, 40]],
-    [[-10, -10], [-50, -30], [-30, -40]]
+  [
+    [10, 10],
+    [50, 30],
+    [30, 40],
+  ],
+  [
+    [-10, -10],
+    [-50, -30],
+    [-30, -40],
+  ],
 ]);
 
 // First Segment (defaults are 0)
@@ -752,11 +901,11 @@ turf.findSegment(multiLine);
 // => Feature<LineString<[[10, 10], [50, 30]]>>
 
 // First Segment of 2nd Multi Feature
-turf.findSegment(multiLine, {multiFeatureIndex: 1});
+turf.findSegment(multiLine, { multiFeatureIndex: 1 });
 // => Feature<LineString<[[-10, -10], [-50, -30]]>>
 
 // Last Segment of Last Multi Feature
-turf.findSegment(multiLine, {multiFeatureIndex: -1, segmentIndex: -1});
+turf.findSegment(multiLine, { multiFeatureIndex: -1, segmentIndex: -1 });
 // => Feature<LineString<[[-50, -30], [-30, -40]]>>
 ```
 
@@ -770,23 +919,31 @@ Negative indexes are permitted.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** Any GeoJSON Feature or Geometry
-*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
+- `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** Any GeoJSON Feature or Geometry
+- `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-    *   `options.featureIndex` **[number][3]** Feature Index (optional, default `0`)
-    *   `options.multiFeatureIndex` **[number][3]** Multi-Feature Index (optional, default `0`)
-    *   `options.geometryIndex` **[number][3]** Geometry Index (optional, default `0`)
-    *   `options.coordIndex` **[number][3]** Coord Index (optional, default `0`)
-    *   `options.properties` **[Object][8]** Translate Properties to output Point (optional, default `{}`)
-    *   `options.bbox` **[BBox][14]** Translate BBox to output Point (optional, default `{}`)
-    *   `options.id` **([number][3] | [string][9])** Translate Id to output Point (optional, default `{}`)
+  - `options.featureIndex` **[number][3]** Feature Index (optional, default `0`)
+  - `options.multiFeatureIndex` **[number][3]** Multi-Feature Index (optional, default `0`)
+  - `options.geometryIndex` **[number][3]** Geometry Index (optional, default `0`)
+  - `options.coordIndex` **[number][3]** Coord Index (optional, default `0`)
+  - `options.properties` **[Object][8]** Translate Properties to output Point (optional, default `{}`)
+  - `options.bbox` **[BBox][14]** Translate BBox to output Point (optional, default `{}`)
+  - `options.id` **([number][3] | [string][9])** Translate Id to output Point (optional, default `{}`)
 
 ### Examples
 
 ```javascript
 var multiLine = turf.multiLineString([
-    [[10, 10], [50, 30], [30, 40]],
-    [[-10, -10], [-50, -30], [-30, -40]]
+  [
+    [10, 10],
+    [50, 30],
+    [30, 40],
+  ],
+  [
+    [-10, -10],
+    [-50, -30],
+    [-30, -40],
+  ],
 ]);
 
 // First Segment (defaults are 0)
@@ -794,44 +951,30 @@ turf.findPoint(multiLine);
 // => Feature<Point<[10, 10]>>
 
 // First Segment of the 2nd Multi-Feature
-turf.findPoint(multiLine, {multiFeatureIndex: 1});
+turf.findPoint(multiLine, { multiFeatureIndex: 1 });
 // => Feature<Point<[-10, -10]>>
 
 // Last Segment of last Multi-Feature
-turf.findPoint(multiLine, {multiFeatureIndex: -1, coordIndex: -1});
+turf.findPoint(multiLine, { multiFeatureIndex: -1, coordIndex: -1 });
 // => Feature<Point<[-30, -40]>>
 ```
 
 Returns **[Feature][5]<[Point][15]>** 2-vertex GeoJSON Feature Point
 
 [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
-
 [2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
-
 [3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
-
 [4]: https://tools.ietf.org/html/rfc7946#section-3.3
-
 [5]: https://tools.ietf.org/html/rfc7946#section-3.2
-
 [6]: https://tools.ietf.org/html/rfc7946#section-3.1
-
 [7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
-
 [8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
-
 [9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
-
 [10]: https://tools.ietf.org/html/rfc7946#section-3.1.4
-
 [11]: https://tools.ietf.org/html/rfc7946#section-3.1.6
-
 [12]: https://tools.ietf.org/html/rfc7946#section-3.1.5
-
 [13]: https://tools.ietf.org/html/rfc7946#section-3.1.7
-
 [14]: https://tools.ietf.org/html/rfc7946#section-5
-
 [15]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
 <!-- This file is automatically generated. Please don't edit it directly:

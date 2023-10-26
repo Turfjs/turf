@@ -200,18 +200,31 @@ test("coordEach -- MultiPolygon", (t) => {
   const coordIndexes = [];
   const featureIndexes = [];
   const multiFeatureIndexes = [];
+  const geometryIndexes = [];
+  const indexInRings = [];
   meta.coordEach(
     multiPoly,
-    (coord, coordIndex, featureIndex, multiFeatureIndex) => {
+    (
+      coord,
+      coordIndex,
+      featureIndex,
+      multiFeatureIndex,
+      geometryIndex,
+      indexInRing
+    ) => {
       coords.push(coord);
       coordIndexes.push(coordIndex);
       featureIndexes.push(featureIndex);
       multiFeatureIndexes.push(multiFeatureIndex);
+      geometryIndexes.push(geometryIndex);
+      indexInRings.push(indexInRing);
     }
   );
   t.deepEqual(coordIndexes, [0, 1, 2, 3, 4, 5, 6, 7]);
   t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0]);
   t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 1, 1, 1, 1]);
+  t.deepEqual(geometryIndexes, [0, 0, 0, 0, 0, 0, 0, 0]);
+  t.deepEqual(indexInRings, [0, 1, 2, 3, 0, 1, 2, 3]);
   t.equal(coords.length, 8);
   t.end();
 });
@@ -1083,20 +1096,30 @@ test("meta.coordEach -- indexes -- PolygonWithHole", (t) => {
   const featureIndexes = [];
   const multiFeatureIndexes = [];
   const geometryIndexes = [];
+  const indexesInRings = [];
 
   meta.coordEach(
     polyWithHole,
-    (coords, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) => {
+    (
+      coords,
+      coordIndex,
+      featureIndex,
+      multiFeatureIndex,
+      geometryIndex,
+      indexInRing
+    ) => {
       coordIndexes.push(coordIndex);
       featureIndexes.push(featureIndex);
       multiFeatureIndexes.push(multiFeatureIndex);
       geometryIndexes.push(geometryIndex);
+      indexesInRings.push(indexInRing);
     }
   );
   t.deepEqual(coordIndexes, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
   t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   t.deepEqual(geometryIndexes, [0, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
+  t.deepEqual(indexesInRings, [0, 1, 2, 3, 4, 0, 1, 2, 3, 4]);
   t.end();
 });
 
@@ -1147,6 +1170,7 @@ test("meta.coordEach -- indexes -- Multi-Polygon with hole", (t) => {
   const multiFeatureIndexes = [];
   const geometryIndexes = [];
   const coordIndexes = [];
+  const indexesInRing = [];
 
   // MultiPolygon with hole
   // ======================
@@ -1200,11 +1224,19 @@ test("meta.coordEach -- indexes -- Multi-Polygon with hole", (t) => {
 
   meta.coordEach(
     multiPolyWithHole,
-    (coord, coordIndex, featureIndex, multiFeatureIndex, geometryIndex) => {
+    (
+      coord,
+      coordIndex,
+      featureIndex,
+      multiFeatureIndex,
+      geometryIndex,
+      indexInRing
+    ) => {
       featureIndexes.push(featureIndex);
       multiFeatureIndexes.push(multiFeatureIndex);
       geometryIndexes.push(geometryIndex);
       coordIndexes.push(coordIndex);
+      indexesInRing.push(indexInRing);
     }
   );
 
@@ -1215,8 +1247,7 @@ test("meta.coordEach -- indexes -- Multi-Polygon with hole", (t) => {
   );
   t.deepEqual(geometryIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
   t.deepEqual(coordIndexes, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
-  // Major Release Change v6.x
-  // t.deepEqual(coordIndexes,        [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4]);
+  t.deepEqual(indexesInRing, [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4]);
   t.end();
 });
 
