@@ -2,12 +2,15 @@ import { polygon as createPolygon, multiPolygon } from "@turf/helpers";
 import polygonClipping from "polygon-clipping";
 
 /**
- * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes.
+ * Takes any type of {@link Polygon|polygon} and an optional mask and returns a {@link Polygon|polygon} exterior ring with holes. If the input polygon has holes
+ * and you'd like to retain them then set `ignoreHoles=false` and a {@link MultiPolygon|multipolygon} will be returned where the holes will be returned as outer rings.
  *
  * @name mask
  * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} polygon GeoJSON Polygon used as interior rings or holes.
  * @param {Feature<Polygon>} [mask] GeoJSON Polygon used as the exterior ring (if undefined, the world extent is used)
- * @returns {Feature<Polygon>} Masked Polygon (exterior ring with holes).
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.ignoreHoles=true] Ignore holes in the input polygon. If false then they are converted to outer rings and a MultiPolygon is returned.
+ * @returns {Feature<Polygon|MultiPolygon>} Masked Polygon (exterior ring with holes).
  * @example
  * var polygon = turf.polygon([[[112, -21], [116, -36], [146, -39], [153, -24], [133, -10], [112, -21]]]);
  * var mask = turf.polygon([[[90, -55], [170, -55], [170, 10], [90, 10], [90, -55]]]);
@@ -17,9 +20,18 @@ import polygonClipping from "polygon-clipping";
  * //addToMap
  * var addToMap = [masked]
  */
-function mask(polygon, mask) {
+function mask(polygon, mask, options) {
+  // Handling in case someone doesn't pass in a mask but they do provide options
+  if (typeof mask === "object" && !("type" in mask) && options === undefined) {
+    options = mask;
+    mask = undefined;
+  }
+
+  options = options || {};
+
+  var ignoreHoles = "ignoreHoles" in options ? options.ignoreHoles : true;
   // Define mask
-  var maskPolygon = createMask(mask);
+  var maskPolygon = createMask(mask, ignoreHoles);
 
   var polygonOuters = null;
   if (polygon.type === "FeatureCollection") polygonOuters = unionFc(polygon);
@@ -29,7 +41,15 @@ function mask(polygon, mask) {
     );
 
   polygonOuters.geometry.coordinates.forEach(function (contour) {
-    maskPolygon.geometry.coordinates.push(contour[0]);
+    if (ignoreHoles) {
+      maskPolygon.geometry.coordinates.push(contour[0]);
+    } else {
+      for (let index = 0; index < contour.length; index++) {
+        const ring = contour[index];
+        if (index === 0) maskPolygon.geometry.coordinates[0].push(ring);
+        else maskPolygon.geometry.coordinates.push([ring]);
+      }
+    }
   });
 
   return maskPolygon;
@@ -60,9 +80,10 @@ function createGeomFromPolygonClippingOutput(unioned) {
  *
  * @private
  * @param {Feature<Polygon>} [mask] default to world if undefined
+ * @param {Boolean} [ignoreHoles] whether to ignore holes or not. If false we return a MultiPolygon
  * @returns {Feature<Polygon>} mask coordinate
  */
-function createMask(mask) {
+function createMask(mask, ignoreHoles) {
   var world = [
     [
       [180, 90],
@@ -73,7 +94,8 @@ function createMask(mask) {
     ],
   ];
   var coordinates = (mask && mask.geometry.coordinates) || world;
-  return createPolygon(coordinates);
+
+  return ignoreHoles ? createPolygon(coordinates) : multiPolygon([coordinates]);
 }
 
 export default mask;

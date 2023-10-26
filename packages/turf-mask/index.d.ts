@@ -6,4 +6,4 @@ import { Feature, Polygon, MultiPolygon, FeatureCollection } from "geojson";
 export default function <T extends Polygon | MultiPolygon>(
   poly: Feature<T> | FeatureCollection<T> | T,
   mask?: Feature<Polygon> | Polygon
-): Feature<Polygon>;
+): Feature<Polygon | MultiPolygon>;
