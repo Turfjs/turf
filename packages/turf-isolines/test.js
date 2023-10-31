@@ -41,6 +41,7 @@ test("isolines", (t) => {
     // Add red line around point data
     results.features.push(
       lineString(getCoords(envelope(points))[0], {
+        description: "Debug line for testing",
         stroke: "#F00",
         "stroke-width": 1,
       })

@@ -1,8 +1,9 @@
 import bbox from "@turf/bbox";
+import clone from "@turf/clone";
 import { coordEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
 import { multiLineString, featureCollection, isObject } from "@turf/helpers";
-import isoContours from "./lib/marchingsquares-isocontours";
+const { isoContours } = require("marchingsquares");
 import gridToMatrix from "./lib/grid-to-matrix";
 import {
   FeatureCollection,
@@ -108,7 +109,12 @@ function createIsoLines(
 
     const properties = { ...commonProperties, ...breaksProperties[i] };
     properties[zProperty] = threshold;
-    const isoline = multiLineString(isoContours(matrix, threshold), properties);
+    // Pass options to marchingsquares lib to reproduce historical turf
+    // behaviour.
+    const isoline = multiLineString(
+      isoContours(matrix, threshold, { linearRing: false, noFrame: true }),
+      properties
+    );
 
     results.push(isoline);
   }
@@ -151,11 +157,35 @@ function rescaleIsolines(
     point[1] = point[1] * scaleY + y0;
   };
 
-  // resize and shift each point/line of the createdIsoLines
+  // Ok. We need to *clone* the returned isolines due to the behaviour of
+  // the marchingsquare library behaviour. Long story short, if we don't
+  // do this, the last point in some isoLines has the coordEach function
+  // run twice, leading to one point in the isoline rendering WAY out of
+  // position.
+  const clonedIsoLines: Feature<MultiLineString>[] = [];
   createdIsoLines.forEach((isoline) => {
+    clonedIsoLines.push(clone(isoline));
+  });
+
+  // resize and shift each point/line of the createdIsoLines
+  clonedIsoLines.forEach((isoline) => {
     coordEach(isoline, resize);
   });
-  return createdIsoLines;
+  return clonedIsoLines;
 }
+
+/*
+ * A bit more background on the isoContours behaviour described above. It
+ * seems like in some cases the last coord of the line references the same
+ * coord array as the first point. This just seems to be the way they're
+ * returned from the library:
+ * [0] -> A
+ * [1] -> B
+ * [2] -> C
+ * [3] -> A
+ * Running coordEach over this mutates the values in A, then B and C, then
+ * mutates [3] which happens to also be a reference to A. So the rescale
+ * transform is run twice on that coord.
+ */
 
 export default isolines;
