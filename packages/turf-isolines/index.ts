@@ -104,7 +104,7 @@ function createIsoLines(
   breaksProperties: GeoJsonProperties[]
 ): Feature<MultiLineString>[] {
   const results = [];
-  for (let i = 1; i < breaks.length; i++) {
+  for (let i = 0; i < breaks.length; i++) {
     const threshold = +breaks[i]; // make sure it's a number
 
     const properties = { ...commonProperties, ...breaksProperties[i] };

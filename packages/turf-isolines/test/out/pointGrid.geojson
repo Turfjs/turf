@@ -3,10 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "fill-opacity": 0.6,
-        "population": 20
-      },
+      "properties": { "fill-opacity": 0.5, "population": 20 },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [
@@ -66,10 +63,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "fill-opacity": 0.7,
-        "population": 40
-      },
+      "properties": { "fill-opacity": 0.6, "population": 40 },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [
@@ -133,10 +127,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "fill-opacity": 0.8,
-        "population": 80
-      },
+      "properties": { "fill-opacity": 0.7, "population": 80 },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [
@@ -162,13 +153,8 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "population": 160
-      },
-      "geometry": {
-        "type": "MultiLineString",
-        "coordinates": []
-      }
+      "properties": { "fill-opacity": 0.8, "population": 160 },
+      "geometry": { "type": "MultiLineString", "coordinates": [] }
     },
     {
       "type": "Feature",

@@ -12,7 +12,7 @@
   ],
   "origin": [10.85, 44],
   "cellSize": 20,
-  "breaks": [0, 4.5, 9, 13.5, 18],
+  "breaks": [4.5, 9, 13.5, 18],
   "commonProperties": {
     "stroke-width": 3,
     "stroke": "darkred",

@@ -3,9 +3,37 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "temperature": 4
-      },
+      "properties": { "temperature": 2 },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [10.863591, 44.279864],
+            [11.054363, 44.144966],
+            [11.308726, 44.144966],
+            [11.56309, 44.144966],
+            [11.817453, 44.144966],
+            [12.071816, 44.144966],
+            [12.262588, 44.279864],
+            [12.262588, 44.459728],
+            [12.262588, 44.639592],
+            [12.262588, 44.819456],
+            [12.071816, 44.954354],
+            [11.817453, 44.954354],
+            [11.56309, 44.954354],
+            [11.308726, 44.954354],
+            [11.054363, 44.954354],
+            [10.863591, 44.819456],
+            [10.863591, 44.639592],
+            [10.863591, 44.459728],
+            [10.863591, 44.279864]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "temperature": 4 },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [
@@ -35,9 +63,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "temperature": 8
-      },
+      "properties": { "temperature": 8 },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [
@@ -59,9 +85,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "temperature": 12
-      },
+      "properties": { "temperature": 12 },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [

@@ -6,8 +6,8 @@
       "properties": {
         "stroke-width": 4,
         "fill-opacity": 0.4,
-        "stroke": "blue",
-        "fill": "blue",
+        "stroke": "grey",
+        "fill": "grey",
         "pressure": 0.24
       },
       "geometry": {
@@ -265,8 +265,8 @@
       "properties": {
         "stroke-width": 4,
         "fill-opacity": 0.4,
-        "stroke": "green",
-        "fill": "green",
+        "stroke": "blue",
+        "fill": "blue",
         "pressure": 0.5
       },
       "geometry": {
@@ -620,8 +620,8 @@
       "properties": {
         "stroke-width": 4,
         "fill-opacity": 0.4,
-        "stroke": "yellow",
-        "fill": "yellow",
+        "stroke": "green",
+        "fill": "green",
         "pressure": 1.5
       },
       "geometry": {
@@ -964,8 +964,8 @@
       "properties": {
         "stroke-width": 4,
         "fill-opacity": 0.4,
-        "stroke": "red",
-        "fill": "red",
+        "stroke": "yellow",
+        "fill": "yellow",
         "pressure": 2.5
       },
       "geometry": {
@@ -1162,12 +1162,11 @@
       "properties": {
         "stroke-width": 4,
         "fill-opacity": 0.4,
+        "stroke": "red",
+        "fill": "red",
         "pressure": 100
       },
-      "geometry": {
-        "type": "MultiLineString",
-        "coordinates": []
-      }
+      "geometry": { "type": "MultiLineString", "coordinates": [] }
     },
     {
       "type": "Feature",
