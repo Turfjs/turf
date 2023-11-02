@@ -7,6 +7,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - Move distribution JS to target ES2017 (#2237)
 - [`@turf/helpers`](helpers) Correct the conversion factor for degrees (#2177)
 - [`@turf/helpers`](helpers) polygon() will now throw if the first and last coordinates are not the same (#2173)
+- [`@turf/helpers`](helpers) Separate AreaUnits into its own type (#2393)
 - [`@turf/area`](area) Fix earth radius to use WGS84 median earth radius (#2166)
 - [`@turf/turf`](turf) Remove re-exports for turf 4.x compatability (#2183)
 - [`@turf/rectangle-grid`](rectangle-grid) Fix correctness for large areas (#2106)
@@ -22,6 +23,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/boolean-point-in-polygon`](boolean-point-in-polygon) Move to point-in-polygon-hao library for performance and correctness (#1893)
 - [`@turf/line-intersect`][line-intersect] Move to sweepline-intersections library for performance (#2033)
 - [`@turf/boolean-contains`](boolean-contains) Add multipolygon support (#2338)
+- [`@turf/nearest-point`](nearest-point) Add unit option (#2415)
 
 ## 🐛 Bug Fixes
 - [`@turf/polygon-smooth`](polygon-smooth) Options argument is now actually optional (#2149)
@@ -42,6 +44,9 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/boolean-within`](boolean-within) Fix multipoint checks (#2216)
 - [`@turf/points-within-polygon`](points-within-polygon) Fix dropped properties on MultiPoint results (#2227)
 - [`@turf/random`](random) Throws error on invalid bbox inputs (#2172)
+- [`@turf/boolean-parallel`](boolean-parallel) Lines with 180 degree angle between them are also considered parallel (#2475)
+- [`@turf/unkink-polygon`](unkink-polygon) Fix a maximum call stack size exceeded error with very large polygons (#2504)
+- [`@turf/line-arc`](line-arc) Number of arc segments generated wasn't related to steps value passed in (#2524)
 
 ## 📖 Documentation
 - [`@turf/bbox`][bbox] Improve documentation (#2153)
@@ -52,6 +57,9 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/buffer`](buffer) Clean up Typescript types (#2188)
 - [`@turf/polygon-smooth`](polygon-smooth) Clean up a typo (#2293)
 - [`@turf/nearest-point-on-line`](nearest-point-on-line) Clean up typescript types (#2296)
+- [`@turf/boolean-touches`](boolean-touches) Add boolean-touches to docs (#2431)
+- [`@turf/boolean-equals`](boolean-equals) Improve docs (#2412)
+
 - Remove Bower references (#2146)
 - Fix typo in README (#2313)
 - Lots of cleanup for CONTRIBUTING, README, and RELEASING (#2186)
@@ -63,6 +71,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/turf](turf) Add booleanTouches export (#2170)
 - [`@turf/turf](turf) Add booleanConcave export (#2265)
 - [`@turf/helpers](helpers) Make isObject a little more accurate (#2176)
+- Add custom types entry point to exports, required by Typescript for node16, nodenext and bundler module resolution strategies (#2400, #2452)
 - types.ts tests are now run in strict mode (#2363)
 - Uses tslib now for smaller bundles (#2165)
 - Remove object-assign dependency from all packages (#2241)

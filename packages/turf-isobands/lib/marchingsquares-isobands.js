@@ -1626,7 +1626,15 @@ function computeBandGrid(data, minV, bandwidth) {
           lefttop,
           leftbottom;
 
-        topleft = topright = bottomleft = bottomright = righttop = rightbottom = lefttop = leftbottom = 0.5;
+        topleft =
+          topright =
+          bottomleft =
+          bottomright =
+          righttop =
+          rightbottom =
+          lefttop =
+          leftbottom =
+            0.5;
 
         var edges = [];
 

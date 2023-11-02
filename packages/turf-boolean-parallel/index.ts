@@ -53,7 +53,7 @@ function booleanParallel(
 function isParallel(segment1: Position[], segment2: Position[]) {
   var slope1 = bearingToAzimuth(rhumbBearing(segment1[0], segment1[1]));
   var slope2 = bearingToAzimuth(rhumbBearing(segment2[0], segment2[1]));
-  return slope1 === slope2;
+  return slope1 === slope2 || (slope2 - slope1) % 180 === 0;
 }
 
 /**

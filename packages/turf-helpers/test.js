@@ -642,7 +642,7 @@ test("turf-helpers -- isNumber", (t) => {
   t.true(isNumber("123"));
   t.true(isNumber(+"123"));
   t.true(isNumber("1e10000"));
-  t.true(isNumber(1e10000));
+  t.true(isNumber(1e100));
   t.true(isNumber(Infinity));
   t.true(isNumber(-Infinity));
 

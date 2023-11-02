@@ -4,9 +4,7 @@ import { point } from "@turf/helpers";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign#Polyfill
 function mathSign(x: number) {
-  return (
-    (((x > 0) as unknown) as number) - (((x < 0) as unknown) as number) || +x
-  );
+  return ((x > 0) as unknown as number) - ((x < 0) as unknown as number) || +x;
 }
 
 /**

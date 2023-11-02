@@ -29,7 +29,7 @@ import { getGeom } from "@turf/invariant";
  */
 export default function <
   G extends Polygon | MultiPolygon,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   poly: Feature<G, P> | G,
   options: { properties?: any } = {}
@@ -53,7 +53,10 @@ export default function <
 /**
  * @private
  */
-export function polygonToLine<G extends Polygon, P = GeoJsonProperties>(
+export function polygonToLine<
+  G extends Polygon,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
   poly: Feature<G, P> | G,
   options: { properties?: any } = {}
 ): Feature<LineString | MultiLineString, P> {
@@ -73,7 +76,7 @@ export function polygonToLine<G extends Polygon, P = GeoJsonProperties>(
  */
 export function multiPolygonToLine<
   G extends MultiPolygon,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   multiPoly: Feature<G, P> | G,
   options: { properties?: P } = {}
@@ -96,7 +99,7 @@ export function multiPolygonToLine<
 /**
  * @private
  */
-export function coordsToLine<P = GeoJsonProperties>(
+export function coordsToLine<P extends GeoJsonProperties = GeoJsonProperties>(
   coords: number[][][],
   properties: P
 ): Feature<LineString | MultiLineString, P> {

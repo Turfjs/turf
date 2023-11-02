@@ -59,3 +59,19 @@ test("nearest-point -- prevent input mutation", (t) => {
   t.deepEqual(pt2.properties, { distanceToPoint: "bar" });
   t.end();
 });
+
+test("nearest-point -- use different units", (t) => {
+  const pt1 = point([40, 50], { featureIndex: "foo" });
+  const pt2 = point([20, -10], { distanceToPoint: "bar" });
+  const pts = featureCollection([pt1, pt2]);
+  const distanceInKilometers = nearestPoint([0, 0], pts).properties
+    .distanceToPoint;
+  const distanceInMeters = nearestPoint([0, 0], pts, { units: "meters" })
+    .properties.distanceToPoint;
+  const oneKilometerInMeters = 1000;
+
+  // Check if the proper distance gets returned when using "units" option
+  t.equal(distanceInKilometers, distanceInMeters / oneKilometerInMeters);
+
+  t.end();
+});

@@ -36,7 +36,7 @@ import equal from "deep-equal";
  */
 function lineOverlap<
   G1 extends LineString | MultiLineString | Polygon | MultiPolygon,
-  G2 extends LineString | MultiLineString | Polygon | MultiPolygon
+  G2 extends LineString | MultiLineString | Polygon | MultiPolygon,
 >(
   line1: Feature<G1> | G1,
   line2: Feature<G2> | G2,
