@@ -13,7 +13,7 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.steps=64] number of steps
+ * @param {number} [options.steps=64] number of steps (straight segments) that will constitute the arc
  * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
  * @returns {Feature<LineString>} line arc
  * @example
