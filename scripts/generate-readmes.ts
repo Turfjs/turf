@@ -17,7 +17,7 @@ const yaml = require("yamljs");
    *   - outside or at the root level it will generate docs for all modules
    */
   const currentFolder = process.cwd().split(path.sep).pop() as string;
-  const packages = currentFolder.includes("turf-")
+  const packages = currentFolder.includes("packages/turf-")
     ? [path.join(process.cwd(), "package.json")]
     : glob.sync(
         path.join(__dirname, "..", "packages", "turf-*", "package.json")
