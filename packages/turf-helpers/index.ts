@@ -152,7 +152,7 @@ export type { Datum };
  */
 export function feature<
   G extends GeometryObject = Geometry,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geom: G | null,
   properties?: P,
@@ -229,7 +229,7 @@ export function geometry(
  *
  * //=point
  */
-export function point<P = GeoJsonProperties>(
+export function point<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -274,7 +274,7 @@ export function point<P = GeoJsonProperties>(
  *
  * //=points
  */
-export function points<P = GeoJsonProperties>(
+export function points<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -302,7 +302,7 @@ export function points<P = GeoJsonProperties>(
  *
  * //=polygon
  */
-export function polygon<P = GeoJsonProperties>(
+export function polygon<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -350,7 +350,7 @@ export function polygon<P = GeoJsonProperties>(
  *
  * //=polygons
  */
-export function polygons<P = GeoJsonProperties>(
+export function polygons<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -380,7 +380,7 @@ export function polygons<P = GeoJsonProperties>(
  * //=linestring1
  * //=linestring2
  */
-export function lineString<P = GeoJsonProperties>(
+export function lineString<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -414,7 +414,7 @@ export function lineString<P = GeoJsonProperties>(
  *
  * //=linestrings
  */
-export function lineStrings<P = GeoJsonProperties>(
+export function lineStrings<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -451,7 +451,7 @@ export function lineStrings<P = GeoJsonProperties>(
  */
 export function featureCollection<
   G extends GeometryObject = Geometry,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   features: Array<Feature<G, P>>,
   options: { bbox?: BBox; id?: Id } = {}
@@ -484,7 +484,9 @@ export function featureCollection<
  *
  * //=multiLine
  */
-export function multiLineString<P = GeoJsonProperties>(
+export function multiLineString<
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -513,7 +515,7 @@ export function multiLineString<P = GeoJsonProperties>(
  *
  * //=multiPt
  */
-export function multiPoint<P = GeoJsonProperties>(
+export function multiPoint<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -543,7 +545,7 @@ export function multiPoint<P = GeoJsonProperties>(
  * //=multiPoly
  *
  */
-export function multiPolygon<P = GeoJsonProperties>(
+export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -573,7 +575,9 @@ export function multiPolygon<P = GeoJsonProperties>(
  *
  * // => collection
  */
-export function geometryCollection<P = GeoJsonProperties>(
+export function geometryCollection<
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
   geometries: Array<
     Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
   >,

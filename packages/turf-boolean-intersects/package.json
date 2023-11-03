@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-intersects",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf boolean-intersects module",
   "author": "Turf Authors",
   "contributors": [
@@ -43,11 +43,11 @@
   ],
   "scripts": {
     "bench": "tsx bench.js",
-    "build": "npm-run-all build:*",
+    "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
+    "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
@@ -57,14 +57,13 @@
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "tslint": "*",
     "tsx": "*",
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/boolean-disjoint": "^7.0.0-alpha.0",
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/boolean-disjoint": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/meta": "^7.0.0-alpha.2",
     "tslib": "^2.3.0"
   }
 }

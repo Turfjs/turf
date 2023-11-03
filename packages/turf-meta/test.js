@@ -1209,23 +1209,10 @@ test("meta.coordEach -- indexes -- Multi-Polygon with hole", (t) => {
   );
 
   t.deepEqual(featureIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  t.deepEqual(multiFeatureIndexes, [
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-  ]);
+  t.deepEqual(
+    multiFeatureIndexes,
+    [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  );
   t.deepEqual(geometryIndexes, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
   t.deepEqual(coordIndexes, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
   // Major Release Change v6.x

@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-equal",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf boolean-equal module",
   "author": "Turf Authors",
   "contributors": [
@@ -46,11 +46,11 @@
   ],
   "scripts": {
     "bench": "tsx bench.js",
-    "build": "npm-run-all build:*",
+    "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
+    "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
@@ -62,14 +62,13 @@
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "tslint": "*",
     "tsx": "*",
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/clean-coords": "^7.0.0-alpha.0",
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/invariant": "^7.0.0-alpha.0",
+    "@turf/clean-coords": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/invariant": "^7.0.0-alpha.2",
     "geojson-equality": "0.1.6",
     "tslib": "^2.3.0"
   }

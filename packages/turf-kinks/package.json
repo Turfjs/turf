@@ -1,6 +1,6 @@
 {
   "name": "@turf/kinks",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf kinks module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -38,16 +38,16 @@
   ],
   "scripts": {
     "bench": "tsx bench.js",
-    "build": "npm-run-all build:*",
+    "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
+    "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.js",
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/meta": "^7.0.0-alpha.2",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
@@ -57,7 +57,7 @@
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.2",
     "sweepline-intersections": "^1.5.0",
     "tslib": "^2.3.0"
   }

@@ -71,7 +71,7 @@ export function getCoords<
     | Polygon
     | MultiPoint
     | MultiLineString
-    | MultiPolygon
+    | MultiPolygon,
 >(coords: any[] | Feature<G> | G): any[] {
   if (Array.isArray(coords)) {
     return coords;

@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-overlap",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf boolean-overlap module",
   "author": "Turf Authors",
   "contributors": [
@@ -45,11 +45,11 @@
   ],
   "scripts": {
     "bench": "tsx bench.js",
-    "build": "npm-run-all build:*",
+    "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
+    "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
@@ -61,16 +61,15 @@
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "tslint": "*",
     "tsx": "*",
     "typescript": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/invariant": "^7.0.0-alpha.0",
-    "@turf/line-intersect": "^7.0.0-alpha.0",
-    "@turf/line-overlap": "^7.0.0-alpha.0",
-    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/line-intersect": "^7.0.0-alpha.2",
+    "@turf/line-overlap": "^7.0.0-alpha.2",
+    "@turf/meta": "^7.0.0-alpha.2",
     "geojson-equality": "0.1.6",
     "tslib": "^2.3.0"
   }

@@ -22,7 +22,7 @@ import { polygon, Units } from "@turf/helpers";
  * //addToMap
  * var addToMap = [turf.point(center), circle]
  */
-function circle<P = GeoJsonProperties>(
+function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   center: number[] | Point | Feature<Point, P>,
   radius: number,
   options: {

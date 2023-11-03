@@ -1,6 +1,6 @@
 {
   "name": "@turf/quadrat-analysis",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf quadrat-analysis module",
   "author": "Turf Authors",
   "contributors": [
@@ -40,35 +40,34 @@
   ],
   "scripts": {
     "bench": "tsx bench.js",
-    "build": "npm-run-all build:*",
+    "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
+    "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "@turf/nearest-neighbor-analysis": "^7.0.0-alpha.0",
+    "@turf/nearest-neighbor-analysis": "^7.0.0-alpha.2",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "tslint": "*",
     "tsx": "*",
     "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/area": "^7.0.0-alpha.0",
-    "@turf/bbox": "^7.0.0-alpha.0",
-    "@turf/bbox-polygon": "^7.0.0-alpha.0",
-    "@turf/centroid": "^7.0.0-alpha.0",
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/invariant": "^7.0.0-alpha.0",
-    "@turf/point-grid": "^7.0.0-alpha.0",
-    "@turf/random": "^7.0.0-alpha.0",
-    "@turf/square-grid": "^7.0.0-alpha.0",
+    "@turf/area": "^7.0.0-alpha.2",
+    "@turf/bbox": "^7.0.0-alpha.2",
+    "@turf/bbox-polygon": "^7.0.0-alpha.2",
+    "@turf/centroid": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/point-grid": "^7.0.0-alpha.2",
+    "@turf/random": "^7.0.0-alpha.2",
+    "@turf/square-grid": "^7.0.0-alpha.2",
     "tslib": "^2.3.0"
   }
 }

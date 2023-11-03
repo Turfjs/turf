@@ -21,7 +21,7 @@ import { coordEach } from "@turf/meta";
  * //addToMap
  * var addToMap = [polygon, center]
  */
-function centerOfMass<P = GeoJsonProperties>(
+function centerOfMass<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: any,
   options: {
     properties?: P;

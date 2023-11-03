@@ -36,6 +36,28 @@ test("unkink-polygon", (t) => {
   t.end();
 });
 
+test("issue #2504", (t) => {
+  // fill coords with a circle with an arbitrary number of points
+  const coords = [];
+  const points = 1000000;
+  for (let i = 0; i < points; i++) {
+    const theta = (i / points) * (2 * Math.PI);
+    coords.push([Math.sin(theta), Math.cos(theta)]);
+  }
+  coords.push(coords[0]);
+
+  try {
+    unkinkPolygon({ type: "Polygon", coordinates: [coords] });
+    t.pass(
+      "large number of coordinates in a single ring should not cause an error"
+    );
+  } catch (e) {
+    t.fail(e);
+  }
+
+  t.end();
+});
+
 test("unkink-polygon -- throws", (t) => {
   var array = [1, 2, 3, 4, 5];
   for (const value in array) {
