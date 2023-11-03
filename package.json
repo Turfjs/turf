@@ -17,7 +17,7 @@
     "pretest": "npm run lint",
     "test": "lerna run test",
     "posttest": "lerna run --scope @turf/turf last-checks",
-    "docs": "node ./scripts/generate-readmes"
+    "docs": "tsx ./scripts/generate-readmes.ts"
   },
   "husky": {
     "hooks": {

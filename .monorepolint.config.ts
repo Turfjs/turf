@@ -164,7 +164,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            docs: "tsx ../../scripts/generate-readmes",
+            docs: "tsx ../../scripts/generate-readmes.ts",
             test: "npm-run-all --npm-path npm test:*",
           },
         },
