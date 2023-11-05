@@ -7,6 +7,6 @@ const points = featureCollection([
   point([28.948459, 41.024204]),
   point([28.938674, 41.013324]),
 ]);
-const nearest = nearestPoint(targetPoint, points);
+const nearest = nearestPoint(targetPoint, points, { units: "kilometers" });
 nearest.properties.distanceToPoint;
 nearest.properties.featureIndex;

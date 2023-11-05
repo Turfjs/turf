@@ -30,7 +30,7 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
  * //addToMap
  * var addToMap = [triangleGrid];
  */
-function triangleGrid<P = GeoJsonProperties>(
+function triangleGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,
   cellSide: number,
   options: {

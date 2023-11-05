@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-slice-along",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf line-slice-along module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -38,24 +38,25 @@
     "index.d.ts"
   ],
   "scripts": {
-    "bench": "node -r esm bench.js",
+    "bench": "tsx bench.js",
     "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
-    "docs": "node ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js"
+    "docs": "tsx ../../scripts/generate-readmes.ts",
+    "test": "npm-run-all --npm-path npm test:*",
+    "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "@turf/along": "^7.0.0-alpha.0",
+    "@turf/along": "^7.0.0-alpha.2",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
     "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "tsx": "*"
   },
   "dependencies": {
-    "@turf/bearing": "^7.0.0-alpha.0",
-    "@turf/destination": "^7.0.0-alpha.0",
-    "@turf/distance": "^7.0.0-alpha.0",
-    "@turf/helpers": "^7.0.0-alpha.0"
+    "@turf/bearing": "^7.0.0-alpha.2",
+    "@turf/destination": "^7.0.0-alpha.2",
+    "@turf/distance": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2"
   }
 }

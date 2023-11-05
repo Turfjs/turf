@@ -44,7 +44,9 @@ export default function (feature) {
     if (!equalArrays(ring[0], ring[ring.length - 1])) {
       ring.push(ring[0]); // Close input ring if it is not
     }
-    vertices.push.apply(vertices, ring.slice(0, ring.length - 1));
+    for (var j = 0; j < ring.length - 1; j++) {
+      vertices.push(ring[j]);
+    }
   }
   if (!isUnique(vertices))
     throw new Error(

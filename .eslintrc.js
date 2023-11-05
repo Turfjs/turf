@@ -14,18 +14,18 @@ const rules = {
 module.exports = {
   root: true,
   ignorePatterns: ["**/dist/**"],
+  parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
   ],
   parserOptions: {
     ecmaVersion: 6,
     sourceType: "module",
   },
-  env: { es6: true },
+  env: { es6: true, node: true },
   rules,
 
   overrides: [

@@ -1,6 +1,7 @@
 const Benchmark = require("benchmark");
 const grid = require("./index").default;
 
+// prettier-ignore
 var bbox = [
   -96.6357421875,
   31.12819929911196,

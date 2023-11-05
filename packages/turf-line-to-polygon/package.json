@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-to-polygon",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf line-to-polygon module",
   "author": "Turf Authors",
   "contributors": [
@@ -31,7 +31,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./index.d.ts",
+      "types": "./dist/js/index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
@@ -42,13 +42,13 @@
     "dist"
   ],
   "scripts": {
-    "bench": "ts-node bench.js",
-    "build": "npm-run-all build:*",
+    "bench": "tsx bench.js",
+    "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
-    "docs": "node ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
-    "test:tape": "ts-node -r esm test.js",
+    "docs": "tsx ../../scripts/generate-readmes.ts",
+    "test": "npm-run-all --npm-path npm test:*",
+    "test:tape": "tsx test.js",
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
@@ -57,16 +57,15 @@
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "ts-node": "*",
-    "tslint": "*",
+    "tsx": "*",
     "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/bbox": "^7.0.0-alpha.0",
-    "@turf/clone": "^7.0.0-alpha.0",
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/invariant": "^7.0.0-alpha.0",
+    "@turf/bbox": "^7.0.0-alpha.2",
+    "@turf/clone": "^7.0.0-alpha.2",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/invariant": "^7.0.0-alpha.2",
     "tslib": "^2.3.0"
   }
 }

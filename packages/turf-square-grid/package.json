@@ -1,6 +1,6 @@
 {
   "name": "@turf/square-grid",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf square-grid module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -28,7 +28,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./index.d.ts",
+      "types": "./dist/js/index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
@@ -39,29 +39,28 @@
     "dist"
   ],
   "scripts": {
-    "bench": "ts-node bench.js",
-    "build": "npm-run-all build:*",
+    "bench": "tsx bench.js",
+    "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
-    "docs": "node ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
-    "test:tape": "ts-node -r esm test.js"
+    "docs": "tsx ../../scripts/generate-readmes.ts",
+    "test": "npm-run-all --npm-path npm test:*",
+    "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "^7.0.0-alpha.0",
-    "@turf/truncate": "^7.0.0-alpha.0",
+    "@turf/bbox-polygon": "^7.0.0-alpha.2",
+    "@turf/truncate": "^7.0.0-alpha.2",
     "@types/tape": "*",
     "benchmark": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "ts-node": "*",
-    "tslint": "*",
+    "tsx": "*",
     "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.0",
-    "@turf/rectangle-grid": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/rectangle-grid": "^7.0.0-alpha.2",
     "tslib": "^2.3.0"
   }
 }
