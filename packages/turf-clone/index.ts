@@ -73,7 +73,7 @@ function cloneFeature(geojson: any) {
  * @param {Object} properties GeoJSON Properties
  * @returns {Object} cloned Properties
  */
-function cloneProperties(properties: GeoJsonProperties) {
+export function cloneProperties(properties: GeoJsonProperties) {
   const cloned: { [key: string]: any } = {};
   if (!properties) {
     return cloned;

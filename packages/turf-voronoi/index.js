@@ -1,5 +1,6 @@
 import { polygon, featureCollection, isObject } from "@turf/helpers";
 import { collectionOf } from "@turf/invariant";
+import { cloneProperties } from "@turf/clone";
 import * as d3voronoi from "d3-voronoi";
 
 /**
@@ -62,9 +63,7 @@ function voronoi(points, options) {
       .polygons(points.features)
       .map(function (coords, index) {
         return Object.assign(coordsToPolygon(coords), {
-          properties: JSON.parse(
-            JSON.stringify(points.features[index].properties)
-          ),
+          properties: cloneProperties(points.features[index].properties),
         });
       })
   );
