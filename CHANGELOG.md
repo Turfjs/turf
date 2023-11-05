@@ -22,7 +22,6 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/boolean-point-in-polygon`](boolean-point-in-polygon) Move to point-in-polygon-hao library for performance and correctness (#1893)
 - [`@turf/line-intersect`][line-intersect] Move to sweepline-intersections library for performance (#2033)
 - [`@turf/boolean-contains`](boolean-contains) Add multipolygon support (#2338)
-- [`@turf/voronoi`](voronoi) Retain properties from points (#1450)
 
 ## 🐛 Bug Fixes
 - [`@turf/polygon-smooth`](polygon-smooth) Options argument is now actually optional (#2149)
