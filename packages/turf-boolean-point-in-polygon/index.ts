@@ -38,7 +38,7 @@ import { getCoord, getGeom } from "@turf/invariant";
  */
 export default function booleanPointInPolygon<
   G extends Polygon | MultiPolygon,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   point: Coord,
   polygon: Feature<G, P> | G,

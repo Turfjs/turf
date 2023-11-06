@@ -1,6 +1,6 @@
 {
   "name": "@turf/tesselate",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf tesselate module",
   "author": "Turf Authors",
   "contributors": [
@@ -35,6 +35,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
@@ -46,20 +47,21 @@
     "index.d.ts"
   ],
   "scripts": {
-    "bench": "node -r esm bench.js",
+    "bench": "tsx bench.js",
     "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
-    "docs": "node ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js"
+    "docs": "tsx ../../scripts/generate-readmes.ts",
+    "test": "npm-run-all --npm-path npm test:*",
+    "test:tape": "tsx test.js"
   },
   "devDependencies": {
     "benchmark": "*",
     "npm-run-all": "*",
     "rollup": "*",
-    "tape": "*"
+    "tape": "*",
+    "tsx": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.2",
     "earcut": "^2.0.0"
   }
 }

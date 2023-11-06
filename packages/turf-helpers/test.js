@@ -524,7 +524,7 @@ test("radiansToDegrees", (t) => {
   t.end();
 });
 
-test("radiansToDegrees", (t) => {
+test("degreesToRadians", (t) => {
   t.equal(degreesToRadians(60), Math.PI / 3, "degrees conversion 60");
   t.equal(degreesToRadians(270), 1.5 * Math.PI, "degrees conversion 270");
   t.equal(degreesToRadians(-180), -Math.PI, "degrees conversion -180");
@@ -642,7 +642,7 @@ test("turf-helpers -- isNumber", (t) => {
   t.true(isNumber("123"));
   t.true(isNumber(+"123"));
   t.true(isNumber("1e10000"));
-  t.true(isNumber(1e10000));
+  t.true(isNumber(1e100));
   t.true(isNumber(Infinity));
   t.true(isNumber(-Infinity));
 

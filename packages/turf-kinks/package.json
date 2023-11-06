@@ -1,6 +1,6 @@
 {
   "name": "@turf/kinks",
-  "version": "7.0.0-alpha.0",
+  "version": "7.0.0-alpha.2",
   "description": "turf kinks module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -26,6 +26,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "types": "./dist/js/index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
@@ -36,27 +37,27 @@
     "dist"
   ],
   "scripts": {
-    "bench": "ts-node bench.js",
-    "build": "npm-run-all build:*",
+    "bench": "tsx bench.js",
+    "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
-    "docs": "node ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
-    "test:tape": "ts-node -r esm test.js",
+    "docs": "tsx ../../scripts/generate-readmes.ts",
+    "test": "npm-run-all --npm-path npm test:*",
+    "test:tape": "tsx test.js",
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/meta": "^7.0.0-alpha.0",
+    "@turf/meta": "^7.0.0-alpha.2",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "ts-node": "*",
+    "tsx": "*",
     "typescript": "*",
     "write-json-file": "*"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.0",
+    "@turf/helpers": "^7.0.0-alpha.2",
     "sweepline-intersections": "^1.5.0",
     "tslib": "^2.3.0"
   }

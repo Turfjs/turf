@@ -95,6 +95,7 @@ module.exports = {
             exports: {
               "./package.json": "./package.json",
               ".": {
+                types: "./index.d.ts",
                 import: "./dist/es/index.js",
                 require: "./dist/js/index.js",
               },
@@ -112,13 +113,6 @@ module.exports = {
             publishConfig: {
               access: "public",
             },
-            exports: {
-              "./package.json": "./package.json",
-              ".": {
-                import: "./dist/es/index.js",
-                require: "./dist/js/index.js",
-              },
-            },
           },
         },
         includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
@@ -128,6 +122,14 @@ module.exports = {
           entries: {
             types: "dist/js/index.d.ts",
             files: ["dist"],
+            exports: {
+              "./package.json": "./package.json",
+              ".": {
+                types: "./dist/js/index.d.ts",
+                import: "./dist/es/index.js",
+                require: "./dist/js/index.js",
+              },
+            },
           },
         },
         includePackages: TS_PACKAGES,
@@ -137,6 +139,14 @@ module.exports = {
           entries: {
             types: "index.d.ts",
             files: ["dist", "index.d.ts"],
+            exports: {
+              "./package.json": "./package.json",
+              ".": {
+                types: "./index.d.ts",
+                import: "./dist/es/index.js",
+                require: "./dist/js/index.js",
+              },
+            },
           },
         },
         includePackages: JS_PACKAGES,
@@ -154,8 +164,8 @@ module.exports = {
       {
         options: {
           scripts: {
-            docs: "node ../../scripts/generate-readmes",
-            test: "npm-run-all test:*",
+            docs: "tsx ../../scripts/generate-readmes.ts",
+            test: "npm-run-all --npm-path npm test:*",
           },
         },
         excludePackages: [MAIN_PACKAGE],
@@ -163,7 +173,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            build: "npm-run-all build:*",
+            build: "npm-run-all --npm-path npm build:*",
             "build:js": "tsc",
             "build:es":
               'tsc --outDir dist/es --module esnext --declaration false && echo \'{"type":"module"}\' > dist/es/package.json',
@@ -192,7 +202,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            "test:tape": "node -r esm test.js",
+            "test:tape": "tsx test.js",
           },
         },
         includePackages: JS_TAPE_PACKAGES,
@@ -200,7 +210,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            "test:tape": "ts-node -r esm test.js",
+            "test:tape": "tsx test.js",
           },
         },
         includePackages: TS_TAPE_PACKAGES,
@@ -208,7 +218,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            bench: "node -r esm bench.js",
+            bench: "tsx bench.js",
           },
         },
         includePackages: JS_TAPE_PACKAGES,
@@ -216,7 +226,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            bench: "ts-node bench.js",
+            bench: "tsx bench.js",
           },
         },
         includePackages: TS_TAPE_PACKAGES,
@@ -250,7 +260,7 @@ module.exports = {
             tslib: "^2.3.0",
           },
           devDependencies: {
-            "ts-node": "*",
+            tsx: "*",
             typescript: "*",
           },
         },
@@ -260,6 +270,7 @@ module.exports = {
         options: {
           devDependencies: {
             rollup: "*",
+            tsx: "*",
           },
         },
         includePackages: JS_PACKAGES,

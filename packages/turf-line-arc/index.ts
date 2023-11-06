@@ -13,7 +13,7 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.steps=64] number of steps
+ * @param {number} [options.steps=64] number of steps (straight segments) that will constitute the arc
  * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
  * @returns {Feature<LineString>} line arc
  * @example
@@ -57,21 +57,19 @@ export default function lineArc(
   const arcStartDegree = angle1;
   const arcEndDegree = angle1 < angle2 ? angle2 : angle2 + 360;
 
-  let alfa = arcStartDegree;
+  let alpha = arcStartDegree;
   const coordinates = [];
   let i = 0;
-
-  while (alfa < arcEndDegree) {
+  // How many degrees we'll swing around between each step.
+  const arcStep = (arcEndDegree - arcStartDegree) / steps;
+  // Add coords to the list, increasing the angle from our start bearing
+  // (alpha) by arcStep degrees until we reach the end bearing.
+  while (alpha <= arcEndDegree) {
     coordinates.push(
-      destination(center, radius, alfa, options).geometry.coordinates
+      destination(center, radius, alpha, options).geometry.coordinates
     );
     i++;
-    alfa = arcStartDegree + (i * 360) / steps;
-  }
-  if (alfa >= arcEndDegree) {
-    coordinates.push(
-      destination(center, radius, arcEndDegree, options).geometry.coordinates
-    );
+    alpha = arcStartDegree + i * arcStep;
   }
   return lineString(coordinates, properties);
 }
@@ -81,11 +79,11 @@ export default function lineArc(
  * and returns a valid angle between 0-360 degrees
  *
  * @private
- * @param {number} alfa angle between -180-180 degrees
+ * @param {number} alpha angle between -180-180 degrees
  * @returns {number} angle between 0-360 degrees
  */
-function convertAngleTo360(alfa: number) {
-  let beta = alfa % 360;
+function convertAngleTo360(alpha: number) {
+  let beta = alpha % 360;
   if (beta < 0) {
     beta += 360;
   }

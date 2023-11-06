@@ -38,7 +38,7 @@ import {
  * //addToMap
  * var addToMap = [poly1, poly2, union];
  */
-function union<P = GeoJsonProperties>(
+function union<P extends GeoJsonProperties = GeoJsonProperties>(
   features: FeatureCollection<Polygon | MultiPolygon>,
   options: { properties?: P } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {

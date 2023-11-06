@@ -1,6 +1,7 @@
 import Benchmark from "benchmark";
 import grid from "./dist/js/index.js";
 
+// prettier-ignore
 var bbox1 = [
   -96.6357421875,
   31.12819929911196,

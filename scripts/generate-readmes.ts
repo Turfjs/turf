@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+
+const fs = require("fs-extra");
+const glob = require("glob");
+const path = require("path");
+const load = require("load-json-file");
+const yaml = require("yamljs");
+
+(async () => {
+  // documentation v14 has moved to ESM so need to import as if async, and wrap
+  // in an IIFE as top level async not allowed.
+  const documentation = await import("documentation");
+
+  /**
+   * When firing `npm run docs`:
+   *   - inside a module, only the docs of that module will be generated
+   *   - outside or at the root level it will generate docs for all modules
+   */
+  const currentFolder = process.cwd().split(path.sep).pop() as string;
+  const packages = currentFolder.includes("packages/turf-")
+    ? [path.join(process.cwd(), "package.json")]
+    : glob.sync(
+        path.join(__dirname, "..", "packages", "turf-*", "package.json")
+      );
+
+  // Template for README Markdown
+  const postfix = fs.readFileSync(path.join(__dirname, "postfix.md"), "utf8");
+
+  const paths = yaml.parse(
+    fs.readFileSync(path.join(__dirname, "..", "documentation.yml"), "utf8")
+  ).paths;
+
+  packages.forEach((packagePath) => {
+    const directory = path.parse(packagePath).dir;
+    let indexPath = path.join(directory, "index.js");
+    const pckg = load.sync(packagePath);
+    const name = pckg.name;
+    const diagrams = glob
+      .sync(path.join(directory, "diagrams", "*"))
+      .filter(isImage);
+
+    // some of the packages are typescript instead
+    if (!fs.existsSync(indexPath)) {
+      indexPath = path.join(directory, "index.ts");
+    }
+
+    // Build Documentation
+    documentation
+      .build(indexPath, { shallow: true })
+      .then((res) => {
+        if (res === undefined) return console.warn(packagePath);
+        console.log("Building Docs: " + name);
+
+        // Format Markdown
+        documentation.formats
+          .md(res, { paths })
+          .then((markdown) => {
+            markdown = `# ${name}\n\n${markdown}${postfix.replace(
+              /{module}/,
+              name
+            )}`;
+            if (diagrams.length)
+              markdown += "\n\n### Diagrams\n\n" + diagramToMarkdown(diagrams);
+            fs.writeFileSync(path.join(directory, "README.md"), markdown);
+          })
+          .catch((error) => console.warn(error));
+      })
+      .catch((error) => console.warn(error));
+  });
+})();
+
+function isImage(image) {
+  return [".gif", ".jpg", ".png"].indexOf(path.parse(image).ext) !== -1;
+}
+
+function diagramToMarkdown(diagrams) {
+  return diagrams
+    .map((image) => {
+      const { name, base } = path.parse(image);
+      return `![${name}](diagrams/${base})`;
+    })
+    .join("\n");
+}

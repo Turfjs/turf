@@ -149,19 +149,19 @@ function simplifyPolygon(coordinates, tolerance, highQuality) {
     if (pts.length < 4) {
       throw new Error("invalid polygon");
     }
-    var simpleRing = simplifyJS(pts, tolerance, highQuality).map(function (
-      coords
-    ) {
-      return [coords.x, coords.y];
-    });
+    var simpleRing = simplifyJS(pts, tolerance, highQuality).map(
+      function (coords) {
+        return [coords.x, coords.y];
+      }
+    );
     //remove 1 percent of tolerance until enough points to make a triangle
     while (!checkValidity(simpleRing)) {
       tolerance -= tolerance * 0.01;
-      simpleRing = simplifyJS(pts, tolerance, highQuality).map(function (
-        coords
-      ) {
-        return [coords.x, coords.y];
-      });
+      simpleRing = simplifyJS(pts, tolerance, highQuality).map(
+        function (coords) {
+          return [coords.x, coords.y];
+        }
+      );
     }
     if (
       simpleRing[simpleRing.length - 1][0] !== simpleRing[0][0] ||

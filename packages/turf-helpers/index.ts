@@ -31,14 +31,16 @@ export type Units =
   | "centimetres"
   | "kilometers"
   | "kilometres"
-  | "acres"
   | "miles"
   | "nauticalmiles"
   | "inches"
   | "yards"
   | "feet"
   | "radians"
-  | "degrees"
+  | "degrees";
+export type AreaUnits =
+  | Exclude<Units, "radians" | "degrees">
+  | "acres"
   | "hectares";
 export type Grid = "point" | "square" | "hex" | "triangle";
 export type Corners = "sw" | "se" | "nw" | "ne" | "center" | "centroid";
@@ -70,7 +72,7 @@ export const earthRadius = 6371008.8;
  * @memberof helpers
  * @type {Object}
  */
-export const factors: { [key: string]: number } = {
+export const factors: Record<Units, number> = {
   centimeters: earthRadius * 100,
   centimetres: earthRadius * 100,
   degrees: 360 / (2 * Math.PI),
@@ -95,7 +97,7 @@ export const factors: { [key: string]: number } = {
  * @memberof helpers
  * @type {Object}
  */
-export const areaFactors: { [key: string]: number } = {
+export const areaFactors: Record<AreaUnits, number> = {
   acres: 0.000247105,
   centimeters: 10000,
   centimetres: 10000,
@@ -107,6 +109,7 @@ export const areaFactors: { [key: string]: number } = {
   meters: 1,
   metres: 1,
   miles: 3.86e-7,
+  nauticalmiles: 2.9155334959812285e-7,
   millimeters: 1000000,
   millimetres: 1000000,
   yards: 1.195990046,
@@ -134,7 +137,7 @@ export const areaFactors: { [key: string]: number } = {
  */
 export function feature<
   G extends GeometryObject = Geometry,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geom: G | null,
   properties?: P,
@@ -211,7 +214,7 @@ export function geometry(
  *
  * //=point
  */
-export function point<P = GeoJsonProperties>(
+export function point<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -256,7 +259,7 @@ export function point<P = GeoJsonProperties>(
  *
  * //=points
  */
-export function points<P = GeoJsonProperties>(
+export function points<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -284,7 +287,7 @@ export function points<P = GeoJsonProperties>(
  *
  * //=polygon
  */
-export function polygon<P = GeoJsonProperties>(
+export function polygon<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -332,7 +335,7 @@ export function polygon<P = GeoJsonProperties>(
  *
  * //=polygons
  */
-export function polygons<P = GeoJsonProperties>(
+export function polygons<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -362,7 +365,7 @@ export function polygons<P = GeoJsonProperties>(
  * //=linestring1
  * //=linestring2
  */
-export function lineString<P = GeoJsonProperties>(
+export function lineString<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -396,7 +399,7 @@ export function lineString<P = GeoJsonProperties>(
  *
  * //=linestrings
  */
-export function lineStrings<P = GeoJsonProperties>(
+export function lineStrings<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -433,7 +436,7 @@ export function lineStrings<P = GeoJsonProperties>(
  */
 export function featureCollection<
   G extends GeometryObject = Geometry,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   features: Array<Feature<G, P>>,
   options: { bbox?: BBox; id?: Id } = {}
@@ -466,7 +469,9 @@ export function featureCollection<
  *
  * //=multiLine
  */
-export function multiLineString<P = GeoJsonProperties>(
+export function multiLineString<
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -495,7 +500,7 @@ export function multiLineString<P = GeoJsonProperties>(
  *
  * //=multiPt
  */
-export function multiPoint<P = GeoJsonProperties>(
+export function multiPoint<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -525,7 +530,7 @@ export function multiPoint<P = GeoJsonProperties>(
  * //=multiPoly
  *
  */
-export function multiPolygon<P = GeoJsonProperties>(
+export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
@@ -555,7 +560,9 @@ export function multiPolygon<P = GeoJsonProperties>(
  *
  * // => collection
  */
-export function geometryCollection<P = GeoJsonProperties>(
+export function geometryCollection<
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
   geometries: Array<
     Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
   >,
@@ -716,8 +723,8 @@ export function convertLength(
  */
 export function convertArea(
   area: number,
-  originalUnit: Units = "meters",
-  finalUnit: Units = "kilometers"
+  originalUnit: AreaUnits = "meters",
+  finalUnit: AreaUnits = "kilometers"
 ): number {
   if (!(area >= 0)) {
     throw new Error("area must be a positive number");
