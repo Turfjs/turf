@@ -2173,6 +2173,11 @@
   resolved "https://registry.yarnpkg.com/@types/extend/-/extend-3.0.2.tgz#cabe436ca01e981f4ec6a49b55effe5e4eb1b8c2"
   integrity sha512-CqDQhn7jxaN9zw7zAu926zIx51ZzMaX8U8Wa4jGpKI6jeBr9ejFE68AQ+h+ztfrNJD+leo7K1cLbvMjpHfZSRg==
 
+"@types/geodesy@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@types/geodesy/-/geodesy-2.2.3.tgz#70ff892715cb69607469c50347421151331a9198"
+  integrity sha512-zpgJ6W/PH8nQN5fyiynfRGLa7X9Fij8QuvBzZhN+/63+nrLaj6sLF7KbgKf55HBGryCuyuA8fEB8QUeAFCPWrg==
+
 "@types/geojson-equality@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@types/geojson-equality/-/geojson-equality-0.2.0.tgz#2c7d411f534bee6bf2e7689c14c4c6f3dced2a8c"
@@ -5634,6 +5639,11 @@ gensync@^1.0.0-beta.1, gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
+
+geodesy@^2.3.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-2.4.0.tgz#6a0ad3dab3c1f95d8430aaa04fbe620b639c3e48"
+  integrity sha512-tHjQ1sXq8UAIEg1V0Pa6mznUxGU0R+3H5PIF6NULr0yPCAVLKqJro93Bbr19jSE18BMfyjN4osWDI4sm92m0kw==
 
 geojson-equality@0.1.6:
   version "0.1.6"

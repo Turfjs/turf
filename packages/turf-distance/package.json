@@ -47,6 +47,7 @@
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
+    "@types/geodesy": "^2.2.3",
     "@types/tape": "*",
     "benchmark": "*",
     "load-json-file": "*",
@@ -59,6 +60,7 @@
   "dependencies": {
     "@turf/helpers": "^7.0.0-alpha.2",
     "@turf/invariant": "^7.0.0-alpha.2",
+    "geodesy": "^2.3.0",
     "tslib": "^2.3.0"
   }
 }

@@ -3,8 +3,9 @@ const path = require("path");
 const test = require("tape");
 const load = require("load-json-file");
 const write = require("write-json-file");
-const { point } = require("@turf/helpers");
+const { datums, point } = require("@turf/helpers");
 const distance = require("./index").default;
+const { geodesicEllipsoidDistance } = require("./index");
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -54,5 +55,61 @@ test("distance -- throws", (t) => {
     () => distance(point([0, 0]), point([10, 10]), { units: "foo" }),
     /units is invalid/
   );
+  t.end();
+});
+
+test("distance -- Issue #1726 line between poles", (t) => {
+  const p1 = point([-33.6, 81.1]);
+  const p2 = point([64.5, -80.8]);
+
+  let overallDistance = distance(p1, p2, {
+    units: "meters",
+    datum: datums.WGS84,
+  });
+
+  const expected = 18682436.875; // m from QGIS
+  const tolerance = 0.01; // 1 cm expressed as m
+  t.true(
+    Math.abs(overallDistance - expected) < tolerance,
+    `${overallDistance} within ${tolerance} of ${expected}`
+  );
+
+  t.end();
+});
+
+test("distance -- Issue #1726 line near equator", (t) => {
+  const p1 = point([34, 15.9]);
+  const p2 = point([21, 0.2]);
+
+  let overallDistance = distance(p1, p2, {
+    units: "meters",
+    datum: datums.WGS84,
+  });
+
+  const expected = 2248334.18; // m from QGIS
+  const tolerance = 0.01; // 1 cm expressed as m
+  t.true(
+    Math.abs(overallDistance - expected) < tolerance,
+    `${overallDistance} within ${tolerance} of ${expected}`
+  );
+
+  t.end();
+});
+
+test("distance -- calling ellipsoid distance with empty options", (t) => {
+  // Make sure calling geodesicEllipsoidDistance directly without a datum
+  // option defaults to WGS84.
+  const p1 = point([-33.6, 81.1]);
+  const p2 = point([64.5, -80.8]);
+
+  let overallDistance = geodesicEllipsoidDistance(p1, p2);
+
+  const expected = 18682.436875; // m from QGIS as km
+  const tolerance = 0.00001; // 1 cm expressed as km
+  t.true(
+    Math.abs(overallDistance - expected) < tolerance,
+    `${overallDistance} within ${tolerance} of ${expected}`
+  );
+
   t.end();
 });

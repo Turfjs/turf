@@ -1,6 +1,6 @@
 import { Feature, FeatureCollection, GeometryCollection } from "geojson";
 import distance from "@turf/distance";
-import { Units } from "@turf/helpers";
+import type { Datum, Units } from "@turf/helpers";
 import { segmentReduce } from "@turf/meta";
 
 /**
@@ -23,6 +23,7 @@ export default function length(
   geojson: Feature<any> | FeatureCollection<any> | GeometryCollection,
   options: {
     units?: Units;
+    datum?: Datum;
   } = {}
 ): number {
   // Calculate distance from 2-vertex line segments

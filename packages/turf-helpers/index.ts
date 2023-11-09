@@ -14,6 +14,8 @@ import {
   Position,
   GeoJsonProperties,
 } from "geojson";
+import type { Datum } from "geodesy";
+import LatLonEllipsoidalVincenty from "geodesy/latlon-ellipsoidal-vincenty.js";
 
 import { Id } from "./lib/geojson";
 export * from "./lib/geojson";
@@ -114,6 +116,19 @@ export const areaFactors: Record<AreaUnits, number> = {
   millimetres: 1000000,
   yards: 1.195990046,
 };
+
+/**
+ * Common datum and ellipsoid definitions. Re-export verbatim from geodesy.
+ *
+ * @memberof helpers
+ * @type {Object}
+ */
+const datums = LatLonEllipsoidalVincenty.datums;
+export { datums };
+
+// Re-export type from geodesy so clients don't need to refer directly to
+// geodesy types.
+export type { Datum };
 
 /**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
