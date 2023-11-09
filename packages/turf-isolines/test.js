@@ -79,7 +79,7 @@ test("isolines - skipping first break, from issue #2129", (t) => {
     })
   );
 
-  // Make sure an isoline is created for each break, and that it's
+  // Make sure an isoline is created for each break, and that its
   // geometry isn't empty.
   t.equal(lines.features[0].properties.name, "break5");
   t.assert(lines.features[0].geometry.coordinates[0].length > 1);
