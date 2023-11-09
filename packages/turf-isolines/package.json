@@ -73,6 +73,7 @@
     "@turf/helpers": "^7.0.0-alpha.2",
     "@turf/invariant": "^7.0.0-alpha.2",
     "@turf/meta": "^7.0.0-alpha.2",
+    "marchingsquares": "^1.3.3",
     "tslib": "^2.3.0"
   }
 }
