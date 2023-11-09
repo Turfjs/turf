@@ -69,18 +69,18 @@
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
-    "camelcase": "*",
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "camelcase": "^8.0.0",
     "documentation": "^13.2.5",
-    "glob": "*",
-    "rollup": "^2.34.2",
+    "glob": "^10.3.10",
+    "rollup": "^2.79.1",
     "rollup-plugin-terser": "^7.0.2",
-    "tape": "*",
-    "tsx": "*"
+    "tape": "^5.7.2",
+    "tsx": "^3.14.0"
   },
   "dependencies": {
     "@turf/along": "^7.0.0-alpha.2",

@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import truncate from "@turf/truncate";
 import { polygon, multiPolygon } from "@turf/helpers";
 import simplify from "./index";
@@ -16,7 +16,7 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 // fixtures = fixtures.filter(({name}) => name.includes('#555'));
@@ -34,8 +34,9 @@ test("simplify", (t) => {
       })
     );
 
-    if (process.env.REGEN) write.sync(directories.out + filename, simplified);
-    t.deepEqual(simplified, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, simplified);
+    t.deepEqual(simplified, loadJsonFileSync(directories.out + filename), name);
   }
 
   t.end();

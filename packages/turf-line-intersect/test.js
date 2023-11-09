@@ -1,8 +1,8 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const truncate = require("@turf/truncate").default;
 const {
   featureCollection,
@@ -21,7 +21,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -32,8 +32,9 @@ test("turf-line-intersect", (t) => {
     results.features.push(line1);
     results.features.push(line2);
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEquals(results, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEquals(results, loadJsonFileSync(directories.out + filename), name);
   }
   t.end();
 });

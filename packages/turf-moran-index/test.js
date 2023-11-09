@@ -1,11 +1,11 @@
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const moranIndex = require("./dist/js/index.js").default;
 
 test("turf-moran-index", (t) => {
   const pointPath = path.join(__dirname, "test", "in", "point.json");
-  const pointJson = load.sync(pointPath);
+  const pointJson = loadJsonFileSync(pointPath);
 
   const result = moranIndex(pointJson, {
     inputField: "CRIME",
@@ -23,7 +23,7 @@ test("turf-moran-index", (t) => {
   );
 
   const columbusPath = path.join(__dirname, "test", "in", "columbus.json");
-  const columbusJson = load.sync(columbusPath);
+  const columbusJson = loadJsonFileSync(columbusPath);
 
   const result1 = moranIndex(columbusJson, {
     inputField: "CRIME",

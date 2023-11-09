@@ -1,8 +1,8 @@
 const test = require("tape");
 const path = require("path");
-const glob = require("glob");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { glob } = require("glob");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const sector = require("@turf/sector");
 const bearing = require("@turf/bearing").default;
 const truncate = require("@turf/truncate").default;
@@ -21,7 +21,7 @@ test("turf-angle", (t) => {
     .forEach((filepath) => {
       // Input
       const { name } = path.parse(filepath);
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const [start, mid, end] = geojson.features;
 
       // Results
@@ -87,8 +87,8 @@ test("turf-angle", (t) => {
         path.join("test", "in"),
         path.join("test", "out")
       );
-      if (process.env.REGEN) write.sync(expected, results);
-      t.deepEqual(results, load.sync(expected), name);
+      if (process.env.REGEN) writeJsonFileSync(expected, results);
+      t.deepEqual(results, loadJsonFileSync(expected), name);
     });
   t.end();
 });

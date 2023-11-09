@@ -1,11 +1,13 @@
 import path from "path";
 import test from "tape";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import tag from "./index";
 
 test("tag", (t) => {
-  const points = load.sync(path.join(__dirname, "test", "tagPoints.geojson"));
-  const polygons = load.sync(
+  const points = loadJsonFileSync(
+    path.join(__dirname, "test", "tagPoints.geojson")
+  );
+  const polygons = loadJsonFileSync(
     path.join(__dirname, "test", "tagPolygons.geojson")
   );
 
@@ -26,10 +28,10 @@ test("tag", (t) => {
 });
 
 test("tag -- multipolygon support", (t) => {
-  const points = load.sync(
+  const points = loadJsonFileSync(
     path.join(__dirname, "test", "tagMultiPolygonsPoints.geojson")
   );
-  const polygons = load.sync(
+  const polygons = loadJsonFileSync(
     path.join(__dirname, "test", "tagMultiPolygons.geojson")
   );
 

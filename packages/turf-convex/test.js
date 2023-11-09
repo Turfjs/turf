@@ -1,8 +1,8 @@
 const test = require("tape");
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
-const write = require("write-json-file");
-const load = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const { featureCollection } = require("@turf/helpers");
 const convex = require("./index").default;
 
@@ -14,13 +14,13 @@ const directories = {
 test("convex hull", (t) => {
   glob.sync(directories.in + "*.geojson").forEach((filepath) => {
     const fileout = filepath.replace("/in/", "/out/");
-    const geojson = load.sync(filepath);
+    const geojson = loadJsonFileSync(filepath);
 
     const convexHull = convex(geojson);
     geojson.features.push(convexHull);
 
-    if (process.env.REGEN) write.sync(fileout, geojson);
-    t.deepEqual(geojson, load.sync(fileout), path.parse(filepath).name);
+    if (process.env.REGEN) writeJsonFileSync(fileout, geojson);
+    t.deepEqual(geojson, loadJsonFileSync(fileout), path.parse(filepath).name);
   });
   t.end();
 });

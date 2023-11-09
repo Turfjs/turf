@@ -2,7 +2,7 @@ const { point } = require("@turf/helpers");
 
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const distanceWeight = require("./dist/js/index.js").default;
 const { pNormDistance } = require("./dist/js/index.js");
 
@@ -14,7 +14,7 @@ test("pNormDistance function", (t) => {
 
 test("turf-distance-weight", (t) => {
   const columbusPath = path.join(__dirname, "test", "in", "point.json");
-  const columbusJson = load.sync(columbusPath);
+  const columbusJson = loadJsonFileSync(columbusPath);
 
   let result = distanceWeight(columbusJson, {
     threshold: 1,

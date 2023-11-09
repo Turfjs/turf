@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import { polygon, point } from "@turf/helpers";
 import polygonTangents from "./index";
 
@@ -15,7 +15,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -25,8 +25,9 @@ test("turf-polygon-tangents", (t) => {
     const results = polygonTangents(pt, poly);
     results.features = results.features.concat(geojson.features);
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEqual(load.sync(directories.out + filename), results, name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEqual(loadJsonFileSync(directories.out + filename), results, name);
   }
   t.end();
 });

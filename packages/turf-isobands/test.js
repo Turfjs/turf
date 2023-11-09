@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import envelope from "@turf/envelope";
 import pointGrid from "@turf/point-grid";
 import truncate from "@turf/truncate";
@@ -21,7 +21,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    json: load.sync(directories.in + filename),
+    json: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -48,8 +48,12 @@ test("isobands", (t) => {
     );
 
     if (process.env.REGEN)
-      write.sync(directories.out + name + ".geojson", results);
-    t.deepEqual(results, load.sync(directories.out + name + ".geojson"), name);
+      writeJsonFileSync(directories.out + name + ".geojson", results);
+    t.deepEqual(
+      results,
+      loadJsonFileSync(directories.out + name + ".geojson"),
+      name
+    );
   });
 
   t.end();

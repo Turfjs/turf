@@ -1,8 +1,8 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const { point, lineString } = require("@turf/helpers");
 const clone = require("@turf/clone").default;
 const lineToPolygon = require("./index").default;
@@ -16,7 +16,7 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 // fixtures = fixtures.filter(fixture => fixture.name === 'multi-linestrings-with-holes');
@@ -32,8 +32,9 @@ test("turf-linestring-to-polygon", (t) => {
       orderCoords: orderCoords,
     });
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEqual(load.sync(directories.out + filename), results, name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEqual(loadJsonFileSync(directories.out + filename), results, name);
     t.deepEqual(originalInput, geojson);
   }
   // Handle Errors

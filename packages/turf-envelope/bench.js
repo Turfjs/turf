@@ -1,9 +1,9 @@
 import path from "path";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
 import envelope from "./index";
 
-const fixture = load.sync(
+const fixture = loadJsonFileSync(
   path.join(__dirname, "test", "in", "feature-collection.geojson")
 );
 
