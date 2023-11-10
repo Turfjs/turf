@@ -1,7 +1,7 @@
 const Benchmark = require("benchmark");
 const moranIndex = require("./dist/js/index.js").default;
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 
 /**
  * Benchmark Results
@@ -12,7 +12,7 @@ const load = require("load-json-file");
 const suite = new Benchmark.Suite("turf-moran-index");
 
 const pointPath = path.join(__dirname, "test", "in", "point.json");
-const pointJson = load.sync(pointPath);
+const pointJson = loadJsonFileSync(pointPath);
 
 const { name } = path.parse(pointPath);
 

@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import truncate from "@turf/truncate";
 import { featureEach } from "@turf/meta";
 import {
@@ -22,7 +22,7 @@ var fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 // fixtures = fixtures.filter(({name}) => name === 'feature-collection-points');
@@ -50,8 +50,9 @@ test("turf-buffer", (t) => {
       results.features.push(colorize(feature, "#00F"))
     );
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEqual(results, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEqual(results, loadJsonFileSync(directories.out + filename), name);
   });
   t.end();
 });

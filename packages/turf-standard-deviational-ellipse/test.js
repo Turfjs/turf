@@ -1,8 +1,8 @@
 import test from "tape";
-import glob from "glob";
+import { glob } from "glob";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import { featureCollection } from "@turf/helpers";
 import standardDeviationalEllipse from "./dist/js/index.js";
 
@@ -12,7 +12,7 @@ test("turf-standard-deviational-ellipse", (t) => {
     .forEach((filepath) => {
       // Define params
       const { name } = path.parse(filepath);
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const options = geojson.options;
       // Optional: ESRI Polygon in GeoJSON test/in to compare results
       const esriEllipse = geojson.esriEllipse;
@@ -29,8 +29,8 @@ test("turf-standard-deviational-ellipse", (t) => {
         path.join("test", "in"),
         path.join("test", "out")
       );
-      if (process.env.REGEN) write.sync(out, results);
-      t.deepEqual(results, load.sync(out), name);
+      if (process.env.REGEN) writeJsonFileSync(out, results);
+      t.deepEqual(results, loadJsonFileSync(out), name);
     });
   t.end();
 });

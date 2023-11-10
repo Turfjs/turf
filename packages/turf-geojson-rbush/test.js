@@ -1,8 +1,8 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const bboxPolygon = require("@turf/bbox-polygon").default;
 const { featureCollection, polygons } = require("@turf/helpers");
 const geojsonRbush = require("./").default;
@@ -16,7 +16,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -35,18 +35,18 @@ test("geojson-rbush", (t) => {
     const search = tree.search(geojson.features[0]);
 
     if (process.env.REGEN) {
-      write.sync(directories.out + "all." + filename, all);
-      write.sync(directories.out + "search." + filename, search);
+      writeJsonFileSync(directories.out + "all." + filename, all);
+      writeJsonFileSync(directories.out + "search." + filename, search);
     }
 
     t.deepEqual(
       all,
-      load.sync(directories.out + "all." + filename),
+      loadJsonFileSync(directories.out + "all." + filename),
       "all." + name
     );
     t.deepEqual(
       search,
-      load.sync(directories.out + "search." + filename),
+      loadJsonFileSync(directories.out + "search." + filename),
       "search." + name
     );
   }

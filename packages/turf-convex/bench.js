@@ -1,6 +1,6 @@
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const Benchmark = require("benchmark");
 const convex = require("./index").default;
 
@@ -18,7 +18,7 @@ const suite = new Benchmark.Suite("turf-convex");
 glob
   .sync(path.join(__dirname, "test", "in", "*.geojson"))
   .forEach((filepath) => {
-    const geojson = load.sync(filepath);
+    const geojson = loadJsonFileSync(filepath);
     suite.add(path.parse(filepath).name, () => convex(geojson));
   });
 

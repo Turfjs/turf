@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const path = require("path");
-const glob = require("glob");
+const { glob } = require("glob");
 const fs = require("fs");
 
 let count = 1;

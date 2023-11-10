@@ -56,13 +56,13 @@
   },
   "devDependencies": {
     "@turf/truncate": "^7.0.0-alpha.2",
-    "benchmark": "*",
-    "load-json-file": "*",
-    "npm-run-all": "*",
-    "rollup": "*",
-    "tape": "*",
-    "tsx": "*",
-    "write-json-file": "*"
+    "benchmark": "^2.1.4",
+    "load-json-file": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.79.1",
+    "tape": "^5.7.2",
+    "tsx": "^3.14.0",
+    "write-json-file": "^5.0.0"
   },
   "dependencies": {
     "@turf/bbox": "^7.0.0-alpha.2",

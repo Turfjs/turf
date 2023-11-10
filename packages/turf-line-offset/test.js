@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import truncate from "@turf/truncate";
 import { featureCollection, lineString } from "@turf/helpers";
 import lineOffset from "./index";
@@ -16,7 +16,7 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 // fixtures = fixtures.filter(fixture => fixture.name === 'polygon');
@@ -36,8 +36,12 @@ test("turf-line-offset", (t) => {
     const results = featureCollection([output, geojson]);
 
     if (process.env.REGEN)
-      write.sync(directories.out + name + ".geojson", results);
-    t.deepEqual(results, load.sync(directories.out + name + ".geojson"), name);
+      writeJsonFileSync(directories.out + name + ".geojson", results);
+    t.deepEqual(
+      results,
+      loadJsonFileSync(directories.out + name + ".geojson"),
+      name
+    );
   });
   t.end();
 });

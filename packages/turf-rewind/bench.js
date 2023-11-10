@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
 import rewind from "./index";
 
@@ -9,7 +9,7 @@ let fixtures = fs.readdirSync(directory).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directory + filename),
+    geojson: loadJsonFileSync(directory + filename),
   };
 });
 // fixtures = fixtures.filter(fixture => fixture.name === 'polygons');

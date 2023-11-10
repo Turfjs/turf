@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import { featureEach } from "@turf/meta";
 import {
   point,
@@ -23,7 +23,7 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 // fixtures = fixtures.filter(name => name === 'issue-#1075')
@@ -35,8 +35,9 @@ test("turf-line-split", (t) => {
     const results = colorize(lineSplit(line, splitter));
     featureEach(geojson, (feature) => results.features.push(feature));
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEquals(results, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEquals(results, loadJsonFileSync(directories.out + filename), name);
   }
   t.end();
 });

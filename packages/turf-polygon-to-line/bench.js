@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const Benchmark = require("benchmark");
 const polygonToLine = require("./index");
 
@@ -9,7 +9,7 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directory + filename),
+    geojson: loadJsonFileSync(directory + filename),
   };
 });
 
