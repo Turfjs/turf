@@ -1,9 +1,9 @@
 const path = require("path");
 const Benchmark = require("benchmark");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const nearestPoint = require("./index").default;
 
-const pts = load.sync(path.join(__dirname, "test", "in", "points.json"));
+const pts = loadJsonFileSync(path.join(__dirname, "test", "in", "points.json"));
 
 /**
  * Benchmark Results

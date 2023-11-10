@@ -1,8 +1,8 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const truncate = require("@turf/truncate").default;
 const { featureCollection, point } = require("@turf/helpers");
 const lineArc = require("./index").default;
@@ -16,7 +16,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -27,8 +27,9 @@ test("turf-line-arc", (t) => {
       lineArc(geojson, radius, bearing1, bearing2, { steps, units })
     );
     const results = featureCollection([geojson, arc]);
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEquals(results, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEquals(results, loadJsonFileSync(directories.out + filename), name);
     // Check the resulting arc geometry has the expected number of points.
     // undefined or 0 steps should default to 64 + 1 points, 1 to 1 + 1,
     // 2 to 2 + 1, ...

@@ -1,8 +1,8 @@
 const path = require("path");
 const test = require("tape");
-const glob = require("glob");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { glob } = require("glob");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const { featureCollection, polygon } = require("@turf/helpers");
 const difference = require("./index").default;
 
@@ -14,7 +14,7 @@ const directories = {
 test("turf-difference", (t) => {
   glob.sync(directories.in + "*.geojson").forEach((filepath) => {
     const { name, base } = path.parse(filepath);
-    const [polygon1, polygon2] = load.sync(filepath).features;
+    const [polygon1, polygon2] = loadJsonFileSync(filepath).features;
 
     if (name.includes("skip")) return t.skip(name);
 
@@ -38,8 +38,8 @@ test("turf-difference", (t) => {
       results.features.push(result);
     }
 
-    if (process.env.REGEN) write.sync(directories.out + base, results);
-    t.deepEqual(results, load.sync(directories.out + base), name);
+    if (process.env.REGEN) writeJsonFileSync(directories.out + base, results);
+    t.deepEqual(results, loadJsonFileSync(directories.out + base), name);
   });
   t.end();
 });

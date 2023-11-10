@@ -1,17 +1,17 @@
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import along from "@turf/along";
 import length from "@turf/length";
 import lineSliceAlong from "./index";
 
-var line1 = load.sync(
+var line1 = loadJsonFileSync(
   path.join(__dirname, "test", "fixtures", "line1.geojson")
 );
-var route1 = load.sync(
+var route1 = loadJsonFileSync(
   path.join(__dirname, "test", "fixtures", "route1.geojson")
 );
-var route2 = load.sync(
+var route2 = loadJsonFileSync(
   path.join(__dirname, "test", "fixtures", "route2.geojson")
 );
 

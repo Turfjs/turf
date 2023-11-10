@@ -21,7 +21,7 @@ import {
 } from "geojson";
 
 import gridToMatrix from "./lib/grid-to-matrix";
-import isoBands from "./lib/marchingsquares-isobands";
+const { isoBands } = require("marchingsquares");
 
 type GroupRingProps = { [prop: string]: string };
 type GroupedRings =
@@ -163,20 +163,21 @@ function rescaleContours(
   const scaleX = originalWidth / matrixWidth;
   const scaleY = originalHeigth / matrixHeight;
 
-  const resize = (point: Position) => {
-    point[0] = point[0] * scaleX + x0;
-    point[1] = point[1] * scaleY + y0;
-  };
-
   // resize and shift each point/line of the isobands
-  contours.forEach(function (contour) {
-    (contour.groupedRings as Position[][][]).forEach(function (lineRingSet) {
-      lineRingSet.forEach(function (lineRing) {
-        lineRing.forEach(resize);
-      });
-    });
+  return contours.map(function (contour) {
+    contour.groupedRings = (contour.groupedRings as Position[][][]).map(
+      function (lineRingSet) {
+        return lineRingSet.map(function (lineRing) {
+          return lineRing.map((point: Position) => [
+            point[0] * scaleX + x0,
+            point[1] * scaleY + y0,
+          ]);
+        });
+      }
+    );
+
+    return contour;
   });
-  return contours;
 }
 
 /*  utility functions */
@@ -189,32 +190,18 @@ function rescaleContours(
  * @returns {Array} array of the input LineString ordered by area
  */
 function orderByArea(ringsCoords: Position[][]): Position[][] {
-  const ringsWithArea: { ring: Position[]; area: number }[] = [];
-  const areas: number[] = [];
-  ringsCoords.forEach(function (coords) {
-    // const poly = polygon([points]);
-    const ringArea = area(polygon([coords]));
-    // create an array of areas value
-    areas.push(ringArea);
+  const ringsWithArea = ringsCoords.map(function (coords) {
     // associate each lineRing with its area
-    ringsWithArea.push({ ring: coords, area: ringArea });
+    return { ring: coords, area: area(polygon([coords])) };
   });
-  areas.sort(function (a, b) {
+  ringsWithArea.sort(function (a, b) {
     // bigger --> smaller
-    return b - a;
+    return b.area - a.area;
   });
   // create a new array of linearRings coordinates ordered by their area
-  const orderedByArea: Position[][] = [];
-  areas.forEach(function (area) {
-    for (let lr = 0; lr < ringsWithArea.length; lr++) {
-      if (ringsWithArea[lr].area === area) {
-        orderedByArea.push(ringsWithArea[lr].ring);
-        ringsWithArea.splice(lr, 1);
-        break;
-      }
-    }
+  return ringsWithArea.map(function (x) {
+    return x.ring;
   });
-  return orderedByArea;
 }
 
 /**

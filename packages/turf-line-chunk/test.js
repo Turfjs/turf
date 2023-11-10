@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import truncate from "@turf/truncate";
 import { featureEach } from "@turf/meta";
 import { lineString, featureCollection } from "@turf/helpers";
@@ -14,7 +14,7 @@ const directories = {
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {
-  return { filename, geojson: load.sync(directories.in + filename) };
+  return { filename, geojson: loadJsonFileSync(directories.in + filename) };
 });
 
 test("turf-line-chunk: shorter", (t) => {
@@ -24,10 +24,10 @@ test("turf-line-chunk: shorter", (t) => {
     );
     filename = filename.replace(".geojson", ".shorter.geojson");
     if (process.env.REGEN) {
-      write.sync(directories.out + filename, chunked);
+      writeJsonFileSync(directories.out + filename, chunked);
     }
 
-    const expected = load.sync(directories.out + filename);
+    const expected = loadJsonFileSync(directories.out + filename);
     t.deepEquals(chunked, expected, path.parse(filename).name);
   }
   t.end();
@@ -40,10 +40,10 @@ test("turf-line-chunk: longer", (t) => {
     );
     filename = filename.replace(".geojson", ".longer.geojson");
     if (process.env.REGEN) {
-      write.sync(directories.out + filename, chunked);
+      writeJsonFileSync(directories.out + filename, chunked);
     }
 
-    const expected = load.sync(directories.out + filename);
+    const expected = loadJsonFileSync(directories.out + filename);
     t.deepEquals(chunked, expected, path.parse(filename).name);
   }
   t.end();
@@ -55,9 +55,10 @@ test("turf-line-chunk: reverse", (t) => {
       truncate(lineChunk(geojson, 5, { units: "miles", reverse: true }))
     );
     filename = filename.replace(".geojson", ".reverse.geojson");
-    if (process.env.REGEN) write.sync(directories.out + filename, chunked);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, chunked);
 
-    const expected = load.sync(directories.out + filename);
+    const expected = loadJsonFileSync(directories.out + filename);
     t.deepEquals(chunked, expected, path.parse(filename).name);
   }
   t.end();

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require("fs-extra");
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const yaml = require("yamljs");
 
 (async () => {
@@ -33,7 +33,7 @@ const yaml = require("yamljs");
   packages.forEach((packagePath) => {
     const directory = path.parse(packagePath).dir;
     let indexPath = path.join(directory, "index.js");
-    const pckg = load.sync(packagePath);
+    const pckg = loadJsonFileSync(packagePath);
     const name = pckg.name;
     const diagrams = glob
       .sync(path.join(directory, "diagrams", "*"))

@@ -1,8 +1,8 @@
 const test = require("tape");
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const center = require("@turf/center").default;
 const truncate = require("@turf/truncate").default;
 const centerMean = require("@turf/center-mean").default;
@@ -16,7 +16,7 @@ test("turf-center-median", (t) => {
     .forEach((filepath) => {
       // Define params
       const { name } = path.parse(filepath);
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const options = geojson.properties;
 
       // Calculate Centers
@@ -44,8 +44,8 @@ test("turf-center-median", (t) => {
         path.join("test", "in"),
         path.join("test", "out")
       );
-      if (process.env.REGEN) write.sync(out, results);
-      t.deepEqual(results, load.sync(out), name);
+      if (process.env.REGEN) writeJsonFileSync(out, results);
+      t.deepEqual(results, loadJsonFileSync(out), name);
     });
   t.end();
 });

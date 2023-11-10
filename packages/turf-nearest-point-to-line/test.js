@@ -1,8 +1,8 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const circle = require("@turf/circle").default;
 const truncate = require("@turf/truncate").default;
 const {
@@ -23,7 +23,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -52,8 +52,9 @@ test("turf-nearest-point-to-line", (t) => {
     );
     const results = featureCollection([points, nearest, line, distanceCircle]);
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEqual(results, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEqual(results, loadJsonFileSync(directories.out + filename), name);
   });
   t.end();
 });

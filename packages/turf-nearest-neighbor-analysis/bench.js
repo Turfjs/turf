@@ -1,7 +1,7 @@
 const Benchmark = require("benchmark");
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const nearestNeighborAnalysis = require("./index").default;
 
 /**
@@ -17,7 +17,7 @@ const nearestNeighborAnalysis = require("./index").default;
 const suite = new Benchmark.Suite("turf-nearest-neighbor");
 glob.sync(path.join(__dirname, "test", "in", "*.json")).forEach((filepath) => {
   const { name } = path.parse(filepath);
-  const geojson = load.sync(filepath);
+  const geojson = loadJsonFileSync(filepath);
   const options = geojson.options;
   console.time(name);
   nearestNeighborAnalysis(geojson, options);
