@@ -38,11 +38,11 @@
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "npm-run-all --npm-path npm build:*",
+    "build": "npm-run-all --npm-path npm 'build:*'",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes.ts",
-    "test": "npm-run-all --npm-path npm test:*",
+    "test": "npm-run-all --npm-path npm 'test:*'",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },

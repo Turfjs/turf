@@ -49,7 +49,7 @@
     "bench": "tsx bench.ts",
     "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "docs": "tsx ../../scripts/generate-readmes.ts",
-    "test": "npm-run-all --npm-path npm test:*",
+    "test": "npm-run-all --npm-path npm 'test:*'",
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {

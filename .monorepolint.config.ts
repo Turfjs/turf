@@ -165,7 +165,7 @@ module.exports = {
         options: {
           scripts: {
             docs: "tsx ../../scripts/generate-readmes.ts",
-            test: "npm-run-all --npm-path npm test:*",
+            test: "npm-run-all --npm-path npm 'test:*'",
           },
         },
         excludePackages: [MAIN_PACKAGE],
@@ -173,7 +173,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            build: "npm-run-all --npm-path npm build:*",
+            build: "npm-run-all --npm-path npm 'build:*'",
             "build:js": "tsc",
             "build:es":
               'tsc --outDir dist/es --module esnext --declaration false && echo \'{"type":"module"}\' > dist/es/package.json',
