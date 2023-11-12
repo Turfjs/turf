@@ -1,3 +1,5 @@
+import type { Feature, Polygon } from "geojson";
+import type { AllGeoJSON } from "@turf/helpers";
 import bbox from "@turf/bbox";
 import bboxPolygon from "@turf/bbox-polygon";
 
@@ -19,7 +21,7 @@ import bboxPolygon from "@turf/bbox-polygon";
  * //addToMap
  * var addToMap = [features, enveloped];
  */
-function envelope(geojson) {
+function envelope(geojson: AllGeoJSON): Feature<Polygon> {
   return bboxPolygon(bbox(geojson));
 }
 
