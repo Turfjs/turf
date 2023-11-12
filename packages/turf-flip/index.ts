@@ -1,5 +1,5 @@
 import { coordEach } from "@turf/meta";
-import { isObject } from "@turf/helpers";
+import { isObject, AllGeoJSON } from "@turf/helpers";
 import clone from "@turf/clone";
 
 /**
@@ -18,11 +18,16 @@ import clone from "@turf/clone";
  * //addToMap
  * var addToMap = [serbia, saudiArabia];
  */
-function flip(geojson, options) {
+function flip<T extends AllGeoJSON>(
+  geojson: T,
+  options: {
+    mutate?: boolean;
+  }
+): T {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  var mutate = options.mutate;
+  const { mutate } = options;
 
   if (!geojson) throw new Error("geojson is required");
   // ensure that we don't modify features in-place and changes to the
