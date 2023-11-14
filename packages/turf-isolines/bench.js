@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
-import matrixToGrid from "matrix-to-grid";
+import matrixToGrid from "./lib/matrix-to-grid";
 import isolines from "./index";
 
 // Define Fixtures
@@ -11,7 +11,7 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    jsondata: load.sync(directory + filename),
+    jsondata: loadJsonFileSync(directory + filename),
   };
 });
 

@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import truncate from "@turf/truncate";
 import { brightness } from "chromatism";
 import { round, featureCollection, point } from "@turf/helpers";
@@ -18,7 +18,7 @@ var fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 // fixtures = fixtures.filter(fixture => fixture.name === 'points-random')
@@ -36,8 +36,9 @@ test("turf-interpolate", (t) => {
     });
     result = colorize(result, property, name);
 
-    if (process.env.REGEN) write.sync(directories.out + filename, result);
-    t.deepEquals(result, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, result);
+    t.deepEquals(result, loadJsonFileSync(directories.out + filename), name);
   }
   t.end();
 });

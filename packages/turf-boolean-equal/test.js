@@ -1,7 +1,7 @@
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
 const test = require("tape");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const shapely = require("boolean-shapely");
 const { point, lineString, polygon } = require("@turf/helpers");
 const equal = require("./index").default;
@@ -12,7 +12,7 @@ test("turf-boolean-equal", (t) => {
     .sync(path.join(__dirname, "test", "true", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const feature1 = geojson.features[0];
       const feature2 = geojson.features[1];
       const options = geojson.properties;
@@ -29,7 +29,7 @@ test("turf-boolean-equal", (t) => {
     .sync(path.join(__dirname, "test", "false", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const feature1 = geojson.features[0];
       const feature2 = geojson.features[1];
       const options = geojson.properties;

@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
 import lineChunk from "./index";
 
@@ -10,7 +10,7 @@ const directories = {
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {
-  return { filename, geojson: load.sync(directories.in + filename) };
+  return { filename, geojson: loadJsonFileSync(directories.in + filename) };
 });
 
 /**

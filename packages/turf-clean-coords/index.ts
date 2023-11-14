@@ -142,6 +142,10 @@ function cleanLine(line: Position[], type: string) {
     throw new Error("invalid polygon");
   }
 
+  if (type === "LineString" && newPointsLength < 3) {
+    return newPoints;
+  }
+
   if (
     isPointOnLineSegment(
       newPoints[newPointsLength - 3],

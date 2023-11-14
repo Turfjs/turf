@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import center from "@turf/center";
 import hexGrid from "@turf/hex-grid";
 import truncate from "@turf/truncate";
@@ -28,7 +28,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -51,8 +51,9 @@ test("scale", (t) => {
       result.features.push(markedOrigin(feature, origin))
     );
 
-    if (process.env.REGEN) write.sync(directories.out + filename, result);
-    t.deepEqual(result, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, result);
+    t.deepEqual(result, loadJsonFileSync(directories.out + filename), name);
   }
 
   t.end();
@@ -186,8 +187,8 @@ test("scale -- Issue #895", (t) => {
   };
   grid.features.push(poly);
   const output = directories.out + "issue-#895.geojson";
-  if (process.env.REGEN) write.sync(output, grid);
-  t.deepEqual(grid, load.sync(output));
+  if (process.env.REGEN) writeJsonFileSync(output, grid);
+  t.deepEqual(grid, loadJsonFileSync(output));
   t.end();
 });
 

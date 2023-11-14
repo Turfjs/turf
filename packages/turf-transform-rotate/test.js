@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import centroid from "@turf/centroid";
 import truncate from "@turf/truncate";
 import { getCoord } from "@turf/invariant";
@@ -23,7 +23,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -38,8 +38,9 @@ test("rotate", (t) => {
       makePivot(pivot, geojson),
     ]);
 
-    if (process.env.REGEN) write.sync(directories.out + filename, result);
-    t.deepEqual(result, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, result);
+    t.deepEqual(result, loadJsonFileSync(directories.out + filename), name);
   }
 
   t.end();

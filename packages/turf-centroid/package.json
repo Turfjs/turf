@@ -42,26 +42,26 @@
     "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
-    "docs": "tsx ../../scripts/generate-readmes",
+    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.js",
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@types/tape": "*",
-    "benchmark": "*",
+    "@types/tape": "^4.2.32",
+    "benchmark": "^2.1.4",
     "geojson-fixtures": "*",
-    "glob": "*",
-    "load-json-file": "*",
-    "npm-run-all": "*",
-    "tape": "*",
-    "tsx": "*",
-    "typescript": "*",
-    "write-json-file": "*"
+    "glob": "^10.3.10",
+    "load-json-file": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "tape": "^5.7.2",
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2",
+    "write-json-file": "^5.0.0"
   },
   "dependencies": {
     "@turf/helpers": "^7.0.0-alpha.2",
     "@turf/meta": "^7.0.0-alpha.2",
-    "tslib": "^2.3.0"
+    "tslib": "^2.6.2"
   }
 }

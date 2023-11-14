@@ -1,10 +1,10 @@
 import path from "path";
 import test from "tape";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import envelope from "./index";
 
 // Fixtures
-const fc = load.sync(
+const fc = loadJsonFileSync(
   path.join(__dirname, "test", "in", "feature-collection.geojson")
 );
 

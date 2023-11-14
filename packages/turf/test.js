@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
-const glob = require("glob");
+const { glob } = require("glob");
 const test = require("tape");
-const camelcase = require("camelcase");
+const camelCase = require("camelcase").default;
 const documentation = require("documentation");
 const turf = require("./dist/js/index.js");
 
@@ -128,7 +128,7 @@ test("turf -- MIT license", (t) => {
     const { license } = pckg;
     if (license !== "MIT") t.fail(`${name} (license) must be "MIT"`);
     if (fs.readFileSync(path.join(dir, "LICENSE"), "utf8") !== text)
-      t.fail(`${name} (LICENSE) is different from @turf/turf`);
+      t.fail(`${name} (LICENSE) content is different from @turf/turf`);
   }
   t.end();
 });
@@ -220,7 +220,7 @@ test("turf -- missing modules", (t) => {
   };
 
   modules.forEach(({ name }) => {
-    name = camelcase(name.replace("turf-", ""));
+    name = camelCase(name.replace("turf-", ""));
     // name exception with linestring => lineString
     name = name
       .replace("linestring", "lineString")
@@ -371,13 +371,9 @@ test('turf-example-${turfName}', t => {
 }
 
 // Iterate over each module and retrieve @example to build tests from them
-glob(turfModulesPath, (err, files) => {
-  if (err) throw err;
-
+glob(turfModulesPath).then((files) => {
   // Read each JSDocs from index.js files
   documentation.build(files, {}).then((turfFunctions) => {
-    if (err) throw err;
-
     // Write header of test.js
     const writeableStream = fs.createWriteStream(testFilePath);
     writeableStream.write(requireString);
