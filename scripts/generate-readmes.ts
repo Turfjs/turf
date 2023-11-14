@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require("fs-extra");
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const yaml = require("yamljs");
 
 (async () => {
@@ -16,8 +16,8 @@ const yaml = require("yamljs");
    *   - inside a module, only the docs of that module will be generated
    *   - outside or at the root level it will generate docs for all modules
    */
-  const currentFolder = process.cwd().split(path.sep).pop();
-  const packages = currentFolder.includes("turf-")
+  const currentFolder = process.cwd().split(path.sep).pop() as string;
+  const packages = currentFolder.includes("packages/turf-")
     ? [path.join(process.cwd(), "package.json")]
     : glob.sync(
         path.join(__dirname, "..", "packages", "turf-*", "package.json")
@@ -33,7 +33,7 @@ const yaml = require("yamljs");
   packages.forEach((packagePath) => {
     const directory = path.parse(packagePath).dir;
     let indexPath = path.join(directory, "index.js");
-    const pckg = load.sync(packagePath);
+    const pckg = loadJsonFileSync(packagePath);
     const name = pckg.name;
     const diagrams = glob
       .sync(path.join(directory, "diagrams", "*"))
@@ -48,7 +48,7 @@ const yaml = require("yamljs");
     documentation
       .build(indexPath, { shallow: true })
       .then((res) => {
-        if (res === undefined) return console.warning(packagePath);
+        if (res === undefined) return console.warn(packagePath);
         console.log("Building Docs: " + name);
 
         // Format Markdown
@@ -63,9 +63,9 @@ const yaml = require("yamljs");
               markdown += "\n\n### Diagrams\n\n" + diagramToMarkdown(diagrams);
             fs.writeFileSync(path.join(directory, "README.md"), markdown);
           })
-          .catch((error) => console.warning(error));
+          .catch((error) => console.warn(error));
       })
-      .catch((error) => console.warning(error));
+      .catch((error) => console.warn(error));
   });
 })();
 

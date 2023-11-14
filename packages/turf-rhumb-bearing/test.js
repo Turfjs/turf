@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const test = require("tape");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const { point } = require("@turf/helpers");
 const rhumbBearing = require("./index").default;
 
@@ -15,7 +15,7 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -34,8 +34,13 @@ test("bearing", (t) => {
       initialBearing: initialBearing,
       finalBearing: finalBearing,
     };
-    if (process.env.REGEN) write.sync(directories.out + name + ".json", result);
-    t.deepEqual(load.sync(directories.out + name + ".json"), result, name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + name + ".json", result);
+    t.deepEqual(
+      loadJsonFileSync(directories.out + name + ".json"),
+      result,
+      name
+    );
   });
 
   t.throws(() => {

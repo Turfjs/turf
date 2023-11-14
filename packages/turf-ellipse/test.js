@@ -1,8 +1,8 @@
 import test from "tape";
-import glob from "glob";
+import { glob } from "glob";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import circle from "@turf/circle";
 import truncate from "@turf/truncate";
 import geojsonhint from "@mapbox/geojsonhint";
@@ -18,7 +18,7 @@ test("turf-ellipse", (t) => {
     .forEach((filepath) => {
       // Define params
       const { name } = path.parse(filepath);
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const center = geojson.geometry.coordinates;
       let { xSemiAxis, ySemiAxis, steps, angle, units } = geojson.properties;
       angle = angle || 0;
@@ -119,8 +119,8 @@ test("turf-ellipse", (t) => {
         path.join("test", "in"),
         path.join("test", "out")
       );
-      if (process.env.REGEN) write.sync(out, results);
-      t.deepEqual(results, load.sync(out), name);
+      if (process.env.REGEN) writeJsonFileSync(out, results);
+      t.deepEqual(results, loadJsonFileSync(out), name);
     });
   t.end();
 });

@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const test = require("tape");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const { point } = require("@turf/helpers");
 const distance = require("./index").default;
 
@@ -15,7 +15,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -33,8 +33,12 @@ test("distance", (t) => {
       degrees: distance(pt1, pt2, { units: "degrees" }),
     };
     if (process.env.REGEN)
-      write.sync(directories.out + name + ".json", distances);
-    t.deepEqual(distances, load.sync(directories.out + name + ".json"), name);
+      writeJsonFileSync(directories.out + name + ".json", distances);
+    t.deepEqual(
+      distances,
+      loadJsonFileSync(directories.out + name + ".json"),
+      name
+    );
   });
   t.end();
 });

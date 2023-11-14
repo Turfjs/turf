@@ -3,8 +3,8 @@
 const fs = require("fs-extra");
 const path = require("path");
 const meow = require("meow");
-const camelcase = require("camelcase");
-const decamelize = require("decamelize");
+const camelCase = require("camelcase").default;
+const decamelize = require("decamelize").default;
 
 const cli = meow(`
     Usage:
@@ -19,7 +19,7 @@ let name = cli.input[0];
 // Normalize module name
 // turf-clone => clone
 name = name.replace(/turf-/, "");
-const camelcaseName = camelcase(name);
+const camelcaseName = camelCase(name);
 const decamelizeName = decamelize(name);
 
 // Create Folder
@@ -96,11 +96,11 @@ fs.writeFileSync(
   "homepage": "https://github.com/Turfjs/turf",
   "devDependencies": {
     "@std/esm": "*",
-    "benchmark": "*",
-    "rollup": "*",
-    "write-json-file": "*",
-    "load-json-file": "*",
-    "tape": "*"
+    "benchmark": "^2.1.4",
+    "rollup": "^2.79.1",
+    "write-json-file": "^5.0.0",
+    "load-json-file": "^7.0.1",
+    "tape": "^5.7.0"
   },
   "dependencies": {
     "@turf/helpers": "*"
@@ -150,7 +150,7 @@ import load from 'load-json-file';
 const suite = new Benchmark.Suite('turf-${decamelizeName}');
 glob.sync(path.join(__dirname, 'test', 'in', '*.geojson')).forEach(filepath => {
     const {name} = path.parse(filepath);
-    const geojson = load.sync(filepath);
+    const geojson = loadJsonFileSync(filepath);
     const [feature1, feature2] = geojson.features;
     console.time(name);
     ${camelcaseName}(feature1, feature2);
@@ -178,13 +178,13 @@ test('turf-${decamelizeName}', t => {
   glob.sync(path.join(__dirname, 'test', 'in', '*.json')).forEach(filepath => {
     // Define params
     const {name} = path.parse(filepath);
-    const geojson = load.sync(filepath);
+    const geojson = loadJsonFileSync(filepath);
     // etc.
 
     const results = [];
     const out = filepath.replace(path.join('test', 'in'), path.join('test', 'out'));
-    if (process.env.REGEN) write.sync(out, results);
-    t.deepEqual(results, load.sync(out), name);
+    if (process.env.REGEN) writeJsonFileSync(out, results);
+    t.deepEqual(results, loadJsonFileSync(out), name);
   });
   t.end();
 });

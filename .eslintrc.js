@@ -25,7 +25,7 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: "module",
   },
-  env: { es6: true },
+  env: { es6: true, node: true },
   rules,
 
   overrides: [

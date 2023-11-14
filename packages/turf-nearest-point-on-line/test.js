@@ -1,8 +1,8 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const along = require("@turf/along").default;
 const distance = require("@turf/distance").default;
 const truncate = require("@turf/truncate").default;
@@ -25,7 +25,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -42,8 +42,9 @@ test("turf-linestring-to-polygon", (t) => {
     );
     const results = truncate(featureCollection([line, between, point, onLine]));
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEqual(load.sync(directories.out + filename), results, name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEqual(loadJsonFileSync(directories.out + filename), results, name);
   }
   t.end();
 });
@@ -104,8 +105,12 @@ test("turf-point-on-line - points behind first point", (t) => {
 
   const filepath =
     directories.out + "expectedLocation - points behind first point.json";
-  if (process.env.REGEN) write.sync(filepath, expectedLocation);
-  t.deepEqual(load.sync(filepath), expectedLocation, "properties.location");
+  if (process.env.REGEN) writeJsonFileSync(filepath, expectedLocation);
+  t.deepEqual(
+    loadJsonFileSync(filepath),
+    expectedLocation,
+    "properties.location"
+  );
   t.end();
 });
 
@@ -138,8 +143,12 @@ test("turf-point-on-line - points in front of last point", (t) => {
 
   const filepath =
     directories.out + "expectedLocation - points in front of last point.json";
-  if (process.env.REGEN) write.sync(filepath, expectedLocation);
-  t.deepEqual(load.sync(filepath), expectedLocation, "properties.location");
+  if (process.env.REGEN) writeJsonFileSync(filepath, expectedLocation);
+  t.deepEqual(
+    loadJsonFileSync(filepath),
+    expectedLocation,
+    "properties.location"
+  );
   t.end();
 });
 
@@ -197,8 +206,12 @@ test("turf-point-on-line - points on joints", (t) => {
   });
 
   const filepath = directories.out + "expectedLocation - points on joints.json";
-  if (process.env.REGEN) write.sync(filepath, expectedLocation);
-  t.deepEqual(load.sync(filepath), expectedLocation, "properties.location");
+  if (process.env.REGEN) writeJsonFileSync(filepath, expectedLocation);
+  t.deepEqual(
+    loadJsonFileSync(filepath),
+    expectedLocation,
+    "properties.location"
+  );
   t.end();
 });
 
@@ -233,8 +246,12 @@ test("turf-point-on-line - points on top of line", (t) => {
 
   const filepath =
     directories.out + "expectedLocation - points on top of line.json";
-  if (process.env.REGEN) write.sync(filepath, expectedLocation);
-  t.deepEqual(load.sync(filepath), expectedLocation, "properties.location");
+  if (process.env.REGEN) writeJsonFileSync(filepath, expectedLocation);
+  t.deepEqual(
+    loadJsonFileSync(filepath),
+    expectedLocation,
+    "properties.location"
+  );
   t.end();
 });
 

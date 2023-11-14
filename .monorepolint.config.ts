@@ -1,5 +1,5 @@
 const path = require("path");
-const glob = require("glob");
+const { glob } = require("glob");
 const fs = require("fs");
 
 const TS_PACKAGES: string[] = []; // projects that use typescript to build
@@ -164,7 +164,7 @@ module.exports = {
       {
         options: {
           scripts: {
-            docs: "tsx ../../scripts/generate-readmes",
+            docs: "tsx ../../scripts/generate-readmes.ts",
             test: "npm-run-all --npm-path npm test:*",
           },
         },
@@ -249,7 +249,10 @@ module.exports = {
       {
         options: {
           devDependencies: {
-            "npm-run-all": "*",
+            benchmark: "^2.1.4",
+            "npm-run-all": "^4.1.5",
+            tape: "^5.7.2",
+            tsx: "^3.14.0",
           },
         },
         includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
@@ -257,11 +260,11 @@ module.exports = {
       {
         options: {
           dependencies: {
-            tslib: "^2.3.0",
+            tslib: "^2.6.2",
           },
           devDependencies: {
-            tsx: "*",
-            typescript: "*",
+            "@types/tape": "^4.2.32",
+            typescript: "^5.2.2",
           },
         },
         includePackages: TS_PACKAGES,
@@ -269,8 +272,7 @@ module.exports = {
       {
         options: {
           devDependencies: {
-            rollup: "*",
-            tsx: "*",
+            rollup: "^2.79.1",
           },
         },
         includePackages: JS_PACKAGES,

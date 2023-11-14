@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import test from "tape";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import { featureEach } from "@turf/meta";
 import { featureCollection } from "@turf/helpers";
 import kinks from "@turf/kinks";
@@ -14,7 +14,7 @@ const directories = {
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {
-  return { filename, geojson: load.sync(directories.in + filename) };
+  return { filename, geojson: loadJsonFileSync(directories.in + filename) };
 });
 
 test("unkink-polygon", (t) => {
@@ -28,9 +28,10 @@ test("unkink-polygon", (t) => {
     });
 
     colorize(unkinked);
-    if (process.env.REGEN) write.sync(directories.out + filename, unkinked);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, unkinked);
 
-    const expected = load.sync(directories.out + filename);
+    const expected = loadJsonFileSync(directories.out + filename);
     t.deepEquals(unkinked, expected, path.parse(filename).name);
   }
   t.end();

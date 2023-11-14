@@ -1,12 +1,12 @@
 import fs from "fs";
 import path from "path";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
 import shortestPath from "./index";
 
 const directory = path.join(__dirname, "test", "in") + path.sep;
 const fixtures = fs.readdirSync(directory).map((filename) => {
-  const geojson = load.sync(directory + filename);
+  const geojson = loadJsonFileSync(directory + filename);
   return {
     name: path.parse(filename).name,
     start: geojson.features.shift(),

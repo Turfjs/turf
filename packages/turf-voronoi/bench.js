@@ -1,7 +1,7 @@
 import Benchmark from "benchmark";
 import path from "path";
 import fs from "fs";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import voronoi from "./index";
 
 const directory = path.join(__dirname, "test", "in") + path.sep;
@@ -9,7 +9,7 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directory + filename),
+    geojson: loadJsonFileSync(directory + filename),
   };
 });
 

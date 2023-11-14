@@ -1,6 +1,6 @@
 import path from "path";
-import glob from "glob";
-import load from "load-json-file";
+import { glob } from "glob";
+import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
 import pointOnFeature from "./index";
 
@@ -18,7 +18,7 @@ const suite = new Benchmark.Suite("turf-point-on-feature");
 
 glob.sync(path.join(__dirname, "test", "in", "*.json")).forEach((filepath) => {
   const { name } = path.parse(filepath);
-  const geojson = load.sync(filepath);
+  const geojson = loadJsonFileSync(filepath);
   suite.add(name, () => pointOnFeature(geojson));
 });
 

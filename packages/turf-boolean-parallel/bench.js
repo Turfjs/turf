@@ -1,6 +1,6 @@
 const path = require("path");
-const glob = require("glob");
-const load = require("load-json-file");
+const { glob } = require("glob");
+const { loadJsonFileSync } = require("load-json-file");
 const Benchmark = require("benchmark");
 const booleanParallel = require("./index").default;
 
@@ -38,7 +38,7 @@ glob
   .sync(path.join(__dirname, "test", "**", "*.geojson"))
   .forEach((filepath) => {
     const { name } = path.parse(filepath);
-    const geojson = load.sync(filepath);
+    const geojson = loadJsonFileSync(filepath);
     const [line1, line2] = geojson.features;
 
     console.time(name);
