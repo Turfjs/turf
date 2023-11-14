@@ -69,6 +69,24 @@ function polygonArea(coords: any) {
 
 /**
  * @private
+ * A constant factor used to compute the area of a polygon.
+ * It's derived from the square of the Earth's radius divided by 2.
+ *
+ * @type {number}
+ */
+const FACTOR = (earthRadius * earthRadius) / 2;
+
+/**
+ * @private
+ * A constant used for converting degrees to radians.
+ * Represents the ratio of PI to 180.
+ *
+ * @type {number}
+ */
+const PI_OVER_180 = Math.PI / 180;
+
+/**
+ * @private
  * Calculate the approximate area of the polygon were it projected onto the earth.
  * Note that this area will be positive if ring is oriented clockwise, otherwise it will be negative.
  *
@@ -80,46 +98,27 @@ function polygonArea(coords: any) {
  * @param {Array<Array<number>>} coords Ring Coordinates
  * @returns {number} The approximate signed geodesic area of the polygon in square meters.
  */
-function ringArea(coords: number[][]) {
-  let p1;
-  let p2;
-  let p3;
-  let lowerIndex;
-  let middleIndex;
-  let upperIndex;
-  let i;
-  let total = 0;
+function ringArea(coords: number[][]): number {
   const coordsLength = coords.length;
 
-  if (coordsLength > 2) {
-    for (i = 0; i < coordsLength; i++) {
-      if (i === coordsLength - 2) {
-        // i = N-2
-        lowerIndex = coordsLength - 2;
-        middleIndex = coordsLength - 1;
-        upperIndex = 0;
-      } else if (i === coordsLength - 1) {
-        // i = N-1
-        lowerIndex = coordsLength - 1;
-        middleIndex = 0;
-        upperIndex = 1;
-      } else {
-        // i = 0 to N-3
-        lowerIndex = i;
-        middleIndex = i + 1;
-        upperIndex = i + 2;
-      }
-      p1 = coords[lowerIndex];
-      p2 = coords[middleIndex];
-      p3 = coords[upperIndex];
-      total += (rad(p3[0]) - rad(p1[0])) * Math.sin(rad(p2[1]));
-    }
+  if (coordsLength <= 2) return 0;
+  let total = 0;
 
-    total = (total * earthRadius * earthRadius) / 2;
+  let i = 0;
+  while (i < coordsLength) {
+    const lower = coords[i];
+    const middle = coords[i + 1 === coordsLength ? 0 : i + 1];
+    const upper =
+      coords[i + 2 >= coordsLength ? (i + 2) % coordsLength : i + 2];
+
+    const lowerX = lower[0] * PI_OVER_180;
+    const middleY = middle[1] * PI_OVER_180;
+    const upperX = upper[0] * PI_OVER_180;
+
+    total += (upperX - lowerX) * Math.sin(middleY);
+
+    i++;
   }
-  return total;
-}
 
-function rad(num: number) {
-  return (num * Math.PI) / 180;
+  return total * FACTOR;
 }
