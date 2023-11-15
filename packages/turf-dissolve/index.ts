@@ -1,8 +1,9 @@
-import { featureCollection, multiPolygon, isObject } from "@turf/helpers";
+import { Feature, FeatureCollection, Polygon } from "geojson";
+import { featureCollection, multiPolygon } from "@turf/helpers";
 import { collectionOf } from "@turf/invariant";
 import { featureEach } from "@turf/meta";
 import flatten from "@turf/flatten";
-import polygonClipping from "polygon-clipping";
+import polygonClipping, { Geom } from "polygon-clipping";
 
 /**
  * Dissolves a FeatureCollection of {@link polygon} features, filtered by an optional property name:value.
@@ -25,57 +26,70 @@ import polygonClipping from "polygon-clipping";
  * //addToMap
  * var addToMap = [features, dissolved]
  */
-function dissolve(fc, options) {
+function dissolve(
+  fc: FeatureCollection<Polygon>,
+  options: {
+    propertyName?: string;
+  } = {}
+): FeatureCollection<Polygon> {
   // Optional parameters
-  options = options || {};
-  if (!isObject(options)) throw new Error("options is invalid");
-  var propertyName = options.propertyName;
+  const { propertyName } = options;
 
   // Input validation
   collectionOf(fc, "Polygon", "dissolve");
 
   // Main
-  var outFeatures = [];
-  if (!options.propertyName) {
+  const outFeatures = [];
+  if (!propertyName) {
     return flatten(
       multiPolygon(
         polygonClipping.union.apply(
           null,
+          // List of polygons expressed as Position[][][] a.k.a. Geom[]
           fc.features.map(function (f) {
             return f.geometry.coordinates;
-          })
+          }) as [Geom]
         )
       )
-    );
+    ) as FeatureCollection<Polygon>;
   } else {
-    var uniquePropertyVals = {};
+    // Group polygons by the value of their property named by propertyName
+    const uniquePropertyVals: { [key: string]: Feature[] } = {};
     featureEach(fc, function (feature) {
-      if (
-        !Object.prototype.hasOwnProperty.call(
-          uniquePropertyVals,
-          feature.properties[propertyName]
-        )
-      ) {
-        uniquePropertyVals[feature.properties[propertyName]] = [];
+      if (feature.properties) {
+        if (
+          !Object.prototype.hasOwnProperty.call(
+            uniquePropertyVals,
+            feature.properties[propertyName]
+          )
+        ) {
+          uniquePropertyVals[feature.properties[propertyName]] =
+            [] as Feature[];
+        }
+        uniquePropertyVals[feature.properties[propertyName]].push(feature);
       }
-      uniquePropertyVals[feature.properties[propertyName]].push(feature);
     });
-    var vals = Object.keys(uniquePropertyVals);
-    for (var i = 0; i < vals.length; i++) {
-      var mp = multiPolygon(
+    const vals = Object.keys(uniquePropertyVals);
+
+    // Export each group of polygons as a separate feature.
+    for (let i = 0; i < vals.length; i++) {
+      const mp = multiPolygon(
         polygonClipping.union.apply(
           null,
-          uniquePropertyVals[vals[i]].map(function (f) {
+          // List of polygons expressed as Position[][][] a.k.a. Geom[]
+          (uniquePropertyVals[vals[i]] as Feature<Polygon>[]).map(function (f) {
             return f.geometry.coordinates;
-          })
+          }) as [Geom]
         )
       );
-      mp.properties[propertyName] = vals[i];
-      outFeatures.push(mp);
+      if (mp && mp.properties) {
+        mp.properties[propertyName] = vals[i];
+        outFeatures.push(mp);
+      }
     }
   }
 
-  return flatten(featureCollection(outFeatures));
+  return flatten(featureCollection(outFeatures)) as FeatureCollection<Polygon>;
 }
 
 export default dissolve;

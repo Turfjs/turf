@@ -27,12 +27,12 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./index.d.ts",
+      "types": "./dist/js/index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
   },
-  "types": "index.d.ts",
+  "types": "dist/js/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist"
