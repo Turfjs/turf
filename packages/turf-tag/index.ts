@@ -1,3 +1,4 @@
+import { Point, FeatureCollection, Polygon, MultiPolygon } from "geojson";
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import clone from "@turf/clone";
 import { featureEach } from "@turf/meta";
@@ -37,16 +38,23 @@ import { featureEach } from "@turf/meta";
  * //addToMap
  * var addToMap = [tagged, polygons]
  */
-function tag(points, polygons, field, outField) {
+function tag(
+  points: FeatureCollection<Point>,
+  polygons: FeatureCollection<Polygon | MultiPolygon>,
+  field: string,
+  outField: string
+): FeatureCollection<Point> {
   // prevent mutations
   points = clone(points);
   polygons = clone(polygons);
   featureEach(points, function (pt) {
     if (!pt.properties) pt.properties = {};
     featureEach(polygons, function (poly) {
-      if (pt.properties[outField] === undefined) {
-        if (booleanPointInPolygon(pt, poly))
-          pt.properties[outField] = poly.properties[field];
+      if (pt.properties && poly.properties) {
+        if (pt.properties[outField] === undefined) {
+          if (booleanPointInPolygon(pt, poly))
+            pt.properties[outField] = poly.properties[field];
+        }
       }
     });
   });
