@@ -27,32 +27,36 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./index.d.ts",
+      "types": "./dist/js/index.d.ts",
       "import": "./dist/es/index.js",
       "require": "./dist/js/index.js"
     }
   },
-  "types": "index.d.ts",
+  "types": "dist/js/index.d.ts",
   "sideEffects": false,
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
     "bench": "tsx bench.js",
-    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build": "npm-run-all --npm-path npm build:*",
+    "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
+    "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
     "npm-run-all": "^4.1.5",
     "rollup": "^2.79.1",
     "tape": "^5.7.2",
+    "typescript": "^5.2.2",
     "tsx": "^3.14.0"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.2"
+    "@turf/helpers": "^7.0.0-alpha.2",
+    "tslib": "^2.6.2"
   }
 }

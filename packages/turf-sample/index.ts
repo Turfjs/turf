@@ -1,4 +1,5 @@
 // http://stackoverflow.com/questions/11935175/sampling-a-random-subset-from-an-array
+import { Feature, FeatureCollection, Geometry, GeometryObject } from "geojson";
 import { featureCollection } from "@turf/helpers";
 
 /**
@@ -20,18 +21,18 @@ import { featureCollection } from "@turf/helpers";
  *   currentFeature.properties['marker-color'] = '#000';
  * });
  */
-function sample(featurecollection, num) {
-  if (!featurecollection) throw new Error("featurecollection is required");
-  if (num === null || num === undefined) throw new Error("num is required");
-  if (typeof num !== "number") throw new Error("num must be a number");
-
-  var outFC = featureCollection(
-    getRandomSubarray(featurecollection.features, num)
-  );
+function sample<T extends GeometryObject>(
+  fc: FeatureCollection<T>,
+  num: number
+): FeatureCollection<T> {
+  var outFC = featureCollection(getRandomSubarray(fc.features, num));
   return outFC;
 }
 
-function getRandomSubarray(arr, size) {
+function getRandomSubarray<T extends Geometry>(
+  arr: Feature<T>[],
+  size: number
+) {
   var shuffled = arr.slice(0),
     i = arr.length,
     min = i - size,
