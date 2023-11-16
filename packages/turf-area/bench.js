@@ -17,7 +17,7 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
 /**
  * Benmark Results
  *
- * polygon x 3,240,248 ops/sec ±0.91% (90 runs sampled)
+ * polygon x 8,510,024 ops/sec ±0.28% (96 runs sampled)
  */
 
 // Define benchmark
