@@ -12,8 +12,8 @@ import { Id, polygon, Units } from "@turf/helpers";
  * @param {number} [options.steps=64] number of steps
  * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
  * @param {Object} [options.properties={}] properties
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
+ * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] to assign to the resulting circle Feature
+ * @param {string|number} [options.id] Identifier to assign to the resulting circle feature
  * @returns {Feature<Polygon>} circle polygon
  * @example
  * var center = [-75.343, 39.984];
@@ -39,27 +39,17 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   const steps = options.steps || 64;
   const stepAngle = -360 / steps;
 
-  let properties: P | undefined = options.properties;
+  let properties = options.properties;
   let bboxValue: BBox | undefined;
   let idValue: Id | undefined;
 
   if (!Array.isArray(center) && center.type === "Feature") {
     properties = properties || center.properties;
-    bboxValue = center.bbox;
     idValue = center.id;
   }
 
   bboxValue = bboxValue || options.bbox;
   idValue = idValue || options.id;
-
-  let _options: { bbox?: BBox; id?: Id } | undefined;
-  if (bboxValue || idValue) {
-    _options = {
-      ...(bboxValue ? { bbox: bboxValue } : {}),
-      ...(idValue ? { id: idValue } : {}),
-    };
-  }
-
   // Calculate circle coordinates
   const coordinates = [];
   for (let i = 0; i < steps; i++) {
@@ -69,7 +59,7 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   }
   coordinates.push(coordinates[0]);
 
-  return polygon([coordinates], properties, _options);
+  return polygon([coordinates], properties, { bbox: bboxValue, id: idValue });
 }
 
 export default circle;
