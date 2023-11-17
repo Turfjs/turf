@@ -1,3 +1,5 @@
+import type { Feature, Point } from "geojson";
+import type { AllGeoJSON } from "@turf/helpers";
 import explode from "@turf/explode";
 import centroid from "@turf/center";
 import nearestPoint from "@turf/nearest-point";
@@ -30,20 +32,20 @@ import { featureCollection, feature, point } from "@turf/helpers";
  * //addToMap
  * var addToMap = [polygon, pointOnPolygon];
  */
-function pointOnFeature(geojson) {
+function pointOnFeature(geojson: AllGeoJSON): Feature<Point> {
   // normalize
-  var fc = normalize(geojson);
+  const fc = normalize(geojson);
 
   // get centroid
-  var cent = centroid(fc);
+  const cent = centroid(fc);
 
   // check to see if centroid is on surface
-  var onSurface = false;
-  var i = 0;
+  let onSurface = false;
+  let i = 0;
   while (!onSurface && i < fc.features.length) {
-    var geom = fc.features[i].geometry;
-    var x, y, x1, y1, x2, y2, k;
-    var onLine = false;
+    const geom = fc.features[i].geometry;
+    let x, y, x1, y1, x2, y2;
+    let onLine = false;
     if (geom.type === "Point") {
       if (
         cent.geometry.coordinates[0] === geom.coordinates[0] &&
@@ -52,8 +54,8 @@ function pointOnFeature(geojson) {
         onSurface = true;
       }
     } else if (geom.type === "MultiPoint") {
-      var onMultiPoint = false;
-      k = 0;
+      let onMultiPoint = false;
+      let k = 0;
       while (!onMultiPoint && k < geom.coordinates.length) {
         if (
           cent.geometry.coordinates[0] === geom.coordinates[k][0] &&
@@ -65,7 +67,7 @@ function pointOnFeature(geojson) {
         k++;
       }
     } else if (geom.type === "LineString") {
-      k = 0;
+      let k = 0;
       while (!onLine && k < geom.coordinates.length - 1) {
         x = cent.geometry.coordinates[0];
         y = cent.geometry.coordinates[1];
@@ -80,11 +82,11 @@ function pointOnFeature(geojson) {
         k++;
       }
     } else if (geom.type === "MultiLineString") {
-      var j = 0;
+      let j = 0;
       while (j < geom.coordinates.length) {
         onLine = false;
-        k = 0;
-        var line = geom.coordinates[j];
+        let k = 0;
+        const line = geom.coordinates[j];
         while (!onLine && k < line.length - 1) {
           x = cent.geometry.coordinates[0];
           y = cent.geometry.coordinates[1];
@@ -110,10 +112,10 @@ function pointOnFeature(geojson) {
   if (onSurface) {
     return cent;
   } else {
-    var vertices = featureCollection([]);
-    for (i = 0; i < fc.features.length; i++) {
+    const vertices = featureCollection<Point>([]);
+    for (let f = 0; f < fc.features.length; f++) {
       vertices.features = vertices.features.concat(
-        explode(fc.features[i]).features
+        explode(fc.features[f]).features
       );
     }
     // Remove distanceToPoint properties from nearestPoint()
@@ -129,7 +131,7 @@ function pointOnFeature(geojson) {
  * @param {GeoJSON} geojson Any GeoJSON
  * @returns {FeatureCollection} FeatureCollection
  */
-function normalize(geojson) {
+function normalize(geojson: AllGeoJSON) {
   if (geojson.type !== "FeatureCollection") {
     if (geojson.type !== "Feature") {
       return featureCollection([feature(geojson)]);
@@ -139,10 +141,17 @@ function normalize(geojson) {
   return geojson;
 }
 
-function pointOnSegment(x, y, x1, y1, x2, y2) {
-  var ab = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-  var ap = Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1));
-  var pb = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y));
+function pointOnSegment(
+  x: number,
+  y: number,
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number
+) {
+  const ab = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+  const ap = Math.sqrt((x - x1) * (x - x1) + (y - y1) * (y - y1));
+  const pb = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y));
   return ab === ap + pb;
 }
 
