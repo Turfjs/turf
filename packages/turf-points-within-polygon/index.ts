@@ -1,3 +1,13 @@
+import type {
+  Feature,
+  FeatureCollection,
+  Polygon,
+  MultiPolygon,
+  MultiPoint,
+  Point,
+  GeoJsonProperties,
+  Position,
+} from "geojson";
 import pointInPolygon from "@turf/boolean-point-in-polygon";
 import { featureCollection, multiPoint } from "@turf/helpers";
 import { geomEach, featureEach, coordEach } from "@turf/meta";
@@ -37,21 +47,47 @@ import { geomEach, featureEach, coordEach } from "@turf/meta";
  *   currentFeature.properties['marker-color'] = '#000';
  * });
  */
-function pointsWithinPolygon(points, polygons) {
-  var results = [];
+function pointsWithinPolygon<
+  G extends Polygon | MultiPolygon,
+  P extends GeoJsonProperties,
+>(
+  points: Feature<Point, P> | FeatureCollection<Point, P>,
+  polygons: Feature<G> | FeatureCollection<G> | G
+): FeatureCollection<Point, P>;
+
+function pointsWithinPolygon<
+  G extends Polygon | MultiPolygon,
+  P extends GeoJsonProperties,
+>(
+  points: Feature<MultiPoint, P> | FeatureCollection<MultiPoint, P>,
+  polygons: Feature<G> | FeatureCollection<G> | G
+): FeatureCollection<MultiPoint, P>;
+
+function pointsWithinPolygon<
+  G extends Polygon | MultiPolygon,
+  P extends GeoJsonProperties,
+>(
+  points:
+    | Feature<Point | MultiPoint, P>
+    | FeatureCollection<Point | MultiPoint, P>,
+  polygons: Feature<G> | FeatureCollection<G> | G
+): FeatureCollection<Point | MultiPoint, P> {
+  const results: Feature<Point | MultiPoint, P>[] = [];
   featureEach(points, function (point) {
-    var contained = false;
+    let contained = false;
     if (point.geometry.type === "Point") {
       geomEach(polygons, function (polygon) {
-        if (pointInPolygon(point, polygon)) contained = true;
+        if (pointInPolygon(point as Feature<Point, P>, polygon)) {
+          contained = true;
+        }
       });
       if (contained) {
         results.push(point);
       }
     } else if (point.geometry.type === "MultiPoint") {
-      var pointsWithin = [];
+      var pointsWithin: Position[] = [];
       geomEach(polygons, function (polygon) {
-        coordEach(point, function (pointCoord) {
+        coordEach(point as Feature<MultiPoint>, function (pointCoord) {
           if (pointInPolygon(pointCoord, polygon)) {
             contained = true;
             pointsWithin.push(pointCoord);
@@ -59,10 +95,10 @@ function pointsWithinPolygon(points, polygons) {
         });
       });
       if (contained) {
-        results.push(multiPoint(pointsWithin, point.properties || {}));
+        results.push(
+          multiPoint(pointsWithin, point.properties) as Feature<MultiPoint, P>
+        );
       }
-    } else {
-      throw new Error("Input geometry must be a Point or MultiPoint");
     }
   });
   return featureCollection(results);
