@@ -1,3 +1,12 @@
+import type {
+  Feature,
+  FeatureCollection,
+  Point,
+  Polygon,
+  Position,
+  MultiPolygon,
+} from "geojson";
+import type { Coord } from "@turf/helpers";
 import { getCoords, getType } from "@turf/invariant";
 import { point, featureCollection } from "@turf/helpers";
 import calcBbox from "@turf/bbox";
@@ -20,17 +29,19 @@ import nearestPoint from "@turf/nearest-point";
  * //addToMap
  * var addToMap = [tangents, point, polygon];
  */
-function polygonTangents(pt, polygon) {
-  var pointCoords = getCoords(pt);
-  var polyCoords = getCoords(polygon);
+function polygonTangents<T extends Polygon | MultiPolygon>(
+  pt: Coord,
+  polygon: Feature<T> | T
+): FeatureCollection<Point> {
+  const pointCoords = getCoords(pt);
+  const polyCoords = getCoords(polygon);
 
-  var rtan;
-  var ltan;
-  var enext;
-  var eprev;
-  var bbox = calcBbox(polygon);
-  var nearestPtIndex = 0;
-  var nearest = null;
+  let rtan: Position = [];
+  let ltan: Position = [];
+  let eprev: number;
+  const bbox = calcBbox(polygon);
+  let nearestPtIndex = 0;
+  let nearest = null;
 
   // If the point lies inside the polygon bbox then we need to be a bit trickier
   // otherwise points lying inside reflex angles on concave polys can have issues
@@ -43,7 +54,7 @@ function polygonTangents(pt, polygon) {
     nearest = nearestPoint(pt, explode(polygon));
     nearestPtIndex = nearest.properties.featureIndex;
   }
-  var type = getType(polygon);
+  const type = getType(polygon);
   switch (type) {
     case "Polygon":
       rtan = polyCoords[0][nearestPtIndex];
@@ -57,17 +68,13 @@ function polygonTangents(pt, polygon) {
         polyCoords[0][polyCoords[0].length - 1],
         pointCoords
       );
-      var out = processPolygon(
+      [rtan, ltan] = processPolygon(
         polyCoords[0],
         pointCoords,
         eprev,
-        enext,
         rtan,
-        ltan,
-        polygon
+        ltan
       );
-      rtan = out[0];
-      ltan = out[1];
       break;
     case "MultiPolygon":
       var closestFeature = 0;
@@ -94,31 +101,27 @@ function polygonTangents(pt, polygon) {
         pointCoords
       );
       polyCoords.forEach(function (ring) {
-        var out = processPolygon(
-          ring[0],
-          pointCoords,
-          eprev,
-          enext,
-          rtan,
-          ltan,
-          polygon
-        );
-        rtan = out[0];
-        ltan = out[1];
+        [rtan, ltan] = processPolygon(ring[0], pointCoords, eprev, rtan, ltan);
       });
       break;
   }
   return featureCollection([point(rtan), point(ltan)]);
 }
 
-function processPolygon(polygonCoords, ptCoords, eprev, enext, rtan, ltan) {
-  for (var i = 0; i < polygonCoords.length; i++) {
-    var currentCoords = polygonCoords[i];
-    var nextCoordPair = polygonCoords[i + 1];
+function processPolygon(
+  polygonCoords: Position[],
+  ptCoords: Position,
+  eprev: number,
+  rtan: Position,
+  ltan: Position
+) {
+  for (let i = 0; i < polygonCoords.length; i++) {
+    const currentCoords = polygonCoords[i];
+    let nextCoordPair = polygonCoords[i + 1];
     if (i === polygonCoords.length - 1) {
       nextCoordPair = polygonCoords[0];
     }
-    enext = isLeft(currentCoords, nextCoordPair, ptCoords);
+    const enext = isLeft(currentCoords, nextCoordPair, ptCoords);
     if (eprev <= 0 && enext > 0) {
       if (!isBelow(ptCoords, currentCoords, rtan)) {
         rtan = currentCoords;
@@ -133,15 +136,15 @@ function processPolygon(polygonCoords, ptCoords, eprev, enext, rtan, ltan) {
   return [rtan, ltan];
 }
 
-function isAbove(point1, point2, point3) {
+function isAbove(point1: Position, point2: Position, point3: Position) {
   return isLeft(point1, point2, point3) > 0;
 }
 
-function isBelow(point1, point2, point3) {
+function isBelow(point1: Position, point2: Position, point3: Position) {
   return isLeft(point1, point2, point3) < 0;
 }
 
-function isLeft(point1, point2, point3) {
+function isLeft(point1: Position, point2: Position, point3: Position) {
   return (
     (point2[0] - point1[0]) * (point3[1] - point1[1]) -
     (point3[0] - point1[0]) * (point2[1] - point1[1])
