@@ -51,22 +51,6 @@ function pointsWithinPolygon<
   G extends Polygon | MultiPolygon,
   P extends GeoJsonProperties,
 >(
-  points: Feature<Point, P> | FeatureCollection<Point, P>,
-  polygons: Feature<G> | FeatureCollection<G> | G
-): FeatureCollection<Point, P>;
-
-function pointsWithinPolygon<
-  G extends Polygon | MultiPolygon,
-  P extends GeoJsonProperties,
->(
-  points: Feature<MultiPoint, P> | FeatureCollection<MultiPoint, P>,
-  polygons: Feature<G> | FeatureCollection<G> | G
-): FeatureCollection<MultiPoint, P>;
-
-function pointsWithinPolygon<
-  G extends Polygon | MultiPolygon,
-  P extends GeoJsonProperties,
->(
   points:
     | Feature<Point | MultiPoint, P>
     | FeatureCollection<Point | MultiPoint, P>,
