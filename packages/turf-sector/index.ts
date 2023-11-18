@@ -1,7 +1,8 @@
+import { Feature, Polygon, GeoJsonProperties } from "geojson";
 import circle from "@turf/circle";
 import lineArc from "@turf/line-arc";
 import { coordEach } from "@turf/meta";
-import { polygon, isObject } from "@turf/helpers";
+import { Units, Coord, isObject, polygon } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 
 /**
@@ -29,11 +30,24 @@ import { getCoords } from "@turf/invariant";
  * //addToMap
  * var addToMap = [center, sector];
  */
-function sector(center, radius, bearing1, bearing2, options) {
+function sector(
+  center: Coord,
+  radius: number,
+  bearing1: number,
+  bearing2: number,
+  options?: {
+    steps?: number;
+    units?: Units;
+    properties?: GeoJsonProperties;
+  }
+): Feature<Polygon> {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  var properties = options.properties;
+  options.steps = options.steps || 64;
+  options.units = options.units || "kilometers";
+  // Most options only for passing through to circle()
+  const { properties } = options;
 
   // validation
   if (!center) throw new Error("center is required");
@@ -47,9 +61,9 @@ function sector(center, radius, bearing1, bearing2, options) {
   if (convertAngleTo360(bearing1) === convertAngleTo360(bearing2)) {
     return circle(center, radius, options);
   }
-  var coords = getCoords(center);
-  var arc = lineArc(center, radius, bearing1, bearing2, options);
-  var sliceCoords = [[coords]];
+  const coords = getCoords(center);
+  const arc = lineArc(center, radius, bearing1, bearing2, options);
+  const sliceCoords = [[coords]];
   coordEach(arc, function (currentCoords) {
     sliceCoords[0].push(currentCoords);
   });
@@ -63,12 +77,14 @@ function sector(center, radius, bearing1, bearing2, options) {
  * and returns a valid angle between 0-360 degrees
  *
  * @private
- * @param {number} alfa angle between -180-180 degrees
+ * @param {number} alpha angle between -180-180 degrees
  * @returns {number} angle between 0-360 degrees
  */
-function convertAngleTo360(alfa) {
-  var beta = alfa % 360;
-  if (beta < 0) beta += 360;
+function convertAngleTo360(alpha: number) {
+  let beta = alpha % 360;
+  if (beta < 0) {
+    beta += 360;
+  }
   return beta;
 }
 
