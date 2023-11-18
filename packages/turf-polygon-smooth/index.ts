@@ -1,3 +1,10 @@
+import type {
+  Feature,
+  FeatureCollection,
+  Polygon,
+  Position,
+  MultiPolygon,
+} from "geojson";
 import { featureCollection, multiPolygon, polygon } from "@turf/helpers";
 import { coordEach, geomEach } from "@turf/meta";
 
@@ -18,45 +25,72 @@ import { coordEach, geomEach } from "@turf/meta";
  * //addToMap
  * var addToMap = [smoothed, polygon];
  */
-function polygonSmooth(inputPolys, options) {
-  options = options || {};
-  var outPolys = [];
+function polygonSmooth(
+  inputPolys: FeatureCollection<Polygon> | Feature<Polygon> | Polygon,
+  options?: {
+    iterations?: number;
+  }
+): FeatureCollection<Polygon>;
+
+function polygonSmooth(
+  inputPolys:
+    | FeatureCollection<MultiPolygon>
+    | Feature<MultiPolygon>
+    | MultiPolygon,
+  options?: {
+    iterations?: number;
+  }
+): FeatureCollection<MultiPolygon>;
+
+function polygonSmooth(
+  inputPolys:
+    | FeatureCollection<Polygon | MultiPolygon>
+    | Feature<Polygon | MultiPolygon>
+    | Polygon
+    | MultiPolygon,
+  options?: {
+    iterations?: number;
+  }
+): FeatureCollection<Polygon | MultiPolygon> {
   // Optional parameters
-  var iterations = options.iterations || 1;
+  options = options || {};
+  options.iterations = options.iterations || 1;
+
+  const { iterations } = options;
+
+  const outPolys: Feature<Polygon | MultiPolygon>[] = [];
   if (!inputPolys) throw new Error("inputPolys is required");
 
   geomEach(inputPolys, function (geom, geomIndex, properties) {
-    var outCoords;
-    var poly;
-    var tempOutput;
-
-    switch (geom.type) {
-      case "Polygon":
-        outCoords = [[]];
-        for (var i = 0; i < iterations; i++) {
-          tempOutput = [];
-          poly = geom;
-          if (i > 0) poly = polygon(outCoords).geometry;
-          processPolygon(poly, tempOutput);
-          outCoords = tempOutput.slice(0);
+    if (geom.type === "Polygon") {
+      let outCoords: Position[][] = [[]];
+      for (let i = 0; i < iterations; i++) {
+        let tempOutput: Position[][] = [];
+        let poly = geom;
+        if (i > 0) {
+          poly = polygon(outCoords).geometry;
         }
-        outPolys.push(polygon(outCoords, properties));
-        break;
-      case "MultiPolygon":
-        outCoords = [[[]]];
-        for (var y = 0; y < iterations; y++) {
-          tempOutput = [];
-          poly = geom;
-          if (y > 0) poly = multiPolygon(outCoords).geometry;
-          processMultiPolygon(poly, tempOutput);
-          outCoords = tempOutput.slice(0);
+        processPolygon(poly, tempOutput);
+        outCoords = tempOutput.slice(0);
+      }
+      outPolys.push(polygon(outCoords, properties));
+    } else if (geom.type === "MultiPolygon") {
+      let outCoords: Position[][][] = [[[]]];
+      for (let y = 0; y < iterations; y++) {
+        let tempOutput: Position[][][] = [];
+        let poly = geom;
+        if (y > 0) {
+          poly = multiPolygon(outCoords).geometry;
         }
-        outPolys.push(multiPolygon(outCoords, properties));
-        break;
-      default:
-        throw new Error("geometry is invalid, must be Polygon or MultiPolygon");
+        processMultiPolygon(poly, tempOutput);
+        outCoords = tempOutput.slice(0);
+      }
+      outPolys.push(multiPolygon(outCoords, properties));
+    } else {
+      throw new Error("geometry is invalid, must be Polygon or MultiPolygon");
     }
   });
+
   return featureCollection(outPolys);
 }
 
@@ -65,9 +99,9 @@ function polygonSmooth(inputPolys, options) {
  * @param {poly} tempOutput to place the results in
  * @private
  */
-function processPolygon(poly, tempOutput) {
-  var previousCoord = null;
-  var previousGeometryIndex = null;
+function processPolygon(poly: Polygon, tempOutput: Position[][]) {
+  var previousCoord: Position;
+  var previousGeometryIndex: number;
 
   coordEach(
     poly,
@@ -109,10 +143,10 @@ function processPolygon(poly, tempOutput) {
  * @param {poly} tempOutput to place the results in
  * @private
  */
-function processMultiPolygon(poly, tempOutput) {
-  var previousCoord = null;
-  var previousMultiFeatureIndex = null;
-  var previousGeometryIndex = null;
+function processMultiPolygon(poly: MultiPolygon, tempOutput: Position[][][]) {
+  let previousCoord: Position;
+  let previousMultiFeatureIndex: number;
+  let previousGeometryIndex: number;
 
   coordEach(
     poly,
