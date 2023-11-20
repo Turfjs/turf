@@ -1,4 +1,5 @@
-import polygonClipping from "polygon-clipping";
+import { Polygon, MultiPolygon, Feature, FeatureCollection } from "geojson";
+import polygonClipping, { Geom } from "polygon-clipping";
 import { polygon, multiPolygon } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
 
@@ -35,20 +36,22 @@ import { geomEach } from "@turf/meta";
  * //addToMap
  * var addToMap = [polygon1, polygon2, difference];
  */
-function difference(features) {
-  const geoms = [];
+function difference(
+  features: FeatureCollection<Polygon | MultiPolygon>
+): Feature<Polygon | MultiPolygon> | null {
+  const geoms: Array<Geom> = [];
 
   geomEach(features, (geom) => {
-    geoms.push(geom.coordinates);
+    geoms.push(geom.coordinates as Geom);
   });
 
   if (geoms.length < 2) {
     throw new Error("Must have at least two features");
   }
 
-  var properties = features.features[0].properties || {};
+  const properties = features.features[0].properties || {};
 
-  var differenced = polygonClipping.difference(geoms[0], ...geoms.slice(1));
+  const differenced = polygonClipping.difference(geoms[0], ...geoms.slice(1));
   if (differenced.length === 0) return null;
   if (differenced.length === 1) return polygon(differenced[0], properties);
   return multiPolygon(differenced, properties);
