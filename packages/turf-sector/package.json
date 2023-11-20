@@ -42,7 +42,8 @@
     "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
-    "test:tape": "tsx test.js"
+    "test:tape": "tsx test.js",
+    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
     "@turf/truncate": "^7.0.0-alpha.2",
