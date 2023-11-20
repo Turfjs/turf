@@ -1,7 +1,8 @@
+import { Geometry, Position } from "geojson";
 import cleanCoords from "@turf/clean-coords";
 import clone from "@turf/clone";
 import { geomEach } from "@turf/meta";
-import { isObject } from "@turf/helpers";
+import { AllGeoJSON, isObject } from "@turf/helpers";
 import simplifyJS from "./lib/simplify";
 
 /**
@@ -44,13 +45,22 @@ import simplifyJS from "./lib/simplify";
  * //addToMap
  * var addToMap = [geojson, simplified]
  */
-function simplify(geojson, options) {
+function simplify<T extends AllGeoJSON>(
+  geojson: T,
+  options?: {
+    tolerance?: number;
+    highQuality?: boolean;
+    mutate?: boolean;
+  }
+): T {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  var tolerance = options.tolerance !== undefined ? options.tolerance : 1;
-  var highQuality = options.highQuality || false;
-  var mutate = options.mutate || false;
+  options.tolerance = options.tolerance !== undefined ? options.tolerance : 1;
+  options.highQuality = options.highQuality || false;
+  options.mutate = options.mutate || false;
+
+  const { tolerance, highQuality, mutate } = options;
 
   if (!geojson) throw new Error("geojson is required");
   if (tolerance && tolerance < 0) throw new Error("invalid tolerance");
@@ -73,41 +83,53 @@ function simplify(geojson, options) {
  * @param {boolean} [highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
  * @returns {Geometry} output
  */
-function simplifyGeom(geometry, tolerance, highQuality) {
-  var type = geometry.type;
+function simplifyGeom(
+  geometry: Geometry,
+  tolerance: number,
+  highQuality: boolean
+) {
+  const type = geometry.type;
 
   // "unsimplyfiable" geometry types
   if (type === "Point" || type === "MultiPoint") return geometry;
 
   // Remove any extra coordinates
-  cleanCoords(geometry, true);
+  cleanCoords(geometry, { mutate: true });
 
-  var coordinates = geometry.coordinates;
-  switch (type) {
-    case "LineString":
-      geometry["coordinates"] = simplifyLine(
-        coordinates,
-        tolerance,
-        highQuality
-      );
-      break;
-    case "MultiLineString":
-      geometry["coordinates"] = coordinates.map(function (lines) {
-        return simplifyLine(lines, tolerance, highQuality);
-      });
-      break;
-    case "Polygon":
-      geometry["coordinates"] = simplifyPolygon(
-        coordinates,
-        tolerance,
-        highQuality
-      );
-      break;
-    case "MultiPolygon":
-      geometry["coordinates"] = coordinates.map(function (rings) {
-        return simplifyPolygon(rings, tolerance, highQuality);
-      });
+  if (type !== "GeometryCollection") {
+    // TODO should this cater for GeometryCollections too?
+    const coordinates = geometry.coordinates;
+    switch (type) {
+      case "LineString":
+        geometry.coordinates = simplifyLine(
+          coordinates as Position[],
+          tolerance,
+          highQuality
+        );
+        break;
+      case "MultiLineString":
+        geometry.coordinates = (coordinates as Position[][]).map(
+          function (lines) {
+            return simplifyLine(lines, tolerance, highQuality);
+          }
+        );
+        break;
+      case "Polygon":
+        geometry.coordinates = simplifyPolygon(
+          coordinates as Position[][],
+          tolerance,
+          highQuality
+        );
+        break;
+      case "MultiPolygon":
+        geometry.coordinates = (coordinates as Position[][][]).map(
+          function (rings) {
+            return simplifyPolygon(rings, tolerance, highQuality);
+          }
+        );
+    }
   }
+
   return geometry;
 }
 
@@ -120,7 +142,11 @@ function simplifyGeom(geometry, tolerance, highQuality) {
  * @param {boolean} highQuality whether or not to spend more time to create a higher-quality
  * @returns {Array<Array<number>>} simplified coords
  */
-function simplifyLine(coordinates, tolerance, highQuality) {
+function simplifyLine(
+  coordinates: Position[],
+  tolerance: number,
+  highQuality: boolean
+) {
   return simplifyJS(
     coordinates.map(function (coord) {
       return { x: coord[0], y: coord[1], z: coord[2] };
@@ -141,15 +167,19 @@ function simplifyLine(coordinates, tolerance, highQuality) {
  * @param {boolean} highQuality whether or not to spend more time to create a higher-quality
  * @returns {Array<Array<Array<number>>>} simplified coords
  */
-function simplifyPolygon(coordinates, tolerance, highQuality) {
+function simplifyPolygon(
+  coordinates: Position[][],
+  tolerance: number,
+  highQuality: boolean
+) {
   return coordinates.map(function (ring) {
-    var pts = ring.map(function (coord) {
+    const pts = ring.map(function (coord) {
       return { x: coord[0], y: coord[1] };
     });
     if (pts.length < 4) {
       throw new Error("invalid polygon");
     }
-    var simpleRing = simplifyJS(pts, tolerance, highQuality).map(
+    let simpleRing = simplifyJS(pts, tolerance, highQuality).map(
       function (coords) {
         return [coords.x, coords.y];
       }
@@ -180,7 +210,7 @@ function simplifyPolygon(coordinates, tolerance, highQuality) {
  * @param {Array<number>} ring coordinates to be checked
  * @returns {boolean} true if valid
  */
-function checkValidity(ring) {
+function checkValidity(ring: Position[]) {
   if (ring.length < 3) return false;
   //if the last point is the same as the first, it's not a triangle
   return !(
