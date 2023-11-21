@@ -431,6 +431,17 @@ and returns an angle between 0-360 degrees (positive clockwise), 0 being the nor
 
 Returns **[number][1]** angle between 0 and 360 degrees
 
+## azimuthToBearing
+
+Converts any azimuth angle from the north line direction (positive clockwise)
+and returns an angle between -180 and +180 degrees (positive clockwise), 0 being the north line
+
+### Parameters
+
+*   `angle` **[number][1]** between 0 and 360 degrees
+
+Returns **[number][1]** bearing between -180 and +180 degrees
+
 ## radiansToDegrees
 
 Converts an angle in radians to degrees

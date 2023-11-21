@@ -147,6 +147,7 @@ toc:
   - booleanWithin
   - name: Unit Conversion
   - bearingToAzimuth
+  - azimuthToBearing
   - convertArea
   - convertLength
   - degreesToRadians
