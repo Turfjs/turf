@@ -35,18 +35,16 @@ import type { AllGeoJSON } from "@turf/helpers";
  */
 function rewind<T extends AllGeoJSON>(
   geojson: T,
-  options?: {
+  options: {
     reverse?: boolean;
     mutate?: boolean;
-  }
+  } = {}
 ): Geometry | Feature | FeatureCollection {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  options.mutate = options.mutate || false;
-  options.reverse = options.reverse || false;
-
-  const { reverse, mutate } = options;
+  const mutate = options.mutate || false;
+  const reverse = options.reverse || false;
 
   // Prevent input mutation if requested.
   if (!mutate) geojson = clone(geojson);

@@ -47,20 +47,18 @@ import simplifyJS from "./lib/simplify";
  */
 function simplify<T extends AllGeoJSON>(
   geojson: T,
-  options?: {
+  options: {
     tolerance?: number;
     highQuality?: boolean;
     mutate?: boolean;
-  }
+  } = {}
 ): T {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  options.tolerance = options.tolerance !== undefined ? options.tolerance : 1;
-  options.highQuality = options.highQuality || false;
-  options.mutate = options.mutate || false;
-
-  const { tolerance, highQuality, mutate } = options;
+  const tolerance = options.tolerance !== undefined ? options.tolerance : 1;
+  const highQuality = options.highQuality || false;
+  const mutate = options.mutate || false;
 
   if (!geojson) throw new Error("geojson is required");
   if (tolerance && tolerance < 0) throw new Error("invalid tolerance");

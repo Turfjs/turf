@@ -35,19 +35,17 @@ function sector(
   radius: number,
   bearing1: number,
   bearing2: number,
-  options?: {
+  options: {
     steps?: number;
     units?: Units;
     properties?: GeoJsonProperties;
-  }
+  } = {}
 ): Feature<Polygon> {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  options.steps = options.steps || 64;
-  options.units = options.units || "kilometers";
   // Most options only for passing through to circle()
-  const { properties } = options;
+  const properties = options.properties;
 
   // validation
   if (!center) throw new Error("center is required");
