@@ -13,7 +13,7 @@ import clone from "@turf/clone";
 import booleanClockwise from "@turf/boolean-clockwise";
 import { geomEach, featureEach } from "@turf/meta";
 import { getCoords } from "@turf/invariant";
-import { featureCollection } from "@turf/helpers";
+import { featureCollection, isObject } from "@turf/helpers";
 import type { AllGeoJSON } from "@turf/helpers";
 
 /**
@@ -35,15 +35,17 @@ import type { AllGeoJSON } from "@turf/helpers";
  */
 function rewind<T extends AllGeoJSON>(
   geojson: T,
-  options: {
-    reverse: boolean;
-    mutate: boolean;
-  } = {
-    reverse: false,
-    mutate: false,
+  options?: {
+    reverse?: boolean;
+    mutate?: boolean;
   }
 ): Geometry | Feature | FeatureCollection {
   // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
+  options.mutate = options.mutate || false;
+  options.reverse = options.reverse || false;
+
   const { reverse, mutate } = options;
 
   // Prevent input mutation if requested.

@@ -20,13 +20,14 @@ import clone from "@turf/clone";
  */
 function flip<T extends AllGeoJSON>(
   geojson: T,
-  options: {
+  options?: {
     mutate?: boolean;
   }
 ): T {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
+  options.mutate = options.mutate || false;
   const { mutate } = options;
 
   if (!geojson) throw new Error("geojson is required");

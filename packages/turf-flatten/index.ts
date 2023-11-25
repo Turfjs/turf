@@ -1,7 +1,16 @@
 import { flattenEach } from "@turf/meta";
 import { featureCollection } from "@turf/helpers";
 import type { AllGeoJSON } from "@turf/helpers";
-import type { Feature, FeatureCollection } from "geojson";
+import type {
+  Feature,
+  Point,
+  MultiPoint,
+  LineString,
+  MultiLineString,
+  FeatureCollection,
+  Polygon,
+  MultiPolygon,
+} from "geojson";
 
 /**
  * Flattens any {@link GeoJSON} to a {@link FeatureCollection} inspired by [geojson-flatten](https://github.com/tmcw/geojson-flatten).
@@ -21,6 +30,20 @@ import type { Feature, FeatureCollection } from "geojson";
  * //addToMap
  * var addToMap = [flatten]
  */
+function flatten<T extends Point | MultiPoint>(
+  geojson: Feature<T> | FeatureCollection<T> | T
+): FeatureCollection<Point>;
+
+function flatten<T extends LineString | MultiLineString>(
+  geojson: Feature<T> | FeatureCollection<T> | T
+): FeatureCollection<LineString>;
+
+function flatten<T extends Polygon | MultiPolygon>(
+  geojson: Feature<T> | FeatureCollection<T> | T
+): FeatureCollection<Polygon>;
+
+function flatten(geojson: AllGeoJSON): FeatureCollection<any>;
+
 function flatten(geojson: AllGeoJSON): FeatureCollection {
   if (!geojson) throw new Error("geojson is required");
 

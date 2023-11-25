@@ -56,7 +56,6 @@
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
-    "rollup": "^2.79.1",
     "tape": "^5.7.2",
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
