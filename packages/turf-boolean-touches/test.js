@@ -1,7 +1,7 @@
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
 const test = require("tape");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const shapely = require("boolean-shapely");
 const booleanJSTS = require("boolean-jsts");
 const touches = require("./index").default;
@@ -14,7 +14,7 @@ test("turf-boolean-touches", (t) => {
       const name = path.parse(filepath).name;
       if (name.includes("skip")) return t.skip(name);
 
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const feature1 = geojson.features[0];
       const feature2 = geojson.features[1];
       const result = touches(feature1, feature2);
@@ -37,7 +37,7 @@ test("turf-boolean-touches", (t) => {
       const name = path.parse(filepath).name;
       if (name.includes("skip")) return t.skip(name);
 
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const feature1 = geojson.features[0];
       const feature2 = geojson.features[1];
       const result = touches(feature1, feature2);

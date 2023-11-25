@@ -54,14 +54,14 @@
     "test:tape": "tsx test.js"
   },
   "devDependencies": {
-    "benchmark": "*",
-    "npm-run-all": "*",
-    "rollup": "*",
-    "tape": "*",
-    "tsx": "*"
+    "benchmark": "^2.1.4",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.79.1",
+    "tape": "^5.7.2",
+    "tsx": "^3.14.0"
   },
   "dependencies": {
     "@turf/helpers": "^7.0.0-alpha.2",
-    "earcut": "^2.0.0"
+    "earcut": "^2.2.4"
   }
 }

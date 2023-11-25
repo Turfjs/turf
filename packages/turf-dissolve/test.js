@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import { polygon, point, featureCollection } from "@turf/helpers";
 import dissolve from "./index";
 
@@ -17,7 +17,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -29,8 +29,9 @@ test("turf-dissolve", (t) => {
     const propertyName = geojson.propertyName;
     const results = dissolve(geojson, { propertyName });
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEquals(results, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEquals(results, loadJsonFileSync(directories.out + filename), name);
   }
   t.end();
 });

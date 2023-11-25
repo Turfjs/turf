@@ -1,7 +1,7 @@
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const bbox = require("@turf/bbox").default;
 const centroid = require("@turf/centroid").default;
 const squareGrid = require("@turf/square-grid").default;
@@ -26,9 +26,9 @@ test("turf-quadrat-analysis geojson file", (t) => {
     "shenzhen_bbox.json"
   );
 
-  const futianBbox = load.sync(futianBboxPath);
-  const futianPoint = load.sync(futianPointPath);
-  const shenzhenBbox = load.sync(shenzhenBboxPath);
+  const futianBbox = loadJsonFileSync(futianBboxPath);
+  const futianPoint = loadJsonFileSync(futianPointPath);
+  const shenzhenBbox = loadJsonFileSync(shenzhenBboxPath);
 
   const resultFutian = quadratAnalysis(futianPoint, {
     studyBbox: bbox(futianBbox),
@@ -142,11 +142,11 @@ test("turf-quadrat-analysis random point", (t) => {
   // console.log(result1, result2, result3);
 
   if (process.env.REGEN) {
-    write.sync(randomPointSetPath, randomPointSet);
-    write.sync(uniformPointSetPath, uniformPointSet);
-    write.sync(smallBboxPath, bboxPolygon(smallBbox));
-    write.sync(bigBboxPath, bboxPolygon(bigBbox));
-    write.sync(smallGridPath, smallGrid);
+    writeJsonFileSync(randomPointSetPath, randomPointSet);
+    writeJsonFileSync(uniformPointSetPath, uniformPointSet);
+    writeJsonFileSync(smallBboxPath, bboxPolygon(smallBbox));
+    writeJsonFileSync(bigBboxPath, bboxPolygon(bigBbox));
+    writeJsonFileSync(smallGridPath, smallGrid);
   }
 
   t.end();

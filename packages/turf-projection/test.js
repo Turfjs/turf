@@ -1,9 +1,9 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const proj4 = require("proj4");
-const write = require("write-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const clone = require("@turf/clone").default;
 const { point } = require("@turf/helpers");
 const truncate = require("@turf/truncate").default;
@@ -20,7 +20,7 @@ const fromWgs84 = fs.readdirSync(directories.wgs84).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: truncate(load.sync(directories.wgs84 + filename)),
+    geojson: truncate(loadJsonFileSync(directories.wgs84 + filename)),
   };
 });
 
@@ -35,9 +35,12 @@ test("to-mercator", (t) => {
     const results = truncate(toMercator(geojson));
 
     if (process.env.REGEN)
-      write.sync(directories.out + "mercator-" + filename, results);
+      writeJsonFileSync(directories.out + "mercator-" + filename, results);
     t.deepEqual(results, truncate(expected), name);
-    t.deepEqual(results, load.sync(directories.out + "mercator-" + filename));
+    t.deepEqual(
+      results,
+      loadJsonFileSync(directories.out + "mercator-" + filename)
+    );
   }
   t.end();
 });
@@ -46,7 +49,7 @@ const fromMercator = fs.readdirSync(directories.mercator).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: truncate(load.sync(directories.mercator + filename)),
+    geojson: truncate(loadJsonFileSync(directories.mercator + filename)),
   };
 });
 
@@ -61,9 +64,12 @@ test("to-wgs84", (t) => {
     const results = truncate(toWgs84(geojson));
 
     if (process.env.REGEN)
-      write.sync(directories.out + "wgs84-" + filename, results);
+      writeJsonFileSync(directories.out + "wgs84-" + filename, results);
     t.deepEqual(results, truncate(expected), name);
-    t.deepEqual(results, load.sync(directories.out + "wgs84-" + filename));
+    t.deepEqual(
+      results,
+      loadJsonFileSync(directories.out + "wgs84-" + filename)
+    );
   }
   t.end();
 });

@@ -1,8 +1,8 @@
 const path = require("path");
 const test = require("tape");
-const glob = require("glob");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { glob } = require("glob");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const { featureEach } = require("@turf/meta");
 const { featureCollection, lineString } = require("@turf/helpers");
 const centroid = require("./index").default;
@@ -18,7 +18,7 @@ const fixtures = glob.sync(directories.in + "*.geojson").map((input) => {
   return {
     name,
     filename: base,
-    geojson: load.sync(input),
+    geojson: loadJsonFileSync(input),
     out: directories.out + base,
   };
 });
@@ -34,8 +34,8 @@ test("centroid", (t) => {
     const result = featureCollection([centered]);
     featureEach(geojson, (feature) => result.features.push(feature));
 
-    if (process.env.REGEN) write.sync(out, result);
-    t.deepEqual(result, load.sync(out), name);
+    if (process.env.REGEN) writeJsonFileSync(out, result);
+    t.deepEqual(result, loadJsonFileSync(out), name);
   });
   t.end();
 });

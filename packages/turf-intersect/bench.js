@@ -1,13 +1,13 @@
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const Benchmark = require("benchmark");
 const intersect = require("./index").default;
 
 // Fixtures
-const armenia = load.sync(
+const armenia = loadJsonFileSync(
   path.join(__dirname, "test", "in", "armenia.geojson")
 );
-const simple = load.sync(
+const simple = loadJsonFileSync(
   path.join(__dirname, "test", "in", "Intersect1.geojson")
 );
 

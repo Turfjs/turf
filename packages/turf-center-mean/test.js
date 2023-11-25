@@ -1,8 +1,8 @@
 const test = require("tape");
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const truncate = require("@turf/truncate").default;
 const { featureEach, coordEach } = require("@turf/meta");
 const { lineString, featureCollection } = require("@turf/helpers");
@@ -13,7 +13,7 @@ test("turf-center-mean", (t) => {
   glob
     .sync(path.join(__dirname, "test", "in", "*.geojson"))
     .forEach((filepath) => {
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const options = geojson.options || {};
       options.properties = { "marker-symbol": "star", "marker-color": "#F00" };
       const centered = truncate(centerMean(geojson, options));
@@ -43,8 +43,8 @@ test("turf-center-mean", (t) => {
         path.join("test", "in"),
         path.join("test", "out")
       );
-      if (process.env.REGEN) write.sync(out, results);
-      t.deepEqual(results, load.sync(out), path.parse(filepath).name);
+      if (process.env.REGEN) writeJsonFileSync(out, results);
+      t.deepEqual(results, loadJsonFileSync(out), path.parse(filepath).name);
     });
   t.end();
 });

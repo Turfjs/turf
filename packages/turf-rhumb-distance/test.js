@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 const test = require("tape");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const distance = require("@turf/distance").default;
 const { point, round } = require("@turf/helpers");
 const rhumbDistance = require("./index").default;
@@ -16,7 +16,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -43,8 +43,12 @@ test("rhumb-distance", (t) => {
     };
 
     if (process.env.REGEN)
-      write.sync(directories.out + name + ".json", distances);
-    t.deepEqual(distances, load.sync(directories.out + name + ".json"), name);
+      writeJsonFileSync(directories.out + name + ".json", distances);
+    t.deepEqual(
+      distances,
+      loadJsonFileSync(directories.out + name + ".json"),
+      name
+    );
   });
 
   // Now fails due to approximation error

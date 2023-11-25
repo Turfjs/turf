@@ -50,11 +50,11 @@
   "devDependencies": {
     "@turf/meta": "^7.0.0-alpha.2",
     "@turf/truncate": "^7.0.0-alpha.2",
-    "benchmark": "*",
-    "npm-run-all": "*",
-    "rollup": "*",
-    "tape": "*",
-    "tsx": "*"
+    "benchmark": "^2.1.4",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.79.1",
+    "tape": "^5.7.2",
+    "tsx": "^3.14.0"
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "^7.0.0-alpha.2",

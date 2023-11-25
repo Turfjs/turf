@@ -1,7 +1,7 @@
 const path = require("path");
-const glob = require("glob");
+const { glob } = require("glob");
 const Benchmark = require("benchmark");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const isClockwise = require("./index").default;
 
 /**
@@ -15,7 +15,7 @@ glob
   .sync(path.join(__dirname, "test", "**", "*.geojson"))
   .forEach((filepath) => {
     const { name } = path.parse(filepath);
-    const geojson = load.sync(filepath);
+    const geojson = loadJsonFileSync(filepath);
     const [feature] = geojson.features;
     suite.add(name, () => isClockwise(feature));
   });

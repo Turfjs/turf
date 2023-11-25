@@ -1,6 +1,6 @@
 const path = require("path");
-const glob = require("glob");
-const load = require("load-json-file");
+const { glob } = require("glob");
+const { loadJsonFileSync } = require("load-json-file");
 const Benchmark = require("benchmark");
 const centroid = require("./index").default;
 
@@ -9,7 +9,7 @@ const fixtures = glob
   .map((input) => {
     return {
       name: path.parse(input).name,
-      geojson: load.sync(input),
+      geojson: loadJsonFileSync(input),
     };
   });
 

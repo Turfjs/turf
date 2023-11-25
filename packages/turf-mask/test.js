@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import mask from "./index";
 
 const SKIP = ["multi-polygon.geojson", "overlapping.geojson"];
@@ -16,7 +16,7 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(path.join(directories.in, filename)),
+    geojson: loadJsonFileSync(path.join(directories.in, filename)),
   };
 });
 
@@ -29,8 +29,9 @@ test("turf-mask", (t) => {
     const [polygon, masking] = geojson.features;
     const results = mask(polygon, masking);
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEquals(results, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEquals(results, loadJsonFileSync(directories.out + filename), name);
   }
   t.end();
 });

@@ -1,6 +1,6 @@
 const path = require("path");
 const test = require("tape");
-const write = require("write-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const destination = require("@turf/destination").default;
 const { point, lineString, featureCollection } = require("@turf/helpers");
 const bearing = require("./index").default;
@@ -38,6 +38,6 @@ test("bearing", (t) => {
     );
 
     const results = featureCollection([start, end, initialLine, finalLine]);
-    write.sync(out + "results.geojson", results);
+    writeJsonFileSync(out + "results.geojson", results);
   }
 });

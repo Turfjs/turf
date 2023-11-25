@@ -1,8 +1,8 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const centroid = require("@turf/centroid").default;
 const chromatism = require("chromatism");
 const concaveman = require("concaveman");
@@ -20,7 +20,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -41,8 +41,9 @@ test("clusters-dbscan", (t) => {
     });
     const result = styleResult(clustered);
 
-    if (process.env.REGEN) write.sync(directories.out + filename, result);
-    t.deepEqual(result, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, result);
+    t.deepEqual(result, loadJsonFileSync(directories.out + filename), name);
   });
 
   t.end();
