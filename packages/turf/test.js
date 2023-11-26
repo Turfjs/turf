@@ -22,7 +22,10 @@ for (const name of fs.readdirSync(directory)) {
   }
 
   const index = fs.readFileSync(mainFile, "utf8");
-  const test = fs.readFileSync(path.join(directory, name, "test.js"), "utf8");
+  // Cater for JS or TS test files.
+  const test = fs.existsSync(path.join(directory, name, "test.ts"))
+    ? fs.readFileSync(path.join(directory, name, "test.ts"), "utf8")
+    : fs.readFileSync(path.join(directory, name, "test.js"), "utf8");
 
   modules.push({
     name,
