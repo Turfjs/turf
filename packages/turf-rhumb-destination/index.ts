@@ -123,4 +123,5 @@ function calculateRhumbDestination(
   ]; // normalise to −180..+180°
 }
 
+export { rhumbDestination };
 export default rhumbDestination;

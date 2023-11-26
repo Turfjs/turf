@@ -5,7 +5,7 @@ import bboxPolygon from "@turf/bbox-polygon";
 import { getCoord } from "@turf/invariant";
 import squareGrid from "@turf/square-grid";
 
-export interface QuadratAnalysisResult {
+interface QuadratAnalysisResult {
   criticalValue: number;
   maxAbsoluteDifference: number;
   isRandom: boolean;
@@ -53,7 +53,7 @@ export interface QuadratAnalysisResult {
  * var result = turf.quadratAnalysis(dataset);
  *
  */
-export default function quadratAnalysis(
+function quadratAnalysis(
   pointFeatureSet: FeatureCollection<Point>,
   options: {
     studyBbox?: [number, number, number, number];
@@ -220,3 +220,6 @@ function factorial(num: number) {
   }
   return inner(num);
 }
+
+export { QuadratAnalysisResult, quadratAnalysis };
+export default quadratAnalysis;

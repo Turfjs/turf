@@ -165,4 +165,5 @@ function concatSegment(
   return line;
 }
 
+export { lineOverlap };
 export default lineOverlap;

@@ -146,4 +146,5 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
   return closestPt;
 }
 
+export { nearestPointOnLine };
 export default nearestPointOnLine;

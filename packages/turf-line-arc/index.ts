@@ -27,7 +27,7 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * //addToMap
  * var addToMap = [center, arc]
  */
-export default function lineArc(
+function lineArc(
   center: Coord,
   radius: number,
   bearing1: number,
@@ -89,3 +89,6 @@ function convertAngleTo360(alpha: number) {
   }
   return beta;
 }
+
+export { lineArc };
+export default lineArc;

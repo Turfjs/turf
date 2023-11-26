@@ -111,4 +111,5 @@ function normalize(points: any): FeatureCollection<Point> {
   }
 }
 
+export { nearestPointToLine };
 export default nearestPointToLine;

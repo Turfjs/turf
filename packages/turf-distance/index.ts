@@ -51,4 +51,5 @@ function distance(
   );
 }
 
+export { distance };
 export default distance;

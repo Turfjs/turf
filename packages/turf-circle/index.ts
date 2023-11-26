@@ -52,4 +52,5 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   return polygon([coordinates], properties);
 }
 
+export { circle };
 export default circle;

@@ -45,7 +45,7 @@ import { featureEach } from "@turf/meta";
  * });
  */
 
-export default function (
+function moranIndex(
   fc: FeatureCollection<any>,
   options: {
     inputField: string;
@@ -154,3 +154,6 @@ function variance(y: number[]): number {
  * @property {number} stdNorm the standard devitaion of the random distribution
  * @property {number} zNorm the z-score of the observe samples with regard to the random distribution
  */
+
+export { moranIndex };
+export default moranIndex;

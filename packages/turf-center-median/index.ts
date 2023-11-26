@@ -175,4 +175,5 @@ function findMedian(
   }
 }
 
+export { centerMedian };
 export default centerMedian;

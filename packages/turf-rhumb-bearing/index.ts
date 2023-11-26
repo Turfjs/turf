@@ -78,4 +78,5 @@ function calculateRhumbBearing(from: number[], to: number[]) {
   return (radiansToDegrees(theta) + 360) % 360;
 }
 
+export { rhumbBearing };
 export default rhumbBearing;

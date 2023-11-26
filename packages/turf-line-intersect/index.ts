@@ -86,4 +86,5 @@ function lineIntersect<
   return featureCollection(results.map((r) => point(r)));
 }
 
+export { lineIntersect };
 export default lineIntersect;

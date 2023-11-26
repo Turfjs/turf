@@ -54,4 +54,5 @@ function centerMean<P extends GeoJsonProperties = GeoJsonProperties>(
   return point([sumXs / sumNs, sumYs / sumNs], options.properties, options);
 }
 
+export { centerMean };
 export default centerMean;

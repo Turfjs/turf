@@ -112,4 +112,5 @@ function bbox(coords1: number[], coords2: number[]): BBox {
   return [west, south, east, north];
 }
 
+export { lineSegment };
 export default lineSegment;

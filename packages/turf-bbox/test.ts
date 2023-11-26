@@ -1,5 +1,5 @@
-const test = require("tape");
-const {
+import test from "tape";
+import {
   point,
   polygon,
   feature,
@@ -7,8 +7,8 @@ const {
   multiPolygon,
   multiLineString,
   featureCollection,
-} = require("@turf/helpers");
-const bbox = require("./index").default;
+} from "@turf/helpers";
+import { bbox } from "./index";
 
 // Fixtures
 const pt = point([102.0, 0.5]);

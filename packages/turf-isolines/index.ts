@@ -163,4 +163,5 @@ function rescaleIsolines(
   return createdIsoLines;
 }
 
+export { isolines };
 export default isolines;

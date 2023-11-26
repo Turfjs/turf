@@ -1,7 +1,7 @@
 import path from "path";
 import test from "tape";
 import { writeJsonFileSync } from "write-json-file";
-import destination from "@turf/destination";
+import { destination } from "@turf/destination";
 import { point, lineString, featureCollection } from "@turf/helpers";
 import { bearing } from "./index";
 

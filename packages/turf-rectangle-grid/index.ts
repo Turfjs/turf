@@ -1,4 +1,4 @@
-import intersect from "@turf/boolean-intersects";
+import { booleanIntersects as intersect } from "@turf/boolean-intersects";
 import {
   BBox,
   Feature,
@@ -100,4 +100,5 @@ function rectangleGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   return featureCollection(results);
 }
 
+export { rectangleGrid };
 export default rectangleGrid;

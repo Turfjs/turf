@@ -9,7 +9,7 @@ import { featureEach } from "@turf/meta";
  * @param feature2 point feature
  * @param p p-norm 1=<p<=infinity 1: Manhattan distance 2: Euclidean distance
  */
-export function pNormDistance(
+function pNormDistance(
   feature1: Feature<Point>,
   feature2: Feature<Point>,
   p = 2
@@ -46,7 +46,7 @@ export function pNormDistance(
  * var dataset = turf.randomPoint(100, { bbox: bbox });
  * var result = turf.distanceWeight(dataset);
  */
-export default function distanceWeight(
+function distanceWeight(
   fc: FeatureCollection<any>,
   options?: {
     threshold?: number;
@@ -121,3 +121,6 @@ export default function distanceWeight(
 
   return weights;
 }
+
+export { pNormDistance, distanceWeight };
+export default distanceWeight;

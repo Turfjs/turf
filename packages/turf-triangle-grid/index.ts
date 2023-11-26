@@ -180,4 +180,5 @@ function triangleGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   return featureCollection(results);
 }
 
+export { triangleGrid };
 export default triangleGrid;

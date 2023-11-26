@@ -3,7 +3,7 @@ import clone from "@turf/clone";
 import { coordAll, featureEach } from "@turf/meta";
 import skmeans from "skmeans";
 
-export type KmeansProps = GeoJsonProperties & {
+type KmeansProps = GeoJsonProperties & {
   cluster?: number;
   centroid?: [number, number];
 };
@@ -76,4 +76,5 @@ function clustersKmeans(
   return points as FeatureCollection<Point, KmeansProps>;
 }
 
+export { clustersKmeans, KmeansProps };
 export default clustersKmeans;

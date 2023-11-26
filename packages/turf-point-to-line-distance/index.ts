@@ -127,4 +127,5 @@ function calcDistance(a: number[], b: number[], options: any) {
     : getDistance(a, b, options);
 }
 
+export { pointToLineDistance };
 export default pointToLineDistance;

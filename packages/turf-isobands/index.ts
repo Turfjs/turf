@@ -281,4 +281,5 @@ function allGrouped(
   return true;
 }
 
+export { isobands };
 export default isobands;

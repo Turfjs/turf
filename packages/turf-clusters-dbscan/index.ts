@@ -4,8 +4,8 @@ import distance from "@turf/distance";
 import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
 import RBush from "rbush";
 
-export type Dbscan = "core" | "edge" | "noise";
-export type DbscanProps = GeoJsonProperties & {
+type Dbscan = "core" | "edge" | "noise";
+type DbscanProps = GeoJsonProperties & {
   dbscan?: Dbscan;
   cluster?: number;
 };
@@ -182,4 +182,5 @@ function clustersDbscan(
   return points as FeatureCollection<Point, DbscanProps>;
 }
 
+export { Dbscan, DbscanProps, clustersDbscan };
 export default clustersDbscan;

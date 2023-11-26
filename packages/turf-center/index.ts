@@ -36,4 +36,5 @@ function center<P extends GeoJsonProperties = GeoJsonProperties>(
   return point([x, y], options.properties, options);
 }
 
+export { center };
 export default center;

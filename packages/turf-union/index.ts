@@ -57,4 +57,5 @@ function union<P extends GeoJsonProperties = GeoJsonProperties>(
   else return multiPolygon(unioned, options.properties);
 }
 
+export { union };
 export default union;

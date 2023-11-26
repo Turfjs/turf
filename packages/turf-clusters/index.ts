@@ -36,7 +36,7 @@ import { featureCollection } from "@turf/helpers";
  * turf.getCluster(clustered, {'marker-symbol': 'square'}).length;
  * //= 1
  */
-export function getCluster<
+function getCluster<
   G extends GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(geojson: FeatureCollection<G, P>, filter: any): FeatureCollection<G, P> {
@@ -104,7 +104,7 @@ export function getCluster<
  *     values.push(clusterValue);
  * });
  */
-export function clusterEach<
+function clusterEach<
   G extends GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -201,7 +201,7 @@ export function clusterEach<
  *     return previousValue.concat(clusterValue);
  * }, []);
  */
-export function clusterReduce<
+function clusterReduce<
   G extends GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -251,7 +251,7 @@ export function clusterReduce<
  * createBins(geojson, 'cluster');
  * //= { '0': [ 0 ], '1': [ 1, 3 ] }
  */
-export function createBins(
+function createBins(
   geojson: FeatureCollection<any>,
   property: string | number
 ) {
@@ -277,7 +277,7 @@ export function createBins(
  * @param {*} filter Filter
  * @returns {boolean} applied Filter to properties
  */
-export function applyFilter(properties: any, filter: any) {
+function applyFilter(properties: any, filter: any) {
   if (properties === undefined) return false;
   var filterType = typeof filter;
 
@@ -309,10 +309,7 @@ export function applyFilter(properties: any, filter: any) {
  * propertiesContainsFilter({foo: 'bar', cluster: 0}, {cluster: 1})
  * //= false
  */
-export function propertiesContainsFilter(
-  properties: any,
-  filter: any
-): boolean {
+function propertiesContainsFilter(properties: any, filter: any): boolean {
   var keys = Object.keys(filter);
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i];
@@ -332,7 +329,7 @@ export function propertiesContainsFilter(
  * filterProperties({foo: 'bar', cluster: 0}, ['cluster'])
  * //= {cluster: 0}
  */
-export function filterProperties(
+function filterProperties(
   properties: Record<string, any>,
   keys: string[]
 ): any {
@@ -347,3 +344,14 @@ export function filterProperties(
   }
   return newProperties;
 }
+
+export {
+  getCluster,
+  clusterEach,
+  clusterReduce,
+  createBins,
+  applyFilter,
+  propertiesContainsFilter,
+  filterProperties,
+};
+// No default export!

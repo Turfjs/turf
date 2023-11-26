@@ -27,7 +27,7 @@ import EdgeRing from "./lib/EdgeRing";
  * @returns {FeatureCollection<Polygon>} Polygons created
  * @throws {Error} if geoJson is invalid.
  */
-export default function polygonize<T extends LineString | MultiLineString>(
+function polygonize<T extends LineString | MultiLineString>(
   geoJson: Feature<T> | FeatureCollection<T> | T
 ): FeatureCollection<Polygon> {
   const graph = Graph.fromGeoJson(geoJson);
@@ -58,3 +58,6 @@ export default function polygonize<T extends LineString | MultiLineString>(
   // 5. EdgeRings to Polygons
   return featureCollection(shells.map((shell) => shell.toPolygon()));
 }
+
+export { polygonize };
+export default polygonize;

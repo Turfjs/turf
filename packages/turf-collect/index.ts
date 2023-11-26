@@ -84,4 +84,5 @@ function collect(
   return polygons;
 }
 
+export { collect };
 export default collect;
