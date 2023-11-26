@@ -1,19 +1,14 @@
-const test = require("tape");
-const path = require("path");
-const { glob } = require("glob");
-const { loadJsonFileSync } = require("load-json-file");
-const { writeJsonFileSync } = require("write-json-file");
-const sector = require("@turf/sector").default;
-const bearing = require("@turf/bearing").default;
-const truncate = require("@turf/truncate").default;
-const distance = require("@turf/distance").default;
-const {
-  point,
-  round,
-  lineString,
-  featureCollection,
-} = require("@turf/helpers");
-const angle = require("./index").default;
+import test from "tape";
+import path from "path";
+import { glob } from "glob";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
+import sector from "@turf/sector";
+import bearing from "@turf/bearing";
+import truncate from "@turf/truncate";
+import distance from "@turf/distance";
+import { point, round, lineString, featureCollection } from "@turf/helpers";
+import { angle } from "./index";
 
 test("turf-angle", (t) => {
   glob

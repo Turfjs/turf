@@ -1,5 +1,5 @@
-const Benchmark = require("benchmark");
-const angle = require("./index").default;
+import Benchmark from "benchmark";
+import { angle } from "./index";
 
 /**
  * Benchmark Results
@@ -9,7 +9,7 @@ const angle = require("./index").default;
  */
 new Benchmark.Suite("turf-angle")
   .add("angle", () => angle([5, 5], [5, 6], [3, 4]))
-  .add("angle -- meractor", () =>
+  .add("angle -- mercator", () =>
     angle([5, 5], [5, 6], [3, 4], { mercator: true })
   )
   .on("cycle", (e) => console.log(String(e.target)))
