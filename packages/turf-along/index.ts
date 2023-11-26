@@ -23,7 +23,7 @@ import { getGeom } from "@turf/invariant";
  * //addToMap
  * var addToMap = [along, line]
  */
-export default function along(
+function along(
   line: Feature<LineString> | LineString,
   distance: number,
   options: { units?: Units } = {}
@@ -55,3 +55,6 @@ export default function along(
   }
   return point(coords[coords.length - 1]);
 }
+
+export { along };
+export default along;

@@ -1,8 +1,9 @@
-const fs = require("fs");
-const Benchmark = require("benchmark");
-const along = require("./index").default;
+import fs from "fs";
+import Benchmark from "benchmark";
+import { along } from "./index";
+import { Feature, LineString } from "geojson";
 
-const line = {
+const line: Feature<LineString> = {
   type: "Feature",
   properties: {},
   geometry: {
@@ -19,25 +20,25 @@ const line = {
 };
 
 const route = JSON.parse(
-  fs.readFileSync(__dirname + "/test/fixtures/route.geojson")
+  fs.readFileSync(__dirname + "/test/fixtures/route.geojson").toString()
 );
 
 const suite = new Benchmark.Suite("turf-along");
 suite
   .add("turf-along", function () {
-    along(line, 1, "miles");
+    along(line, 1, { units: "miles" });
   })
   .add("turf-along#route 1 mile", function () {
-    along(route, 1, "miles");
+    along(route, 1, { units: "miles" });
   })
   .add("turf-along#route 10 miles", function () {
-    along(route, 10, "miles");
+    along(route, 10, { units: "miles" });
   })
   .add("turf-along#route 50 miles", function () {
-    along(route, 50, "miles");
+    along(route, 50, { units: "miles" });
   })
   .add("turf-along#route 100 miles", function () {
-    along(route, 100, "miles");
+    along(route, 100, { units: "miles" });
   })
   .on("cycle", function (event) {
     console.log(String(event.target));
