@@ -1,9 +1,9 @@
-const fs = require("fs");
-const test = require("tape");
-const path = require("path");
-const { loadJsonFileSync } = require("load-json-file");
-const { writeJsonFileSync } = require("write-json-file");
-const area = require("./index").default;
+import fs from "fs";
+import test from "tape";
+import path from "path";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
+import area from "./index";
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

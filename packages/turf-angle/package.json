@@ -51,6 +51,7 @@
     "@turf/distance": "^7.0.0-alpha.2",
     "@turf/sector": "^7.0.0-alpha.2",
     "@turf/truncate": "^7.0.0-alpha.2",
+    "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
     "glob": "^10.3.10",

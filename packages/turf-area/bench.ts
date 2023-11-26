@@ -1,8 +1,8 @@
-const fs = require("fs");
-const path = require("path");
-const { loadJsonFileSync } = require("load-json-file");
-const Benchmark = require("benchmark");
-const area = require("./index").default;
+import fs from "fs";
+import path from "path";
+import { loadJsonFileSync } from "load-json-file";
+import Benchmark from "benchmark";
+import { area } from "./index";
 
 // Define fixtures
 const directory = path.join(__dirname, "test", "in") + path.sep;
