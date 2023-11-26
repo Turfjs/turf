@@ -46,5 +46,5 @@ function bbox(
   return result;
 }
 
-bbox["default"] = bbox;
+export { bbox };
 export default bbox;

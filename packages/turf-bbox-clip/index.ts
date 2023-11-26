@@ -35,7 +35,7 @@ import { lineclip, polygonclip } from "./lib/lineclip";
  * //addToMap
  * var addToMap = [bbox, poly, clipped]
  */
-export default function bboxClip<
+function bboxClip<
   G extends Polygon | MultiPolygon | LineString | MultiLineString,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(feature: Feature<G, P> | G, bbox: BBox) {
@@ -91,3 +91,6 @@ function clipPolygon(rings: number[][][], bbox: BBox) {
   }
   return outRings;
 }
+
+export { bboxClip };
+export default bboxClip;

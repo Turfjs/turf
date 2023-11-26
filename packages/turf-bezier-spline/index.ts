@@ -70,4 +70,5 @@ function bezier<P extends GeoJsonProperties = GeoJsonProperties>(
   return lineString(coords, options.properties);
 }
 
+export { bezier };
 export default bezier;

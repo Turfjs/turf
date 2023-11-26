@@ -49,4 +49,5 @@ function booleanEqual(
   return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
 }
 
+export { booleanEqual };
 export default booleanEqual;

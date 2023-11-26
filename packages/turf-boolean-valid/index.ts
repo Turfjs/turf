@@ -18,7 +18,7 @@ import isPointOnLine from "@turf/boolean-point-on-line";
  * turf.booleanValid(line); // => true
  * turf.booleanValid({foo: "bar"}); // => false
  */
-export default function booleanValid(feature: Feature<any> | Geometry) {
+function booleanValid(feature: Feature<any> | Geometry) {
   // Automatic False
   if (!feature.type) return false;
 
@@ -119,3 +119,6 @@ function checkPolygonAgainstOthers(
   }
   return true;
 }
+
+export { booleanValid };
+export default booleanValid;

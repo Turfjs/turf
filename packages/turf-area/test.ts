@@ -3,7 +3,7 @@ import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import area from "./index";
+import { area } from "./index";
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

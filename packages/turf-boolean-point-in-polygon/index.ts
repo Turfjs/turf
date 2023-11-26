@@ -36,7 +36,7 @@ import { getCoord, getGeom } from "@turf/invariant";
  * turf.booleanPointInPolygon(pt, poly);
  * //= true
  */
-export default function booleanPointInPolygon<
+function booleanPointInPolygon<
   G extends Polygon | MultiPolygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -91,3 +91,6 @@ function inBBox(pt: number[], bbox: BBox) {
     bbox[0] <= pt[0] && bbox[1] <= pt[1] && bbox[2] >= pt[0] && bbox[3] >= pt[1]
   );
 }
+
+export { booleanPointInPolygon };
+export default booleanPointInPolygon;

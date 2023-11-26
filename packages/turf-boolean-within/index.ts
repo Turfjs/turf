@@ -8,9 +8,9 @@ import {
   Point,
   Polygon,
 } from "geojson";
-import calcBbox from "@turf/bbox";
-import booleanPointOnLine from "@turf/boolean-point-on-line";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import { bbox as calcBbox } from "@turf/bbox";
+import { booleanPointOnLine } from "@turf/boolean-point-on-line";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
 
 /**
@@ -252,4 +252,5 @@ function getMidpoint(pair1: number[], pair2: number[]) {
   return [(pair1[0] + pair2[0]) / 2, (pair1[1] + pair2[1]) / 2];
 }
 
+export { booleanWithin };
 export default booleanWithin;
