@@ -1,6 +1,6 @@
 import test from "tape";
-import midpoint from "./index";
-import distance from "@turf/distance";
+import { midpoint } from "./index";
+import { distance } from "@turf/distance";
 import { point } from "@turf/helpers";
 
 test("midpoint -- horizontal equator", function (t) {

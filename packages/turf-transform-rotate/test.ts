@@ -3,8 +3,8 @@ import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import centroid from "@turf/centroid";
-import truncate from "@turf/truncate";
+import { centroid } from "@turf/centroid";
+import { truncate } from "@turf/truncate";
 import { getCoord } from "@turf/invariant";
 import {
   point,
@@ -12,7 +12,7 @@ import {
   featureCollection,
   geometryCollection,
 } from "@turf/helpers";
-import rotate from "./index";
+import { transformRotate as rotate } from "./index";
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

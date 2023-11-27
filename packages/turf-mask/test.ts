@@ -3,7 +3,7 @@ import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import mask from "./index";
+import { mask } from "./index";
 
 const SKIP = ["multi-polygon.geojson", "overlapping.geojson"];
 

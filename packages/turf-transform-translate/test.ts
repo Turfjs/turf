@@ -3,14 +3,14 @@ import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import truncate from "@turf/truncate";
+import { truncate } from "@turf/truncate";
 import {
   point,
   lineString,
   geometryCollection,
   featureCollection,
 } from "@turf/helpers";
-import translate from "./index";
+import { transformTranslate as translate } from "./index";
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

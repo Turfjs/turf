@@ -1,6 +1,6 @@
-import bearing from "@turf/bearing";
-import destination from "@turf/destination";
-import distance from "@turf/distance";
+import { bearing } from "@turf/bearing";
+import { destination } from "@turf/destination";
+import { distance } from "@turf/distance";
 
 /**
  * Takes two {@link Point|points} and returns a point midway between them.
@@ -28,4 +28,5 @@ function midpoint(point1, point2) {
   return midpoint;
 }
 
+export { midpoint };
 export default midpoint;

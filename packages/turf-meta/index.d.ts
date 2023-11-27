@@ -17,7 +17,7 @@ import { AllGeoJSON, Lines, Id } from "@turf/helpers";
 /**
  * http://turfjs.org/docs/#coordreduce
  */
-export function coordReduce<Reducer>(
+declare function coordReduce<Reducer>(
   geojson: AllGeoJSON,
   callback: (
     previousValue: Reducer,
@@ -33,7 +33,7 @@ export function coordReduce<Reducer>(
 /**
  * http://turfjs.org/docs/#coordeach
  */
-export function coordEach(
+declare function coordEach(
   geojson: AllGeoJSON,
   callback: (
     currentCoord: number[],
@@ -48,7 +48,7 @@ export function coordEach(
 /**
  * http://turfjs.org/docs/#propeach
  */
-export function propEach<Props extends GeoJsonProperties>(
+declare function propEach<Props extends GeoJsonProperties>(
   geojson: Feature<any> | FeatureCollection<any> | Feature<GeometryCollection>,
   callback: (currentProperties: Props, featureIndex: number) => void
 ): void;
@@ -56,7 +56,7 @@ export function propEach<Props extends GeoJsonProperties>(
 /**
  * http://turfjs.org/docs/#propreduce
  */
-export function propReduce<
+declare function propReduce<
   Reducer,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -72,7 +72,7 @@ export function propReduce<
 /**
  * http://turfjs.org/docs/#featurereduce
  */
-export function featureReduce<
+declare function featureReduce<
   Reducer,
   G extends GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
@@ -92,7 +92,7 @@ export function featureReduce<
 /**
  * http://turfjs.org/docs/#featureeach
  */
-export function featureEach<
+declare function featureEach<
   G extends GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -106,12 +106,12 @@ export function featureEach<
 /**
  * http://turfjs.org/docs/#coordall
  */
-export function coordAll(geojson: AllGeoJSON): number[][];
+declare function coordAll(geojson: AllGeoJSON): number[][];
 
 /**
  * http://turfjs.org/docs/#geomreduce
  */
-export function geomReduce<
+declare function geomReduce<
   Reducer,
   G extends GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
@@ -136,7 +136,7 @@ export function geomReduce<
 /**
  * http://turfjs.org/docs/#geomeach
  */
-export function geomEach<
+declare function geomEach<
   G extends GeometryObject | null,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -158,7 +158,7 @@ export function geomEach<
 /**
  * http://turfjs.org/docs/#flattenreduce
  */
-export function flattenReduce<
+declare function flattenReduce<
   Reducer,
   G extends GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
@@ -181,7 +181,7 @@ export function flattenReduce<
 /**
  * http://turfjs.org/docs/#flatteneach
  */
-export function flattenEach<
+declare function flattenEach<
   G extends GeometryObject = GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -201,7 +201,7 @@ export function flattenEach<
 /**
  * http://turfjs.org/docs/#segmentreduce
  */
-export function segmentReduce<
+declare function segmentReduce<
   Reducer,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -225,7 +225,7 @@ export function segmentReduce<
 /**
  * http://turfjs.org/docs/#segmenteach
  */
-export function segmentEach<P extends GeoJsonProperties = GeoJsonProperties>(
+declare function segmentEach<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: AllGeoJSON,
   callback: (
     currentSegment?: Feature<LineString, P>,
@@ -239,7 +239,7 @@ export function segmentEach<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * http://turfjs.org/docs/#linereduce
  */
-export function lineReduce<
+declare function lineReduce<
   Reducer,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -262,7 +262,7 @@ export function lineReduce<
 /**
  * http://turfjs.org/docs/#lineeach
  */
-export function lineEach<P extends GeoJsonProperties = GeoJsonProperties>(
+declare function lineEach<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson:
     | FeatureCollection<Lines, P>
     | Feature<Lines, P>
@@ -280,7 +280,7 @@ export function lineEach<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * http://turfjs.org/docs/#findsegment
  */
-export function findSegment<
+declare function findSegment<
   G extends LineString | MultiLineString | Polygon | MultiPolygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -299,7 +299,7 @@ export function findSegment<
 /**
  * http://turfjs.org/docs/#findpoint
  */
-export function findPoint<
+declare function findPoint<
   G extends GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -314,3 +314,23 @@ export function findPoint<
     id?: Id;
   }
 ): Feature<Point, P>;
+
+export {
+  coordReduce,
+  coordEach,
+  propEach,
+  propReduce,
+  featureReduce,
+  featureEach,
+  coordAll,
+  geomReduce,
+  geomEach,
+  flattenReduce,
+  flattenEach,
+  segmentReduce,
+  segmentEach,
+  lineReduce,
+  lineEach,
+  findSegment,
+  findPoint,
+};

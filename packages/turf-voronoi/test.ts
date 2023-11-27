@@ -3,7 +3,7 @@ import { glob } from "glob";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import voronoi from "./index";
+import { voronoi } from "./index";
 
 test("turf-voronoi", (t) => {
   glob

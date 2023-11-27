@@ -202,34 +202,11 @@ module.exports = {
       {
         options: {
           scripts: {
-            "test:tape": "tsx test.js",
-          },
-        },
-        includePackages: JS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
+            bench: "tsx bench.ts",
             "test:tape": "tsx test.ts",
           },
         },
-        includePackages: TS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            bench: "tsx bench.js",
-          },
-        },
-        includePackages: JS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            bench: "tsx bench.ts",
-          },
-        },
-        includePackages: TS_TAPE_PACKAGES,
+        includePackages: [...TS_TAPE_PACKAGES, ...JS_TAPE_PACKAGES],
       },
       {
         options: {

@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
-import turfMask from "./index";
+import { mask as turfMask } from "./index";
 
 const suite = new Benchmark.Suite("turf-mask");
 

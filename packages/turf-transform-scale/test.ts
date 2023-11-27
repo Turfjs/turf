@@ -3,12 +3,12 @@ import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import center from "@turf/center";
-import hexGrid from "@turf/hex-grid";
-import truncate from "@turf/truncate";
-import turfBBox from "@turf/bbox";
-import bboxPolygon from "@turf/bbox-polygon";
-import centroid from "@turf/centroid";
+import { center } from "@turf/center";
+import { hexGrid } from "@turf/hex-grid";
+import { truncate } from "@turf/truncate";
+import { bbox as turfBBox } from "@turf/bbox";
+import { bboxPolygon } from "@turf/bbox-polygon";
+import { centroid } from "@turf/centroid";
 import { featureEach } from "@turf/meta";
 import { getCoord } from "@turf/invariant";
 import {
@@ -17,7 +17,7 @@ import {
   geometryCollection,
   featureCollection,
 } from "@turf/helpers";
-import scale from "./index";
+import { transformScale as scale } from "./index";
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

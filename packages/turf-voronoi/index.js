@@ -69,4 +69,5 @@ function voronoi(points, options) {
   );
 }
 
+export { voronoi };
 export default voronoi;

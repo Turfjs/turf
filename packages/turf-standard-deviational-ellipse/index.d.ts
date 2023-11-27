@@ -11,7 +11,7 @@ import {
  * http://turfjs.org/docs/#standarddeviational-ellipse
  */
 
-export interface SDEProps {
+declare interface SDEProps {
   meanCenterCoordinates: Position;
   semiMajorAxis: number;
   semiMinorAxis: number;
@@ -20,14 +20,14 @@ export interface SDEProps {
   percentageWithinEllipse: number;
 }
 
-export interface StandardDeviationalEllipse extends Feature<Polygon> {
+declare interface StandardDeviationalEllipse extends Feature<Polygon> {
   properties: {
     standardDeviationalEllipse: SDEProps;
     [key: string]: any;
   };
 }
 
-export default function (
+declare function standardDeviationalEllipse(
   points: FeatureCollection<Point>,
   options?: {
     properties?: GeoJsonProperties;
@@ -35,3 +35,6 @@ export default function (
     steps?: number;
   }
 ): StandardDeviationalEllipse;
+
+export { SDEProps, StandardDeviationalEllipse, standardDeviationalEllipse };
+export default standardDeviationalEllipse;

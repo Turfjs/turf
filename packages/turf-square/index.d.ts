@@ -3,4 +3,7 @@ import { BBox } from "geojson";
 /**
  * http://turfjs.org/docs/#square
  */
-export default function (bbox: BBox): BBox;
+declare function square(bbox: BBox): BBox;
+
+export { square };
+export default square;

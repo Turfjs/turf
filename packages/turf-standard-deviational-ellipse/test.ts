@@ -4,7 +4,7 @@ import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { featureCollection } from "@turf/helpers";
-import standardDeviationalEllipse from "./dist/js/index.js";
+import { standardDeviationalEllipse } from "./index";
 
 test("turf-standard-deviational-ellipse", (t) => {
   glob

@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
-import unkink from "./index";
+import { unkinkPolygon as unkink } from "./index";
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

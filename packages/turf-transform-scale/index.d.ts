@@ -3,7 +3,7 @@ import { Corners, Coord, AllGeoJSON } from "@turf/helpers";
 /**
  * http://turfjs.org/docs/#transformscale
  */
-export default function transformScale<T extends AllGeoJSON>(
+declare function transformScale<T extends AllGeoJSON>(
   geojson: T,
   factor: number,
   options?: {
@@ -11,3 +11,6 @@ export default function transformScale<T extends AllGeoJSON>(
     mutate?: boolean;
   }
 ): T;
+
+export { transformScale };
+export default transformScale;

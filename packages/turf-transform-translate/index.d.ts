@@ -3,7 +3,7 @@ import { AllGeoJSON, Units } from "@turf/helpers";
 /**
  * http://turfjs.org/docs/#transform-translate
  */
-export default function transformTranslate<T extends AllGeoJSON>(
+declare function transformTranslate<T extends AllGeoJSON>(
   geojson: T,
   distance: number,
   direction: number,
@@ -13,3 +13,6 @@ export default function transformTranslate<T extends AllGeoJSON>(
     mutate?: boolean;
   }
 ): T;
+
+export { transformTranslate };
+export default transformTranslate;
