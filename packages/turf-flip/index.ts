@@ -27,7 +27,7 @@ function flip<T extends AllGeoJSON>(
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  const mutate = options.mutate || false;
+  const mutate = options.mutate ?? false;
 
   if (!geojson) throw new Error("geojson is required");
   // ensure that we don't modify features in-place and changes to the

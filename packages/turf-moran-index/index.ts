@@ -64,9 +64,9 @@ export default function (
   const inputField = options.inputField;
   const threshold = options.threshold || 100000;
   const p = options.p || 2;
-  const binary = options.binary || false;
+  const binary = options.binary ?? false;
   const alpha = options.alpha || -1;
-  const standardization = options.standardization || true;
+  const standardization = options.standardization ?? true;
 
   const weight = spatialWeight(fc, {
     alpha,

@@ -1,5 +1,5 @@
 import { Feature, FeatureCollection, Polygon } from "geojson";
-import { featureCollection, multiPolygon } from "@turf/helpers";
+import { featureCollection, isObject, multiPolygon } from "@turf/helpers";
 import { collectionOf } from "@turf/invariant";
 import { featureEach } from "@turf/meta";
 import flatten from "@turf/flatten";
@@ -33,6 +33,8 @@ function dissolve(
   } = {}
 ): FeatureCollection<Polygon> {
   // Optional parameters
+  options = options || {};
+  if (!isObject(options)) throw new Error("options is invalid");
   const { propertyName } = options;
 
   // Input validation
@@ -48,10 +50,10 @@ function dissolve(
           // List of polygons expressed as Position[][][] a.k.a. Geom[]
           fc.features.map(function (f) {
             return f.geometry.coordinates;
-          }) as [Geom]
+          }) as [Geom, ...Geom[]]
         )
       )
-    ) as FeatureCollection<Polygon>;
+    );
   } else {
     // Group polygons by the value of their property named by propertyName
     const uniquePropertyVals: { [key: string]: Feature[] } = {};
@@ -79,7 +81,7 @@ function dissolve(
           // List of polygons expressed as Position[][][] a.k.a. Geom[]
           (uniquePropertyVals[vals[i]] as Feature<Polygon>[]).map(function (f) {
             return f.geometry.coordinates;
-          }) as [Geom]
+          }) as [Geom, ...Geom[]]
         )
       );
       if (mp && mp.properties) {
@@ -89,7 +91,7 @@ function dissolve(
     }
   }
 
-  return flatten(featureCollection(outFeatures)) as FeatureCollection<Polygon>;
+  return flatten(featureCollection(outFeatures));
 }
 
 export default dissolve;

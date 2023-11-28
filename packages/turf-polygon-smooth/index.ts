@@ -13,10 +13,10 @@ import { coordEach, geomEach } from "@turf/meta";
  * Warning: may create degenerate polygons.
  *
  * @name polygonSmooth
- * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} inputPolys (Multi)Polygon(s) to smooth
+ * @param {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} inputPolys (Multi)Polygon(s) to smooth
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.iterations=1] The number of times to smooth the polygon. A higher value means a smoother polygon.
- * @returns {FeatureCollection<Polygon>} FeatureCollection containing the smoothed polygon/poylgons
+ * @returns {FeatureCollection<Polygon|MultiPolygon>} FeatureCollection containing the smoothed polygon/multipoylgons
  * @example
  * var polygon = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
  *
@@ -25,23 +25,6 @@ import { coordEach, geomEach } from "@turf/meta";
  * //addToMap
  * var addToMap = [smoothed, polygon];
  */
-function polygonSmooth(
-  inputPolys: FeatureCollection<Polygon> | Feature<Polygon> | Polygon,
-  options?: {
-    iterations?: number;
-  }
-): FeatureCollection<Polygon>;
-
-function polygonSmooth(
-  inputPolys:
-    | FeatureCollection<MultiPolygon>
-    | Feature<MultiPolygon>
-    | MultiPolygon,
-  options?: {
-    iterations?: number;
-  }
-): FeatureCollection<MultiPolygon>;
-
 function polygonSmooth(
   inputPolys:
     | FeatureCollection<Polygon | MultiPolygon>

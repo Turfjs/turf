@@ -83,6 +83,8 @@ function pointsWithinPolygon<
           multiPoint(pointsWithin, point.properties) as Feature<MultiPoint, P>
         );
       }
+    } else {
+      throw new Error("Input geometry must be a Point or MultiPoint");
     }
   });
   return featureCollection(results);

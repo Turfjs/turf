@@ -25,6 +25,9 @@ function sample<T extends GeometryObject>(
   fc: FeatureCollection<T>,
   num: number
 ): FeatureCollection<T> {
+  if (!fc) throw new Error("fc is required");
+  if (num === null || num === undefined) throw new Error("num is required");
+  if (typeof num !== "number") throw new Error("num must be a number");
   var outFC = featureCollection(getRandomSubarray(fc.features, num));
   return outFC;
 }

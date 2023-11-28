@@ -43,11 +43,20 @@ function rewind<T extends AllGeoJSON>(
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  const mutate = options.mutate || false;
-  const reverse = options.reverse || false;
+  const mutate = options.mutate ?? false;
+  const reverse = options.reverse ?? false;
 
-  // Prevent input mutation if requested.
-  if (!mutate) geojson = clone(geojson);
+  // validation
+  if (!geojson) throw new Error("<geojson> is required");
+  if (typeof reverse !== "boolean")
+    throw new Error("<reverse> must be a boolean");
+  if (typeof mutate !== "boolean")
+    throw new Error("<mutate> must be a boolean");
+
+  // Prevent input mutation if requested and necessary.
+  if (!mutate && geojson.type !== "Point" && geojson.type !== "MultiPoint") {
+    geojson = clone(geojson);
+  }
 
   // Support Feature Collection or Geometry Collection
   const results: Feature[] = [];
