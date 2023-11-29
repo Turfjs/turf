@@ -24,6 +24,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/line-intersect`][line-intersect] Move to sweepline-intersections library for performance (#2033)
 - [`@turf/boolean-contains`](boolean-contains) Add multipolygon support (#2338)
 - [`@turf/nearest-point`](nearest-point) Add unit option (#2415)
+- [`@turf/voronoi`](voronoi) Retain properties from points (#1450)
 
 ## 🐛 Bug Fixes
 - [`@turf/polygon-smooth`](polygon-smooth) Options argument is now actually optional (#2149)
