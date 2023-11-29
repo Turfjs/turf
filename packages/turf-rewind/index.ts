@@ -157,4 +157,5 @@ function rewindPolygon(coords: Position[][], reverse: boolean) {
   }
 }
 
+export { rewind };
 export default rewind;

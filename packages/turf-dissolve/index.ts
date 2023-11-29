@@ -2,7 +2,7 @@ import { Feature, FeatureCollection, Polygon } from "geojson";
 import { featureCollection, isObject, multiPolygon } from "@turf/helpers";
 import { collectionOf } from "@turf/invariant";
 import { featureEach } from "@turf/meta";
-import flatten from "@turf/flatten";
+import { flatten } from "@turf/flatten";
 import polygonClipping, { Geom } from "polygon-clipping";
 
 /**
@@ -94,4 +94,5 @@ function dissolve(
   return flatten(featureCollection(outFeatures));
 }
 
+export { dissolve };
 export default dissolve;

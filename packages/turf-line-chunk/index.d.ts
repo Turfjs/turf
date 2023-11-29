@@ -10,7 +10,7 @@ import { Units } from "@turf/helpers";
 /**
  * http://turfjs.org/docs/#lineChunk
  */
-export default function lineChunk<T extends LineString | MultiLineString>(
+declare function lineChunk<T extends LineString | MultiLineString>(
   geojson:
     | Feature<T>
     | FeatureCollection<T>
@@ -23,3 +23,6 @@ export default function lineChunk<T extends LineString | MultiLineString>(
     reverse?: boolean;
   }
 ): FeatureCollection<LineString>;
+
+export { lineChunk };
+export default lineChunk;

@@ -84,4 +84,5 @@ function sliceLineSegments(line, segmentLength, units, callback) {
   }
 }
 
+export { lineChunk };
 export default lineChunk;

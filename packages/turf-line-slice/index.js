@@ -57,4 +57,5 @@ function lineSlice(startPt, stopPt, line) {
   return linestring(clipCoords, line.properties);
 }
 
+export { lineSlice };
 export default lineSlice;

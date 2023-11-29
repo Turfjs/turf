@@ -130,4 +130,5 @@ function processSegment(point1, point2, offset) {
   ];
 }
 
+export { lineOffset };
 export default lineOffset;

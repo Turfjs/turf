@@ -38,4 +38,5 @@ declare function buffer(
   options?: Options
 ): FeatureCollection<Polygon | MultiPolygon>;
 
+export { buffer };
 export default buffer;

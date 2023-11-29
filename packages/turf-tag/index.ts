@@ -61,4 +61,5 @@ function tag(
   return points;
 }
 
+export { tag };
 export default tag;

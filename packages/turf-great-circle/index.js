@@ -49,4 +49,5 @@ function greatCircle(start, end, options) {
   return line.json();
 }
 
+export { greatCircle };
 export default greatCircle;

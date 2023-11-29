@@ -54,4 +54,5 @@ function flatten(geojson: AllGeoJSON): FeatureCollection {
   return featureCollection(results);
 }
 
+export { flatten };
 export default flatten;

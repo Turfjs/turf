@@ -155,4 +155,5 @@ function pointOnSegment(
   return ab === ap + pb;
 }
 
+export { pointOnFeature };
 export default pointOnFeature;
