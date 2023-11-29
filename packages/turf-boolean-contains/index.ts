@@ -79,6 +79,8 @@ export default function booleanContains(
           return isPolyInPoly(geom1, geom2);
         case "MultiPoint":
           return isMultiPointInPoly(geom1, geom2);
+        case "MultiPolygon":
+          return isMultiPolyInPoly(geom1, geom2);
         default:
           throw new Error("feature2 " + type2 + " geometry not supported");
       }
@@ -100,6 +102,15 @@ export function isPolygonInMultiPolygon(
 ) {
   return multiPolygon.coordinates.some((coords) =>
     isPolyInPoly({ type: "Polygon", coordinates: coords }, polygon)
+  );
+}
+
+export function isMultiPolyInPoly(
+  polygon: Polygon,
+  multiPolygon: MultiPolygon
+) {
+  return multiPolygon.coordinates.every((coords) =>
+    isPolyInPoly(polygon, { type: "Polygon", coordinates: coords })
   );
 }
 
