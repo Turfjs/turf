@@ -1,8 +1,8 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
-import load from "load-json-file";
-import write from "write-json-file";
+import { loadJsonFileSync } from "load-json-file";
+import { writeJsonFileSync } from "write-json-file";
 import envelope from "@turf/envelope";
 import pointGrid from "@turf/point-grid";
 import truncate from "@turf/truncate";
@@ -21,7 +21,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    json: load.sync(directories.in + filename),
+    json: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -38,19 +38,38 @@ test("isobands", (t) => {
     // Results
     const results = truncate(isobands(points, breaks, options));
 
-    // Add red line around point data
+    // Add line around point data
     results.features.push(
       lineString(getCoords(envelope(points))[0], {
+        description: "Debug line for testing",
         stroke: "#F00",
         "stroke-width": 1,
       })
     );
 
     if (process.env.REGEN)
-      write.sync(directories.out + name + ".geojson", results);
-    t.deepEqual(results, load.sync(directories.out + name + ".geojson"), name);
+      writeJsonFileSync(directories.out + name + ".geojson", results);
+    t.deepEqual(
+      results,
+      loadJsonFileSync(directories.out + name + ".geojson"),
+      name
+    );
   });
 
+  t.end();
+});
+
+test("isobands - flat data, from issue #1797", (t) => {
+  const points = pointGrid(
+    [-70.823364, -33.553984, -70.473175, -33.302986],
+    5,
+    {
+      properties: { elevation: 1 },
+    }
+  );
+
+  const lines = isobands(points, [0, 2]);
+  t.assert(lines.features[0].geometry.coordinates[0][0].length > 4);
   t.end();
 });
 

@@ -1,7 +1,7 @@
 const Benchmark = require("benchmark");
 const distanceWeight = require("./dist/js/index.js").default;
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 
 /**
  * Benchmark Results
@@ -12,7 +12,7 @@ const load = require("load-json-file");
 const suite = new Benchmark.Suite("turf-distance-weight");
 
 const columbusPath = path.join(__dirname, "test", "in", "point.json");
-const columbusJson = load.sync(columbusPath);
+const columbusJson = loadJsonFileSync(columbusPath);
 const { name } = path.parse(columbusPath);
 
 console.time(name);

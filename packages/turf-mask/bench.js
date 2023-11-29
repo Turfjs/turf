@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import load from "load-json-file";
+import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
 import turfMask from "./index";
 
@@ -14,7 +14,7 @@ const directories = {
 let fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     name: path.parse(filename).name,
-    geojson: load.sync(path.join(directories.in, filename)),
+    geojson: loadJsonFileSync(path.join(directories.in, filename)),
   };
 });
 

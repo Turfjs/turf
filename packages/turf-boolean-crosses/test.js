@@ -1,7 +1,7 @@
 const test = require("tape");
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 const shapely = require("boolean-shapely");
 const crosses = require("./index").default;
 
@@ -11,7 +11,7 @@ test("turf-boolean-crosses", (t) => {
     .sync(path.join(__dirname, "test", "true", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const feature1 = geojson.features[0];
       const feature2 = geojson.features[1];
       if (process.env.SHAPELY)
@@ -25,7 +25,7 @@ test("turf-boolean-crosses", (t) => {
     .sync(path.join(__dirname, "test", "false", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
-      const geojson = load.sync(filepath);
+      const geojson = loadJsonFileSync(filepath);
       const feature1 = geojson.features[0];
       const feature2 = geojson.features[1];
       if (process.env.SHAPELY)

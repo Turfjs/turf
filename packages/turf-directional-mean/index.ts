@@ -59,7 +59,7 @@ export default function directionalMean(
   } = {}
 ): DirectionalMeanLine {
   const isPlanar = !!options.planar; // you can't use options.planar || true here.
-  const isSegment: boolean = options.segment || false;
+  const isSegment: boolean = options.segment ?? false;
   let sigmaSin = 0;
   let sigmaCos = 0;
   let countOfLines = 0;

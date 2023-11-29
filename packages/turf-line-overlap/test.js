@@ -1,8 +1,8 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const { featureEach } = require("@turf/meta");
 const { featureCollection, lineString } = require("@turf/helpers");
 const lineOverlap = require("./index").default;
@@ -16,7 +16,7 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 // fixtures = fixtures.filter(({name}) => name.includes('#901'));
@@ -30,8 +30,9 @@ test("turf-line-overlap", (t) => {
     );
     const results = featureCollection(shared.features.concat([source, target]));
 
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEquals(results, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEquals(results, loadJsonFileSync(directories.out + filename), name);
   }
   t.end();
 });

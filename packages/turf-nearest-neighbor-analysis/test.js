@@ -1,8 +1,8 @@
 const fs = require("fs");
 const test = require("tape");
 const path = require("path");
-const load = require("load-json-file");
-const write = require("write-json-file");
+const { loadJsonFileSync } = require("load-json-file");
+const { writeJsonFileSync } = require("write-json-file");
 const truncate = require("@turf/truncate").default;
 const centroid = require("@turf/centroid").default;
 const { featureEach } = require("@turf/meta");
@@ -18,7 +18,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: load.sync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename),
   };
 });
 
@@ -40,8 +40,9 @@ test("turf-nearest-neighbor", (t) => {
       );
     }
     results.features.push(truncate(nearestNeighborAnalysis(geojson, options)));
-    if (process.env.REGEN) write.sync(directories.out + filename, results);
-    t.deepEqual(results, load.sync(directories.out + filename), name);
+    if (process.env.REGEN)
+      writeJsonFileSync(directories.out + filename, results);
+    t.deepEqual(results, loadJsonFileSync(directories.out + filename), name);
   });
   t.end();
 });

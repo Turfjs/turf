@@ -1,6 +1,6 @@
 import path from "path";
-import glob from "glob";
-import load from "load-json-file";
+import { glob } from "glob";
+import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
 import centerOfMass from "./dist/js/index.js";
 
@@ -9,7 +9,7 @@ const fixtures = glob
   .map((input) => {
     return {
       name: path.parse(input).name,
-      geojson: load.sync(input),
+      geojson: loadJsonFileSync(input),
     };
   });
 

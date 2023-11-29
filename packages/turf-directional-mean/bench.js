@@ -1,8 +1,8 @@
 const Benchmark = require("benchmark");
 const directionalMean = require("./index").default;
-const glob = require("glob");
+const { glob } = require("glob");
 const path = require("path");
-const load = require("load-json-file");
+const { loadJsonFileSync } = require("load-json-file");
 
 /**
  * Benchmark Results
@@ -20,7 +20,7 @@ const load = require("load-json-file");
 const suite = new Benchmark.Suite("turf-directional-mean");
 glob.sync(path.join(__dirname, "test", "in", "*.json")).forEach((filepath) => {
   const { name } = path.parse(filepath);
-  const geojson = load.sync(filepath);
+  const geojson = loadJsonFileSync(filepath);
   if (name === "bus_route_gps.json") {
     console.time(name);
     directionalMean(geojson, {

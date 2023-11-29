@@ -9,7 +9,7 @@
  * that actually causes issues with ts-node's importing of the .ts files.
  */
 
-const glob = require("glob");
+const { glob } = require("glob");
 const fs = require("fs");
 
 const RELATIVE_IMPORT_REGEX = /^import (.*) from "(\.\/.*)";$/gm;

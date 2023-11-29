@@ -43,7 +43,7 @@ export var astar = {
     graph.cleanDirty();
     options = options || {};
     var heuristic = options.heuristic || astar.heuristics.manhattan,
-      closest = options.closest || false;
+      closest = options.closest ?? false;
 
     var openHeap = getHeap(),
       closestNode = start; // set the start node to be the closest if required

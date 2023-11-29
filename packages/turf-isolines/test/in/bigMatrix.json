@@ -1,7 +1,7 @@
 {
   "origin": [6.5, 46],
   "cellSize": 10,
-  "breaks": [0, 0.24, 0.5, 1.5, 2.5, 100],
+  "breaks": [0.24, 0.5, 1.5, 2.5, 100],
   "zProperty": "pressure",
   "commonProperties": {
     "stroke-width": 4,

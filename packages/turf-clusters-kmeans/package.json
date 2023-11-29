@@ -58,18 +58,17 @@
     "@turf/centroid": "^7.0.0-alpha.2",
     "@turf/clusters": "^7.0.0-alpha.2",
     "@turf/random": "^7.0.0-alpha.2",
-    "@types/skmeans": "^0.11.2",
-    "@types/tape": "*",
-    "benchmark": "*",
-    "chromatism": "*",
+    "@types/skmeans": "^0.11.7",
+    "@types/tape": "^4.2.32",
+    "benchmark": "^2.1.4",
+    "chromatism": "^3.0.0",
     "concaveman": "^1.2.1",
-    "load-json-file": "*",
-    "matrix-to-grid": "*",
-    "npm-run-all": "*",
-    "tape": "*",
-    "tsx": "*",
-    "typescript": "*",
-    "write-json-file": "*"
+    "load-json-file": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "tape": "^5.7.2",
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2",
+    "write-json-file": "^5.0.0"
   },
   "dependencies": {
     "@turf/clone": "^7.0.0-alpha.2",
@@ -77,6 +76,6 @@
     "@turf/invariant": "^7.0.0-alpha.2",
     "@turf/meta": "^7.0.0-alpha.2",
     "skmeans": "0.9.7",
-    "tslib": "^2.3.0"
+    "tslib": "^2.6.2"
   }
 }

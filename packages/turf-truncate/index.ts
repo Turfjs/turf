@@ -1,5 +1,5 @@
 import { coordEach } from "@turf/meta";
-import { AllGeoJSON } from "@turf/helpers";
+import { AllGeoJSON, isObject } from "@turf/helpers";
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
@@ -26,13 +26,15 @@ import { AllGeoJSON } from "@turf/helpers";
  */
 function truncate<T extends AllGeoJSON>(
   geojson: T,
-  options: {
+  options?: {
     precision?: number;
     coordinates?: number;
     mutate?: boolean;
-  } = {}
+  }
 ): T {
   // Optional parameters
+  options = options ?? {};
+  if (!isObject(options)) throw new Error("options is invalid");
   var precision = options.precision;
   var coordinates = options.coordinates;
   var mutate = options.mutate;
