@@ -69,5 +69,5 @@
     "typescript": "^5.2.2",
     "yamljs": "^0.3.0"
   },
-  "packageManager": "yarn@4.0.1"
+  "packageManager": "yarn@4.0.2"
 }
