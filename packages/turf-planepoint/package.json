@@ -55,7 +55,7 @@
     "tsx": "^3.14.0"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^"
   }
 }

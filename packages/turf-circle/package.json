@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@mapbox/geojsonhint": "^3.2.0",
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/truncate": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
@@ -63,8 +63,8 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/destination": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/destination": "workspace:^",
+    "@turf/helpers": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

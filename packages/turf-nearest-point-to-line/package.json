@@ -52,8 +52,8 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/circle": "^7.0.0-alpha.2",
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/circle": "workspace:^",
+    "@turf/truncate": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/object-assign": "^4.0.33",
     "@types/tape": "^4.2.32",
@@ -66,10 +66,10 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/point-to-line-distance": "^7.0.0-alpha.2",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/point-to-line-distance": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

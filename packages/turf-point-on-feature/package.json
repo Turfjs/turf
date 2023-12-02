@@ -49,8 +49,8 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/meta": "workspace:^",
+    "@turf/truncate": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
@@ -60,11 +60,11 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.2",
-    "@turf/center": "^7.0.0-alpha.2",
-    "@turf/explode": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/nearest-point": "^7.0.0-alpha.2",
+    "@turf/boolean-point-in-polygon": "workspace:^",
+    "@turf/center": "workspace:^",
+    "@turf/explode": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/nearest-point": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

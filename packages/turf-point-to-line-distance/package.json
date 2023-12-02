@@ -50,7 +50,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/circle": "^7.0.0-alpha.2",
+    "@turf/circle": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
@@ -62,14 +62,14 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/bearing": "^7.0.0-alpha.2",
-    "@turf/distance": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/projection": "^7.0.0-alpha.2",
-    "@turf/rhumb-bearing": "^7.0.0-alpha.2",
-    "@turf/rhumb-distance": "^7.0.0-alpha.2",
+    "@turf/bearing": "workspace:^",
+    "@turf/distance": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/projection": "workspace:^",
+    "@turf/rhumb-bearing": "workspace:^",
+    "@turf/rhumb-distance": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

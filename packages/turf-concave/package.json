@@ -71,12 +71,12 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/clone": "^7.0.0-alpha.2",
-    "@turf/distance": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/tin": "^7.0.0-alpha.2",
+    "@turf/clone": "workspace:^",
+    "@turf/distance": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/tin": "workspace:^",
     "topojson-client": "3.x",
     "topojson-server": "3.x",
     "tslib": "^2.6.2"

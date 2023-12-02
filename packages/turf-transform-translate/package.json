@@ -53,7 +53,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/truncate": "workspace:^",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
@@ -63,10 +63,10 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/clone": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/rhumb-destination": "^7.0.0-alpha.2"
+    "@turf/clone": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/rhumb-destination": "workspace:^"
   }
 }

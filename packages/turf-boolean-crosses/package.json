@@ -63,11 +63,11 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/line-intersect": "^7.0.0-alpha.2",
-    "@turf/polygon-to-line": "^7.0.0-alpha.2",
+    "@turf/boolean-point-in-polygon": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/line-intersect": "workspace:^",
+    "@turf/polygon-to-line": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

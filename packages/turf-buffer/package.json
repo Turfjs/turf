@@ -55,7 +55,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/truncate": "workspace:^",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
@@ -65,12 +65,12 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "^7.0.0-alpha.2",
-    "@turf/center": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/bbox": "workspace:^",
+    "@turf/center": "workspace:^",
+    "@turf/helpers": "workspace:^",
     "@turf/jsts": "^2.7.1",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/projection": "^7.0.0-alpha.2",
+    "@turf/meta": "workspace:^",
+    "@turf/projection": "workspace:^",
     "d3-geo": "1.7.1"
   }
 }

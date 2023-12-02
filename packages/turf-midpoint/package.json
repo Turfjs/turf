@@ -54,9 +54,9 @@
     "tsx": "^3.14.0"
   },
   "dependencies": {
-    "@turf/bearing": "^7.0.0-alpha.2",
-    "@turf/destination": "^7.0.0-alpha.2",
-    "@turf/distance": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2"
+    "@turf/bearing": "workspace:^",
+    "@turf/destination": "workspace:^",
+    "@turf/distance": "workspace:^",
+    "@turf/helpers": "workspace:^"
   }
 }

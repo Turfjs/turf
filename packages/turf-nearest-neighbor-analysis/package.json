@@ -48,7 +48,7 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/truncate": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
@@ -60,14 +60,14 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/area": "^7.0.0-alpha.2",
-    "@turf/bbox": "^7.0.0-alpha.2",
-    "@turf/bbox-polygon": "^7.0.0-alpha.2",
-    "@turf/centroid": "^7.0.0-alpha.2",
-    "@turf/distance": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/nearest-point": "^7.0.0-alpha.2",
+    "@turf/area": "workspace:^",
+    "@turf/bbox": "workspace:^",
+    "@turf/bbox-polygon": "workspace:^",
+    "@turf/centroid": "workspace:^",
+    "@turf/distance": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/nearest-point": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

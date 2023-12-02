@@ -63,8 +63,8 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

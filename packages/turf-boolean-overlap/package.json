@@ -66,11 +66,11 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/line-intersect": "^7.0.0-alpha.2",
-    "@turf/line-overlap": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/line-intersect": "workspace:^",
+    "@turf/line-overlap": "workspace:^",
+    "@turf/meta": "workspace:^",
     "geojson-equality": "0.1.6",
     "tslib": "^2.6.2"
   }

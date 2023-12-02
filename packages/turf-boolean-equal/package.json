@@ -67,9 +67,9 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@turf/clean-coords": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/clean-coords": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
     "geojson-equality": "0.1.6",
     "tslib": "^2.6.2"
   }

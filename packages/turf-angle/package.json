@@ -48,9 +48,9 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/distance": "^7.0.0-alpha.2",
-    "@turf/sector": "^7.0.0-alpha.2",
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/distance": "workspace:^",
+    "@turf/sector": "workspace:^",
+    "@turf/truncate": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
@@ -63,10 +63,10 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/bearing": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/rhumb-bearing": "^7.0.0-alpha.2",
+    "@turf/bearing": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/rhumb-bearing": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

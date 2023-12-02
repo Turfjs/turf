@@ -53,7 +53,7 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/bbox": "^7.0.0-alpha.2",
+    "@turf/bbox": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
@@ -65,8 +65,8 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

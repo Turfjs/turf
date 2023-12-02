@@ -49,7 +49,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/meta": "^7.0.0-alpha.2",
+    "@turf/meta": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
@@ -59,7 +59,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.2",
+    "@turf/helpers": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

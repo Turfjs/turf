@@ -49,7 +49,7 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/truncate": "workspace:^",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
@@ -59,8 +59,8 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/nearest-point-on-line": "^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/nearest-point-on-line": "workspace:^"
   }
 }

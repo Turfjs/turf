@@ -66,11 +66,11 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@turf/bbox": "^7.0.0-alpha.2",
-    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.2",
-    "@turf/boolean-point-on-line": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
+    "@turf/bbox": "workspace:^",
+    "@turf/boolean-point-in-polygon": "workspace:^",
+    "@turf/boolean-point-on-line": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

@@ -55,9 +55,9 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/centroid": "^7.0.0-alpha.2",
-    "@turf/clusters": "^7.0.0-alpha.2",
-    "@turf/random": "^7.0.0-alpha.2",
+    "@turf/centroid": "workspace:^",
+    "@turf/clusters": "workspace:^",
+    "@turf/random": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/skmeans": "^0.11.7",
     "@types/tape": "^4.2.32",
@@ -72,10 +72,10 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/clone": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
+    "@turf/clone": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
     "skmeans": "0.9.7",
     "tslib": "^2.6.2"
   }

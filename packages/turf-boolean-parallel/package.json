@@ -61,10 +61,10 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/clean-coords": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/line-segment": "^7.0.0-alpha.2",
-    "@turf/rhumb-bearing": "^7.0.0-alpha.2",
+    "@turf/clean-coords": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/line-segment": "workspace:^",
+    "@turf/rhumb-bearing": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

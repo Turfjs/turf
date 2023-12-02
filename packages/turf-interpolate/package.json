@@ -49,7 +49,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/truncate": "workspace:^",
     "benchmark": "^2.1.4",
     "chromatism": "^3.0.0",
     "load-json-file": "^7.0.1",
@@ -60,16 +60,16 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "^7.0.0-alpha.2",
-    "@turf/centroid": "^7.0.0-alpha.2",
-    "@turf/clone": "^7.0.0-alpha.2",
-    "@turf/distance": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/hex-grid": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/point-grid": "^7.0.0-alpha.2",
-    "@turf/square-grid": "^7.0.0-alpha.2",
-    "@turf/triangle-grid": "^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^",
+    "@turf/centroid": "workspace:^",
+    "@turf/clone": "workspace:^",
+    "@turf/distance": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/hex-grid": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/point-grid": "workspace:^",
+    "@turf/square-grid": "workspace:^",
+    "@turf/triangle-grid": "workspace:^"
   }
 }

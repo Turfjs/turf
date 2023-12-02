@@ -59,10 +59,10 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/flatten": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
+    "@turf/flatten": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
     "polygon-clipping": "^0.15.3",
     "tslib": "^2.6.2"
   }

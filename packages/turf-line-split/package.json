@@ -59,15 +59,15 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "^7.0.0-alpha.2",
-    "@turf/geojson-rbush": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/line-intersect": "^7.0.0-alpha.2",
-    "@turf/line-segment": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/nearest-point-on-line": "^7.0.0-alpha.2",
-    "@turf/square": "^7.0.0-alpha.2",
-    "@turf/truncate": "^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^",
+    "@turf/geojson-rbush": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/line-intersect": "workspace:^",
+    "@turf/line-segment": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/nearest-point-on-line": "workspace:^",
+    "@turf/square": "workspace:^",
+    "@turf/truncate": "workspace:^"
   }
 }

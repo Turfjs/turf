@@ -48,7 +48,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/kinks": "^7.0.0-alpha.2",
+    "@turf/kinks": "workspace:^",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
@@ -58,10 +58,10 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/area": "^7.0.0-alpha.2",
-    "@turf/boolean-point-in-polygon": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
+    "@turf/area": "workspace:^",
+    "@turf/boolean-point-in-polygon": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/meta": "workspace:^",
     "rbush": "^3.0.1"
   }
 }

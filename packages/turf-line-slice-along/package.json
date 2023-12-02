@@ -45,7 +45,7 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/along": "^7.0.0-alpha.2",
+    "@turf/along": "workspace:^",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
@@ -54,9 +54,9 @@
     "tsx": "^3.14.0"
   },
   "dependencies": {
-    "@turf/bearing": "^7.0.0-alpha.2",
-    "@turf/destination": "^7.0.0-alpha.2",
-    "@turf/distance": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2"
+    "@turf/bearing": "workspace:^",
+    "@turf/destination": "workspace:^",
+    "@turf/distance": "workspace:^",
+    "@turf/helpers": "workspace:^"
   }
 }
