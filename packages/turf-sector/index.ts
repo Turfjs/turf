@@ -86,4 +86,5 @@ function convertAngleTo360(alpha: number) {
   return beta;
 }
 
+export { sector };
 export default sector;

@@ -74,4 +74,5 @@ function planepoint(point, triangle) {
   return z;
 }
 
+export { planepoint };
 export default planepoint;

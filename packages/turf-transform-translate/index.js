@@ -1,8 +1,8 @@
 import { coordEach } from "@turf/meta";
 import { isObject } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
-import clone from "@turf/clone";
-import rhumbDestination from "@turf/rhumb-destination";
+import { clone } from "@turf/clone";
+import { rhumbDestination } from "@turf/rhumb-destination";
 
 /**
  * Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
@@ -69,4 +69,5 @@ function transformTranslate(geojson, distance, direction, options) {
   return geojson;
 }
 
+export { transformTranslate };
 export default transformTranslate;

@@ -154,4 +154,5 @@ function calculateArea(bbox: BBox) {
   return Math.abs(west - east) * Math.abs(south - north);
 }
 
+export { lineToPolygon };
 export default lineToPolygon;

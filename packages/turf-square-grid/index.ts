@@ -7,8 +7,7 @@ import {
   GeoJsonProperties,
 } from "geojson";
 import { Units } from "@turf/helpers";
-
-import rectangleGrid from "@turf/rectangle-grid";
+import { rectangleGrid } from "@turf/rectangle-grid";
 
 /**
  * Creates a square grid from a bounding box.
@@ -34,9 +33,7 @@ import rectangleGrid from "@turf/rectangle-grid";
  * var addToMap = [squareGrid]
  */
 
-export default function squareGrid<
-  P extends GeoJsonProperties = GeoJsonProperties,
->(
+function squareGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,
   cellSide: number,
   options: {
@@ -47,3 +44,6 @@ export default function squareGrid<
 ): FeatureCollection<Polygon, P> {
   return rectangleGrid(bbox, cellSide, cellSide, options);
 }
+
+export { squareGrid };
+export default squareGrid;

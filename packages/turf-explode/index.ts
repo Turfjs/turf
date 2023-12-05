@@ -40,4 +40,5 @@ function explode(geojson: AllGeoJSON): FeatureCollection<Point> {
   return featureCollection(points);
 }
 
+export { explode };
 export default explode;

@@ -18,7 +18,7 @@ import clone from "@turf/clone";
  * //addToMap
  * var addToMap = [pt, converted];
  */
-export function toMercator<G = AllGeoJSON | Position>(
+function toMercator<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
@@ -40,7 +40,7 @@ export function toMercator<G = AllGeoJSON | Position>(
  * //addToMap
  * var addToMap = [pt, converted];
  */
-export function toWgs84<G = AllGeoJSON | Position>(
+function toWgs84<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
@@ -153,3 +153,5 @@ function convertToWgs84(xy: number[]) {
 function sign(x: number) {
   return x < 0 ? -1 : x > 0 ? 1 : 0;
 }
+
+export { toMercator, toWgs84 };

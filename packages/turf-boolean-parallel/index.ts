@@ -71,4 +71,5 @@ function getType(geojson: Geometry | Feature<any>, name: string) {
   throw new Error("Invalid GeoJSON object for " + name);
 }
 
+export { booleanParallel };
 export default booleanParallel;

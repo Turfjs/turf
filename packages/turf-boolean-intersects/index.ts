@@ -16,7 +16,7 @@ import { flattenEach } from "@turf/meta";
  * turf.booleanIntersects(line, point);
  * //=true
  */
-export default function booleanIntersects(
+function booleanIntersects(
   feature1: Feature<any> | Geometry,
   feature2: Feature<any> | Geometry
 ) {
@@ -31,3 +31,6 @@ export default function booleanIntersects(
   });
   return bool;
 }
+
+export { booleanIntersects };
+export default booleanIntersects;

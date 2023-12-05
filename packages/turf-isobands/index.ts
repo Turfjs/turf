@@ -21,7 +21,8 @@ import {
 } from "geojson";
 
 import gridToMatrix from "./lib/grid-to-matrix";
-const { isoBands } = require("marchingsquares");
+// @ts-expect-error Legacy JS library with no types defined
+import { isoBands } from "marchingsquares";
 
 type GroupRingProps = { [prop: string]: string };
 type GroupedRings =
@@ -281,4 +282,5 @@ function allGrouped(
   return true;
 }
 
+export { isobands };
 export default isobands;

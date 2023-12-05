@@ -145,4 +145,5 @@ function defineOrigin(geojson, origin) {
   }
 }
 
+export { transformScale };
 export default transformScale;

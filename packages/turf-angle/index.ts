@@ -64,4 +64,5 @@ function angle(
   return angleAO;
 }
 
+export { angle };
 export default angle;

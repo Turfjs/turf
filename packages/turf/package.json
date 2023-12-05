@@ -65,7 +65,7 @@
     "build": "rollup -c rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "last-checks": "npm-run-all last-checks:testjs last-checks:example",
     "last-checks:example": "tsx test.example.js",
-    "last-checks:testjs": "tsx test.js",
+    "last-checks:testjs": "tsx test.ts",
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {

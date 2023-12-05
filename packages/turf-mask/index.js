@@ -76,4 +76,5 @@ function createMask(mask) {
   return createPolygon(coordinates);
 }
 
+export { mask };
 export default mask;

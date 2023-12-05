@@ -1,7 +1,7 @@
 import rbush from "rbush";
 import { featureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
-import turfBBox from "@turf/bbox";
+import { bbox as turfBBox } from "@turf/bbox";
 
 /**
  * @module rbush
@@ -216,4 +216,5 @@ function geojsonRbush(maxEntries) {
   return tree;
 }
 
+export { geojsonRbush };
 export default geojsonRbush;

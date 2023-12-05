@@ -1,4 +1,4 @@
-import distance from "@turf/distance";
+import { distance } from "@turf/distance";
 
 /**
  * Takes a bounding box and calculates the minimum square bounding box that
@@ -41,4 +41,5 @@ function square(bbox) {
   }
 }
 
+export { square };
 export default square;

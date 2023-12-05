@@ -32,9 +32,9 @@ import { point } from "@turf/helpers";
  * //addToMap
  * var addToMap = [poly, kinks]
  */
-export default function kinks<
-  T extends LineString | MultiLineString | Polygon | MultiPolygon,
->(featureIn: Feature<T>): FeatureCollection<Point> {
+function kinks<T extends LineString | MultiLineString | Polygon | MultiPolygon>(
+  featureIn: Feature<T>
+): FeatureCollection<Point> {
   const results: FeatureCollection<Point> = {
     type: "FeatureCollection",
     features: [],
@@ -56,3 +56,6 @@ export default function kinks<
   }
   return results;
 }
+
+export { kinks };
+export default kinks;

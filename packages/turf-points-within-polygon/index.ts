@@ -90,4 +90,5 @@ function pointsWithinPolygon<
   return featureCollection(results);
 }
 
+export { pointsWithinPolygon };
 export default pointsWithinPolygon;

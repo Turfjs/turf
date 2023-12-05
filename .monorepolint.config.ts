@@ -202,34 +202,11 @@ module.exports = {
       {
         options: {
           scripts: {
-            "test:tape": "tsx test.js",
+            bench: "tsx bench.ts",
+            "test:tape": "tsx test.ts",
           },
         },
-        includePackages: JS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            "test:tape": "tsx test.js",
-          },
-        },
-        includePackages: TS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            bench: "tsx bench.js",
-          },
-        },
-        includePackages: JS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            bench: "tsx bench.js",
-          },
-        },
-        includePackages: TS_TAPE_PACKAGES,
+        includePackages: [...TS_TAPE_PACKAGES, ...JS_TAPE_PACKAGES],
       },
       {
         options: {
@@ -263,6 +240,7 @@ module.exports = {
             tslib: "^2.6.2",
           },
           devDependencies: {
+            "@types/benchmark": "^2.1.5",
             "@types/tape": "^4.2.32",
             typescript: "^5.2.2",
           },

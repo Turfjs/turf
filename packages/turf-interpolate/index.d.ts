@@ -4,7 +4,7 @@ import { Units, Grid } from "@turf/helpers";
 /**
  * http://turfjs.org/docs/#interpolate
  */
-export default function interpolate(
+declare function interpolate(
   points: FeatureCollection<Point>,
   cellSize: number,
   options?: {
@@ -14,7 +14,7 @@ export default function interpolate(
     weight?: number;
   }
 ): FeatureCollection<Point>;
-export default function interpolate(
+declare function interpolate(
   points: FeatureCollection<Point>,
   cellSize: number,
   options?: {
@@ -24,3 +24,6 @@ export default function interpolate(
     weight?: number;
   }
 ): FeatureCollection<Polygon>;
+
+export { interpolate };
+export default interpolate;

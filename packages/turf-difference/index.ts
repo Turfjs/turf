@@ -57,4 +57,5 @@ function difference(
   return multiPolygon(differenced, properties);
 }
 
+export { difference };
 export default difference;

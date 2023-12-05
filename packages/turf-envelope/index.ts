@@ -1,7 +1,7 @@
 import type { Feature, Polygon } from "geojson";
 import type { AllGeoJSON } from "@turf/helpers";
-import bbox from "@turf/bbox";
-import bboxPolygon from "@turf/bbox-polygon";
+import { bbox } from "@turf/bbox";
+import { bboxPolygon } from "@turf/bbox-polygon";
 
 /**
  * Takes any number of features and returns a rectangular {@link Polygon} that encompasses all vertices.
@@ -25,4 +25,5 @@ function envelope(geojson: AllGeoJSON): Feature<Polygon> {
   return bboxPolygon(bbox(geojson));
 }
 
+export { envelope };
 export default envelope;

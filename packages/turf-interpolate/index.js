@@ -104,4 +104,5 @@ function interpolate(points, cellSize, options) {
   return featureCollection(results);
 }
 
+export { interpolate };
 export default interpolate;

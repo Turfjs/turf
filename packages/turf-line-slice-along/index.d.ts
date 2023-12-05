@@ -4,7 +4,7 @@ import { Units } from "@turf/helpers";
 /**
  * http://turfjs.org/docs/
  */
-export default function lineSliceAlong(
+declare function lineSliceAlong(
   line: Feature<LineString> | LineString,
   startDist: number,
   stopDist: number,
@@ -12,3 +12,6 @@ export default function lineSliceAlong(
     units?: Units;
   }
 ): Feature<LineString>;
+
+export { lineSliceAlong };
+export default lineSliceAlong;

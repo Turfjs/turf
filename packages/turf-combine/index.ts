@@ -99,4 +99,5 @@ function combine(
   );
 }
 
+export { combine };
 export default combine;

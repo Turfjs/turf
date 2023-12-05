@@ -27,7 +27,7 @@ import {
  * var position = turf.randomPosition([-180, -90, 180, 90])
  * // => position
  */
-export function randomPosition(bbox?: BBox | { bbox: BBox }): Position {
+function randomPosition(bbox?: BBox | { bbox: BBox }): Position {
   checkBBox(bbox);
   return randomPositionUnchecked(bbox);
 }
@@ -66,7 +66,7 @@ function checkBBox(bbox?: BBox | { bbox: BBox }) {
  * var points = turf.randomPoint(25, {bbox: [-180, -90, 180, 90]})
  * // => points
  */
-export function randomPoint(
+function randomPoint(
   count?: number,
   options: {
     bbox?: BBox;
@@ -99,7 +99,7 @@ export function randomPoint(
  * var polygons = turf.randomPolygon(25, {bbox: [-180, -90, 180, 90]})
  * // => polygons
  */
-export function randomPolygon(
+function randomPolygon(
   count?: number,
   options: {
     bbox?: BBox;
@@ -170,7 +170,7 @@ export function randomPolygon(
  * var lineStrings = turf.randomLineString(25, {bbox: [-180, -90, 180, 90]})
  * // => lineStrings
  */
-export function randomLineString(
+function randomLineString(
   count?: number,
   options: {
     bbox?: BBox;
@@ -255,3 +255,5 @@ function coordInBBox(bbox: BBox) {
     Math.random() * (bbox[3] - bbox[1]) + bbox[1],
   ];
 }
+
+export { randomPosition, randomPoint, randomPolygon, randomLineString };

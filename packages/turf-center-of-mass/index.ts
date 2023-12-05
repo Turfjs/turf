@@ -95,4 +95,5 @@ function centerOfMass<P extends GeoJsonProperties = GeoJsonProperties>(
   }
 }
 
+export { centerOfMass };
 export default centerOfMass;

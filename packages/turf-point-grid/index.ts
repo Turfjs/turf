@@ -7,8 +7,8 @@ import {
   Point,
   GeoJsonProperties,
 } from "geojson";
-import within from "@turf/boolean-within";
-import distance from "@turf/distance";
+import { booleanWithin as within } from "@turf/boolean-within";
+import { distance } from "@turf/distance";
 import { point, featureCollection, Units } from "@turf/helpers";
 
 /**
@@ -92,4 +92,5 @@ function pointGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   return featureCollection(results);
 }
 
+export { pointGrid };
 export default pointGrid;

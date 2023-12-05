@@ -196,4 +196,5 @@ function isPointOnLineSegment(
   }
 }
 
+export { booleanCrosses };
 export default booleanCrosses;

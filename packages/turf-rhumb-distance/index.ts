@@ -103,4 +103,5 @@ function calculateRhumbDistance(
   return dist;
 }
 
+export { rhumbDistance };
 export default rhumbDistance;

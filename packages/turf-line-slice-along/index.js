@@ -84,4 +84,5 @@ function lineSliceAlong(line, startDist, stopDist, options) {
   return lineString([last, last]);
 }
 
+export { lineSliceAlong };
 export default lineSliceAlong;

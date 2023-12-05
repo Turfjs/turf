@@ -185,4 +185,5 @@ function compareCoords(pair1: number[], pair2: number[]) {
   return pair1[0] === pair2[0] && pair1[1] === pair2[1];
 }
 
+export { booleanDisjoint };
 export default booleanDisjoint;

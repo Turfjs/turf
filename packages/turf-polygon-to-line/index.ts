@@ -27,7 +27,7 @@ import { getGeom } from "@turf/invariant";
  * //addToMap
  * var addToMap = [line];
  */
-export default function <
+function polygonToLine<
   G extends Polygon | MultiPolygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -42,7 +42,7 @@ export default function <
   }
   switch (geom.type) {
     case "Polygon":
-      return polygonToLine(geom, options);
+      return singlePolygonToLine(geom, options);
     case "MultiPolygon":
       return multiPolygonToLine(geom, options);
     default:
@@ -53,7 +53,7 @@ export default function <
 /**
  * @private
  */
-export function polygonToLine<
+function singlePolygonToLine<
   G extends Polygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -74,7 +74,7 @@ export function polygonToLine<
 /**
  * @private
  */
-export function multiPolygonToLine<
+function multiPolygonToLine<
   G extends MultiPolygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
@@ -99,7 +99,7 @@ export function multiPolygonToLine<
 /**
  * @private
  */
-export function coordsToLine<P extends GeoJsonProperties = GeoJsonProperties>(
+function coordsToLine<P extends GeoJsonProperties = GeoJsonProperties>(
   coords: number[][][],
   properties: P
 ): Feature<LineString | MultiLineString, P> {
@@ -108,3 +108,6 @@ export function coordsToLine<P extends GeoJsonProperties = GeoJsonProperties>(
   }
   return lineString(coords[0], properties);
 }
+
+export { polygonToLine, coordsToLine, multiPolygonToLine, singlePolygonToLine };
+export default polygonToLine;

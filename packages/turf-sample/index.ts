@@ -50,4 +50,5 @@ function getRandomSubarray<T extends Geometry>(
   return shuffled.slice(min);
 }
 
+export { sample };
 export default sample;

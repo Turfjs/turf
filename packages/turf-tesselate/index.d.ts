@@ -3,4 +3,9 @@ import { Feature, FeatureCollection, Polygon } from "geojson";
 /**
  * http://turfjs.org/docs/#tesselate
  */
-export default function (polygon: Feature<Polygon>): FeatureCollection<Polygon>;
+declare function tesselate(
+  polygon: Feature<Polygon>
+): FeatureCollection<Polygon>;
+
+export { tesselate };
+export default tesselate;

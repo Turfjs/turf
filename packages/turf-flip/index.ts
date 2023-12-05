@@ -44,4 +44,5 @@ function flip<T extends AllGeoJSON>(
   return geojson;
 }
 
+export { flip };
 export default flip;

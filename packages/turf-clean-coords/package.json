@@ -40,17 +40,18 @@
     "dist"
   ],
   "scripts": {
-    "bench": "tsx bench.js",
+    "bench": "tsx bench.ts",
     "build": "npm-run-all --npm-path npm build:*",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
-    "test:tape": "tsx test.js",
+    "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
     "@turf/truncate": "^7.0.0-alpha.2",
+    "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",

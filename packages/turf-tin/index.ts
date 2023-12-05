@@ -3,13 +3,13 @@
 import { FeatureCollection, Point, Polygon } from "geojson";
 import { featureCollection, polygon } from "@turf/helpers";
 
-export interface Pt {
+interface Pt {
   x: number;
   y: number;
   z?: number;
   __sentinel?: boolean;
 }
-export interface Vertice {
+interface Vertice {
   x: number;
   y: number;
 }
@@ -46,7 +46,7 @@ export interface Vertice {
  *   properties.fill = '#' + properties.a + properties.b + properties.c;
  * }
  */
-export default function tin(
+function tin(
   points: FeatureCollection<Point, any>,
   z?: string
 ): FeatureCollection<Polygon> {
@@ -298,3 +298,6 @@ function triangulate(vertices: Vertice[]) {
 
   return closed;
 }
+
+export { Pt, Vertice, tin };
+export default tin;

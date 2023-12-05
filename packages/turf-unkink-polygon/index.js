@@ -28,4 +28,5 @@ function unkinkPolygon(geojson) {
   return featureCollection(features);
 }
 
+export { unkinkPolygon };
 export default unkinkPolygon;

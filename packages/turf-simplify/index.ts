@@ -218,4 +218,5 @@ function checkValidity(ring: Position[]) {
   );
 }
 
+export { simplify };
 export default simplify;

@@ -206,4 +206,5 @@ function isInside(pt: Feature<Point>, polygons: FeatureCollection<Polygon>) {
   return false;
 }
 
+export { shortestPath };
 export default shortestPath;

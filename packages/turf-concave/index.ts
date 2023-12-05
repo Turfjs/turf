@@ -101,4 +101,5 @@ function removeDuplicates(
   return featureCollection(cleaned);
 }
 
+export { concave };
 export default concave;

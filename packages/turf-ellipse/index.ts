@@ -119,4 +119,5 @@ function getTanDeg(deg: number) {
   return Math.tan(rad);
 }
 
+export { ellipse };
 export default ellipse;

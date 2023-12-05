@@ -89,4 +89,5 @@ function truncateCoords(coords: number[], factor: number, coordinates: number) {
   return coords;
 }
 
+export { truncate };
 export default truncate;

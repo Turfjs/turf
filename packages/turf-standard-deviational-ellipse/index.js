@@ -149,4 +149,5 @@ function getDeviations(coordinates, center) {
   };
 }
 
+export { standardDeviationalEllipse };
 export default standardDeviationalEllipse;

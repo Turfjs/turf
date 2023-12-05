@@ -200,4 +200,5 @@ function isPointOnLineSegment(start: Position, end: Position, point: Position) {
   else return dyl > 0 ? startY <= y && y <= endY : endY <= y && y <= startY;
 }
 
+export { cleanCoords };
 export default cleanCoords;

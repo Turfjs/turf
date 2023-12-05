@@ -39,4 +39,5 @@ function centroid<P extends GeoJsonProperties = GeoJsonProperties>(
   return point([xSum / len, ySum / len], options.properties);
 }
 
+export { centroid };
 export default centroid;

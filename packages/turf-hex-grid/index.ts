@@ -215,4 +215,5 @@ function hexTriangles(
   return triangles;
 }
 
+export { hexGrid };
 export default hexGrid;

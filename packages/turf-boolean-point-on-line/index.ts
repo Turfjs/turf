@@ -121,4 +121,5 @@ function isPointOnLineSegment(
   return false;
 }
 
+export { booleanPointOnLine };
 export default booleanPointOnLine;

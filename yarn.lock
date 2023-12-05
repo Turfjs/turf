@@ -1888,6 +1888,11 @@
     "@turf/helpers" "^5.1.5"
     "@turf/invariant" "^5.1.5"
 
+"@types/benchmark@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@types/benchmark/-/benchmark-2.1.5.tgz#940c1850c18fdfdaee3fd6ed29cd92ae0d445b45"
+  integrity sha512-cKio2eFB3v7qmKcvIHLUMw/dIx/8bhWPuzpzRT4unCPRTD8VdA9Zb0afxpcxOqR4PixRS7yT42FqGS8BYL8g1w==
+
 "@types/concaveman@^1.1.6":
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/@types/concaveman/-/concaveman-1.1.6.tgz#d82548021d8db80562be70187fa6e07237f60775"

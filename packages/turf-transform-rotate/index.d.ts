@@ -3,7 +3,7 @@ import { AllGeoJSON, Coord } from "@turf/helpers";
 /**
  * http://turfjs.org/docs/#transformrotate
  */
-export default function transformRotate<T extends AllGeoJSON>(
+declare function transformRotate<T extends AllGeoJSON>(
   geojson: T,
   angle: number,
   options?: {
@@ -11,3 +11,6 @@ export default function transformRotate<T extends AllGeoJSON>(
     mutate?: boolean;
   }
 ): T;
+
+export { transformRotate };
+export default transformRotate;

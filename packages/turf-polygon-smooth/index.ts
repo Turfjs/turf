@@ -171,4 +171,5 @@ function processMultiPolygon(poly: MultiPolygon, tempOutput: Position[][][]) {
   });
 }
 
+export { polygonSmooth };
 export default polygonSmooth;

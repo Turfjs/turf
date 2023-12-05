@@ -180,4 +180,5 @@ function defineProjection(geojson) {
   return geoAzimuthalEquidistant().rotate(rotation).scale(earthRadius);
 }
 
+export { buffer };
 export default buffer;

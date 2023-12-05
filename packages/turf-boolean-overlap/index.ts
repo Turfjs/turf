@@ -26,7 +26,7 @@ import GeojsonEquality from "geojson-equality";
  * turf.booleanOverlap(poly2, poly3)
  * //=false
  */
-export default function booleanOverlap(
+function booleanOverlap(
   feature1: Feature<any> | Geometry,
   feature2: Feature<any> | Geometry
 ): boolean {
@@ -88,3 +88,6 @@ export default function booleanOverlap(
 
   return overlap > 0;
 }
+
+export { booleanOverlap };
+export default booleanOverlap;

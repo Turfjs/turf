@@ -59,4 +59,5 @@ function transformRotate(geojson, angle, options) {
   return geojson;
 }
 
+export { transformRotate };
 export default transformRotate;

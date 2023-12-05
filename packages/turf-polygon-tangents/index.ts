@@ -151,4 +151,5 @@ function isLeft(point1: Position, point2: Position, point3: Position) {
   );
 }
 
+export { polygonTangents };
 export default polygonTangents;

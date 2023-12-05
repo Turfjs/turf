@@ -1,6 +1,6 @@
 import { point, polygon, featureCollection } from "@turf/helpers";
 import { BBox, Point, Polygon } from "geojson";
-import rbush from "./";
+import { geojsonRbush as rbush } from "./";
 
 // Fixtures
 const bbox: BBox = [-180, -90, 180, 90];

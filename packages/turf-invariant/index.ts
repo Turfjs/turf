@@ -23,7 +23,7 @@ import { isNumber } from "@turf/helpers";
  * var coord = turf.getCoord(pt);
  * //= [10, 10]
  */
-export function getCoord(coord: Feature<Point> | Point | number[]): number[] {
+function getCoord(coord: Feature<Point> | Point | number[]): number[] {
   if (!coord) {
     throw new Error("coord is required");
   }
@@ -64,7 +64,7 @@ export function getCoord(coord: Feature<Point> | Point | number[]): number[] {
  * var coords = turf.getCoords(poly);
  * //= [[[119.32, -8.7], [119.55, -8.69], [119.51, -8.54], [119.32, -8.7]]]
  */
-export function getCoords<
+function getCoords<
   G extends
     | Point
     | LineString
@@ -101,7 +101,7 @@ export function getCoords<
  * @param {Array<any>} coordinates GeoJSON Coordinates
  * @returns {boolean} true if Array contains a number
  */
-export function containsNumber(coordinates: any[]): boolean {
+function containsNumber(coordinates: any[]): boolean {
   if (
     coordinates.length > 1 &&
     isNumber(coordinates[0]) &&
@@ -125,7 +125,7 @@ export function containsNumber(coordinates: any[]): boolean {
  * @param {string} name name of calling function
  * @throws {Error} if value is not the expected type.
  */
-export function geojsonType(value: any, type: string, name: string): void {
+function geojsonType(value: any, type: string, name: string): void {
   if (!type || !name) {
     throw new Error("type and name required");
   }
@@ -152,11 +152,7 @@ export function geojsonType(value: any, type: string, name: string): void {
  * @param {string} name name of calling function
  * @throws {Error} error if value is not the expected type.
  */
-export function featureOf(
-  feature: Feature<any>,
-  type: string,
-  name: string
-): void {
+function featureOf(feature: Feature<any>, type: string, name: string): void {
   if (!feature) {
     throw new Error("No feature passed");
   }
@@ -190,7 +186,7 @@ export function featureOf(
  * @param {string} name name of calling function
  * @throws {Error} if value is not the expected type.
  */
-export function collectionOf(
+function collectionOf(
   featureCollection: FeatureCollection<any>,
   type: string,
   name: string
@@ -243,7 +239,7 @@ export function collectionOf(
  * var geom = turf.getGeom(point)
  * //={"type": "Point", "coordinates": [110, 40]}
  */
-export function getGeom<G extends Geometry>(geojson: Feature<G> | G): G {
+function getGeom<G extends Geometry>(geojson: Feature<G> | G): G {
   if (geojson.type === "Feature") {
     return geojson.geometry;
   }
@@ -268,7 +264,7 @@ export function getGeom<G extends Geometry>(geojson: Feature<G> | G): G {
  * var geom = turf.getType(point)
  * //="Point"
  */
-export function getType(
+function getType(
   geojson: Feature<any> | FeatureCollection<any> | Geometry,
   _name?: string
 ): string {
@@ -283,3 +279,15 @@ export function getType(
   }
   return geojson.type;
 }
+
+export {
+  getCoord,
+  getCoords,
+  containsNumber,
+  geojsonType,
+  featureOf,
+  collectionOf,
+  getGeom,
+  getType,
+};
+// No default export!
