@@ -2546,15 +2546,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turf/along@npm:^7.0.0-alpha.2, @turf/along@workspace:packages/turf-along":
+"@turf/along@workspace:^, @turf/along@workspace:packages/turf-along":
   version: 0.0.0-use.local
   resolution: "@turf/along@workspace:packages/turf-along"
   dependencies:
-    "@turf/bearing": "npm:^7.0.0-alpha.2"
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/bearing": "workspace:^"
+    "@turf/destination": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2567,17 +2567,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/angle@npm:^7.0.0-alpha.2, @turf/angle@workspace:packages/turf-angle":
+"@turf/angle@workspace:^, @turf/angle@workspace:packages/turf-angle":
   version: 0.0.0-use.local
   resolution: "@turf/angle@workspace:packages/turf-angle"
   dependencies:
-    "@turf/bearing": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-bearing": "npm:^7.0.0-alpha.2"
-    "@turf/sector": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bearing": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/rhumb-bearing": "workspace:^"
+    "@turf/sector": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2592,12 +2592,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/area@npm:^7.0.0-alpha.2, @turf/area@workspace:packages/turf-area":
+"@turf/area@workspace:^, @turf/area@workspace:packages/turf-area":
   version: 0.0.0-use.local
   resolution: "@turf/area@workspace:packages/turf-area"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2611,13 +2611,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/bbox-clip@npm:^7.0.0-alpha.2, @turf/bbox-clip@workspace:packages/turf-bbox-clip":
+"@turf/bbox-clip@workspace:^, @turf/bbox-clip@workspace:packages/turf-bbox-clip":
   version: 0.0.0-use.local
   resolution: "@turf/bbox-clip@workspace:packages/turf-bbox-clip"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2631,11 +2631,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/bbox-polygon@npm:^7.0.0-alpha.2, @turf/bbox-polygon@workspace:packages/turf-bbox-polygon":
+"@turf/bbox-polygon@workspace:^, @turf/bbox-polygon@workspace:packages/turf-bbox-polygon":
   version: 0.0.0-use.local
   resolution: "@turf/bbox-polygon@workspace:packages/turf-bbox-polygon"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2647,12 +2647,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/bbox@npm:^7.0.0-alpha.2, @turf/bbox@workspace:packages/turf-bbox":
+"@turf/bbox@workspace:^, @turf/bbox@workspace:packages/turf-bbox":
   version: 0.0.0-use.local
   resolution: "@turf/bbox@workspace:packages/turf-bbox"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2664,13 +2664,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/bearing@npm:^7.0.0-alpha.2, @turf/bearing@workspace:packages/turf-bearing":
+"@turf/bearing@workspace:^, @turf/bearing@workspace:packages/turf-bearing":
   version: 0.0.0-use.local
   resolution: "@turf/bearing@workspace:packages/turf-bearing"
   dependencies:
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/destination": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2683,12 +2683,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/bezier-spline@npm:^7.0.0-alpha.2, @turf/bezier-spline@workspace:packages/turf-bezier-spline":
+"@turf/bezier-spline@workspace:^, @turf/bezier-spline@workspace:packages/turf-bezier-spline":
   version: 0.0.0-use.local
   resolution: "@turf/bezier-spline@workspace:packages/turf-bezier-spline"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2702,12 +2702,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-clockwise@npm:^7.0.0-alpha.2, @turf/boolean-clockwise@workspace:packages/turf-boolean-clockwise":
+"@turf/boolean-clockwise@workspace:^, @turf/boolean-clockwise@workspace:packages/turf-boolean-clockwise":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-clockwise@workspace:packages/turf-boolean-clockwise"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2725,8 +2725,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@turf/boolean-concave@workspace:packages/turf-boolean-concave"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2740,15 +2740,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-contains@npm:^7.0.0-alpha.2, @turf/boolean-contains@workspace:packages/turf-boolean-contains":
+"@turf/boolean-contains@workspace:^, @turf/boolean-contains@workspace:packages/turf-boolean-contains":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-contains@workspace:packages/turf-boolean-contains"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-on-line": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/boolean-point-on-line": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2764,15 +2764,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-crosses@npm:^7.0.0-alpha.2, @turf/boolean-crosses@workspace:packages/turf-boolean-crosses":
+"@turf/boolean-crosses@workspace:^, @turf/boolean-crosses@workspace:packages/turf-boolean-crosses":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-crosses@workspace:packages/turf-boolean-crosses"
   dependencies:
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/line-intersect": "npm:^7.0.0-alpha.2"
-    "@turf/polygon-to-line": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/line-intersect": "workspace:^"
+    "@turf/polygon-to-line": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2787,15 +2787,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-disjoint@npm:^7.0.0-alpha.2, @turf/boolean-disjoint@workspace:packages/turf-boolean-disjoint":
+"@turf/boolean-disjoint@workspace:^, @turf/boolean-disjoint@workspace:packages/turf-boolean-disjoint":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-disjoint@workspace:packages/turf-boolean-disjoint"
   dependencies:
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/line-intersect": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/polygon-to-line": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/line-intersect": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/polygon-to-line": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2809,13 +2809,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-equal@npm:^7.0.0-alpha.2, @turf/boolean-equal@workspace:packages/turf-boolean-equal":
+"@turf/boolean-equal@workspace:^, @turf/boolean-equal@workspace:packages/turf-boolean-equal":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-equal@workspace:packages/turf-boolean-equal"
   dependencies:
-    "@turf/clean-coords": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/clean-coords": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/geojson-equality": "npm:^0.2.2"
     "@types/tape": "npm:^4.2.32"
@@ -2832,13 +2832,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-intersects@npm:^7.0.0-alpha.2, @turf/boolean-intersects@workspace:packages/turf-boolean-intersects":
+"@turf/boolean-intersects@workspace:^, @turf/boolean-intersects@workspace:packages/turf-boolean-intersects":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-intersects@workspace:packages/turf-boolean-intersects"
   dependencies:
-    "@turf/boolean-disjoint": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-disjoint": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2852,15 +2852,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-overlap@npm:^7.0.0-alpha.2, @turf/boolean-overlap@workspace:packages/turf-boolean-overlap":
+"@turf/boolean-overlap@workspace:^, @turf/boolean-overlap@workspace:packages/turf-boolean-overlap":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-overlap@workspace:packages/turf-boolean-overlap"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/line-intersect": "npm:^7.0.0-alpha.2"
-    "@turf/line-overlap": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/line-intersect": "workspace:^"
+    "@turf/line-overlap": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/geojson-equality": "npm:^0.2.2"
     "@types/tape": "npm:^4.2.32"
@@ -2877,14 +2877,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-parallel@npm:^7.0.0-alpha.2, @turf/boolean-parallel@workspace:packages/turf-boolean-parallel":
+"@turf/boolean-parallel@workspace:^, @turf/boolean-parallel@workspace:packages/turf-boolean-parallel":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-parallel@workspace:packages/turf-boolean-parallel"
   dependencies:
-    "@turf/clean-coords": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/line-segment": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-bearing": "npm:^7.0.0-alpha.2"
+    "@turf/clean-coords": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/line-segment": "workspace:^"
+    "@turf/rhumb-bearing": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2898,12 +2898,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-point-in-polygon@npm:^7.0.0-alpha.2, @turf/boolean-point-in-polygon@workspace:packages/turf-boolean-point-in-polygon":
+"@turf/boolean-point-in-polygon@workspace:^, @turf/boolean-point-in-polygon@workspace:packages/turf-boolean-point-in-polygon":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-point-in-polygon@workspace:packages/turf-boolean-point-in-polygon"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2916,12 +2916,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-point-on-line@npm:^7.0.0-alpha.2, @turf/boolean-point-on-line@workspace:packages/turf-boolean-point-on-line":
+"@turf/boolean-point-on-line@workspace:^, @turf/boolean-point-on-line@workspace:packages/turf-boolean-point-on-line":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-point-on-line@workspace:packages/turf-boolean-point-on-line"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2936,14 +2936,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-touches@npm:^7.0.0-alpha.2, @turf/boolean-touches@workspace:packages/turf-boolean-touches":
+"@turf/boolean-touches@workspace:^, @turf/boolean-touches@workspace:packages/turf-boolean-touches":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-touches@workspace:packages/turf-boolean-touches"
   dependencies:
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-on-line": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/boolean-point-on-line": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2963,15 +2963,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@turf/boolean-valid@workspace:packages/turf-boolean-valid"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-crosses": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-disjoint": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-overlap": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-on-line": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/line-intersect": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/boolean-crosses": "workspace:^"
+    "@turf/boolean-disjoint": "workspace:^"
+    "@turf/boolean-overlap": "workspace:^"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/boolean-point-on-line": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/line-intersect": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -2988,15 +2988,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/boolean-within@npm:^7.0.0-alpha.2, @turf/boolean-within@workspace:packages/turf-boolean-within":
+"@turf/boolean-within@workspace:^, @turf/boolean-within@workspace:packages/turf-boolean-within":
   version: 0.0.0-use.local
   resolution: "@turf/boolean-within@workspace:packages/turf-boolean-within"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-on-line": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/boolean-point-on-line": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3012,17 +3012,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/buffer@npm:^7.0.0-alpha.2, @turf/buffer@workspace:packages/turf-buffer":
+"@turf/buffer@workspace:^, @turf/buffer@workspace:packages/turf-buffer":
   version: 0.0.0-use.local
   resolution: "@turf/buffer@workspace:packages/turf-buffer"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/center": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/center": "workspace:^"
+    "@turf/helpers": "workspace:^"
     "@turf/jsts": "npm:^2.7.1"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/projection": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/meta": "workspace:^"
+    "@turf/projection": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     d3-geo: "npm:1.7.1"
     load-json-file: "npm:^7.0.1"
@@ -3034,15 +3034,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/center-mean@npm:^7.0.0-alpha.2, @turf/center-mean@workspace:packages/turf-center-mean":
+"@turf/center-mean@workspace:^, @turf/center-mean@workspace:packages/turf-center-mean":
   version: 0.0.0-use.local
   resolution: "@turf/center-mean@workspace:packages/turf-center-mean"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/center": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/center": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3057,19 +3057,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/center-median@npm:^7.0.0-alpha.2, @turf/center-median@workspace:packages/turf-center-median":
+"@turf/center-median@workspace:^, @turf/center-median@workspace:packages/turf-center-median":
   version: 0.0.0-use.local
   resolution: "@turf/center-median@workspace:packages/turf-center-median"
   dependencies:
-    "@turf/center": "npm:^7.0.0-alpha.2"
-    "@turf/center-mean": "npm:^7.0.0-alpha.2"
-    "@turf/center-of-mass": "npm:^7.0.0-alpha.2"
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/random": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/center": "workspace:^"
+    "@turf/center-mean": "workspace:^"
+    "@turf/center-of-mass": "workspace:^"
+    "@turf/centroid": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/random": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3083,15 +3083,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/center-of-mass@npm:^7.0.0-alpha.2, @turf/center-of-mass@workspace:packages/turf-center-of-mass":
+"@turf/center-of-mass@workspace:^, @turf/center-of-mass@workspace:packages/turf-center-of-mass":
   version: 0.0.0-use.local
   resolution: "@turf/center-of-mass@workspace:packages/turf-center-of-mass"
   dependencies:
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/convex": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/centroid": "workspace:^"
+    "@turf/convex": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3106,14 +3106,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/center@npm:^7.0.0-alpha.2, @turf/center@workspace:packages/turf-center":
+"@turf/center@workspace:^, @turf/center@workspace:packages/turf-center":
   version: 0.0.0-use.local
   resolution: "@turf/center@workspace:packages/turf-center"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3128,12 +3128,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/centroid@npm:^7.0.0-alpha.2, @turf/centroid@workspace:packages/turf-centroid":
+"@turf/centroid@workspace:^, @turf/centroid@workspace:packages/turf-centroid":
   version: 0.0.0-use.local
   resolution: "@turf/centroid@workspace:packages/turf-centroid"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3149,14 +3149,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/circle@npm:^7.0.0-alpha.2, @turf/circle@workspace:packages/turf-circle":
+"@turf/circle@workspace:^, @turf/circle@workspace:packages/turf-circle":
   version: 0.0.0-use.local
   resolution: "@turf/circle@workspace:packages/turf-circle"
   dependencies:
     "@mapbox/geojsonhint": "npm:^3.2.0"
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/destination": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3170,13 +3170,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/clean-coords@npm:^7.0.0-alpha.2, @turf/clean-coords@workspace:packages/turf-clean-coords":
+"@turf/clean-coords@workspace:^, @turf/clean-coords@workspace:packages/turf-clean-coords":
   version: 0.0.0-use.local
   resolution: "@turf/clean-coords@workspace:packages/turf-clean-coords"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3190,12 +3190,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/clone@npm:^7.0.0-alpha.2, @turf/clone@workspace:packages/turf-clone":
+"@turf/clone@workspace:^, @turf/clone@workspace:packages/turf-clone":
   version: 0.0.0-use.local
   resolution: "@turf/clone@workspace:packages/turf-clone"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3207,16 +3207,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/clusters-dbscan@npm:^7.0.0-alpha.2, @turf/clusters-dbscan@workspace:packages/turf-clusters-dbscan":
+"@turf/clusters-dbscan@workspace:^, @turf/clusters-dbscan@workspace:packages/turf-clusters-dbscan":
   version: 0.0.0-use.local
   resolution: "@turf/clusters-dbscan@workspace:packages/turf-clusters-dbscan"
   dependencies:
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/clusters": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/centroid": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/clusters": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3233,17 +3233,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/clusters-kmeans@npm:^7.0.0-alpha.2, @turf/clusters-kmeans@workspace:packages/turf-clusters-kmeans":
+"@turf/clusters-kmeans@workspace:^, @turf/clusters-kmeans@workspace:packages/turf-clusters-kmeans":
   version: 0.0.0-use.local
   resolution: "@turf/clusters-kmeans@workspace:packages/turf-clusters-kmeans"
   dependencies:
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/clusters": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/random": "npm:^7.0.0-alpha.2"
+    "@turf/centroid": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/clusters": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/random": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/skmeans": "npm:^0.11.7"
     "@types/tape": "npm:^4.2.32"
@@ -3261,12 +3261,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/clusters@npm:^7.0.0-alpha.2, @turf/clusters@workspace:packages/turf-clusters":
+"@turf/clusters@workspace:^, @turf/clusters@workspace:packages/turf-clusters":
   version: 0.0.0-use.local
   resolution: "@turf/clusters@workspace:packages/turf-clusters"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3278,13 +3278,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/collect@npm:^7.0.0-alpha.2, @turf/collect@workspace:packages/turf-collect":
+"@turf/collect@workspace:^, @turf/collect@workspace:packages/turf-collect":
   version: 0.0.0-use.local
   resolution: "@turf/collect@workspace:packages/turf-collect"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/helpers": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/rbush": "npm:^3.0.2"
     "@types/tape": "npm:^4.2.32"
@@ -3298,12 +3298,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/combine@npm:^7.0.0-alpha.2, @turf/combine@workspace:packages/turf-combine":
+"@turf/combine@workspace:^, @turf/combine@workspace:packages/turf-combine":
   version: 0.0.0-use.local
   resolution: "@turf/combine@workspace:packages/turf-combine"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3315,16 +3315,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/concave@npm:^7.0.0-alpha.2, @turf/concave@workspace:packages/turf-concave":
+"@turf/concave@workspace:^, @turf/concave@workspace:packages/turf-concave":
   version: 0.0.0-use.local
   resolution: "@turf/concave@workspace:packages/turf-concave"
   dependencies:
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/tin": "npm:^7.0.0-alpha.2"
+    "@turf/clone": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/tin": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     "@types/topojson-client": "npm:3.1.3"
@@ -3342,12 +3342,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/convex@npm:^7.0.0-alpha.2, @turf/convex@workspace:packages/turf-convex":
+"@turf/convex@workspace:^, @turf/convex@workspace:packages/turf-convex":
   version: 0.0.0-use.local
   resolution: "@turf/convex@workspace:packages/turf-convex"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/concaveman": "npm:^1.1.6"
     "@types/tape": "npm:^4.2.32"
@@ -3364,13 +3364,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/destination@npm:^7.0.0-alpha.2, @turf/destination@workspace:packages/turf-destination":
+"@turf/destination@workspace:^, @turf/destination@workspace:packages/turf-destination":
   version: 0.0.0-use.local
   resolution: "@turf/destination@workspace:packages/turf-destination"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3385,12 +3385,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/difference@npm:^7.0.0-alpha.2, @turf/difference@workspace:packages/turf-difference":
+"@turf/difference@workspace:^, @turf/difference@workspace:packages/turf-difference":
   version: 0.0.0-use.local
   resolution: "@turf/difference@workspace:packages/turf-difference"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3410,13 +3410,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@turf/directional-mean@workspace:packages/turf-directional-mean"
   dependencies:
-    "@turf/bearing": "npm:^7.0.0-alpha.2"
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/length": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/bearing": "workspace:^"
+    "@turf/centroid": "workspace:^"
+    "@turf/destination": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/length": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3430,14 +3430,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/dissolve@npm:^7.0.0-alpha.2, @turf/dissolve@workspace:packages/turf-dissolve":
+"@turf/dissolve@workspace:^, @turf/dissolve@workspace:packages/turf-dissolve":
   version: 0.0.0-use.local
   resolution: "@turf/dissolve@workspace:packages/turf-dissolve"
   dependencies:
-    "@turf/flatten": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/flatten": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3452,14 +3452,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/distance-weight@npm:^7.0.0-alpha.2, @turf/distance-weight@workspace:packages/turf-distance-weight":
+"@turf/distance-weight@workspace:^, @turf/distance-weight@workspace:packages/turf-distance-weight":
   version: 0.0.0-use.local
   resolution: "@turf/distance-weight@workspace:packages/turf-distance-weight"
   dependencies:
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/centroid": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3473,12 +3473,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/distance@npm:^7.0.0-alpha.2, @turf/distance@workspace:packages/turf-distance":
+"@turf/distance@workspace:^, @turf/distance@workspace:packages/turf-distance":
   version: 0.0.0-use.local
   resolution: "@turf/distance@workspace:packages/turf-distance"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3492,19 +3492,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/ellipse@npm:^7.0.0-alpha.2, @turf/ellipse@workspace:packages/turf-ellipse":
+"@turf/ellipse@workspace:^, @turf/ellipse@workspace:packages/turf-ellipse":
   version: 0.0.0-use.local
   resolution: "@turf/ellipse@workspace:packages/turf-ellipse"
   dependencies:
     "@mapbox/geojsonhint": "npm:^3.2.0"
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/circle": "npm:^7.0.0-alpha.2"
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-destination": "npm:^7.0.0-alpha.2"
-    "@turf/transform-rotate": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/circle": "workspace:^"
+    "@turf/destination": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/rhumb-destination": "workspace:^"
+    "@turf/transform-rotate": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3519,13 +3519,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/envelope@npm:^7.0.0-alpha.2, @turf/envelope@workspace:packages/turf-envelope":
+"@turf/envelope@workspace:^, @turf/envelope@workspace:packages/turf-envelope":
   version: 0.0.0-use.local
   resolution: "@turf/envelope@workspace:packages/turf-envelope"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/helpers": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3538,12 +3538,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/explode@npm:^7.0.0-alpha.2, @turf/explode@workspace:packages/turf-explode":
+"@turf/explode@workspace:^, @turf/explode@workspace:packages/turf-explode":
   version: 0.0.0-use.local
   resolution: "@turf/explode@workspace:packages/turf-explode"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3558,12 +3558,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/flatten@npm:^7.0.0-alpha.2, @turf/flatten@workspace:packages/turf-flatten":
+"@turf/flatten@workspace:^, @turf/flatten@workspace:packages/turf-flatten":
   version: 0.0.0-use.local
   resolution: "@turf/flatten@workspace:packages/turf-flatten"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3577,13 +3577,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/flip@npm:^7.0.0-alpha.2, @turf/flip@workspace:packages/turf-flip":
+"@turf/flip@workspace:^, @turf/flip@workspace:packages/turf-flip":
   version: 0.0.0-use.local
   resolution: "@turf/flip@workspace:packages/turf-flip"
   dependencies:
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/clone": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3597,15 +3597,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/geojson-rbush@npm:^7.0.0-alpha.2, @turf/geojson-rbush@workspace:packages/turf-geojson-rbush":
+"@turf/geojson-rbush@workspace:^, @turf/geojson-rbush@workspace:packages/turf-geojson-rbush":
   version: 0.0.0-use.local
   resolution: "@turf/geojson-rbush@workspace:packages/turf-geojson-rbush"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/random": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/random": "workspace:^"
     "@types/geojson": "npm:7946.0.8"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
@@ -3619,13 +3619,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/great-circle@npm:^7.0.0-alpha.2, @turf/great-circle@workspace:packages/turf-great-circle":
+"@turf/great-circle@workspace:^, @turf/great-circle@workspace:packages/turf-great-circle":
   version: 0.0.0-use.local
   resolution: "@turf/great-circle@workspace:packages/turf-great-circle"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -3643,7 +3643,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turf/helpers@npm:^7.0.0-alpha.2, @turf/helpers@workspace:packages/turf-helpers":
+"@turf/helpers@workspace:^, @turf/helpers@workspace:packages/turf-helpers":
   version: 0.0.0-use.local
   resolution: "@turf/helpers@workspace:packages/turf-helpers"
   dependencies:
@@ -3658,16 +3658,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/hex-grid@npm:^7.0.0-alpha.2, @turf/hex-grid@workspace:packages/turf-hex-grid":
+"@turf/hex-grid@workspace:^, @turf/hex-grid@workspace:packages/turf-hex-grid":
   version: 0.0.0-use.local
   resolution: "@turf/hex-grid@workspace:packages/turf-hex-grid"
   dependencies:
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/intersect": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/intersect": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3681,22 +3681,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/interpolate@npm:^7.0.0-alpha.2, @turf/interpolate@workspace:packages/turf-interpolate":
+"@turf/interpolate@workspace:^, @turf/interpolate@workspace:packages/turf-interpolate":
   version: 0.0.0-use.local
   resolution: "@turf/interpolate@workspace:packages/turf-interpolate"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/hex-grid": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/point-grid": "npm:^7.0.0-alpha.2"
-    "@turf/square-grid": "npm:^7.0.0-alpha.2"
-    "@turf/triangle-grid": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/centroid": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/hex-grid": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/point-grid": "workspace:^"
+    "@turf/square-grid": "workspace:^"
+    "@turf/triangle-grid": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     chromatism: "npm:^3.0.0"
     load-json-file: "npm:^7.0.1"
@@ -3708,12 +3708,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/intersect@npm:^7.0.0-alpha.2, @turf/intersect@workspace:packages/turf-intersect":
+"@turf/intersect@workspace:^, @turf/intersect@workspace:packages/turf-intersect":
   version: 0.0.0-use.local
   resolution: "@turf/intersect@workspace:packages/turf-intersect"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3738,11 +3738,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turf/invariant@npm:^7.0.0-alpha.2, @turf/invariant@workspace:packages/turf-invariant":
+"@turf/invariant@workspace:^, @turf/invariant@workspace:packages/turf-invariant":
   version: 0.0.0-use.local
   resolution: "@turf/invariant@workspace:packages/turf-invariant"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3754,22 +3754,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/isobands@npm:^7.0.0-alpha.2, @turf/isobands@workspace:packages/turf-isobands":
+"@turf/isobands@workspace:^, @turf/isobands@workspace:packages/turf-isobands":
   version: 0.0.0-use.local
   resolution: "@turf/isobands@workspace:packages/turf-isobands"
   dependencies:
-    "@turf/area": "npm:^7.0.0-alpha.2"
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/envelope": "npm:^7.0.0-alpha.2"
-    "@turf/explode": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/point-grid": "npm:^7.0.0-alpha.2"
-    "@turf/random": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-destination": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/area": "workspace:^"
+    "@turf/bbox": "workspace:^"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/envelope": "workspace:^"
+    "@turf/explode": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/point-grid": "workspace:^"
+    "@turf/random": "workspace:^"
+    "@turf/rhumb-destination": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3785,19 +3785,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/isolines@npm:^7.0.0-alpha.2, @turf/isolines@workspace:packages/turf-isolines":
+"@turf/isolines@workspace:^, @turf/isolines@workspace:packages/turf-isolines":
   version: 0.0.0-use.local
   resolution: "@turf/isolines@workspace:packages/turf-isolines"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/envelope": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/point-grid": "npm:^7.0.0-alpha.2"
-    "@turf/random": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-destination": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/envelope": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/point-grid": "workspace:^"
+    "@turf/random": "workspace:^"
+    "@turf/rhumb-destination": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3822,12 +3822,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turf/kinks@npm:^7.0.0-alpha.2, @turf/kinks@workspace:packages/turf-kinks":
+"@turf/kinks@workspace:^, @turf/kinks@workspace:packages/turf-kinks":
   version: 0.0.0-use.local
   resolution: "@turf/kinks@workspace:packages/turf-kinks"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3842,13 +3842,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/length@npm:^7.0.0-alpha.2, @turf/length@workspace:packages/turf-length":
+"@turf/length@workspace:^, @turf/length@workspace:packages/turf-length":
   version: 0.0.0-use.local
   resolution: "@turf/length@workspace:packages/turf-length"
   dependencies:
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3862,14 +3862,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-arc@npm:^7.0.0-alpha.2, @turf/line-arc@workspace:packages/turf-line-arc":
+"@turf/line-arc@workspace:^, @turf/line-arc@workspace:packages/turf-line-arc":
   version: 0.0.0-use.local
   resolution: "@turf/line-arc@workspace:packages/turf-line-arc"
   dependencies:
-    "@turf/circle": "npm:^7.0.0-alpha.2"
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/circle": "workspace:^"
+    "@turf/destination": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3883,15 +3883,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-chunk@npm:^7.0.0-alpha.2, @turf/line-chunk@workspace:packages/turf-line-chunk":
+"@turf/line-chunk@workspace:^, @turf/line-chunk@workspace:packages/turf-line-chunk":
   version: 0.0.0-use.local
   resolution: "@turf/line-chunk@workspace:packages/turf-line-chunk"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/length": "npm:^7.0.0-alpha.2"
-    "@turf/line-slice-along": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/length": "workspace:^"
+    "@turf/line-slice-along": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -3902,12 +3902,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-intersect@npm:^7.0.0-alpha.2, @turf/line-intersect@workspace:packages/turf-line-intersect":
+"@turf/line-intersect@workspace:^, @turf/line-intersect@workspace:packages/turf-line-intersect":
   version: 0.0.0-use.local
   resolution: "@turf/line-intersect@workspace:packages/turf-line-intersect"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3922,14 +3922,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-offset@npm:^7.0.0-alpha.2, @turf/line-offset@workspace:packages/turf-line-offset":
+"@turf/line-offset@workspace:^, @turf/line-offset@workspace:packages/turf-line-offset":
   version: 0.0.0-use.local
   resolution: "@turf/line-offset@workspace:packages/turf-line-offset"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -3940,17 +3940,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-overlap@npm:^7.0.0-alpha.2, @turf/line-overlap@workspace:packages/turf-line-overlap":
+"@turf/line-overlap@workspace:^, @turf/line-overlap@workspace:packages/turf-line-overlap":
   version: 0.0.0-use.local
   resolution: "@turf/line-overlap@workspace:packages/turf-line-overlap"
   dependencies:
-    "@turf/boolean-point-on-line": "npm:^7.0.0-alpha.2"
-    "@turf/geojson-rbush": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/line-segment": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-point-on-line": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-point-on-line": "workspace:^"
+    "@turf/geojson-rbush": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/line-segment": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/nearest-point-on-line": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/deep-equal": "npm:^1.0.4"
     "@types/tape": "npm:^4.2.32"
@@ -3966,13 +3966,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-segment@npm:^7.0.0-alpha.2, @turf/line-segment@workspace:packages/turf-line-segment":
+"@turf/line-segment@workspace:^, @turf/line-segment@workspace:packages/turf-line-segment":
   version: 0.0.0-use.local
   resolution: "@turf/line-segment@workspace:packages/turf-line-segment"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -3986,15 +3986,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-slice-along@npm:^7.0.0-alpha.2, @turf/line-slice-along@workspace:packages/turf-line-slice-along":
+"@turf/line-slice-along@workspace:^, @turf/line-slice-along@workspace:packages/turf-line-slice-along":
   version: 0.0.0-use.local
   resolution: "@turf/line-slice-along@workspace:packages/turf-line-slice-along"
   dependencies:
-    "@turf/along": "npm:^7.0.0-alpha.2"
-    "@turf/bearing": "npm:^7.0.0-alpha.2"
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/along": "workspace:^"
+    "@turf/bearing": "workspace:^"
+    "@turf/destination": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -4004,14 +4004,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-slice@npm:^7.0.0-alpha.2, @turf/line-slice@workspace:packages/turf-line-slice":
+"@turf/line-slice@workspace:^, @turf/line-slice@workspace:packages/turf-line-slice":
   version: 0.0.0-use.local
   resolution: "@turf/line-slice@workspace:packages/turf-line-slice"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-point-on-line": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/nearest-point-on-line": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -4022,20 +4022,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-split@npm:^7.0.0-alpha.2, @turf/line-split@workspace:packages/turf-line-split":
+"@turf/line-split@workspace:^, @turf/line-split@workspace:packages/turf-line-split":
   version: 0.0.0-use.local
   resolution: "@turf/line-split@workspace:packages/turf-line-split"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/geojson-rbush": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/line-intersect": "npm:^7.0.0-alpha.2"
-    "@turf/line-segment": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-point-on-line": "npm:^7.0.0-alpha.2"
-    "@turf/square": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/geojson-rbush": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/line-intersect": "workspace:^"
+    "@turf/line-segment": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/nearest-point-on-line": "workspace:^"
+    "@turf/square": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -4046,14 +4046,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/line-to-polygon@npm:^7.0.0-alpha.2, @turf/line-to-polygon@workspace:packages/turf-line-to-polygon":
+"@turf/line-to-polygon@workspace:^, @turf/line-to-polygon@workspace:packages/turf-line-to-polygon":
   version: 0.0.0-use.local
   resolution: "@turf/line-to-polygon@workspace:packages/turf-line-to-polygon"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4067,11 +4067,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/mask@npm:^7.0.0-alpha.2, @turf/mask@workspace:packages/turf-mask":
+"@turf/mask@workspace:^, @turf/mask@workspace:packages/turf-mask":
   version: 0.0.0-use.local
   resolution: "@turf/mask@workspace:packages/turf-mask"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     mkdirp: "npm:^3.0.1"
@@ -4084,12 +4084,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/meta@npm:^7.0.0-alpha.2, @turf/meta@workspace:packages/turf-meta":
+"@turf/meta@workspace:^, @turf/meta@workspace:packages/turf-meta":
   version: 0.0.0-use.local
   resolution: "@turf/meta@workspace:packages/turf-meta"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/random": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/random": "workspace:^"
     benchmark: "npm:^2.1.4"
     npm-run-all: "npm:^4.1.5"
     rollup: "npm:^2.79.1"
@@ -4098,14 +4098,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/midpoint@npm:^7.0.0-alpha.2, @turf/midpoint@workspace:packages/turf-midpoint":
+"@turf/midpoint@workspace:^, @turf/midpoint@workspace:packages/turf-midpoint":
   version: 0.0.0-use.local
   resolution: "@turf/midpoint@workspace:packages/turf-midpoint"
   dependencies:
-    "@turf/bearing": "npm:^7.0.0-alpha.2"
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/bearing": "workspace:^"
+    "@turf/destination": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
     benchmark: "npm:^2.1.4"
     npm-run-all: "npm:^4.1.5"
     rollup: "npm:^2.79.1"
@@ -4114,13 +4114,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/moran-index@npm:^7.0.0-alpha.2, @turf/moran-index@workspace:packages/turf-moran-index":
+"@turf/moran-index@workspace:^, @turf/moran-index@workspace:packages/turf-moran-index":
   version: 0.0.0-use.local
   resolution: "@turf/moran-index@workspace:packages/turf-moran-index"
   dependencies:
-    "@turf/distance-weight": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/distance-weight": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4134,19 +4134,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/nearest-neighbor-analysis@npm:^7.0.0-alpha.2, @turf/nearest-neighbor-analysis@workspace:packages/turf-nearest-neighbor-analysis":
+"@turf/nearest-neighbor-analysis@workspace:^, @turf/nearest-neighbor-analysis@workspace:packages/turf-nearest-neighbor-analysis":
   version: 0.0.0-use.local
   resolution: "@turf/nearest-neighbor-analysis@workspace:packages/turf-nearest-neighbor-analysis"
   dependencies:
-    "@turf/area": "npm:^7.0.0-alpha.2"
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-point": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/area": "workspace:^"
+    "@turf/bbox": "workspace:^"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/centroid": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/nearest-point": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4160,20 +4160,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/nearest-point-on-line@npm:^7.0.0-alpha.2, @turf/nearest-point-on-line@workspace:packages/turf-nearest-point-on-line":
+"@turf/nearest-point-on-line@workspace:^, @turf/nearest-point-on-line@workspace:packages/turf-nearest-point-on-line":
   version: 0.0.0-use.local
   resolution: "@turf/nearest-point-on-line@workspace:packages/turf-nearest-point-on-line"
   dependencies:
-    "@turf/along": "npm:^7.0.0-alpha.2"
-    "@turf/bearing": "npm:^7.0.0-alpha.2"
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/length": "npm:^7.0.0-alpha.2"
-    "@turf/line-intersect": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/along": "workspace:^"
+    "@turf/bearing": "workspace:^"
+    "@turf/destination": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/length": "workspace:^"
+    "@turf/line-intersect": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4187,16 +4187,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/nearest-point-to-line@npm:^7.0.0-alpha.2, @turf/nearest-point-to-line@workspace:packages/turf-nearest-point-to-line":
+"@turf/nearest-point-to-line@workspace:^, @turf/nearest-point-to-line@workspace:packages/turf-nearest-point-to-line":
   version: 0.0.0-use.local
   resolution: "@turf/nearest-point-to-line@workspace:packages/turf-nearest-point-to-line"
   dependencies:
-    "@turf/circle": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/point-to-line-distance": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/circle": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/point-to-line-distance": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/object-assign": "npm:^4.0.33"
     "@types/tape": "npm:^4.2.32"
@@ -4211,14 +4211,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/nearest-point@npm:^7.0.0-alpha.2, @turf/nearest-point@workspace:packages/turf-nearest-point":
+"@turf/nearest-point@workspace:^, @turf/nearest-point@workspace:packages/turf-nearest-point":
   version: 0.0.0-use.local
   resolution: "@turf/nearest-point@workspace:packages/turf-nearest-point"
   dependencies:
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/clone": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4230,12 +4230,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/planepoint@npm:^7.0.0-alpha.2, @turf/planepoint@workspace:packages/turf-planepoint":
+"@turf/planepoint@workspace:^, @turf/planepoint@workspace:packages/turf-planepoint":
   version: 0.0.0-use.local
   resolution: "@turf/planepoint@workspace:packages/turf-planepoint"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     benchmark: "npm:^2.1.4"
     npm-run-all: "npm:^4.1.5"
     rollup: "npm:^2.79.1"
@@ -4244,16 +4244,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/point-grid@npm:^7.0.0-alpha.2, @turf/point-grid@workspace:packages/turf-point-grid":
+"@turf/point-grid@workspace:^, @turf/point-grid@workspace:packages/turf-point-grid":
   version: 0.0.0-use.local
   resolution: "@turf/point-grid@workspace:packages/turf-point-grid"
   dependencies:
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-within": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/boolean-within": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4267,17 +4267,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/point-on-feature@npm:^7.0.0-alpha.2, @turf/point-on-feature@workspace:packages/turf-point-on-feature":
+"@turf/point-on-feature@workspace:^, @turf/point-on-feature@workspace:packages/turf-point-on-feature":
   version: 0.0.0-use.local
   resolution: "@turf/point-on-feature@workspace:packages/turf-point-on-feature"
   dependencies:
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/center": "npm:^7.0.0-alpha.2"
-    "@turf/explode": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-point": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/center": "workspace:^"
+    "@turf/explode": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/nearest-point": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4289,19 +4289,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/point-to-line-distance@npm:^7.0.0-alpha.2, @turf/point-to-line-distance@workspace:packages/turf-point-to-line-distance":
+"@turf/point-to-line-distance@workspace:^, @turf/point-to-line-distance@workspace:packages/turf-point-to-line-distance":
   version: 0.0.0-use.local
   resolution: "@turf/point-to-line-distance@workspace:packages/turf-point-to-line-distance"
   dependencies:
-    "@turf/bearing": "npm:^7.0.0-alpha.2"
-    "@turf/circle": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/projection": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-bearing": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-distance": "npm:^7.0.0-alpha.2"
+    "@turf/bearing": "workspace:^"
+    "@turf/circle": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/projection": "workspace:^"
+    "@turf/rhumb-bearing": "workspace:^"
+    "@turf/rhumb-distance": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4315,13 +4315,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/points-within-polygon@npm:^7.0.0-alpha.2, @turf/points-within-polygon@workspace:packages/turf-points-within-polygon":
+"@turf/points-within-polygon@workspace:^, @turf/points-within-polygon@workspace:packages/turf-points-within-polygon":
   version: 0.0.0-use.local
   resolution: "@turf/points-within-polygon@workspace:packages/turf-points-within-polygon"
   dependencies:
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4333,12 +4333,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/polygon-smooth@npm:^7.0.0-alpha.2, @turf/polygon-smooth@workspace:packages/turf-polygon-smooth":
+"@turf/polygon-smooth@workspace:^, @turf/polygon-smooth@workspace:packages/turf-polygon-smooth":
   version: 0.0.0-use.local
   resolution: "@turf/polygon-smooth@workspace:packages/turf-polygon-smooth"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4353,16 +4353,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/polygon-tangents@npm:^7.0.0-alpha.2, @turf/polygon-tangents@workspace:packages/turf-polygon-tangents":
+"@turf/polygon-tangents@workspace:^, @turf/polygon-tangents@workspace:packages/turf-polygon-tangents":
   version: 0.0.0-use.local
   resolution: "@turf/polygon-tangents@workspace:packages/turf-polygon-tangents"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-within": "npm:^7.0.0-alpha.2"
-    "@turf/explode": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-point": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/boolean-within": "workspace:^"
+    "@turf/explode": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/nearest-point": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4376,12 +4376,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/polygon-to-line@npm:^7.0.0-alpha.2, @turf/polygon-to-line@workspace:packages/turf-polygon-to-line":
+"@turf/polygon-to-line@workspace:^, @turf/polygon-to-line@workspace:packages/turf-polygon-to-line":
   version: 0.0.0-use.local
   resolution: "@turf/polygon-to-line@workspace:packages/turf-polygon-to-line"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4395,15 +4395,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/polygonize@npm:^7.0.0-alpha.2, @turf/polygonize@workspace:packages/turf-polygonize":
+"@turf/polygonize@workspace:^, @turf/polygonize@workspace:packages/turf-polygonize":
   version: 0.0.0-use.local
   resolution: "@turf/polygonize@workspace:packages/turf-polygonize"
   dependencies:
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/envelope": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/envelope": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4417,14 +4417,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/projection@npm:^7.0.0-alpha.2, @turf/projection@workspace:packages/turf-projection":
+"@turf/projection@workspace:^, @turf/projection@workspace:packages/turf-projection":
   version: 0.0.0-use.local
   resolution: "@turf/projection@workspace:packages/turf-projection"
   dependencies:
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/clone": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4443,16 +4443,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@turf/quadrat-analysis@workspace:packages/turf-quadrat-analysis"
   dependencies:
-    "@turf/area": "npm:^7.0.0-alpha.2"
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-neighbor-analysis": "npm:^7.0.0-alpha.2"
-    "@turf/point-grid": "npm:^7.0.0-alpha.2"
-    "@turf/random": "npm:^7.0.0-alpha.2"
-    "@turf/square-grid": "npm:^7.0.0-alpha.2"
+    "@turf/area": "workspace:^"
+    "@turf/bbox": "workspace:^"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/centroid": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/nearest-neighbor-analysis": "workspace:^"
+    "@turf/point-grid": "workspace:^"
+    "@turf/random": "workspace:^"
+    "@turf/square-grid": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4466,11 +4466,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/random@npm:^7.0.0-alpha.2, @turf/random@workspace:packages/turf-random":
+"@turf/random@workspace:^, @turf/random@workspace:packages/turf-random":
   version: 0.0.0-use.local
   resolution: "@turf/random@workspace:packages/turf-random"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4483,15 +4483,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/rectangle-grid@npm:^7.0.0-alpha.2, @turf/rectangle-grid@workspace:packages/turf-rectangle-grid":
+"@turf/rectangle-grid@workspace:^, @turf/rectangle-grid@workspace:packages/turf-rectangle-grid":
   version: 0.0.0-use.local
   resolution: "@turf/rectangle-grid@workspace:packages/turf-rectangle-grid"
   dependencies:
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-intersects": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/boolean-intersects": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4505,15 +4505,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/rewind@npm:^7.0.0-alpha.2, @turf/rewind@workspace:packages/turf-rewind":
+"@turf/rewind@workspace:^, @turf/rewind@workspace:packages/turf-rewind":
   version: 0.0.0-use.local
   resolution: "@turf/rewind@workspace:packages/turf-rewind"
   dependencies:
-    "@turf/boolean-clockwise": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-clockwise": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4527,13 +4527,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/rhumb-bearing@npm:^7.0.0-alpha.2, @turf/rhumb-bearing@workspace:packages/turf-rhumb-bearing":
+"@turf/rhumb-bearing@workspace:^, @turf/rhumb-bearing@workspace:packages/turf-rhumb-bearing":
   version: 0.0.0-use.local
   resolution: "@turf/rhumb-bearing@workspace:packages/turf-rhumb-bearing"
   dependencies:
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/destination": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4556,13 +4556,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@turf/rhumb-destination@npm:^7.0.0-alpha.2, @turf/rhumb-destination@workspace:packages/turf-rhumb-destination":
+"@turf/rhumb-destination@workspace:^, @turf/rhumb-destination@workspace:packages/turf-rhumb-destination":
   version: 0.0.0-use.local
   resolution: "@turf/rhumb-destination@workspace:packages/turf-rhumb-destination"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4576,13 +4576,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/rhumb-distance@npm:^7.0.0-alpha.2, @turf/rhumb-distance@workspace:packages/turf-rhumb-distance":
+"@turf/rhumb-distance@workspace:^, @turf/rhumb-distance@workspace:packages/turf-rhumb-distance":
   version: 0.0.0-use.local
   resolution: "@turf/rhumb-distance@workspace:packages/turf-rhumb-distance"
   dependencies:
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4596,11 +4596,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/sample@npm:^7.0.0-alpha.2, @turf/sample@workspace:packages/turf-sample":
+"@turf/sample@workspace:^, @turf/sample@workspace:packages/turf-sample":
   version: 0.0.0-use.local
   resolution: "@turf/sample@workspace:packages/turf-sample"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4612,16 +4612,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/sector@npm:^7.0.0-alpha.2, @turf/sector@workspace:packages/turf-sector":
+"@turf/sector@workspace:^, @turf/sector@workspace:packages/turf-sector":
   version: 0.0.0-use.local
   resolution: "@turf/sector@workspace:packages/turf-sector"
   dependencies:
-    "@turf/circle": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/line-arc": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/circle": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/line-arc": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4635,20 +4635,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/shortest-path@npm:^7.0.0-alpha.2, @turf/shortest-path@workspace:packages/turf-shortest-path":
+"@turf/shortest-path@workspace:^, @turf/shortest-path@workspace:packages/turf-shortest-path":
   version: 0.0.0-use.local
   resolution: "@turf/shortest-path@workspace:packages/turf-shortest-path"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/clean-coords": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/transform-scale": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/clean-coords": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/transform-scale": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4662,15 +4662,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/simplify@npm:^7.0.0-alpha.2, @turf/simplify@workspace:packages/turf-simplify":
+"@turf/simplify@workspace:^, @turf/simplify@workspace:packages/turf-simplify":
   version: 0.0.0-use.local
   resolution: "@turf/simplify@workspace:packages/turf-simplify"
   dependencies:
-    "@turf/clean-coords": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/clean-coords": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4684,14 +4684,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/square-grid@npm:^7.0.0-alpha.2, @turf/square-grid@workspace:packages/turf-square-grid":
+"@turf/square-grid@workspace:^, @turf/square-grid@workspace:packages/turf-square-grid":
   version: 0.0.0-use.local
   resolution: "@turf/square-grid@workspace:packages/turf-square-grid"
   dependencies:
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/rectangle-grid": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/rectangle-grid": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4704,12 +4704,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/square@npm:^7.0.0-alpha.2, @turf/square@workspace:packages/turf-square":
+"@turf/square@workspace:^, @turf/square@workspace:packages/turf-square":
   version: 0.0.0-use.local
   resolution: "@turf/square@workspace:packages/turf-square"
   dependencies:
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
     benchmark: "npm:^2.1.4"
     npm-run-all: "npm:^4.1.5"
     rollup: "npm:^2.79.1"
@@ -4718,18 +4718,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/standard-deviational-ellipse@npm:^7.0.0-alpha.2, @turf/standard-deviational-ellipse@workspace:packages/turf-standard-deviational-ellipse":
+"@turf/standard-deviational-ellipse@workspace:^, @turf/standard-deviational-ellipse@workspace:packages/turf-standard-deviational-ellipse":
   version: 0.0.0-use.local
   resolution: "@turf/standard-deviational-ellipse@workspace:packages/turf-standard-deviational-ellipse"
   dependencies:
-    "@turf/center-mean": "npm:^7.0.0-alpha.2"
-    "@turf/ellipse": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/points-within-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/random": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/center-mean": "workspace:^"
+    "@turf/ellipse": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/points-within-polygon": "workspace:^"
+    "@turf/random": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -4740,14 +4740,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/tag@npm:^7.0.0-alpha.2, @turf/tag@workspace:packages/turf-tag":
+"@turf/tag@workspace:^, @turf/tag@workspace:packages/turf-tag":
   version: 0.0.0-use.local
   resolution: "@turf/tag@workspace:packages/turf-tag"
   dependencies:
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4760,11 +4760,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/tesselate@npm:^7.0.0-alpha.2, @turf/tesselate@workspace:packages/turf-tesselate":
+"@turf/tesselate@workspace:^, @turf/tesselate@workspace:packages/turf-tesselate":
   version: 0.0.0-use.local
   resolution: "@turf/tesselate@workspace:packages/turf-tesselate"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
     benchmark: "npm:^2.1.4"
     earcut: "npm:^2.2.4"
     npm-run-all: "npm:^4.1.5"
@@ -4774,11 +4774,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/tin@npm:^7.0.0-alpha.2, @turf/tin@workspace:packages/turf-tin":
+"@turf/tin@workspace:^, @turf/tin@workspace:packages/turf-tin":
   version: 0.0.0-use.local
   resolution: "@turf/tin@workspace:packages/turf-tin"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4790,19 +4790,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/transform-rotate@npm:^7.0.0-alpha.2, @turf/transform-rotate@workspace:packages/turf-transform-rotate":
+"@turf/transform-rotate@workspace:^, @turf/transform-rotate@workspace:packages/turf-transform-rotate":
   version: 0.0.0-use.local
   resolution: "@turf/transform-rotate@workspace:packages/turf-transform-rotate"
   dependencies:
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-bearing": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-destination": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-distance": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/centroid": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/rhumb-bearing": "workspace:^"
+    "@turf/rhumb-destination": "workspace:^"
+    "@turf/rhumb-distance": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -4813,23 +4813,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/transform-scale@npm:^7.0.0-alpha.2, @turf/transform-scale@workspace:packages/turf-transform-scale":
+"@turf/transform-scale@workspace:^, @turf/transform-scale@workspace:packages/turf-transform-scale":
   version: 0.0.0-use.local
   resolution: "@turf/transform-scale@workspace:packages/turf-transform-scale"
   dependencies:
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/center": "npm:^7.0.0-alpha.2"
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/hex-grid": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-bearing": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-destination": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-distance": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox": "workspace:^"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/center": "workspace:^"
+    "@turf/centroid": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/hex-grid": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/rhumb-bearing": "workspace:^"
+    "@turf/rhumb-destination": "workspace:^"
+    "@turf/rhumb-distance": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -4840,16 +4840,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/transform-translate@npm:^7.0.0-alpha.2, @turf/transform-translate@workspace:packages/turf-transform-translate":
+"@turf/transform-translate@workspace:^, @turf/transform-translate@workspace:packages/turf-transform-translate":
   version: 0.0.0-use.local
   resolution: "@turf/transform-translate@workspace:packages/turf-transform-translate"
   dependencies:
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-destination": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/clone": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/rhumb-destination": "workspace:^"
+    "@turf/truncate": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -4860,15 +4860,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/triangle-grid@npm:^7.0.0-alpha.2, @turf/triangle-grid@workspace:packages/turf-triangle-grid":
+"@turf/triangle-grid@workspace:^, @turf/triangle-grid@workspace:packages/turf-triangle-grid":
   version: 0.0.0-use.local
   resolution: "@turf/triangle-grid@workspace:packages/turf-triangle-grid"
   dependencies:
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/intersect": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/intersect": "workspace:^"
+    "@turf/truncate": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4882,12 +4882,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/truncate@npm:^7.0.0-alpha.2, @turf/truncate@workspace:packages/turf-truncate":
+"@turf/truncate@workspace:^, @turf/truncate@workspace:packages/turf-truncate":
   version: 0.0.0-use.local
   resolution: "@turf/truncate@workspace:packages/turf-truncate"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -4910,112 +4910,112 @@ __metadata:
     "@rollup/plugin-babel": "npm:^5.3.1"
     "@rollup/plugin-commonjs": "npm:^17.1.0"
     "@rollup/plugin-node-resolve": "npm:^11.2.1"
-    "@turf/along": "npm:^7.0.0-alpha.2"
-    "@turf/angle": "npm:^7.0.0-alpha.2"
-    "@turf/area": "npm:^7.0.0-alpha.2"
-    "@turf/bbox": "npm:^7.0.0-alpha.2"
-    "@turf/bbox-clip": "npm:^7.0.0-alpha.2"
-    "@turf/bbox-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/bearing": "npm:^7.0.0-alpha.2"
-    "@turf/bezier-spline": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-clockwise": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-contains": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-crosses": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-disjoint": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-equal": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-intersects": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-overlap": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-parallel": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-on-line": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-touches": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-within": "npm:^7.0.0-alpha.2"
-    "@turf/buffer": "npm:^7.0.0-alpha.2"
-    "@turf/center": "npm:^7.0.0-alpha.2"
-    "@turf/center-mean": "npm:^7.0.0-alpha.2"
-    "@turf/center-median": "npm:^7.0.0-alpha.2"
-    "@turf/center-of-mass": "npm:^7.0.0-alpha.2"
-    "@turf/centroid": "npm:^7.0.0-alpha.2"
-    "@turf/circle": "npm:^7.0.0-alpha.2"
-    "@turf/clean-coords": "npm:^7.0.0-alpha.2"
-    "@turf/clone": "npm:^7.0.0-alpha.2"
-    "@turf/clusters": "npm:^7.0.0-alpha.2"
-    "@turf/clusters-dbscan": "npm:^7.0.0-alpha.2"
-    "@turf/clusters-kmeans": "npm:^7.0.0-alpha.2"
-    "@turf/collect": "npm:^7.0.0-alpha.2"
-    "@turf/combine": "npm:^7.0.0-alpha.2"
-    "@turf/concave": "npm:^7.0.0-alpha.2"
-    "@turf/convex": "npm:^7.0.0-alpha.2"
-    "@turf/destination": "npm:^7.0.0-alpha.2"
-    "@turf/difference": "npm:^7.0.0-alpha.2"
-    "@turf/dissolve": "npm:^7.0.0-alpha.2"
-    "@turf/distance": "npm:^7.0.0-alpha.2"
-    "@turf/distance-weight": "npm:^7.0.0-alpha.2"
-    "@turf/ellipse": "npm:^7.0.0-alpha.2"
-    "@turf/envelope": "npm:^7.0.0-alpha.2"
-    "@turf/explode": "npm:^7.0.0-alpha.2"
-    "@turf/flatten": "npm:^7.0.0-alpha.2"
-    "@turf/flip": "npm:^7.0.0-alpha.2"
-    "@turf/great-circle": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/hex-grid": "npm:^7.0.0-alpha.2"
-    "@turf/interpolate": "npm:^7.0.0-alpha.2"
-    "@turf/intersect": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
-    "@turf/isobands": "npm:^7.0.0-alpha.2"
-    "@turf/isolines": "npm:^7.0.0-alpha.2"
-    "@turf/kinks": "npm:^7.0.0-alpha.2"
-    "@turf/length": "npm:^7.0.0-alpha.2"
-    "@turf/line-arc": "npm:^7.0.0-alpha.2"
-    "@turf/line-chunk": "npm:^7.0.0-alpha.2"
-    "@turf/line-intersect": "npm:^7.0.0-alpha.2"
-    "@turf/line-offset": "npm:^7.0.0-alpha.2"
-    "@turf/line-overlap": "npm:^7.0.0-alpha.2"
-    "@turf/line-segment": "npm:^7.0.0-alpha.2"
-    "@turf/line-slice": "npm:^7.0.0-alpha.2"
-    "@turf/line-slice-along": "npm:^7.0.0-alpha.2"
-    "@turf/line-split": "npm:^7.0.0-alpha.2"
-    "@turf/line-to-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/mask": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
-    "@turf/midpoint": "npm:^7.0.0-alpha.2"
-    "@turf/moran-index": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-point": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-point-on-line": "npm:^7.0.0-alpha.2"
-    "@turf/nearest-point-to-line": "npm:^7.0.0-alpha.2"
-    "@turf/planepoint": "npm:^7.0.0-alpha.2"
-    "@turf/point-grid": "npm:^7.0.0-alpha.2"
-    "@turf/point-on-feature": "npm:^7.0.0-alpha.2"
-    "@turf/point-to-line-distance": "npm:^7.0.0-alpha.2"
-    "@turf/points-within-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/polygon-smooth": "npm:^7.0.0-alpha.2"
-    "@turf/polygon-tangents": "npm:^7.0.0-alpha.2"
-    "@turf/polygon-to-line": "npm:^7.0.0-alpha.2"
-    "@turf/polygonize": "npm:^7.0.0-alpha.2"
-    "@turf/projection": "npm:^7.0.0-alpha.2"
-    "@turf/random": "npm:^7.0.0-alpha.2"
-    "@turf/rewind": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-bearing": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-destination": "npm:^7.0.0-alpha.2"
-    "@turf/rhumb-distance": "npm:^7.0.0-alpha.2"
-    "@turf/sample": "npm:^7.0.0-alpha.2"
-    "@turf/sector": "npm:^7.0.0-alpha.2"
-    "@turf/shortest-path": "npm:^7.0.0-alpha.2"
-    "@turf/simplify": "npm:^7.0.0-alpha.2"
-    "@turf/square": "npm:^7.0.0-alpha.2"
-    "@turf/square-grid": "npm:^7.0.0-alpha.2"
-    "@turf/standard-deviational-ellipse": "npm:^7.0.0-alpha.2"
-    "@turf/tag": "npm:^7.0.0-alpha.2"
-    "@turf/tesselate": "npm:^7.0.0-alpha.2"
-    "@turf/tin": "npm:^7.0.0-alpha.2"
-    "@turf/transform-rotate": "npm:^7.0.0-alpha.2"
-    "@turf/transform-scale": "npm:^7.0.0-alpha.2"
-    "@turf/transform-translate": "npm:^7.0.0-alpha.2"
-    "@turf/triangle-grid": "npm:^7.0.0-alpha.2"
-    "@turf/truncate": "npm:^7.0.0-alpha.2"
-    "@turf/union": "npm:^7.0.0-alpha.2"
-    "@turf/unkink-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/voronoi": "npm:^7.0.0-alpha.2"
+    "@turf/along": "workspace:^"
+    "@turf/angle": "workspace:^"
+    "@turf/area": "workspace:^"
+    "@turf/bbox": "workspace:^"
+    "@turf/bbox-clip": "workspace:^"
+    "@turf/bbox-polygon": "workspace:^"
+    "@turf/bearing": "workspace:^"
+    "@turf/bezier-spline": "workspace:^"
+    "@turf/boolean-clockwise": "workspace:^"
+    "@turf/boolean-contains": "workspace:^"
+    "@turf/boolean-crosses": "workspace:^"
+    "@turf/boolean-disjoint": "workspace:^"
+    "@turf/boolean-equal": "workspace:^"
+    "@turf/boolean-intersects": "workspace:^"
+    "@turf/boolean-overlap": "workspace:^"
+    "@turf/boolean-parallel": "workspace:^"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/boolean-point-on-line": "workspace:^"
+    "@turf/boolean-touches": "workspace:^"
+    "@turf/boolean-within": "workspace:^"
+    "@turf/buffer": "workspace:^"
+    "@turf/center": "workspace:^"
+    "@turf/center-mean": "workspace:^"
+    "@turf/center-median": "workspace:^"
+    "@turf/center-of-mass": "workspace:^"
+    "@turf/centroid": "workspace:^"
+    "@turf/circle": "workspace:^"
+    "@turf/clean-coords": "workspace:^"
+    "@turf/clone": "workspace:^"
+    "@turf/clusters": "workspace:^"
+    "@turf/clusters-dbscan": "workspace:^"
+    "@turf/clusters-kmeans": "workspace:^"
+    "@turf/collect": "workspace:^"
+    "@turf/combine": "workspace:^"
+    "@turf/concave": "workspace:^"
+    "@turf/convex": "workspace:^"
+    "@turf/destination": "workspace:^"
+    "@turf/difference": "workspace:^"
+    "@turf/dissolve": "workspace:^"
+    "@turf/distance": "workspace:^"
+    "@turf/distance-weight": "workspace:^"
+    "@turf/ellipse": "workspace:^"
+    "@turf/envelope": "workspace:^"
+    "@turf/explode": "workspace:^"
+    "@turf/flatten": "workspace:^"
+    "@turf/flip": "workspace:^"
+    "@turf/great-circle": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/hex-grid": "workspace:^"
+    "@turf/interpolate": "workspace:^"
+    "@turf/intersect": "workspace:^"
+    "@turf/invariant": "workspace:^"
+    "@turf/isobands": "workspace:^"
+    "@turf/isolines": "workspace:^"
+    "@turf/kinks": "workspace:^"
+    "@turf/length": "workspace:^"
+    "@turf/line-arc": "workspace:^"
+    "@turf/line-chunk": "workspace:^"
+    "@turf/line-intersect": "workspace:^"
+    "@turf/line-offset": "workspace:^"
+    "@turf/line-overlap": "workspace:^"
+    "@turf/line-segment": "workspace:^"
+    "@turf/line-slice": "workspace:^"
+    "@turf/line-slice-along": "workspace:^"
+    "@turf/line-split": "workspace:^"
+    "@turf/line-to-polygon": "workspace:^"
+    "@turf/mask": "workspace:^"
+    "@turf/meta": "workspace:^"
+    "@turf/midpoint": "workspace:^"
+    "@turf/moran-index": "workspace:^"
+    "@turf/nearest-point": "workspace:^"
+    "@turf/nearest-point-on-line": "workspace:^"
+    "@turf/nearest-point-to-line": "workspace:^"
+    "@turf/planepoint": "workspace:^"
+    "@turf/point-grid": "workspace:^"
+    "@turf/point-on-feature": "workspace:^"
+    "@turf/point-to-line-distance": "workspace:^"
+    "@turf/points-within-polygon": "workspace:^"
+    "@turf/polygon-smooth": "workspace:^"
+    "@turf/polygon-tangents": "workspace:^"
+    "@turf/polygon-to-line": "workspace:^"
+    "@turf/polygonize": "workspace:^"
+    "@turf/projection": "workspace:^"
+    "@turf/random": "workspace:^"
+    "@turf/rewind": "workspace:^"
+    "@turf/rhumb-bearing": "workspace:^"
+    "@turf/rhumb-destination": "workspace:^"
+    "@turf/rhumb-distance": "workspace:^"
+    "@turf/sample": "workspace:^"
+    "@turf/sector": "workspace:^"
+    "@turf/shortest-path": "workspace:^"
+    "@turf/simplify": "workspace:^"
+    "@turf/square": "workspace:^"
+    "@turf/square-grid": "workspace:^"
+    "@turf/standard-deviational-ellipse": "workspace:^"
+    "@turf/tag": "workspace:^"
+    "@turf/tesselate": "workspace:^"
+    "@turf/tin": "workspace:^"
+    "@turf/transform-rotate": "workspace:^"
+    "@turf/transform-scale": "workspace:^"
+    "@turf/transform-translate": "workspace:^"
+    "@turf/triangle-grid": "workspace:^"
+    "@turf/truncate": "workspace:^"
+    "@turf/union": "workspace:^"
+    "@turf/unkink-polygon": "workspace:^"
+    "@turf/voronoi": "workspace:^"
     camelcase: "npm:^8.0.0"
     documentation: "npm:^13.2.5"
     glob: "npm:^10.3.10"
@@ -5026,12 +5026,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/union@npm:^7.0.0-alpha.2, @turf/union@workspace:packages/turf-union":
+"@turf/union@workspace:^, @turf/union@workspace:packages/turf-union":
   version: 0.0.0-use.local
   resolution: "@turf/union@workspace:packages/turf-union"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/meta": "workspace:^"
     "@types/benchmark": "npm:^2.1.5"
     "@types/tape": "npm:^4.2.32"
     benchmark: "npm:^2.1.4"
@@ -5047,15 +5047,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/unkink-polygon@npm:^7.0.0-alpha.2, @turf/unkink-polygon@workspace:packages/turf-unkink-polygon":
+"@turf/unkink-polygon@workspace:^, @turf/unkink-polygon@workspace:packages/turf-unkink-polygon":
   version: 0.0.0-use.local
   resolution: "@turf/unkink-polygon@workspace:packages/turf-unkink-polygon"
   dependencies:
-    "@turf/area": "npm:^7.0.0-alpha.2"
-    "@turf/boolean-point-in-polygon": "npm:^7.0.0-alpha.2"
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/kinks": "npm:^7.0.0-alpha.2"
-    "@turf/meta": "npm:^7.0.0-alpha.2"
+    "@turf/area": "workspace:^"
+    "@turf/boolean-point-in-polygon": "workspace:^"
+    "@turf/helpers": "workspace:^"
+    "@turf/kinks": "workspace:^"
+    "@turf/meta": "workspace:^"
     benchmark: "npm:^2.1.4"
     load-json-file: "npm:^7.0.1"
     npm-run-all: "npm:^4.1.5"
@@ -5067,12 +5067,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@turf/voronoi@npm:^7.0.0-alpha.2, @turf/voronoi@workspace:packages/turf-voronoi":
+"@turf/voronoi@workspace:^, @turf/voronoi@workspace:packages/turf-voronoi":
   version: 0.0.0-use.local
   resolution: "@turf/voronoi@workspace:packages/turf-voronoi"
   dependencies:
-    "@turf/helpers": "npm:^7.0.0-alpha.2"
-    "@turf/invariant": "npm:^7.0.0-alpha.2"
+    "@turf/helpers": "workspace:^"
+    "@turf/invariant": "workspace:^"
     benchmark: "npm:^2.1.4"
     d3-voronoi: "npm:1.1.2"
     glob: "npm:^10.3.10"
@@ -15145,7 +15145,6 @@ __metadata:
     tsx: "npm:^3.14.0"
     typescript: "npm:^5.2.2"
     yamljs: "npm:^0.3.0"
-    yarn.lock: "npm:^0.0.1-security"
   languageName: unknown
   linkType: soft
 
@@ -17790,13 +17789,6 @@ __metadata:
     y18n: "npm:^5.0.5"
     yargs-parser: "npm:^21.1.1"
   checksum: ccd7e723e61ad5965fffbb791366db689572b80cca80e0f96aad968dfff4156cd7cd1ad18607afe1046d8241e6fb2d6c08bf7fa7bfb5eaec818735d8feac8f05
-  languageName: node
-  linkType: hard
-
-"yarn.lock@npm:^0.0.1-security":
-  version: 0.0.1-security
-  resolution: "yarn.lock@npm:0.0.1-security"
-  checksum: 9da4b94cf4809273501ccf36faa1caa5f6b8f91d6bd15653377819ba2e33ce03bb67e26bca3a7c406413944de4dc2a8f51e930cd74aace5265801ffe37fb8716
   languageName: node
   linkType: hard
 
