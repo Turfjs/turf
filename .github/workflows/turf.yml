@@ -23,9 +23,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          corepack: true
           cache: "yarn"
 
-      - run: corepack enable
       - run: yarn --immutable
       - run: git diff --exit-code
       - run: yarn prepare
