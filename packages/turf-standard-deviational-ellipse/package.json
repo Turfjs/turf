@@ -25,17 +25,15 @@
     "geostatistics",
     "directional distribution"
   ],
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./index.d.ts",
-      "import": "./dist/es/index.js",
-      "require": "./dist/js/index.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
     }
   },
-  "types": "index.d.ts",
   "sideEffects": false,
   "files": [
     "dist",
@@ -43,29 +41,29 @@
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build": "tsup index.?s --dts --format esm,cjs",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/random": "^7.0.0-alpha.2",
-    "@turf/truncate": "^7.0.0-alpha.2",
+    "@turf/random": "workspace:^",
+    "@turf/truncate": "workspace:^",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
-    "rollup": "^2.79.1",
     "tape": "^5.7.2",
+    "tsup": "^8.0.1",
     "tsx": "^3.14.0",
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/center-mean": "^7.0.0-alpha.2",
-    "@turf/ellipse": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/invariant": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@turf/points-within-polygon": "^7.0.0-alpha.2"
+    "@turf/center-mean": "workspace:^",
+    "@turf/ellipse": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/points-within-polygon": "workspace:^"
   }
 }

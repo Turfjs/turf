@@ -3,8 +3,7 @@ import { point } from "@turf/helpers";
 import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
-import { distanceWeight } from "./index";
-import { pNormDistance } from "./dist/js/index.js";
+import { distanceWeight, pNormDistance } from "./index";
 
 test("pNormDistance function", (t) => {
   t.equal(pNormDistance(point([2, 0]), point([0, 0]), 2), 2, "2-norm is ok");

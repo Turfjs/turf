@@ -73,7 +73,7 @@ function cloneFeature(geojson: any) {
  * @param {Object} properties GeoJSON Properties
  * @returns {Object} cloned Properties
  */
-export function cloneProperties(properties: GeoJsonProperties) {
+function cloneProperties(properties: GeoJsonProperties) {
   const cloned: { [key: string]: any } = {};
   if (!properties) {
     return cloned;
@@ -167,5 +167,5 @@ function deepSlice<C = any[]>(coords: C): C {
   });
 }
 
-export { clone };
+export { clone, cloneProperties };
 export default clone;

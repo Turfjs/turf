@@ -65,8 +65,8 @@ function singlePolygonToLine<
   const properties: any = options.properties
     ? options.properties
     : poly.type === "Feature"
-    ? poly.properties
-    : {};
+      ? poly.properties
+      : {};
 
   return coordsToLine(coords, properties);
 }
@@ -86,8 +86,8 @@ function multiPolygonToLine<
   const properties: any = options.properties
     ? options.properties
     : multiPoly.type === "Feature"
-    ? multiPoly.properties
-    : {};
+      ? multiPoly.properties
+      : {};
 
   const lines: Array<Feature<LineString | MultiLineString, P>> = [];
   coords.forEach((coord) => {

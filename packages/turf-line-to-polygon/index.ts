@@ -83,8 +83,8 @@ function lineStringToPolygon<G extends LineString | MultiLineString>(
   properties = properties
     ? properties
     : line.type === "Feature"
-    ? line.properties
-    : {};
+      ? line.properties
+      : {};
   var geom = getGeom(line);
   var coords: Position[] | Position[][] = geom.coordinates;
   var type = geom.type;

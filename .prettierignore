@@ -17,3 +17,5 @@ packages/turf-*/test/in/**
 packages/turf-*/test/out/**
 packages/turf-*/test/true/**
 packages/turf-*/test/false/**
+
+pnpm-lock.yaml

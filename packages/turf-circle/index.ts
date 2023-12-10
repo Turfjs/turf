@@ -36,8 +36,8 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   const properties: any = options.properties
     ? options.properties
     : !Array.isArray(center) && center.type === "Feature" && center.properties
-    ? center.properties
-    : {};
+      ? center.properties
+      : {};
 
   // main
   const coordinates = [];
