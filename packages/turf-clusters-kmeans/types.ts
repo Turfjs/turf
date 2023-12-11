@@ -1,5 +1,5 @@
 import { featureCollection, point } from "@turf/helpers";
-import clustersKmeans from "./";
+import { clustersKmeans } from "./index";
 
 // Fixtures
 const points = featureCollection([point([0, 0]), point([2, 2])]);

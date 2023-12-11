@@ -1,5 +1,5 @@
 import { randomPoint } from "@turf/random";
-import isolines from "./";
+import { isolines } from "./index";
 
 const points = randomPoint(100, {
   bbox: [0, 30, 20, 50],

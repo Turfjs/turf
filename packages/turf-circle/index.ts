@@ -1,5 +1,5 @@
 import { GeoJsonProperties, Feature, Point, Polygon } from "geojson";
-import destination from "@turf/destination";
+import { destination } from "@turf/destination";
 import { polygon, Units } from "@turf/helpers";
 
 /**

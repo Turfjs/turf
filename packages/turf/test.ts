@@ -4,7 +4,7 @@ import { glob } from "glob";
 import test from "tape";
 import camelCase from "camelcase";
 import documentation from "documentation";
-import * as turf from "./dist/index.mjs";
+import * as turf from "./dist/index";
 
 // Helpers
 const directory = path.join(__dirname, "..");

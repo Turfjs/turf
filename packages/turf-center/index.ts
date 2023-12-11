@@ -1,5 +1,5 @@
 import { BBox, Feature, GeoJsonProperties, Point } from "geojson";
-import bbox from "@turf/bbox";
+import { bbox } from "@turf/bbox";
 import { point, Id, AllGeoJSON } from "@turf/helpers";
 
 /**

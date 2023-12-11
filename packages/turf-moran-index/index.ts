@@ -1,5 +1,5 @@
 import { FeatureCollection } from "geojson";
-import spatialWeight from "@turf/distance-weight";
+import { distanceWeight as spatialWeight } from "@turf/distance-weight";
 import { featureEach } from "@turf/meta";
 
 /**

@@ -8,9 +8,9 @@ import {
   Point,
   Polygon,
 } from "geojson";
-import calcBbox from "@turf/bbox";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import isPointOnLine from "@turf/boolean-point-on-line";
+import { bbox as calcBbox } from "@turf/bbox";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import { booleanPointOnLine as isPointOnLine } from "@turf/boolean-point-on-line";
 import { getGeom } from "@turf/invariant";
 
 /**

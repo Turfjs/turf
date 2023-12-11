@@ -1,5 +1,5 @@
 import { point, featureCollection, polygon } from "@turf/helpers";
-import shortestPath from "./";
+import { shortestPath } from "./index";
 
 const start = point([-5, -6]);
 const end = point([9, -6]);

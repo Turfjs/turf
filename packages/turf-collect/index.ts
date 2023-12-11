@@ -1,6 +1,6 @@
 import { FeatureCollection, Polygon, Point } from "geojson";
-import turfbbox from "@turf/bbox";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import { bbox as turfbbox } from "@turf/bbox";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import rbush from "rbush";
 
 interface Entry {

@@ -1,7 +1,7 @@
-import isects from "./geojson-polygon-self-intersections";
-import area from "@turf/area";
+import { geojsonPolygonSelfIntersections as isects } from "./geojson-polygon-self-intersections";
+import { area } from "@turf/area";
 import { featureCollection, polygon } from "@turf/helpers";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import rbush from "rbush";
 
 /**
@@ -25,7 +25,7 @@ import rbush from "rbush";
  * // =result
  * // which will be a featureCollection of two polygons, one with coordinates [[[0,0],[2,0],[1,1],[0,0]]], parent -1, winding 1 and net winding 1, and one with coordinates [[[1,1],[0,2],[2,2],[1,1]]], parent -1, winding -1 and net winding -1
  */
-export default function (feature) {
+function simplepolygon(feature) {
   // Check input
   if (feature.type != "Feature")
     throw new Error("The input must a geojson object of type Feature");
@@ -580,3 +580,6 @@ function isUnique(array) {
   }
   return isUnique;
 }
+
+export { simplepolygon };
+export default simplepolygon;

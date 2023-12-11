@@ -35,4 +35,5 @@ declare function simplify<T extends Point>(
 ): T[];
 declare namespace simplify {}
 
-export = simplify;
+export { simplify };
+export default simplify;

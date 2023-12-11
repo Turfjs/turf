@@ -1,6 +1,6 @@
 import { LineString, MultiLineString } from "geojson";
 import { featureCollection, lineString, multiLineString } from "@turf/helpers";
-import lineToPolygon from "./index";
+import { lineToPolygon } from "./index";
 
 // Fixtures
 const coords = [

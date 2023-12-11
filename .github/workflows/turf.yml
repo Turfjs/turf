@@ -23,8 +23,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+          cache: "pnpm"
 
-      - run: yarn --frozen-lockfile
+      - run: pnpm install --frozen-lockfile
       - run: git diff --exit-code
-      - run: yarn test
+      - run: pnpm test

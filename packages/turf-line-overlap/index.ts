@@ -1,7 +1,7 @@
-import rbush from "@turf/geojson-rbush";
-import lineSegment from "@turf/line-segment";
-import nearestPointOnLine from "@turf/nearest-point-on-line";
-import booleanPointOnLine from "@turf/boolean-point-on-line";
+import { geojsonRbush as rbush } from "@turf/geojson-rbush";
+import { lineSegment } from "@turf/line-segment";
+import { nearestPointOnLine } from "@turf/nearest-point-on-line";
+import { booleanPointOnLine } from "@turf/boolean-point-on-line";
 import { getCoords } from "@turf/invariant";
 import { featureEach, segmentEach } from "@turf/meta";
 import {

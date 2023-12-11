@@ -4,7 +4,7 @@ import {
   polygon,
   multiPolygon,
 } from "@turf/helpers";
-import lineOverlap from "./index";
+import { lineOverlap } from "./index";
 
 const line = lineString([
   [0, 0],

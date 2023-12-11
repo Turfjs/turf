@@ -1,5 +1,5 @@
 import { point, polygon } from "@turf/helpers";
-import planepoint from "./";
+import { planepoint } from "./index";
 
 const pt = point([1, 1]);
 const triangle = polygon([

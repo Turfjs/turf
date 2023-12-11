@@ -1,9 +1,9 @@
 import { Geometry, Position } from "geojson";
-import cleanCoords from "@turf/clean-coords";
-import clone from "@turf/clone";
+import { cleanCoords } from "@turf/clean-coords";
+import { clone } from "@turf/clone";
 import { geomEach } from "@turf/meta";
 import { AllGeoJSON, isObject } from "@turf/helpers";
-import simplifyJS from "./lib/simplify";
+import { simplify as simplifyJS } from "./lib/simplify";
 
 /**
  * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses

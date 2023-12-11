@@ -109,7 +109,10 @@ function isParallel(a, b) {
  * @param {Array<number>} b coordinates [x, y]
  * @returns {Array<number>|boolean} true if a and b are parallel (or co-linear)
  */
-export default function intersection(a, b) {
+function intersection(a, b) {
   if (isParallel(a, b)) return false;
   return intersectSegments(a, b);
 }
+
+export { intersection };
+export default intersection;

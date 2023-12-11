@@ -1,10 +1,10 @@
-import bbox from "@turf/bbox";
+import { bbox } from "@turf/bbox";
 import { coordEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
 import { multiLineString, featureCollection, isObject } from "@turf/helpers";
 // @ts-expect-error Legacy JS library with no types defined
 import { isoContours } from "marchingsquares";
-import gridToMatrix from "./lib/grid-to-matrix";
+import { gridToMatrix } from "./lib/grid-to-matrix";
 import {
   FeatureCollection,
   Point,

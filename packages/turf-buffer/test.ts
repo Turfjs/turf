@@ -3,7 +3,7 @@ import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import truncate from "@turf/truncate";
+import { truncate } from "@turf/truncate";
 import { featureEach } from "@turf/meta";
 import {
   featureCollection,

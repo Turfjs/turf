@@ -1,8 +1,8 @@
 import { Feature, Point, LineString, MultiLineString } from "geojson";
-import bearing from "@turf/bearing";
-import distance from "@turf/distance";
-import destination from "@turf/destination";
-import lineIntersects from "@turf/line-intersect";
+import { bearing } from "@turf/bearing";
+import { distance } from "@turf/distance";
+import { destination } from "@turf/destination";
+import { lineIntersect as lineIntersects } from "@turf/line-intersect";
 import { flattenEach } from "@turf/meta";
 import { point, lineString, Coord, Units } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";

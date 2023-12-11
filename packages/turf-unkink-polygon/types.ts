@@ -1,5 +1,5 @@
 import { polygon, multiPolygon } from "@turf/helpers";
-import unkink from "./";
+import { unkinkPolygon as unkink } from "./index";
 
 const poly = polygon([
   [

@@ -1,6 +1,6 @@
 // Taken from http://geomalgorithms.com/a02-_lines.html
 import { Feature, LineString } from "geojson";
-import getDistance from "@turf/distance";
+import { distance as getDistance } from "@turf/distance";
 import {
   convertLength,
   Coord,
@@ -11,7 +11,7 @@ import {
 } from "@turf/helpers";
 import { featureOf } from "@turf/invariant";
 import { segmentEach } from "@turf/meta";
-import getPlanarDistance from "@turf/rhumb-distance";
+import { rhumbDistance as getPlanarDistance } from "@turf/rhumb-distance";
 
 /**
  * Returns the minimum distance between a {@link Point} and a {@link LineString}, being the distance from a line the

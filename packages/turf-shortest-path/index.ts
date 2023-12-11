@@ -6,12 +6,12 @@ import {
   Geometry,
   Point,
 } from "geojson";
-import bbox from "@turf/bbox";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import distance from "@turf/distance";
-import scale from "@turf/transform-scale";
-import cleanCoords from "@turf/clean-coords";
-import bboxPolygon from "@turf/bbox-polygon";
+import { bbox } from "@turf/bbox";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import { distance } from "@turf/distance";
+import { transformScale as scale } from "@turf/transform-scale";
+import { cleanCoords } from "@turf/clean-coords";
+import { bboxPolygon } from "@turf/bbox-polygon";
 import { getCoord, getGeom } from "@turf/invariant";
 import {
   Coord,

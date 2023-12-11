@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
-import { bezier as bezierSpline } from "./index";
+import { bezierSpline } from "./index";
 
 const directory = path.join(__dirname, "test", "in") + path.sep;
 const fixtures = fs.readdirSync(directory).map((filename) => {

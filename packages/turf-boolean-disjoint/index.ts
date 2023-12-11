@@ -1,8 +1,8 @@
 import { Feature, Geometry, LineString, Point, Polygon } from "geojson";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import lineIntersect from "@turf/line-intersect";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import { lineIntersect } from "@turf/line-intersect";
 import { flattenEach } from "@turf/meta";
-import polygonToLine from "@turf/polygon-to-line";
+import { polygonToLine } from "@turf/polygon-to-line";
 
 /**
  * Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an empty set.

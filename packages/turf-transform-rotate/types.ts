@@ -5,7 +5,7 @@ import {
   featureCollection,
   geometryCollection,
 } from "@turf/helpers";
-import rotate from "./";
+import { transformRotate as rotate } from "./index";
 
 const pt = point([15, 15]);
 const poly = polygon([

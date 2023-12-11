@@ -1,9 +1,9 @@
 import type { Feature, Point } from "geojson";
 import type { AllGeoJSON } from "@turf/helpers";
-import explode from "@turf/explode";
-import centroid from "@turf/center";
-import nearestPoint from "@turf/nearest-point";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import { explode } from "@turf/explode";
+import { center as centroid } from "@turf/center";
+import { nearestPoint } from "@turf/nearest-point";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { featureCollection, feature, point } from "@turf/helpers";
 
 /**

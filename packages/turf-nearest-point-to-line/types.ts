@@ -4,7 +4,7 @@ import {
   point,
   lineString,
 } from "@turf/helpers";
-import nearestPointToLine from "./index";
+import { nearestPointToLine } from "./index";
 
 const points = featureCollection([point([0, 0]), point([0.5, 0.5])]);
 const line = lineString([

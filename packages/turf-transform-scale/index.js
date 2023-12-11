@@ -1,10 +1,10 @@
-import clone from "@turf/clone";
-import center from "@turf/center";
-import centroid from "@turf/centroid";
-import turfBBox from "@turf/bbox";
-import rhumbBearing from "@turf/rhumb-bearing";
-import rhumbDistance from "@turf/rhumb-distance";
-import rhumbDestination from "@turf/rhumb-destination";
+import { clone } from "@turf/clone";
+import { center } from "@turf/center";
+import { centroid } from "@turf/centroid";
+import { bbox as turfBBox } from "@turf/bbox";
+import { rhumbBearing } from "@turf/rhumb-bearing";
+import { rhumbDistance } from "@turf/rhumb-distance";
+import { rhumbDestination } from "@turf/rhumb-destination";
 import { coordEach, featureEach } from "@turf/meta";
 import { point, isObject } from "@turf/helpers";
 import { getCoord, getCoords, getType } from "@turf/invariant";

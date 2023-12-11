@@ -9,7 +9,7 @@ import {
 import { Units } from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { featureEach, geomEach } from "@turf/meta";
-import pointToLineDistance from "@turf/point-to-line-distance";
+import { pointToLineDistance } from "@turf/point-to-line-distance";
 
 /**
  * Returns the closest {@link Point|point}, of a {@link FeatureCollection|collection} of points,

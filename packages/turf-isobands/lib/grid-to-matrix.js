@@ -34,7 +34,7 @@ import { isObject } from "@turf/helpers";
  *     [18, 13, 10,  9, 78, 13, 18]
  *   ]
  */
-export default function gridToMatrix(grid, options) {
+function gridToMatrix(grid, options) {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
@@ -102,3 +102,6 @@ function sortPointsByLatLng(points, flip) {
 
   return pointMatrix;
 }
+
+export { gridToMatrix };
+export default gridToMatrix;

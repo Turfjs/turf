@@ -1,7 +1,7 @@
 import { FeatureCollection, Feature, Point, Position } from "geojson";
-import centerMean from "@turf/center-mean";
-import distance from "@turf/distance";
-import centroid from "@turf/centroid";
+import { centerMean } from "@turf/center-mean";
+import { distance } from "@turf/distance";
+import { centroid } from "@turf/centroid";
 import { isNumber, point, isObject, featureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 

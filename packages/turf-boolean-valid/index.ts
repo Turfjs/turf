@@ -1,10 +1,10 @@
 import { Feature, Geometry, Position } from "geojson";
 import { getGeom } from "@turf/invariant";
 import { polygon, lineString } from "@turf/helpers";
-import booleanDisjoint from "@turf/boolean-disjoint";
-import booleanCrosses from "@turf/boolean-crosses";
-import lineIntersect from "@turf/line-intersect";
-import isPointOnLine from "@turf/boolean-point-on-line";
+import { booleanDisjoint } from "@turf/boolean-disjoint";
+import { booleanCrosses } from "@turf/boolean-crosses";
+import { lineIntersect } from "@turf/line-intersect";
+import { booleanPointOnLine as isPointOnLine } from "@turf/boolean-point-on-line";
 
 /**
  * booleanValid checks if the geometry is a valid according to the OGC Simple Feature Specification.
