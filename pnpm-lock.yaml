@@ -90,8 +90,8 @@ importers:
         specifier: ^9.0.0
         version: 9.1.1(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -457,8 +457,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
 
   packages/turf-along:
     dependencies:
@@ -503,8 +503,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -561,8 +561,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -604,8 +604,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -644,8 +644,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -687,8 +687,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -724,8 +724,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -764,8 +764,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -807,8 +807,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -853,8 +853,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -896,8 +896,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -954,8 +954,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1009,8 +1009,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1061,8 +1061,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1116,8 +1116,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1162,8 +1162,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1223,8 +1223,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1269,8 +1269,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1312,8 +1312,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1355,8 +1355,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1413,8 +1413,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1486,8 +1486,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1544,8 +1544,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1593,8 +1593,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1642,8 +1642,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1697,8 +1697,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1761,8 +1761,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1816,8 +1816,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1865,8 +1865,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1914,8 +1914,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -1960,8 +1960,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2000,8 +2000,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2037,8 +2037,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2098,8 +2098,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2168,8 +2168,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2217,8 +2217,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2254,8 +2254,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2318,8 +2318,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2370,8 +2370,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2419,8 +2419,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2468,8 +2468,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2526,8 +2526,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2578,8 +2578,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2621,8 +2621,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2670,8 +2670,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2737,8 +2737,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2783,8 +2783,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2826,8 +2826,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2869,8 +2869,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2915,8 +2915,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -2964,8 +2964,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3001,8 +3001,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3032,8 +3032,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3084,8 +3084,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3151,8 +3151,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3197,8 +3197,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3234,8 +3234,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3310,8 +3310,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3380,8 +3380,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3426,8 +3426,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3472,8 +3472,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3521,8 +3521,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3564,8 +3564,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3607,8 +3607,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3647,8 +3647,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3708,8 +3708,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3754,8 +3754,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3794,8 +3794,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3837,8 +3837,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
 
   packages/turf-line-split:
     dependencies:
@@ -3889,8 +3889,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3935,8 +3935,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -3972,8 +3972,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4000,8 +4000,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
 
   packages/turf-midpoint:
     dependencies:
@@ -4031,8 +4031,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
 
   packages/turf-moran-index:
     dependencies:
@@ -4071,8 +4071,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4135,8 +4135,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4181,8 +4181,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4245,8 +4245,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4303,8 +4303,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4334,8 +4334,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
 
   packages/turf-point-grid:
     dependencies:
@@ -4383,8 +4383,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4438,8 +4438,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4499,8 +4499,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4542,8 +4542,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4585,8 +4585,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4640,8 +4640,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4683,8 +4683,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4735,8 +4735,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4787,8 +4787,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4854,8 +4854,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4894,8 +4894,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4943,8 +4943,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -4995,8 +4995,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5038,8 +5038,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5084,8 +5084,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5130,8 +5130,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5167,8 +5167,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5219,8 +5219,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5286,8 +5286,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5338,8 +5338,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5369,8 +5369,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
 
   packages/turf-square-grid:
     dependencies:
@@ -5409,8 +5409,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5461,8 +5461,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5507,8 +5507,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5535,8 +5535,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
 
   packages/turf-tin:
     dependencies:
@@ -5566,8 +5566,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5618,8 +5618,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5682,8 +5682,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5725,8 +5725,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5774,8 +5774,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5817,8 +5817,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5866,8 +5866,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       typescript:
         specifier: ^5.2.2
         version: 5.3.3
@@ -5912,8 +5912,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5952,8 +5952,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
-        specifier: ^3.14.0
-        version: 3.14.0
+        specifier: ^4.6.2
+        version: 4.6.2
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -16955,13 +16955,13 @@ packages:
       typescript: 3.9.10
     dev: true
 
-  /tsx@3.14.0:
-    resolution: {integrity: sha512-xHtFaKtHxM9LOklMmJdI3BEnQq/D5F73Of2E1GDrITi9sgoVkvIsrQUTY1G8FlmGtA+awCI4EBlTRRYxkL2sRg==}
+  /tsx@4.6.2:
+    resolution: {integrity: sha512-QPpBdJo+ZDtqZgAnq86iY/PD2KYCUPSUGIunHdGwyII99GKH+f3z3FZ8XNFLSGQIA4I365ui8wnQpl8OKLqcsg==}
+    engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
       esbuild: 0.18.20
       get-tsconfig: 4.7.2
-      source-map-support: 0.5.21
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
