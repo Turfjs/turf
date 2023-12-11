@@ -48,7 +48,7 @@
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup index.?s --dts --format esm,cjs",
+    "build": "tsup index.?s --dts --format esm,cjs --cjsInterop --splitting",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.ts"
