@@ -60,7 +60,7 @@
     "turf.min.js"
   ],
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "tsup index.?s --dts --format esm,cjs --cjsInterop --splitting && rollup -c rollup.config.js",
     "last-checks": "npm-run-all last-checks:testjs last-checks:example",
     "last-checks:example": "tsx test.example.js",
     "last-checks:testjs": "tsx test.ts",
@@ -79,7 +79,8 @@
     "rollup-plugin-terser": "^7.0.2",
     "tape": "^5.7.2",
     "tsup": "^8.0.1",
-    "tsx": "^4.6.2"
+    "tsx": "^4.6.2",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "@turf/along": "workspace:^",
@@ -91,6 +92,7 @@
     "@turf/bearing": "workspace:^",
     "@turf/bezier-spline": "workspace:^",
     "@turf/boolean-clockwise": "workspace:^",
+    "@turf/boolean-concave": "workspace:^",
     "@turf/boolean-contains": "workspace:^",
     "@turf/boolean-crosses": "workspace:^",
     "@turf/boolean-disjoint": "workspace:^",
@@ -101,6 +103,7 @@
     "@turf/boolean-point-in-polygon": "workspace:^",
     "@turf/boolean-point-on-line": "workspace:^",
     "@turf/boolean-touches": "workspace:^",
+    "@turf/boolean-valid": "workspace:^",
     "@turf/boolean-within": "workspace:^",
     "@turf/buffer": "workspace:^",
     "@turf/center": "workspace:^",
@@ -128,6 +131,7 @@
     "@turf/explode": "workspace:^",
     "@turf/flatten": "workspace:^",
     "@turf/flip": "workspace:^",
+    "@turf/geojson-rbush": "workspace:^",
     "@turf/great-circle": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/hex-grid": "workspace:^",
@@ -152,6 +156,7 @@
     "@turf/meta": "workspace:^",
     "@turf/midpoint": "workspace:^",
     "@turf/moran-index": "workspace:^",
+    "@turf/nearest-neighbor-analysis": "workspace:^",
     "@turf/nearest-point": "workspace:^",
     "@turf/nearest-point-on-line": "workspace:^",
     "@turf/nearest-point-to-line": "workspace:^",
@@ -165,7 +170,9 @@
     "@turf/polygon-to-line": "workspace:^",
     "@turf/polygonize": "workspace:^",
     "@turf/projection": "workspace:^",
+    "@turf/quadrat-analysis": "workspace:^",
     "@turf/random": "workspace:^",
+    "@turf/rectangle-grid": "workspace:^",
     "@turf/rewind": "workspace:^",
     "@turf/rhumb-bearing": "workspace:^",
     "@turf/rhumb-destination": "workspace:^",

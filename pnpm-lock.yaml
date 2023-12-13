@@ -128,6 +128,9 @@ importers:
       '@turf/boolean-clockwise':
         specifier: workspace:^
         version: link:../turf-boolean-clockwise
+      '@turf/boolean-concave':
+        specifier: workspace:^
+        version: link:../turf-boolean-concave
       '@turf/boolean-contains':
         specifier: workspace:^
         version: link:../turf-boolean-contains
@@ -158,6 +161,9 @@ importers:
       '@turf/boolean-touches':
         specifier: workspace:^
         version: link:../turf-boolean-touches
+      '@turf/boolean-valid':
+        specifier: workspace:^
+        version: link:../turf-boolean-valid
       '@turf/boolean-within':
         specifier: workspace:^
         version: link:../turf-boolean-within
@@ -239,6 +245,9 @@ importers:
       '@turf/flip':
         specifier: workspace:^
         version: link:../turf-flip
+      '@turf/geojson-rbush':
+        specifier: workspace:^
+        version: link:../turf-geojson-rbush
       '@turf/great-circle':
         specifier: workspace:^
         version: link:../turf-great-circle
@@ -311,6 +320,9 @@ importers:
       '@turf/moran-index':
         specifier: workspace:^
         version: link:../turf-moran-index
+      '@turf/nearest-neighbor-analysis':
+        specifier: workspace:^
+        version: link:../turf-nearest-neighbor-analysis
       '@turf/nearest-point':
         specifier: workspace:^
         version: link:../turf-nearest-point
@@ -350,9 +362,15 @@ importers:
       '@turf/projection':
         specifier: workspace:^
         version: link:../turf-projection
+      '@turf/quadrat-analysis':
+        specifier: workspace:^
+        version: link:../turf-quadrat-analysis
       '@turf/random':
         specifier: workspace:^
         version: link:../turf-random
+      '@turf/rectangle-grid':
+        specifier: workspace:^
+        version: link:../turf-rectangle-grid
       '@turf/rewind':
         specifier: workspace:^
         version: link:../turf-rewind
@@ -459,6 +477,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.2.2
+        version: 5.3.3
 
   packages/turf-along:
     dependencies:
