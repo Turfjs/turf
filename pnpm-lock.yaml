@@ -437,6 +437,9 @@ importers:
       '@turf/voronoi':
         specifier: workspace:^
         version: link:../turf-voronoi
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@babel/core':
         specifier: ^7.23.2

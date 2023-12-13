@@ -194,6 +194,7 @@
     "@turf/truncate": "workspace:^",
     "@turf/union": "workspace:^",
     "@turf/unkink-polygon": "workspace:^",
-    "@turf/voronoi": "workspace:^"
+    "@turf/voronoi": "workspace:^",
+    "tslib": "^2.6.2"
   }
 }
