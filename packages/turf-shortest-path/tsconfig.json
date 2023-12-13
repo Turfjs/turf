@@ -1,8 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "compilerOptions": {
-    "outDir": "dist/js",
-    "allowJs": true
-  },
-  "files": ["index.ts", "lib/javascript-astar.js"]
+  "extends": "../../tsconfig.shared.json"
 }
