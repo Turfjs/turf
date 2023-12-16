@@ -10,7 +10,9 @@ const baseOptions: Options = {
   target: "es2017",
   tsconfig: "./tsconfig.json",
   keepNames: true,
-  treeshake: true,
+  // treeshake: true, causes "chunk.default" warning, breaks CJS exports?
+  cjsInterop: true,
+  splitting: true,
 };
 
 export default [
