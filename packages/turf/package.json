@@ -43,13 +43,21 @@
     "jenks",
     "sample"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "type": "commonjs",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/cjs/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": {
+        "types": "./dist/esm/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
     }
   },
   "browser": "turf.min.js",
@@ -60,7 +68,7 @@
     "turf.min.js"
   ],
   "scripts": {
-    "build": "tsup index.?s --dts --format esm,cjs --cjsInterop --splitting && rollup -c rollup.config.js",
+    "build": "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
     "last-checks": "npm-run-all last-checks:testjs last-checks:example",
     "last-checks:example": "tsx test.example.js",
     "last-checks:testjs": "tsx test.ts",
@@ -72,6 +80,7 @@
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
+    "@types/tape": "^4.2.32",
     "camelcase": "^8.0.0",
     "documentation": "^13.2.5",
     "glob": "^10.3.10",

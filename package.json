@@ -6,8 +6,8 @@
     "lint:eslint": "eslint packages",
     "lint:prettier": "prettier --check .",
     "lintDISABLED:mrl": "mrl check",
-    "lint:escheck-cjs": "es-check es8 packages/*/dist/index.js packages/turf/turf.min.js",
-    "lint:escheck-esm": "es-check --module es8 packages/*/dist/index.mjs",
+    "lint:escheck-cjs": "es-check es8 packages/*/dist/cjs/index.cjs packages/turf/turf.min.js",
+    "lint:escheck-esm": "es-check --module es8 packages/*/dist/esm/index.mjs",
     "lint:escheck-web": "es-check es5 packages/turf/turf.min.js",
     "lint:docs": "documentation lint packages/turf-*/index.js packages/turf-*/index.mjs",
     "preinstall": "npx only-allow pnpm",
@@ -61,6 +61,7 @@
     "progress": "^2.0.3",
     "rollup": "^2.79.1",
     "ts-node": "^9.0.0",
+    "tsup": "^8.0.1",
     "tsx": "^4.6.2",
     "typescript": "^5.2.2",
     "yamljs": "^0.3.0"

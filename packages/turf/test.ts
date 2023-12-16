@@ -4,7 +4,7 @@ import { glob } from "glob";
 import test from "tape";
 import camelCase from "camelcase";
 import documentation from "documentation";
-import * as turf from "./dist/index";
+import * as turf from "./index";
 
 // Helpers
 const directory = path.join(__dirname, "..");
@@ -218,8 +218,8 @@ test("turf -- parsing dependencies from index.js", (t) => {
 // Test for missing modules
 test("turf -- missing modules", (t) => {
   const files = {
-    typescript: fs.readFileSync(path.join(__dirname, "dist/index.d.ts")),
-    modules: fs.readFileSync(path.join(__dirname, "dist/index.js")),
+    typescript: fs.readFileSync(path.join(__dirname, "dist/cjs/index.d.ts")),
+    modules: fs.readFileSync(path.join(__dirname, "dist/cjs/index.cjs")),
   };
 
   modules.forEach(({ name }) => {
@@ -328,7 +328,7 @@ const turfTypescriptPath = path.join(__dirname, "..", "turf-*", "index.d.ts");
 
 // Test Strings
 const requireString = `const test = require('tape');
-const turf = require('./dist/index.js');
+const turf = require('./dist/cjs/index.cjs');
 `;
 
 /**

@@ -89,6 +89,9 @@ importers:
       ts-node:
         specifier: ^9.0.0
         version: 9.1.1(typescript@5.3.3)
+      tsup:
+        specifier: ^8.0.1
+        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -456,6 +459,9 @@ importers:
       '@rollup/plugin-node-resolve':
         specifier: ^11.2.1
         version: 11.2.1(rollup@2.79.1)
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       camelcase:
         specifier: ^8.0.0
         version: 8.0.0
