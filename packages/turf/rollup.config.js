@@ -1,6 +1,6 @@
-import node from "@rollup/plugin-node-resolve";
+import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import { babel } from "@rollup/plugin-babel";
 
 const pckg = require("./package.json");
@@ -10,6 +10,11 @@ export default [
   {
     input,
     output: [{ file: pckg.browser, format: "umd", name: "turf" }],
-    plugins: [commonjs(), node(), babel({ babelHelpers: "bundled" }), terser()],
+    plugins: [
+      commonjs(),
+      nodeResolve(),
+      babel({ babelHelpers: "bundled" }),
+      terser(),
+    ],
   },
 ];
