@@ -4,7 +4,7 @@ import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { polygon, point, featureCollection } from "@turf/helpers";
-import dissolve from "./index";
+import { dissolve } from "./index";
 
 const SKIP = [];
 

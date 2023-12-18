@@ -5,12 +5,12 @@ import {
   Polygon,
   GeoJsonProperties,
 } from "geojson";
-import area from "@turf/area";
-import bbox from "@turf/bbox";
-import bboxPolygon from "@turf/bbox-polygon";
-import centroid from "@turf/centroid";
-import distance from "@turf/distance";
-import nearestPoint from "@turf/nearest-point";
+import { area } from "@turf/area";
+import { bbox } from "@turf/bbox";
+import { bboxPolygon } from "@turf/bbox-polygon";
+import { centroid } from "@turf/centroid";
+import { distance } from "@turf/distance";
+import { nearestPoint } from "@turf/nearest-point";
 import { featureEach } from "@turf/meta";
 import {
   convertArea,

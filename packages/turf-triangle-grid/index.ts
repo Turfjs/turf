@@ -5,8 +5,8 @@ import {
   FeatureCollection,
   GeoJsonProperties,
 } from "geojson";
-import distance from "@turf/distance";
-import intersect from "@turf/intersect";
+import { distance } from "@turf/distance";
+import { intersect } from "@turf/intersect";
 import { polygon, featureCollection, Units } from "@turf/helpers";
 
 /**

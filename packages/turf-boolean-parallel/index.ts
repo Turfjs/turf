@@ -1,7 +1,7 @@
 import { Feature, Geometry, LineString, Position } from "geojson";
-import cleanCoords from "@turf/clean-coords";
-import lineSegment from "@turf/line-segment";
-import rhumbBearing from "@turf/rhumb-bearing";
+import { cleanCoords } from "@turf/clean-coords";
+import { lineSegment } from "@turf/line-segment";
+import { rhumbBearing } from "@turf/rhumb-bearing";
 import { bearingToAzimuth } from "@turf/helpers";
 
 /**

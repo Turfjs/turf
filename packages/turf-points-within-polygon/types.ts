@@ -1,5 +1,5 @@
 import { Point, MultiPoint } from "geojson";
-import pointsWithinPolygon from "./";
+import { pointsWithinPolygon } from "./";
 import { points, polygon, multiPoint, featureCollection } from "@turf/helpers";
 
 const pts = points([

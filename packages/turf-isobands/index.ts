@@ -1,7 +1,7 @@
-import bbox from "@turf/bbox";
-import area from "@turf/area";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import explode from "@turf/explode";
+import { bbox } from "@turf/bbox";
+import { area } from "@turf/area";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import { explode } from "@turf/explode";
 import { collectionOf } from "@turf/invariant";
 import {
   polygon,
@@ -20,8 +20,7 @@ import {
   Feature,
 } from "geojson";
 
-import gridToMatrix from "./lib/grid-to-matrix";
-// @ts-expect-error Legacy JS library with no types defined
+import { gridToMatrix } from "./lib/grid-to-matrix";
 import { isoBands } from "marchingsquares";
 
 type GroupRingProps = { [prop: string]: string };

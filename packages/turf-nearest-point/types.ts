@@ -1,5 +1,5 @@
 import { point, featureCollection } from "@turf/helpers";
-import nearestPoint from "./index";
+import { nearestPoint } from "./index";
 
 const targetPoint = point([28.965797, 41.010086], { "marker-color": "#0F0" });
 const points = featureCollection([

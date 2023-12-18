@@ -1,5 +1,5 @@
 import { FeatureCollection, Point, GeoJsonProperties } from "geojson";
-import clone from "@turf/clone";
+import { clone } from "@turf/clone";
 import { coordAll, featureEach } from "@turf/meta";
 import skmeans from "skmeans";
 

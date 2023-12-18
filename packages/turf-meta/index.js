@@ -67,8 +67,8 @@ function coordEach(geojson, callback, excludeWrapCoord) {
     geometryMaybeCollection = isFeatureCollection
       ? geojson.features[featureIndex].geometry
       : isFeature
-      ? geojson.geometry
-      : geojson;
+        ? geojson.geometry
+        : geojson;
     isGeometryCollection = geometryMaybeCollection
       ? geometryMaybeCollection.type === "GeometryCollection"
       : false;
@@ -536,23 +536,23 @@ function geomEach(geojson, callback) {
     geometryMaybeCollection = isFeatureCollection
       ? geojson.features[i].geometry
       : isFeature
-      ? geojson.geometry
-      : geojson;
+        ? geojson.geometry
+        : geojson;
     featureProperties = isFeatureCollection
       ? geojson.features[i].properties
       : isFeature
-      ? geojson.properties
-      : {};
+        ? geojson.properties
+        : {};
     featureBBox = isFeatureCollection
       ? geojson.features[i].bbox
       : isFeature
-      ? geojson.bbox
-      : undefined;
+        ? geojson.bbox
+        : undefined;
     featureId = isFeatureCollection
       ? geojson.features[i].id
       : isFeature
-      ? geojson.id
-      : undefined;
+        ? geojson.id
+        : undefined;
     isGeometryCollection = geometryMaybeCollection
       ? geometryMaybeCollection.type === "GeometryCollection"
       : false;

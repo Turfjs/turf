@@ -1,5 +1,5 @@
 import { featureCollection, point } from "@turf/helpers";
-import tin from "./index";
+import { tin } from "./index";
 
 const points = featureCollection([
   point([0, 0], { elevation: 20 }),

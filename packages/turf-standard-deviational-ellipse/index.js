@@ -1,9 +1,9 @@
 import { coordAll, featureEach } from "@turf/meta";
 import { getCoords } from "@turf/invariant";
 import { featureCollection, isObject, isNumber } from "@turf/helpers";
-import centerMean from "@turf/center-mean";
-import pointsWithinPolygon from "@turf/points-within-polygon";
-import ellipse from "@turf/ellipse";
+import { centerMean } from "@turf/center-mean";
+import { pointsWithinPolygon } from "@turf/points-within-polygon";
+import { ellipse } from "@turf/ellipse";
 
 /**
  * Takes a {@link FeatureCollection} and returns a standard deviational ellipse,

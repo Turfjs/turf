@@ -40,8 +40,8 @@ function rhumbDistance(
     destination[0] - origin[0] > 180
       ? -360
       : origin[0] - destination[0] > 180
-      ? 360
-      : 0;
+        ? 360
+        : 0;
   const distanceInMeters = calculateRhumbDistance(origin, destination);
   const distance = convertLength(distanceInMeters, "meters", options.units);
   return distance;

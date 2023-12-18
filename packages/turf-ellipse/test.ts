@@ -8,7 +8,7 @@ import { truncate } from "@turf/truncate";
 import geojsonhint from "@mapbox/geojsonhint";
 import { bboxPolygon } from "@turf/bbox-polygon";
 import { rhumbDestination } from "@turf/rhumb-destination";
-// import destination from '@turf/destination';
+// import { destination } from '@turf/destination';
 import { featureCollection } from "@turf/helpers";
 import { ellipse } from "./index";
 

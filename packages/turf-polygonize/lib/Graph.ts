@@ -1,6 +1,6 @@
-import Node from "./Node";
-import Edge from "./Edge";
-import EdgeRing from "./EdgeRing";
+import { Node } from "./Node";
+import { Edge } from "./Edge";
+import { EdgeRing } from "./EdgeRing";
 import { flattenEach, coordReduce } from "@turf/meta";
 import { featureOf } from "@turf/invariant";
 import {
@@ -41,7 +41,7 @@ function validateGeoJson(geoJson: AllGeoJSON) {
  *
  * This graph is directed (both directions are created)
  */
-export default class Graph {
+class Graph {
   private nodes: { [id: string]: Node };
   private edges: Edge[];
 
@@ -350,3 +350,6 @@ export default class Graph {
     edge.deleteEdge();
   }
 }
+
+export { Graph };
+export default Graph;

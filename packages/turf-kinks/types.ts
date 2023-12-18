@@ -1,5 +1,5 @@
 import { polygon } from "@turf/helpers";
-import kinks from "./index";
+import { kinks } from "./index";
 
 const hourglass = polygon([
   [

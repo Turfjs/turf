@@ -1,10 +1,10 @@
 import { Feature, FeatureCollection, LineString, Point } from "geojson";
-import bearing from "@turf/bearing";
-import centroid from "@turf/centroid";
-import destination from "@turf/destination";
+import { bearing } from "@turf/bearing";
+import { centroid } from "@turf/centroid";
+import { destination } from "@turf/destination";
 import { featureCollection, lineString, point } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
-import length from "@turf/length";
+import { length } from "@turf/length";
 import { featureEach, segmentEach, segmentReduce } from "@turf/meta";
 
 interface DirectionalMeanLine extends Feature<LineString> {

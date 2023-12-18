@@ -4,7 +4,7 @@ import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { featureCollection } from "@turf/helpers";
-import { bezier as bezierSpline } from "./index";
+import { bezierSpline } from "./index";
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

@@ -1,4 +1,4 @@
-import center from "@turf/center";
+import { center } from "@turf/center";
 import jsts from "@turf/jsts";
 import { geomEach, featureEach } from "@turf/meta";
 import { geoAzimuthalEquidistant } from "d3-geo";

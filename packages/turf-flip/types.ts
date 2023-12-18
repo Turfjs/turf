@@ -4,7 +4,7 @@ import {
   lineString,
   geometryCollection,
 } from "@turf/helpers";
-import flip from "./";
+import { flip } from "./index";
 
 const pt = point([120.1234567, 40.1234567]);
 const ptGeom = pt.geometry;

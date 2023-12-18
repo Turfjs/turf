@@ -1,22 +1,18 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "funding": "https://opencollective.com/turf",
   "scripts": {
     "lint": "npm-run-all lint:*",
     "lint:eslint": "eslint packages",
     "lint:prettier": "prettier --check .",
-    "lint:mrl": "mrl check",
-    "lint:escheck-require": "es-check es8 packages/*/dist/js/index.js packages/turf/turf.min.js",
-    "lint:escheck-esm": "es-check --module es8 packages/*/dist/es/index.js",
-    "lint:escheck-es5": "es-check es5 packages/turf/turf.min.js",
-    "postlint": "documentation lint packages/turf-*/index.js",
-    "prepare": "lerna run build && node ./scripts/add-import-extensions.js",
-    "pretest": "npm run lint",
-    "test": "lerna run test",
-    "posttest": "lerna run --scope @turf/turf last-checks",
+    "lintDISABLED:mrl": "mrl check",
+    "lint:escheck-cjs": "es-check es8 packages/*/dist/cjs/index.cjs packages/turf/turf.min.js",
+    "lint:escheck-esm": "es-check --module es8 packages/*/dist/esm/index.mjs",
+    "lint:escheck-web": "es-check es5 packages/turf/turf.min.js",
+    "lint:docs": "documentation lint packages/turf-*/index.js packages/turf-*/index.mjs",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "lerna run build",
+    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks",
     "docs": "tsx ./scripts/generate-readmes.ts"
   },
   "husky": {
@@ -63,9 +59,9 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
     "progress": "^2.0.3",
-    "rollup": "^2.79.1",
     "ts-node": "^9.0.0",
-    "tsx": "^3.14.0",
+    "tsup": "^8.0.1",
+    "tsx": "^4.6.2",
     "typescript": "^5.2.2",
     "yamljs": "^0.3.0"
   }

@@ -6,12 +6,12 @@ import {
   MultiPolygon,
   Polygon,
 } from "geojson";
-import clone from "@turf/clone";
+import { clone } from "@turf/clone";
 import { isObject } from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { flattenEach } from "@turf/meta";
-import lineDissolve from "./turf-line-dissolve";
-import polygonDissolve from "./turf-polygon-dissolve";
+import { lineDissolve } from "./turf-line-dissolve";
+import { polygonDissolve } from "./turf-polygon-dissolve";
 
 /**
  * Transform function: attempts to dissolve geojson objects where possible
@@ -90,4 +90,5 @@ function getHomogenousType(geojson: any) {
   return null;
 }
 
+export { dissolve };
 export default dissolve;

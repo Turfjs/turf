@@ -1,5 +1,5 @@
-import distance from "@turf/distance";
-import intersect from "@turf/intersect";
+import { distance } from "@turf/distance";
+import { intersect } from "@turf/intersect";
 import {
   Feature,
   FeatureCollection,

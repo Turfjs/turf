@@ -3,7 +3,7 @@ import path from "path";
 import { glob } from "glob";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import sector from "@turf/sector";
+import { sector } from "@turf/sector";
 import { bearing } from "@turf/bearing";
 import { truncate } from "@turf/truncate";
 import { distance } from "@turf/distance";

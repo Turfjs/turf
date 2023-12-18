@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import truncate from "@turf/truncate";
+import { truncate } from "@turf/truncate";
 import { featureCollection } from "@turf/helpers";
 import { sector } from "./index";
 

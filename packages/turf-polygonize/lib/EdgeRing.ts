@@ -6,9 +6,9 @@ import {
   coordinatesEqual,
 } from "./util";
 import { multiPoint, polygon, point } from "@turf/helpers";
-import envelope from "@turf/envelope";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import Edge from "./Edge";
+import { envelope } from "@turf/envelope";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import { Edge } from "./Edge";
 
 /**
  * Ring of edges which form a polygon.
@@ -17,7 +17,7 @@ import Edge from "./Edge";
  *
  * This class is inspired in GEOS's geos::operation::polygonize::EdgeRing
  */
-export default class EdgeRing {
+class EdgeRing {
   private edges: Edge[];
   private polygon?: Feature<
     Polygon,
@@ -244,3 +244,6 @@ export default class EdgeRing {
     return booleanPointInPolygon(pt, this.toPolygon());
   }
 }
+
+export { EdgeRing };
+export default EdgeRing;

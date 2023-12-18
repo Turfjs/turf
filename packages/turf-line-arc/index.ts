@@ -1,6 +1,6 @@
 import { Feature, LineString } from "geojson";
-import circle from "@turf/circle";
-import destination from "@turf/destination";
+import { circle } from "@turf/circle";
+import { destination } from "@turf/destination";
 import { Coord, lineString, Units } from "@turf/helpers";
 
 /**

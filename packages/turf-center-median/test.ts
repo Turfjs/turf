@@ -4,7 +4,7 @@ import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { center } from "@turf/center";
-import truncate from "@turf/truncate";
+import { truncate } from "@turf/truncate";
 import { centerMean } from "@turf/center-mean";
 import { centerOfMass } from "@turf/center-of-mass";
 import { featureCollection, round } from "@turf/helpers";

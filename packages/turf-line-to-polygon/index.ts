@@ -7,10 +7,10 @@ import {
   BBox,
   Position,
 } from "geojson";
-import turfBBox from "@turf/bbox";
+import { bbox as turfBBox } from "@turf/bbox";
 import { getCoords, getGeom } from "@turf/invariant";
 import { polygon, multiPolygon, lineString } from "@turf/helpers";
-import clone from "@turf/clone";
+import { clone } from "@turf/clone";
 
 /**
  * Converts (Multi)LineString(s) to Polygon(s).
@@ -83,8 +83,8 @@ function lineStringToPolygon<G extends LineString | MultiLineString>(
   properties = properties
     ? properties
     : line.type === "Feature"
-    ? line.properties
-    : {};
+      ? line.properties
+      : {};
   var geom = getGeom(line);
   var coords: Position[] | Position[][] = geom.coordinates;
   var type = geom.type;

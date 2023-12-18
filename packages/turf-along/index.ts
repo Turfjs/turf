@@ -1,7 +1,7 @@
 import { Feature, LineString, Point } from "geojson";
-import bearing from "@turf/bearing";
-import destination from "@turf/destination";
-import measureDistance from "@turf/distance";
+import { bearing } from "@turf/bearing";
+import { destination } from "@turf/destination";
+import { distance as measureDistance } from "@turf/distance";
 import { point, Units } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
 

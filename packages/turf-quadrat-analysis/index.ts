@@ -1,9 +1,9 @@
 import { BBox, FeatureCollection, Point } from "geojson";
-import area from "@turf/area";
-import turfBBox from "@turf/bbox";
-import bboxPolygon from "@turf/bbox-polygon";
+import { area } from "@turf/area";
+import { bbox as turfBBox } from "@turf/bbox";
+import { bboxPolygon } from "@turf/bbox-polygon";
 import { getCoord } from "@turf/invariant";
-import squareGrid from "@turf/square-grid";
+import { squareGrid } from "@turf/square-grid";
 
 interface QuadratAnalysisResult {
   criticalValue: number;

@@ -3,13 +3,13 @@ import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import envelope from "@turf/envelope";
+import { envelope } from "@turf/envelope";
 import { pointGrid } from "@turf/point-grid";
 import { truncate } from "@turf/truncate";
 import { getCoords } from "@turf/invariant";
 import { lineString } from "@turf/helpers";
 import { randomPolygon } from "@turf/random";
-import matrixToGrid from "./lib/matrix-to-grid";
+import { matrixToGrid } from "./lib/matrix-to-grid";
 import { isobands } from "./index";
 
 const directories = {

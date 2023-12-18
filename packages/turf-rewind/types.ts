@@ -4,7 +4,7 @@ import {
   multiLineString,
   multiPolygon,
 } from "@turf/helpers";
-import rewind from "./";
+import { rewind } from "./index";
 
 const coords = [
   [121, -29],

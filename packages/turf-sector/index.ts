@@ -1,6 +1,6 @@
 import { Feature, Polygon, GeoJsonProperties } from "geojson";
-import circle from "@turf/circle";
-import lineArc from "@turf/line-arc";
+import { circle } from "@turf/circle";
+import { lineArc } from "@turf/line-arc";
 import { coordEach } from "@turf/meta";
 import { Units, Coord, isObject, polygon } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";

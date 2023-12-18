@@ -6,7 +6,7 @@ import {
   multiLineString,
   lengthToDegrees,
 } from "@turf/helpers";
-import intersection from "./lib/intersection";
+import { intersection } from "./lib/intersection";
 
 /**
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.

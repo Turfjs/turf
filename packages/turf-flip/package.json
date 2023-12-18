@@ -22,26 +22,30 @@
     "coordinate",
     "flip"
   ],
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
+  "type": "commonjs",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/cjs/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/js/index.d.ts",
-      "import": "./dist/es/index.js",
-      "require": "./dist/js/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
     }
   },
-  "types": "dist/js/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist"
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "npm-run-all --npm-path npm build:*",
-    "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
-    "build:js": "tsc",
+    "build": "tsup --config ../../tsup.config.ts",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.ts",
@@ -54,14 +58,15 @@
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
     "tape": "^5.7.2",
-    "tsx": "^3.14.0",
+    "tsup": "^8.0.1",
+    "tsx": "^4.6.2",
     "typescript": "^5.2.2",
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/clone": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
+    "@turf/clone": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/meta": "workspace:^",
     "tslib": "^2.6.2"
   }
 }

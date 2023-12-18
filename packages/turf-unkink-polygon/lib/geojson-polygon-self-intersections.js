@@ -1,7 +1,7 @@
 // Find self-intersections in geojson polygon (possibly with interior rings)
 import rbush from "rbush";
 
-export default function (feature, filterFn, useSpatialIndex) {
+function geojsonPolygonSelfIntersections(feature, filterFn, useSpatialIndex) {
   if (feature.geometry.type !== "Polygon")
     throw new Error("The input feature must be a Polygon");
   if (useSpatialIndex === undefined) useSpatialIndex = 1;
@@ -180,3 +180,6 @@ function equalArrays(array1, array2) {
   }
   return true;
 }
+
+export { geojsonPolygonSelfIntersections };
+export default geojsonPolygonSelfIntersections;

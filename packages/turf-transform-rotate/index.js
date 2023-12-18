@@ -1,8 +1,8 @@
-import centroid from "@turf/centroid";
-import rhumbBearing from "@turf/rhumb-bearing";
-import rhumbDistance from "@turf/rhumb-distance";
-import rhumbDestination from "@turf/rhumb-destination";
-import clone from "@turf/clone";
+import { centroid } from "@turf/centroid";
+import { rhumbBearing } from "@turf/rhumb-bearing";
+import { rhumbDistance } from "@turf/rhumb-distance";
+import { rhumbDestination } from "@turf/rhumb-destination";
+import { clone } from "@turf/clone";
 import { coordEach } from "@turf/meta";
 import { getCoords } from "@turf/invariant";
 import { isObject } from "@turf/helpers";

@@ -1,5 +1,5 @@
 import { GeoJsonProperties, Feature, Point, Polygon } from "geojson";
-import destination from "@turf/destination";
+import { destination } from "@turf/destination";
 import { polygon, Units } from "@turf/helpers";
 
 /**
@@ -36,8 +36,8 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   const properties: any = options.properties
     ? options.properties
     : !Array.isArray(center) && center.type === "Feature" && center.properties
-    ? center.properties
-    : {};
+      ? center.properties
+      : {};
 
   // main
   const coordinates = [];

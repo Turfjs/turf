@@ -1,5 +1,5 @@
 import * as helpers from "@turf/helpers";
-import booleanWithin from "./index";
+import { booleanWithin } from "./index";
 
 const pt = helpers.point([0, 0]);
 const line = helpers.lineString([

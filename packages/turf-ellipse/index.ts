@@ -6,8 +6,8 @@ import {
   Coord,
   Units,
 } from "@turf/helpers";
-import rhumbDestination from "@turf/rhumb-destination";
-import transformRotate from "@turf/transform-rotate";
+import { rhumbDestination } from "@turf/rhumb-destination";
+import { transformRotate } from "@turf/transform-rotate";
 import { getCoord } from "@turf/invariant";
 import { GeoJsonProperties, Feature, Polygon } from "geojson";
 
