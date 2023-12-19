@@ -28,8 +28,8 @@ the z-score can be calculated based on a normal or random assumption.
 
 ### Parameters
 
-*   `fc` **[FeatureCollection][3]\<any>**&#x20;
-*   `options` **[Object][4]**&#x20;
+*   `fc` **[FeatureCollection][3]\<any>** 
+*   `options` **[Object][4]** 
 
     *   `options.inputField` **[string][5]** the property name, must contain numeric values
     *   `options.threshold` **[number][6]** the distance threshold (optional, default `100000`)
@@ -49,7 +49,7 @@ const result = turf.moranIndex(dataset, {
 });
 ```
 
-Returns **[MoranIndex][8]**&#x20;
+Returns **[MoranIndex][8]** 
 
 ## mean
 
@@ -57,9 +57,9 @@ get mean of a list
 
 ### Parameters
 
-*   `y` **[Array][9]<[number][6]>**&#x20;
+*   `y` **[Array][9]<[number][6]>** 
 
-Returns **[number][6]**&#x20;
+Returns **[number][6]** 
 
 ## variance
 
@@ -67,9 +67,9 @@ get variance of a list
 
 ### Parameters
 
-*   `y` **[Array][9]<[number][6]>**&#x20;
+*   `y` **[Array][9]<[number][6]>** 
 
-Returns **[number][6]**&#x20;
+Returns **[number][6]** 
 
 ## MoranIndex
 

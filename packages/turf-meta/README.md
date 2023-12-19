@@ -43,7 +43,7 @@ turf.coordEach(features, function (currentCoord, coordIndex, featureIndex, multi
 });
 ```
 
-Returns **void**&#x20;
+Returns **void** 
 
 ## coordReduceCallback
 
@@ -141,7 +141,7 @@ turf.propEach(features, function (currentProperties, featureIndex) {
 });
 ```
 
-Returns **void**&#x20;
+Returns **void** 
 
 ## propReduceCallback
 
@@ -234,7 +234,7 @@ turf.featureEach(features, function (currentFeature, featureIndex) {
 });
 ```
 
-Returns **void**&#x20;
+Returns **void** 
 
 ## featureReduceCallback
 
@@ -352,7 +352,7 @@ turf.geomEach(features, function (currentGeometry, featureIndex, featureProperti
 });
 ```
 
-Returns **void**&#x20;
+Returns **void** 
 
 ## geomReduceCallback
 
@@ -521,7 +521,7 @@ Type: [Function][1]
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
 *   `segmentIndex` **[number][3]** The current index of the Segment being processed.
 
-Returns **void**&#x20;
+Returns **void** 
 
 ## segmentEach
 
@@ -554,7 +554,7 @@ turf.segmentEach(polygon, function () {
 });
 ```
 
-Returns **void**&#x20;
+Returns **void** 
 
 ## segmentReduceCallback
 
@@ -620,7 +620,7 @@ var total = turf.segmentReduce(polygon, function (previousValue) {
 }, initialValue);
 ```
 
-Returns **void**&#x20;
+Returns **void** 
 
 ## lineEachCallback
 

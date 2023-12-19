@@ -50,7 +50,7 @@ Type: [Function][2]
 *   `clusterValue` **any?** Value used to create cluster being processed.
 *   `currentIndex` **[number][3]?** The index of the current element being processed in the array.Starts at index 0
 
-Returns **void**&#x20;
+Returns **void** 
 
 ## clusterEach
 
@@ -96,7 +96,7 @@ turf.clusterEach(clustered, 'cluster', function (cluster, clusterValue) {
 });
 ```
 
-Returns **void**&#x20;
+Returns **void** 
 
 ## clusterReduceCallback
 

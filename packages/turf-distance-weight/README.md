@@ -12,7 +12,7 @@ calcualte the Minkowski p-norm distance between two features.
 *   `feature2` **[Feature][1]<[Point][2]>** point feature
 *   `p`  p-norm 1=\<p<=infinity 1: Manhattan distance 2: Euclidean distance (optional, default `2`)
 
-Returns **[number][3]**&#x20;
+Returns **[number][3]** 
 
 ## distanceWeight
 

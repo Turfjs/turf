@@ -2,7 +2,6 @@ import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import { clone } from "@turf/clone";
 import { distance } from "@turf/distance";
 import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
-// @ts-expect-error No types available for rbush.
 import RBush from "rbush";
 
 type Dbscan = "core" | "edge" | "noise";
@@ -121,14 +120,16 @@ function clustersDbscan(
 
     // Calculate the bounding box for the region query
     const bbox = { minX, minY, maxX, maxY };
-    return tree.search(bbox).filter((neighbor: IndexedPoint) => {
-      const neighborIndex = neighbor.index;
-      const neighborPoint = points.features[neighborIndex];
-      const distanceInKm = distance(point, neighborPoint, {
-        units: "kilometers",
-      });
-      return distanceInKm <= maxDistance;
-    }) as IndexedPoint[];
+    return (tree.search(bbox) as ReadonlyArray<IndexedPoint>).filter(
+      (neighbor) => {
+        const neighborIndex = neighbor.index;
+        const neighborPoint = points.features[neighborIndex];
+        const distanceInKm = distance(point, neighborPoint, {
+          units: "kilometers",
+        });
+        return distanceInKm <= maxDistance;
+      }
+    );
   };
 
   // Function to expand a cluster
