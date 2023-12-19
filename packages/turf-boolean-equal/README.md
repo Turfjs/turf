@@ -5,7 +5,7 @@
 ## booleanEqual
 
 Determine whether two geometries of the same type have identical X,Y coordinate values.
-See [http://edndoc.esri.com/arcsde/9.0/general\_topics/understand\_spatial\_relations.htm][1]
+See [http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relations.htm][1]
 
 ### Parameters
 

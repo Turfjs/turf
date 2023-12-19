@@ -25,7 +25,7 @@ It can handle segments of line or the whole line.
 
 ### Parameters
 
-*   `lines` **[FeatureCollection][3]<[LineString][4]>**&#x20;
+*   `lines` **[FeatureCollection][3]<[LineString][4]>** 
 *   `options` **[object][1]**  (optional, default `{}`)
 
     *   `options.planar` **[boolean][5]** whether the spatial reference system is projected or geographical. (optional, default `true`)

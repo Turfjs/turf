@@ -2,23 +2,18 @@
   "private": true,
   "funding": "https://opencollective.com/turf",
   "scripts": {
+    "docs": "tsx ./scripts/generate-readmes.ts",
     "lint": "npm-run-all lint:*",
-    "lint:eslint": "eslint packages",
-    "lint:prettier": "prettier --check .",
-    "lintDISABLED:mrl": "mrl check",
+    "lint:docs": "documentation lint packages/turf-*/index.js packages/turf-*/index.mjs",
     "lint:escheck-cjs": "es-check es8 packages/*/dist/cjs/index.cjs packages/turf/turf.min.js",
     "lint:escheck-esm": "es-check --module es8 packages/*/dist/esm/index.mjs",
     "lint:escheck-web": "es-check es5 packages/turf/turf.min.js",
-    "lint:docs": "documentation lint packages/turf-*/index.js packages/turf-*/index.mjs",
+    "lint:eslint": "eslint packages",
+    "lint:mrl": "mrl check",
+    "lint:prettier": "prettier --check .",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "lerna run build",
-    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks",
-    "docs": "tsx ./scripts/generate-readmes.ts"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "prepare": "lerna run build && husky install",
+    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
   },
   "lint-staged": {
     "package.json": [
@@ -29,11 +24,15 @@
       "prettier --write"
     ],
     "packages/*/index.{js,ts}": [
-      "./scripts/generate-readmes"
+      "pnpm tsx ./scripts/generate-readmes"
     ],
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "@monorepolint/cli": "0.5.0-alpha.132",
+    "@monorepolint/config": "0.5.0-alpha.132",
+    "@monorepolint/core": "0.5.0-alpha.132",
+    "@monorepolint/rules": "0.5.0-alpha.132",
     "@types/geojson": "7946.0.8",
     "@types/node": "18.11.9",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
@@ -50,12 +49,12 @@
     "eslint-plugin-prettier": "^5.0.1",
     "esm": "^3.2.25",
     "fs-extra": "^11.1.1",
-    "husky": "^4.3.8",
+    "glob": "^10.3.10",
+    "husky": "^8.0.0",
     "lerna": "^7.4.2",
     "lint-staged": "^10.5.4",
     "load-json-file": "^7.0.1",
     "meow": "^12.1.1",
-    "monorepolint": "^0.5.0-alpha.20",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
     "progress": "^2.0.3",

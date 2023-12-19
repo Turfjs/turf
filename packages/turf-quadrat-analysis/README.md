@@ -36,7 +36,7 @@ which is simply the area of the study area divided by the number of features.
 
     *   `options.studyBbox` **bbox?** bbox representing the study area
     *   `options.confidenceLevel` **[number][4]** a confidence level.
-        The unit is percentage . 5 means 95%, value must be in [K\_TABLE][5] (optional, default `20`)
+        The unit is percentage . 5 means 95%, value must be in [K_TABLE][5] (optional, default `20`)
 
 ### Examples
 
@@ -48,7 +48,7 @@ var result = turf.quadratAnalysis(dataset);
 
 Returns **[Object][3]** result [QuadratAnalysisResult][6]
 
-## K\_TABLE
+## K_TABLE
 
 the confidence level
 
@@ -56,12 +56,12 @@ Type: [Object][3]
 
 ### Properties
 
-*   `20` **[number][4]**&#x20;
-*   `15` **[number][4]**&#x20;
-*   `10` **[number][4]**&#x20;
-*   `5` **[number][4]**&#x20;
-*   `2` **[number][4]**&#x20;
-*   `1` **[number][4]**&#x20;
+*   `20` **[number][4]** 
+*   `15` **[number][4]** 
+*   `10` **[number][4]** 
+*   `5` **[number][4]** 
+*   `2` **[number][4]** 
+*   `1` **[number][4]** 
 
 ## QuadratAnalysisResult
 
@@ -71,9 +71,9 @@ Type: [Object][3]
 
 ### Properties
 
-*   `criticalValue` **[number][4]**&#x20;
-*   `maxAbsoluteDifference` **[number][4]**&#x20;
-*   `isRandom` **[boolean][7]**&#x20;
+*   `criticalValue` **[number][4]** 
+*   `maxAbsoluteDifference` **[number][4]** 
+*   `isRandom` **[boolean][7]** 
 *   `observedDistribution` **[Array][8]<[number][4]>** the cumulative distribution of observed features,
     the index represents the number of features in the quadrat.
 

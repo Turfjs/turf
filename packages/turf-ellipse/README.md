@@ -14,7 +14,7 @@ Takes a [Point][1] and calculates the ellipse polygon given two semi-axes expres
 *   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
     *   `options.angle` **[number][3]** angle of rotation in decimal degrees, positive clockwise (optional, default `0`)
-    *   `options.pivot` **[Coord][2]** point around which the rotation will be performed (optional, default `'origin'`)
+    *   `options.pivot` **[Coord][2]** point around which any rotation will be performed (optional, default `center`)
     *   `options.steps` **[number][3]** number of steps (optional, default `64`)
     *   `options.units` **[string][5]** unit of measurement for axes (optional, default `'kilometers'`)
     *   `options.properties` **[Object][4]** properties (optional, default `{}`)
