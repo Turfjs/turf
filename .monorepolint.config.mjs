@@ -41,12 +41,6 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
   }
 });
 
-const TS_BENCH_PACKAGES = BENCH_PACKAGES.filter(
-  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
-);
-const JS_BENCH_PACKAGES = BENCH_PACKAGES.filter(
-  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
-);
 const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
   (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
 );
