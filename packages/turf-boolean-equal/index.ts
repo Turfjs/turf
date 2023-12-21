@@ -1,5 +1,5 @@
 import { Feature, Geometry } from "geojson";
-import GeojsonEquality from "geojson-equality";
+import { GeojsonEquality } from "@turf/helpers";
 import { cleanCoords } from "@turf/clean-coords";
 import { getGeom } from "@turf/invariant";
 
