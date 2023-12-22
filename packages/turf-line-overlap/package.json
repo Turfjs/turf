@@ -76,7 +76,7 @@
     "@turf/line-segment": "workspace:^",
     "@turf/meta": "workspace:^",
     "@turf/nearest-point-on-line": "workspace:^",
-    "deep-equal": "^1.1.1",
+    "deep-equal": "^2.2.3",
     "tslib": "^2.6.2"
   }
 }

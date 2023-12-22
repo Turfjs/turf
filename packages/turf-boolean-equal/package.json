@@ -59,7 +59,6 @@
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",
-    "@types/geojson-equality": "^0.2.2",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
     "boolean-shapely": "*",
@@ -75,7 +74,6 @@
     "@turf/clean-coords": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
-    "geojson-equality": "0.1.6",
     "tslib": "^2.6.2"
   }
 }
