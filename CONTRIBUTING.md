@@ -93,33 +93,32 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 
 - create a new branch with some name
 - write up changelog changes (manually), commit that
-- yarn lerna version --no-push --no-commit-hooks 6.2.0-alpha.2
+- pnpm lerna version --no-push 7.0.0-alpha.3
   This lets lerna update the package.json versions (and dependencies) and commits the result as well as adds a tag
-  --no-push because we can't push to master
-  --no-commit-hooks because otherwise the commit hooks will prevent the commit
+  --no-push because we can't push to master directly
 - git push origin --follow-tags \$branch
 - make PR
 - merge PR
 - re-fetch the new master and check it out locally
-- yarn install
-- yarn lerna publish --dist-tag prerelease --ignore-scripts from-package
-  - --dist-tag is important to avoid tagging this release as the stable release
-  - --ignore-scripts skips the build steps since they already ran during yarn install
-  - you will likely need to publish several times as your OTP expires
-  - you might get rate limited as well
-  - between publish attempts, you'll have to undo the gitHead changes in the package.json files
+- git clean -fdx (this will delete any unsaved local changes!)
+- pnpm install
+- pnpm test
+- pnpm publish -r --tag prerelease
+  - --tag is important to avoid tagging this release as the stable release
+  - you may be required to auth with `pnpm login`
 
 ### Release
 - create new branch with some name
 - write up changelog changes (manually), commit that
 - make PR (don't merge)
-- yarn lerna version --no-push --no-commit-hooks 6.2.0
+- pnpm lerna version --no-push 7.0.0
 - git push origin --follow-tags \$branch
 - merge PR
 - re-fetch the new master and check it out locally
-- yarn install
-- yarn lerna publish --ignore-scripts from-package
-
+- git clean -fdx (this will delete any unsaved local changes!)
+- pnpm install
+- pnpm test
+- pnpm publish -r
 
 ## Documentation
 
