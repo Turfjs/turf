@@ -91,21 +91,8 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 
 ### Prerelease
 
-- create a new branch with some name
-- write up changelog changes (manually), commit that
-- pnpm lerna version --no-push 7.0.0-alpha.3
-  This lets lerna update the package.json versions (and dependencies) and commits the result as well as adds a tag
-  --no-push because we can't push to master directly
-- git push origin --follow-tags \$branch
-- make PR
-- merge PR
-- re-fetch the new master and check it out locally
-- git clean -fdx (this will delete any unsaved local changes!)
-- pnpm install
-- pnpm test
-- pnpm publish -r --tag prerelease
-  - --tag is important to avoid tagging this release as the stable release
-  - you may be required to auth with `pnpm login`
+- Every merged PR should trigger an automatic canary release
+- The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. Specifically having `major` is appropriate for the pre-7.0 development phase, but we should change it to `minor` after 7.0.0 is finally released.
 
 ### Release
 - create new branch with some name
@@ -113,7 +100,7 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 - make PR (don't merge)
 - pnpm lerna version --no-push 7.0.0
 - git push origin --follow-tags \$branch
-- merge PR
+- merge PR (do not squash or the tags won't transfer)
 - re-fetch the new master and check it out locally
 - git clean -fdx (this will delete any unsaved local changes!)
 - pnpm install
