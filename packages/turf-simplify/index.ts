@@ -6,8 +6,9 @@ import { AllGeoJSON, isObject } from "@turf/helpers";
 import { simplify as simplifyJS } from "./lib/simplify";
 
 /**
- * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses
+ * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses the 2d version of
  * [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification using the Ramer-Douglas-Peucker algorithm.
+ *
  *
  * @name simplify
  * @param {GeoJSON} geojson object to be simplified

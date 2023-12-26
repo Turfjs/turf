@@ -4,7 +4,7 @@
 
 ## simplify
 
-Takes a [GeoJSON][1] object and returns a simplified version. Internally uses
+Takes a [GeoJSON][1] object and returns a simplified version. Internally uses the 2d version of
 [simplify-js][2] to perform simplification using the Ramer-Douglas-Peucker algorithm.
 
 ### Parameters
