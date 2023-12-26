@@ -54,9 +54,9 @@ function simplify<T extends AllGeoJSON>(
   } = {}
 ): T {
   // Optional parameters
-  options = options || {};
+  options = options ?? {};
   if (!isObject(options)) throw new Error("options is invalid");
-  const tolerance = options.tolerance !== undefined ? options.tolerance : 1;
+  const tolerance = options.tolerance ?? 1;
   const highQuality = options.highQuality ?? false;
   const mutate = options.mutate ?? false;
 
@@ -96,64 +96,34 @@ function simplifyGeom(
 
   if (type !== "GeometryCollection") {
     // TODO should this cater for GeometryCollections too?
-    const coordinates = geometry.coordinates;
     switch (type) {
       case "LineString":
-        geometry.coordinates = simplifyLine(
-          coordinates as Position[],
+        geometry.coordinates = simplifyJS(
+          geometry.coordinates,
           tolerance,
           highQuality
         );
         break;
       case "MultiLineString":
-        geometry.coordinates = (coordinates as Position[][]).map(
-          function (lines) {
-            return simplifyLine(lines, tolerance, highQuality);
-          }
+        geometry.coordinates = geometry.coordinates.map((lines) =>
+          simplifyJS(lines, tolerance, highQuality)
         );
         break;
       case "Polygon":
         geometry.coordinates = simplifyPolygon(
-          coordinates as Position[][],
+          geometry.coordinates,
           tolerance,
           highQuality
         );
         break;
       case "MultiPolygon":
-        geometry.coordinates = (coordinates as Position[][][]).map(
-          function (rings) {
-            return simplifyPolygon(rings, tolerance, highQuality);
-          }
+        geometry.coordinates = geometry.coordinates.map((rings) =>
+          simplifyPolygon(rings, tolerance, highQuality)
         );
     }
   }
 
   return geometry;
-}
-
-/**
- * Simplifies the coordinates of a LineString with simplify-js
- *
- * @private
- * @param {Array<number>} coordinates to be processed
- * @param {number} tolerance simplification tolerance
- * @param {boolean} highQuality whether or not to spend more time to create a higher-quality
- * @returns {Array<Array<number>>} simplified coords
- */
-function simplifyLine(
-  coordinates: Position[],
-  tolerance: number,
-  highQuality: boolean
-) {
-  return simplifyJS(
-    coordinates.map(function (coord) {
-      return { x: coord[0], y: coord[1], z: coord[2] };
-    }),
-    tolerance,
-    highQuality
-  ).map(function (coords) {
-    return coords.z ? [coords.x, coords.y, coords.z] : [coords.x, coords.y];
-  });
 }
 
 /**
@@ -171,25 +141,15 @@ function simplifyPolygon(
   highQuality: boolean
 ) {
   return coordinates.map(function (ring) {
-    const pts = ring.map(function (coord) {
-      return { x: coord[0], y: coord[1] };
-    });
-    if (pts.length < 4) {
+    if (ring.length < 4) {
       throw new Error("invalid polygon");
     }
-    let simpleRing = simplifyJS(pts, tolerance, highQuality).map(
-      function (coords) {
-        return [coords.x, coords.y];
-      }
-    );
-    //remove 1 percent of tolerance until enough points to make a triangle
+    let ringTolerance = tolerance;
+    let simpleRing = simplifyJS(ring, ringTolerance, highQuality);
+    // remove 1 percent of tolerance until enough points to make a triangle
     while (!checkValidity(simpleRing)) {
-      tolerance -= tolerance * 0.01;
-      simpleRing = simplifyJS(pts, tolerance, highQuality).map(
-        function (coords) {
-          return [coords.x, coords.y];
-        }
-      );
+      ringTolerance -= ringTolerance * 0.01;
+      simpleRing = simplifyJS(ring, ringTolerance, highQuality);
     }
     if (
       simpleRing[simpleRing.length - 1][0] !== simpleRing[0][0] ||
