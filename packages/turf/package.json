@@ -86,6 +86,7 @@
     "documentation": "^13.2.5",
     "glob": "^10.3.10",
     "rollup": "^2.79.1",
+    "rollup-plugin-polyfill-node": "^0.13.0",
     "tape": "^5.7.2",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
