@@ -3,7 +3,7 @@ import { cleanCoords } from "@turf/clean-coords";
 import { clone } from "@turf/clone";
 import { geomEach } from "@turf/meta";
 import { AllGeoJSON, isObject } from "@turf/helpers";
-import { simplify as simplifyJS } from "./lib/simplify";
+import { simplify as simplifyJS } from "./lib/simplify.js";
 
 /**
  * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses the 2d version of

@@ -15,9 +15,9 @@ import {
   GeoJsonProperties,
 } from "geojson";
 
-import { Id } from "./lib/geojson";
-export * from "./lib/geojson";
-export * from "./lib/geojson-equality";
+import { Id } from "./lib/geojson.js";
+export * from "./lib/geojson.js";
+export * from "./lib/geojson-equality.js";
 
 // TurfJS Combined Types
 export type Coord = Feature<Point> | Point | Position;

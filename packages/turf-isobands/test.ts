@@ -9,7 +9,7 @@ import { truncate } from "@turf/truncate";
 import { getCoords } from "@turf/invariant";
 import { lineString } from "@turf/helpers";
 import { randomPolygon } from "@turf/random";
-import { matrixToGrid } from "./lib/matrix-to-grid";
+import { matrixToGrid } from "./lib/matrix-to-grid.js";
 import { isobands } from "./index";
 
 const directories = {

@@ -88,21 +88,29 @@ export default {
     packageEntry({
       options: {
         entries: {
+          type: "module",
+          main: "dist/cjs/index.cjs",
+          module: "dist/esm/index.mjs",
+          types: "dist/esm/index.d.ts",
+          sideEffects: false,
+          publishConfig: {
+            access: "public",
+          },
           // @turf/turf is commonly consumed through CDNs, moving this output file is a breaking change for anyone
           // who has a hardcoded reference to this specific file, instead of letting the CDN pick the path.
           // Example of a URL that will break: https://unpkg.com/@turf/turf/dist/turf.min.js
           // Example of a URL that will keep working: https://unpkg.com/@turf/turf
           browser: "turf.min.js",
-          files: ["dist", "index.d.ts", "turf.min.js"],
+          files: ["dist", "turf.min.js"],
           exports: {
             "./package.json": "./package.json",
             ".": {
               import: {
-                types: "./dist/esm/index.d.mts",
+                types: "./dist/esm/index.d.ts",
                 default: "./dist/esm/index.mjs",
               },
               require: {
-                types: "./dist/cjs/index.d.ts",
+                types: "./dist/cjs/index.d.cts",
                 default: "./dist/cjs/index.cjs",
               },
             },
@@ -115,9 +123,10 @@ export default {
     packageEntry({
       options: {
         entries: {
+          type: "module",
           main: "dist/cjs/index.cjs",
           module: "dist/esm/index.mjs",
-          types: "dist/cjs/index.d.ts",
+          types: "dist/esm/index.d.ts",
           sideEffects: false,
           publishConfig: {
             access: "public",
@@ -126,11 +135,11 @@ export default {
             "./package.json": "./package.json",
             ".": {
               import: {
-                types: "./dist/esm/index.d.mts",
+                types: "./dist/esm/index.d.ts",
                 default: "./dist/esm/index.mjs",
               },
               require: {
-                types: "./dist/cjs/index.d.ts",
+                types: "./dist/cjs/index.d.cts",
                 default: "./dist/cjs/index.cjs",
               },
             },
@@ -146,16 +155,7 @@ export default {
           files: ["dist"],
         },
       },
-      includePackages: TS_PACKAGES,
-    }),
-
-    packageEntry({
-      options: {
-        entries: {
-          files: ["dist", "index.d.ts"],
-        },
-      },
-      includePackages: JS_PACKAGES,
+      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
     }),
 
     packageEntry({

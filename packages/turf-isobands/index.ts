@@ -20,7 +20,7 @@ import {
   Feature,
 } from "geojson";
 
-import { gridToMatrix } from "./lib/grid-to-matrix";
+import { gridToMatrix } from "./lib/grid-to-matrix.js";
 import { isoBands } from "marchingsquares";
 
 type GroupRingProps = { [prop: string]: string };

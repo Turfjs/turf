@@ -15,7 +15,7 @@ import {
   polygon,
 } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
-import { lineclip, polygonclip } from "./lib/lineclip";
+import { lineclip, polygonclip } from "./lib/lineclip.js";
 
 /**
  * Takes a {@link Feature} and a bbox and clips the feature to the bbox using
