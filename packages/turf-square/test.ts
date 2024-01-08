@@ -1,5 +1,5 @@
 import test from "tape";
-import { square } from "./index";
+import { square } from "./index.js";
 
 test("square", function (t) {
   var bbox1 = [0, 0, 5, 10];

@@ -9,9 +9,7 @@ import {
   Polygon,
 } from "geojson";
 import type { Intersection } from "sweepline-intersections";
-// Workaround for sweepline-intersections import weirdness - https://github.com/microsoft/TypeScript/issues/50690#issuecomment-1279788156
-import SweeplineIntersectionsModule from "sweepline-intersections";
-const findIntersections = SweeplineIntersectionsModule.default;
+import { sweeplineIntersections as findIntersections } from "./lib/sweepline-intersections-export.js";
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).

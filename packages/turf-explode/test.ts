@@ -4,11 +4,11 @@ import tape from "tape";
 import { all as fixtures } from "geojson-fixtures";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import { explode } from "./index";
+import { explode } from "./index.js";
 
 const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
+  in: path.join("test", "in") + path.sep,
+  out: path.join("test", "out") + path.sep,
 };
 
 // Save input fixtures

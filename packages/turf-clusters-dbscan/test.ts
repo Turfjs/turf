@@ -4,16 +4,18 @@ import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { centroid } from "@turf/centroid";
-import * as chromatism from "chromatism";
+import chromatism from "chromatism";
 import concaveman from "concaveman";
 import { point, polygon, featureCollection } from "@turf/helpers";
 import { clusterReduce, clusterEach } from "@turf/clusters";
 import { coordAll, featureEach } from "@turf/meta";
-import { clustersDbscan } from "./index";
+import { clustersDbscan } from "./index.js";
+
+console.log(chromatism.adjacent);
 
 const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
+  in: path.join("test", "in") + path.sep,
+  out: path.join("test", "out") + path.sep,
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {

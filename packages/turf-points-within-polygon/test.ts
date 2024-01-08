@@ -2,7 +2,7 @@ import test from "tape";
 import { multiPoint, point, points } from "@turf/helpers";
 import { polygon } from "@turf/helpers";
 import { featureCollection } from "@turf/helpers";
-import { pointsWithinPolygon } from "./index";
+import { pointsWithinPolygon } from "./index.js";
 
 test("turf-points-within-polygon -- point", (t) => {
   t.plan(4);

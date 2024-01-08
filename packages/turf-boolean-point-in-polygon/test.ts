@@ -2,7 +2,7 @@ import fs from "fs";
 import test from "tape";
 import { point } from "@turf/helpers";
 import { polygon } from "@turf/helpers";
-import { booleanPointInPolygon } from "./index";
+import { booleanPointInPolygon } from "./index.js";
 
 test("boolean-point-in-polygon -- featureCollection", function (t) {
   // test for a simple polygon
@@ -51,9 +51,7 @@ test("boolean-point-in-polygon -- poly with hole", function (t) {
   var ptInHole = point([-86.69208526611328, 36.20373274711739]);
   var ptInPoly = point([-86.72229766845702, 36.20258997094334]);
   var ptOutsidePoly = point([-86.75079345703125, 36.18527313913089]);
-  var polyHole = JSON.parse(
-    fs.readFileSync(__dirname + "/test/in/poly-with-hole.geojson")
-  );
+  var polyHole = JSON.parse(fs.readFileSync("test/in/poly-with-hole.geojson"));
 
   t.false(booleanPointInPolygon(ptInHole, polyHole));
   t.true(booleanPointInPolygon(ptInPoly, polyHole));
@@ -68,7 +66,7 @@ test("boolean-point-in-polygon -- multipolygon with hole", function (t) {
   var ptInPoly2 = point([-86.75079345703125, 36.18527313913089]);
   var ptOutsidePoly = point([-86.75302505493164, 36.23015046460186]);
   var multiPolyHole = JSON.parse(
-    fs.readFileSync(__dirname + "/test/in/multipoly-with-hole.geojson")
+    fs.readFileSync("test/in/multipoly-with-hole.geojson")
   );
 
   t.false(booleanPointInPolygon(ptInHole, multiPolyHole));

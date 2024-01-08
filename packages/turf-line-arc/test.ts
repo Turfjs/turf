@@ -5,11 +5,11 @@ import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureCollection, point } from "@turf/helpers";
-import { lineArc } from "./index";
+import { lineArc } from "./index.js";
 
 const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
+  in: path.join("test", "in") + path.sep,
+  out: path.join("test", "out") + path.sep,
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {

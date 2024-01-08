@@ -8,7 +8,7 @@ import {
   multiLineString,
   featureCollection,
 } from "@turf/helpers";
-import { bbox } from "./index";
+import { bbox } from "./index.js";
 
 // Fixtures
 const pt = point([102.0, 0.5]);

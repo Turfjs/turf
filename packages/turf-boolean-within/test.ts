@@ -4,12 +4,12 @@ import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import shapely from "boolean-shapely";
 import booleanJSTS from "boolean-jsts";
-import { booleanWithin as within } from "./index";
+import { booleanWithin as within } from "./index.js";
 
 test("turf-boolean-within", (t) => {
   // True Fixtures
   glob
-    .sync(path.join(__dirname, "test", "true", "**", "*.geojson"))
+    .sync(path.join("test", "true", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       if (name.includes("skip")) return t.skip(name);
@@ -32,7 +32,7 @@ test("turf-boolean-within", (t) => {
     });
   // False Fixtures
   glob
-    .sync(path.join(__dirname, "test", "false", "**", "*.geojson"))
+    .sync(path.join("test", "false", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       if (name.includes("skip")) return t.skip(name);

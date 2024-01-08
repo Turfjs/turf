@@ -1,6 +1,6 @@
 import test from "tape";
 import { featureCollection, point, polygon } from "@turf/helpers";
-import { collect } from "./index";
+import { collect } from "./index.js";
 
 test("turf collect module", (t) => {
   const poly1 = polygon([

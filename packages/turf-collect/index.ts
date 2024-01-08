@@ -1,9 +1,7 @@
 import { FeatureCollection, Polygon, Point } from "geojson";
 import { bbox as turfbbox } from "@turf/bbox";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
-// Workaround for Rbush import weirdness - https://github.com/microsoft/TypeScript/issues/50690#issuecomment-1279788156
-import RbushModule from "rbush";
-const rbush = RbushModule.default;
+import { rbush } from "./lib/rbush-export.js";
 
 interface Entry {
   minX: number;

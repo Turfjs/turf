@@ -6,11 +6,11 @@ import { writeJsonFileSync } from "write-json-file";
 import { getCoords } from "@turf/invariant";
 import { lineString, featureCollection } from "@turf/helpers";
 import { truncate } from "@turf/truncate";
-import { destination } from "./index";
+import { destination } from "./index.js";
 
 const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
+  in: path.join("test", "in") + path.sep,
+  out: path.join("test", "out") + path.sep,
 };
 
 test("turf-destination", (t) => {

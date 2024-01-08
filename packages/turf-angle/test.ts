@@ -8,83 +8,81 @@ import { bearing } from "@turf/bearing";
 import { truncate } from "@turf/truncate";
 import { distance } from "@turf/distance";
 import { point, round, lineString, featureCollection } from "@turf/helpers";
-import { angle } from "./index";
+import { angle } from "./index.js";
 
 test("turf-angle", (t) => {
-  glob
-    .sync(path.join(__dirname, "test", "in", "*.json"))
-    .forEach((filepath) => {
-      // Input
-      const { name } = path.parse(filepath);
-      const geojson = loadJsonFileSync(filepath);
-      const [start, mid, end] = geojson.features;
+  glob.sync(path.join("test", "in", "*.json")).forEach((filepath) => {
+    // Input
+    const { name } = path.parse(filepath);
+    const geojson = loadJsonFileSync(filepath);
+    const [start, mid, end] = geojson.features;
 
-      // Results
-      const angleProperties = {
-        interiorAngle: round(angle(start, mid, end), 6),
-        interiorMercatorAngle: round(
-          angle(start, mid, end, { mercator: true }),
-          6
-        ),
-        explementary: false,
-        fill: "#F00",
-        stroke: "#F00",
-        "fill-opacity": 0.3,
-      };
-      const angleExplementaryProperties = {
-        explementaryAngle: round(
-          angle(start, mid, end, { explementary: true }),
-          6
-        ),
-        explementaryMercatorAngle: round(
-          angle(start, mid, end, { explementary: true, mercator: true }),
-          6
-        ),
-        explementary: true,
-        fill: "#00F",
-        stroke: "#00F",
-        "fill-opacity": 0.3,
-      };
-      const results = featureCollection([
-        truncate(
-          sector(
-            mid,
-            distance(mid, start) / 3,
-            bearing(mid, start),
-            bearing(mid, end),
-            { properties: angleProperties }
-          )
-        ),
-        truncate(
-          sector(
-            mid,
-            distance(mid, start) / 2,
-            bearing(mid, end),
-            bearing(mid, start),
-            { properties: angleExplementaryProperties }
-          )
-        ),
-        lineString(
-          [
-            start.geometry.coordinates,
-            mid.geometry.coordinates,
-            end.geometry.coordinates,
-          ],
-          { "stroke-width": 4, stroke: "#222" }
-        ),
-        start,
-        mid,
-        end,
-      ]);
+    // Results
+    const angleProperties = {
+      interiorAngle: round(angle(start, mid, end), 6),
+      interiorMercatorAngle: round(
+        angle(start, mid, end, { mercator: true }),
+        6
+      ),
+      explementary: false,
+      fill: "#F00",
+      stroke: "#F00",
+      "fill-opacity": 0.3,
+    };
+    const angleExplementaryProperties = {
+      explementaryAngle: round(
+        angle(start, mid, end, { explementary: true }),
+        6
+      ),
+      explementaryMercatorAngle: round(
+        angle(start, mid, end, { explementary: true, mercator: true }),
+        6
+      ),
+      explementary: true,
+      fill: "#00F",
+      stroke: "#00F",
+      "fill-opacity": 0.3,
+    };
+    const results = featureCollection([
+      truncate(
+        sector(
+          mid,
+          distance(mid, start) / 3,
+          bearing(mid, start),
+          bearing(mid, end),
+          { properties: angleProperties }
+        )
+      ),
+      truncate(
+        sector(
+          mid,
+          distance(mid, start) / 2,
+          bearing(mid, end),
+          bearing(mid, start),
+          { properties: angleExplementaryProperties }
+        )
+      ),
+      lineString(
+        [
+          start.geometry.coordinates,
+          mid.geometry.coordinates,
+          end.geometry.coordinates,
+        ],
+        { "stroke-width": 4, stroke: "#222" }
+      ),
+      start,
+      mid,
+      end,
+    ]);
 
-      // Save results
-      const expected = filepath.replace(
-        path.join("test", "in"),
-        path.join("test", "out")
-      );
-      if (process.env.REGEN) writeJsonFileSync(expected, results);
-      t.deepEqual(results, loadJsonFileSync(expected), name);
-    });
+    // Save results
+    const expected = filepath.replace(
+      path.join("test", "in"),
+      path.join("test", "out")
+    );
+    if (process.env.REGEN) writeJsonFileSync(expected, results);
+    t.deepEqual(results, loadJsonFileSync(expected), name);
+  });
   t.end();
 });
 

@@ -3,7 +3,7 @@
 import test from "tape";
 
 import { polygon } from "@turf/helpers";
-import { planepoint } from "./index";
+import { planepoint } from "./index.js";
 
 test("turf-planepoint", (t) => {
   const point = [1, 1];

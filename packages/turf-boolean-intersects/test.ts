@@ -3,12 +3,12 @@ import path from "path";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import shapely from "boolean-shapely";
-import { booleanIntersects as intersects } from "./index";
+import { booleanIntersects as intersects } from "./index.js";
 
 test("turf-boolean-intersects", (t) => {
   // True Fixtures
   glob
-    .sync(path.join(__dirname, "test", "true", "**", "*.geojson"))
+    .sync(path.join("test", "true", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);
@@ -24,7 +24,7 @@ test("turf-boolean-intersects", (t) => {
     });
   // False Fixtures
   glob
-    .sync(path.join(__dirname, "test", "false", "**", "*.geojson"))
+    .sync(path.join("test", "false", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);

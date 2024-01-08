@@ -1,5 +1,5 @@
 import test from "tape";
-import { bboxPolygon } from "./index";
+import { bboxPolygon } from "./index.js";
 
 test("bbox-polygon", (t) => {
   const poly = bboxPolygon([0, 0, 10, 10]);

@@ -8,9 +8,7 @@ import {
   Polygon,
 } from "geojson";
 import { point } from "@turf/helpers";
-// Workaround for sweepline-intersections import weirdness - https://github.com/microsoft/TypeScript/issues/50690#issuecomment-1279788156
-import SweeplineIntersectionsModule from "sweepline-intersections";
-const findIntersections = SweeplineIntersectionsModule.default;
+import { sweeplineIntersections as findIntersections } from "./lib/sweepline-intersections-export.js";
 
 /**
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring},

@@ -3,17 +3,11 @@ import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { along } from "@turf/along";
 import { length } from "@turf/length";
-import { lineSliceAlong } from "./index";
+import { lineSliceAlong } from "./index.js";
 
-var line1 = loadJsonFileSync(
-  path.join(__dirname, "test", "fixtures", "line1.geojson")
-);
-var route1 = loadJsonFileSync(
-  path.join(__dirname, "test", "fixtures", "route1.geojson")
-);
-var route2 = loadJsonFileSync(
-  path.join(__dirname, "test", "fixtures", "route2.geojson")
-);
+var line1 = loadJsonFileSync(path.join("test", "fixtures", "line1.geojson"));
+var route1 = loadJsonFileSync(path.join("test", "fixtures", "route1.geojson"));
+var route2 = loadJsonFileSync(path.join("test", "fixtures", "route2.geojson"));
 
 test("turf-line-slice-along -- line1", function (t) {
   var start = 500;

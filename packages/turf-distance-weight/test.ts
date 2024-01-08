@@ -3,7 +3,7 @@ import { point } from "@turf/helpers";
 import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
-import { distanceWeight, pNormDistance } from "./index";
+import { distanceWeight, pNormDistance } from "./index.js";
 
 test("pNormDistance function", (t) => {
   t.equal(pNormDistance(point([2, 0]), point([0, 0]), 2), 2, "2-norm is ok");
@@ -12,7 +12,7 @@ test("pNormDistance function", (t) => {
 });
 
 test("turf-distance-weight", (t) => {
-  const columbusPath = path.join(__dirname, "test", "in", "point.json");
+  const columbusPath = path.join("test", "in", "point.json");
   const columbusJson = loadJsonFileSync(columbusPath);
 
   let result = distanceWeight(columbusJson, {

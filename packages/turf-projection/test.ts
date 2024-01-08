@@ -8,12 +8,12 @@ import { clone } from "@turf/clone";
 import { point } from "@turf/helpers";
 import { truncate } from "@turf/truncate";
 import { coordEach } from "@turf/meta";
-import { toMercator, toWgs84 } from "./index";
+import { toMercator, toWgs84 } from "./index.js";
 
 const directories = {
-  mercator: path.join(__dirname, "test", "mercator") + path.sep,
-  wgs84: path.join(__dirname, "test", "wgs84") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
+  mercator: path.join("test", "mercator") + path.sep,
+  wgs84: path.join("test", "wgs84") + path.sep,
+  out: path.join("test", "out") + path.sep,
 };
 
 const fromWgs84 = fs.readdirSync(directories.wgs84).map((filename) => {

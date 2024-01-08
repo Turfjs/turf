@@ -4,10 +4,10 @@ import { glob } from "glob";
 import test from "tape";
 import camelCase from "camelcase";
 import documentation from "documentation";
-import * as turf from "./index";
+import * as turf from "./index.js";
 
 // Helpers
-const directory = path.join(__dirname, "..");
+const directory = path.join("..");
 let modules = [];
 for (const name of fs.readdirSync(directory)) {
   if (!name.includes("turf")) continue;
@@ -126,7 +126,7 @@ test("turf -- external files must be in the lib folder", (t) => {
 });
 
 test("turf -- MIT license", (t) => {
-  const text = fs.readFileSync(path.join(__dirname, "LICENSE"), "utf8");
+  const text = fs.readFileSync(path.join("LICENSE"), "utf8");
   for (const { name, dir, pckg } of modules) {
     const { license } = pckg;
     if (license !== "MIT") t.fail(`${name} (license) must be "MIT"`);
@@ -218,8 +218,8 @@ test("turf -- parsing dependencies from index.js", (t) => {
 // Test for missing modules
 test("turf -- missing modules", (t) => {
   const files = {
-    typescript: fs.readFileSync(path.join(__dirname, "dist/cjs/index.d.ts")),
-    modules: fs.readFileSync(path.join(__dirname, "dist/cjs/index.cjs")),
+    typescript: fs.readFileSync(path.join("dist/cjs/index.d.cts")),
+    modules: fs.readFileSync(path.join("dist/cjs/index.cjs")),
   };
 
   modules.forEach(({ name }) => {
@@ -322,13 +322,13 @@ test("turf -- update to newer Typescript definitions", (t) => {
  */
 
 // File Paths
-const testFilePath = path.join(__dirname, "test.example.js");
-const turfModulesPath = path.join(__dirname, "..", "turf-*", "index.js");
-const turfTypescriptPath = path.join(__dirname, "..", "turf-*", "index.d.ts");
+const testFilePath = path.join("test.example.js");
+const turfModulesPath = path.join("..", "turf-*", "index.js");
+const turfTypescriptPath = path.join("..", "turf-*", "index.d.ts");
 
 // Test Strings
-const requireString = `const test = require('tape');
-const turf = require('./dist/cjs/index.cjs');
+const requireString = `import test from 'tape';
+import turf from './dist/cjs/index.cjs';
 `;
 
 /**

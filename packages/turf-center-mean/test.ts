@@ -7,45 +7,43 @@ import { truncate } from "@turf/truncate";
 import { featureEach, coordEach } from "@turf/meta";
 import { lineString, featureCollection } from "@turf/helpers";
 import { center } from "@turf/center";
-import { centerMean } from "./index";
+import { centerMean } from "./index.js";
 
 test("turf-center-mean", (t) => {
-  glob
-    .sync(path.join(__dirname, "test", "in", "*.geojson"))
-    .forEach((filepath) => {
-      const geojson = loadJsonFileSync(filepath);
-      const options = geojson.options || {};
-      options.properties = { "marker-symbol": "star", "marker-color": "#F00" };
-      const centered = truncate(centerMean(geojson, options));
+  glob.sync(path.join("test", "in", "*.geojson")).forEach((filepath) => {
+    const geojson = loadJsonFileSync(filepath);
+    const options = geojson.options || {};
+    options.properties = { "marker-symbol": "star", "marker-color": "#F00" };
+    const centered = truncate(centerMean(geojson, options));
 
-      // Display Results
-      const results = featureCollection([]);
-      featureEach(geojson, (feature) => results.features.push(feature));
-      coordEach(geojson, (coord) =>
-        results.features.push(
-          lineString([coord, centered.geometry.coordinates], {
-            stroke: "#00F",
-            "stroke-width": 1,
-          })
-        )
-      );
-      // Add @turf/center to compare position
+    // Display Results
+    const results = featureCollection([]);
+    featureEach(geojson, (feature) => results.features.push(feature));
+    coordEach(geojson, (coord) =>
       results.features.push(
-        truncate(
-          center(geojson, {
-            properties: { "marker-symbol": "circle", "marker-color": "#00F" },
-          })
-        )
-      );
-      results.features.push(centered);
+        lineString([coord, centered.geometry.coordinates], {
+          stroke: "#00F",
+          "stroke-width": 1,
+        })
+      )
+    );
+    // Add @turf/center to compare position
+    results.features.push(
+      truncate(
+        center(geojson, {
+          properties: { "marker-symbol": "circle", "marker-color": "#00F" },
+        })
+      )
+    );
+    results.features.push(centered);
 
-      const out = filepath.replace(
-        path.join("test", "in"),
-        path.join("test", "out")
-      );
-      if (process.env.REGEN) writeJsonFileSync(out, results);
-      t.deepEqual(results, loadJsonFileSync(out), path.parse(filepath).name);
-    });
+    const out = filepath.replace(
+      path.join("test", "in"),
+      path.join("test", "out")
+    );
+    if (process.env.REGEN) writeJsonFileSync(out, results);
+    t.deepEqual(results, loadJsonFileSync(out), path.parse(filepath).name);
+  });
   t.end();
 });
 

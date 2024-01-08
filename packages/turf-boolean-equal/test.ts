@@ -4,12 +4,12 @@ import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import shapely from "boolean-shapely";
 import { point, lineString, polygon } from "@turf/helpers";
-import { booleanEqual as equal } from "./index";
+import { booleanEqual as equal } from "./index.js";
 
 test("turf-boolean-equal", (t) => {
   // True Fixtures
   glob
-    .sync(path.join(__dirname, "test", "true", "**", "*.geojson"))
+    .sync(path.join("test", "true", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);
@@ -26,7 +26,7 @@ test("turf-boolean-equal", (t) => {
     });
   // False Fixtures
   glob
-    .sync(path.join(__dirname, "test", "false", "**", "*.geojson"))
+    .sync(path.join("test", "false", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);

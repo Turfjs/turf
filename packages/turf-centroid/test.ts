@@ -5,11 +5,11 @@ import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { featureEach } from "@turf/meta";
 import { featureCollection, lineString } from "@turf/helpers";
-import { centroid } from "./index";
+import { centroid } from "./index.js";
 
 const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
+  in: path.join("test", "in") + path.sep,
+  out: path.join("test", "out") + path.sep,
 };
 
 const fixtures = glob.sync(directories.in + "*.geojson").map((input) => {

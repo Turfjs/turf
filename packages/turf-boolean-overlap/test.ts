@@ -10,12 +10,12 @@ import {
   multiLineString,
   multiPolygon,
 } from "@turf/helpers";
-import { booleanOverlap as overlap } from "./index";
+import { booleanOverlap as overlap } from "./index.js";
 
 test("turf-boolean-overlap", (t) => {
   // True Fixtures
   glob
-    .sync(path.join(__dirname, "test", "true", "**", "*.geojson"))
+    .sync(path.join("test", "true", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);
@@ -31,7 +31,7 @@ test("turf-boolean-overlap", (t) => {
     });
   // False Fixtures
   glob
-    .sync(path.join(__dirname, "test", "false", "**", "*.geojson"))
+    .sync(path.join("test", "false", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);

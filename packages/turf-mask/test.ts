@@ -3,13 +3,13 @@ import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import { mask } from "./index";
+import { mask } from "./index.js";
 
 const SKIP = ["multi-polygon.geojson", "overlapping.geojson"];
 
 const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
+  in: path.join("test", "in") + path.sep,
+  out: path.join("test", "out") + path.sep,
 };
 
 let fixtures = fs.readdirSync(directories.in).map((filename) => {

@@ -5,11 +5,11 @@ import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { bboxPolygon as bboxPoly } from "@turf/bbox-polygon";
-import { hexGrid } from "./index";
+import { hexGrid } from "./index.js";
 
 const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
+  in: path.join("test", "in") + path.sep,
+  out: path.join("test", "out") + path.sep,
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {
@@ -55,7 +55,7 @@ test("hex-grid", (t) => {
 });
 
 test("grid tiles count", (t) => {
-  const bbox1 = require(directories.in + "bbox1.json").bbox;
+  const bbox1 = loadJsonFileSync(directories.in + "bbox1.json").bbox;
   t.equal(hexGrid(bbox1, 50, { units: "miles" }).features.length, 52);
   t.equal(
     hexGrid(bbox1, 50, { units: "miles", triangles: true }).features.length,
@@ -66,7 +66,7 @@ test("grid tiles count", (t) => {
 });
 
 test("Property mutation", (t) => {
-  const bbox1 = require(directories.in + "bbox1.json").bbox;
+  const bbox1 = loadJsonFileSync(directories.in + "bbox1.json").bbox;
   const grid = hexGrid(bbox1, 50, {
     units: "miles",
     properties: { foo: "bar" },

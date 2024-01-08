@@ -4,12 +4,12 @@ import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import shapely from "boolean-shapely";
 import booleanJSTS from "boolean-jsts";
-import { booleanTouches as touches } from "./index";
+import { booleanTouches as touches } from "./index.js";
 
 test("turf-boolean-touches", (t) => {
   // True Fixtures
   glob
-    .sync(path.join(__dirname, "test", "true", "**", "*.geojson"))
+    .sync(path.join("test", "true", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       if (name.includes("skip")) return t.skip(name);
@@ -32,7 +32,7 @@ test("turf-boolean-touches", (t) => {
     });
   // False Fixtures
   glob
-    .sync(path.join(__dirname, "test", "false", "**", "*.geojson"))
+    .sync(path.join("test", "false", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       if (name.includes("skip")) return t.skip(name);

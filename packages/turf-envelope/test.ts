@@ -1,11 +1,11 @@
 import path from "path";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
-import { envelope } from "./index";
+import { envelope } from "./index.js";
 
 // Fixtures
 const fc = loadJsonFileSync(
-  path.join(__dirname, "test", "in", "feature-collection.geojson")
+  path.join("test", "in", "feature-collection.geojson")
 );
 
 test("envelope", (t) => {

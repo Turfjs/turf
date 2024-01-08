@@ -1,10 +1,10 @@
 import test from "tape";
 import path from "path";
 import { loadJsonFileSync } from "load-json-file";
-import { moranIndex } from "./index";
+import { moranIndex } from "./index.js";
 
 test("turf-moran-index", (t) => {
-  const pointPath = path.join(__dirname, "test", "in", "point.json");
+  const pointPath = path.join("test", "in", "point.json");
   const pointJson = loadJsonFileSync(pointPath);
 
   const result = moranIndex(pointJson, {
@@ -22,7 +22,7 @@ test("turf-moran-index", (t) => {
     "point clustered pattern"
   );
 
-  const columbusPath = path.join(__dirname, "test", "in", "columbus.json");
+  const columbusPath = path.join("test", "in", "columbus.json");
   const columbusJson = loadJsonFileSync(columbusPath);
 
   const result1 = moranIndex(columbusJson, {

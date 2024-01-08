@@ -2,12 +2,12 @@ import { glob } from "glob";
 import path from "path";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
-import { booleanPointOnLine as pointOnLine } from "./index";
+import { booleanPointOnLine as pointOnLine } from "./index.js";
 
 test("turf-boolean-point-on-line", (t) => {
   // True Fixtures
   glob
-    .sync(path.join(__dirname, "test", "true", "**", "*.geojson"))
+    .sync(path.join("test", "true", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);
@@ -20,7 +20,7 @@ test("turf-boolean-point-on-line", (t) => {
     });
   // False Fixtures
   glob
-    .sync(path.join(__dirname, "test", "false", "**", "*.geojson"))
+    .sync(path.join("test", "false", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);

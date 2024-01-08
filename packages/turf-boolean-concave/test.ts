@@ -7,23 +7,19 @@ import { booleanConcave as isConcave } from "./index.js";
 
 test("isConcave#fixtures", (t) => {
   // True Fixtures
-  glob
-    .sync(path.join(__dirname, "test", "true", "*.geojson"))
-    .forEach((filepath) => {
-      const name = path.parse(filepath).name;
-      const geojson = loadJsonFileSync(filepath);
-      const feature = geojson.features[0];
-      t.true(isConcave(feature), "[true] " + name);
-    });
+  glob.sync(path.join("test", "true", "*.geojson")).forEach((filepath) => {
+    const name = path.parse(filepath).name;
+    const geojson = loadJsonFileSync(filepath);
+    const feature = geojson.features[0];
+    t.true(isConcave(feature), "[true] " + name);
+  });
   // False Fixtures
-  glob
-    .sync(path.join(__dirname, "test", "false", "*.geojson"))
-    .forEach((filepath) => {
-      const name = path.parse(filepath).name;
-      const geojson = loadJsonFileSync(filepath);
-      const feature = geojson.features[0];
-      t.false(isConcave(feature), "[false] " + name);
-    });
+  glob.sync(path.join("test", "false", "*.geojson")).forEach((filepath) => {
+    const name = path.parse(filepath).name;
+    const geojson = loadJsonFileSync(filepath);
+    const feature = geojson.features[0];
+    t.false(isConcave(feature), "[false] " + name);
+  });
   t.end();
 });
 

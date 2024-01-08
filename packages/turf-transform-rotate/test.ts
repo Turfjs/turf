@@ -12,11 +12,11 @@ import {
   featureCollection,
   geometryCollection,
 } from "@turf/helpers";
-import { transformRotate as rotate } from "./index";
+import { transformRotate as rotate } from "./index.js";
 
 const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
+  in: path.join("test", "in") + path.sep,
+  out: path.join("test", "out") + path.sep,
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {

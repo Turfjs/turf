@@ -22,8 +22,8 @@ import {
   isNumber,
   earthRadius,
   GeojsonEquality,
-} from "./index";
-import * as turf from "./index";
+} from "./index.js";
+import * as turf from "./index.js";
 
 test("point", (t) => {
   const ptArray = point([5, 10], { name: "test point" });
