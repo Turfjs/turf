@@ -11,8 +11,6 @@ import { clusterReduce, clusterEach } from "@turf/clusters";
 import { coordAll, featureEach } from "@turf/meta";
 import { clustersDbscan } from "./index.js";
 
-console.log(chromatism.adjacent);
-
 const directories = {
   in: path.join("test", "in") + path.sep,
   out: path.join("test", "out") + path.sep,

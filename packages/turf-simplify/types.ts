@@ -1,6 +1,6 @@
 import { Feature, Polygon } from "geojson";
 import { polygon } from "@turf/helpers";
-import { simplify } from "./index";
+import { simplify } from "./index.js";
 
 const poly = polygon([
   [

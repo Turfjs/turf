@@ -2103,6 +2103,9 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
+      '@types/rbush':
+        specifier: ^3.0.2
+        version: 3.0.3
       '@types/tape':
         specifier: ^4.2.32
         version: 4.13.4
