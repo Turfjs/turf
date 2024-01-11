@@ -7875,7 +7875,7 @@ packages:
     resolution: {integrity: sha512-+2F3ZpVYeIcMRuN+lxNG4FrP5jct8tArR39RVsZE6Yh5lEbe7zlE/U8zKP3ezsfOckFskGfwC2u7COdH5MbEvA==}
     hasBin: true
     dependencies:
-      '@gerhobbelt/nomnom': github.com/gerhobbelt/nomnom/559dfcd9436b3beeeccdc0a4f28f0e3f988379ca
+      '@gerhobbelt/nomnom': git@github.com+gerhobbelt/nomnom/559dfcd9436b3beeeccdc0a4f28f0e3f988379ca
       concat-stream: 1.6.2
       jsonlint-lines: 1.7.1
       minimist: 1.2.8
@@ -9364,7 +9364,7 @@ packages:
   /axios@1.6.2:
     resolution: {integrity: sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==}
     dependencies:
-      follow-redirects: 1.15.3
+      follow-redirects: 1.15.4
       form-data: 4.0.0
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -11637,8 +11637,8 @@ packages:
     resolution: {integrity: sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==}
     dev: true
 
-  /follow-redirects@1.15.3:
-    resolution: {integrity: sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==}
+  /follow-redirects@1.15.4:
+    resolution: {integrity: sha512-Cr4D/5wlrb0z9dgERpUL3LrmPKVDsETIJhaCMeDfuFYcqa5bldGV6wBsAN6X/vxlXQtFBMrXdXxdL8CbDTGniw==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -17714,8 +17714,8 @@ packages:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: true
 
-  github.com/gerhobbelt/nomnom/559dfcd9436b3beeeccdc0a4f28f0e3f988379ca:
-    resolution: {tarball: https://codeload.github.com/gerhobbelt/nomnom/tar.gz/559dfcd9436b3beeeccdc0a4f28f0e3f988379ca}
+  git@github.com+gerhobbelt/nomnom/559dfcd9436b3beeeccdc0a4f28f0e3f988379ca:
+    resolution: {commit: 559dfcd9436b3beeeccdc0a4f28f0e3f988379ca, repo: git@github.com:gerhobbelt/nomnom.git, type: git}
     name: '@gerhobbelt/nomnom'
     version: 1.8.4-32
     engines: {node: '>=4.0'}
