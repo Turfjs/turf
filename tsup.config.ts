@@ -20,12 +20,11 @@ export default [
     ...baseOptions,
     outDir: "dist/cjs",
     format: "cjs",
-    outExtension: () => ({ js: ".cjs" }),
+    outExtension: () => ({ js: ".js" }),
   }),
   defineConfig({
     ...baseOptions,
     outDir: "dist/esm",
     format: "esm",
-    outExtension: () => ({ js: ".mjs" }),
   }),
 ];

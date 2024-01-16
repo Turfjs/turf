@@ -89,8 +89,8 @@ export default {
       options: {
         entries: {
           type: "module",
-          main: "dist/cjs/index.cjs",
-          module: "dist/esm/index.mjs",
+          main: "dist/cjs/index.js",
+          module: "dist/esm/index.js",
           types: "dist/esm/index.d.ts",
           sideEffects: false,
           publishConfig: {
@@ -107,11 +107,11 @@ export default {
             ".": {
               import: {
                 types: "./dist/esm/index.d.ts",
-                default: "./dist/esm/index.mjs",
+                default: "./dist/esm/index.js",
               },
               require: {
                 types: "./dist/cjs/index.d.cts",
-                default: "./dist/cjs/index.cjs",
+                default: "./dist/cjs/index.js",
               },
             },
           },
@@ -124,8 +124,8 @@ export default {
       options: {
         entries: {
           type: "module",
-          main: "dist/cjs/index.cjs",
-          module: "dist/esm/index.mjs",
+          main: "dist/cjs/index.js",
+          module: "dist/esm/index.js",
           types: "dist/esm/index.d.ts",
           sideEffects: false,
           publishConfig: {
@@ -136,11 +136,11 @@ export default {
             ".": {
               import: {
                 types: "./dist/esm/index.d.ts",
-                default: "./dist/esm/index.mjs",
+                default: "./dist/esm/index.js",
               },
               require: {
                 types: "./dist/cjs/index.d.cts",
-                default: "./dist/cjs/index.cjs",
+                default: "./dist/cjs/index.js",
               },
             },
           },
