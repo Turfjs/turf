@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import tape from "tape";
-import { all as fixtures } from "geojson-fixtures";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { explode } from "./index.js";
@@ -14,14 +13,7 @@ const directories = {
   out: path.join(__dirname, "test", "out") + path.sep,
 };
 
-// Save input fixtures
-if (process.env.REGEN) {
-  Object.keys(fixtures).forEach((name) => {
-    writeJsonFileSync(directories.in + name + ".json", fixtures[name]);
-  });
-}
-
-tape("explode - geojson-fixtures", (t) => {
+tape("explode - fixtures", (t) => {
   fs.readdirSync(directories.in).forEach((filename) => {
     const name = filename.replace(".json", "");
     const features = loadJsonFileSync(directories.in + filename);

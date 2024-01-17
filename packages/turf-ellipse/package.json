@@ -52,7 +52,7 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@mapbox/geojsonhint": "^3.2.0",
+    "@placemarkio/check-geojson": "^0.1.12",
     "@turf/bbox-polygon": "workspace:^",
     "@turf/circle": "workspace:^",
     "@turf/destination": "workspace:^",
