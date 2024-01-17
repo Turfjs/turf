@@ -1914,7 +1914,7 @@ importers:
         version: 2.6.2
     devDependencies:
       '@placemarkio/check-geojson':
-        specifier: 0.1.12
+        specifier: ^0.1.12
         version: 0.1.12
       '@turf/truncate':
         specifier: workspace:^
@@ -2725,7 +2725,7 @@ importers:
         version: 2.6.2
     devDependencies:
       '@placemarkio/check-geojson':
-        specifier: 0.1.12
+        specifier: ^0.1.12
         version: 0.1.12
       '@turf/bbox-polygon':
         specifier: workspace:^
