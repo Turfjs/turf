@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { point } from "@turf/helpers";
-import { midpoint } from "./index";
+import { midpoint } from "./index.js";
 
 var pt1 = point([0, 0]);
 var pt2 = point([10, 0]);

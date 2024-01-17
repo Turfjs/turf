@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import proj4 from "proj4";
 import { writeJsonFileSync } from "write-json-file";
@@ -10,10 +11,12 @@ import { truncate } from "@turf/truncate";
 import { coordEach } from "@turf/meta";
 import { toMercator, toWgs84 } from "./index.js";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 const directories = {
-  mercator: path.join("test", "mercator") + path.sep,
-  wgs84: path.join("test", "wgs84") + path.sep,
-  out: path.join("test", "out") + path.sep,
+  mercator: path.join(__dirname, "test", "mercator") + path.sep,
+  wgs84: path.join(__dirname, "test", "wgs84") + path.sep,
+  out: path.join(__dirname, "test", "out") + path.sep,
 };
 
 const fromWgs84 = fs.readdirSync(directories.wgs84).map((filename) => {

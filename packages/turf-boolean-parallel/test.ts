@@ -1,14 +1,17 @@
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import { lineString } from "@turf/helpers";
 import { booleanParallel } from "./index.js";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 test("turf-boolean-parallel", (t) => {
   // True Fixtures
   glob
-    .sync(path.join("test", "true", "**", "*.geojson"))
+    .sync(path.join(__dirname, "test", "true", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);
@@ -20,7 +23,7 @@ test("turf-boolean-parallel", (t) => {
     });
   // False Fixtures
   glob
-    .sync(path.join("test", "false", "**", "*.geojson"))
+    .sync(path.join(__dirname, "test", "false", "**", "*.geojson"))
     .forEach((filepath) => {
       const name = path.parse(filepath).name;
       const geojson = loadJsonFileSync(filepath);

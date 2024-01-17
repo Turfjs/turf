@@ -1,7 +1,10 @@
 import Benchmark from "benchmark";
-import { moranIndex } from "./index";
+import { moranIndex } from "./index.js";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Benchmark Results

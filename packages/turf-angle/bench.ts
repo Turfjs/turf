@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { angle } from "./index";
+import { angle } from "./index.js";
 
 /**
  * Benchmark Results

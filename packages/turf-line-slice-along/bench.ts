@@ -1,6 +1,10 @@
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import Benchmark from "benchmark";
-import { lineSliceAlong } from "./index";
+import { lineSliceAlong } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 var line1 = JSON.parse(
   fs.readFileSync(__dirname + "/test/fixtures/line1.geojson")

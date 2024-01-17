@@ -1,7 +1,10 @@
 import Benchmark from "benchmark";
-import { distanceWeight } from "./index";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
+import { distanceWeight } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Benchmark Results

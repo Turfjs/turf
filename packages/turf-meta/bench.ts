@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import * as random from "@turf/random";
-import * as meta from "./index";
+import * as meta from "./index.js";
 
 const fixtures = {
   point: random.randomPoint(),

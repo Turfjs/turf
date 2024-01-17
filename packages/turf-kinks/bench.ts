@@ -1,8 +1,11 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
-import { kinks } from "./index";
+import { kinks } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const suite = new Benchmark.Suite("turf-kinks");
 

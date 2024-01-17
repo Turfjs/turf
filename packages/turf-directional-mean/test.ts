@@ -1,19 +1,42 @@
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { directionalMean } from "./index.js";
 
-test("turf-directional-mean", (t) => {
-  const outGpsJsonPath1 = path.join("test", "out", "bus_route_gps1.json");
-  const outGpsJsonPath2 = path.join("test", "out", "bus_route_gps2.json");
-  const outUtmJsonPath1 = path.join("test", "out", "bus_route_utm1.json");
-  const outUtmJsonPath2 = path.join("test", "out", "bus_route_utm2.json");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-  const utmFilepath = path.join("test", "in", "bus_route_utm.json");
+test("turf-directional-mean", (t) => {
+  const outGpsJsonPath1 = path.join(
+    __dirname,
+    "test",
+    "out",
+    "bus_route_gps1.json"
+  );
+  const outGpsJsonPath2 = path.join(
+    __dirname,
+    "test",
+    "out",
+    "bus_route_gps2.json"
+  );
+  const outUtmJsonPath1 = path.join(
+    __dirname,
+    "test",
+    "out",
+    "bus_route_utm1.json"
+  );
+  const outUtmJsonPath2 = path.join(
+    __dirname,
+    "test",
+    "out",
+    "bus_route_utm2.json"
+  );
+
+  const utmFilepath = path.join(__dirname, "test", "in", "bus_route_utm.json");
   const utmGeojson = loadJsonFileSync(utmFilepath);
 
-  const gpsFilepath = path.join("test", "in", "bus_route_gps.json");
+  const gpsFilepath = path.join(__dirname, "test", "in", "bus_route_gps.json");
   const gpsGeojson = loadJsonFileSync(gpsFilepath);
 
   // utm

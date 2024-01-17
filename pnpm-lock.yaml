@@ -1607,6 +1607,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -2981,6 +2987,12 @@ importers:
       '@turf/random':
         specifier: workspace:^
         version: link:../turf-random
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -3018,6 +3030,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -3171,6 +3189,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -3587,6 +3611,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -3670,6 +3700,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -3817,6 +3853,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -3860,6 +3902,12 @@ importers:
       '@turf/length':
         specifier: workspace:^
         version: link:../turf-length
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -3912,6 +3960,12 @@ importers:
         specifier: workspace:^
         version: link:../turf-truncate
     devDependencies:
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -3992,6 +4046,12 @@ importers:
         specifier: ^0.15.3
         version: 0.15.3
     devDependencies:
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -4026,6 +4086,9 @@ importers:
       '@turf/random':
         specifier: workspace:^
         version: link:../turf-random
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -4057,6 +4120,9 @@ importers:
         specifier: workspace:^
         version: link:../turf-helpers
     devDependencies:
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -5493,6 +5559,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -5570,6 +5642,9 @@ importers:
         specifier: ^2.2.4
         version: 2.2.4
     devDependencies:
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -5650,6 +5725,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -5714,6 +5795,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -5757,6 +5844,12 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -5944,6 +6037,12 @@ importers:
       '@turf/kinks':
         specifier: workspace:^
         version: link:../turf-kinks
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -5981,6 +6080,12 @@ importers:
         specifier: 1.1.2
         version: 1.1.2
     devDependencies:
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4

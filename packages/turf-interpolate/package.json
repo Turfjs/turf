@@ -55,6 +55,8 @@
   },
   "devDependencies": {
     "@turf/truncate": "workspace:^",
+    "@types/benchmark": "^2.1.5",
+    "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
     "chromatism": "^3.0.0",
     "load-json-file": "^7.0.1",

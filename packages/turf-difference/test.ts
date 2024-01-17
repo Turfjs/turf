@@ -1,4 +1,5 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { glob } from "glob";
 import { loadJsonFileSync } from "load-json-file";
@@ -6,9 +7,11 @@ import { writeJsonFileSync } from "write-json-file";
 import { featureCollection, polygon } from "@turf/helpers";
 import { difference } from "./index.js";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 const directories = {
-  in: path.join("test", "in") + path.sep,
-  out: path.join("test", "out") + path.sep,
+  in: path.join(__dirname, "test", "in") + path.sep,
+  out: path.join(__dirname, "test", "out") + path.sep,
 };
 
 test("turf-difference", (t) => {

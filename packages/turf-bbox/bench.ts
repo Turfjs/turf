@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { lineString } from "@turf/helpers";
-import { bbox } from "./index";
+import { bbox } from "./index.js";
 
 const line = lineString([
   [-74, 40],

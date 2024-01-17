@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { polygon } from "@turf/helpers";
-import { tesselate } from "./index";
+import { tesselate } from "./index.js";
 
 var poly = polygon([
   [

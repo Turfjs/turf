@@ -1,13 +1,16 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { glob } from "glob";
 import test from "tape";
 import camelCase from "camelcase";
 import documentation from "documentation";
 import * as turf from "./index.js";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 // Helpers
-const directory = path.join("..");
+const directory = path.join(__dirname, "..");
 let modules = [];
 for (const name of fs.readdirSync(directory)) {
   if (!name.includes("turf")) continue;

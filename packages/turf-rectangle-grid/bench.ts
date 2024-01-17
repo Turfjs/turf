@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { rectangleGrid } from "./index";
+import { rectangleGrid } from "./index.js";
 
 var bbox = [-95, 30, -85, 40];
 

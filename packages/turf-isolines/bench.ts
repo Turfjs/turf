@@ -1,9 +1,12 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
 import { matrixToGrid } from "./lib/matrix-to-grid.js";
-import { isolines } from "./index";
+import { isolines } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Define Fixtures
 const directory = path.join(__dirname, "test", "in") + path.sep;

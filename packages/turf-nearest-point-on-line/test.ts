@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { along } from "@turf/along";
@@ -16,9 +17,11 @@ import {
 } from "@turf/helpers";
 import { nearestPointOnLine } from "./index.js";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 const directories = {
-  in: path.join("test", "in") + path.sep,
-  out: path.join("test", "out") + path.sep,
+  in: path.join(__dirname, "test", "in") + path.sep,
+  out: path.join(__dirname, "test", "out") + path.sep,
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {

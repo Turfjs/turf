@@ -1,7 +1,11 @@
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import Benchmark from "benchmark";
 import { point, polygon } from "@turf/helpers";
-import { booleanPointInPolygon } from "./index";
+import { booleanPointInPolygon } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 var poly = polygon([
   [

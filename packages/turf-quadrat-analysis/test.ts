@@ -1,5 +1,6 @@
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { bbox } from "@turf/bbox";
@@ -11,10 +12,22 @@ import { featureCollection } from "@turf/helpers";
 import { quadratAnalysis } from "./index.js";
 import fs from "fs";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 test("turf-quadrat-analysis geojson file", (t) => {
-  const futianBboxPath = path.join("test", "in", "futian_bbox.json");
-  const futianPointPath = path.join("test", "in", "futian_random_point.json");
-  const shenzhenBboxPath = path.join("test", "in", "shenzhen_bbox.json");
+  const futianBboxPath = path.join(__dirname, "test", "in", "futian_bbox.json");
+  const futianPointPath = path.join(
+    __dirname,
+    "test",
+    "in",
+    "futian_random_point.json"
+  );
+  const shenzhenBboxPath = path.join(
+    __dirname,
+    "test",
+    "in",
+    "shenzhen_bbox.json"
+  );
 
   const futianBbox = loadJsonFileSync(futianBboxPath);
   const futianPoint = loadJsonFileSync(futianPointPath);
@@ -66,7 +79,7 @@ test("turf-quadrat-analysis random point", (t) => {
       "WARNING: randomPointSet was not random, this might just be a rare test flake, switching to known good points"
     );
     randomPointSet = JSON.parse(
-      fs.readFileSync(path.join("test", "randomPointSet.good.json"))
+      fs.readFileSync(path.join(__dirname, "test", "randomPointSet.good.json"))
     );
     result1 = quadratAnalysis(randomPointSet, {
       studyBbox: smallBbox,
@@ -113,11 +126,21 @@ test("turf-quadrat-analysis random point", (t) => {
     "uniform pattern maxAbsoluteDifference > criticalValue"
   );
 
-  const randomPointSetPath = path.join("test", "out", "randomPoint.json");
-  const uniformPointSetPath = path.join("test", "out", "uniformPoint.json");
-  const smallBboxPath = path.join("test", "out", "smallBox.json");
-  const bigBboxPath = path.join("test", "out", "bigBox.json");
-  const smallGridPath = path.join("test", "out", "smallGrid.json");
+  const randomPointSetPath = path.join(
+    __dirname,
+    "test",
+    "out",
+    "randomPoint.json"
+  );
+  const uniformPointSetPath = path.join(
+    __dirname,
+    "test",
+    "out",
+    "uniformPoint.json"
+  );
+  const smallBboxPath = path.join(__dirname, "test", "out", "smallBox.json");
+  const bigBboxPath = path.join(__dirname, "test", "out", "bigBox.json");
+  const smallGridPath = path.join(__dirname, "test", "out", "smallGrid.json");
 
   // console.log(result1, result2, result3);
 

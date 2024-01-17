@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
-import { helpers } from "@turf/helpers";
-import * as invariant from "./index";
+import * as helpers from "@turf/helpers";
+import * as invariant from "./index.js";
 
 const pt = helpers.point([-75, 40]);
 const line = helpers.lineString([

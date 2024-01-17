@@ -51,6 +51,8 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
+    "@types/benchmark": "^2.1.5",
+    "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "mkdirp": "^3.0.1",
