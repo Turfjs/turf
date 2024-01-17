@@ -5,7 +5,7 @@ import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { circle } from "@turf/circle";
 import { truncate } from "@turf/truncate";
-import geojsonhint from "@mapbox/geojsonhint";
+import { check } from "@placemarkio/check-geojson";
 import { bboxPolygon } from "@turf/bbox-polygon";
 import { rhumbDestination } from "@turf/rhumb-destination";
 // import { destination } from '@turf/destination';
@@ -132,7 +132,12 @@ test("turf-ellipse -- with coordinates", (t) => {
 
 test("turf-ellipse -- validate geojson", (t) => {
   const E = ellipse([0, 0], 10, 20);
-  geojsonhint.hint(E).forEach((hint) => t.fail(hint.message));
+  try {
+    check(JSON.stringify(E));
+    t.pass();
+  } catch (e) {
+    t.fail(e.message);
+  }
   t.end();
 });
 

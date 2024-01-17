@@ -5,7 +5,7 @@ import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureCollection } from "@turf/helpers";
-import geojsonhint from "@mapbox/geojsonhint";
+import { check } from "@placemarkio/check-geojson";
 import { circle } from "./index";
 
 const directories = {
@@ -43,6 +43,11 @@ test("turf-circle", (t) => {
 
 test("turf-circle -- validate geojson", (t) => {
   const C = circle([0, 0], 100);
-  geojsonhint.hint(C).forEach((hint) => t.fail(hint.message));
+  try {
+    check(JSON.stringify(C));
+    t.pass();
+  } catch (e) {
+    t.fail(e.message);
+  }
   t.end();
 });
