@@ -54,7 +54,7 @@
     "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@placemarkio/check-geojson": "0.1.12",
+    "@placemarkio/check-geojson": "^0.1.12",
     "@turf/truncate": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
