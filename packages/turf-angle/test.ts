@@ -82,8 +82,8 @@ test("turf-angle", (t) => {
 
       // Save results
       const expected = filepath.replace(
-        path.join(__dirname, "test", "in"),
-        path.join(__dirname, "test", "out")
+        path.join("test", "in"),
+        path.join("test", "out")
       );
       if (process.env.REGEN) writeJsonFileSync(expected, results);
       t.deepEqual(results, loadJsonFileSync(expected), name);

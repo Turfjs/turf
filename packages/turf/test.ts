@@ -129,7 +129,7 @@ test("turf -- external files must be in the lib folder", (t) => {
 });
 
 test("turf -- MIT license", (t) => {
-  const text = fs.readFileSync(path.join("LICENSE"), "utf8");
+  const text = fs.readFileSync(path.join(__dirname, "LICENSE"), "utf8");
   for (const { name, dir, pckg } of modules) {
     const { license } = pckg;
     if (license !== "MIT") t.fail(`${name} (license) must be "MIT"`);
@@ -221,8 +221,8 @@ test("turf -- parsing dependencies from index.js", (t) => {
 // Test for missing modules
 test("turf -- missing modules", (t) => {
   const files = {
-    typescript: fs.readFileSync(path.join("dist/cjs/index.d.cts")),
-    modules: fs.readFileSync(path.join("dist/cjs/index.js")),
+    typescript: fs.readFileSync(path.join(__dirname, "dist/cjs/index.d.cts")),
+    modules: fs.readFileSync(path.join(__dirname, "dist/cjs/index.js")),
   };
 
   modules.forEach(({ name }) => {
@@ -325,9 +325,9 @@ test("turf -- update to newer Typescript definitions", (t) => {
  */
 
 // File Paths
-const testFilePath = path.join("test.example.js");
-const turfModulesPath = path.join("..", "turf-*", "index.js");
-const turfTypescriptPath = path.join("..", "turf-*", "index.d.ts");
+const testFilePath = path.join(__dirname, "test.example.js");
+const turfModulesPath = path.join(__dirname, "..", "turf-*", "index.js");
+const turfTypescriptPath = path.join(__dirname, "..", "turf-*", "index.d.ts");
 
 // Test Strings
 const requireString = `import test from 'tape';

@@ -29,8 +29,8 @@ test("turf-standard-deviational-ellipse", (t) => {
 
       // Save to file
       const out = filepath.replace(
-        path.join(__dirname, "test", "in"),
-        path.join(__dirname, "test", "out")
+        path.join("test", "in"),
+        path.join("test", "out")
       );
       if (process.env.REGEN) writeJsonFileSync(out, results);
       t.deepEqual(results, loadJsonFileSync(out), name);

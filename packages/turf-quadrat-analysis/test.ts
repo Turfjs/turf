@@ -79,7 +79,7 @@ test("turf-quadrat-analysis random point", (t) => {
       "WARNING: randomPointSet was not random, this might just be a rare test flake, switching to known good points"
     );
     randomPointSet = JSON.parse(
-      fs.readFileSync(path.join(__dirname, "test", "randomPointSet.good.json"))
+      fs.readFileSync(path.join("test", "randomPointSet.good.json"))
     );
     result1 = quadratAnalysis(randomPointSet, {
       studyBbox: smallBbox,
