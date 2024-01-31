@@ -28,5 +28,6 @@ nearestPointOnLine(line, output);
 
 // Extra properties being generated from module
 output.properties.dist;
+output.properties.multiFeatureIndex;
 output.properties.index;
 output.properties.location;
