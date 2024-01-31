@@ -64,7 +64,7 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
   let length = 0.0;
   flattenEach(
     lines,
-    function (line: any, featureIndex: number, multiFeatureIndex: number) {
+    function (line: any, _featureIndex: number, multiFeatureIndex: number) {
       const coords: any = getCoords(line);
 
       for (let i = 0; i < coords.length - 1; i++) {
