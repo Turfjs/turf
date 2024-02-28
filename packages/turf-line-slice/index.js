@@ -54,7 +54,7 @@ function lineSlice(startPt, stopPt, line) {
     clipCoords.push(coords[i]);
   }
   clipCoords.push(ends[1].geometry.coordinates);
-  return linestring(clipCoords, line.properties);
+  return linestring(clipCoords, line.properties, { ...('id' in line && { id: line.id }) });
 }
 
 export { lineSlice };
