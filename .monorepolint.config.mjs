@@ -89,7 +89,7 @@ export default {
       options: {
         entries: {
           type: "module",
-          main: "dist/cjs/index.js",
+          main: "dist/cjs/index.cjs",
           module: "dist/esm/index.js",
           types: "dist/esm/index.d.ts",
           sideEffects: false,
@@ -111,7 +111,7 @@ export default {
               },
               require: {
                 types: "./dist/cjs/index.d.cts",
-                default: "./dist/cjs/index.js",
+                default: "./dist/cjs/index.cjs",
               },
             },
           },
@@ -124,7 +124,7 @@ export default {
       options: {
         entries: {
           type: "module",
-          main: "dist/cjs/index.js",
+          main: "dist/cjs/index.cjs",
           module: "dist/esm/index.js",
           types: "dist/esm/index.d.ts",
           sideEffects: false,
@@ -140,7 +140,7 @@ export default {
               },
               require: {
                 types: "./dist/cjs/index.d.cts",
-                default: "./dist/cjs/index.js",
+                default: "./dist/cjs/index.cjs",
               },
             },
           },
@@ -208,7 +208,8 @@ export default {
     packageScript({
       options: {
         scripts: {
-          "test:types": "tsc --esModuleInterop --noEmit --strict types.ts",
+          "test:types":
+            "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts",
         },
       },
       includePackages: TYPES_PACKAGES,

@@ -1,4 +1,4 @@
-import { nearestPointOnLine } from "./index";
+import { nearestPointOnLine } from "./index.js";
 import { point, lineString, multiLineString } from "@turf/helpers";
 
 const pt = point([1.5, 1.5]);

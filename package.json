@@ -5,7 +5,7 @@
     "docs": "tsx ./scripts/generate-readmes.ts",
     "lint": "npm-run-all lint:*",
     "lint:docs": "documentation lint packages/turf-*/index.js",
-    "lint:escheck-cjs": "es-check es8 packages/*/dist/cjs/index.js packages/turf/turf.min.js",
+    "lint:escheck-cjs": "es-check es8 packages/*/dist/cjs/index.cjs packages/turf/turf.min.js",
     "lint:escheck-esm": "es-check --module es8 packages/*/dist/esm/index.js",
     "lint:escheck-web": "es-check es5 packages/turf/turf.min.js",
     "lint:eslint": "eslint packages",

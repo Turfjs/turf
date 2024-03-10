@@ -1,6 +1,3 @@
-/*
-// Temporarily disabling due to error after upgrading to type: module
-// TS2339: Property 'default' does not exist on type ...
 import { polygon } from "@turf/helpers";
 import { kinks } from "./index.js";
 
@@ -14,4 +11,3 @@ const hourglass = polygon([
   ],
 ]);
 kinks(hourglass);
-*/

@@ -1,6 +1,3 @@
-/*
-// Temporarily disabling due to error after upgrading to type: module
-// TS2339: Property 'default' does not exist on type ...
 import { featureCollection, point } from "@turf/helpers";
 import { clustersDbscan } from "./index.js";
 
@@ -31,4 +28,3 @@ clustersDbscan(points, maxDistance, { units, minPoints });
 clustered.features[0].properties.cluster;
 clustered.features[0].properties.dbscan;
 clustered.features[0].properties.foo;
-*/

@@ -4,11 +4,11 @@ import {
   envelopeIsEqual,
   envelopeContains,
   coordinatesEqual,
-} from "./util";
+} from "./util.js";
 import { multiPoint, polygon, point } from "@turf/helpers";
 import { envelope } from "@turf/envelope";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
-import { Edge } from "./Edge";
+import { Edge } from "./Edge.js";
 
 /**
  * Ring of edges which form a polygon.

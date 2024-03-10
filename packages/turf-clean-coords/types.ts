@@ -1,5 +1,5 @@
 import { multiPoint } from "@turf/helpers";
-import { cleanCoords } from "./index";
+import { cleanCoords } from "./index.js";
 
 // Fixtures
 const multiPt = multiPoint([

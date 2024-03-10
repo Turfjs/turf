@@ -1,5 +1,5 @@
 import { polygon } from "@turf/helpers";
-import { mask } from "./index";
+import { mask } from "./index.js";
 
 const poly1 = polygon([
   [

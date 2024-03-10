@@ -20,7 +20,6 @@ export default [
     ...baseOptions,
     outDir: "dist/cjs",
     format: "cjs",
-    outExtension: () => ({ js: ".js" }),
   }),
   defineConfig({
     ...baseOptions,
