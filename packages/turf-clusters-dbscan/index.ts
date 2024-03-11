@@ -2,7 +2,11 @@ import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import { clone } from "@turf/clone";
 import { distance } from "@turf/distance";
 import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
-import { rbush as RBush } from "./lib/rbush-export.js";
+import { defaultImport } from "default-import";
+import rbush from "rbush";
+
+// Use defaultImport to get correct default from CJS module.
+const RBush = defaultImport(rbush);
 
 type Dbscan = "core" | "edge" | "noise";
 type DbscanProps = GeoJsonProperties & {
