@@ -1,6 +1,6 @@
 import { point } from "@turf/helpers";
 import Benchmark from "benchmark";
-import { rhumbBearing } from "./index";
+import { rhumbBearing } from "./index.js";
 
 var start = point([-75.4, 39.4]);
 var end = point([-75.534, 39.123]);

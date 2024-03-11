@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { point, featureCollection } from "@turf/helpers";
-import { sample } from "./index";
+import { sample } from "./index.js";
 
 var points = featureCollection([
   point(1, 2, { team: "Red Sox" }),

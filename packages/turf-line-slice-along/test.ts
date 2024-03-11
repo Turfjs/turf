@@ -1,9 +1,12 @@
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { along } from "@turf/along";
 import { length } from "@turf/length";
-import { lineSliceAlong } from "./index";
+import { lineSliceAlong } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 var line1 = loadJsonFileSync(
   path.join(__dirname, "test", "fixtures", "line1.geojson")

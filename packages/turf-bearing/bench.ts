@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { bearing } from "./index";
+import { bearing } from "./index.js";
 
 var start = [-75.4, 39.4];
 var end = [-75.534, 39.123];

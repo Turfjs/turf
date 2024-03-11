@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { bboxPolygon } from "./index";
+import { bboxPolygon } from "./index.js";
 
 /**
  * Benchmark Results

@@ -1,5 +1,5 @@
 import test from "tape";
-import { tesselate } from "./index";
+import { tesselate } from "./index.js";
 import { featureCollection as featurecollection } from "@turf/helpers";
 import { point } from "@turf/helpers";
 

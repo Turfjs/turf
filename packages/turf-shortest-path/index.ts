@@ -23,7 +23,7 @@ import {
   featureCollection,
   feature,
 } from "@turf/helpers";
-import { Graph, GridNode, astar } from "./lib/javascript-astar";
+import { Graph, GridNode, astar } from "./lib/javascript-astar.js";
 
 /**
  * Returns the shortest {@link LineString|path} from {@link Point|start} to {@link Point|end} without colliding with

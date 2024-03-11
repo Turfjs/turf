@@ -1,12 +1,16 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
-import { tin } from "./index";
+import { loadJsonFileSync } from "load-json-file";
+import { tin } from "./index.js";
 
-const points = require(path.join(__dirname, "test", "Points.json"));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const points = loadJsonFileSync(path.join(__dirname, "test", "Points.json"));
 
 test("tin - z property", (t) => {
-  const expected = require(path.join(__dirname, "test", "Tin.json"));
+  const expected = loadJsonFileSync(path.join(__dirname, "test", "Tin.json"));
   const tinned = tin(points, "elevation");
   t.equal(tinned.features[0].geometry.type, "Polygon");
   t.equal(tinned.features.length, 24);
@@ -21,7 +25,7 @@ test("tin - z property", (t) => {
 });
 
 test("tin - z coordinate", (t) => {
-  const expected = require(path.join(__dirname, "test", "Tin-z.json"));
+  const expected = loadJsonFileSync(path.join(__dirname, "test", "Tin-z.json"));
   const tinned = tin(points);
   t.equal(tinned.features[0].geometry.type, "Polygon");
   t.equal(tinned.features.length, 24);

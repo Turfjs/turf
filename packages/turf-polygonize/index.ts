@@ -6,8 +6,8 @@ import {
   Polygon,
 } from "geojson";
 import { featureCollection } from "@turf/helpers";
-import { Graph } from "./lib/Graph";
-import { EdgeRing } from "./lib/EdgeRing";
+import { Graph } from "./lib/Graph.js";
+import { EdgeRing } from "./lib/EdgeRing.js";
 
 /**
  * Polygonizes {@link LineString|(Multi)LineString(s)} into {@link Polygons}.

@@ -3,7 +3,7 @@ import { defineConfig, type Options } from "tsup";
 const baseOptions: Options = {
   clean: true,
   dts: true,
-  entry: ["index.?s"],
+  entry: ["index.?s"], // while we have a mix of TS and JS packages
   minify: false,
   skipNodeModulesBundle: true,
   sourcemap: true,
@@ -20,7 +20,6 @@ export default [
     ...baseOptions,
     outDir: "dist/cjs",
     format: "cjs",
-    outExtension: () => ({ js: ".cjs" }),
   }),
   defineConfig({
     ...baseOptions,

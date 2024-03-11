@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { envelope } from "@turf/envelope";
@@ -9,8 +10,10 @@ import { pointGrid } from "@turf/point-grid";
 import { getCoords } from "@turf/invariant";
 import { randomPolygon } from "@turf/random";
 import { lineString } from "@turf/helpers";
-import { matrixToGrid } from "./lib/matrix-to-grid";
-import { isolines } from "./index";
+import { matrixToGrid } from "./lib/matrix-to-grid.js";
+import { isolines } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

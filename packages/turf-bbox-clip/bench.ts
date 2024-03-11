@@ -1,9 +1,12 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
 import { bbox } from "@turf/bbox";
-import { bboxClip } from "./index";
+import { bboxClip } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directory = path.join(__dirname, "test", "in") + path.sep;
 const fixtures = fs.readdirSync(directory).map((filename) => {

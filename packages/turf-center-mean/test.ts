@@ -1,13 +1,16 @@
 import test from "tape";
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureEach, coordEach } from "@turf/meta";
 import { lineString, featureCollection } from "@turf/helpers";
 import { center } from "@turf/center";
-import { centerMean } from "./index";
+import { centerMean } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-center-mean", (t) => {
   glob

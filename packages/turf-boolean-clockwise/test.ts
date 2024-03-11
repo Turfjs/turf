@@ -1,9 +1,12 @@
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import { lineString } from "@turf/helpers";
-import { booleanClockwise as isClockwise } from "./index";
+import { booleanClockwise as isClockwise } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("isClockwise#fixtures", (t) => {
   // True Fixtures

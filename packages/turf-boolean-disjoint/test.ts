@@ -1,9 +1,12 @@
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import shapely from "boolean-shapely";
-import { booleanDisjoint as disjoint } from "./index";
+import { booleanDisjoint as disjoint } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-boolean-disjoint", (t) => {
   // True Fixtures

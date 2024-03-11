@@ -6,7 +6,7 @@ import {
   Polygon,
   Position,
 } from "geojson";
-import * as invariant from "./index";
+import * as invariant from "./index.js";
 
 /**
  * Fixtures

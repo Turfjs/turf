@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { randomPoint } from "@turf/random";
-import { centerMedian } from "./index";
+import { centerMedian } from "./index.js";
 
 /**
  * Benchmark Results

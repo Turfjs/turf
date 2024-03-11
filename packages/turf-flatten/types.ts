@@ -5,7 +5,7 @@ import {
   geometryCollection,
   // Typescript types
 } from "@turf/helpers";
-import { flatten } from "./index";
+import { flatten } from "./index.js";
 
 const multiPt = multiPoint([
   [0, 0],

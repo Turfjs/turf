@@ -2,8 +2,7 @@ import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import { clone } from "@turf/clone";
 import { distance } from "@turf/distance";
 import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
-// @ts-expect-error No types available for rbush.
-import RBush from "rbush";
+import { rbush as RBush } from "./lib/rbush-export.js";
 
 type Dbscan = "core" | "edge" | "noise";
 type DbscanProps = GeoJsonProperties & {

@@ -1,7 +1,11 @@
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import Benchmark from "benchmark";
 import { point } from "@turf/helpers";
-import { lineSlice } from "./index";
+import { lineSlice } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 var route1 = JSON.parse(fs.readFileSync(__dirname + "/test/in/route1.geojson"));
 var route2 = JSON.parse(fs.readFileSync(__dirname + "/test/in/route2.geojson"));

@@ -9,7 +9,7 @@ import {
   geometryCollection,
 } from "@turf/helpers";
 import { Point, LineString } from "geojson";
-import { buffer } from "./index";
+import { buffer } from "./index.js";
 
 // Standard Geometry
 const pt = point([100, 0]);

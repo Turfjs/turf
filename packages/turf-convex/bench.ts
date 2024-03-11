@@ -1,8 +1,11 @@
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
-import { convex } from "./index";
+import { convex } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const suite = new Benchmark.Suite("turf-convex");
 

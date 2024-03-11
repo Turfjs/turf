@@ -1,6 +1,6 @@
 import { Point, Feature, Polygon } from "geojson";
 import { point, polygon, featureCollection } from "@turf/helpers";
-import { transformTranslate as translate } from "./index";
+import { transformTranslate as translate } from "./index.js";
 
 const pt = point([0, 0]);
 const poly = polygon([

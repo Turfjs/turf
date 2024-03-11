@@ -1,12 +1,15 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { featureEach } from "@turf/meta";
 import { featureCollection } from "@turf/helpers";
 import { kinks } from "@turf/kinks";
-import { unkinkPolygon } from "./index";
+import { unkinkPolygon } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

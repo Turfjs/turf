@@ -1,9 +1,12 @@
 import test from "tape";
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import { voronoi } from "./index";
+import { voronoi } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-voronoi", (t) => {
   glob

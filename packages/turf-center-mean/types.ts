@@ -1,5 +1,5 @@
 import { lineString } from "@turf/helpers";
-import { centerMean } from "./index";
+import { centerMean } from "./index.js";
 
 const line = lineString([
   [0, 0],

@@ -1,7 +1,10 @@
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
-import { moranIndex } from "./index";
+import { moranIndex } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-moran-index", (t) => {
   const pointPath = path.join(__dirname, "test", "in", "point.json");

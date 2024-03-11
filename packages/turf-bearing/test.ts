@@ -1,9 +1,12 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { writeJsonFileSync } from "write-json-file";
 import { destination } from "@turf/destination";
 import { point, lineString, featureCollection } from "@turf/helpers";
-import { bearing } from "./index";
+import { bearing } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const out = path.join(__dirname, "test", "out") + path.sep;
 

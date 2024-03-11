@@ -7,7 +7,7 @@ import {
   geometryCollection,
 } from "@turf/helpers";
 import { coordEach } from "@turf/meta";
-import { clone } from "./index";
+import { clone } from "./index.js";
 
 test("turf-clone", (t) => {
   // Define Features

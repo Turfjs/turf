@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { randomPoint, randomPolygon } from "@turf/random";
-import { rbush as geojsonRbush } from "./index";
+import { geojsonRbush } from "./index.js";
 
 // Fixtures
 const points = randomPoint(3);

@@ -3,7 +3,7 @@ import {
   geometryCollection,
   featureCollection,
 } from "@turf/helpers";
-import { lineChunk } from "./index";
+import { lineChunk } from "./index.js";
 
 const line = lineString([
   [0, 0],

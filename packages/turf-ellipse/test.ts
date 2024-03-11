@@ -1,6 +1,7 @@
 import test from "tape";
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { circle } from "@turf/circle";
@@ -10,7 +11,9 @@ import { bboxPolygon } from "@turf/bbox-polygon";
 import { rhumbDestination } from "@turf/rhumb-destination";
 // import { destination } from '@turf/destination';
 import { featureCollection } from "@turf/helpers";
-import { ellipse } from "./index";
+import { ellipse } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-ellipse", (t) => {
   glob

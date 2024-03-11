@@ -1,6 +1,6 @@
 import { point } from "@turf/helpers";
 import Benchmark from "benchmark";
-import { rhumbDistance as distance } from "./index";
+import { rhumbDistance as distance } from "./index.js";
 
 const pt1 = point([-75.4, 39.4]);
 const pt2 = point([-75.534, 39.123]);

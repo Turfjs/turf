@@ -30,27 +30,26 @@
     "polygon",
     "triangles"
   ],
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "import": {
-        "types": "./dist/esm/index.d.mts",
-        "default": "./dist/esm/index.mjs"
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
       },
       "require": {
-        "types": "./dist/cjs/index.d.ts",
+        "types": "./dist/cjs/index.d.cts",
         "default": "./dist/cjs/index.cjs"
       }
     }
   },
   "sideEffects": false,
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
     "bench": "tsx bench.ts",
@@ -60,6 +59,7 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
+    "@types/benchmark": "^2.1.5",
     "benchmark": "^2.1.4",
     "npm-run-all": "^4.1.5",
     "tape": "^5.7.2",

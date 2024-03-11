@@ -1,10 +1,13 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { polygon, point, featureCollection } from "@turf/helpers";
-import { dissolve } from "./index";
+import { dissolve } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const SKIP = [];
 

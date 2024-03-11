@@ -9,7 +9,7 @@ import {
   applyFilter,
   filterProperties,
   propertiesContainsFilter,
-} from "./index";
+} from "./index.js";
 
 const properties = { foo: "bar", cluster: 0 };
 const geojson = featureCollection([

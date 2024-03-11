@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { square } from "./index";
+import { square } from "./index.js";
 
 var bbox = [0, 0, 5, 10];
 

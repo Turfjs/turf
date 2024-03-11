@@ -1,11 +1,14 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { bboxPolygon } from "@turf/bbox-polygon";
 import { featureCollection, polygons } from "@turf/helpers";
-import { geojsonRbush } from "./index";
+import { geojsonRbush } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

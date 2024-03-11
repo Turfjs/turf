@@ -1,5 +1,5 @@
 import { points } from "@turf/helpers";
-import { standardDeviationalEllipse } from "./index";
+import { standardDeviationalEllipse } from "./index.js";
 
 const pts = points([
   [10, 10],

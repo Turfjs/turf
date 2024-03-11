@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { polygon } from "@turf/helpers";
-import { pointGrid as grid } from "./index";
+import { pointGrid as grid } from "./index.js";
 
 var bbox = [-95, 30, -85, 40];
 var mask = polygon([

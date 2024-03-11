@@ -1,7 +1,7 @@
 import { FeatureCollection, Polygon, Point } from "geojson";
 import { bbox as turfbbox } from "@turf/bbox";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
-import rbush from "rbush";
+import { rbush } from "./lib/rbush-export.js";
 
 interface Entry {
   minX: number;

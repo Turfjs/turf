@@ -1,5 +1,5 @@
-import { orientationIndex } from "./util";
-import { Edge } from "./Edge";
+import { orientationIndex } from "./util.js";
+import { Edge } from "./Edge.js";
 
 /**
  * Node

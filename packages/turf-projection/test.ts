@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import proj4 from "proj4";
 import { writeJsonFileSync } from "write-json-file";
@@ -8,7 +9,9 @@ import { clone } from "@turf/clone";
 import { point } from "@turf/helpers";
 import { truncate } from "@turf/truncate";
 import { coordEach } from "@turf/meta";
-import { toMercator, toWgs84 } from "./index";
+import { toMercator, toWgs84 } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   mercator: path.join(__dirname, "test", "mercator") + path.sep,

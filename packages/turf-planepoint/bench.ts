@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { polygon } from "@turf/helpers";
-import { planepoint } from "./index";
+import { planepoint } from "./index.js";
 
 const point = [1, 1];
 const triangle = polygon(

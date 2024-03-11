@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { centroid } from "@turf/centroid";
@@ -12,7 +13,9 @@ import {
   featureCollection,
   geometryCollection,
 } from "@turf/helpers";
-import { transformRotate as rotate } from "./index";
+import { transformRotate as rotate } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

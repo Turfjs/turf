@@ -1,8 +1,11 @@
 import Benchmark from "benchmark";
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
-import { nearestNeighborAnalysis } from "./index";
+import { nearestNeighborAnalysis } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Benchmark Results

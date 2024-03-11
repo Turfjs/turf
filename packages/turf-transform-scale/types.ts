@@ -1,6 +1,6 @@
 import { LineString, Feature, Polygon } from "geojson";
 import { lineString, polygon, featureCollection } from "@turf/helpers";
-import { transformScale as scale } from "./index";
+import { transformScale as scale } from "./index.js";
 
 const line = lineString([
   [0, 0],

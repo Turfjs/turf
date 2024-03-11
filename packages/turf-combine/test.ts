@@ -8,7 +8,7 @@ import {
   multiLineString,
   featureCollection,
 } from "@turf/helpers";
-import { combine } from "./index";
+import { combine } from "./index.js";
 
 test("combine -- points", (t) => {
   // MultiPoint

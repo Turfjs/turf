@@ -1,5 +1,6 @@
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { bbox } from "@turf/bbox";
@@ -8,8 +9,10 @@ import { squareGrid } from "@turf/square-grid";
 import { bboxPolygon } from "@turf/bbox-polygon";
 import { randomPoint } from "@turf/random";
 import { featureCollection } from "@turf/helpers";
-import { quadratAnalysis } from "./index";
+import { quadratAnalysis } from "./index.js";
 import fs from "fs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-quadrat-analysis geojson file", (t) => {
   const futianBboxPath = path.join(__dirname, "test", "in", "futian_bbox.json");

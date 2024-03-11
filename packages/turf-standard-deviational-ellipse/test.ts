@@ -1,10 +1,13 @@
 import test from "tape";
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { featureCollection } from "@turf/helpers";
-import { standardDeviationalEllipse } from "./index";
+import { standardDeviationalEllipse } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-standard-deviational-ellipse", (t) => {
   glob

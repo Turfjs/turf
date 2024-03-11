@@ -1,8 +1,11 @@
 import Benchmark from "benchmark";
 import path from "path";
+import { fileURLToPath } from "url";
 import fs from "fs";
 import { loadJsonFileSync } from "load-json-file";
-import { voronoi } from "./index";
+import { voronoi } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directory = path.join(__dirname, "test", "in") + path.sep;
 const fixtures = fs.readdirSync(directory).map((filename) => {

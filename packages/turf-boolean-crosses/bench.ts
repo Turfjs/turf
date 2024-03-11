@@ -1,8 +1,11 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import { glob } from "glob";
 import Benchmark from "benchmark";
 import { loadJsonFileSync } from "load-json-file";
-import { booleanCrosses as crosses } from "./index";
+import { booleanCrosses as crosses } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Benchmark Results

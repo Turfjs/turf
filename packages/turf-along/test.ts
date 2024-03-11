@@ -1,9 +1,12 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import { Units, featureCollection } from "@turf/helpers";
-import { along } from "./index";
+import { along } from "./index.js";
 import { Feature, LineString } from "geojson";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const line: Feature<LineString> = loadJsonFileSync(
   path.join(__dirname, "test", "fixtures", "dc-line.geojson")

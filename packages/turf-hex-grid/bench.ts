@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { hexGrid as grid } from "./index";
+import { hexGrid as grid } from "./index.js";
 
 // prettier-ignore
 var bbox = [

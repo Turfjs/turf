@@ -8,7 +8,7 @@ import {
   filterProperties,
   applyFilter,
   createBins,
-} from "./index";
+} from "./index.js";
 
 const geojson = featureCollection([
   point([0, 0], { cluster: 0 }),

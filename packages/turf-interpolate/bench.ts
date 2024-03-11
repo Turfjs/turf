@@ -1,8 +1,11 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
-import { interpolate } from "./index";
+import { interpolate } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Define Fixtures
 const directory = path.join(__dirname, "test", "in") + path.sep;
