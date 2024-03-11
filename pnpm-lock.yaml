@@ -2090,9 +2090,6 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
-      default-import:
-        specifier: ^1.1.5
-        version: 1.1.5
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -2227,9 +2224,6 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
-      default-import:
-        specifier: ^1.1.5
-        version: 1.1.5
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -3457,9 +3451,6 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
-      default-import:
-        specifier: ^1.1.5
-        version: 1.1.5
       sweepline-intersections:
         specifier: ^1.5.0
         version: 1.5.0
@@ -3647,9 +3638,6 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
-      default-import:
-        specifier: ^1.1.5
-        version: 1.1.5
       sweepline-intersections:
         specifier: ^1.5.0
         version: 1.5.0
@@ -10625,11 +10613,6 @@ packages:
       execa: 7.2.0
       titleize: 3.0.0
     dev: true
-
-  /default-import@1.1.5:
-    resolution: {integrity: sha512-aaJ6uzZlmaEcN1U8yvtiyV7MG3/zZQf1XtGSW5dTfAVvfk0VZuriJelXxVL9a0ni42vMkhjWcztFfpIhwFcfOQ==}
-    engines: {node: '>=14'}
-    dev: false
 
   /defaults@1.0.4:
     resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==}

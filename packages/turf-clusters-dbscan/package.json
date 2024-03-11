@@ -81,7 +81,6 @@
     "@turf/distance": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
-    "default-import": "^1.1.5",
     "rbush": "^3.0.1",
     "tslib": "^2.6.2"
   }

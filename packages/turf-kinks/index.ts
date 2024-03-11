@@ -8,11 +8,7 @@ import {
   Polygon,
 } from "geojson";
 import { point } from "@turf/helpers";
-import { defaultImport } from "default-import";
-import sweeplineIntersections from "sweepline-intersections";
-
-// Use defaultImport to get correct default from CJS module.
-const findIntersections = defaultImport(sweeplineIntersections);
+import { sweeplineIntersections as findIntersections } from "./lib/sweepline-intersections-export.js";
 
 /**
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring},

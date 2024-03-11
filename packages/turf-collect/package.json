@@ -70,7 +70,6 @@
     "@turf/bbox": "workspace:^",
     "@turf/boolean-point-in-polygon": "workspace:^",
     "@turf/helpers": "workspace:^",
-    "default-import": "^1.1.5",
     "rbush": "^3.0.1",
     "tslib": "^2.6.2"
   }
