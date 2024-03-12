@@ -519,6 +519,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@turf/length':
+        specifier: workspace:^
+        version: link:../turf-length
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
