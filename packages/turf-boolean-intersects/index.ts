@@ -3,7 +3,7 @@ import { booleanDisjoint } from "@turf/boolean-disjoint";
 import { flattenEach } from "@turf/meta";
 
 /**
- * Boolean-intersect returns (TRUE) if the intersection of the two geometries is NOT an empty set.
+ * Boolean-intersects returns (TRUE) if the intersection of the two geometries is NOT an empty set.
  *
  * @name booleanIntersects
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry

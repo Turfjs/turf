@@ -4,7 +4,7 @@
 
 ## booleanIntersects
 
-Boolean-intersect returns (TRUE) if the intersection of the two geometries is NOT an empty set.
+Boolean-intersects returns (TRUE) if the intersection of the two geometries is NOT an empty set.
 
 ### Parameters
 
