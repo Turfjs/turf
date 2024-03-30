@@ -59,7 +59,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/polygon-smooth`](polygon-smooth) Clean up a typo (#2293)
 - [`@turf/nearest-point-on-line`](nearest-point-on-line) Clean up typescript types (#2296)
 - [`@turf/boolean-touches`](boolean-touches) Add boolean-touches to docs (#2431)
-- [`@turf/boolean-equals`](boolean-equals) Improve docs (#2412)
+- [`@turf/boolean-equal`](boolean-equal) Improve docs (#2412)
 
 - Remove Bower references (#2146)
 - Fix typo in README (#2313)
