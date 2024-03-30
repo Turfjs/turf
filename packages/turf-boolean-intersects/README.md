@@ -18,14 +18,16 @@ var point1 = turf.point([2, 2]);
 var point2 = turf.point([1, 2]);
 var line = turf.lineString([[1, 1], [1, 3], [1, 4]]);
 
-//addToMap
-var addToMap = [point1, point2, line];
-
 turf.booleanIntersects(line, point1);
 //=false
 
 turf.booleanIntersects(line, point2);
 //=true
+
+//addToMap
+var addToMap = [point1, point2, line];
+point1.properties['marker-color'] = '#f00'
+point2.properties['marker-color'] = '#0f0'
 ```
 
 Returns **[boolean][3]** true/false
