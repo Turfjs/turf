@@ -173,7 +173,7 @@ function isLineInPoly(linestring: LineString, polygon: Polygon) {
   }
   var foundInsidePoint = false;
 
-  for (var i = 0; i < linestring.coordinates.length - 1; i++) {
+  for (var i = 0; i < linestring.coordinates.length; i++) {
     if (!booleanPointInPolygon(linestring.coordinates[i], polygon)) {
       return false;
     }
@@ -184,7 +184,7 @@ function isLineInPoly(linestring: LineString, polygon: Polygon) {
         { ignoreBoundary: true }
       );
     }
-    if (!foundInsidePoint) {
+    if (!foundInsidePoint && i < linestring.coordinates.length - 1) {
       var midpoint = getMidpoint(
         linestring.coordinates[i],
         linestring.coordinates[i + 1]
