@@ -45,6 +45,8 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "types": "index.d.ts",
+  "browser": "turf.min.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -52,8 +54,6 @@
       "require": "./dist/js/index.js"
     }
   },
-  "browser": "turf.min.js",
-  "types": "index.d.ts",
   "sideEffects": false,
   "files": [
     "dist",

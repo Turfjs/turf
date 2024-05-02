@@ -45,6 +45,7 @@
   ],
   "main": "dist/js/index.js",
   "module": "dist/es/index.js",
+  "types": "index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -52,7 +53,6 @@
       "require": "./dist/js/index.js"
     }
   },
-  "types": "index.d.ts",
   "sideEffects": false,
   "files": [
     "dist",
