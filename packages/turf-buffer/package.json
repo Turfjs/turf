@@ -30,14 +30,21 @@
     "geojson",
     "turf"
   ],
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
-  "types": "index.d.ts",
+  "type": "commonjs",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/cjs/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/es/index.js",
-      "require": "./dist/js/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
     }
   },
   "sideEffects": false,
@@ -47,7 +54,7 @@
   ],
   "scripts": {
     "bench": "tsx bench.js",
-    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build": "tsup --config ../../tsup.config.ts",
     "docs": "node ../../scripts/generate-readmes",
     "test": "npm-run-all test:*",
     "test:tape": "tsx test.js",
@@ -60,6 +67,7 @@
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",
+    "tsup": "^8.0.1",
     "tsx": "^4.9.1",
     "typescript": "~4.7.3",
     "write-json-file": "*"

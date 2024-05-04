@@ -43,15 +43,22 @@
     "jenks",
     "sample"
   ],
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
-  "types": "index.d.ts",
+  "type": "commonjs",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/cjs/index.d.ts",
   "browser": "turf.min.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/es/index.js",
-      "require": "./dist/js/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
     }
   },
   "sideEffects": false,
@@ -61,19 +68,25 @@
     "turf.min.js"
   ],
   "scripts": {
-    "build": "rollup -c rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "build": "tsup --config ../../tsup.config.ts && rollup -c ./rollup.config.js",
     "last-checks": "npm-run-all last-checks:testjs last-checks:example",
     "last-checks:example": "node test.example.js",
     "last-checks:testjs": "node test.js",
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/tape": "^4.2.32",
     "camelcase": "*",
     "documentation": "^13.2.5",
     "glob": "*",
-    "rollup": "^2.34.2",
+    "rollup": "^2.68.0",
+    "rollup-plugin-polyfill-node": "^0.13.0",
     "rollup-plugin-terser": "^7.0.2",
     "tape": "*"
   },

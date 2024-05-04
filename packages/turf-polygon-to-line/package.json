@@ -23,14 +23,21 @@
     "linestring",
     "polygon"
   ],
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
-  "types": "dist/js/index.d.ts",
+  "type": "commonjs",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/cjs/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/es/index.js",
-      "require": "./dist/js/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.mts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
     }
   },
   "sideEffects": false,
@@ -39,7 +46,7 @@
   ],
   "scripts": {
     "bench": "tsx bench.js",
-    "build": "npm-run-all build:*",
+    "build": "tsup --config ../../tsup.config.ts",
     "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
     "build:js": "tsc",
     "docs": "node ../../scripts/generate-readmes",
@@ -54,6 +61,7 @@
     "tape": "*",
     "ts-node": "^10.9.2",
     "tslint": "*",
+    "tsup": "^8.0.1",
     "tsx": "^4.9.1",
     "typescript": "~4.7.3",
     "write-json-file": "*"

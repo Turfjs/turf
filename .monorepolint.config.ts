@@ -75,13 +75,6 @@ module.exports = {
             // Example of a URL that will keep working: https://unpkg.com/@turf/turf
             browser: "turf.min.js",
             files: ["dist", "index.d.ts", "turf.min.js"],
-            exports: {
-              "./package.json": "./package.json",
-              ".": {
-                import: "./dist/es/index.js",
-                require: "./dist/js/index.js",
-              },
-            },
           },
         },
         includePackages: [MAIN_PACKAGE],
@@ -89,8 +82,10 @@ module.exports = {
       {
         options: {
           entries: {
-            main: "dist/js/index.js",
-            module: "dist/es/index.js",
+            type: "commonjs",
+            main: "dist/cjs/index.js",
+            module: "dist/esm/index.mjs",
+            types: "dist/cjs/index.d.ts",
             sideEffects: false,
             publishConfig: {
               access: "public",
@@ -98,31 +93,19 @@ module.exports = {
             exports: {
               "./package.json": "./package.json",
               ".": {
-                import: "./dist/es/index.js",
-                require: "./dist/js/index.js",
+                import: {
+                  types: "./dist/esm/index.d.mts",
+                  default: "./dist/esm/index.mjs",
+                },
+                require: {
+                  types: "./dist/cjs/index.d.ts",
+                  default: "./dist/cjs/index.js",
+                },
               },
             },
           },
         },
-        includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
-      },
-      {
-        options: {
-          entries: {
-            types: "dist/js/index.d.ts",
-            files: ["dist"],
-          },
-        },
-        includePackages: TS_PACKAGES,
-      },
-      {
-        options: {
-          entries: {
-            types: "index.d.ts",
-            files: ["dist", "index.d.ts"],
-          },
-        },
-        includePackages: JS_PACKAGES,
+        includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
       },
       {
         options: {
@@ -146,28 +129,16 @@ module.exports = {
       {
         options: {
           scripts: {
-            build: "npm-run-all build:*",
-            "build:js": "tsc",
-            "build:es":
-              'tsc --outDir dist/es --module esnext --declaration false && echo \'{"type":"module"}\' > dist/es/package.json',
+            build: "tsup --config ../../tsup.config.ts",
           },
         },
-        includePackages: TS_PACKAGES,
+        includePackages: [...JS_PACKAGES, ...TS_PACKAGES],
       },
       {
         options: {
           scripts: {
             build:
-              'rollup -c ../../rollup.config.js && echo \'{"type":"module"}\' > dist/es/package.json',
-          },
-        },
-        includePackages: JS_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            build:
-              'rollup -c rollup.config.js && echo \'{"type":"module"}\' > dist/es/package.json',
+              "tsup --config ../../tsup.config.ts && rollup -c ./rollup.config.js",
           },
         },
         includePackages: [MAIN_PACKAGE],
@@ -209,10 +180,10 @@ module.exports = {
       {
         options: {
           devDependencies: {
-            rollup: "*",
+            tsup: "^8.0.1",
           },
         },
-        includePackages: JS_PACKAGES,
+        includePackages: ALL_PACKAGES,
       },
     ],
   },
