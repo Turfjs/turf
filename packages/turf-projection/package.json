@@ -66,9 +66,9 @@
     "npm-run-all": "*",
     "proj4": "*",
     "tape": "*",
-    "ts-node": "*",
+    "ts-node": "^10.9.2",
     "tslint": "*",
-    "typescript": "*",
+    "typescript": "~4.7.3",
     "write-json-file": "*"
   },
   "dependencies": {

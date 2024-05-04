@@ -58,9 +58,9 @@
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",
-    "ts-node": "*",
+    "ts-node": "^10.9.2",
     "tslint": "*",
-    "typescript": "*"
+    "typescript": "~4.7.3"
   },
   "dependencies": {
     "@turf/bbox": "^6.5.0",
