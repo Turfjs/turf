@@ -5,7 +5,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowJs": true
   }
 }
