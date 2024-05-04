@@ -6,12 +6,10 @@ const TS_PACKAGES = [] as string[]; // projects that use typescript to build
 const JS_PACKAGES = [] as string[]; // projects that use javascript/rollup to build
 const MAIN_PACKAGE = "@turf/turf";
 
-const TAPE_PACKAGES = [] as string[]; // projects that have tape tests
 const TYPES_PACKAGES = [] as string[]; // projects that have types tests
-const BENCH_PACKAGES = [] as string[]; // projects that have benchmarks
 
 // iterate all the packages and figure out what buckets everything falls into
-glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
+glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk: string) => {
   const name = JSON.parse(
     fs.readFileSync(path.join(pk, "package.json"), "utf8")
   ).name;
@@ -22,27 +20,11 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
     JS_PACKAGES.push(name);
   }
 
-  if (fs.existsSync(path.join(pk, "test.js"))) {
-    TAPE_PACKAGES.push(name);
-  }
-
   if (fs.existsSync(path.join(pk, "types.ts"))) {
     TYPES_PACKAGES.push(name);
   }
 });
-
-const TS_BENCH_PACKAGES = BENCH_PACKAGES.filter(
-  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
-);
-const JS_BENCH_PACKAGES = BENCH_PACKAGES.filter(
-  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
-);
-const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
-);
-const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
-);
+const ALL_PACKAGES = [...JS_PACKAGES, ...TS_PACKAGES];
 
 module.exports = {
   rules: {
@@ -193,34 +175,11 @@ module.exports = {
       {
         options: {
           scripts: {
-            "test:tape": "node -r esm test.js",
+            bench: "tsx bench.js",
+            "test:tape": "tsx test.js",
           },
         },
-        includePackages: JS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            "test:tape": "ts-node -r esm test.js",
-          },
-        },
-        includePackages: TS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            bench: "node -r esm bench.js",
-          },
-        },
-        includePackages: JS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            bench: "ts-node bench.js",
-          },
-        },
-        includePackages: TS_TAPE_PACKAGES,
+        includePackages: ALL_PACKAGES,
       },
       {
         options: {
@@ -241,18 +200,11 @@ module.exports = {
         options: {
           devDependencies: {
             "npm-run-all": "*",
-          },
-        },
-        includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
-      },
-      {
-        options: {
-          devDependencies: {
-            "ts-node": "^10.9.2",
+            tsx: "^4.9.1",
             typescript: "~4.7.3",
           },
         },
-        includePackages: TS_PACKAGES,
+        includePackages: ALL_PACKAGES,
       },
       {
         options: {
