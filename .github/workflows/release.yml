@@ -1,8 +1,8 @@
-name: prerelease
+name: Publish Turf to npmjs
 
 on:
-  push:
-    branches: [master]
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -32,15 +32,15 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           cache: "pnpm"
 
-      - run: npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # Temp disabled for testing publish with junk NPM token
+      # - run: pnpm whoami
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm test
 
-      - name: run publish
-        run: pnpm run publish:prerelease
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
