@@ -1,0 +1,46 @@
+name: prerelease
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: true
+      matrix:
+        node:
+          - 18
+        platform:
+          - ubuntu-latest
+    name: "${{matrix.platform}} / Node.js ${{ matrix.node }}"
+    runs-on: ${{matrix.platform}}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2.4.0
+        with:
+          version: 8
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
+
+      - run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm test
+
+      - name: run publish
+        run: pnpm run publish:prerelease
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
