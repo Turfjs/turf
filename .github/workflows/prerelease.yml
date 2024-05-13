@@ -1,4 +1,4 @@
-name: prerelease
+name: Publish canary
 
 on:
   push:
@@ -41,6 +41,6 @@ jobs:
       - run: pnpm test
 
       - name: run publish
-        run: pnpm run publish:prerelease
+        run: lerna publish major --canary --force-publish --dist-tag prerelease --ignore-scripts true --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

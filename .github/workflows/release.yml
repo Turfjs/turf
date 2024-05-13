@@ -1,4 +1,4 @@
-name: Publish Turf to npmjs
+name: Publish release
 
 on:
   release:
@@ -17,7 +17,8 @@ jobs:
     runs-on: ${{matrix.platform}}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checking out v${{ github.event.tag }}
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: ${{ github.event.tag }}
@@ -33,15 +34,15 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           cache: "pnpm"
 
-      # Temp disabled for testing publish with junk NPM token
-      # - run: pnpm whoami
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: pnpm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: pnpm install --frozen-lockfile
 
       - run: pnpm test
 
-      - run: pnpx lerna publish from-git --yes
+      - name: run publish
+        run: pnpx lerna publish from-git --ignore-scripts --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
