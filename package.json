@@ -13,7 +13,8 @@
     "lint:prettier": "prettier --check .",
     "preinstall": "npx only-allow pnpm",
     "prepare": "lerna run build && husky install",
-    "publish:prerelease": "lerna publish --force-publish --canary major --dist-tag prerelease --ignore-scripts true --yes",
+    "publish:prerelease": "lerna publish --force-publish --canary minor --dist-tag prerelease --ignore-scripts true --yes",
+    "publish:release": "lerna publish from-package --ignore-scripts true --yes",
     "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
   },
   "lint-staged": {
