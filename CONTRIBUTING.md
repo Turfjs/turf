@@ -95,11 +95,9 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 - The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. Specifically having `major` is appropriate for the pre-7.0 development phase, but we should change it to `minor` after 7.0.0 is finally released.
 
 ### Release
-- create new branch
-- make a commit containing any last minute changelog entries
-- make a commit containing the changes from `pnpm lerna version --no-push 7.0.0`
-- create a PR from your branch and merge it
-- use the github UI to create a release with a new tag with a matching version (v7.0.0)
+- If necessary, make and merge a PR to contain any last minute changelog entries or other housekeeping items
+- Make and merge a PR that contains the files changed by `pnpm lerna version --no-push 7.0.0` (updating the version as necessary)
+- Use the Github UI to create a release with a new tag with a matching version (In this example it would be v7.0.0)
 
 ## Documentation
 
