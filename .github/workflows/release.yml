@@ -1,8 +1,13 @@
 name: Publish release
 
 on:
-  release:
+  push:
+    tags:
+      - "v*.*.*"
     types: [published]
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -44,3 +49,6 @@ jobs:
         run: lerna publish from-package --ignore-scripts true --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create Github Release
+        uses: softprops/action-gh-release@v2

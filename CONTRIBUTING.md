@@ -96,8 +96,10 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 
 ### Release
 - If necessary, make and merge a PR to contain any last minute changelog entries or other housekeeping items
-- Make and merge a PR that contains the files changed by `pnpm lerna version --no-push 7.0.0` (updating the version as necessary)
-- Use the Github UI to create a release with a new tag with a matching version (In this example it would be v7.0.0)
+- Make a PR that contains the file changes from `pnpm lerna version --no-push 7.0.0` (update the version as necessary)
+- When pushing the release PR, use `--follow-tags` to make sure the relevant tag is also pushed
+- The CI will start doing the release when the tag is created
+- Don't forget to merge your PR
 
 ## Documentation
 
