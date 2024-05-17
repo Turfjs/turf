@@ -95,17 +95,11 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 - The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. Specifically having `major` is appropriate for the pre-7.0 development phase, but we should change it to `minor` after 7.0.0 is finally released.
 
 ### Release
-- create new branch with some name
-- write up changelog changes (manually), commit that
-- make PR (don't merge)
-- pnpm lerna version --no-push 7.0.0
-- git push origin --follow-tags \$branch
-- merge PR (do not squash or the tags won't transfer)
-- re-fetch the new master and check it out locally
-- git clean -fdx (this will delete any unsaved local changes!)
-- pnpm install
-- pnpm test
-- pnpm publish -r
+- If necessary, make and merge a PR to contain any last minute changelog entries or other housekeeping items
+- Make a PR that contains the file changes from `pnpm lerna version --no-push 7.0.0` (update the version as necessary)
+- When pushing the release PR, use `--follow-tags` to make sure the relevant tag is also pushed
+- The CI will start doing the release when the tag is created
+- Don't forget to merge your PR
 
 ## Documentation
 
