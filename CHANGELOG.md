@@ -1,7 +1,7 @@
 # 7.0.0
 
 ## ⚠️  Breaking
-- Move to @types/geojson package instead of declaring our own (#2158)
+- Move to @types/geojson package instead of declaring our own. Typescript consumers of Turf will need to import from @types/geojson. (#2158)
 - Move distribution JS to target ES2017 (#2237)
 - Please change to using named exports instead of default exports from the various packages
 - [`@turf/helpers`](helpers) Correct the conversion factor for degrees (#2177)
