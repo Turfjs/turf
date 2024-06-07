@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-touches",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf boolean-touches module",
   "author": "Turf Authors",
   "contributors": [

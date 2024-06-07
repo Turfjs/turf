@@ -1,6 +1,6 @@
 {
   "name": "@turf/envelope",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf envelope module",
   "author": "Turf Authors",
   "license": "MIT",

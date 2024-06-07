@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-median",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf center-median module",
   "author": "Turf Authors",
   "contributors": [

@@ -1,6 +1,6 @@
 {
   "name": "@turf/geojson-rbush",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "GeoJSON implementation of RBush",
   "author": "Turf Authors",
   "contributors": [

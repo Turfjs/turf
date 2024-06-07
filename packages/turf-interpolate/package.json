@@ -1,6 +1,6 @@
 {
   "name": "@turf/interpolate",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf interpolate module",
   "author": "Turf Authors",
   "contributors": [

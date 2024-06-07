@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-intersect",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf line-intersect module",
   "author": "Turf Authors",
   "contributors": [

@@ -1,6 +1,6 @@
 {
   "name": "@turf/clusters",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf clusters module",
   "author": "Turf Authors",
   "contributors": [
