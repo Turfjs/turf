@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-grid",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf point-grid module",
   "author": "Turf Authors",
   "contributors": [

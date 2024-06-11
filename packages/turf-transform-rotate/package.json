@@ -1,6 +1,6 @@
 {
   "name": "@turf/transform-rotate",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf transform-rotate module",
   "author": "Turf Authors",
   "contributors": [

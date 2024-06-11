@@ -1,6 +1,6 @@
 {
   "name": "@turf/isobands",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf isobands module",
   "author": "Turf Authors",
   "contributors": [
