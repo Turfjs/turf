@@ -62,7 +62,7 @@ export type AllGeoJSON =
  * @memberof helpers
  * @type {number}
  */
-export const earthRadius = 6371008.8;
+export const earthRadius = /* @__PURE__ */ 6371008.8;
 
 /**
  * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
@@ -97,7 +97,7 @@ export const factors: Record<Units, number> = {
  * @memberof helpers
  * @type {Object}
  */
-export const areaFactors: Record<AreaUnits, number> = {
+export const areaFactors: Record<AreaUnits, number> = /* @__PURE__ */ {
   acres: 0.000247105,
   centimeters: 10000,
   centimetres: 10000,
@@ -135,14 +135,14 @@ export const areaFactors: Record<AreaUnits, number> = {
  *
  * //=feature
  */
-export function feature<
+export const feature = /* @__PURE__ */ <
   G extends GeometryObject = Geometry,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geom: G | null,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<G, P> {
+): Feature<G, P> => {
   const feat: any = { type: "Feature" };
   if (options.id === 0 || options.id) {
     feat.id = options.id;
@@ -153,7 +153,7 @@ export function feature<
   feat.properties = properties || {};
   feat.geometry = geom;
   return feat;
-}
+};
 
 /**
  * Creates a GeoJSON {@link Geometry} from a Geometry string type & coordinates.
@@ -170,7 +170,7 @@ export function feature<
  * var geometry = turf.geometry(type, coordinates);
  * // => geometry
  */
-export function geometry(
+export const geometry = (
   type:
     | "Point"
     | "LineString"
@@ -180,7 +180,7 @@ export function geometry(
     | "MultiPolygon",
   coordinates: any[],
   _options: Record<string, never> = {}
-) {
+) => {
   switch (type) {
     case "Point":
       return point(coordinates).geometry;
@@ -197,7 +197,7 @@ export function geometry(
     default:
       throw new Error(type + " is invalid");
   }
-}
+};
 
 /**
  * Creates a {@link Point} {@link Feature} from a Position.
@@ -214,11 +214,11 @@ export function geometry(
  *
  * //=point
  */
-export function point<P extends GeoJsonProperties = GeoJsonProperties>(
+export const point = <P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<Point, P> {
+): Feature<Point, P> => {
   if (!coordinates) {
     throw new Error("coordinates is required");
   }
@@ -237,7 +237,7 @@ export function point<P extends GeoJsonProperties = GeoJsonProperties>(
     coordinates,
   };
   return feature(geom, properties, options);
-}
+};
 
 /**
  * Creates a {@link Point} {@link FeatureCollection} from an Array of Point coordinates.
@@ -259,18 +259,18 @@ export function point<P extends GeoJsonProperties = GeoJsonProperties>(
  *
  * //=points
  */
-export function points<P extends GeoJsonProperties = GeoJsonProperties>(
+export const points = <P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): FeatureCollection<Point, P> {
+): FeatureCollection<Point, P> => {
   return featureCollection(
     coordinates.map((coords) => {
       return point(coords, properties);
     }),
     options
   );
-}
+};
 
 /**
  * Creates a {@link Polygon} {@link Feature} from an Array of LinearRings.
@@ -287,11 +287,11 @@ export function points<P extends GeoJsonProperties = GeoJsonProperties>(
  *
  * //=polygon
  */
-export function polygon<P extends GeoJsonProperties = GeoJsonProperties>(
+export const polygon = <P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<Polygon, P> {
+): Feature<Polygon, P> => {
   for (const ring of coordinates) {
     if (ring.length < 4) {
       throw new Error(
@@ -315,7 +315,7 @@ export function polygon<P extends GeoJsonProperties = GeoJsonProperties>(
     coordinates,
   };
   return feature(geom, properties, options);
-}
+};
 
 /**
  * Creates a {@link Polygon} {@link FeatureCollection} from an Array of Polygon coordinates.
@@ -335,18 +335,18 @@ export function polygon<P extends GeoJsonProperties = GeoJsonProperties>(
  *
  * //=polygons
  */
-export function polygons<P extends GeoJsonProperties = GeoJsonProperties>(
+export const polygons = <P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): FeatureCollection<Polygon, P> {
+): FeatureCollection<Polygon, P> => {
   return featureCollection(
     coordinates.map((coords) => {
       return polygon(coords, properties);
     }),
     options
   );
-}
+};
 
 /**
  * Creates a {@link LineString} {@link Feature} from an Array of Positions.
@@ -365,11 +365,11 @@ export function polygons<P extends GeoJsonProperties = GeoJsonProperties>(
  * //=linestring1
  * //=linestring2
  */
-export function lineString<P extends GeoJsonProperties = GeoJsonProperties>(
+export const lineString = <P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<LineString, P> {
+): Feature<LineString, P> => {
   if (coordinates.length < 2) {
     throw new Error("coordinates must be an array of two or more positions");
   }
@@ -378,7 +378,7 @@ export function lineString<P extends GeoJsonProperties = GeoJsonProperties>(
     coordinates,
   };
   return feature(geom, properties, options);
-}
+};
 
 /**
  * Creates a {@link LineString} {@link FeatureCollection} from an Array of LineString coordinates.
@@ -399,18 +399,18 @@ export function lineString<P extends GeoJsonProperties = GeoJsonProperties>(
  *
  * //=linestrings
  */
-export function lineStrings<P extends GeoJsonProperties = GeoJsonProperties>(
+export const lineStrings = <P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): FeatureCollection<LineString, P> {
+): FeatureCollection<LineString, P> => {
   return featureCollection(
     coordinates.map((coords) => {
       return lineString(coords, properties);
     }),
     options
   );
-}
+};
 
 /**
  * Takes one or more {@link Feature|Features} and creates a {@link FeatureCollection}.
@@ -434,13 +434,13 @@ export function lineStrings<P extends GeoJsonProperties = GeoJsonProperties>(
  *
  * //=collection
  */
-export function featureCollection<
+export const featureCollection = <
   G extends GeometryObject = Geometry,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
   features: Array<Feature<G, P>>,
   options: { bbox?: BBox; id?: Id } = {}
-): FeatureCollection<G, P> {
+): FeatureCollection<G, P> => {
   const fc: any = { type: "FeatureCollection" };
   if (options.id) {
     fc.id = options.id;
@@ -450,7 +450,7 @@ export function featureCollection<
   }
   fc.features = features;
   return fc;
-}
+};
 
 /**
  * Creates a {@link Feature<MultiLineString>} based on a
@@ -469,19 +469,19 @@ export function featureCollection<
  *
  * //=multiLine
  */
-export function multiLineString<
+export const multiLineString = <
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
   coordinates: Position[][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<MultiLineString, P> {
+): Feature<MultiLineString, P> => {
   const geom: MultiLineString = {
     type: "MultiLineString",
     coordinates,
   };
   return feature(geom, properties, options);
-}
+};
 
 /**
  * Creates a {@link Feature<MultiPoint>} based on a
@@ -500,17 +500,17 @@ export function multiLineString<
  *
  * //=multiPt
  */
-export function multiPoint<P extends GeoJsonProperties = GeoJsonProperties>(
+export const multiPoint = <P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<MultiPoint, P> {
+): Feature<MultiPoint, P> => {
   const geom: MultiPoint = {
     type: "MultiPoint",
     coordinates,
   };
   return feature(geom, properties, options);
-}
+};
 
 /**
  * Creates a {@link Feature<MultiPolygon>} based on a
@@ -530,17 +530,17 @@ export function multiPoint<P extends GeoJsonProperties = GeoJsonProperties>(
  * //=multiPoly
  *
  */
-export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
+export const multiPolygon = <P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<MultiPolygon, P> {
+): Feature<MultiPolygon, P> => {
   const geom: MultiPolygon = {
     type: "MultiPolygon",
     coordinates,
   };
   return feature(geom, properties, options);
-}
+};
 
 /**
  * Creates a {@link Feature<GeometryCollection>} based on a
@@ -560,7 +560,7 @@ export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
  *
  * // => collection
  */
-export function geometryCollection<
+export const geometryCollection = <
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geometries: Array<
@@ -568,13 +568,13 @@ export function geometryCollection<
   >,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<GeometryCollection, P> {
+): Feature<GeometryCollection, P> => {
   const geom: GeometryCollection = {
     type: "GeometryCollection",
     geometries,
   };
   return feature(geom, properties, options);
-}
+};
 
 /**
  * Round number to precision
@@ -589,13 +589,13 @@ export function geometryCollection<
  * turf.round(120.4321, 2)
  * //=120.43
  */
-export function round(num: number, precision = 0): number {
+export const round = /* @__PURE__ */ (num: number, precision = 0): number => {
   if (precision && !(precision >= 0)) {
     throw new Error("precision must be a positive number");
   }
   const multiplier = Math.pow(10, precision || 0);
   return Math.round(num * multiplier) / multiplier;
-}
+};
 
 /**
  * Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
@@ -607,16 +607,16 @@ export function round(num: number, precision = 0): number {
  * meters, kilometres, kilometers.
  * @returns {number} distance
  */
-export function radiansToLength(
+export const radiansToLength = (
   radians: number,
   units: Units = "kilometers"
-): number {
+): number => {
   const factor = factors[units];
   if (!factor) {
     throw new Error(units + " units is invalid");
   }
   return radians * factor;
-}
+};
 
 /**
  * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into radians
@@ -628,16 +628,16 @@ export function radiansToLength(
  * meters, kilometres, kilometers.
  * @returns {number} radians
  */
-export function lengthToRadians(
+export const lengthToRadians = (
   distance: number,
   units: Units = "kilometers"
-): number {
+): number => {
   const factor = factors[units];
   if (!factor) {
     throw new Error(units + " units is invalid");
   }
   return distance / factor;
-}
+};
 
 /**
  * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into degrees
@@ -649,9 +649,9 @@ export function lengthToRadians(
  * meters, kilometres, kilometers.
  * @returns {number} degrees
  */
-export function lengthToDegrees(distance: number, units?: Units): number {
+export const lengthToDegrees = (distance: number, units?: Units): number => {
   return radiansToDegrees(lengthToRadians(distance, units));
-}
+};
 
 /**
  * Converts any bearing angle from the north line direction (positive clockwise)
@@ -661,13 +661,13 @@ export function lengthToDegrees(distance: number, units?: Units): number {
  * @param {number} bearing angle, between -180 and +180 degrees
  * @returns {number} angle between 0 and 360 degrees
  */
-export function bearingToAzimuth(bearing: number): number {
+export const bearingToAzimuth = /* @__PURE__ */ (bearing: number): number => {
   let angle = bearing % 360;
   if (angle < 0) {
     angle += 360;
   }
   return angle;
-}
+};
 
 /**
  * Converts an angle in radians to degrees
@@ -676,10 +676,10 @@ export function bearingToAzimuth(bearing: number): number {
  * @param {number} radians angle in radians
  * @returns {number} degrees between 0 and 360 degrees
  */
-export function radiansToDegrees(radians: number): number {
+export const radiansToDegrees = /* @__PURE__ */ (radians: number): number => {
   const degrees = radians % (2 * Math.PI);
   return (degrees * 180) / Math.PI;
-}
+};
 
 /**
  * Converts an angle in degrees to radians
@@ -688,10 +688,10 @@ export function radiansToDegrees(radians: number): number {
  * @param {number} degrees angle between 0 and 360 degrees
  * @returns {number} angle in radians
  */
-export function degreesToRadians(degrees: number): number {
+export const degreesToRadians = /* @__PURE__ */ (degrees: number): number => {
   const radians = degrees % 360;
   return (radians * Math.PI) / 180;
-}
+};
 
 /**
  * Converts a length to the requested unit.
@@ -702,16 +702,16 @@ export function degreesToRadians(degrees: number): number {
  * @param {Units} [finalUnit="kilometers"] returned unit
  * @returns {number} the converted length
  */
-export function convertLength(
+export const convertLength = (
   length: number,
   originalUnit: Units = "kilometers",
   finalUnit: Units = "kilometers"
-): number {
+): number => {
   if (!(length >= 0)) {
     throw new Error("length must be a positive number");
   }
   return radiansToLength(lengthToRadians(length, originalUnit), finalUnit);
-}
+};
 
 /**
  * Converts a area to the requested unit.
@@ -721,11 +721,11 @@ export function convertLength(
  * @param {Units} [finalUnit="kilometers"] returned unit
  * @returns {number} the converted area
  */
-export function convertArea(
+export const convertArea = (
   area: number,
   originalUnit: AreaUnits = "meters",
   finalUnit: AreaUnits = "kilometers"
-): number {
+): number => {
   if (!(area >= 0)) {
     throw new Error("area must be a positive number");
   }
@@ -741,7 +741,7 @@ export function convertArea(
   }
 
   return (area / startFactor) * finalFactor;
-}
+};
 
 /**
  * isNumber
@@ -754,9 +754,9 @@ export function convertArea(
  * turf.isNumber('foo')
  * //=false
  */
-export function isNumber(num: any): boolean {
+export const isNumber = /* @__PURE__ */ (num: any): boolean => {
   return !isNaN(num) && num !== null && !Array.isArray(num);
-}
+};
 
 /**
  * isObject
@@ -769,9 +769,9 @@ export function isNumber(num: any): boolean {
  * turf.isObject('foo')
  * //=false
  */
-export function isObject(input: any): boolean {
+export const isObject = /* @__PURE__ */ (input: any): boolean => {
   return input !== null && typeof input === "object" && !Array.isArray(input);
-}
+};
 
 /**
  * Validate BBox
@@ -794,7 +794,7 @@ export function isObject(input: any): boolean {
  * validateBBox(undefined)
  * //=Error
  */
-export function validateBBox(bbox: any): void {
+export const validateBBox = /* @__PURE__ */ (bbox: any): void => {
   if (!bbox) {
     throw new Error("bbox is required");
   }
@@ -809,7 +809,7 @@ export function validateBBox(bbox: any): void {
       throw new Error("bbox must only contain numbers");
     }
   });
-}
+};
 
 /**
  * Validate Id
@@ -832,11 +832,11 @@ export function validateBBox(bbox: any): void {
  * validateId(undefined)
  * //=Error
  */
-export function validateId(id: any): void {
+export const validateId = /* @__PURE__ */ (id: any): void => {
   if (!id) {
     throw new Error("id is required");
   }
   if (["string", "number"].indexOf(typeof id) === -1) {
     throw new Error("id must be a number or a string");
   }
-}
+};
