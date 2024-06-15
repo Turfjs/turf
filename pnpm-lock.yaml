@@ -1140,16 +1140,19 @@ importers:
       '@turf/clean-coords':
         specifier: workspace:^
         version: link:../turf-clean-coords
-      '@turf/helpers':
-        specifier: workspace:^
-        version: link:../turf-helpers
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      geojson-equality-ts:
+        specifier: ^1.0.2
+        version: 1.0.2
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
     devDependencies:
+      '@turf/helpers':
+        specifier: workspace:^
+        version: link:../turf-helpers
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
@@ -1236,9 +1239,6 @@ importers:
 
   packages/turf-boolean-overlap:
     dependencies:
-      '@turf/helpers':
-        specifier: workspace:^
-        version: link:../turf-helpers
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
@@ -1251,10 +1251,16 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      geojson-equality-ts:
+        specifier: ^1.0.2
+        version: 1.0.2
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
     devDependencies:
+      '@turf/helpers':
+        specifier: workspace:^
+        version: link:../turf-helpers
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
@@ -3154,9 +3160,6 @@ importers:
 
   packages/turf-helpers:
     dependencies:
-      deep-equal:
-        specifier: ^2.2.3
-        version: 2.2.3
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3164,9 +3167,6 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
-      '@types/deep-equal':
-        specifier: ^1.0.4
-        version: 1.0.4
       '@types/tape':
         specifier: ^4.2.32
         version: 4.13.4
@@ -9022,6 +9022,10 @@ packages:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
     dev: true
 
+  /@types/geojson@7946.0.14:
+    resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
+    dev: false
+
   /@types/geojson@7946.0.8:
     resolution: {integrity: sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==}
 
@@ -12039,6 +12043,12 @@ packages:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
     dev: true
+
+  /geojson-equality-ts@1.0.2:
+    resolution: {integrity: sha512-h3Ryq+0mCSN/7yLs0eDgrZhvc9af23o/QuC4aTiuuzP/MRCtd6mf5rLsLRY44jX0RPUfM8c4GqERQmlUxPGPoQ==}
+    dependencies:
+      '@types/geojson': 7946.0.14
+    dev: false
 
   /geojson-polygon-self-intersections@1.2.1:
     resolution: {integrity: sha512-/QM1b5u2d172qQVO//9CGRa49jEmclKEsYOQmWP9ooEjj63tBM51m2805xsbxkzlEELQ2REgTf700gUhhlegxA==}
