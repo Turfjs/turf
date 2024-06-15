@@ -57,7 +57,6 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/helpers": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
@@ -71,6 +70,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "@turf/line-intersect": "workspace:^",
     "@turf/line-overlap": "workspace:^",

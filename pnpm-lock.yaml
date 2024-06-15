@@ -1140,6 +1140,9 @@ importers:
       '@turf/clean-coords':
         specifier: workspace:^
         version: link:../turf-clean-coords
+      '@turf/helpers':
+        specifier: workspace:^
+        version: link:../turf-helpers
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
@@ -1150,9 +1153,6 @@ importers:
         specifier: ^2.6.2
         version: 2.6.2
     devDependencies:
-      '@turf/helpers':
-        specifier: workspace:^
-        version: link:../turf-helpers
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
@@ -1239,6 +1239,9 @@ importers:
 
   packages/turf-boolean-overlap:
     dependencies:
+      '@turf/helpers':
+        specifier: workspace:^
+        version: link:../turf-helpers
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
@@ -1258,9 +1261,6 @@ importers:
         specifier: ^2.6.2
         version: 2.6.2
     devDependencies:
-      '@turf/helpers':
-        specifier: workspace:^
-        version: link:../turf-helpers
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5

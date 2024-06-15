@@ -58,7 +58,6 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/helpers": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
@@ -73,6 +72,7 @@
   },
   "dependencies": {
     "@turf/clean-coords": "workspace:^",
+    "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "geojson-equality-ts": "^1.0.2",
     "tslib": "^2.6.2"
