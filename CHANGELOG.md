@@ -1,3 +1,5 @@
+Changelog is no longer maintained. See Turf Github [releases](https://github.com/Turfjs/turf/releases)
+
 # 7.0.0
 
 ## ⚠️  Breaking

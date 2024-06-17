@@ -95,11 +95,14 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 - The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. Specifically having `major` is appropriate for the pre-7.0 development phase, but we should change it to `minor` after 7.0.0 is finally released.
 
 ### Release
-- If necessary, make and merge a PR to contain any last minute changelog entries or other housekeeping items
-- Make a PR that contains the file changes from `pnpm lerna version --no-push 7.0.0` (update the version as necessary)
+- Review code commits and decide what type of release this will be - PATCH, MINOR, MAJOR
+- If necessary, make and merge a PR to contain any last minute housekeeping items (docs, tests, etc.)
+- Make a PR that contains the file changes from `pnpm lerna version --no-push 7.0.0` (update this version number as appropriate)
 - When pushing the release PR, use `--follow-tags` to make sure the relevant tag is also pushed
 - The CI will start doing the release when the tag is created
 - Don't forget to merge your PR
+- Release a new version of the documentation (see below)
+- A draft Github release should have been created at https://github.com/Turfjs/turf/releases.  Review this release and make any corrections.  Bringing any breaking changes up to the top.  Add a summary paragraph or additional notes as useful.  Use past releases as a guide.
 
 ## Documentation
 
