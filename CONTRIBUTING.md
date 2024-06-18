@@ -138,7 +138,7 @@ git push origin mf/release-7.0.0 --follow-tags
 
 - If NPM publish was successful, merge your release PR to master.
 - [Snapshot and release](#documentation) a new version of the API docs.
-- As part of the release action, a draft Github release will have been created at https://github.com/Turfjs/turf/releases with an auto-generated changelog.  Edit and add to the release notes for readability and completeness, specifically noting any breaking changes.  Use past releases as a guide.  Be sure to "Save draft" each time, then ask for a review from other contributors.  Once ready, click `Publish release`.  This will notify all watchers of the project.
+- As part of the release action, a draft Github release will have been created at https://github.com/Turfjs/turf/releases with an auto-generated changelog.  Edit and add to the release notes for readability and completeness, specifically noting any breaking changes.  Use past releases as a guide.  Be sure to "Save draft" each time, then ask for a review from other contributors.  Once ready, click `Publish release`.  This will make the release notes publicly accessible and notify all watchers of the project.
 
 ## Documentation
 
