@@ -91,7 +91,7 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 
 ### Prerelease
 
-- Every commit or PR merged to the master branch will trigger the Github [prerelease](https://github.com/Turfjs/turf/blob/master/.github/workflows/prerelease.yml) action, creating a canary release.
+- Every commit or PR merged to the master branch will trigger the Github [prerelease](https://github.com/Turfjs/turf/blob/master/.github/workflows/prerelease.yml) action, creating an alpha release (e.g. `7.0.0-alpha.116` where 116 is the number of commits to master since the last release tag).
 - The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. Specifically having `major` is appropriate for the pre-7.0 development phase, but we should change it to `minor` after 7.0.0 is finally released.
 
 ### Release
@@ -132,7 +132,7 @@ git push origin mf/release-7.0.0 --follow-tags
 ```
 
 #### Release Final Steps
-- Create a Pull Request for the release, using the link in the output of the push command. Use the version number for the PR title (e.g. v7.0.0).  The PR should be setup to merge your release branch to master.  Don't merge the PR yet.  Here is an example - https://github.com/Turfjs/turf/pull/2615
+- Create a Pull Request for the release, using the link in the output of the push command and the version number for the PR title (e.g. v7.0.0).  If the link isn't provided, just create a PR setup to merge your release branch to master.  Don't merge the PR yet.  Here is an example - https://github.com/Turfjs/turf/pull/2615
 
 - You can view the status of the triggered release action here - https://github.com/Turfjs/turf/actions.  Once complete, a new [version](https://www.npmjs.com/package/@turf/turf?activeTab=versions) of all turf packages will have been published on NPM.
 
