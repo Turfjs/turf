@@ -156,6 +156,32 @@ test("turf-buffer - morphological closing", (t) => {
   t.end();
 });
 
+test("turf-buffer - undefined return", (t) => {
+  const poly: GeoJSON.Feature<GeoJSON.Polygon> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [-101.87842323574378, 52.250446362382775],
+          [-101.87842323574378, 49.56446202085259],
+          [-98.29404114999511, 49.56446202085259],
+          [-98.29404114999511, 52.250446362382775],
+          [-101.87842323574378, 52.250446362382775],
+        ],
+      ],
+    },
+  };
+
+  t.equal(
+    buffer(poly, -100000000),
+    undefined,
+    "empty geometry should be undefined if the resulting geometry is invalid"
+  );
+  t.end();
+});
+
 function colorize(feature, color) {
   color = color || "#F00";
   if (feature.properties) {

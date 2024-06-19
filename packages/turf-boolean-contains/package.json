@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-contains",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf boolean-contains module",
   "author": "Turf Authors",
   "contributors": [

@@ -14,6 +14,7 @@
 - [`@turf/union`](union) Accept FeatureCollection for multiple inputs (#2247)
 - [`@turf/difference`](difference) Accept FeatureCollection for multiple inputs (#2247)
 - [`@turf/intersect`](intersect) Accept FeatureCollection for multiple inputs (#2247)
+- [`@turf/buffer`](buffer) Add undefined return for when the geometry is invalid (#2613)
 
 ## 🏅 New Features/Enhancements
 - [`@turf/kinks`](kinks) Move to sweepline-intersections library for performance (#1896)
