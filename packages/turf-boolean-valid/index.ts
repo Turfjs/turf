@@ -90,7 +90,7 @@ function booleanValid(feature: Feature<any> | Geometry) {
 
 function checkRingsClose(geom: Position[]) {
   return (
-    geom[0][0] === geom[geom.length - 1][0] ||
+    geom[0][0] === geom[geom.length - 1][0] &&
     geom[0][1] === geom[geom.length - 1][1]
   );
 }
