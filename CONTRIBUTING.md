@@ -121,9 +121,10 @@ git checkout origin/master -b mf/release-7.0.0
 pnpm lerna version --no-push 7.0.0
 ```
 
-- stage changed files for commit.  This should be limited to package.json and lerna.json changes.
+- stage any files changed by the version command.
 ```bash
-git add .
+git add packages/*/package.json
+git add lerna.json
 ```
 
 - create new commit on the release branch
