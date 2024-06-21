@@ -148,15 +148,15 @@ git push origin mf/release-7.0.0 --follow-tags
 
 ## Documentation
 
-- Turf's documentation (README.md files) should be up to date in master as they are generated automatically on commit, based on the JSDoc comments in the package files. Should you need to, you can update them by running `npm run docs` and commit any changes.
+- API docs for each turf package are extracted from JSDoc comments in the source code into the top-level README.md files.  README's are automatically updated on commit using via the pre-commit hook.
 
-README files are auto-updated To update TurfJS's Documentation (README.md) use the following `npm run docs`:
-  - **inside a module:** will only generate the docs of that module.
+Should you want to generate new README files manually, use `npm run docs`:
+  - **inside a module:** will generate the docs for that module.
   - **main folder:** will generate docs for all modules.
 
 ### Documentation - Examples
 
-**Only builds docs for `@turf/center`**
+**Only build docs for `@turf/center`**
 
 ```bash
 $ cd ./turf/packages/turf-center
@@ -189,7 +189,7 @@ Building Docs: @turf/boolean-clockwise
 
 ### Public website
 
-[turfjs.org](http://turfjs.org/) is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
+The [turfjs.org](http://turfjs.org/) website is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
 
 ## Other Dependencies
 - Turf uses [pnpm](https://pnpm.io/) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
