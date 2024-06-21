@@ -91,15 +91,18 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 
 ### Prerelease
 
-- Every commit or PR merged to the master branch will trigger the Github [prerelease](https://github.com/Turfjs/turf/blob/master/.github/workflows/prerelease.yml) action, creating an alpha release (e.g. `7.0.0-alpha.116` where 116 is the number of commits to master since the last release tag).
+A [prerelease](https://github.com/Turfjs/turf/blob/master/.github/workflows/prerelease.yml) action is available that publishes a canary release for every commit or PR merged to the master branch.  However, this action is only [enabled](https://github.com/Turfjs/turf/actions/workflows/prerelease.yml) when needed.
+
+When used, it publishes an alpha release to NPM (e.g. `7.0.0-alpha.116` where 116 is the number of commits to master since the last release tag).
 - The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. Specifically having `major` is appropriate for the pre-7.0 development phase, but we should change it to `minor` after 7.0.0 is finally released.
 
 ### Release
-- If necessary, make and merge a PR with any last minute housekeeping items (docs, etc.)
-- Review code commits and decide the new version number.  If there are breaking changes, then it should be a major version bump, e.g. 6.x.x to 7.0.0.  This project follows [semantic versioning](https://semver.org/).
 
-#### Release commands
-Run the following release commands, replacing 7.0.0 with the version number to release:
+Turf releases are a series of steps done from your local computer and on Github.  Be sure to start with a clean, up-to-date version of the Turf repository master branch.  When running the following release commands, replace `7.0.0` with the version number you are releasing.
+
+- If necessary, make and merge a PR with any last minute housekeeping items.
+  - Turf's documentation (README.md files) should be up to date as they are updated automatically on commit, based on the JSDoc comments in the package files.
+- Review code commits and decide the new version number.  If there are breaking changes, then it should be a major version bump, e.g. 6.x.x to 7.0.0.  This project follows [semantic versioning](https://semver.org/).
 
 - fetch the latest code from remote origin
 ```bash
@@ -116,9 +119,9 @@ get checkout origin/master -b mf/release-7.0.0
 pnpm lerna version --no-push 7.0.0
 ```
 
-- check the changed files and stage them for commit.  Example:
+- stage changed files for commit
 ```bash
-git add packages/*/package.json
+git add .
 ```
 
 - create new commit on the release branch
@@ -126,23 +129,26 @@ git add packages/*/package.json
 git commit -m "Release v7.0.0"
 ```
 
-- push the release branch and the release tag.  This will trigger the Github [release](https://github.com/Turfjs/turf/blob/master/.github/workflows/release.yml) action.
+- Push the release branch and the release tag.  The tag will trigger the Github [release](https://github.com/Turfjs/turf/blob/master/.github/workflows/release.yml) action which you can view the status of at - https://github.com/Turfjs/turf/actions.  If successful, a new [version](https://www.npmjs.com/package/@turf/turf?activeTab=versions) of all turf packages will have been published on NPM.
 ```bash
 git push origin mf/release-7.0.0 --follow-tags
 ```
 
-#### Release Final Steps
-- Create a Pull Request for the release, using the link in the output of the push command and the version number for the PR title (e.g. v7.0.0).  If the link isn't provided, just create a PR setup to merge your release branch to master.  Don't merge the PR yet.  Here is an example - https://github.com/Turfjs/turf/pull/2615
+- If the release action was successful, create a Pull Request for the release and then merge it.
+  - A link to create the PR should be in the output of the push command
+  - Use the version number for the PR title (e.g. v7.0.0).
+  - If a link isn't provided, just create a PR that merges your release branch to master.  Here is an example - https://github.com/Turfjs/turf/pull/2615.
+  - Don't forget to merge your release PR!
 
-- You can view the status of the triggered release action here - https://github.com/Turfjs/turf/actions.  Once complete, a new [version](https://www.npmjs.com/package/@turf/turf?activeTab=versions) of all turf packages will have been published on NPM.
-
-- If NPM publish was successful, merge your release PR to master.
-- [Snapshot and release](#documentation) a new version of the API docs.
+#### Follow-on steps
 - As part of the release action, a draft Github release will have been created at https://github.com/Turfjs/turf/releases with an auto-generated changelog.  Edit and add to the release notes for readability and completeness, specifically noting any breaking changes.  Use past releases as a guide.  Be sure to "Save draft" each time, then ask for a review from other contributors.  Once ready, click `Publish release`.  This will make the release notes publicly accessible and notify all watchers of the project.
+- Snapshot and release a new version of the [API docs](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
 
 ## Documentation
 
-To update TurfJS's Documentation (README.md) use the following `npm run docs`:
+- Turf's documentation (README.md files) should be up to date in master as they are generated automatically on commit, based on the JSDoc comments in the package files. Should you need to, you can update them by running `npm run docs` and commit any changes.
+
+README files are auto-updated To update TurfJS's Documentation (README.md) use the following `npm run docs`:
   - **inside a module:** will only generate the docs of that module.
   - **main folder:** will generate docs for all modules.
 
@@ -184,9 +190,8 @@ Building Docs: @turf/boolean-clockwise
 [turfjs.org](http://turfjs.org/) is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
 
 ## Other Dependencies
-- Turf uses [Yarn](https://yarnpkg.com) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
-  - Lerna will be automatically installed when you run `npm install` in the root directory.
-  - Yarn will need to be installed on your computer, installers are available via the yarn website.
+- Turf uses [pnpm](https://pnpm.io/) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
+  - Lerna and pnpm will be automatically installed when you run `npm install` in the root directory.
 
 ## Financial contributions
 
