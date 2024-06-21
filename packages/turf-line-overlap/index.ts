@@ -14,7 +14,7 @@ import {
   GeoJsonProperties,
 } from "geojson";
 import { featureCollection, isObject } from "@turf/helpers";
-import equal from "deep-equal";
+import { dequal } from "dequal";
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.
@@ -76,7 +76,7 @@ function lineOverlap<
         var coordsMatch: any = getCoords(match).sort();
 
         // Segment overlaps feature
-        if (equal(coordsSegment, coordsMatch)) {
+        if (dequal(coordsSegment, coordsMatch)) {
           doesOverlaps = true;
           // Overlaps already exists - only append last coordinate of segment
           if (overlapSegment) {
@@ -155,10 +155,10 @@ function concatSegment(
   var end = lineCoords[lineCoords.length - 1];
   var geom = line.geometry.coordinates;
 
-  if (equal(coords[0], start)) geom.unshift(coords[1]);
-  else if (equal(coords[0], end)) geom.push(coords[1]);
-  else if (equal(coords[1], start)) geom.unshift(coords[0]);
-  else if (equal(coords[1], end)) geom.push(coords[0]);
+  if (dequal(coords[0], start)) geom.unshift(coords[1]);
+  else if (dequal(coords[0], end)) geom.push(coords[1]);
+  else if (dequal(coords[1], start)) geom.unshift(coords[0]);
+  else if (dequal(coords[1], end)) geom.push(coords[0]);
   else return; // If the overlap leaves the segment unchanged, return undefined so that this can be identified.
 
   // Otherwise return the mutated line.

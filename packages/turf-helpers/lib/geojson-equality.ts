@@ -11,7 +11,7 @@ import {
   MultiPoint,
   MultiPolygon,
 } from "geojson";
-import equal from "deep-equal";
+import { dequal } from "dequal";
 
 /**
 
@@ -159,7 +159,7 @@ export class GeojsonEquality {
   private compareFeature(g1: Feature, g2: Feature) {
     return (
       g1.id === g2.id &&
-      (this.compareProperties ? equal(g1.properties, g2.properties) : true) &&
+      (this.compareProperties ? dequal(g1.properties, g2.properties) : true) &&
       this.compareBBox(g1, g2) &&
       this.compare(g1.geometry, g2.geometry)
     );
