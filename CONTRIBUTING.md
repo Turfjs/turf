@@ -98,11 +98,13 @@ When used, it publishes an alpha release to NPM (e.g. `7.0.0-alpha.116` where 11
 
 ### Release
 
-Turf releases are a series of steps done from your local computer and on Github.  Be sure to start with a clean, up-to-date version of the master branch.  When running the following release commands, replace `7.0.0` with the version number you are releasing.
+A turf release is done from your local computer using a clean, up-to-date version of the turf master branch.
 
 - If necessary, make and merge a PR with any last minute housekeeping items.
-  - Turf's documentation (README.md files) should be up to date as they are updated automatically on commit, based on the JSDoc comments in the package files.
-- Review code commits and decide the new version number.  If there are breaking changes, then it should be a major version bump, e.g. 6.x.x to 7.0.0.  This project follows [semantic versioning](https://semver.org/).
+  - Turf's documentation (README.md files) should be up to date as they are updated automatically on commit, based on the JSDoc comments in the package files.  See the [documentation](#documentation) for how to regenerate them if needed.
+- Review code commits and decide the new version number to be published (for example 7.0.1 or 7.1.0).
+  - If there are breaking changes, then it should be a major version bump, e.g. 7.x.x to 8.0.0.  This project follows [semantic versioning](https://semver.org/).
+- When running release commands below, replace `7.0.0` with the version number you are releasing.  Now, let's get started.
 
 - fetch the latest code from remote origin
 ```bash
@@ -111,7 +113,7 @@ git fetch origin
 
 - create a release branch, replace mf with your initials to make it clear whose branch it is.
 ```bash
-get checkout origin/master -b mf/release-7.0.0
+git checkout origin/master -b mf/release-7.0.0
 ```
 
 - increment the version number of all packages, without pushing to origin.  This will also create a release tag.
