@@ -25,9 +25,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v2.4.0
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
