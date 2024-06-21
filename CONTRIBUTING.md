@@ -98,7 +98,7 @@ When used, it publishes an alpha release to NPM (e.g. `7.0.0-alpha.116` where 11
 
 ### Release
 
-Turf releases are a series of steps done from your local computer and on Github.  Be sure to start with a clean, up-to-date version of the Turf repository master branch.  When running the following release commands, replace `7.0.0` with the version number you are releasing.
+Turf releases are a series of steps done from your local computer and on Github.  Be sure to start with a clean, up-to-date version of the master branch.  When running the following release commands, replace `7.0.0` with the version number you are releasing.
 
 - If necessary, make and merge a PR with any last minute housekeeping items.
   - Turf's documentation (README.md files) should be up to date as they are updated automatically on commit, based on the JSDoc comments in the package files.
