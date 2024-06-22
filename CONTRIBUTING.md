@@ -189,26 +189,27 @@ A turf release is initiated from your local computer, and then built and publish
 To make a release as a core contributor, you will need:
 - Turf repository write permission
 - Turf npm organization publish permission
-- A local copy of the Turf Github repository (not a fork!).  Starting with a fresh clone will ensure it's clean.
+- A local copy of the Turf Github repository (not a fork!).  Starting with a fresh clone will ensure it's clean.  You can delete it when done.
   - `git clone git@github.com:Turfjs/turf.git turf-release`
   - `cd turf-release` - start at the top-level of the repo
   - `pnpm install`
 
-- You can also just clean up an existing copy
+- You can also just clean up an existing copy, just be careful
   - `git fetch origin` - fetches any new work from remote origin
   - `git checkout master`
   - `git reset --hard` - reset your local working copy, will lose any uncommitted or unstashed work!
+  - `git rev-list master...origin/master` - verify local master in sync with remote, output should be empty
   - `pnpm install`
   - `pnpm test` - make sure everything is passing
 
+Before release:
 - If necessary, make and merge a PR with any last minute housekeeping items.
-  - Turf's documentation (README.md files) should already be up to date as they are generated automatically on commit, based on the JSDoc comments in the package files.  Should you need to regenerate them for some ready, see the [documentation](#documentation).
-- Review code commits and decide the new version number to be published (for example 7.0.1 or 7.1.0).
+- Turf's documentation (README.md files) should already be up to date as they are generated automatically on commit from JSDoc comments.
+- Review PR's and decide the new version number to be published (for example 7.0.1 or 7.1.0).
+  - Don't trust that PR titles are complete, extra work can sneak in.
   - If there are breaking changes, then it should be a major version bump, e.g. 7.x.x to 8.0.0.  This project follows [semantic versioning](https://semver.org/).
-- Now run the followign release commands, replacing `7.0.0` with the version number you are releasing.
 
-Release commands:
-
+Run the release commands, replace `7.0.0` with your version number
 - fetch the latest code from remote origin
   - `git fetch origin`
 
