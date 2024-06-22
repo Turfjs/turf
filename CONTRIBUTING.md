@@ -1,6 +1,6 @@
 ## Getting Started
 
-One of the most important things you can do is report bugs. Please reference [how to report a bug](http://polite.technology/reportabug.html) and follow the issue templates when adding new bugs.
+One of the most important things you can do is report bugs. Please reference [how to report a bug](http://polite.technology/reportabug.html) and when opening an [issue](https://github.com/Turfjs/turf/issues), follow the template.
 
 To propose an enhancement for Turf, open an [issue](https://github.com/Turfjs/turf/issues), or start a [discussion](https://github.com/Turfjs/turf/discussions).
 
@@ -25,9 +25,12 @@ To become a core contributor, start making contributions, and inquire about beco
 ### Local Setup
 
 Once you've cloned a Turf repository, and have a terminal open, with the master branch checked out. Run the following:
-- `corepack enable pnpm` - enable pnpm as a package manager. Requires Node 16+.  Alternatively just npm install globally `npm install -g pnpm`.
+- `corepack enable pnpm`
+  - enable pnpm as a package manager. Requires Node 16+.  Alternatively just `npm install -g pnpm`.
 - `pnpm install`
+  - install all dependencies
 - `npm test`
+  - run all tests and linters
 
 You're now ready to contribute.
 
@@ -133,7 +136,7 @@ To update your local master branch with the latest code for all branches from th
 
 ## Preparing a pull request
 
-A simple, well-structured PR, with tests demonstrating it works, will get more attention from the volunteer turf core contributors.
+A simple, complete pull request is more likely to get merged.
 
 <details>
 <summary>But I don't know how</summary>
@@ -141,17 +144,17 @@ A simple, well-structured PR, with tests demonstrating it works, will get more a
 If you don't know how to make a solid PR, just submit a draft PR, and ask for feedback.  Then improve it and re-ask for feedback until it's ready.
 </details>
 
+### Pull Request Checklist
+- Briefly summarize the need and solution. Link to the issue it's resolving if exists.
+- Add tests.  Even for bug fixes.  Just a simple test case that reproduces the issue and demonstrates it's fixed.
+- Update JSDoc comments if the function signature changes or docs need improvement (See for example `packages/turf-area/index.ts`)
+- Run a full `npm test` at root level, confirming no cross-module issues.  If you don't catch this now, the Github CI will.
+
 ### Guidelines
 - Feel free to [ask](#getting-started) if a feature/enhancement is needed/wanted before doing the work.
 - Keep pull requests small and focused.
 - Avoid large dependencies at all costs.
 - Make sure that your code can run in the browser (ie: don't make calls to external services, don't hit the filesystem, etc.).
-
-Pull Request Checklist
-- Summarize the need and the solution.
-- Add tests.  Even for bug fixes.  Just a simple test case that reproduces the issue and demonstrates it's fixed.
-- Update JSDoc comments if the function signature changes or docs need improvement (See for example `packages/turf-area/index.ts`)
-- Run a full `npm test` at root level, confirming no cross-module issues.
 
 ### Doc generation
 
@@ -181,60 +184,53 @@ When used, it publishes an alpha release to NPM (e.g. `7.0.0-alpha.116` where 11
 
 ### Release
 
-To make a release, you will need:
+A turf release is initiated from your local computer, and then built and published remotely via a github actions.
+
+To make a release as a core contributor, you will need:
 - Turf repository write permission
 - Turf npm organization publish permission
-- A local clone of the official Turf Github repository (not a fork!)  It should be clean and up-to-date.
-  - `cd turf` - start at the top-level of the repo
+- A local copy of the Turf Github repository (not a fork!).  Starting with a fresh clone will ensure it's clean.
+  - `git clone git@github.com:Turfjs/turf.git turf-release`
+  - `cd turf-release` - start at the top-level of the repo
+  - `pnpm install`
+
+- You can also just clean up an existing copy
   - `git fetch origin` - fetches any new work from remote origin
   - `git checkout master`
   - `git reset --hard` - reset your local working copy, will lose any uncommitted or unstashed work!
   - `pnpm install`
-- If in doubt, just clone a separate fresh copy of turf
-  - `git clone git@github.com:Turfjs/turf.git turf-release`
-  - `cd turf-release/`
-  - `pnpm install`
-
-A turf release is done from your local computer using a clean, up-to-date version of the turf master branch.
+  - `pnpm test` - make sure everything is passing
 
 - If necessary, make and merge a PR with any last minute housekeeping items.
-  - Turf's documentation (README.md files) should be up to date as they are updated automatically on commit, based on the JSDoc comments in the package files.  See the [documentation](#documentation) for how to regenerate them if needed.
+  - Turf's documentation (README.md files) should already be up to date as they are generated automatically on commit, based on the JSDoc comments in the package files.  Should you need to regenerate them for some ready, see the [documentation](#documentation).
 - Review code commits and decide the new version number to be published (for example 7.0.1 or 7.1.0).
   - If there are breaking changes, then it should be a major version bump, e.g. 7.x.x to 8.0.0.  This project follows [semantic versioning](https://semver.org/).
-- When running release commands below, replace `7.0.0` with the version number you are releasing.  Now, let's get started.
+- Now run the followign release commands, replacing `7.0.0` with the version number you are releasing.
+
+Release commands:
 
 - fetch the latest code from remote origin
-```bash
-git fetch origin
-```
+  - `git fetch origin`
 
 - create a release branch, replace mf with your initials to make it clear whose branch it is.
-```bash
-git checkout origin/master -b mf/release-7.0.0
-```
+  - `git checkout origin/master -b mf/release-7.0.0`
 
 - increment the version number of all packages, without pushing to origin.  This will also create a release tag.
-```bash
-pnpm lerna version --no-push 7.0.0
-```
+  - `pnpm lerna version --no-push 7.0.0`
 
 - stage any files changed by the version command.
-```bash
-git add packages/*/package.json
-git add lerna.json
-```
+  - `git add packages/*/package.json`
+  - `git add lerna.json`
+`
 
 - create new commit on the release branch
-```bash
-git commit -m "Release v7.0.0"
-```
+  - `git commit -m "Release v7.0.0"`
 
-- Push the release branch and the release tag.  The tag will trigger the Github [release](https://github.com/Turfjs/turf/blob/master/.github/workflows/release.yml) action which you can view the status of at - https://github.com/Turfjs/turf/actions.  If successful, a new [version](https://www.npmjs.com/package/@turf/turf?activeTab=versions) of all turf packages will have been published on NPM.
-```bash
-git push origin mf/release-7.0.0 --follow-tags
-```
+- Push the release branch and the release tag.
+  - `git push origin mf/release-7.0.0 --follow-tags`
+  - The tag will trigger the Github [release](https://github.com/Turfjs/turf/blob/master/.github/workflows/release.yml) action which you can view the status of at - https://github.com/Turfjs/turf/actions.  If successful, a new [version](https://www.npmjs.com/package/@turf/turf?activeTab=versions) of all turf packages will have been published on NPM.
 
-- If the release action was successful, create a Pull Request for the release and then merge it.
+- If the release action was successful, now create a Pull Request for the release and then merge it.
   - A link to create the PR should be in the output of the push command
   - Use the version number for the PR title (e.g. v7.0.0).
   - If a link isn't provided, just create a PR that merges your release branch to master.  Here is an example - https://github.com/Turfjs/turf/pull/2615.
