@@ -14,15 +14,16 @@ To make a code contribution, follow the steps for [how to contribute](#how-to-co
 
 ## How to contribute
 
-As a non-core contributor, you won't have write access to the Turf repository. You will need to follow the [Github guidelines](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) and fork the [Turf repo](https://github.com/Turfjs/turf) to your own account, create a feature branch, and open a Pull Request.
+If you don't have write access to the Turf repository (most will not), you will need to follow the [Github guidelines](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) and fork the [Turf repo](https://github.com/Turfjs/turf) to your own account, create a feature branch, and open a Pull Request back to the main Turf repo.
 
-As a core contributor with write access to the Turf repo, you can [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) it locally. This is required for doing a [release](#release).  You can also push feature branches directly to this repo and open PR's against them.  Consider prefixing your feature branch names with your initials (for example `tw/my-feature`).
+If you do have write access to the Turf repo (core contributor), you can [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) it locally. This is required for doing a [release](#release).  You can also push feature branches directly to the Turf repo and open PR's against them.  Consider prefixing your feature branch names with your initials (for example `tw/my-feature`).
 
-To become a core contributor, start making contributions, and inquire about becoming one.
+If you'd like to become a core contributor, just start making contributions, and inquire.
 
 ### Local Setup
 
-Once you've cloned a Turf repository, and have a terminal open, with the master branch checked out. Run the following:
+Once you've cloned a Turf repository, and have a terminal open and currenty in the top-level turf directory. Run the following:
+- `git checkout master` (if not already)
 - `corepack enable pnpm`
   - enable pnpm as a package manager. Requires Node 16+.  Alternatively just `npm install -g pnpm`.
 - `pnpm install`
