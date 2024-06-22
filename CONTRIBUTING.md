@@ -94,7 +94,7 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 A [prerelease](https://github.com/Turfjs/turf/blob/master/.github/workflows/prerelease.yml) action is available that publishes a canary release for every commit or PR merged to the master branch.  However, this action is only [enabled](https://github.com/Turfjs/turf/actions/workflows/prerelease.yml) when needed.
 
 When used, it publishes an alpha release to NPM (e.g. `7.0.0-alpha.116` where 116 is the number of commits to master since the last release tag).
-- The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. Specifically having `major` is appropriate for the pre-7.0 development phase, but we should change it to `minor` after 7.0.0 is finally released.
+- The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. It is typically setup to do a `minor` prerelease, but can be changed, such as prior to a `major` release.
 
 ### Release
 
