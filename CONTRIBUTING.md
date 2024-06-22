@@ -217,7 +217,7 @@ Run the release commands, replace `7.0.0` with your version number
   - `git checkout origin/master -b mf/release-7.0.0`
 
 - increment the version number of all packages, without pushing to origin.  This will also create a release tag.
-  - `pnpm lerna version --no-push 7.0.0`
+  - `pnpm lerna version --no-commit-hooks --no-push 7.0.0`
 
 - stage any files changed by the version command.
   - `git add packages/*/package.json`
