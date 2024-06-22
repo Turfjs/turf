@@ -5,7 +5,7 @@ Please fill in this template.
 - [ ] Have read [How To Contribute](https://github.com/Turfjs/turf/blob/master/CONTRIBUTING.md#how-to-contribute).
 - [ ] Run full `npm test` at root level.  During development, you can run at package level. 
 - [ ] Add tests for use cases addressed by the PR (if relevant)
-- [ ] Update JSDoc comments if turf module API changed
+- [ ] Update JSDoc comments in package if function API changed
 - [ ] Run `npm run lint` to ensure code style at the turf module level.
 
 Submitting a new TurfJS Module.
