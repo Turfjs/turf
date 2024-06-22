@@ -15,12 +15,10 @@ To make a code contribution, follow the steps for [how to contribute](#how-to-co
 ## How to contribute
 
 As a non-core contributor, you won't have write access to the Turf repository. You will need to follow the [Github guidelines](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) and fork the [Turf repo](https://github.com/Turfjs/turf) to your own account, create a feature branch, and open a Pull Request.
-</details>
 
 As a core contributor with write access to the Turf repo, you can [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) it locally. This is required for doing a [release](#release).  You can also push feature branches directly to this repo and open PR's against them.  Consider prefixing your feature branch names with your initials (for example `tw/my-feature`).
 
 To become a core contributor, start making contributions, and inquire about becoming one.
-</details>
 
 ### Local Setup
 
