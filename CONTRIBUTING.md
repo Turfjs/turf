@@ -198,8 +198,8 @@ To make a release as a core contributor, you will need:
   - `git remote -v` - verify your remote origin points to `https://github.com/Turfjs/turf.git`
   - `git checkout master`
   - `git reset --hard` - reset your local working copy, will lose any uncommitted or unstashed work!
-  - `git rev-list master...origin/master` - verify local master in sync with remote, command output should be empty
   - `git fetch origin` - fetch latest commits
+  - `git rev-list master...origin/master` - verify local master in sync with remote, command output should be empty
   - `pnpm install`
   - `pnpm test` - make sure everything is passing
 
