@@ -189,24 +189,24 @@ A turf release is initiated from your local computer, and then built and publish
 To make a release as a core contributor, you will need:
 - Turf repository write permission
 - Turf npm organization publish permission
-- A local copy of the Turf Github repository (not a fork!).  Starting with a fresh clone will ensure it's clean.  You can delete it when done.
+- A local copy of the Turf Github repository (not a fork!).  Starting with a fresh clone will ensure it's clean.
   - `git clone git@github.com:Turfjs/turf.git turf-release`
   - `cd turf-release` - start at the top-level of the repo
   - `pnpm install`
 
-- You can also just clean up an existing copy, just be careful
-  - `git fetch origin` - fetches any new work from remote origin
+- If you choose to clean up an existing copy instead, be very careful:
+  - `git remote -v` - verify your remote origin points to `https://github.com/Turfjs/turf.git`
   - `git checkout master`
   - `git reset --hard` - reset your local working copy, will lose any uncommitted or unstashed work!
-  - `git rev-list master...origin/master` - verify local master in sync with remote, output should be empty
+  - `git rev-list master...origin/master` - verify local master in sync with remote, command output should be empty
+  - `git fetch origin` - fetch latest commits
   - `pnpm install`
   - `pnpm test` - make sure everything is passing
 
 Before release:
 - If necessary, make and merge a PR with any last minute housekeeping items.
-- Turf's documentation (README.md files) should already be up to date as they are generated automatically on commit from JSDoc comments.
+- Turf's documentation (README.md files) should already be up to date as it is generated automatically on commit from JSDoc comments in source files.
 - Review PR's and decide the new version number to be published (for example 7.0.1 or 7.1.0).
-  - Don't trust that PR titles are complete, extra work can sneak in.
   - If there are breaking changes, then it should be a major version bump, e.g. 7.x.x to 8.0.0.  This project follows [semantic versioning](https://semver.org/).
 
 Run the release commands, replace `7.0.0` with your version number
