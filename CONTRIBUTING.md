@@ -27,7 +27,7 @@ Once you've cloned a Turf repository, and have a terminal open and currenty in t
 - `corepack enable pnpm`
   - enable pnpm as a package manager. Requires Node 16+.  Alternatively just `npm install -g pnpm`.
 - `pnpm install`
-  - install all dependencies
+  - install dependencies and build modules
 - `npm test`
   - run all tests and linters
 
