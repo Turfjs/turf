@@ -5,7 +5,6 @@ const baseOptions: Options = {
   dts: true,
   entry: ["index.?s"], // while we have a mix of TS and JS packages
   minify: false,
-  skipNodeModulesBundle: true,
   sourcemap: true,
   target: "es2017",
   tsconfig: "./tsconfig.json",
