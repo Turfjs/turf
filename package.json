@@ -11,9 +11,10 @@
     "lint:eslint": "eslint packages",
     "lint:mrl": "mrl check",
     "lint:prettier": "prettier --check .",
+    "postinstall": "husky install",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "lerna run build && husky install",
-    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
+    "prepublish": "lerna run build && lerna run --scope @turf/turf last-checks",
+    "test": "lerna run test"
   },
   "lint-staged": {
     "package.json": [

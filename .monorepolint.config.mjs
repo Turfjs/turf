@@ -5,6 +5,7 @@ import * as fs from "node:fs";
 import {
   alphabeticalDependencies,
   alphabeticalScripts,
+  fileContents,
   packageOrder,
   packageEntry,
   packageScript,
@@ -50,6 +51,13 @@ const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
 
 export default {
   rules: [
+    fileContents({
+      options: {
+        file: "tsconfig.testTypes.json",
+        templateFile: "./templates/tsconfig.testTypes.json",
+      },
+      includePackages: TYPES_PACKAGES,
+    }),
     packageOrder({
       options: {
         order: [
@@ -208,8 +216,7 @@ export default {
     packageScript({
       options: {
         scripts: {
-          "test:types":
-            "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts",
+          "test:types": "tsc -p ./tsconfig.testTypes.json",
         },
       },
       includePackages: TYPES_PACKAGES,
