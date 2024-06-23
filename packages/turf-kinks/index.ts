@@ -8,7 +8,7 @@ import {
   Polygon,
 } from "geojson";
 import { point } from "@turf/helpers";
-import { sweeplineIntersections as findIntersections } from "./lib/sweepline-intersections-export.js";
+import sweeplineIntersections from "sweepline-intersections";
 
 /**
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring},
@@ -49,7 +49,7 @@ function kinks<T extends LineString | MultiLineString | Polygon | MultiPolygon>(
         "Polygon, or MultiPolygon Feature or Geometry"
     );
   }
-  const intersections = findIntersections(featureIn, false);
+  const intersections = sweeplineIntersections(featureIn, false);
   for (let i = 0; i < intersections.length; ++i) {
     const intersection = intersections[i];
     results.features.push(point([intersection[0], intersection[1]]));
