@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.shared.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": ["types.ts"]
+}

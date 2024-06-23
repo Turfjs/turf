@@ -55,7 +55,7 @@
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.ts",
-    "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
+    "test:types": "tsc -p ./tsconfig.testTypes.json"
   },
   "devDependencies": {
     "@turf/center": "workspace:^",
