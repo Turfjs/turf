@@ -1,17 +1,15 @@
-const path = require("path");
-const glob = require("glob");
-const fs = require("fs");
+import path from "path";
+import glob from "glob";
+import fs from "fs";
 
-const TS_PACKAGES = []; // projects that use typescript to build
-const JS_PACKAGES = []; // projects that use javascript/rollup to build
+const TS_PACKAGES = [] as string[]; // projects that use typescript to build
+const JS_PACKAGES = [] as string[]; // projects that use javascript/rollup to build
 const MAIN_PACKAGE = "@turf/turf";
 
-const TAPE_PACKAGES = []; // projects that have tape tests
-const TYPES_PACKAGES = []; // projects that have types tests
-const BENCH_PACKAGES = []; // projects that have benchmarks
+const TYPES_PACKAGES = [] as string[]; // projects that have types tests
 
 // iterate all the packages and figure out what buckets everything falls into
-glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
+glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk: string) => {
   const name = JSON.parse(
     fs.readFileSync(path.join(pk, "package.json"), "utf8")
   ).name;
@@ -22,27 +20,11 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
     JS_PACKAGES.push(name);
   }
 
-  if (fs.existsSync(path.join(pk, "test.js"))) {
-    TAPE_PACKAGES.push(name);
-  }
-
   if (fs.existsSync(path.join(pk, "types.ts"))) {
     TYPES_PACKAGES.push(name);
   }
 });
-
-const TS_BENCH_PACKAGES = BENCH_PACKAGES.filter(
-  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
-);
-const JS_BENCH_PACKAGES = BENCH_PACKAGES.filter(
-  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
-);
-const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
-);
-const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
-);
+const ALL_PACKAGES = [...JS_PACKAGES, ...TS_PACKAGES];
 
 module.exports = {
   rules: {
@@ -63,11 +45,12 @@ module.exports = {
           "funding",
           "publishConfig",
           "keywords",
+          "type",
           "main",
           "module",
-          "exports",
-          "browser",
           "types",
+          "browser",
+          "exports",
           "sideEffects",
           "files",
           "scripts",
@@ -92,13 +75,6 @@ module.exports = {
             // Example of a URL that will keep working: https://unpkg.com/@turf/turf
             browser: "turf.min.js",
             files: ["dist", "index.d.ts", "turf.min.js"],
-            exports: {
-              "./package.json": "./package.json",
-              ".": {
-                import: "./dist/es/index.js",
-                require: "./dist/js/index.js",
-              },
-            },
           },
         },
         includePackages: [MAIN_PACKAGE],
@@ -106,8 +82,10 @@ module.exports = {
       {
         options: {
           entries: {
-            main: "dist/js/index.js",
-            module: "dist/es/index.js",
+            type: "commonjs",
+            main: "dist/cjs/index.js",
+            module: "dist/esm/index.mjs",
+            types: "dist/cjs/index.d.ts",
             sideEffects: false,
             publishConfig: {
               access: "public",
@@ -115,31 +93,19 @@ module.exports = {
             exports: {
               "./package.json": "./package.json",
               ".": {
-                import: "./dist/es/index.js",
-                require: "./dist/js/index.js",
+                import: {
+                  types: "./dist/esm/index.d.mts",
+                  default: "./dist/esm/index.mjs",
+                },
+                require: {
+                  types: "./dist/cjs/index.d.ts",
+                  default: "./dist/cjs/index.js",
+                },
               },
             },
           },
         },
-        includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
-      },
-      {
-        options: {
-          entries: {
-            types: "dist/js/index.d.ts",
-            files: ["dist"],
-          },
-        },
-        includePackages: TS_PACKAGES,
-      },
-      {
-        options: {
-          entries: {
-            types: "index.d.ts",
-            files: ["dist", "index.d.ts"],
-          },
-        },
-        includePackages: JS_PACKAGES,
+        includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
       },
       {
         options: {
@@ -163,28 +129,16 @@ module.exports = {
       {
         options: {
           scripts: {
-            build: "npm-run-all build:*",
-            "build:js": "tsc",
-            "build:es":
-              'tsc --outDir dist/es --module esnext --declaration false && echo \'{"type":"module"}\' > dist/es/package.json',
+            build: "tsup --config ../../tsup.config.ts",
           },
         },
-        includePackages: TS_PACKAGES,
+        includePackages: [...JS_PACKAGES, ...TS_PACKAGES],
       },
       {
         options: {
           scripts: {
             build:
-              'rollup -c ../../rollup.config.js && echo \'{"type":"module"}\' > dist/es/package.json',
-          },
-        },
-        includePackages: JS_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            build:
-              'rollup -c rollup.config.js && echo \'{"type":"module"}\' > dist/es/package.json',
+              "tsup --config ../../tsup.config.ts && rollup -c ./rollup.config.js",
           },
         },
         includePackages: [MAIN_PACKAGE],
@@ -192,34 +146,11 @@ module.exports = {
       {
         options: {
           scripts: {
-            "test:tape": "node -r esm test.js",
+            bench: "tsx bench.js",
+            "test:tape": "tsx test.js",
           },
         },
-        includePackages: JS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            "test:tape": "ts-node -r esm test.js",
-          },
-        },
-        includePackages: TS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            bench: "node -r esm bench.js",
-          },
-        },
-        includePackages: JS_TAPE_PACKAGES,
-      },
-      {
-        options: {
-          scripts: {
-            bench: "ts-node bench.js",
-          },
-        },
-        includePackages: TS_TAPE_PACKAGES,
+        includePackages: ALL_PACKAGES,
       },
       {
         options: {
@@ -240,26 +171,19 @@ module.exports = {
         options: {
           devDependencies: {
             "npm-run-all": "*",
+            tsx: "^4.9.1",
+            typescript: "~4.7.3",
           },
         },
-        includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+        includePackages: ALL_PACKAGES,
       },
       {
         options: {
           devDependencies: {
-            "ts-node": "*",
-            typescript: "*",
+            tsup: "^8.0.1",
           },
         },
-        includePackages: TS_PACKAGES,
-      },
-      {
-        options: {
-          devDependencies: {
-            rollup: "*",
-          },
-        },
-        includePackages: JS_PACKAGES,
+        includePackages: ALL_PACKAGES,
       },
     ],
   },

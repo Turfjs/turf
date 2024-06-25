@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@types/geojson": "*",
+    "@types/glob": "^7.0.0",
     "@types/node": "*",
     "@typescript-eslint/eslint-plugin": "^4.8.0",
     "@typescript-eslint/parser": "^4.8.0",
@@ -47,6 +48,7 @@
     "eslint-config-prettier": "^6.15.0",
     "esm": "^3.2.25",
     "fs-extra": "*",
+    "glob": "^7.0.0",
     "husky": "^4.2.3",
     "lerna": "^4.0.0",
     "lint-staged": "^10.0.8",
@@ -58,8 +60,8 @@
     "progress": "*",
     "rollup": "^2.34.2",
     "tape": "*",
-    "ts-node": "^9.0.0",
-    "typescript": "^3.8.3",
+    "ts-node": "^10.9.2",
+    "typescript": "~4.7.2",
     "yamljs": "*"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": "> 0.25%, last 2 versions, fully supports es5, not dead"
+      }
+    ]
+  ]
+}
