@@ -3,7 +3,7 @@ import { segmentEach } from "@turf/meta";
 import { getGeom } from "@turf/invariant";
 import { lineOverlap } from "@turf/line-overlap";
 import { lineIntersect } from "@turf/line-intersect";
-import { GeojsonEquality } from "@turf/helpers";
+import { geojsonEquality } from "geojson-equality-ts";
 
 /**
  * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry
@@ -49,8 +49,8 @@ function booleanOverlap(
   if (type1 === "Point") throw new Error("Point geometry not supported");
 
   // features must be not equal
-  const equality = new GeojsonEquality({ precision: 6 });
-  if (equality.compare(feature1 as any, feature2 as any)) return false;
+  if (geojsonEquality(feature1 as any, feature2 as any, { precision: 6 }))
+    return false;
 
   let overlap = 0;
 

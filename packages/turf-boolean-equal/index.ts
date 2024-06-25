@@ -1,5 +1,5 @@
 import { Feature, Geometry } from "geojson";
-import { GeojsonEquality } from "@turf/helpers";
+import { geojsonEquality } from "geojson-equality-ts";
 import { cleanCoords } from "@turf/clean-coords";
 import { getGeom } from "@turf/invariant";
 
@@ -45,8 +45,9 @@ function booleanEqual(
   const type2 = getGeom(feature2).type;
   if (type1 !== type2) return false;
 
-  const equality = new GeojsonEquality({ precision: precision });
-  return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
+  return geojsonEquality(cleanCoords(feature1), cleanCoords(feature2), {
+    precision,
+  });
 }
 
 export { booleanEqual };
