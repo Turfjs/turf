@@ -9,7 +9,7 @@ Takes a set of [points][1] and partition them into clusters according to [https:
 ### Parameters
 
 *   `points` **[FeatureCollection][3]<[Point][4]>** to be clustered
-*   `maxDistance` **[number][5]** Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
+*   `maxDistance` **[number][5]** Maximum Distance between any point of the cluster to generate the clusters (kilometers by default, see options)
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
     *   `options.units` **[string][7]** in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)

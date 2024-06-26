@@ -24,7 +24,7 @@ type IndexedPoint = {
  *
  * @name clustersDbscan
  * @param {FeatureCollection<Point>} points to be clustered
- * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers only)
+ * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers by default, see options)
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units="kilometers"] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
  * @param {boolean} [options.mutate=false] Allows GeoJSON input to be mutated
