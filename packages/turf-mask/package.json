@@ -63,6 +63,7 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
+    "@turf/clone": "workspace:^",
     "@turf/helpers": "workspace:^",
     "polygon-clipping": "^0.15.3"
   }

@@ -40,18 +40,32 @@ test("turf-mask", (t) => {
   t.end();
 });
 
-test("turf-mask -- doesn't mutate inputs", (t) => {
+const getBasicPolygonAndMask = () => {
   const basicFixture = fixtures.find(
     ({ filename }) => filename === "basic.geojson"
   );
   if (!basicFixture) throw new Error("basic.geojson not found");
+  return basicFixture.geojson.features;
+};
 
-  const [polygon, masking] = basicFixture.geojson.features;
+test("turf-mask -- doesn't mutate inputs by default", (t) => {
+  const [polygon, masking] = getBasicPolygonAndMask();
   const maskClone = clone(masking);
 
   mask(polygon, masking);
 
   t.deepEquals(masking, maskClone, "mask input should not be mutated");
+
+  t.end();
+});
+
+test("turf-mask -- mutates mask input when mutate = true", (t) => {
+  const [polygon, masking] = getBasicPolygonAndMask();
+  const maskClone = clone(masking);
+
+  mask(polygon, masking, { mutate: true });
+
+  t.notDeepEqual(masking, maskClone, "mask input should be mutated");
 
   t.end();
 });

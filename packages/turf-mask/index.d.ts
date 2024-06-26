@@ -5,7 +5,8 @@ import { Feature, Polygon, MultiPolygon, FeatureCollection } from "geojson";
  */
 declare function mask<T extends Polygon | MultiPolygon>(
   poly: Feature<T> | FeatureCollection<T> | T,
-  mask?: Feature<Polygon> | Polygon
+  mask?: Feature<Polygon> | Polygon,
+  options?: { mutate?: boolean }
 ): Feature<Polygon>;
 
 export { mask };
