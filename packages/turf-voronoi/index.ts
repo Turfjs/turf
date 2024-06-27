@@ -1,66 +1,76 @@
+import { BBox, FeatureCollection, Point, Polygon, Position } from "geojson";
 import { polygon, featureCollection, isObject } from "@turf/helpers";
+import { coordEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
 import { cloneProperties } from "@turf/clone";
 import * as d3voronoi from "d3-voronoi";
 
 /**
+ * Creates a polygon from a list of coordinates. Ensures the polygon is closed.
+ *
  * @private
- * @param {Array<Array<number>>} coords representing a polygon
+ * @param {Position[]} coords representing a polygon
  * @returns {Feature<Polygon>} polygon
  */
-function coordsToPolygon(coords) {
+function coordsToPolygon(coords: Position[]) {
   coords = coords.slice();
   coords.push(coords[0]);
   return polygon([coords]);
 }
 
 /**
- * Takes a FeatureCollection of points, and a bounding box, and returns a FeatureCollection
+ * Takes a collection of points and a bounding box, and returns a collection
  * of Voronoi polygons.
  *
  * The Voronoi algorithim used comes from the d3-voronoi package.
  *
  * @name voronoi
- * @param {FeatureCollection<Point>} points to find the Voronoi polygons around.
+ * @param {FeatureCollection<Point>} points points around which to calculate the Voronoi polygons
  * @param {Object} [options={}] Optional parameters
- * @param {number[]} [options.bbox=[-180, -85, 180, -85]] clipping rectangle, in [minX, minY, maxX, MaxY] order.
- * @returns {FeatureCollection<Polygon>} a set of polygons, one per input point.
+ * @param {BBox} [options.bbox=[-180, -85, 180, -85]] clipping rectangle, in [minX, minY, maxX, MaxY] order
+ * @returns {FeatureCollection<Polygon>} a set of polygons, one per input point
  * @example
- * var options = {
+ * const options = {
  *   bbox: [-70, 40, -60, 60]
  * };
- * var points = turf.randomPoint(100, options);
- * var voronoiPolygons = turf.voronoi(points, options);
+ * const points = turf.randomPoint(100, options);
+ * const voronoiPolygons = turf.voronoi(points, options);
  *
  * //addToMap
- * var addToMap = [voronoiPolygons, points];
+ * const addToMap = [voronoiPolygons, points];
  */
-function voronoi(points, options) {
+function voronoi(
+  points: FeatureCollection<Point>,
+  options?: { bbox?: BBox }
+): FeatureCollection<Polygon> {
   // Optional params
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  var bbox = options.bbox || [-180, -85, 180, 85];
+  const bbox = options.bbox || [-180, -85, 180, 85];
 
   // Input Validation
   if (!points) throw new Error("points is required");
   if (!Array.isArray(bbox)) throw new Error("bbox is invalid");
   collectionOf(points, "Point", "points");
 
+  // Extract the positions from the GeoJson features to pass into the
+  // Voronoi calculation.
+  const positions: Position[] = [];
+  coordEach(points, (currentCoord: number[]) => {
+    positions.push(currentCoord);
+  });
+
   // Main
   return featureCollection(
     d3voronoi
-      .voronoi()
-      .x(function (feature) {
-        return feature.geometry.coordinates[0];
-      })
-      .y(function (feature) {
-        return feature.geometry.coordinates[1];
-      })
+      .voronoi<Position>()
+      .x((pos) => pos[0])
+      .y((pos) => pos[1])
       .extent([
         [bbox[0], bbox[1]],
         [bbox[2], bbox[3]],
       ])
-      .polygons(points.features)
+      .polygons(positions)
       .map(function (coords, index) {
         return Object.assign(coordsToPolygon(coords), {
           properties: cloneProperties(points.features[index].properties),
