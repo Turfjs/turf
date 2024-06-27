@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-neighbor-analysis",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf nearest-neighbor-analysis module",
   "author": "Turf Authors",
   "contributors": [

@@ -1,8 +1,12 @@
-name: prerelease
+name: Publish release
 
 on:
   push:
-    branches: [master]
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -41,6 +45,13 @@ jobs:
       - run: pnpm test
 
       - name: run publish
-        run: lerna publish minor --canary --include-merged-tags --force-publish  --dist-tag prerelease --ignore-scripts true --yes
+        run: lerna publish from-package --ignore-scripts true --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create Github Release
+        uses: softprops/action-gh-release@v2
+        with:
+          make_latest: true
+          generate_release_notes: true
+          draft: true

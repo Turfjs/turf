@@ -1,6 +1,6 @@
 {
   "name": "@turf/quadrat-analysis",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf quadrat-analysis module",
   "author": "Turf Authors",
   "contributors": [

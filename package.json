@@ -13,7 +13,6 @@
     "lint:prettier": "prettier --check .",
     "preinstall": "npx only-allow pnpm",
     "prepare": "lerna run build && husky install",
-    "publish:prerelease": "lerna publish --force-publish --canary major --dist-tag prerelease --ignore-scripts true --yes",
     "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
   },
   "lint-staged": {
@@ -52,7 +51,7 @@
     "fs-extra": "^11.1.1",
     "glob": "^10.3.10",
     "husky": "^8.0.0",
-    "lerna": "^7.4.2",
+    "lerna": "^8.1.3",
     "lint-staged": "^10.5.4",
     "load-json-file": "^7.0.1",
     "meow": "^12.1.1",

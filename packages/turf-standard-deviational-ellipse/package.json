@@ -1,6 +1,6 @@
 {
   "name": "@turf/standard-deviational-ellipse",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf standard-deviational-ellipse module",
   "author": "Turf Authors",
   "contributors": [

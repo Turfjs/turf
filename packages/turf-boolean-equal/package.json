@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-equal",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf boolean-equal module",
   "author": "Turf Authors",
   "contributors": [
@@ -74,6 +74,7 @@
     "@turf/clean-coords": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
+    "geojson-equality-ts": "^1.0.2",
     "tslib": "^2.6.2"
   }
 }

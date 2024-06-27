@@ -1,28 +1,43 @@
-## Bug Reporting :bug:
+## Getting Started
 
-One of the most important things you can do is report bugs. Please reference [how to report a bug](http://polite.technology/reportabug.html) and follow the issue templates when adding new bugs.
+One of the most important things you can do is report bugs. Please reference [how to report a bug](http://polite.technology/reportabug.html) and when opening an [issue](https://github.com/Turfjs/turf/issues), follow the template.
 
-## Development
+To propose an enhancement for Turf, open an [issue](https://github.com/Turfjs/turf/issues), or start a [discussion](https://github.com/Turfjs/turf/discussions).
 
-- Most work happens in sub modules. These are found in the `packages` directory prefixed with "turf-".
-- If you would like to propose a new feature, open an issue in Turfjs/turf.
-- Always include tests. We use [tape](https://github.com/substack/tape).
-- Turf modules are small, containing a single exported function.
+To make a code contribution, follow the steps for [how to contribute](#how-to-contribute).
+
+## Architecture
 - GeoJSON is the lingua franca of Turf. It should be used as the data structure for anything that can be represented as geography.
-- Avoid large dependencies at all costs.
-- Turf is used in a wide range of places. Make sure that your code can run in the browser (ie: don't make calls to external services, don't hit the filesystem, etc.).
-- The `README.md` files in `packages/turf-<module>` are automatically generated from the [JSDocs](http://usejsdoc.org/) of the `index.js`. Please modify the JSDocs instead of modifying the `README.md` files directly. Then update/create the `README.md` executing [`./scripts/generate-readmes`](https://github.com/Turfjs/turf/blob/master/scripts/generate-readmes) or runing `npm run docs` from the root TurfJS directory.
-- Finally run `npm test` from the project root folder to run all the tests required for deploying the project.
+- Most work happens in sub modules. These are found in the `packages` directory prefixed with "turf-".
+- Turf modules are small, containing a single exported function.  This function is exported from a top-level index file.
+- Many turf modules depend on other smaller Turf modules.
 
-## Code Style
+## How to contribute
 
-We have lots of tooling dedicated to ensuring consistent code. We use [Prettier](https://prettier.io/), [Typescript](https://www.typescriptlang.org/), and [ESLint](https://eslint.org/) to help us deliver quality code. These are checked by the build system and should be enforced at commit time by [Husky](https://typicode.github.io/husky/#/).
+If you don't have write access to the Turf repository (most will not), you will need to follow the [Github guidelines](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) and fork the [Turf repo](https://github.com/Turfjs/turf) to your own account, create a feature branch, and open a Pull Request back to the main Turf repo.
 
-Some of the modules are written in Typescript, others are still plain Javascript. In the javascript modules and any dependencies we include, it is important to only write ES5 code. This ensures good browser compatability for Turf users, and is checked at build time.
+If you do have write access to the Turf repo (core contributor), you can [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) it locally. This is required for doing a [release](#release).  You can also push feature branches directly to the Turf repo and open PR's against them.  Consider prefixing your feature branch names with your initials (for example `tw/my-feature`).
 
-Making sure that the monorepo packages can be managed at scale, we use [Monorepolint](https://github.com/monorepolint/monorepolint) which allows us to programatically manage the various files in each package.
+If you'd like to become a core contributor, just start making contributions, and inquire.
 
-## Structure of a turf module
+### Local Setup
+
+Once you've cloned a Turf repository, and have a terminal open and currenty in the top-level turf directory. Run the following:
+- `git checkout master` (if not already)
+- `corepack enable pnpm`
+  - enable pnpm as a package manager. Requires Node 16+.  Alternatively just `npm install -g pnpm`.
+- `pnpm install`
+  - install dependencies and build modules
+- `npm test`
+  - run all tests and linters
+
+You're now ready to contribute.
+
+<details>
+<summary>Structure of a Turf module</summary>
+<br>
+
+Turf modules are under the `packages` directory.  For example `packages/turf-area`.  Here's how they are structured.
 
 ```
 turf-<MODULE NAME>
@@ -86,36 +101,156 @@ it will create a new folder inside `packages` with a simple boilerplate for your
   [geojson.io](http://geojson.io) to see, visually, if the module is behaving
   appropriately.
 
+</details>
+
+<details>
+<summary>Development tips</summary>
+<br>
+Work in a feature branch when possible
+- `git checkout -b my-feature`
+- Create it right away off of master.
+- This allows you to keep your local master branch clean and in sync with the official remote, for creating new branches at any time.
+
+As you make code changes
+- Run `npm test` from any submodule to make sure tests keep passing as you go.  (for example `cd packages/turf-area` and `npm test`)
+- Occasionally Run `npm test` at the top-level directory to run test for all modules.
+  - This will ensure that you haven't introduced errors affecting other turf modules.
+</details>
+
+<details>
+<summary>Cleaning up</summary>
+<br/>
+To reset your current branch, throwing away any partial and uncommitted work
+- `git reset --hard`
+
+Merging branches, deleting branches and other management tasks are left for you to work out on your own.
+</details>
+
+<details>
+<summary>Staying up to date</summary>
+<br/>
+To update your local master branch with the latest code for all branches from the Github remote `origin`.
+- `git fetch remote`
+</details>
+
+## Preparing a pull request
+
+A simple, complete pull request is more likely to get merged.
+
+<details>
+<summary>But I don't know how</summary>
+<br>
+If you don't know how to make a solid PR, just submit a draft PR, and ask for feedback.  Then improve it and re-ask for feedback until it's ready.
+</details>
+
+### Pull Request Checklist
+- Briefly summarize the need and solution. Link to the issue it's resolving if exists.
+- Add tests.  Even for bug fixes.  Just a simple test case that reproduces the issue and demonstrates it's fixed.
+- Update JSDoc comments if the function signature changes or docs need improvement (See for example `packages/turf-area/index.ts`)
+- Run a full `npm test` at root level, confirming no cross-module issues.  If you don't catch this now, the Github CI will.
+
+### Guidelines
+- Feel free to [ask](#getting-started) if a feature/enhancement is needed/wanted before doing the work.
+- Keep pull requests small and focused.
+- Avoid large dependencies at all costs.
+- Make sure that your code can run in the browser (ie: don't make calls to external services, don't hit the filesystem, etc.).
+
+### Doc generation
+
+Know that module README.md files and https://turfjs.org API docs are auto-generated from JSDoc comments.
+- As a contributor, all you need to do is update the JSDoc comments.
+- For example if you change a top-level Turf functions signature (params, return type) or just want to improve the docs.
+- JSDoc comments are found in the top-level index file for each module (for example `turf/packages/turf-area/index.ts`).  For example look for `@name`, `@params`, `@returns`, `@example`.
+
+## Code Style
+
+We have lots of tooling dedicated to ensuring consistent code. We use [Prettier](https://prettier.io/), [Typescript](https://www.typescriptlang.org/), and [ESLint](https://eslint.org/) to help us deliver quality code. These are checked by the build system and should be enforced at commit time by [Husky](https://typicode.github.io/husky/#/).
+
+Some of the modules are written in Typescript, others are still plain Javascript. In the javascript modules and any dependencies we include, it is important to only write ES5 code. This ensures good browser compatability for Turf users, and is checked at build time.
+
+Making sure that the monorepo packages can be managed at scale, we use [Monorepolint](https://github.com/monorepolint/monorepolint) which allows us to programatically manage the various files in each package.
+
+- Linters are run at commit time, using a pre-commit hook in `.husky/pre-commit`.  See the package.json `lint:staged` section.
 
 ## Publishing
 
 ### Prerelease
 
-- Every merged PR should trigger an automatic canary release
-- The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. Specifically having `major` is appropriate for the pre-7.0 development phase, but we should change it to `minor` after 7.0.0 is finally released.
+A [prerelease](https://github.com/Turfjs/turf/blob/master/.github/workflows/prerelease.yml) action is available that publishes a canary release for every commit or PR merged to the master branch.  However, this action is only [enabled](https://github.com/Turfjs/turf/actions/workflows/prerelease.yml) when needed.
+
+When used, it publishes an alpha release to NPM (e.g. `7.0.0-alpha.116` where 116 is the number of commits to master since the last release tag).
+- The version number is calculated by a combination of the output of `git describe` and the `publish:prerelease` script in the root package.json. It is typically setup to do a `minor` prerelease, but can be changed, such as prior to a `major` release.
 
 ### Release
-- create new branch with some name
-- write up changelog changes (manually), commit that
-- make PR (don't merge)
-- pnpm lerna version --no-push 7.0.0
-- git push origin --follow-tags \$branch
-- merge PR (do not squash or the tags won't transfer)
-- re-fetch the new master and check it out locally
-- git clean -fdx (this will delete any unsaved local changes!)
-- pnpm install
-- pnpm test
-- pnpm publish -r
+
+A turf release is initiated from your local computer, and then built and published remotely via a github actions.
+
+To make a release as a core contributor, you will need:
+- Turf repository write permission
+- Turf npm organization publish permission
+- A local copy of the Turf Github repository (not a fork!).  Starting with a fresh clone will ensure it's clean.
+  - `git clone git@github.com:Turfjs/turf.git turf-release`
+  - `cd turf-release` - start at the top-level of the repo
+  - `pnpm install`
+
+- If you choose to clean up an existing copy instead, be very careful:
+  - `git remote -v` - verify your remote origin points to `https://github.com/Turfjs/turf.git`
+  - `git checkout master`
+  - `git reset --hard` - reset your local working copy, will lose any uncommitted or unstashed work!
+  - `git fetch origin` - fetch latest commits
+  - `git rev-list master...origin/master` - verify local master in sync with remote, command output should be empty
+  - `pnpm install`
+  - `pnpm test` - make sure everything is passing
+
+Before release:
+- If necessary, make and merge a PR with any last minute housekeeping items.
+- Turf's documentation (README.md files) should already be up to date as it is generated automatically on commit from JSDoc comments in source files.
+- Review PR's and decide the new version number to be published (for example 7.0.1 or 7.1.0).
+  - If there are breaking changes, then it should be a major version bump, e.g. 7.x.x to 8.0.0.  This project follows [semantic versioning](https://semver.org/).
+
+Run the release commands, replace `7.0.0` with your version number
+- fetch the latest code from remote origin
+  - `git fetch origin`
+
+- create a release branch, replace mf with your initials to make it clear whose branch it is.
+  - `git checkout origin/master -b mf/release-7.0.0`
+
+- increment the version number of all packages, without pushing to origin.  This will also create a release tag.
+  - `pnpm lerna version --no-commit-hooks --no-push 7.0.0`
+
+- stage any files changed by the version command.
+  - `git add packages/*/package.json`
+  - `git add lerna.json`
+`
+
+- create new commit on the release branch
+  - `git commit -m "Release v7.0.0"`
+
+- Push the release branch and the release tag.
+  - `git push origin mf/release-7.0.0 --follow-tags`
+  - The tag will trigger the Github [release](https://github.com/Turfjs/turf/blob/master/.github/workflows/release.yml) action which you can view the status of at - https://github.com/Turfjs/turf/actions.  If successful, a new [version](https://www.npmjs.com/package/@turf/turf?activeTab=versions) of all turf packages will have been published on NPM.
+
+- If the release action was successful, now create a Pull Request for the release and then merge it.
+  - A link to create the PR should be in the output of the push command
+  - Use the version number for the PR title (e.g. v7.0.0).
+  - If a link isn't provided, just create a PR that merges your release branch to master.  Here is an example - https://github.com/Turfjs/turf/pull/2615.
+  - Don't forget to merge your release PR!
+
+#### Follow-on steps
+- As part of the release action, a draft Github release will have been created at https://github.com/Turfjs/turf/releases with an auto-generated changelog.  Edit and add to the release notes for readability and completeness, specifically noting any breaking changes.  Use past releases as a guide.  Be sure to "Save draft" each time, then ask for a review from other contributors.  Once ready, click `Publish release`.  This will make the release notes publicly accessible and notify all watchers of the project.
+- Release a new version of the [API docs](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md) for the https://turfjs.org website.
 
 ## Documentation
 
-To update TurfJS's Documentation (README.md) use the following `npm run docs`:
-  - **inside a module:** will only generate the docs of that module.
+- API docs for each turf package are extracted from JSDoc comments in the source code into the top-level README.md files.  README's are automatically updated on commit using via the pre-commit hook.
+
+Should you want to generate new README files manually, use `npm run docs`:
+  - **inside a module:** will generate the docs for that module.
   - **main folder:** will generate docs for all modules.
 
 ### Documentation - Examples
 
-**Only builds docs for `@turf/center`**
+**Only build docs for `@turf/center`**
 
 ```bash
 $ cd ./turf/packages/turf-center
@@ -148,12 +283,11 @@ Building Docs: @turf/boolean-clockwise
 
 ### Public website
 
-[turfjs.org](http://turfjs.org/) is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
+The [turfjs.org](http://turfjs.org/) website is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
 
 ## Other Dependencies
-- Turf uses [Yarn](https://yarnpkg.com) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
-  - Lerna will be automatically installed when you run `npm install` in the root directory.
-  - Yarn will need to be installed on your computer, installers are available via the yarn website.
+- Turf uses [pnpm](https://pnpm.io/) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
+  - Lerna and pnpm will be automatically installed when you run `npm install` in the root directory.
 
 ## Financial contributions
 

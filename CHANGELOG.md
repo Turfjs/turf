@@ -1,10 +1,11 @@
-# 7.0.0 (prerelease)
+Changelog is no longer maintained. See Turf Github [releases](https://github.com/Turfjs/turf/releases)
 
-We intend to keep making breaking changes before 7.0.0 is fully released. If you intend to take a dependency on the 7.0 prereleases consider pinning the exact version dependency to avoid unintended breaks.
+# 7.0.0
 
 ## ⚠️  Breaking
-- Move to @types/geojson package instead of declaring our own (#2158)
+- Move to @types/geojson package instead of declaring our own. Typescript consumers of Turf will need to import from @types/geojson. (#2158)
 - Move distribution JS to target ES2017 (#2237)
+- Please change to using named exports instead of default exports from the various packages
 - [`@turf/helpers`](helpers) Correct the conversion factor for degrees (#2177)
 - [`@turf/helpers`](helpers) polygon() will now throw if the first and last coordinates are not the same (#2173)
 - [`@turf/helpers`](helpers) Separate AreaUnits into its own type (#2393)
@@ -15,6 +16,7 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/union`](union) Accept FeatureCollection for multiple inputs (#2247)
 - [`@turf/difference`](difference) Accept FeatureCollection for multiple inputs (#2247)
 - [`@turf/intersect`](intersect) Accept FeatureCollection for multiple inputs (#2247)
+- [`@turf/buffer`](buffer) Add undefined return for when the geometry is invalid (#2613)
 
 ## 🏅 New Features/Enhancements
 - [`@turf/kinks`](kinks) Move to sweepline-intersections library for performance (#1896)
@@ -48,6 +50,9 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/boolean-parallel`](boolean-parallel) Lines with 180 degree angle between them are also considered parallel (#2475)
 - [`@turf/unkink-polygon`](unkink-polygon) Fix a maximum call stack size exceeded error with very large polygons (#2504)
 - [`@turf/line-arc`](line-arc) Number of arc segments generated wasn't related to steps value passed in (#2524)
+- [`@turf/boolean-equal`](boolean-equal) Replace geojson-equality with new implementation (#2531)
+- [`@turf/boolean-overlap`](boolean-overlap) Replace geojson-equality with new implementation (#2531)
+- [`@turf/boolean-within`](boolean-within) Now correctly checks that the final point is contained (#2599)
 
 ## 📖 Documentation
 - [`@turf/bbox`][bbox] Improve documentation (#2153)
@@ -71,7 +76,9 @@ We intend to keep making breaking changes before 7.0.0 is fully released. If you
 - [`@turf/turf](turf) Add booleanIntersects typescript export (#2157)
 - [`@turf/turf](turf) Add booleanTouches export (#2170)
 - [`@turf/turf](turf) Add booleanConcave export (#2265)
+- [`@turf/simplify`](simplify) Clean up internals for less object churn (#2561)
 - [`@turf/helpers](helpers) Make isObject a little more accurate (#2176)
+- Migrate from geojsonhint to @placemark/check-geojson (#2571)
 - Add custom types entry point to exports, required by Typescript for node16, nodenext and bundler module resolution strategies (#2400, #2452)
 - types.ts tests are now run in strict mode (#2363)
 - Uses tslib now for smaller bundles (#2165)

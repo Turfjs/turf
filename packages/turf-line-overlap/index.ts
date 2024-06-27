@@ -14,7 +14,7 @@ import {
   GeoJsonProperties,
 } from "geojson";
 import { featureCollection, isObject } from "@turf/helpers";
-import equal from "deep-equal";
+import equal from "fast-deep-equal";
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.

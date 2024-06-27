@@ -1,6 +1,6 @@
 {
   "name": "@turf/moran-index",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf moran-index module",
   "author": "Turf Authors",
   "contributors": [
