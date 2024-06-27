@@ -6067,9 +6067,21 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@turf/meta':
+        specifier: workspace:^
+        version: link:../turf-meta
+      '@types/d3-voronoi':
+        specifier: ^1.1.12
+        version: 1.1.12
+      '@types/geojson':
+        specifier: 7946.0.8
+        version: 7946.0.8
       d3-voronoi:
         specifier: 1.1.2
         version: 1.1.2
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@types/benchmark':
         specifier: ^2.1.5
@@ -6098,6 +6110,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.2.2
+        version: 5.3.3
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -8826,6 +8841,10 @@ packages:
   /@types/concaveman@1.1.6:
     resolution: {integrity: sha512-3shTHRmSStvc+91qrFlQv2UmrOB0sZ6biDQo7YzY+9tV1mNLpdzuZal4D3hTYXYWig49K01lCvYDpnh+txToXw==}
     dev: true
+
+  /@types/d3-voronoi@1.1.12:
+    resolution: {integrity: sha512-DauBl25PKZZ0WVJr42a6CNvI6efsdzofl9sajqZr2Gf5Gu733WkDdUGiPkUHXiUvYGzNNlFQde2wdZdfQPG+yw==}
+    dev: false
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
