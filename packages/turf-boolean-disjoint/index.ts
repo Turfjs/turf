@@ -10,6 +10,8 @@ import { polygonToLine } from "@turf/polygon-to-line";
  * @name booleanDisjoint
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.ignoreSelfIntersections=false] ignores self-intersections on input features
  * @returns {boolean} true/false
  * @example
  * var point = turf.point([2, 2]);
@@ -20,7 +22,8 @@ import { polygonToLine } from "@turf/polygon-to-line";
  */
 function booleanDisjoint(
   feature1: Feature<any> | Geometry,
-  feature2: Feature<any> | Geometry
+  feature2: Feature<any> | Geometry,
+  options: any = {}
 ): boolean {
   let bool = true;
   flattenEach(feature1, (flatten1) => {
@@ -28,7 +31,7 @@ function booleanDisjoint(
       if (bool === false) {
         return false;
       }
-      bool = disjoint(flatten1.geometry, flatten2.geometry);
+      bool = disjoint(flatten1.geometry, flatten2.geometry, options);
     });
   });
   return bool;
@@ -40,11 +43,14 @@ function booleanDisjoint(
  * @private
  * @param {Geometry<any>} geom1 GeoJSON Geometry
  * @param {Geometry<any>} geom2 GeoJSON Geometry
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.ignoreSelfIntersections=false] ignores self-intersections on input features
  * @returns {boolean} true/false
  */
-function disjoint(geom1: any, geom2: any) {
+function disjoint(geom1: any, geom2: any, options: any = {}) {
   switch (geom1.type) {
     case "Point":
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       switch (geom2.type) {
         case "Point":
           return !compareCoords(geom1.coordinates, geom2.coordinates);
@@ -60,9 +66,9 @@ function disjoint(geom1: any, geom2: any) {
         case "Point":
           return !isPointOnLine(geom1, geom2);
         case "LineString":
-          return !isLineOnLine(geom1, geom2);
+          return !isLineOnLine(geom1, geom2, options);
         case "Polygon":
-          return !isLineInPoly(geom2, geom1);
+          return !isLineInPoly(geom2, geom1, options);
       }
       /* istanbul ignore next */
       break;
@@ -71,9 +77,9 @@ function disjoint(geom1: any, geom2: any) {
         case "Point":
           return !booleanPointInPolygon(geom2, geom1);
         case "LineString":
-          return !isLineInPoly(geom1, geom2);
+          return !isLineInPoly(geom1, geom2, options);
         case "Polygon":
-          return !isPolyInPoly(geom2, geom1);
+          return !isPolyInPoly(geom2, geom1, options);
       }
   }
   return false;
@@ -95,21 +101,33 @@ function isPointOnLine(lineString: LineString, pt: Point) {
   return false;
 }
 
-function isLineOnLine(lineString1: LineString, lineString2: LineString) {
-  const doLinesIntersect = lineIntersect(lineString1, lineString2);
+function isLineOnLine(
+  lineString1: LineString,
+  lineString2: LineString,
+  options: any = {}
+) {
+  const doLinesIntersect = lineIntersect(lineString1, lineString2, options);
   if (doLinesIntersect.features.length > 0) {
     return true;
   }
   return false;
 }
 
-function isLineInPoly(polygon: Polygon, lineString: LineString) {
+function isLineInPoly(
+  polygon: Polygon,
+  lineString: LineString,
+  options: any = {}
+) {
   for (const coord of lineString.coordinates) {
     if (booleanPointInPolygon(coord, polygon)) {
       return true;
     }
   }
-  const doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon));
+  const doLinesIntersect = lineIntersect(
+    lineString,
+    polygonToLine(polygon),
+    options
+  );
   if (doLinesIntersect.features.length > 0) {
     return true;
   }
@@ -126,7 +144,7 @@ function isLineInPoly(polygon: Polygon, lineString: LineString) {
  * @param {Geometry|Feature<Polygon>} feature2 Polygon2
  * @returns {boolean} true/false
  */
-function isPolyInPoly(feature1: Polygon, feature2: Polygon) {
+function isPolyInPoly(feature1: Polygon, feature2: Polygon, options: any = {}) {
   for (const coord1 of feature1.coordinates[0]) {
     if (booleanPointInPolygon(coord1, feature2)) {
       return true;
@@ -139,7 +157,8 @@ function isPolyInPoly(feature1: Polygon, feature2: Polygon) {
   }
   const doLinesIntersect = lineIntersect(
     polygonToLine(feature1),
-    polygonToLine(feature2)
+    polygonToLine(feature2),
+    options
   );
   if (doLinesIntersect.features.length > 0) {
     return true;
