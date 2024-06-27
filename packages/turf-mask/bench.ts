@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
-import Benchmark, { Event } from "benchmark";
+import Benchmark from "benchmark";
 import { mask as turfMask } from "./index.js";
 import clone from "@turf/clone";
 
@@ -33,7 +33,7 @@ for (const { name, filename, geojson } of fixtures) {
   const getSuite = ({ mutate }: { mutate: boolean }) => ({
     name: `${name} (mutate = ${mutate})`,
     fn: () => {
-      // We clone the inputs to avoid tests from affecting each other
+      // We clone the inputs to prevent tests from affecting each other
       turfMask(clone(polygon), clone(masking), { mutate });
     },
   });
@@ -51,7 +51,7 @@ for (const { name, filename, geojson } of fixtures) {
  * mask-outside (mutate = true) x 103,180 ops/sec ±0.40% (94 runs sampled)
  */
 suite
-  .on("cycle", (event: Event) => {
+  .on("cycle", (event) => {
     console.log(String(event.target));
   })
   .run();
