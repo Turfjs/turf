@@ -1,6 +1,12 @@
-import { BBox, FeatureCollection, Point, Polygon, Position } from "geojson";
+import {
+  BBox,
+  Feature,
+  FeatureCollection,
+  Point,
+  Polygon,
+  Position,
+} from "geojson";
 import { polygon, featureCollection, isObject } from "@turf/helpers";
-import { coordEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
 import { cloneProperties } from "@turf/clone";
 import * as d3voronoi from "d3-voronoi";
@@ -53,24 +59,17 @@ function voronoi(
   if (!Array.isArray(bbox)) throw new Error("bbox is invalid");
   collectionOf(points, "Point", "points");
 
-  // Extract the positions from the GeoJson features to pass into the
-  // Voronoi calculation.
-  const positions: Position[] = [];
-  coordEach(points, (currentCoord: number[]) => {
-    positions.push(currentCoord);
-  });
-
   // Main
   return featureCollection(
     d3voronoi
-      .voronoi<Position>()
-      .x((pos) => pos[0])
-      .y((pos) => pos[1])
+      .voronoi<Feature<Point>>()
+      .x((feature) => feature.geometry.coordinates[0])
+      .y((feature) => feature.geometry.coordinates[1])
       .extent([
         [bbox[0], bbox[1]],
         [bbox[2], bbox[3]],
       ])
-      .polygons(positions)
+      .polygons(points.features)
       .map(function (coords, index) {
         return Object.assign(coordsToPolygon(coords), {
           properties: cloneProperties(points.features[index].properties),
