@@ -1,27 +1,33 @@
+import { Polygon, MultiPolygon, Feature, FeatureCollection } from "geojson";
 import { flattenEach, featureEach } from "@turf/meta";
 import { polygon, featureCollection } from "@turf/helpers";
 import { simplepolygon } from "./lib/simplepolygon.js";
 
 /**
- * Takes a kinked polygon and returns a feature collection of polygons that have no kinks.
+ * Takes a kinked polygon and returns a feature collection of polygons that have
+ * no kinks.
+ *
  * Uses [simplepolygon](https://github.com/mclaeysb/simplepolygon) internally.
  *
  * @name unkinkPolygon
- * @param {FeatureCollection|Feature<Polygon|MultiPolygon>} geojson GeoJSON Polygon or MultiPolygon
+ * @param {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|<Polygon|MultiPolygon>} geojson polygons to unkink
  * @returns {FeatureCollection<Polygon>} Unkinked polygons
  * @example
- * var poly = turf.polygon([[[0, 0], [2, 0], [0, 2], [2, 2], [0, 0]]]);
+ * const poly = turf.polygon([[[0, 0], [2, 0], [0, 2], [2, 2], [0, 0]]]);
  *
- * var result = turf.unkinkPolygon(poly);
+ * const result = turf.unkinkPolygon(poly);
  *
  * //addToMap
- * var addToMap = [poly, result]
+ * const addToMap = [poly, result]
  */
-function unkinkPolygon(geojson) {
-  var features = [];
+function unkinkPolygon<T extends Polygon | MultiPolygon>(
+  geojson: Feature<T> | FeatureCollection<T> | T
+): FeatureCollection<Polygon> {
+  var features: Feature<Polygon>[] = [];
   flattenEach(geojson, function (feature) {
     if (feature.geometry.type !== "Polygon") return;
-    featureEach(simplepolygon(feature), function (poly) {
+    // Safe to treat feature as Feature<Polygon>
+    featureEach(simplepolygon(feature as Feature<Polygon>), function (poly) {
       features.push(polygon(poly.geometry.coordinates, feature.properties));
     });
   });
