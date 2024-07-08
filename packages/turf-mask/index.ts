@@ -32,7 +32,7 @@ function mask<T extends Polygon | MultiPolygon>(
   // Define mask
   const maskPolygon = createMask(mask);
 
-  var polygonOuters = null;
+  let polygonOuters = null;
   if (polygon.type === "FeatureCollection") {
     polygonOuters = unionFc(polygon);
   } else if (polygon.type === "Feature") {
@@ -60,17 +60,23 @@ function mask<T extends Polygon | MultiPolygon>(
 function unionFc(fc: FeatureCollection<Polygon | MultiPolygon>) {
   // Need to cast below as Position[][] isn't quite as strict as Geom, even
   // though they should be equivalent.
+
+  // Stick with apply() below as spread operator degrades performance. Have
+  // to disable prefer-spread lint rule though.
+  /* eslint-disable prefer-spread */
   const unioned =
     fc.features.length === 2
       ? polygonClipping.union(
           fc.features[0].geometry.coordinates as Geom,
           fc.features[1].geometry.coordinates as Geom
         )
-      : polygonClipping.union(
-          ...(fc.features.map(function (f) {
+      : polygonClipping.union.apply(
+          polygonClipping,
+          fc.features.map(function (f) {
             return f.geometry.coordinates;
-          }) as [Geom, ...Geom[]])
+          }) as [Geom, ...Geom[]]
         );
+  /* eslint-enable */
   return createGeomFromPolygonClippingOutput(unioned);
 }
 
@@ -86,7 +92,7 @@ function createGeomFromPolygonClippingOutput(unioned: Position[][][]) {
  * @returns {Feature<Polygon>} mask as a polygon
  */
 function createMask(mask: Feature<Polygon> | Polygon | undefined) {
-  var world = [
+  const world = [
     [
       [180, 90],
       [-180, 90],
