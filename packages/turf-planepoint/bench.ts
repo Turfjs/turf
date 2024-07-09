@@ -1,4 +1,4 @@
-import Benchmark from "benchmark";
+import Benchmark, { Event } from "benchmark";
 import { polygon } from "@turf/helpers";
 import { planepoint } from "./index.js";
 
@@ -23,5 +23,5 @@ const triangle = polygon(
 const suite = new Benchmark.Suite("turf-planepoint");
 suite
   .add("turf-planepoint", () => planepoint(point, triangle))
-  .on("cycle", (e) => console.log(String(e.target)))
+  .on("cycle", (e: Event) => console.log(String(e.target)))
   .run();
