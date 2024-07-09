@@ -1,21 +1,30 @@
+import {
+  Feature,
+  FeatureCollection,
+  MultiPolygon,
+  Polygon,
+  Position,
+} from "geojson";
 import earcut from "earcut";
 import { polygon } from "@turf/helpers";
 
 /**
- * Tesselates a {@link Feature<Polygon>} into a {@link FeatureCollection<Polygon>} of triangles
+ * Tesselates a polygon or multipolygon into a collection of triangle polygons
  * using [earcut](https://github.com/mapbox/earcut).
  *
  * @name tesselate
- * @param {Feature<Polygon>} poly the polygon to tesselate
- * @returns {FeatureCollection<Polygon>} a geometrycollection feature
+ * @param {Feature<Polygon|MultiPolygon>} poly the polygon to tesselate
+ * @returns {FeatureCollection<Polygon>} collection of polygon tesselations
  * @example
- * var poly = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
- * var triangles = turf.tesselate(poly);
+ * const poly = turf.polygon([[[11, 0], [22, 4], [31, 0], [31, 11], [21, 15], [11, 11], [11, 0]]]);
+ * const triangles = turf.tesselate(poly);
  *
  * //addToMap
- * var addToMap = [poly, triangles]
+ * const addToMap = [poly, triangles]
  */
-function tesselate(poly) {
+function tesselate(
+  poly: Feature<Polygon | MultiPolygon>
+): FeatureCollection<Polygon> {
   if (
     !poly.geometry ||
     (poly.geometry.type !== "Polygon" && poly.geometry.type !== "MultiPolygon")
@@ -23,7 +32,10 @@ function tesselate(poly) {
     throw new Error("input must be a Polygon or MultiPolygon");
   }
 
-  var fc = { type: "FeatureCollection", features: [] };
+  const fc: FeatureCollection<Polygon> = {
+    type: "FeatureCollection",
+    features: [],
+  };
 
   if (poly.geometry.type === "Polygon") {
     fc.features = processPolygon(poly.geometry.coordinates);
@@ -36,21 +48,21 @@ function tesselate(poly) {
   return fc;
 }
 
-function processPolygon(coordinates) {
-  var data = flattenCoords(coordinates);
-  var dim = 2;
-  var result = earcut(data.vertices, data.holes, dim);
+function processPolygon(coordinates: Position[][]) {
+  const data = flattenCoords(coordinates);
+  const dim = 2;
+  const result = earcut(data.vertices, data.holes, dim);
 
-  var features = [];
-  var vertices = [];
+  const features: Feature<Polygon>[] = [];
+  const vertices: Position[] = [];
 
-  result.forEach(function (vert, i) {
-    var index = result[i];
+  result.forEach(function (vert: any, i: number) {
+    const index = result[i];
     vertices.push([data.vertices[index * dim], data.vertices[index * dim + 1]]);
   });
 
   for (var i = 0; i < vertices.length; i += 3) {
-    var coords = vertices.slice(i, i + 3);
+    const coords = vertices.slice(i, i + 3);
     coords.push(vertices[i]);
     features.push(polygon([coords]));
   }
@@ -58,14 +70,18 @@ function processPolygon(coordinates) {
   return features;
 }
 
-function flattenCoords(data) {
-  var dim = data[0][0].length,
-    result = { vertices: [], holes: [], dimensions: dim },
-    holeIndex = 0;
+function flattenCoords(data: Position[][]) {
+  const dim: number = data[0][0].length,
+    result: { vertices: number[]; holes: number[]; dimensions: number } = {
+      vertices: [],
+      holes: [],
+      dimensions: dim,
+    };
+  let holeIndex = 0;
 
-  for (var i = 0; i < data.length; i++) {
-    for (var j = 0; j < data[i].length; j++) {
-      for (var d = 0; d < dim; d++) result.vertices.push(data[i][j][d]);
+  for (let i = 0; i < data.length; i++) {
+    for (let j = 0; j < data[i].length; j++) {
+      for (let d = 0; d < dim; d++) result.vertices.push(data[i][j][d]);
     }
     if (i > 0) {
       holeIndex += data[i - 1].length;
