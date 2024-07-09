@@ -4119,10 +4119,19 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: 7946.0.8
+        version: 7946.0.8
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -4138,6 +4147,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.2.2
+        version: 5.3.3
 
   packages/turf-moran-index:
     dependencies:
@@ -4431,7 +4443,19 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: 7946.0.8
+        version: 7946.0.8
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -4447,6 +4471,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.2.2
+        version: 5.3.3
 
   packages/turf-point-grid:
     dependencies:
@@ -5469,7 +5496,19 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: 7946.0.8
+        version: 7946.0.8
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -5485,6 +5524,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.2.2
+        version: 5.3.3
 
   packages/turf-square-grid:
     dependencies:
