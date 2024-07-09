@@ -161,7 +161,7 @@ function standardDeviationalEllipse(
     percentageWithinEllipse:
       (100 * coordAll(pointsWithinEllipse).length) / numberOfFeatures,
   };
-  // Makre sure properties object exists.
+  // Make sure properties object exists.
   theEllipse.properties = theEllipse.properties ?? {};
   theEllipse.properties.standardDeviationalEllipse =
     standardDeviationalEllipseProperties;
