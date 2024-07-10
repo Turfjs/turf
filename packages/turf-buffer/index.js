@@ -13,7 +13,7 @@ import {
 const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
 
 /**
- * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
+ * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, degrees, and none.
  *
  * When using a negative radius, the resulting geometry may be invalid if
  * it's too small compared to the radius magnitude. If the input is a
@@ -87,6 +87,7 @@ function buffer(geojson, radius, options) {
 function bufferFeature(geojson, radius, units, steps) {
   var properties = geojson.properties || {};
   var geometry = geojson.type === "Feature" ? geojson.geometry : geojson;
+  var isUnitless = units === "none";
 
   // Geometry Types faster than jsts
   if (geometry.type === "GeometryCollection") {
@@ -100,15 +101,20 @@ function bufferFeature(geojson, radius, units, steps) {
 
   // Project GeoJSON to Azimuthal Equidistant projection (convert to Meters)
   var projection = defineProjection(geometry);
+  var projectedCoords = isUnitless
+    ? geometry.coordinates
+    : projectCoords(geometry.coordinates, projection);
   var projected = {
     type: geometry.type,
-    coordinates: projectCoords(geometry.coordinates, projection),
+    coordinates: projectedCoords,
   };
 
   // JSTS buffer operation
   var reader = new GeoJSONReader();
   var geom = reader.read(projected);
-  var distance = radiansToLength(lengthToRadians(radius, units), "meters");
+  var distance = isUnitless
+    ? radius
+    : radiansToLength(lengthToRadians(radius, units), "meters");
   var buffered = BufferOp.bufferOp(geom, distance, steps);
   var writer = new GeoJSONWriter();
   buffered = writer.write(buffered);
@@ -117,9 +123,12 @@ function bufferFeature(geojson, radius, units, steps) {
   if (coordsIsNaN(buffered.coordinates)) return undefined;
 
   // Unproject coordinates (convert to Degrees)
+  var unprojectedCoords = isUnitless
+    ? buffered.coordinates
+    : unprojectCoords(buffered.coordinates, projection);
   var result = {
     type: buffered.type,
-    coordinates: unprojectCoords(buffered.coordinates, projection),
+    coordinates: unprojectedCoords,
   };
 
   return feature(result, properties);
