@@ -14,11 +14,11 @@ would contain the input.
 ### Examples
 
 ```javascript
-var bbox = [-20, -20, -15, 0];
-var squared = turf.square(bbox);
+const bbox = [-20, -20, -15, 0];
+const squared = turf.square(bbox);
 
 //addToMap
-var addToMap = [turf.bboxPolygon(bbox), turf.bboxPolygon(squared)]
+const addToMap = [turf.bboxPolygon(bbox), turf.bboxPolygon(squared)]
 ```
 
 Returns **[BBox][1]** a square surrounding `bbox`
