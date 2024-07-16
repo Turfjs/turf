@@ -1,9 +1,12 @@
+import { Feature, Polygon } from "geojson";
 import { getCoord, getGeom } from "@turf/invariant";
+import { Coord } from "@turf/helpers";
 
 /**
- * Takes a triangular plane as a {@link Polygon}
- * and a {@link Point} within that triangle and returns the z-value
- * at that point. The Polygon should have properties `a`, `b`, and `c`
+ * Takes a triangular plane as a polygon and a point within that triangle, and
+ * returns the z-value at that point.
+ *
+ * The Polygon should have properties `a`, `b`, and `c`
  * that define the values at its three corners. Alternatively, the z-values
  * of each triangle point can be provided by their respective 3rd coordinate
  * if their values are not provided as properties.
@@ -13,9 +16,9 @@ import { getCoord, getGeom } from "@turf/invariant";
  * @param {Feature<Polygon>} triangle a Polygon feature with three vertices
  * @returns {number} the z-value for `interpolatedPoint`
  * @example
- * var point = turf.point([-75.3221, 39.529]);
+ * const point = turf.point([-75.3221, 39.529]);
  * // "a", "b", and "c" values represent the values of the coordinates in order.
- * var triangle = turf.polygon([[
+ * const triangle = turf.polygon([[
  *   [-75.1221, 39.57],
  *   [-75.58, 39.18],
  *   [-75.97, 39.86],
@@ -26,38 +29,41 @@ import { getCoord, getGeom } from "@turf/invariant";
  *   "c": 44
  * });
  *
- * var zValue = turf.planepoint(point, triangle);
+ * const zValue = turf.planepoint(point, triangle);
  * point.properties.zValue = zValue;
  *
  * //addToMap
- * var addToMap = [triangle, point];
+ * const addToMap = [triangle, point];
  */
-function planepoint(point, triangle) {
+function planepoint(
+  point: Coord,
+  triangle: Feature<Polygon> | Polygon
+): number {
   // Normalize input
-  var coord = getCoord(point);
-  var geom = getGeom(triangle);
-  var coords = geom.coordinates;
-  var outer = coords[0];
+  const coord = getCoord(point);
+  const geom = getGeom(triangle);
+  const coords = geom.coordinates;
+  const outer = coords[0];
   if (outer.length < 4)
     throw new Error("OuterRing of a Polygon must have 4 or more Positions.");
-  var properties = triangle.properties || {};
-  var a = properties.a;
-  var b = properties.b;
-  var c = properties.c;
+  const properties = (triangle.type === "Feature" && triangle.properties) || {};
+  const a = properties.a;
+  const b = properties.b;
+  const c = properties.c;
 
   // Planepoint
-  var x = coord[0];
-  var y = coord[1];
-  var x1 = outer[0][0];
-  var y1 = outer[0][1];
-  var z1 = a !== undefined ? a : outer[0][2];
-  var x2 = outer[1][0];
-  var y2 = outer[1][1];
-  var z2 = b !== undefined ? b : outer[1][2];
-  var x3 = outer[2][0];
-  var y3 = outer[2][1];
-  var z3 = c !== undefined ? c : outer[2][2];
-  var z =
+  const x = coord[0];
+  const y = coord[1];
+  const x1 = outer[0][0];
+  const y1 = outer[0][1];
+  const z1 = a !== undefined ? a : outer[0][2];
+  const x2 = outer[1][0];
+  const y2 = outer[1][1];
+  const z2 = b !== undefined ? b : outer[1][2];
+  const x3 = outer[2][0];
+  const y3 = outer[2][1];
+  const z3 = c !== undefined ? c : outer[2][2];
+  const z =
     (z3 * (x - x1) * (y - y2) +
       z1 * (x - x2) * (y - y3) +
       z2 * (x - x3) * (y - y1) -
