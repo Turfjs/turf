@@ -1,3 +1,4 @@
+import { Feature, FeatureCollection, Point } from "geojson";
 import test from "tape";
 import { glob } from "glob";
 import path from "path";
@@ -15,7 +16,10 @@ test("turf-standard-deviational-ellipse", (t) => {
     .forEach((filepath) => {
       // Define params
       const { name } = path.parse(filepath);
-      const geojson = loadJsonFileSync(filepath);
+      const geojson = loadJsonFileSync(filepath) as FeatureCollection<Point> & {
+        options: any;
+        esriEllipse: any;
+      }; // Non-standard FeatureCollection options used for testing.
       const options = geojson.options;
       // Optional: ESRI Polygon in GeoJSON test/in to compare results
       const esriEllipse = geojson.esriEllipse;
@@ -38,7 +42,12 @@ test("turf-standard-deviational-ellipse", (t) => {
   t.end();
 });
 
-function colorize(feature, stroke = "#0A0", fill = "#FFF", opacity = 0) {
+function colorize(
+  feature: Feature,
+  stroke = "#0A0",
+  fill = "#FFF",
+  opacity = 0
+) {
   const properties = {
     fill,
     stroke,
@@ -46,6 +55,8 @@ function colorize(feature, stroke = "#0A0", fill = "#FFF", opacity = 0) {
     "stroke-opacity": 1,
     "fill-opacity": opacity,
   };
+  // Make sure feature properties is defined.
+  feature.properties = feature.properties ?? {};
   Object.assign(feature.properties, properties);
   return feature;
 }

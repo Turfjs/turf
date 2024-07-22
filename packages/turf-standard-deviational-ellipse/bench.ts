@@ -1,6 +1,7 @@
+import { BBox } from "geojson";
 import { randomPoint } from "@turf/random";
 import { standardDeviationalEllipse } from "./index.js";
-import Benchmark from "benchmark";
+import Benchmark, { Event } from "benchmark";
 
 /**
  * Benchmark Results
@@ -10,7 +11,7 @@ import Benchmark from "benchmark";
  * turf-standard-deviational-ellipse - 600 points x 574 ops/sec ±1.14% (92 runs sampled)
  */
 const suite = new Benchmark.Suite("turf-standard-deviational-ellipse");
-const properties = { bbox: [-10, -10, 10, 10] };
+const properties: { bbox: BBox } = { bbox: [-10, -10, 10, 10] };
 suite
   .add("turf-standard-deviational-ellipse - 150 points", () =>
     standardDeviationalEllipse(randomPoint(150, properties))
@@ -21,5 +22,5 @@ suite
   .add("turf-standard-deviational-ellipse - 600 points", () =>
     standardDeviationalEllipse(randomPoint(600, properties))
   )
-  .on("cycle", (e) => console.log(String(e.target)))
+  .on("cycle", (e: Event) => console.log(String(e.target)))
   .run();
