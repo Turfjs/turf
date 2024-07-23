@@ -1,3 +1,4 @@
+import { GeoJSON, GeometryCollection } from "geojson";
 import { centroid } from "@turf/centroid";
 import { rhumbBearing } from "@turf/rhumb-bearing";
 import { rhumbDistance } from "@turf/rhumb-distance";
@@ -5,7 +6,7 @@ import { rhumbDestination } from "@turf/rhumb-destination";
 import { clone } from "@turf/clone";
 import { coordEach } from "@turf/meta";
 import { getCoords } from "@turf/invariant";
-import { isObject } from "@turf/helpers";
+import { isObject, Coord } from "@turf/helpers";
 
 /**
  * Rotates any geojson Feature or Geometry of a specified angle, around its `centroid` or a given `pivot` point.
@@ -18,20 +19,27 @@ import { isObject } from "@turf/helpers";
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} the rotated GeoJSON feature
  * @example
- * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
- * var options = {pivot: [0, 25]};
- * var rotatedPoly = turf.transformRotate(poly, 10, options);
+ * const poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
+ * const options = {pivot: [0, 25]};
+ * const rotatedPoly = turf.transformRotate(poly, 10, options);
  *
  * //addToMap
- * var addToMap = [poly, rotatedPoly];
+ * const addToMap = [poly, rotatedPoly];
  * rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-function transformRotate(geojson, angle, options) {
+function transformRotate<T extends GeoJSON | GeometryCollection>(
+  geojson: T,
+  angle: number,
+  options?: {
+    pivot?: Coord;
+    mutate?: boolean;
+  }
+): T {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  var pivot = options.pivot;
-  var mutate = options.mutate;
+  const pivot = options.pivot;
+  const mutate = options.mutate;
 
   // Input validation
   if (!geojson) throw new Error("geojson is required");
@@ -42,17 +50,19 @@ function transformRotate(geojson, angle, options) {
   if (angle === 0) return geojson;
 
   // Use centroid of GeoJSON if pivot is not provided
-  if (!pivot) pivot = centroid(geojson);
+  const pivotCoord = pivot ?? centroid(geojson);
 
   // Clone geojson to avoid side effects
   if (mutate === false || mutate === undefined) geojson = clone(geojson);
 
   // Rotate each coordinate
   coordEach(geojson, function (pointCoords) {
-    var initialAngle = rhumbBearing(pivot, pointCoords);
-    var finalAngle = initialAngle + angle;
-    var distance = rhumbDistance(pivot, pointCoords);
-    var newCoords = getCoords(rhumbDestination(pivot, distance, finalAngle));
+    const initialAngle = rhumbBearing(pivotCoord, pointCoords);
+    const finalAngle = initialAngle + angle;
+    const distance = rhumbDistance(pivotCoord, pointCoords);
+    const newCoords = getCoords(
+      rhumbDestination(pivotCoord, distance, finalAngle)
+    );
     pointCoords[0] = newCoords[0];
     pointCoords[1] = newCoords[1];
   });

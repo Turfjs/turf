@@ -1,5 +1,6 @@
+import { GeoJSON, GeometryCollection } from "geojson";
 import { coordEach } from "@turf/meta";
-import { isObject } from "@turf/helpers";
+import { isObject, Units } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 import { clone } from "@turf/clone";
 import { rhumbDestination } from "@turf/rhumb-destination";
@@ -9,14 +10,14 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  * on the provided direction angle.
  *
  * @name transformTranslate
- * @param {GeoJSON} geojson object to be translated
+ * @param {GeoJSON|GeometryCollection} geojson object to be translated
  * @param {number} distance length of the motion; negative values determine motion in opposite direction
  * @param {number} direction of the motion; angle from North in decimal degrees, positive clockwise
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] in which `distance` will be express; miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] in which `distance` will be express; miles, kilometers, degrees, or radians
  * @param {number} [options.zTranslation=0] length of the vertical motion, same unit of distance
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {GeoJSON} the translated GeoJSON object
+ * @returns {GeoJSON|GeometryCollection} the translated GeoJSON object
  * @example
  * var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
  * var translatedPoly = turf.transformTranslate(poly, 100, 35);
@@ -25,7 +26,16 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  * var addToMap = [poly, translatedPoly];
  * translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
  */
-function transformTranslate(geojson, distance, direction, options) {
+function transformTranslate<T extends GeoJSON | GeometryCollection>(
+  geojson: T,
+  distance: number,
+  direction: number,
+  options?: {
+    units?: Units;
+    zTranslation?: number;
+    mutate?: boolean;
+  }
+): T {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
