@@ -1,4 +1,4 @@
-import Benchmark from "benchmark";
+import Benchmark, { Event } from "benchmark";
 import { polygon } from "@turf/helpers";
 import { tesselate } from "./index.js";
 
@@ -20,5 +20,5 @@ var poly = polygon([
  */
 new Benchmark.Suite("turf-tesselate")
   .add("polygon", () => tesselate(poly))
-  .on("cycle", (e) => console.log(String(e.target)))
+  .on("cycle", (e: Event) => console.log(String(e.target)))
   .run();
