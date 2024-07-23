@@ -1,3 +1,4 @@
+import { Feature, GeoJSON, GeometryCollection } from "geojson";
 import fs from "fs";
 import test from "tape";
 import path from "path";
@@ -12,6 +13,7 @@ import {
   lineString,
   featureCollection,
   geometryCollection,
+  Coord,
 } from "@turf/helpers";
 import { transformRotate as rotate } from "./index.js";
 
@@ -26,7 +28,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename) as Feature,
   };
 });
 
@@ -55,9 +57,12 @@ test("rotate -- throws", (t) => {
     [12, 15],
   ]);
 
+  // @ts-expect-error testing JS runtime for mis-typed option
   t.throws(() => rotate(null, 100), /geojson is required/, "missing geojson");
+  // @ts-expect-error testing JS runtime for mis-typed option
   t.throws(() => rotate(line, null), /angle is required/, "missing angle");
   t.throws(
+    // @ts-expect-error testing JS runtime for mis-typed option
     () => rotate(line, 56, { pivot: "notApoint" }),
     /coord must be GeoJSON Point or an Array of numbers/,
     "coord must be GeoJSON Point or an Array of numbers"
@@ -116,7 +121,10 @@ test("rotate -- geometry support", (t) => {
 });
 
 // style result
-function colorize(geojson) {
+function colorize(geojson: Feature) {
+  // We are going to add some properties, so make sure properties attribute is
+  // present.
+  geojson.properties = geojson.properties ?? {};
   if (
     geojson.geometry.type === "Point" ||
     geojson.geometry.type === "MultiPoint"
@@ -130,9 +138,10 @@ function colorize(geojson) {
   return geojson;
 }
 
-function makePivot(pivot, geojson) {
+function makePivot(pivot: Coord, geojson: GeoJSON | GeometryCollection) {
   if (!pivot) {
     const pt = centroid(geojson);
+    pt.properties = pt.properties ?? {};
     pt.properties["marker-symbol"] = "circle";
     return pt;
   }
