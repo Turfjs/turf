@@ -10,7 +10,7 @@ import { flattenEach } from "@turf/meta";
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.ignoreSelfIntersections=false] ignores self-intersections on input features
- * @returns {boolean} true/false
+ * @returns {boolean} true if geometries intersect, false otherwise
  * @example
  * var point = turf.point([2, 2]);
  * var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
@@ -25,20 +25,18 @@ function booleanIntersects(
     ignoreSelfIntersections?: boolean;
   } = {}
 ) {
-  const documentedOptions = options.ignoreSelfIntersections
-    ? { ignoreSelfIntersections: options.ignoreSelfIntersections }
-    : {};
+  const ignoreSelfIntersections: boolean =
+    options.ignoreSelfIntersections ?? false;
+
   let bool = false;
   flattenEach(feature1, (flatten1) => {
     flattenEach(feature2, (flatten2) => {
       if (bool === true) {
         return true;
       }
-      bool = !booleanDisjoint(
-        flatten1.geometry,
-        flatten2.geometry,
-        documentedOptions
-      );
+      bool = !booleanDisjoint(flatten1.geometry, flatten2.geometry, {
+        ignoreSelfIntersections,
+      });
     });
   });
   return bool;
