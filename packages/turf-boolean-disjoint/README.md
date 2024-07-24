@@ -24,7 +24,7 @@ turf.booleanDisjoint(line, point);
 //=true
 ```
 
-Returns **[boolean][4]** true/false
+Returns **[boolean][4]** true if the intersection is an empty set, false otherwise
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1
 
