@@ -1,8 +1,9 @@
+import { FeatureCollection, Polygon, MultiPolygon } from "geojson";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
-import Benchmark from "benchmark";
+import Benchmark, { Event } from "benchmark";
 import { mask as turfMask } from "./index.js";
 import clone from "@turf/clone";
 
@@ -21,7 +22,9 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(path.join(directories.in, filename)),
+    geojson: loadJsonFileSync(
+      path.join(directories.in, filename)
+    ) as FeatureCollection<Polygon | MultiPolygon>,
   };
 });
 
@@ -51,7 +54,7 @@ for (const { name, filename, geojson } of fixtures) {
  * mask-outside (mutate = true) x 103,180 ops/sec ±0.40% (94 runs sampled)
  */
 suite
-  .on("cycle", (event) => {
+  .on("cycle", (event: Event) => {
     console.log(String(event.target));
   })
   .run();
