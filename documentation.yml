@@ -139,6 +139,7 @@ toc:
   - booleanCrosses
   - booleanDisjoint
   - booleanEqual
+  - booleanIntersects
   - booleanOverlap
   - booleanParallel
   - booleanPointInPolygon
