@@ -64,6 +64,7 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
+    "@turf/clone": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@types/geojson": "7946.0.8",
     "polygon-clipping": "^0.15.3",
