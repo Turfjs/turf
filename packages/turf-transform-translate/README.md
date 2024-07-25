@@ -9,13 +9,13 @@ on the provided direction angle.
 
 ### Parameters
 
-*   `geojson` **[GeoJSON][1]** object to be translated
-*   `distance` **[number][2]** length of the motion; negative values determine motion in opposite direction
-*   `direction` **[number][2]** of the motion; angle from North in decimal degrees, positive clockwise
-*   `options` **[Object][3]** Optional parameters (optional, default `{}`)
+*   `geojson` **([GeoJSON][1] | [GeometryCollection][2])** object to be translated
+*   `distance` **[number][3]** length of the motion; negative values determine motion in opposite direction
+*   `direction` **[number][3]** of the motion; angle from North in decimal degrees, positive clockwise
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][4]** in which `distance` will be express; miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
-    *   `options.zTranslation` **[number][2]** length of the vertical motion, same unit of distance (optional, default `0`)
+    *   `options.units` **Units** in which `distance` will be express; miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
+    *   `options.zTranslation` **[number][3]** length of the vertical motion, same unit of distance (optional, default `0`)
     *   `options.mutate` **[boolean][5]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 
 ### Examples
@@ -29,15 +29,15 @@ var addToMap = [poly, translatedPoly];
 translatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
 ```
 
-Returns **[GeoJSON][1]** the translated GeoJSON object
+Returns **([GeoJSON][1] | [GeometryCollection][2])** the translated GeoJSON object
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3
 
-[2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[2]: https://tools.ietf.org/html/rfc7946#section-3.1.8
 
-[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
 [5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
