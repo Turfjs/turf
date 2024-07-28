@@ -43,7 +43,7 @@
     "d3-queue": "*",
     "decamelize": "^6.0.0",
     "dependency-tree": "^8.1.2",
-    "documentation": "^13.2.5",
+    "documentation": "^14.0.3",
     "es-check": "^7.1.1",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
