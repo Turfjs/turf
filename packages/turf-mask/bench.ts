@@ -1,4 +1,4 @@
-import { FeatureCollection, Polygon, MultiPolygon } from "geojson";
+import { FeatureCollection, Polygon, MultiPolygon, Feature } from "geojson";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -6,6 +6,11 @@ import { loadJsonFileSync } from "load-json-file";
 import Benchmark, { Event } from "benchmark";
 import { mask as turfMask } from "./index.js";
 import clone from "@turf/clone";
+
+// type guard to narrow the type of the fixtures
+const isPolygonFeature = (
+  feature: Feature<Polygon | MultiPolygon>
+): feature is Feature<Polygon> => feature.geometry.type === "Polygon";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -32,6 +37,11 @@ for (const { name, filename, geojson } of fixtures) {
   if (SKIP.includes(filename)) continue;
 
   const [polygon, masking] = geojson.features;
+  if (!masking || !isPolygonFeature(masking)) {
+    throw new Error(
+      "Fixtures should have two features: an input feature and a Polygon masking feature."
+    );
+  }
 
   const getSuite = ({ mutate }: { mutate: boolean }) => ({
     name: `${name} (mutate = ${mutate})`,
