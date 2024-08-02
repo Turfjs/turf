@@ -47,7 +47,6 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.mjs",
   "types": "dist/cjs/index.d.ts",
-  "browser": "turf.min.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -61,6 +60,7 @@
       }
     }
   },
+  "browser": "turf.min.js",
   "sideEffects": false,
   "files": [
     "dist",

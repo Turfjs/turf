@@ -1,18 +1,16 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "funding": "https://opencollective.com/turf",
   "scripts": {
     "lint": "npm-run-all lint:*",
     "lint:eslint": "eslint packages",
     "lint:prettier": "prettier --check .",
     "lint:mrl": "mrl check",
-    "lint:escheck-js": "es-check es5 packages/*/dist/js/index.js packages/turf/turf.min.js",
-    "lint:escheck-es": "es-check --module es5 packages/*/dist/es/index.js",
+    "lint:escheck-js": "es-check es5 packages/*/dist/cjs/index.js packages/turf/turf.min.js",
+    "lint:escheck-es": "es-check --module es5 packages/*/dist/esm/index.mjs",
     "postlint": "documentation lint packages/turf-*/index.js",
-    "prepare": "lerna bootstrap && lerna run build && node ./scripts/add-import-extensions.js",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "lerna run build && node ./scripts/add-import-extensions.js",
     "pretest": "npm run lint",
     "test": "lerna run test",
     "posttest": "lerna run --scope @turf/turf last-checks",
@@ -34,6 +32,10 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "@monorepolint/cli": "^0.5.0-alpha.132",
+    "@monorepolint/config": "^0.5.0-alpha.132",
+    "@monorepolint/core": "^0.5.0-alpha.132",
+    "@monorepolint/rules": "^0.5.0-alpha.132",
     "@types/geojson": "*",
     "@types/glob": "^7.0.0",
     "@types/node": "*",
@@ -48,9 +50,9 @@
     "eslint-config-prettier": "^6.15.0",
     "esm": "^3.2.25",
     "fs-extra": "*",
-    "glob": "^7.0.0",
+    "glob": "^10.3.12",
     "husky": "^4.2.3",
-    "lerna": "^4.0.0",
+    "lerna": "^8.1.7",
     "lint-staged": "^10.0.8",
     "load-json-file": "*",
     "meow": "*",
@@ -61,6 +63,7 @@
     "rollup": "^2.34.2",
     "tape": "*",
     "ts-node": "^10.9.2",
+    "tsup": "^8.0.1",
     "typescript": "~4.7.2",
     "yamljs": "*"
   }

@@ -1,16 +1,10 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "npmClient": "pnpm",
+  "version": "6.5.0",
   "command": {
-    "bootstrap": {
-      "useWorkspaces": true,
-      "ignoreScripts": true
-    },
     "publish": {
       "registry": "https://registry.npmjs.org"
     }
-  },
-  "npmClient": "yarn",
-  "version": "6.5.0"
+  }
 }
