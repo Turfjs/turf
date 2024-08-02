@@ -70,11 +70,11 @@ test("turf-area-length-check", (t) => {
   invalidPoly.coordinates = [
     [
       [101.0, 0.0],
-      [101.0, 1.0],
-      [101.0, 0.0],
+      [101.0, 0.5],
+      [101.5, 0.5],
     ],
   ];
-  const result = Math.round(area(invalidPoly));
+  const result = area(invalidPoly);
   t.equal(result, 0);
 
   t.end();
