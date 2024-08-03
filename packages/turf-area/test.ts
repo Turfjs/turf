@@ -25,25 +25,24 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
 
 const invalidPoly = geometry("Polygon", [
   [
-    [101.0, 0.0],
-    [101.0, 1.0],
-    [101.0, 1.0],
-    [101.0, 1.0],
-    [101.0, 0.0],
+    [0.0, 0.0],
+    [0.0, 0.0],
+    [0.0, 0.0],
+    [0.0, 0.0],
+    [0.0, 0.0],
   ],
 ]);
 
-const randomPoly = polygon([
+// compiler does not pass coords less than 4 point long, so have to re-assign
+invalidPoly.coordinates = [
   [
-    [28.321755510202507, 16.35627490376781],
-    [20.424575867090823, 1.7575215418945476],
-    [48.254218513706036, 20.42650462625916],
-    [36.310934132380964, 14.226760576846956],
-    [28.321755510202507, 16.35627490376781],
+    [101.0, 0.0],
+    [101.0, 0.5],
+    [101.5, 0.5],
   ],
-]);
+];
 
-const changingPoly = polygon([
+const rotatingPoly = polygon([
   [
     [28.321755510202507, 16.35627490376781],
     [20.424575867090823, 1.7575215418945476],
@@ -66,14 +65,6 @@ test("turf-area", (t) => {
 });
 
 test("turf-area-length-check", (t) => {
-  // compiler does not pass coords less than 4 point long, so have to re-assign
-  invalidPoly.coordinates = [
-    [
-      [101.0, 0.0],
-      [101.0, 0.5],
-      [101.5, 0.5],
-    ],
-  ];
   const result = area(invalidPoly);
   t.equal(result, 0);
 
@@ -81,19 +72,27 @@ test("turf-area-length-check", (t) => {
 });
 
 test("turf-area-rotation-consistency", (t) => {
-  const result = area(randomPoly);
-
+  const result = area(rotatingPoly);
+  const changingPoly = polygon([
+    [
+      [0.0, 0.0],
+      [0.0, 0.0],
+      [0.0, 0.0],
+      [0.0, 0.0],
+      [0.0, 0.0],
+    ],
+  ]);
   for (let i = 1; i < 5; i++) {
     changingPoly.geometry.coordinates[0][0] =
-      randomPoly.geometry.coordinates[0][i];
+      rotatingPoly.geometry.coordinates[0][i];
     changingPoly.geometry.coordinates[0][1] =
-      randomPoly.geometry.coordinates[0][(i + 1) % 4];
+      rotatingPoly.geometry.coordinates[0][(i + 1) % 4];
     changingPoly.geometry.coordinates[0][2] =
-      randomPoly.geometry.coordinates[0][(i + 2) % 4];
+      rotatingPoly.geometry.coordinates[0][(i + 2) % 4];
     changingPoly.geometry.coordinates[0][3] =
-      randomPoly.geometry.coordinates[0][(i + 3) % 4];
+      rotatingPoly.geometry.coordinates[0][(i + 3) % 4];
     changingPoly.geometry.coordinates[0][4] =
-      randomPoly.geometry.coordinates[0][i];
+      rotatingPoly.geometry.coordinates[0][i];
 
     const curResult = area(changingPoly);
     t.equal(result, curResult);
