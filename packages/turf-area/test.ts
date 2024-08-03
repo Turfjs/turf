@@ -5,7 +5,8 @@ import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { area } from "./index.js";
-import { geometry, polygon } from "@turf/helpers";
+import { polygon } from "@turf/helpers";
+import { Polygon } from "geojson";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
@@ -21,37 +22,6 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   };
 });
 
-// fixtures
-
-const invalidPoly = geometry("Polygon", [
-  [
-    [0.0, 0.0],
-    [0.0, 0.0],
-    [0.0, 0.0],
-    [0.0, 0.0],
-    [0.0, 0.0],
-  ],
-]);
-
-// compiler does not pass coords less than 4 point long, so have to re-assign
-invalidPoly.coordinates = [
-  [
-    [101.0, 0.0],
-    [101.0, 0.5],
-    [101.5, 0.5],
-  ],
-];
-
-const rotatingPoly = polygon([
-  [
-    [28.321755510202507, 16.35627490376781],
-    [20.424575867090823, 1.7575215418945476],
-    [48.254218513706036, 20.42650462625916],
-    [36.310934132380964, 14.226760576846956],
-    [28.321755510202507, 16.35627490376781],
-  ],
-]);
-
 test("turf-area", (t) => {
   for (const fixture of fixtures) {
     const name = fixture.name;
@@ -65,6 +35,16 @@ test("turf-area", (t) => {
 });
 
 test("turf-area-length-check", (t) => {
+  const invalidPoly: Polygon = {
+    type: "Polygon",
+    coordinates: [
+      [
+        [101.0, 0.0],
+        [101.0, 0.5],
+        [101.5, 0.5],
+      ],
+    ],
+  };
   const result = area(invalidPoly);
   t.equal(result, 0);
 
@@ -72,6 +52,15 @@ test("turf-area-length-check", (t) => {
 });
 
 test("turf-area-rotation-consistency", (t) => {
+  const rotatingPoly = polygon([
+    [
+      [28.321755510202507, 16.35627490376781],
+      [20.424575867090823, 1.7575215418945476],
+      [48.254218513706036, 20.42650462625916],
+      [36.310934132380964, 14.226760576846956],
+      [28.321755510202507, 16.35627490376781],
+    ],
+  ]);
   const result = area(rotatingPoly);
   const changingPoly = polygon([
     [
