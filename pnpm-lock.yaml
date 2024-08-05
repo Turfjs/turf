@@ -3354,9 +3354,6 @@ importers:
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
-      matrix-to-grid:
-        specifier: ^4.0.0
-        version: 4.0.0
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -3424,9 +3421,6 @@ importers:
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
-      matrix-to-grid:
-        specifier: ^4.0.0
-        version: 4.0.0
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -8977,28 +8971,11 @@ packages:
       minimatch: 9.0.4
     dev: true
 
-  /@turf/helpers@5.1.5:
-    resolution: {integrity: sha512-/lF+JR+qNDHZ8bF9d+Cp58nxtZWJ3sqFe6n3u3Vpj+/0cqkjk4nXKYBSY0azm+GIYB5mWKxUXvuP/m0ZnKj1bw==}
-    dev: true
-
-  /@turf/invariant@5.2.0:
-    resolution: {integrity: sha512-28RCBGvCYsajVkw2EydpzLdcYyhSA77LovuOvgCJplJWaNVyJYH6BOR3HR9w50MEkPqb/Vc/jdo6I6ermlRtQA==}
-    dependencies:
-      '@turf/helpers': 5.1.5
-    dev: true
-
   /@turf/jsts@2.7.1:
     resolution: {integrity: sha512-+nwOKme/aUprsxnLSfr2LylV6eL6T1Tuln+4Hl92uwZ8FrmjDRCH5Bi1LJNVfWCiYgk8+5K+t2zDphWNTsIFDA==}
     dependencies:
       jsts: 2.7.1
     dev: false
-
-  /@turf/rhumb-destination@5.1.5:
-    resolution: {integrity: sha512-FdDUCSRfRAfsRmUaWjc76Wk32QYFJ6ckmSt6Ls6nEczO6eg/RgH1atF8CIYwR5ifl0Sk1rQzKiOSbpCyvVwQtw==}
-    dependencies:
-      '@turf/helpers': 5.1.5
-      '@turf/invariant': 5.2.0
-    dev: true
 
   /@types/benchmark@2.1.5:
     resolution: {integrity: sha512-cKio2eFB3v7qmKcvIHLUMw/dIx/8bhWPuzpzRT4unCPRTD8VdA9Zb0afxpcxOqR4PixRS7yT42FqGS8BYL8g1w==}
@@ -13028,13 +13005,6 @@ packages:
 
   /markdown-table@3.0.3:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
-    dev: true
-
-  /matrix-to-grid@4.0.0:
-    resolution: {integrity: sha512-0JukXYrNe55LsmZFex/rp4ZUkZNeVJtMLPXxJb4SwpOhIVML3nOLHUeg2HaRDyqc0j7O4b+GZuEeJQF2GcJ5Lw==}
-    dependencies:
-      '@turf/helpers': 5.1.5
-      '@turf/rhumb-destination': 5.1.5
     dev: true
 
   /mdast-util-definitions@5.1.2:
