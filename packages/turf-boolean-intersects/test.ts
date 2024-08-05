@@ -43,3 +43,142 @@ test("turf-boolean-intersects", (t) => {
     });
   t.end();
 });
+
+test("turf-boolean-intersects with ignoreSelfIntersections option", (t) => {
+  const selfIntersectingLineString: GeoJSON.Feature<GeoJSON.LineString> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "LineString",
+      coordinates: [
+        [1, 1],
+        [2, 2],
+        [1, 2],
+        [2, 1],
+      ],
+    },
+  };
+
+  const nonIntersectingLineString: GeoJSON.Feature<GeoJSON.LineString> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "LineString",
+      coordinates: [
+        [0, 1],
+        [0, 0],
+      ],
+    },
+  };
+
+  const intersectingLineString: GeoJSON.Feature<GeoJSON.LineString> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "LineString",
+      coordinates: [
+        [0, 1],
+        [4, 2],
+      ],
+    },
+  };
+
+  const intersectingPolygon: GeoJSON.Feature<GeoJSON.Polygon> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [1.5, 1],
+          [2, 1.5],
+
+          [3, 0.5],
+          [1.5, 1],
+        ],
+      ],
+    },
+  };
+
+  const nonIntersectingPolygon: GeoJSON.Feature<GeoJSON.Polygon> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [0.5, 0],
+          [1, 0.5],
+
+          [2, -0.5],
+          [0.5, 0],
+        ],
+      ],
+    },
+  };
+
+  // Test without ignoringSelfIntersections option (default behavior)
+  let result = intersects(
+    selfIntersectingLineString,
+    nonIntersectingLineString
+  );
+  t.true(
+    result,
+    "[true] " +
+      "selfIntersectingLineString-LineString (ignoreSelfIntersections=false)"
+  );
+  result = intersects(selfIntersectingLineString, intersectingLineString);
+  t.true(
+    result,
+    "[true] " +
+      "selfIntersectingLineString-LineString (ignoreSelfIntersections=false)"
+  );
+  result = intersects(selfIntersectingLineString, intersectingPolygon);
+  t.true(
+    result,
+    "[true] " +
+      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=false)"
+  );
+  result = intersects(selfIntersectingLineString, nonIntersectingPolygon);
+  t.true(
+    result,
+    "[true] " +
+      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=false)"
+  );
+
+  // Test with ignoringSelfIntersections option
+  result = intersects(selfIntersectingLineString, nonIntersectingLineString, {
+    ignoreSelfIntersections: true,
+  });
+  t.false(
+    result,
+    "[false] " +
+      "selfIntersectingLineString-LineString (ignoreSelfIntersections=true)"
+  );
+  result = intersects(selfIntersectingLineString, intersectingLineString, {
+    ignoreSelfIntersections: true,
+  });
+  t.true(
+    result,
+    "[true] " +
+      "selfIntersectingLineString-LineString (ignoreSelfIntersections=true)"
+  );
+  result = intersects(selfIntersectingLineString, intersectingPolygon, {
+    ignoreSelfIntersections: true,
+  });
+  t.true(
+    result,
+    "[true] " +
+      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=true)"
+  );
+  result = intersects(selfIntersectingLineString, nonIntersectingPolygon, {
+    ignoreSelfIntersections: true,
+  });
+  t.false(
+    result,
+    "[false] " +
+      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=true)"
+  );
+
+  t.end();
+});

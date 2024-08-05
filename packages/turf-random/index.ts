@@ -108,9 +108,13 @@ function randomPolygon(
   } = {}
 ): FeatureCollection<Polygon, any> {
   checkBBox(options.bbox);
+
   // Default param
   if (count === undefined || count === null) {
     count = 1;
+  }
+  if (options.bbox === undefined || options.bbox === null) {
+    options.bbox = [-180, -90, 180, 90];
   }
   if (!isNumber(options.num_vertices) || options.num_vertices === undefined) {
     options.num_vertices = 10;
@@ -121,6 +125,23 @@ function randomPolygon(
   ) {
     options.max_radial_length = 10;
   }
+
+  const bboxWidth = Math.abs(options.bbox[0] - options.bbox[2]);
+  const bboxHeight = Math.abs(options.bbox[1] - options.bbox[3]);
+
+  const maxRadius = Math.min(bboxWidth / 2, bboxHeight / 2);
+
+  if (options.max_radial_length > maxRadius) {
+    throw new Error("max_radial_length is greater than the radius of the bbox");
+  }
+
+  // Create a padded bbox to avoid the polygons to be too close to the border
+  const paddedBbox = [
+    options.bbox[0] + options.max_radial_length,
+    options.bbox[1] + options.max_radial_length,
+    options.bbox[2] - options.max_radial_length,
+    options.bbox[3] - options.max_radial_length,
+  ] as BBox;
 
   const features = [];
   for (let i = 0; i < count; i++) {
@@ -145,7 +166,7 @@ function randomPolygon(
 
     // center the polygon around something
     vertices = vertices.map(
-      vertexToCoordinate(randomPositionUnchecked(options.bbox))
+      vertexToCoordinate(randomPositionUnchecked(paddedBbox))
     );
     features.push(polygon([vertices]));
   }
