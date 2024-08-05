@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import { glob } from "glob";
 import test from "tape";
 import camelCase from "camelcase";
-import documentation from "documentation";
+import * as documentation from "documentation";
 import * as turf from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
