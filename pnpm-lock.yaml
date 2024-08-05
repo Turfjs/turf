@@ -45,8 +45,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       dependency-tree:
-        specifier: ^8.1.2
-        version: 8.1.2
+        specifier: ^11.0.0
+        version: 11.0.1
       documentation:
         specifier: ^14.0.3
         version: 14.0.3
@@ -100,7 +100,7 @@ importers:
         version: 9.1.1(typescript@5.3.3)
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -494,7 +494,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -543,7 +543,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -601,7 +601,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -644,7 +644,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -684,7 +684,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -727,7 +727,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -764,7 +764,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -804,7 +804,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -847,7 +847,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -893,7 +893,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -936,7 +936,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -994,7 +994,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1049,7 +1049,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1101,7 +1101,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1153,7 +1153,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1199,7 +1199,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1257,7 +1257,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1303,7 +1303,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1346,7 +1346,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1389,7 +1389,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1447,7 +1447,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1520,7 +1520,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1578,7 +1578,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1633,7 +1633,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1682,7 +1682,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1737,7 +1737,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1801,7 +1801,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1856,7 +1856,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1902,7 +1902,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1951,7 +1951,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1997,7 +1997,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2037,7 +2037,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2074,7 +2074,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2138,7 +2138,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2208,7 +2208,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2257,7 +2257,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2294,7 +2294,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2358,7 +2358,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2410,7 +2410,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2459,7 +2459,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2508,7 +2508,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2566,7 +2566,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2618,7 +2618,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2661,7 +2661,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2710,7 +2710,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2777,7 +2777,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2823,7 +2823,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2863,7 +2863,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2906,7 +2906,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -2952,7 +2952,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3007,7 +3007,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3050,7 +3050,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3081,7 +3081,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3133,7 +3133,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3206,7 +3206,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3252,7 +3252,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3289,7 +3289,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3365,7 +3365,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3435,7 +3435,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3481,7 +3481,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3527,7 +3527,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3576,7 +3576,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3625,7 +3625,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3668,7 +3668,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3714,7 +3714,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3772,7 +3772,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3818,7 +3818,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3864,7 +3864,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3913,7 +3913,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3971,7 +3971,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4017,7 +4017,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4066,7 +4066,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4100,7 +4100,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4143,7 +4143,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4186,7 +4186,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4250,7 +4250,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4299,7 +4299,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4366,7 +4366,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4424,7 +4424,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4467,7 +4467,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4519,7 +4519,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4574,7 +4574,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4638,7 +4638,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4681,7 +4681,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4724,7 +4724,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4779,7 +4779,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4822,7 +4822,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4874,7 +4874,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4926,7 +4926,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4993,7 +4993,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5033,7 +5033,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5082,7 +5082,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5134,7 +5134,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5177,7 +5177,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5223,7 +5223,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5269,7 +5269,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5306,7 +5306,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5358,7 +5358,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5425,7 +5425,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5477,7 +5477,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5520,7 +5520,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5563,7 +5563,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5627,7 +5627,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5676,7 +5676,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5716,7 +5716,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5750,7 +5750,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5814,7 +5814,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5893,7 +5893,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -5951,7 +5951,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -6003,7 +6003,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -6046,7 +6046,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -6095,7 +6095,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -6153,7 +6153,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -6211,7 +6211,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -6509,8 +6509,18 @@ packages:
     engines: {node: '>=6.9.0'}
     dev: true
 
+  /@babel/helper-string-parser@7.24.8:
+    resolution: {integrity: sha512-pO9KhhRcuUyGnJWwyEgnRJTSIZHiT+vMD0kPeD+so0l7mxkMT19g3pjY9GTnHySck/hDzq+dtW/4VgnMkippsQ==}
+    engines: {node: '>=6.9.0'}
+    dev: true
+
   /@babel/helper-validator-identifier@7.22.20:
     resolution: {integrity: sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==}
+    engines: {node: '>=6.9.0'}
+    dev: true
+
+  /@babel/helper-validator-identifier@7.24.7:
+    resolution: {integrity: sha512-rR+PBcQ1SMQDDyF6X0wxtG8QyLCgUB0eRAGguqRLfkCA87l7yAP7ehq8SNj96OOGTO8OBV70KhuFYcIkHXOg0w==}
     engines: {node: '>=6.9.0'}
     dev: true
 
@@ -6562,6 +6572,14 @@ packages:
     hasBin: true
     dependencies:
       '@babel/types': 7.23.5
+    dev: true
+
+  /@babel/parser@7.25.3:
+    resolution: {integrity: sha512-iLTJKDbJ4hMvFPgQwwsVoxtHyWpKKPBrxkANrSYewDPaPpT5py5yeVkgPIJ7XYXhndxJpaA3PyALSXQ7u8e/Dw==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+    dependencies:
+      '@babel/types': 7.25.2
     dev: true
 
   /@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@7.23.3(@babel/core@7.23.5):
@@ -7456,6 +7474,15 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
+  /@babel/types@7.25.2:
+    resolution: {integrity: sha512-YTnYtra7W9e6/oAZEHj0bJehPRUlLH9/fbpT5LfB0NhQXyALCRkRs3zH9v07IYhkgpqX6Z78FnuccZr/l4Fs4Q==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/helper-string-parser': 7.24.8
+      '@babel/helper-validator-identifier': 7.24.7
+      to-fast-properties: 2.0.0
+    dev: true
+
   /@colors/colors@1.6.0:
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
     engines: {node: '>=0.1.90'}
@@ -7467,6 +7494,14 @@ packages:
       colorspace: 1.1.4
       enabled: 2.0.0
       kuler: 2.0.0
+    dev: true
+
+  /@dependents/detective-less@5.0.0:
+    resolution: {integrity: sha512-D/9dozteKcutI5OdxJd8rU+fL6XgaaRg60sPPJWkT33OCiRfkCu5wO5B/yXTaaL2e6EB0lcCBGe5E0XscZCvvQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      gonzales-pe: 4.3.0
+      node-source-walk: 7.0.0
     dev: true
 
   /@esbuild/aix-ppc64@0.19.11:
@@ -7988,6 +8023,10 @@ packages:
 
   /@jridgewell/sourcemap-codec@1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
+    dev: true
+
+  /@jridgewell/sourcemap-codec@1.5.0:
+    resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
     dev: true
 
   /@jridgewell/trace-mapping@0.3.20:
@@ -8982,10 +9021,6 @@ packages:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
 
-  /@types/json5@0.0.29:
-    resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
-    dev: true
-
   /@types/mdast@3.0.15:
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
     dependencies:
@@ -9163,35 +9198,14 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/types@4.33.0:
-    resolution: {integrity: sha512-zKp7CjQzLQImXEpLt2BUw1tvOMPfNoTAfb8l51evhYbOEEzdWyQNmHWWGPR6hwKJDAi+1VXSBmnhL9kyVTTOuQ==}
-    engines: {node: ^8.10.0 || ^10.13.0 || >=11.10.1}
-    dev: true
-
   /@typescript-eslint/types@6.13.2:
     resolution: {integrity: sha512-7sxbQ+EMRubQc3wTfTsycgYpSujyVbI1xw+3UMRUcrhSy+pN09y/lWzeKDbvhoqcRbHdc+APLs/PWYi/cisLPg==}
     engines: {node: ^16.0.0 || >=18.0.0}
     dev: true
 
-  /@typescript-eslint/typescript-estree@4.33.0(typescript@3.9.10):
-    resolution: {integrity: sha512-rkWRY1MPFzjwnEVHsxGemDzqqddw2QbTJlICPD9p9I9LfsO8fdmfQPOX3uKfUaGRDFJbfrtm/sXhVXN4E+bzCA==}
-    engines: {node: ^10.12.0 || >=12.0.0}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/types': 4.33.0
-      '@typescript-eslint/visitor-keys': 4.33.0
-      debug: 4.3.4
-      globby: 11.1.0
-      is-glob: 4.0.3
-      semver: 7.5.4
-      tsutils: 3.21.0(typescript@3.9.10)
-      typescript: 3.9.10
-    transitivePeerDependencies:
-      - supports-color
+  /@typescript-eslint/types@7.18.0:
+    resolution: {integrity: sha512-iZqi+Ds1y4EDYUtlOOC+aUmxnE9xS/yCigkjA7XpTKV6nCBd3Hp/PRGGmdwnfkV2ThMyYldP1wRpm/id99spTQ==}
+    engines: {node: ^18.18.0 || >=20.0.0}
     dev: true
 
   /@typescript-eslint/typescript-estree@6.13.2(typescript@5.3.3):
@@ -9215,6 +9229,28 @@ packages:
       - supports-color
     dev: true
 
+  /@typescript-eslint/typescript-estree@7.18.0(typescript@5.5.4):
+    resolution: {integrity: sha512-aP1v/BSPnnyhMHts8cf1qQ6Q1IFwwRvAQGRvBFkWlo3/lH29OXA3Pts+c10nxRxIBrDnoMqzhgdwVe5f2D6OzA==}
+    engines: {node: ^18.18.0 || >=20.0.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/types': 7.18.0
+      '@typescript-eslint/visitor-keys': 7.18.0
+      debug: 4.3.4
+      globby: 11.1.0
+      is-glob: 4.0.3
+      minimatch: 9.0.4
+      semver: 7.6.3
+      ts-api-utils: 1.3.0(typescript@5.5.4)
+      typescript: 5.5.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@typescript-eslint/utils@6.13.2(eslint@8.55.0)(typescript@5.3.3):
     resolution: {integrity: sha512-b9Ptq4eAZUym4idijCRzl61oPCwwREcfDI8xGk751Vhzig5fFZR9CyzDz4Sp/nxSLBYxUPyh4QdIDqWykFhNmQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
@@ -9234,19 +9270,19 @@ packages:
       - typescript
     dev: true
 
-  /@typescript-eslint/visitor-keys@4.33.0:
-    resolution: {integrity: sha512-uqi/2aSz9g2ftcHWf8uLPJA70rUv6yuMW5Bohw+bwcuzaxQIHaKFZCKGoGXIrc9vkTJ3+0txM73K0Hq3d5wgIg==}
-    engines: {node: ^8.10.0 || ^10.13.0 || >=11.10.1}
-    dependencies:
-      '@typescript-eslint/types': 4.33.0
-      eslint-visitor-keys: 2.1.0
-    dev: true
-
   /@typescript-eslint/visitor-keys@6.13.2:
     resolution: {integrity: sha512-OGznFs0eAQXJsp+xSd6k/O1UbFi/K/L7WjqeRoFE7vadjAF9y0uppXhYNQNEqygjou782maGClOoZwPqF0Drlw==}
     engines: {node: ^16.0.0 || >=18.0.0}
     dependencies:
       '@typescript-eslint/types': 6.13.2
+      eslint-visitor-keys: 3.4.3
+    dev: true
+
+  /@typescript-eslint/visitor-keys@7.18.0:
+    resolution: {integrity: sha512-cDF0/Gf81QpY3xYyJKDV14Zwdmid5+uuENhjH2EqFaF0ni+yAyq/LzMaIJdhNJXZI7uLzwIlA+V7oWoyn6Curg==}
+    engines: {node: ^18.18.0 || >=20.0.0}
+    dependencies:
+      '@typescript-eslint/types': 7.18.0
       eslint-visitor-keys: 3.4.3
     dev: true
 
@@ -9265,6 +9301,16 @@ packages:
     dev: true
     optional: true
 
+  /@vue/compiler-core@3.4.35:
+    resolution: {integrity: sha512-gKp0zGoLnMYtw4uS/SJRRO7rsVggLjvot3mcctlMXunYNsX+aRJDqqw/lV5/gHK91nvaAAlWFgdVl020AW1Prg==}
+    dependencies:
+      '@babel/parser': 7.25.3
+      '@vue/shared': 3.4.35
+      entities: 4.5.0
+      estree-walker: 2.0.2
+      source-map-js: 1.2.0
+    dev: true
+
   /@vue/compiler-dom@3.3.11:
     resolution: {integrity: sha512-zoAiUIqSKqAJ81WhfPXYmFGwDRuO+loqLxvXmfUdR5fOitPoUiIeFI9cTTyv9MU5O1+ZZglJVTusWzy+wfk5hw==}
     requiresBuild: true
@@ -9273,6 +9319,13 @@ packages:
       '@vue/shared': 3.3.11
     dev: true
     optional: true
+
+  /@vue/compiler-dom@3.4.35:
+    resolution: {integrity: sha512-pWIZRL76/oE/VMhdv/ovZfmuooEni6JPG1BFe7oLk5DZRo/ImydXijoZl/4kh2406boRQ7lxTYzbZEEXEhj9NQ==}
+    dependencies:
+      '@vue/compiler-core': 3.4.35
+      '@vue/shared': 3.4.35
+    dev: true
 
   /@vue/compiler-sfc@3.3.11:
     resolution: {integrity: sha512-U4iqPlHO0KQeK1mrsxCN0vZzw43/lL8POxgpzcJweopmqtoYy9nljJzWDIQS3EfjiYhfdtdk9Gtgz7MRXnz3GA==}
@@ -9291,6 +9344,20 @@ packages:
     dev: true
     optional: true
 
+  /@vue/compiler-sfc@3.4.35:
+    resolution: {integrity: sha512-xacnRS/h/FCsjsMfxBkzjoNxyxEyKyZfBch/P4vkLRvYJwe5ChXmZZrj8Dsed/752H2Q3JE8kYu9Uyha9J6PgA==}
+    dependencies:
+      '@babel/parser': 7.25.3
+      '@vue/compiler-core': 3.4.35
+      '@vue/compiler-dom': 3.4.35
+      '@vue/compiler-ssr': 3.4.35
+      '@vue/shared': 3.4.35
+      estree-walker: 2.0.2
+      magic-string: 0.30.11
+      postcss: 8.4.40
+      source-map-js: 1.2.0
+    dev: true
+
   /@vue/compiler-ssr@3.3.11:
     resolution: {integrity: sha512-Zd66ZwMvndxRTgVPdo+muV4Rv9n9DwQ4SSgWWKWkPFebHQfVYRrVjeygmmDmPewsHyznCNvJ2P2d6iOOhdv8Qg==}
     requiresBuild: true
@@ -9299,6 +9366,13 @@ packages:
       '@vue/shared': 3.3.11
     dev: true
     optional: true
+
+  /@vue/compiler-ssr@3.4.35:
+    resolution: {integrity: sha512-7iynB+0KB1AAJKk/biENTV5cRGHRdbdaD7Mx3nWcm1W8bVD6QmnH3B4AHhQQ1qZHhqFwzEzMwiytXm3PX1e60A==}
+    dependencies:
+      '@vue/compiler-dom': 3.4.35
+      '@vue/shared': 3.4.35
+    dev: true
 
   /@vue/reactivity-transform@3.3.11:
     resolution: {integrity: sha512-fPGjH0wqJo68A0wQ1k158utDq/cRyZNlFoxGwNScE28aUFOKFEnCBsvyD8jHn+0kd0UKVpuGuaZEQ6r9FJRqCg==}
@@ -9317,6 +9391,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@vue/shared@3.4.35:
+    resolution: {integrity: sha512-hvuhBYYDe+b1G8KHxsQ0diDqDMA8D9laxWZhNAjE83VZb5UDaXl9Xnz7cGdDSyiHM90qqI/CyGMcpBpiDy6VVQ==}
+    dev: true
 
   /@yarnpkg/lockfile@1.1.0:
     resolution: {integrity: sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==}
@@ -9616,13 +9694,9 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /ast-module-types@2.7.1:
-    resolution: {integrity: sha512-Rnnx/4Dus6fn7fTqdeLEAn5vUll5w7/vts0RN608yFa6si/rDOUonlIIiwugHBFWjylHjxm9owoSZn71KwG4gw==}
-    dev: true
-
-  /ast-module-types@3.0.0:
-    resolution: {integrity: sha512-CMxMCOCS+4D+DkOQfuZf+vLrSEmY/7xtORwdxs4wtcC1wVgvk2MqFFTwQCFhvWsI4KPU9lcWXPI8DgRiz+xetQ==}
-    engines: {node: '>=6.0'}
+  /ast-module-types@6.0.0:
+    resolution: {integrity: sha512-LFRg7178Fw5R4FAEwZxVqiRI8IxSM+Ay2UBrHoCerXNme+kMMMfz7T3xDGV/c2fer87hcrtgJGsnSOfUrPK6ng==}
+    engines: {node: '>=18'}
     dev: true
 
   /astral-regex@2.0.0:
@@ -10299,6 +10373,11 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
+  /commander@12.1.0:
+    resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
+    engines: {node: '>=18'}
+    dev: true
+
   /commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
 
@@ -10911,16 +10990,15 @@ packages:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
     dev: true
 
-  /dependency-tree@8.1.2:
-    resolution: {integrity: sha512-c4CL1IKxkKng0oT5xrg4uNiiMVFqTGOXqHSFx7XEFdgSsp6nw3AGGruICppzJUrfad/r7GLqt26rmWU4h4j39A==}
-    engines: {node: ^10.13 || ^12 || >=14}
+  /dependency-tree@11.0.1:
+    resolution: {integrity: sha512-eCt7HSKIC9NxgIykG2DRq3Aewn9UhVS14MB3rEn6l/AsEI1FBg6ZGSlCU0SZ6Tjm2kkhj6/8c2pViinuyKELhg==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      commander: 2.20.3
-      debug: 4.3.4
-      filing-cabinet: 3.3.1
-      precinct: 8.3.1
-      typescript: 3.9.10
+      commander: 12.1.0
+      filing-cabinet: 5.0.2
+      precinct: 12.1.2
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -10954,83 +11032,91 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /detective-amd@3.1.2:
-    resolution: {integrity: sha512-jffU26dyqJ37JHR/o44La6CxtrDf3Rt9tvd2IbImJYxWKTMdBjctp37qoZ6ZcY80RHg+kzWz4bXn39e4P7cctQ==}
-    engines: {node: '>=6.0'}
+  /detective-amd@6.0.0:
+    resolution: {integrity: sha512-NTqfYfwNsW7AQltKSEaWR66hGkTeD52Kz3eRQ+nfkA9ZFZt3iifRCWh+yZ/m6t3H42JFwVFTrml/D64R2PAIOA==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      ast-module-types: 3.0.0
+      ast-module-types: 6.0.0
       escodegen: 2.1.0
-      get-amd-module-type: 3.0.2
-      node-source-walk: 4.3.0
+      get-amd-module-type: 6.0.0
+      node-source-walk: 7.0.0
     dev: true
 
-  /detective-cjs@3.1.3:
-    resolution: {integrity: sha512-ljs7P0Yj9MK64B7G0eNl0ThWSYjhAaSYy+fQcpzaKalYl/UoQBOzOeLCSFEY1qEBhziZ3w7l46KG/nH+s+L7BQ==}
-    engines: {node: '>=6.0'}
+  /detective-cjs@6.0.0:
+    resolution: {integrity: sha512-R55jTS6Kkmy6ukdrbzY4x+I7KkXiuDPpFzUViFV/tm2PBGtTCjkh9ZmTuJc1SaziMHJOe636dtiZLEuzBL9drg==}
+    engines: {node: '>=18'}
     dependencies:
-      ast-module-types: 3.0.0
-      node-source-walk: 4.3.0
+      ast-module-types: 6.0.0
+      node-source-walk: 7.0.0
     dev: true
 
-  /detective-es6@2.2.2:
-    resolution: {integrity: sha512-eZUKCUsbHm8xoeoCM0z6JFwvDfJ5Ww5HANo+jPR7AzkFpW9Mun3t/TqIF2jjeWa2TFbAiGaWESykf2OQp3oeMw==}
-    engines: {node: '>=6.0'}
+  /detective-es6@5.0.0:
+    resolution: {integrity: sha512-NGTnzjvgeMW1khUSEXCzPDoraLenWbUjCFjwxReH+Ir+P6LGjYtaBbAvITWn2H0VSC+eM7/9LFOTAkrta6hNYg==}
+    engines: {node: '>=18'}
     dependencies:
-      node-source-walk: 4.3.0
+      node-source-walk: 7.0.0
     dev: true
 
-  /detective-less@1.0.2:
-    resolution: {integrity: sha512-Rps1xDkEEBSq3kLdsdnHZL1x2S4NGDcbrjmd4q+PykK5aJwDdP5MBgrJw1Xo+kyUHuv3JEzPqxr+Dj9ryeDRTA==}
-    engines: {node: '>= 6.0'}
+  /detective-postcss@7.0.0(postcss@8.4.40):
+    resolution: {integrity: sha512-pSXA6dyqmBPBuERpoOKKTUUjQCZwZPLRbd1VdsTbt6W+m/+6ROl4BbE87yQBUtLoK7yX8pvXHdKyM/xNIW9F7A==}
+    engines: {node: ^14.0.0 || >=16.0.0}
+    peerDependencies:
+      postcss: ^8.4.38
     dependencies:
-      debug: 4.3.4
-      gonzales-pe: 4.3.0
-      node-source-walk: 4.3.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /detective-postcss@4.0.0:
-    resolution: {integrity: sha512-Fwc/g9VcrowODIAeKRWZfVA/EufxYL7XfuqJQFroBKGikKX83d2G7NFw6kDlSYGG3LNQIyVa+eWv1mqre+v4+A==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      debug: 4.3.4
       is-url: 1.2.4
-      postcss: 8.4.32
-      postcss-values-parser: 2.0.1
+      postcss: 8.4.40
+      postcss-values-parser: 6.0.2(postcss@8.4.40)
+    dev: true
+
+  /detective-sass@6.0.0:
+    resolution: {integrity: sha512-h5GCfFMkPm4ZUUfGHVPKNHKT8jV7cSmgK+s4dgQH4/dIUNh9/huR1fjEQrblOQNDalSU7k7g+tiW9LJ+nVEUhg==}
+    engines: {node: '>=18'}
+    dependencies:
+      gonzales-pe: 4.3.0
+      node-source-walk: 7.0.0
+    dev: true
+
+  /detective-scss@5.0.0:
+    resolution: {integrity: sha512-Y64HyMqntdsCh1qAH7ci95dk0nnpA29g319w/5d/oYcHolcGUVJbIhOirOFjfN1KnMAXAFm5FIkZ4l2EKFGgxg==}
+    engines: {node: '>=18'}
+    dependencies:
+      gonzales-pe: 4.3.0
+      node-source-walk: 7.0.0
+    dev: true
+
+  /detective-stylus@5.0.0:
+    resolution: {integrity: sha512-KMHOsPY6aq3196WteVhkY5FF+6Nnc/r7q741E+Gq+Ax9mhE2iwj8Hlw8pl+749hPDRDBHZ2WlgOjP+twIG61vQ==}
+    engines: {node: '>=18'}
+    dev: true
+
+  /detective-typescript@13.0.0(typescript@5.5.4):
+    resolution: {integrity: sha512-tcMYfiFWoUejSbvSblw90NDt76/4mNftYCX0SMnVRYzSXv8Fvo06hi4JOPdNvVNxRtCAKg3MJ3cBJh+ygEMH+A==}
+    engines: {node: ^14.14.0 || >=16.0.0}
+    peerDependencies:
+      typescript: ^5.4.4
+    dependencies:
+      '@typescript-eslint/typescript-estree': 7.18.0(typescript@5.5.4)
+      ast-module-types: 6.0.0
+      node-source-walk: 7.0.0
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /detective-sass@3.0.2:
-    resolution: {integrity: sha512-DNVYbaSlmti/eztFGSfBw4nZvwsTaVXEQ4NsT/uFckxhJrNRFUh24d76KzoCC3aarvpZP9m8sC2L1XbLej4F7g==}
-    engines: {node: '>=6.0'}
+  /detective-vue2@2.0.3(typescript@5.5.4):
+    resolution: {integrity: sha512-AgWdSfVnft8uPGnUkdvE1EDadEENDCzoSRMt2xZfpxsjqVO617zGWXbB8TGIxHaqHz/nHa6lOSgAB8/dt0yEug==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      typescript: ^5.4.4
     dependencies:
-      gonzales-pe: 4.3.0
-      node-source-walk: 4.3.0
-    dev: true
-
-  /detective-scss@2.0.2:
-    resolution: {integrity: sha512-hDWnWh/l0tht/7JQltumpVea/inmkBaanJUcXRB9kEEXVwVUMuZd6z7eusQ6GcBFrfifu3pX/XPyD7StjbAiBg==}
-    engines: {node: '>=6.0'}
-    dependencies:
-      gonzales-pe: 4.3.0
-      node-source-walk: 4.3.0
-    dev: true
-
-  /detective-stylus@1.0.3:
-    resolution: {integrity: sha512-4/bfIU5kqjwugymoxLXXLltzQNeQfxGoLm2eIaqtnkWxqbhap9puDVpJPVDx96hnptdERzS5Cy6p9N8/08A69Q==}
-    dev: true
-
-  /detective-typescript@7.0.2:
-    resolution: {integrity: sha512-unqovnhxzvkCz3m1/W4QW4qGsvXCU06aU2BAm8tkza+xLnp9SOFnob2QsTxUv5PdnQKfDvWcv9YeOeFckWejwA==}
-    engines: {node: ^10.13 || >=12.0.0}
-    dependencies:
-      '@typescript-eslint/typescript-estree': 4.33.0(typescript@3.9.10)
-      ast-module-types: 2.7.1
-      node-source-walk: 4.3.0
-      typescript: 3.9.10
+      '@vue/compiler-sfc': 3.4.35
+      detective-es6: 5.0.0
+      detective-sass: 6.0.0
+      detective-scss: 5.0.0
+      detective-stylus: 5.0.0
+      detective-typescript: 13.0.0(typescript@5.5.4)
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -11289,8 +11375,8 @@ packages:
       once: 1.4.0
     dev: true
 
-  /enhanced-resolve@5.15.0:
-    resolution: {integrity: sha512-LXYT42KJ7lpIKECr2mAXIaMldcNCh/7E0KBKOu4KSfkHmP+mZmSs+8V5gBAqisWBy0OO4W5Oyys0GO1Y8KtdKg==}
+  /enhanced-resolve@5.17.1:
+    resolution: {integrity: sha512-LMHl3dXhTcfv8gM4kEzIUeTQ+7fpdA0l2tUf34BddXPkz2A5xJ5L/Pchd5BL6rdccM9QGvu0sWZzK1Z1t4wwyg==}
     engines: {node: '>=10.13.0'}
     dependencies:
       graceful-fs: 4.2.11
@@ -11310,6 +11396,11 @@ packages:
     dependencies:
       ansi-colors: 4.1.3
       strip-ansi: 6.0.1
+    dev: true
+
+  /entities@4.5.0:
+    resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
+    engines: {node: '>=0.12'}
     dev: true
 
   /env-paths@2.2.1:
@@ -11557,11 +11648,6 @@ packages:
     dependencies:
       esrecurse: 4.3.0
       estraverse: 5.3.0
-    dev: true
-
-  /eslint-visitor-keys@2.1.0:
-    resolution: {integrity: sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==}
-    engines: {node: '>=10'}
     dev: true
 
   /eslint-visitor-keys@3.4.3:
@@ -11854,26 +11940,22 @@ packages:
       minimatch: 5.1.6
     dev: true
 
-  /filing-cabinet@3.3.1:
-    resolution: {integrity: sha512-renEK4Hh6DUl9Vl22Y3cxBq1yh8oNvbAdXnhih0wVpmea+uyKjC9K4QeRjUaybIiIewdzfum+Fg15ZqJ/GyCaA==}
-    engines: {node: '>=10.13.0'}
+  /filing-cabinet@5.0.2:
+    resolution: {integrity: sha512-RZlFj8lzyu6jqtFBeXNqUjjNG6xm+gwXue3T70pRxw1W40kJwlgq0PSWAmh0nAnn5DHuBIecLXk9+1VKS9ICXA==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
       app-module-path: 2.2.0
-      commander: 2.20.3
-      debug: 4.3.4
-      enhanced-resolve: 5.15.0
-      is-relative-path: 1.0.2
-      module-definition: 3.4.0
-      module-lookup-amd: 7.0.1
+      commander: 12.1.0
+      enhanced-resolve: 5.17.1
+      module-definition: 6.0.0
+      module-lookup-amd: 9.0.2
       resolve: 1.22.8
-      resolve-dependency-path: 2.0.0
-      sass-lookup: 3.0.0
-      stylus-lookup: 3.0.2
-      tsconfig-paths: 3.14.2
-      typescript: 3.9.10
-    transitivePeerDependencies:
-      - supports-color
+      resolve-dependency-path: 4.0.0
+      sass-lookup: 6.0.1
+      stylus-lookup: 6.0.0
+      tsconfig-paths: 4.2.0
+      typescript: 5.5.4
     dev: true
 
   /fill-range@4.0.0:
@@ -11972,11 +12054,6 @@ packages:
 
   /flatted@3.2.9:
     resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
-    dev: true
-
-  /flatten@1.0.3:
-    resolution: {integrity: sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==}
-    deprecated: flatten is deprecated in favor of utility frameworks such as lodash.
     dev: true
 
   /flush-write-stream@1.1.1:
@@ -12132,12 +12209,12 @@ packages:
       rbush: 2.0.2
     dev: false
 
-  /get-amd-module-type@3.0.2:
-    resolution: {integrity: sha512-PcuKwB8ouJnKuAPn6Hk3UtdfKoUV3zXRqVEvj8XGIXqjWfgd1j7QGdXy5Z9OdQfzVt1Sk29HVe/P+X74ccOuqw==}
-    engines: {node: '>=6.0'}
+  /get-amd-module-type@6.0.0:
+    resolution: {integrity: sha512-hFM7oivtlgJ3d6XWD6G47l8Wyh/C6vFw5G24Kk1Tbq85yh5gcM8Fne5/lFhiuxB+RT6+SI7I1ThB9lG4FBh3jw==}
+    engines: {node: '>=18'}
     dependencies:
-      ast-module-types: 3.0.0
-      node-source-walk: 4.3.0
+      ast-module-types: 6.0.0
+      node-source-walk: 7.0.0
     dev: true
 
   /get-caller-file@2.0.5:
@@ -12887,10 +12964,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /indexes-of@1.0.1:
-    resolution: {integrity: sha512-bup+4tap3Hympa+JBJUG7XuOsdNQ6fxt0MHyXMKuLBKn0OqsTfvUxkUrroEX1+B2VsSHvCjiIcZVxRtYa4nllA==}
-    dev: true
-
   /inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
     dependencies:
@@ -13264,10 +13337,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /is-relative-path@1.0.2:
-    resolution: {integrity: sha512-i1h+y50g+0hRbBD+dbnInl3JlJ702aar58snAeX+MxBAPvzXGej7sYoPMhlnykabt0ZzCJNBEyzMlekuQZN7fA==}
-    dev: true
-
   /is-relative@1.0.0:
     resolution: {integrity: sha512-Kw/ReK0iqwKeu0MITLFuj0jbPAmEiOsIwyIXvvbfa6QfmN9pkD1M+8pdk7Rl/dTKbH34/XBFMbgD4iMJhLQbGA==}
     engines: {node: '>=0.10.0'}
@@ -13347,6 +13416,11 @@ packages:
 
   /is-unicode-supported@0.1.0:
     resolution: {integrity: sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==}
+    engines: {node: '>=10'}
+    dev: true
+
+  /is-url-superb@4.0.0:
+    resolution: {integrity: sha512-GI+WjezhPPcbM+tqE9LnmsY5qqjwHzTvjJ36wxYX5ujNXefSUJ/T17r5bqDV8yLhcgB59KTPNOc9O9cmHTPWsA==}
     engines: {node: '>=10'}
     dev: true
 
@@ -13518,13 +13592,6 @@ packages:
 
   /json-stringify-safe@5.0.1:
     resolution: {integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==}
-    dev: true
-
-  /json5@1.0.2:
-    resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
-    hasBin: true
-    dependencies:
-      minimist: 1.2.8
     dev: true
 
   /json5@2.2.3:
@@ -13946,6 +14013,12 @@ packages:
   /lru-cache@7.18.3:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
+    dev: true
+
+  /magic-string@0.30.11:
+    resolution: {integrity: sha512-+Wri9p0QHMy+545hKww7YAu5NyzF8iomPL/RQazugQ9+Ez4Ic3mERMd8ZTX5rfK944j+560ZJi8iAwgak1Ac7A==}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.0
     dev: true
 
   /magic-string@0.30.5:
@@ -14905,13 +14978,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /module-definition@3.4.0:
-    resolution: {integrity: sha512-XxJ88R1v458pifaSkPNLUTdSPNVGMP2SXVncVmApGO+gAfrLANiYe6JofymCzVceGOMwQE2xogxBSc8uB7XegA==}
-    engines: {node: '>=6.0'}
+  /module-definition@6.0.0:
+    resolution: {integrity: sha512-sEGP5nKEXU7fGSZUML/coJbrO+yQtxcppDAYWRE9ovWsTbFoUHB2qDUx564WUzDaBHXsD46JBbIK5WVTwCyu3w==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      ast-module-types: 3.0.0
-      node-source-walk: 4.3.0
+      ast-module-types: 6.0.0
+      node-source-walk: 7.0.0
     dev: true
 
   /module-deps-sortable@5.0.3:
@@ -14939,18 +15012,15 @@ packages:
       - supports-color
     dev: true
 
-  /module-lookup-amd@7.0.1:
-    resolution: {integrity: sha512-w9mCNlj0S8qviuHzpakaLVc+/7q50jl9a/kmJ/n8bmXQZgDPkQHnPBb8MUOYh3WpAYkXuNc2c+khsozhIp/amQ==}
-    engines: {node: '>=10.13.0'}
+  /module-lookup-amd@9.0.2:
+    resolution: {integrity: sha512-p7PzSVEWiW9fHRX9oM+V4aV5B2nCVddVNv4DZ/JB6t9GsXY4E+ZVhPpnwUX7bbJyGeeVZqhS8q/JZ/H77IqPFA==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      commander: 2.20.3
-      debug: 4.3.4
+      commander: 12.1.0
       glob: 7.2.3
-      requirejs: 2.3.6
+      requirejs: 2.3.7
       requirejs-config-file: 4.0.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /mri@1.2.0:
@@ -15080,11 +15150,11 @@ packages:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
     dev: true
 
-  /node-source-walk@4.3.0:
-    resolution: {integrity: sha512-8Q1hXew6ETzqKRAs3jjLioSxNfT1cx74ooiF8RlAONwVMcfq+UdzLC2eB5qcPldUxaE5w3ytLkrmV1TGddhZTA==}
-    engines: {node: '>=6.0'}
+  /node-source-walk@7.0.0:
+    resolution: {integrity: sha512-1uiY543L+N7Og4yswvlm5NCKgPKDEXd9AUR9Jh3gen6oOeBsesr6LqhXom1er3eRzSUcVRWXzhv8tSNrIfGHKw==}
+    engines: {node: '>=18'}
     dependencies:
-      '@babel/parser': 7.23.5
+      '@babel/parser': 7.25.3
     dev: true
 
   /nopt@7.2.1:
@@ -15859,6 +15929,10 @@ packages:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: true
 
+  /picocolors@1.0.1:
+    resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
+    dev: true
+
   /picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
@@ -15935,7 +16009,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /postcss-load-config@4.0.2(ts-node@9.1.1):
+  /postcss-load-config@4.0.2(postcss@8.4.40)(ts-node@9.1.1):
     resolution: {integrity: sha512-bSVhyJGL00wMVoPUzAVAnbEoWyqRxkjv64tUl427SKnPrENtq6hJwUojroMz2VB+Q1edmi4IfrAPpami5VVgMQ==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -15948,17 +16022,21 @@ packages:
         optional: true
     dependencies:
       lilconfig: 3.0.0
+      postcss: 8.4.40
       ts-node: 9.1.1(typescript@5.3.3)
       yaml: 2.3.4
     dev: true
 
-  /postcss-values-parser@2.0.1:
-    resolution: {integrity: sha512-2tLuBsA6P4rYTNKCXYG/71C7j1pU6pK503suYOmn4xYrQIzW+opD+7FAFNuGSdZC/3Qfy334QbeMu7MEb8gOxg==}
-    engines: {node: '>=6.14.4'}
+  /postcss-values-parser@6.0.2(postcss@8.4.40):
+    resolution: {integrity: sha512-YLJpK0N1brcNJrs9WatuJFtHaV9q5aAOj+S4DI5S7jgHlRfm0PIbDCAFRYMQD5SHq7Fy6xsDhyutgS0QOAs0qw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      postcss: ^8.2.9
     dependencies:
-      flatten: 1.0.3
-      indexes-of: 1.0.1
-      uniq: 1.0.1
+      color-name: 1.1.4
+      is-url-superb: 4.0.0
+      postcss: 8.4.40
+      quote-unquote: 1.0.0
     dev: true
 
   /postcss@8.4.32:
@@ -15970,25 +16048,37 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
+    optional: true
 
-  /precinct@8.3.1:
-    resolution: {integrity: sha512-pVppfMWLp2wF68rwHqBIpPBYY8Kd12lDhk8LVQzOwqllifVR15qNFyod43YLyFpurKRZQKnE7E4pofAagDOm2Q==}
-    engines: {node: ^10.13 || ^12 || >=14}
+  /postcss@8.4.40:
+    resolution: {integrity: sha512-YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==}
+    engines: {node: ^10 || ^12 || >=14}
+    dependencies:
+      nanoid: 3.3.7
+      picocolors: 1.0.1
+      source-map-js: 1.2.0
+    dev: true
+
+  /precinct@12.1.2:
+    resolution: {integrity: sha512-x2qVN3oSOp3D05ihCd8XdkIPuEQsyte7PSxzLqiRgktu79S5Dr1I75/S+zAup8/0cwjoiJTQztE9h0/sWp9bJQ==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      commander: 2.20.3
-      debug: 4.3.4
-      detective-amd: 3.1.2
-      detective-cjs: 3.1.3
-      detective-es6: 2.2.2
-      detective-less: 1.0.2
-      detective-postcss: 4.0.0
-      detective-sass: 3.0.2
-      detective-scss: 2.0.2
-      detective-stylus: 1.0.3
-      detective-typescript: 7.0.2
-      module-definition: 3.4.0
-      node-source-walk: 4.3.0
+      '@dependents/detective-less': 5.0.0
+      commander: 12.1.0
+      detective-amd: 6.0.0
+      detective-cjs: 6.0.0
+      detective-es6: 5.0.0
+      detective-postcss: 7.0.0(postcss@8.4.40)
+      detective-sass: 6.0.0
+      detective-scss: 5.0.0
+      detective-stylus: 5.0.0
+      detective-typescript: 13.0.0(typescript@5.5.4)
+      detective-vue2: 2.0.3(typescript@5.5.4)
+      module-definition: 6.0.0
+      node-source-walk: 7.0.0
+      postcss: 8.4.40
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -16165,6 +16255,10 @@ packages:
 
   /quickselect@2.0.0:
     resolution: {integrity: sha512-RKJ22hX8mHe3Y6wH/N3wCM6BWtjaxIyyUIkpHOvfFnxdI4yD4tBXEBKSbriGujF6jnSVkJrffuo6vxACiSSxIw==}
+
+  /quote-unquote@1.0.0:
+    resolution: {integrity: sha512-twwRO/ilhlG/FIgYeKGFqyHhoEhqgnKVkcmqMKi2r524gz3ZbDTcyFt38E9xjJI2vT+KbRNHVbnJ/e0I25Azwg==}
+    dev: true
 
   /randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
@@ -16597,8 +16691,8 @@ packages:
       stringify-object: 3.3.0
     dev: true
 
-  /requirejs@2.3.6:
-    resolution: {integrity: sha512-ipEzlWQe6RK3jkzikgCupiTbTvm4S0/CAU5GlgptkN5SO6F3u0UD0K18wy6ErDqiCyP4J4YYe1HuAShvsxePLg==}
+  /requirejs@2.3.7:
+    resolution: {integrity: sha512-DouTG8T1WanGok6Qjg2SXuCMzszOo0eHeH9hDZ5Y4x8Je+9JB38HdTLT4/VA8OaUhBa0JPVHJ0pyBkM1z+pDsw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
@@ -16610,9 +16704,9 @@ packages:
       resolve-from: 5.0.0
     dev: true
 
-  /resolve-dependency-path@2.0.0:
-    resolution: {integrity: sha512-DIgu+0Dv+6v2XwRaNWnumKu7GPufBBOr5I1gRPJHkvghrfCGOooJODFvgFimX/KRxk9j0whD2MnKHzM1jYvk9w==}
-    engines: {node: '>=6.0.0'}
+  /resolve-dependency-path@4.0.0:
+    resolution: {integrity: sha512-hlY1SybBGm5aYN3PC4rp15MzsJLM1w+MEA/4KU3UBPfz4S0lL3FL6mgv7JgaA8a+ZTeEQAiF1a1BuN2nkqiIlg==}
+    engines: {node: '>=18'}
     dev: true
 
   /resolve-from@4.0.0:
@@ -16833,12 +16927,12 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
-  /sass-lookup@3.0.0:
-    resolution: {integrity: sha512-TTsus8CfFRn1N44bvdEai1no6PqdmDiQUiqW5DlpmtT+tYnIt1tXtDIph5KA1efC+LmioJXSnCtUVpcK9gaKIg==}
-    engines: {node: '>=6.0.0'}
+  /sass-lookup@6.0.1:
+    resolution: {integrity: sha512-nl9Wxbj9RjEJA5SSV0hSDoU2zYGtE+ANaDS4OFUR7nYrquvBFvPKZZtQHe3lvnxCcylEDV00KUijjdMTUElcVQ==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      commander: 2.20.3
+      commander: 12.1.0
     dev: true
 
   /semver-compare@1.0.0:
@@ -16861,6 +16955,12 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+    dev: true
+
+  /semver@7.6.3:
+    resolution: {integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==}
+    engines: {node: '>=10'}
+    hasBin: true
     dev: true
 
   /serialize-javascript@6.0.1:
@@ -17116,6 +17216,12 @@ packages:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
     requiresBuild: true
+    dev: true
+    optional: true
+
+  /source-map-js@1.2.0:
+    resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /source-map-resolve@0.5.3:
@@ -17473,15 +17579,12 @@ packages:
       through: 2.3.8
     dev: true
 
-  /stylus-lookup@3.0.2:
-    resolution: {integrity: sha512-oEQGHSjg/AMaWlKe7gqsnYzan8DLcGIHe0dUaFkucZZ14z4zjENRlQMCHT4FNsiWnJf17YN9OvrCfCoi7VvOyg==}
-    engines: {node: '>=6.0.0'}
+  /stylus-lookup@6.0.0:
+    resolution: {integrity: sha512-RaWKxAvPnIXrdby+UWCr1WRfa+lrPMSJPySte4Q6a+rWyjeJyFOLJxr5GrAVfcMCsfVlCuzTAJ/ysYT8p8do7Q==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
-      commander: 2.20.3
-      debug: 4.3.4
-    transitivePeerDependencies:
-      - supports-color
+      commander: 12.1.0
     dev: true
 
   /subarg@1.0.0:
@@ -17825,6 +17928,15 @@ packages:
       typescript: 5.3.3
     dev: true
 
+  /ts-api-utils@1.3.0(typescript@5.5.4):
+    resolution: {integrity: sha512-UQMIo7pb8WRomKR1/+MFVLTroIvDVtMX3K6OUir8ynLyzB8Jeriont2bTAtmNPa1ekAgN7YPDyf6V+ygrdU+eQ==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      typescript: '>=4.2.0'
+    dependencies:
+      typescript: 5.5.4
+    dev: true
+
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
@@ -17845,15 +17957,6 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /tsconfig-paths@3.14.2:
-    resolution: {integrity: sha512-o/9iXgCYc5L/JxCHPe3Hvh8Q/2xm5Z+p18PESBU6Ff33695QnCHBEjcytY2q19ua7Mbl/DavtBOLq+oG0RCL+g==}
-    dependencies:
-      '@types/json5': 0.0.29
-      json5: 1.0.2
-      minimist: 1.2.8
-      strip-bom: 3.0.0
-    dev: true
-
   /tsconfig-paths@4.2.0:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
     engines: {node: '>=6'}
@@ -17863,14 +17966,10 @@ packages:
       strip-bom: 3.0.0
     dev: true
 
-  /tslib@1.14.1:
-    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-    dev: true
-
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  /tsup@8.0.1(ts-node@9.1.1)(typescript@5.3.3):
+  /tsup@8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3):
     resolution: {integrity: sha512-hvW7gUSG96j53ZTSlT4j/KL0q1Q2l6TqGBFc6/mu/L46IoNWqLLUzLRLP1R8Q7xrJTmkDxxDoojV5uCVs1sVOg==}
     engines: {node: '>=18'}
     hasBin: true
@@ -17897,7 +17996,8 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 4.0.2(ts-node@9.1.1)
+      postcss: 8.4.40
+      postcss-load-config: 4.0.2(postcss@8.4.40)(ts-node@9.1.1)
       resolve-from: 5.0.0
       rollup: 4.9.0
       source-map: 0.8.0-beta.0
@@ -17907,16 +18007,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - ts-node
-    dev: true
-
-  /tsutils@3.21.0(typescript@3.9.10):
-    resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
-    engines: {node: '>= 6'}
-    peerDependencies:
-      typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
-    dependencies:
-      tslib: 1.14.1
-      typescript: 3.9.10
     dev: true
 
   /tsx@4.6.2:
@@ -18046,14 +18136,14 @@ packages:
     resolution: {integrity: sha512-ueeb9YybpjhivjbHP2LdFDAjbS948fGEPj+ACAMs4xCMmh72OCOMQWBQKlaN4ZNQ04yfLSDLSx1tGRIoWimObQ==}
     dev: true
 
-  /typescript@3.9.10:
-    resolution: {integrity: sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==}
-    engines: {node: '>=4.2.0'}
+  /typescript@5.3.3:
+    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+    engines: {node: '>=14.17'}
     hasBin: true
     dev: true
 
-  /typescript@5.3.3:
-    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+  /typescript@5.5.4:
+    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
@@ -18140,10 +18230,6 @@ packages:
       get-value: 2.0.6
       is-extendable: 0.1.1
       set-value: 2.0.1
-    dev: true
-
-  /uniq@1.0.1:
-    resolution: {integrity: sha512-Gw+zz50YNKPDKXs+9d+aKAjVwpjNwqzvNpLigIruT4HA9lMZNdMqs9x07kKHB/L9WRzqp4+DlTU5s4wG2esdoA==}
     dev: true
 
   /unique-filename@3.0.0:

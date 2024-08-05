@@ -42,7 +42,7 @@
     "camelcase": "^8.0.0",
     "d3-queue": "*",
     "decamelize": "^6.0.0",
-    "dependency-tree": "^8.1.2",
+    "dependency-tree": "^11.0.0",
     "documentation": "^14.0.3",
     "es-check": "^7.1.1",
     "eslint": "^8.53.0",
