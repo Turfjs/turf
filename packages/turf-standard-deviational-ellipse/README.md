@@ -7,7 +7,7 @@
 Takes a collection of features and returns a standard deviational ellipse,
 also known as a “directional distribution.” The standard deviational ellipse
 aims to show the direction and the distribution of a dataset by drawing
-an ellipse that contains about one standard deviation’s worth (~ 70%) of the
+an ellipse that contains about one standard deviation’s worth (\~ 70%) of the
 data.
 
 This module mirrors the functionality of [Directional Distribution][1]
