@@ -1,10 +1,13 @@
 import test from "tape";
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import { writeJsonFileSync } from "write-json-file";
 import { loadJsonFileSync } from "load-json-file";
 import { featureCollection } from "@turf/helpers";
-import { convex } from "./index";
+import { convex } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

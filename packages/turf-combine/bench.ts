@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { point, polygon, lineString, featureCollection } from "@turf/helpers";
-import { combine } from "./index";
+import { combine } from "./index.js";
 
 // MultiPoint
 var pt1 = point(50, 51);

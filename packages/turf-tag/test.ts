@@ -1,7 +1,10 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
-import { tag } from "./index";
+import { tag } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("tag", (t) => {
   const points = loadJsonFileSync(

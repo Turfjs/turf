@@ -10,7 +10,7 @@ import {
 import { Units } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 import { tin } from "@turf/tin";
-import { dissolve } from "./lib/turf-dissolve";
+import { dissolve } from "./lib/turf-dissolve.js";
 
 /**
  * Takes a set of {@link Point|points} and returns a concave hull Polygon or MultiPolygon.

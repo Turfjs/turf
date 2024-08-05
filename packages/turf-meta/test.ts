@@ -11,7 +11,7 @@ import {
   featureCollection,
   lineStrings,
 } from "@turf/helpers";
-import * as meta from "./index";
+import * as meta from "./index.js";
 
 const pt = point([0, 0], { a: 1 });
 const pt2 = point([1, 1]);

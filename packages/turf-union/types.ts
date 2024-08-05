@@ -1,5 +1,5 @@
 import { polygon, featureCollection } from "@turf/helpers";
-import { union } from "./index";
+import { union } from "./index.js";
 
 const poly1 = polygon([
   [

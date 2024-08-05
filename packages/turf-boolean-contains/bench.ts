@@ -1,9 +1,12 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import { glob } from "glob";
 import Benchmark from "benchmark";
 import { loadJsonFileSync } from "load-json-file";
 import { bbox } from "@turf/bbox";
-import { booleanContains as contains } from "./index";
+import { booleanContains as contains } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Benchmark Results

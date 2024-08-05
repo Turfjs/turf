@@ -1,7 +1,7 @@
 import { Point, LineString } from "geojson";
 import * as helpers from "@turf/helpers";
 import { featureCollection, point, lineString } from "@turf/helpers";
-import * as meta from "./";
+import * as meta from "./index.js";
 import {
   coordReduce,
   coordEach,
@@ -18,7 +18,7 @@ import {
   segmentEach,
   lineReduce,
   lineEach,
-} from "./";
+} from "./index.js";
 
 // Fixtures
 const pt = helpers.point([0, 0]);

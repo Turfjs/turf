@@ -1,10 +1,13 @@
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import shapely from "boolean-shapely";
 import { point, lineString, polygon } from "@turf/helpers";
-import { booleanEqual as equal } from "./index";
+import { booleanEqual as equal } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-boolean-equal", (t) => {
   // True Fixtures

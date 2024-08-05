@@ -1,8 +1,11 @@
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import { directionalMean } from "./index";
+import { directionalMean } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-directional-mean", (t) => {
   const outGpsJsonPath1 = path.join(

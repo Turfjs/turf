@@ -1,11 +1,14 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { glob } from "glob";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { featureEach } from "@turf/meta";
 import { point, lineString, polygon, featureCollection } from "@turf/helpers";
-import { centerOfMass } from "./index";
+import { centerOfMass } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

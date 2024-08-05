@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { circle } from "@turf/circle";
@@ -12,7 +13,9 @@ import {
   lineString,
   round,
 } from "@turf/helpers";
-import { nearestPointToLine } from "./index";
+import { nearestPointToLine } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

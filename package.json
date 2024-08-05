@@ -4,16 +4,15 @@
   "scripts": {
     "docs": "tsx ./scripts/generate-readmes.ts",
     "lint": "npm-run-all lint:*",
-    "lint:docs": "documentation lint packages/turf-*/index.js packages/turf-*/index.mjs",
+    "lint:docs": "documentation lint packages/turf-*/index.js",
     "lint:escheck-cjs": "es-check es8 packages/*/dist/cjs/index.cjs packages/turf/turf.min.js",
-    "lint:escheck-esm": "es-check --module es8 packages/*/dist/esm/index.mjs",
+    "lint:escheck-esm": "es-check --module es8 packages/*/dist/esm/index.js",
     "lint:escheck-web": "es-check es5 packages/turf/turf.min.js",
     "lint:eslint": "eslint packages",
     "lint:mrl": "mrl check",
     "lint:prettier": "prettier --check .",
     "preinstall": "npx only-allow pnpm",
     "prepare": "lerna run build && husky install",
-    "publish:prerelease": "lerna publish --force-publish --canary major --dist-tag prerelease --ignore-scripts true --yes",
     "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
   },
   "lint-staged": {
@@ -29,6 +28,7 @@
     ],
     "**/*": "prettier --write --ignore-unknown"
   },
+  "packageManager": "pnpm@8.15.8+sha512.d1a029e1a447ad90bc96cd58b0fad486d2993d531856396f7babf2d83eb1823bb83c5a3d0fc18f675b2d10321d49eb161fece36fe8134aa5823ecd215feed392",
   "devDependencies": {
     "@monorepolint/cli": "0.5.0-alpha.132",
     "@monorepolint/config": "0.5.0-alpha.132",
@@ -42,8 +42,8 @@
     "camelcase": "^8.0.0",
     "d3-queue": "*",
     "decamelize": "^6.0.0",
-    "dependency-tree": "^8.1.2",
-    "documentation": "^13.2.5",
+    "dependency-tree": "^11.0.0",
+    "documentation": "^14.0.3",
     "es-check": "^7.1.1",
     "eslint": "^8.53.0",
     "eslint-config-prettier": "^9.0.0",
@@ -52,7 +52,7 @@
     "fs-extra": "^11.1.1",
     "glob": "^10.3.10",
     "husky": "^8.0.0",
-    "lerna": "^7.4.2",
+    "lerna": "^8.1.7",
     "lint-staged": "^10.5.4",
     "load-json-file": "^7.0.1",
     "meow": "^12.1.1",

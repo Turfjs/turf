@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { destination } from "./index";
+import { destination } from "./index.js";
 
 var pt1 = [-75.0, 39.0];
 var dist = 100;

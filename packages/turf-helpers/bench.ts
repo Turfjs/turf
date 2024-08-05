@@ -9,7 +9,7 @@ import {
   featureCollection,
   geometryCollection,
   round,
-} from "./index";
+} from "./index.js";
 
 /**
  * Benchmark Results

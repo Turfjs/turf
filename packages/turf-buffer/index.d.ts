@@ -31,12 +31,12 @@ declare function buffer(
     | MultiPolygon,
   radius?: number,
   options?: Options
-): Feature<Polygon | MultiPolygon>;
+): Feature<Polygon | MultiPolygon> | undefined;
 declare function buffer(
   feature: FeatureCollection<GeometryObject> | GeometryCollection,
   radius?: number,
   options?: Options
-): FeatureCollection<Polygon | MultiPolygon>;
+): FeatureCollection<Polygon | MultiPolygon> | undefined;
 
 export { buffer };
 export default buffer;

@@ -1,6 +1,8 @@
+import { Feature } from "geojson";
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
@@ -10,7 +12,9 @@ import {
   geometryCollection,
   featureCollection,
 } from "@turf/helpers";
-import { transformTranslate as translate } from "./index";
+import { transformTranslate as translate } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -21,7 +25,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename) as Feature,
   };
 });
 
@@ -34,7 +38,7 @@ test("translate", (t) => {
       zTranslation,
     });
     const result = featureCollection([
-      colorize(truncate(translated, { precision: 6, coordiantes: 3 })),
+      colorize(truncate(translated, { precision: 6, coordinates: 3 })),
       geojson,
     ]);
 
@@ -53,11 +57,16 @@ test("translate", (t) => {
 test("translate -- throws", (t) => {
   const pt = point([-70.823364, -33.553984]);
 
+  // @ts-expect-error intentional invalid parameter
   t.throws(() => translate(null, 100, -29), "missing geojson");
+  // @ts-expect-error intentional invalid parameter
   t.throws(() => translate(pt, null, 98), "missing distance");
+  // @ts-expect-error intentional invalid parameter
   t.throws(() => translate(pt, 23, null), "missing direction");
+  // @ts-expect-error intentional invalid parameter
   t.throws(() => translate(pt, 56, 57, { units: "foo" }), "invalid units");
   t.throws(
+    // @ts-expect-error intentional invalid parameter
     () => translate(pt, 56, 57, { zTranslation: "foo" }),
     "invalid zTranslation"
   );
@@ -127,7 +136,10 @@ test("rotate -- geometry support", (t) => {
 });
 
 // style result
-function colorize(geojson) {
+function colorize(geojson: Feature) {
+  // We are going to add some properties, so make sure properties attribute is
+  // present.
+  geojson.properties = geojson.properties ?? {};
   if (
     geojson.geometry.type === "Point" ||
     geojson.geometry.type === "MultiPoint"

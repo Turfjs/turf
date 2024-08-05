@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { squareGrid } from "./index";
+import { squareGrid } from "./index.js";
 
 var bbox = [-95, 30, -85, 40];
 

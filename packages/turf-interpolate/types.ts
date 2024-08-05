@@ -1,5 +1,5 @@
 import { point, featureCollection } from "@turf/helpers";
-import { interpolate } from "./index";
+import { interpolate } from "./index.js";
 
 const cellSize = 1;
 const property = "pressure";

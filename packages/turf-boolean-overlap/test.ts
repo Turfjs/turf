@@ -1,5 +1,6 @@
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import shapely from "boolean-shapely";
@@ -10,7 +11,9 @@ import {
   multiLineString,
   multiPolygon,
 } from "@turf/helpers";
-import { booleanOverlap as overlap } from "./index";
+import { booleanOverlap as overlap } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-boolean-overlap", (t) => {
   // True Fixtures

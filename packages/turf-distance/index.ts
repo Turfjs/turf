@@ -1,4 +1,3 @@
-import { Point } from "geojson";
 import { getCoord } from "@turf/invariant";
 import { radiansToLength, degreesToRadians, Coord, Units } from "@turf/helpers";
 
@@ -6,15 +5,15 @@ import { radiansToLength, degreesToRadians, Coord, Units } from "@turf/helpers";
 //http://www.movable-type.co.uk/scripts/latlong.html
 
 /**
- * Calculates the distance between two {@link Point|points} in degrees, radians, miles, or kilometers.
+ * Calculates the distance between two {@link Coord|coordinates} in degrees, radians, miles, or kilometers.
  * This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
  * @name distance
- * @param {Coord | Point} from origin point or coordinate
- * @param {Coord | Point} to destination point or coordinate
+ * @param {Coord} from origin coordinate
+ * @param {Coord} to destination coordinate
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
- * @returns {number} distance between the two points
+ * @returns {number} distance between the two coordinates
  * @example
  * var from = turf.point([-75.343, 39.984]);
  * var to = turf.point([-75.534, 39.123]);
@@ -28,8 +27,8 @@ import { radiansToLength, degreesToRadians, Coord, Units } from "@turf/helpers";
  * to.properties.distance = distance;
  */
 function distance(
-  from: Coord | Point,
-  to: Coord | Point,
+  from: Coord,
+  to: Coord,
   options: {
     units?: Units;
   } = {}

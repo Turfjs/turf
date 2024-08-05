@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
@@ -11,7 +12,9 @@ import {
   polygon,
   geometryCollection,
 } from "@turf/helpers";
-import { buffer } from "./index";
+import { buffer } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -149,6 +152,32 @@ test("turf-buffer - morphological closing", (t) => {
     buffer(featureCollection([poly]), -500, { units: "miles" }),
     featureCollection([]),
     "empty geometries should be an empty FeatureCollection"
+  );
+  t.end();
+});
+
+test("turf-buffer - undefined return", (t) => {
+  const poly: GeoJSON.Feature<GeoJSON.Polygon> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [-101.87842323574378, 52.250446362382775],
+          [-101.87842323574378, 49.56446202085259],
+          [-98.29404114999511, 49.56446202085259],
+          [-98.29404114999511, 52.250446362382775],
+          [-101.87842323574378, 52.250446362382775],
+        ],
+      ],
+    },
+  };
+
+  t.equal(
+    buffer(poly, -100000000),
+    undefined,
+    "empty geometry should be undefined if the resulting geometry is invalid"
   );
   t.end();
 });

@@ -4,7 +4,7 @@ import {
   randomPolygon,
   randomLineString,
   randomPosition,
-} from "./index";
+} from "./index.js";
 
 test("random(points)", (t) => {
   var points = randomPoint();

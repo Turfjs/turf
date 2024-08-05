@@ -1,12 +1,15 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureCollection } from "@turf/helpers";
-import geojsonhint from "@mapbox/geojsonhint";
-import { circle } from "./index";
+import { check } from "@placemarkio/check-geojson";
+import { circle } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -43,6 +46,11 @@ test("turf-circle", (t) => {
 
 test("turf-circle -- validate geojson", (t) => {
   const C = circle([0, 0], 100);
-  geojsonhint.hint(C).forEach((hint) => t.fail(hint.message));
+  try {
+    check(JSON.stringify(C));
+    t.pass();
+  } catch (e) {
+    t.fail(e.message);
+  }
   t.end();
 });

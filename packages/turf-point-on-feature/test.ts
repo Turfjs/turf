@@ -1,12 +1,15 @@
 import test from "tape";
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureEach } from "@turf/meta";
 import { featureCollection } from "@turf/helpers";
-import { pointOnFeature } from "./index";
+import { pointOnFeature } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-point-on-feature", (t) => {
   glob

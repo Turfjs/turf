@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { circle } from "./index";
+import { circle } from "./index.js";
 
 const center = [-75.0, 39.0];
 const radius = 5;

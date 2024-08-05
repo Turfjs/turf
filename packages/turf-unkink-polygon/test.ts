@@ -1,12 +1,16 @@
+import { Feature, FeatureCollection, Polygon } from "geojson";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { featureEach } from "@turf/meta";
 import { featureCollection } from "@turf/helpers";
 import { kinks } from "@turf/kinks";
-import { unkinkPolygon } from "./index";
+import { unkinkPolygon } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -14,7 +18,9 @@ const directories = {
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {
-  return { filename, geojson: loadJsonFileSync(directories.in + filename) };
+  const geojson: FeatureCollection<Polygon> | Feature<Polygon> =
+    loadJsonFileSync(directories.in + filename);
+  return { filename, geojson };
 });
 
 test("unkink-polygon", (t) => {
@@ -52,7 +58,7 @@ test("issue #2504", (t) => {
     t.pass(
       "large number of coordinates in a single ring should not cause an error"
     );
-  } catch (e) {
+  } catch (e: any) {
     t.fail(e);
   }
 
@@ -65,17 +71,19 @@ test("unkink-polygon -- throws", (t) => {
     t.true(value !== "isUnique", "isUnique");
     t.true(value !== "getUnique", "getUnique");
   }
+  // @ts-expect-error intentional non-existent function
   t.throws(() => Array.isUnique(), "isUnique()");
+  // @ts-expect-error intentional non-existent function
   t.throws(() => Array.getUnique(), "getUnique()");
   t.end();
 });
 
 function colorize(
-  features,
+  features: FeatureCollection,
   colors = ["#F00", "#00F", "#0F0", "#F0F", "#FFF"],
   width = 6
 ) {
-  const results = [];
+  const results: Feature[] = [];
   featureEach(features, (feature, index) => {
     const color = colors[index % colors.length];
     feature.properties = Object.assign(

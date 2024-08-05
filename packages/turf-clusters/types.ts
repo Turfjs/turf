@@ -1,7 +1,7 @@
 import { Point } from "geojson";
-import * as clusters from "./";
+import * as clusters from "./index.js";
 import { featureCollection, point } from "@turf/helpers";
-import { getCluster, clusterEach, clusterReduce } from "./index";
+import { getCluster, clusterEach, clusterReduce } from "./index.js";
 
 /**
  * Fixtures

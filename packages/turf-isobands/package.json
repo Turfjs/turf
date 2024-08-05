@@ -1,6 +1,6 @@
 {
   "name": "@turf/isobands",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf isobands module",
   "author": "Turf Authors",
   "contributors": [
@@ -28,19 +28,19 @@
     "topography",
     "filled"
   ],
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "import": {
-        "types": "./dist/esm/index.d.mts",
-        "default": "./dist/esm/index.mjs"
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
       },
       "require": {
-        "types": "./dist/cjs/index.d.ts",
+        "types": "./dist/cjs/index.d.cts",
         "default": "./dist/cjs/index.cjs"
       }
     }
@@ -66,7 +66,6 @@
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
-    "matrix-to-grid": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "tape": "^5.7.2",
     "tsup": "^8.0.1",

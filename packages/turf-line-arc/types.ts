@@ -1,5 +1,5 @@
 import { point } from "@turf/helpers";
-import { lineArc } from "./index";
+import { lineArc } from "./index.js";
 
 const center = point([-75.343, 39.984]);
 const bearing1 = 10;

@@ -1,14 +1,18 @@
+import { Feature } from "geojson";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
-import Benchmark from "benchmark";
-import { transformTranslate as translate } from "./index";
+import Benchmark, { Event } from "benchmark";
+import { transformTranslate as translate } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directory = path.join(__dirname, "test", "in") + path.sep;
 const fixtures = fs.readdirSync(directory).map((filename) => {
   return {
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directory + filename),
+    geojson: loadJsonFileSync(directory + filename) as Feature,
   };
 });
 
@@ -57,4 +61,4 @@ for (const { name, geojson } of fixtures) {
   );
 }
 
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+suite.on("cycle", (e: Event) => console.log(String(e.target))).run();

@@ -1,6 +1,7 @@
 {
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "npmClient": "pnpm",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "command": {
     "publish": {
       "registry": "https://registry.npmjs.org"

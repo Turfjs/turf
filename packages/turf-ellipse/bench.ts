@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { ellipse } from "./index";
+import { ellipse } from "./index.js";
 
 /**
  * Benchmark Results

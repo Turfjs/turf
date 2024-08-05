@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "author": "Turf Authors",
   "license": "MIT",
@@ -43,19 +43,19 @@
     "jenks",
     "sample"
   ],
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "import": {
-        "types": "./dist/esm/index.d.mts",
-        "default": "./dist/esm/index.mjs"
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
       },
       "require": {
-        "types": "./dist/cjs/index.d.ts",
+        "types": "./dist/cjs/index.d.cts",
         "default": "./dist/cjs/index.cjs"
       }
     }
@@ -64,7 +64,6 @@
   "sideEffects": false,
   "files": [
     "dist",
-    "index.d.ts",
     "turf.min.js"
   ],
   "scripts": {
@@ -83,7 +82,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@types/tape": "^4.2.32",
     "camelcase": "^8.0.0",
-    "documentation": "^13.2.5",
+    "documentation": "^14.0.3",
     "glob": "^10.3.10",
     "rollup": "^2.79.1",
     "rollup-plugin-polyfill-node": "^0.13.0",

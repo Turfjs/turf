@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { featureCollection, point, polygon } from "@turf/helpers";
-import { pointsWithinPolygon } from "./index";
+import { pointsWithinPolygon } from "./index.js";
 
 var poly1 = polygon([
   [

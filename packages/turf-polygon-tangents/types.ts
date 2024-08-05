@@ -1,5 +1,5 @@
 import { polygon, point } from "@turf/helpers";
-import { polygonTangents as tangents } from "./index";
+import { polygonTangents as tangents } from "./index.js";
 
 const poly = polygon([
   [

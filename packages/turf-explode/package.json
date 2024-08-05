@@ -1,6 +1,6 @@
 {
   "name": "@turf/explode",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf explode module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -22,19 +22,19 @@
     "geospatial",
     "coordinates"
   ],
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "import": {
-        "types": "./dist/esm/index.d.mts",
-        "default": "./dist/esm/index.mjs"
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
       },
       "require": {
-        "types": "./dist/cjs/index.d.ts",
+        "types": "./dist/cjs/index.d.cts",
         "default": "./dist/cjs/index.cjs"
       }
     }
@@ -54,7 +54,6 @@
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
-    "geojson-fixtures": "*",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
     "tape": "^5.7.2",

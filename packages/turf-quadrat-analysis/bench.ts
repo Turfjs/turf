@@ -1,7 +1,7 @@
 import Benchmark from "benchmark";
 import { randomPoint } from "@turf/random";
 import { nearestNeighborAnalysis } from "@turf/nearest-neighbor-analysis";
-import { quadratAnalysis } from "./index";
+import { quadratAnalysis } from "./index.js";
 
 /**
  * Benchmark Results

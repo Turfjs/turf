@@ -1,9 +1,12 @@
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
 import { lineString } from "@turf/helpers";
-import { booleanParallel } from "./index";
+import { booleanParallel } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-boolean-parallel", (t) => {
   // True Fixtures

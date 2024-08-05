@@ -7,8 +7,8 @@ import {
   Point,
   Polygon,
 } from "geojson";
-import findIntersections from "sweepline-intersections";
 import { point } from "@turf/helpers";
+import { sweeplineIntersections as findIntersections } from "./lib/sweepline-intersections-export.js";
 
 /**
  * Takes a {@link LineString|linestring}, {@link MultiLineString|multi-linestring},

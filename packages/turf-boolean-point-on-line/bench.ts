@@ -1,8 +1,11 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import { glob } from "glob";
 import { loadJsonFileSync } from "load-json-file";
 import Benchmark from "benchmark";
-import { booleanPointOnLine } from "./index";
+import { booleanPointOnLine } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Benchmark Results

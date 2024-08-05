@@ -1,15 +1,18 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { centroid } from "@turf/centroid";
-import * as chromatism from "chromatism";
+import chromatism from "chromatism";
 import concaveman from "concaveman";
 import { point, polygon, featureCollection } from "@turf/helpers";
 import { clusterReduce, clusterEach } from "@turf/clusters";
 import { coordAll, featureEach } from "@turf/meta";
-import { clustersDbscan } from "./index";
+import { clustersDbscan } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

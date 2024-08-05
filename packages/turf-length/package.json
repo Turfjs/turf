@@ -1,6 +1,6 @@
 {
   "name": "@turf/length",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf length module",
   "author": "Turf Authors",
   "contributors": [
@@ -28,19 +28,19 @@
     "units",
     "gis"
   ],
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "import": {
-        "types": "./dist/esm/index.d.mts",
-        "default": "./dist/esm/index.mjs"
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
       },
       "require": {
-        "types": "./dist/cjs/index.d.ts",
+        "types": "./dist/cjs/index.d.cts",
         "default": "./dist/cjs/index.cjs"
       }
     }

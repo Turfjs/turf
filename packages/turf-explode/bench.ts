@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import { polygon } from "@turf/helpers";
-import { explode } from "./index";
+import { explode } from "./index.js";
 
 var poly = polygon([
   [

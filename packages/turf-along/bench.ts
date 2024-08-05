@@ -1,7 +1,11 @@
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import Benchmark from "benchmark";
-import { along } from "./index";
+import { along } from "./index.js";
 import { Feature, LineString } from "geojson";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const line: Feature<LineString> = {
   type: "Feature",

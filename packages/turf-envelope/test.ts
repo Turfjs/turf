@@ -1,7 +1,10 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
-import { envelope } from "./index";
+import { envelope } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Fixtures
 const fc = loadJsonFileSync(

@@ -1,10 +1,13 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { glob } from "glob";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { featureCollection, polygon } from "@turf/helpers";
-import { difference } from "./index";
+import { difference } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

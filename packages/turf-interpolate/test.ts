@@ -1,13 +1,16 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
-import { brightness } from "chromatism";
+import chromatism from "chromatism";
 import { round, featureCollection, point } from "@turf/helpers";
 import { featureEach, propEach } from "@turf/meta";
-import { interpolate } from "./index";
+import { interpolate } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,
@@ -124,7 +127,7 @@ function colorize(grid, property, name) {
     const value = feature.properties[property];
     const percent = round(((value - min - delta / 2) / delta) * 100);
     // darker corresponds to higher values
-    const color = brightness(-percent, "#0086FF").hex;
+    const color = chromatism.brightness(-percent, "#0086FF").hex;
     if (feature.geometry.type === "Point")
       feature.properties["marker-color"] = color;
     else {

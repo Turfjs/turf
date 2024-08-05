@@ -1,7 +1,10 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import Benchmark from "benchmark";
 import { loadJsonFileSync } from "load-json-file";
-import { nearestPoint } from "./index";
+import { nearestPoint } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const pts = loadJsonFileSync(path.join(__dirname, "test", "in", "points.json"));
 

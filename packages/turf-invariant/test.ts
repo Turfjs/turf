@@ -6,7 +6,7 @@ import {
   featureCollection,
   geometryCollection,
 } from "@turf/helpers";
-import * as invariant from "./index";
+import * as invariant from "./index.js";
 
 test("invariant -- containsNumber", (t) => {
   t.equals(invariant.containsNumber([1, 1]), true);

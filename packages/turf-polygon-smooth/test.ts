@@ -2,9 +2,12 @@ import { polygon } from "@turf/helpers";
 import { glob } from "glob";
 import { loadJsonFileSync } from "load-json-file";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { writeJsonFileSync } from "write-json-file";
-import { polygonSmooth } from "./index";
+import { polygonSmooth } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-polygon-smooth", (t) => {
   glob

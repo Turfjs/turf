@@ -1,6 +1,6 @@
 {
   "name": "@turf/voronoi",
-  "version": "7.0.0-alpha.2",
+  "version": "7.0.0",
   "description": "turf voronoi module",
   "author": "Turf Authors",
   "contributors": [
@@ -29,27 +29,26 @@
     "polygons",
     "points"
   ],
-  "type": "commonjs",
+  "type": "module",
   "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.mjs",
-  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "import": {
-        "types": "./dist/esm/index.d.mts",
-        "default": "./dist/esm/index.mjs"
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
       },
       "require": {
-        "types": "./dist/cjs/index.d.ts",
+        "types": "./dist/cjs/index.d.cts",
         "default": "./dist/cjs/index.cjs"
       }
     }
   },
   "sideEffects": false,
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
     "bench": "tsx bench.ts",
@@ -59,6 +58,8 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
+    "@types/benchmark": "^2.1.5",
+    "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
     "glob": "^10.3.10",
     "load-json-file": "^7.0.1",
@@ -66,12 +67,16 @@
     "tape": "^5.7.2",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
+    "typescript": "^5.2.2",
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
     "@turf/clone": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
-    "d3-voronoi": "1.1.2"
+    "@types/d3-voronoi": "^1.1.12",
+    "@types/geojson": "7946.0.8",
+    "d3-voronoi": "1.1.2",
+    "tslib": "^2.6.2"
   }
 }

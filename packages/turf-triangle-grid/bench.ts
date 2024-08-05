@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import { triangleGrid as grid } from "./index";
+import { triangleGrid as grid } from "./index.js";
 
 // prettier-ignore
 var bbox1 = [

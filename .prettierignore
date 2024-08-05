@@ -19,3 +19,5 @@ packages/turf-*/test/true/**
 packages/turf-*/test/false/**
 
 pnpm-lock.yaml
+
+/.nx/cache

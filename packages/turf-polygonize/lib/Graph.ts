@@ -1,6 +1,6 @@
-import { Node } from "./Node";
-import { Edge } from "./Edge";
-import { EdgeRing } from "./EdgeRing";
+import { Node } from "./Node.js";
+import { Edge } from "./Edge.js";
+import { EdgeRing } from "./EdgeRing.js";
 import { flattenEach, coordReduce } from "@turf/meta";
 import { featureOf } from "@turf/invariant";
 import {

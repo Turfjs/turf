@@ -1,8 +1,11 @@
 import Benchmark from "benchmark";
-import { directionalMean } from "./index";
+import { directionalMean } from "./index.js";
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Benchmark Results

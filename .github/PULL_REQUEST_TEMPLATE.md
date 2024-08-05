@@ -1,9 +1,7 @@
-Please fill in this template.
+Please fill in this template. Use a meaningful title for the pull request. Include the name of the package modified.
 
-- [ ] Use a meaningful title for the pull request. Include the name of the package modified.
-- [ ] Have read [How To Contribute](https://github.com/Turfjs/turf/blob/master/CONTRIBUTING.md#how-to-contribute).
-- [ ] Run `npm test` at the sub modules where changes have occurred.
-- [ ] Run `npm run lint` to ensure code style at the turf module level.
+- [ ] Is this a bug fix, new functionality, or a breaking change?
+- [ ] Have read and followed the steps for [preparing a pull request](https://github.com/Turfjs/turf/blob/master/CONTRIBUTING.md#preparing-a-pull-request).
 
 Submitting a new TurfJS Module.
 

@@ -1,8 +1,11 @@
 import { glob } from "glob";
 import path from "path";
+import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
-import { booleanPointOnLine as pointOnLine } from "./index";
+import { booleanPointOnLine as pointOnLine } from "./index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("turf-boolean-point-on-line", (t) => {
   // True Fixtures
