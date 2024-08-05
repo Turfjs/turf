@@ -1,8 +1,10 @@
+import { Feature, FeatureCollection } from "geojson";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
-import Benchmark from "benchmark";
+import Benchmark, { Event } from "benchmark";
+import { Coord, Corners } from "@turf/helpers";
 import { transformScale as scale } from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -11,7 +13,9 @@ const directory = path.join(__dirname, "test", "in") + path.sep;
 const fixtures = fs.readdirSync(directory).map((filename) => {
   return {
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directory + filename),
+    geojson: loadJsonFileSync(directory + filename) as
+      | FeatureCollection
+      | Feature,
   };
 });
 
@@ -31,7 +35,14 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
  * z-scaling: 0.237ms
  */
 for (const { name, geojson } of fixtures) {
-  const { factor, origin } = geojson.properties || {};
+  let factor: number = 2,
+    origin: Coord | Corners = "centroid";
+  if (geojson.type === "Feature") {
+    // Override any test options specified in the feature's properties.
+    factor = geojson.properties?.factor ?? factor;
+    origin = geojson.properties?.origin ?? origin;
+  }
+
   console.time(name);
   scale(geojson, factor || 2, { origin, mutate: true });
   console.timeEnd(name);
@@ -54,8 +65,15 @@ for (const { name, geojson } of fixtures) {
  */
 const suite = new Benchmark.Suite("turf-transform-scale");
 for (const { name, geojson } of fixtures) {
-  const { factor, origin } = geojson.properties || {};
+  let factor: number = 2,
+    origin: Coord | Corners = "centroid";
+  if (geojson.type === "Feature") {
+    // Override any test options specified in the feature's properties.
+    factor = geojson.properties?.factor ?? factor;
+    origin = geojson.properties?.origin ?? origin;
+  }
+
   suite.add(name, () => scale(geojson, factor || 2, { origin }));
 }
 
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+suite.on("cycle", (e: Event) => console.log(String(e.target))).run();

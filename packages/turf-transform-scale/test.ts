@@ -1,3 +1,4 @@
+import { BBox, Feature, FeatureCollection } from "geojson";
 import fs from "fs";
 import test from "tape";
 import path from "path";
@@ -17,6 +18,8 @@ import {
   lineString,
   geometryCollection,
   featureCollection,
+  Coord,
+  Corners,
 } from "@turf/helpers";
 import { transformScale as scale } from "./index.js";
 
@@ -31,14 +34,23 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename) as
+      | FeatureCollection
+      | Feature,
   };
 });
 
 test("scale", (t) => {
   for (const { filename, name, geojson } of fixtures) {
-    let { factor, origin, mutate } = geojson.properties || {};
-    factor = factor || 2;
+    let factor: number = 2,
+      origin: Coord | Corners = "centroid",
+      mutate = false;
+    if (geojson.type === "Feature") {
+      // Override any test options specified in the feature's properties.
+      factor = geojson.properties?.factor ?? factor;
+      origin = geojson.properties?.origin ?? origin;
+      mutate = geojson.properties?.mutate ?? mutate;
+    }
 
     const scaled = scale(geojson, factor, {
       origin: origin,
@@ -68,10 +80,14 @@ test("scale -- throws", (t) => {
     [12, 15],
   ]);
 
+  // @ts-expect-error testing JS runtime for mis-typed option
   t.throws(() => scale(null, 1.5), /geojson required/);
+  // @ts-expect-error testing JS runtime for mis-typed option
   t.throws(() => scale(line, null), /invalid factor/);
   t.throws(() => scale(line, 0), /invalid factor/);
+  // @ts-expect-error testing JS runtime for mis-typed option
   t.throws(() => scale(line, 1.5, { origin: "foobar" }), /invalid origin/);
+  // @ts-expect-error testing JS runtime for mis-typed option
   t.throws(() => scale(line, 1.5, { origin: 2 }), /invalid origin/);
 
   t.end();
@@ -82,7 +98,7 @@ test("scale -- additional params", (t) => {
     [10, 10],
     [12, 15],
   ]);
-  const bbox = [-180, -90, 180, 90];
+  const bbox: BBox = [-180, -90, 180, 90];
 
   t.assert(scale(line, 1.5, { origin: "sw" }));
   t.assert(scale(line, 1.5, { origin: "se" }));
@@ -90,6 +106,7 @@ test("scale -- additional params", (t) => {
   t.assert(scale(line, 1.5, { origin: "ne" }));
   t.assert(scale(line, 1.5, { origin: "center" }));
   t.assert(scale(line, 1.5, { origin: "centroid" }));
+  // @ts-expect-error testing JS runtime for mis-typed option
   t.assert(scale(line, 1.5, { origin: null }));
   line.bbox = bbox;
   t.assert(scale(line, 1.5));
@@ -122,7 +139,8 @@ test("scale -- mutated input", (t) => {
   );
   scale(line, 1.5, { origin: "centroid", mutate: false });
   t.deepEqual(line, lineBefore, "mutate = false - input should NOT be mutated");
-  scale(line, 1.5, { orgin: "centroid", muate: "nonBoolean" });
+  // @ts-expect-error testing JS runtime for mis-typed option
+  scale(line, 1.5, { origin: "centroid", mutate: "nonBoolean" });
   t.deepEqual(
     line,
     lineBefore,
@@ -165,6 +183,7 @@ test("scale -- mutated FeatureCollection", (t) => {
   );
   scale(line, 1.5, { origin: "centroid", mutate: false });
   t.deepEqual(line, lineBefore, "mutate = false - input should NOT be mutated");
+  // @ts-expect-error testing JS runtime for mis-typed option
   scale(line, 1.5, { origin: "centroid", mutate: "nonBoolean" });
   t.deepEqual(
     line,
@@ -175,7 +194,7 @@ test("scale -- mutated FeatureCollection", (t) => {
 });
 
 test("scale -- Issue #895", (t) => {
-  const bbox = [-122.93, 45.385, -122.294, 45.772];
+  const bbox: BBox = [-122.93, 45.385, -122.294, 45.772];
   const grid = hexGrid(bbox, 2, { units: "miles" });
   featureEach(grid, (feature, index) => {
     const factor = index % 2 === 0 ? 0.4 : 0.6;
@@ -238,8 +257,11 @@ test("scale -- factor 0 or less throws error", (t) => {
 });
 
 // style result
-function colorize(geojson) {
+function colorize(geojson: FeatureCollection | Feature) {
   featureEach(geojson, (feature, index) => {
+    // We are going to add some properties, so make sure properties attribute is
+    // present.
+    feature.properties = feature.properties ?? {};
     if (
       feature.geometry.type === "Point" ||
       feature.geometry.type === "MultiPoint"
@@ -258,8 +280,8 @@ function colorize(geojson) {
 
 // define origin, as defined in transform-scale, and style it
 function markedOrigin(
-  geojson,
-  origin,
+  geojson: Feature,
+  origin: Corners | Coord | undefined,
   properties = { "marker-color": "#00F", "marker-symbol": "circle" }
 ) {
   // Input Geometry|Feature<Point>|Array<number>
@@ -271,25 +293,42 @@ function markedOrigin(
     ? geojson.bbox
     : turfBBox(geojson);
 
+  // Having to disable eslint below for lines which fail the no-fallthrough
+  // rule, though only because of the ts-expect-error rules. Once we remove
+  // southeast, bottomright, rightbottom, etc we should be able to remove all
+  // these supressions.
+  /* eslint-disable no-fallthrough */
   switch (origin) {
     case "sw":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "southwest":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "westsouth":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "bottomleft":
       return point([west, south], properties);
     case "se":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "southeast":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "eastsouth":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "bottomright":
       return point([east, south], properties);
     case "nw":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "northwest":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "westnorth":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "topleft":
       return point([west, north], properties);
     case "ne":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "northeast":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "eastnorth":
+    // @ts-expect-error undocumented, to be removed for v8 #techdebt
     case "topright":
       return point([east, north], properties);
     case "center":
@@ -301,4 +340,5 @@ function markedOrigin(
       cid.properties = properties;
       return cid;
   }
+  /* eslint-enable no-fallthrough */
 }
