@@ -55,7 +55,7 @@ test("turf-line-offset - Throws Errors", (t) => {
     [0, 0],
   ]);
   t.throws(() => lineOffset(), /geojson is required/);
-  t.throws(() => lineOffset(line, /offset is required/));
+  t.throws(() => lineOffset(line), /distance is required/);
   t.end();
 });
 

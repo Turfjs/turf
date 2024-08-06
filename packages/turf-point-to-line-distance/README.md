@@ -15,7 +15,7 @@ minimum distance between the point and any segment of the `LineString`.
 
     *   `options.units` **[string][7]** can be anything supported by turf/convertLength
         (ex: degrees, radians, miles, or kilometers) (optional, default `"kilometers"`)
-    *   `options.method` **[string][7]** wether to calculate the distance based on geodesic (spheroid) or
+    *   `options.method` **[string][7]** whether to calculate the distance based on geodesic (spheroid) or
         planar (flat) method. Valid options are 'geodesic' or 'planar'. (optional, default `"geodesic"`)
 
 ### Examples
