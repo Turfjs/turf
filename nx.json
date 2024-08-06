@@ -26,9 +26,11 @@
         "default",
         "{projectRoot}/test.ts",
         "{projectRoot}/test/**",
-        "{projectRoot}/types.ts"
+        "{projectRoot}/types.ts",
+        "{projectRoot}/index.{js,ts}",
+        "{projectRoot}/lib/**"
       ],
-      "dependsOn": ["build"],
+      "dependsOn": ["^build"],
       "cache": true
     },
     "last-checks": {
