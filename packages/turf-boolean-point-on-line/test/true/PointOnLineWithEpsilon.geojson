@@ -1,7 +1,7 @@
 {
   "type": "FeatureCollection",
   "properties": {
-    "epsilon": 10e-17
+    "epsilon": 1e-16
   },
   "features": [
     {

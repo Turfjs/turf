@@ -1,10 +1,15 @@
 {
   "type": "FeatureCollection",
-  "properties": { "weight": "weight" },
+  "properties": {
+    "weight": "weight"
+  },
   "features": [
     {
       "type": "Feature",
-      "properties": { "fill": "#333", "weight": 100 },
+      "properties": {
+        "fill": "#333",
+        "weight": 100
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -20,7 +25,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -36,7 +44,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -52,7 +63,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -68,7 +82,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -84,7 +101,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -100,7 +120,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -116,7 +139,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -132,7 +158,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -148,7 +177,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -164,7 +196,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -180,7 +215,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -196,7 +234,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -212,7 +253,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -228,7 +272,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -244,7 +291,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -260,7 +310,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -276,7 +329,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -292,7 +348,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -308,7 +367,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -324,7 +386,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -340,7 +405,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -356,7 +424,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -372,7 +443,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -388,7 +462,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#777", "weight": 10 },
+      "properties": {
+        "fill": "#777",
+        "weight": 10
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -404,7 +481,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -420,7 +500,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -436,7 +519,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -452,7 +538,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -468,7 +557,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -484,7 +576,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -500,7 +595,10 @@
     },
     {
       "type": "Feature",
-      "properties": { "fill": "#ccc", "weight": 1 },
+      "properties": {
+        "fill": "#ccc",
+        "weight": 1
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [

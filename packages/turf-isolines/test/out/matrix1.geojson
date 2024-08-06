@@ -3,7 +3,9 @@
   "features": [
     {
       "type": "Feature",
-      "properties": { "temperature": 2 },
+      "properties": {
+        "temperature": 2
+      },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [
@@ -33,7 +35,9 @@
     },
     {
       "type": "Feature",
-      "properties": { "temperature": 4 },
+      "properties": {
+        "temperature": 4
+      },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [
@@ -63,7 +67,9 @@
     },
     {
       "type": "Feature",
-      "properties": { "temperature": 8 },
+      "properties": {
+        "temperature": 8
+      },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [
@@ -85,7 +91,9 @@
     },
     {
       "type": "Feature",
-      "properties": { "temperature": 12 },
+      "properties": {
+        "temperature": 12
+      },
       "geometry": {
         "type": "MultiLineString",
         "coordinates": [

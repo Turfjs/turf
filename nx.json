@@ -9,7 +9,9 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "inputs": [
         "default",
         "{workspaceRoot}/tsup.config.ts",
@@ -18,7 +20,9 @@
         "{projectRoot}/lib/**",
         "{projectRoot}/rollup.config.cjs"
       ],
-      "outputs": ["{projectRoot}/dist"],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
       "cache": true
     },
     "test": {
@@ -28,12 +32,20 @@
         "{projectRoot}/test/**",
         "{projectRoot}/types.ts"
       ],
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "cache": true
     },
     "last-checks": {
-      "inputs": ["default", "{projectRoot}/test.ts"],
-      "dependsOn": ["build", "^last-checks"],
+      "inputs": [
+        "default",
+        "{projectRoot}/test.ts"
+      ],
+      "dependsOn": [
+        "build",
+        "^last-checks"
+      ],
       "cache": true
     }
   }

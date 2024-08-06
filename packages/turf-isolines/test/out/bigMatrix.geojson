@@ -1166,7 +1166,10 @@
         "fill": "red",
         "pressure": 100
       },
-      "geometry": { "type": "MultiLineString", "coordinates": [] }
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": []
+      }
     },
     {
       "type": "Feature",

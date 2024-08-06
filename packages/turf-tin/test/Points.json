@@ -3,7 +3,10 @@
   "features": [
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.833, 39.284, 25] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.833, 39.284, 25]
+      },
       "properties": {
         "name": "Location B",
         "category": "House",
@@ -12,7 +15,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.6, 39.984, 23] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.6, 39.984, 23]
+      },
       "properties": {
         "name": "Location A",
         "category": "Store",
@@ -21,7 +27,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.221, 39.125, 29] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.221, 39.125, 29]
+      },
       "properties": {
         "name": "Location C",
         "category": "Office",
@@ -30,7 +39,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.358, 39.987, 12] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.358, 39.987, 12]
+      },
       "properties": {
         "name": "Location A",
         "category": "Store",
@@ -39,7 +51,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.9221, 39.27, 11] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.9221, 39.27, 11]
+      },
       "properties": {
         "name": "Location B",
         "category": "House",
@@ -48,7 +63,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.534, 39.123, 49] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.534, 39.123, 49]
+      },
       "properties": {
         "name": "Location C",
         "category": "Office",
@@ -57,7 +75,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.21, 39.12, 50] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.21, 39.12, 50]
+      },
       "properties": {
         "name": "Location A",
         "category": "Store",
@@ -66,7 +87,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.22, 39.33, 90] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.22, 39.33, 90]
+      },
       "properties": {
         "name": "Location B",
         "category": "House",
@@ -75,7 +99,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.44, 39.55, 22] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.44, 39.55, 22]
+      },
       "properties": {
         "name": "Location C",
         "category": "Office",
@@ -84,7 +111,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.77, 39.66, 99] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.77, 39.66, 99]
+      },
       "properties": {
         "name": "Location A",
         "category": "Store",
@@ -93,7 +123,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.44, 39.11, 55] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.44, 39.11, 55]
+      },
       "properties": {
         "name": "Location B",
         "category": "House",
@@ -102,7 +135,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.05, 39.92, 41] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.05, 39.92, 41]
+      },
       "properties": {
         "name": "Location C",
         "category": "Office",
@@ -111,7 +147,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.88, 39.98, 52] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.88, 39.98, 52]
+      },
       "properties": {
         "name": "Location A",
         "category": "Store",
@@ -120,7 +159,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.55, 39.55, 143] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.55, 39.55, 143]
+      },
       "properties": {
         "name": "Location B",
         "category": "House",
@@ -129,7 +171,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.33, 39.44, 76] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.33, 39.44, 76]
+      },
       "properties": {
         "name": "Location C",
         "category": "Office",
@@ -138,7 +183,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.56, 39.24, 18] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.56, 39.24, 18]
+      },
       "properties": {
         "name": "Location C",
         "category": "Office",
@@ -147,7 +195,10 @@
     },
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-75.56, 39.36, 52] },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.56, 39.36, 52]
+      },
       "properties": {
         "name": "Location C",
         "category": "Office",

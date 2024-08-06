@@ -19,7 +19,7 @@
         "type": "LineString",
         "coordinates": [
           [0, -4.5],
-          [-0, 1]
+          [0, 1]
         ]
       }
     }

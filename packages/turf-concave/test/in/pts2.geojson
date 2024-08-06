@@ -16,8 +16,8 @@
       "properties": {
         "OBJECTID_1": 51,
         "OBJECTID_2": 25,
-        "OBJECTID": 49.0,
-        "PRECINCT_N": 7.0,
+        "OBJECTID": 49,
+        "PRECINCT_N": 7,
         "FACILITY_D": "Recreation Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_49",
@@ -28,7 +28,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.084981183092964, 38.909915833213795]
+        "coordinates": [-77.08498118309296, 38.909915833213795]
       }
     },
     {
@@ -36,8 +36,8 @@
       "properties": {
         "OBJECTID_1": 52,
         "OBJECTID_2": 26,
-        "OBJECTID": 50.0,
-        "PRECINCT_N": 5.0,
+        "OBJECTID": 50,
+        "PRECINCT_N": 5,
         "FACILITY_D": "Large Meeting Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_50",
@@ -48,7 +48,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.066007305842078, 38.913434229544386]
+        "coordinates": [-77.06600730584208, 38.913434229544386]
       }
     },
     {
@@ -56,8 +56,8 @@
       "properties": {
         "OBJECTID_1": 53,
         "OBJECTID_2": 27,
-        "OBJECTID": 51.0,
-        "PRECINCT_N": 76.0,
+        "OBJECTID": 51,
+        "PRECINCT_N": 76,
         "FACILITY_D": "Community Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_51",
@@ -76,8 +76,8 @@
       "properties": {
         "OBJECTID_1": 54,
         "OBJECTID_2": 28,
-        "OBJECTID": 52.0,
-        "PRECINCT_N": 15.0,
+        "OBJECTID": 52,
+        "PRECINCT_N": 15,
         "FACILITY_D": "Community Room (Lower Level)",
         "ACCESSIBLE": "Yes - Use side entrance on P Street",
         "GIS_ID": "plp_52",
@@ -88,7 +88,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.036879490722725, 38.910033613313317]
+        "coordinates": [-77.03687949072273, 38.91003361331332]
       }
     },
     {
@@ -96,8 +96,8 @@
       "properties": {
         "OBJECTID_1": 55,
         "OBJECTID_2": 29,
-        "OBJECTID": 53.0,
-        "PRECINCT_N": 14.0,
+        "OBJECTID": 53,
+        "PRECINCT_N": 14,
         "FACILITY_D": "Guild Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_53",
@@ -108,7 +108,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.041041176671854, 38.910212212295264]
+        "coordinates": [-77.04104117667185, 38.910212212295264]
       }
     },
     {
@@ -116,8 +116,8 @@
       "properties": {
         "OBJECTID_1": 56,
         "OBJECTID_2": 30,
-        "OBJECTID": 54.0,
-        "PRECINCT_N": 16.0,
+        "OBJECTID": 54,
+        "PRECINCT_N": 16,
         "FACILITY_D": "Fellowship Hall",
         "ACCESSIBLE": "Yes - Accessible entrance at the rear of the church. Use entrance on R St. side of church.",
         "GIS_ID": "plp_54",
@@ -128,7 +128,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.03417962817295, 38.912811255258127]
+        "coordinates": [-77.03417962817295, 38.91281125525813]
       }
     },
     {
@@ -136,8 +136,8 @@
       "properties": {
         "OBJECTID_1": 57,
         "OBJECTID_2": 31,
-        "OBJECTID": 55.0,
-        "PRECINCT_N": 18.0,
+        "OBJECTID": 55,
+        "PRECINCT_N": 18,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_55",
@@ -148,7 +148,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.021536456247759, 38.908989778469483]
+        "coordinates": [-77.02153645624776, 38.90898977846948]
       }
     },
     {
@@ -156,8 +156,8 @@
       "properties": {
         "OBJECTID_1": 58,
         "OBJECTID_2": 32,
-        "OBJECTID": 56.0,
-        "PRECINCT_N": 17.0,
+        "OBJECTID": 56,
+        "PRECINCT_N": 17,
         "FACILITY_D": "Exhibit Rooms",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_56",
@@ -168,7 +168,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.038222905521806, 38.905977334681452]
+        "coordinates": [-77.0382229055218, 38.90597733468145]
       }
     },
     {
@@ -176,8 +176,8 @@
       "properties": {
         "OBJECTID_1": 59,
         "OBJECTID_2": 33,
-        "OBJECTID": 57.0,
-        "PRECINCT_N": 4.0,
+        "OBJECTID": 57,
+        "PRECINCT_N": 4,
         "FACILITY_D": "Large Meeting Room (2nd Floor)",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_57",
@@ -196,8 +196,8 @@
       "properties": {
         "OBJECTID_1": 60,
         "OBJECTID_2": 34,
-        "OBJECTID": 58.0,
-        "PRECINCT_N": 77.0,
+        "OBJECTID": 58,
+        "PRECINCT_N": 77,
         "FACILITY_D": "Community Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_58",
@@ -208,7 +208,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.984331916380768, 38.900557364972023]
+        "coordinates": [-76.98433191638077, 38.90055736497202]
       }
     },
     {
@@ -216,8 +216,8 @@
       "properties": {
         "OBJECTID_1": 61,
         "OBJECTID_2": 35,
-        "OBJECTID": 59.0,
-        "PRECINCT_N": 129.0,
+        "OBJECTID": 59,
+        "PRECINCT_N": 129,
         "FACILITY_D": "Main Lobby",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_59",
@@ -228,7 +228,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.02476626008324, 38.898691330337449]
+        "coordinates": [-77.02476626008324, 38.89869133033745]
       }
     },
     {
@@ -236,8 +236,8 @@
       "properties": {
         "OBJECTID_1": 62,
         "OBJECTID_2": 36,
-        "OBJECTID": 60.0,
-        "PRECINCT_N": 82.0,
+        "OBJECTID": 60,
+        "PRECINCT_N": 82,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_60",
@@ -248,7 +248,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.993016818542159, 38.898545289067677]
+        "coordinates": [-76.99301681854216, 38.89854528906768]
       }
     },
     {
@@ -256,8 +256,8 @@
       "properties": {
         "OBJECTID_1": 63,
         "OBJECTID_2": 37,
-        "OBJECTID": 61.0,
-        "PRECINCT_N": 3.0,
+        "OBJECTID": 61,
+        "PRECINCT_N": 3,
         "FACILITY_D": "Dining Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_61",
@@ -268,7 +268,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.051147709627202, 38.898862835793516]
+        "coordinates": [-77.0511477096272, 38.898862835793516]
       }
     },
     {
@@ -276,8 +276,8 @@
       "properties": {
         "OBJECTID_1": 64,
         "OBJECTID_2": 38,
-        "OBJECTID": 62.0,
-        "PRECINCT_N": 1.0,
+        "OBJECTID": 62,
+        "PRECINCT_N": 1,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_62",
@@ -288,7 +288,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.013915692345691, 38.90419164723351]
+        "coordinates": [-77.01391569234569, 38.90419164723351]
       }
     },
     {
@@ -296,8 +296,8 @@
       "properties": {
         "OBJECTID_1": 65,
         "OBJECTID_2": 39,
-        "OBJECTID": 64.0,
-        "PRECINCT_N": 10.0,
+        "OBJECTID": 64,
+        "PRECINCT_N": 10,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_64",
@@ -308,7 +308,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.087826188256471, 38.934291971694272]
+        "coordinates": [-77.08782618825647, 38.93429197169427]
       }
     },
     {
@@ -316,8 +316,8 @@
       "properties": {
         "OBJECTID_1": 66,
         "OBJECTID_2": 40,
-        "OBJECTID": 65.0,
-        "PRECINCT_N": 19.0,
+        "OBJECTID": 65,
+        "PRECINCT_N": 19,
         "FACILITY_D": "Gym/Armory",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_65",
@@ -328,7 +328,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.014693855315954, 38.908523216218732]
+        "coordinates": [-77.01469385531595, 38.90852321621873]
       }
     },
     {
@@ -336,8 +336,8 @@
       "properties": {
         "OBJECTID_1": 67,
         "OBJECTID_2": 41,
-        "OBJECTID": 66.0,
-        "PRECINCT_N": 20.0,
+        "OBJECTID": 66,
+        "PRECINCT_N": 20,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_66",
@@ -348,7 +348,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.015557008963071, 38.920441293733219]
+        "coordinates": [-77.01555700896307, 38.92044129373322]
       }
     },
     {
@@ -356,8 +356,8 @@
       "properties": {
         "OBJECTID_1": 68,
         "OBJECTID_2": 42,
-        "OBJECTID": 67.0,
-        "PRECINCT_N": 21.0,
+        "OBJECTID": 67,
+        "PRECINCT_N": 21,
         "FACILITY_D": "Fellowship Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_67",
@@ -368,7 +368,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.028781227702837, 38.911825717245286]
+        "coordinates": [-77.02878122770284, 38.911825717245286]
       }
     },
     {
@@ -376,8 +376,8 @@
       "properties": {
         "OBJECTID_1": 69,
         "OBJECTID_2": 43,
-        "OBJECTID": 68.0,
-        "PRECINCT_N": 22.0,
+        "OBJECTID": 68,
+        "PRECINCT_N": 22,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes - Accessible entrance located on V Street.",
         "GIS_ID": "plp_68",
@@ -388,7 +388,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.025748782113368, 38.917544774486181]
+        "coordinates": [-77.02574878211337, 38.91754477448618]
       }
     },
     {
@@ -396,8 +396,8 @@
       "properties": {
         "OBJECTID_1": 70,
         "OBJECTID_2": 44,
-        "OBJECTID": 69.0,
-        "PRECINCT_N": 24.0,
+        "OBJECTID": 69,
+        "PRECINCT_N": 24,
         "FACILITY_D": "Living Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_69",
@@ -408,7 +408,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.04052994742716, 38.919167306666537]
+        "coordinates": [-77.04052994742716, 38.91916730666654]
       }
     },
     {
@@ -416,8 +416,8 @@
       "properties": {
         "OBJECTID_1": 71,
         "OBJECTID_2": 45,
-        "OBJECTID": 71.0,
-        "PRECINCT_N": 27.0,
+        "OBJECTID": 71,
+        "PRECINCT_N": 27,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_71",
@@ -428,7 +428,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.065821132685912, 38.932726738826823]
+        "coordinates": [-77.06582113268591, 38.93272673882682]
       }
     },
     {
@@ -436,8 +436,8 @@
       "properties": {
         "OBJECTID_1": 72,
         "OBJECTID_2": 46,
-        "OBJECTID": 72.0,
-        "PRECINCT_N": 29.0,
+        "OBJECTID": 72,
+        "PRECINCT_N": 29,
         "FACILITY_D": "Community Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_72",
@@ -448,7 +448,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.074838057652229, 38.934845831784592]
+        "coordinates": [-77.07483805765223, 38.93484583178459]
       }
     },
     {
@@ -456,8 +456,8 @@
       "properties": {
         "OBJECTID_1": 73,
         "OBJECTID_2": 47,
-        "OBJECTID": 73.0,
-        "PRECINCT_N": 30.0,
+        "OBJECTID": 73,
+        "PRECINCT_N": 30,
         "FACILITY_D": "Multi-Purpose Room (on Albemarle St.)",
         "ACCESSIBLE": "Yes - Accessible entrance at side of school, nearest to Wisconsin Ave.",
         "GIS_ID": "plp_73",
@@ -468,7 +468,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.080994819731956, 38.947550087065927]
+        "coordinates": [-77.08099481973196, 38.94755008706593]
       }
     },
     {
@@ -476,8 +476,8 @@
       "properties": {
         "OBJECTID_1": 74,
         "OBJECTID_2": 48,
-        "OBJECTID": 74.0,
-        "PRECINCT_N": 33.0,
+        "OBJECTID": 74,
+        "PRECINCT_N": 33,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes - Use rear entrance on Ellicott St.",
         "GIS_ID": "plp_74",
@@ -488,7 +488,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.07007920338755, 38.952933189596607]
+        "coordinates": [-77.07007920338755, 38.95293318959661]
       }
     },
     {
@@ -496,8 +496,8 @@
       "properties": {
         "OBJECTID_1": 75,
         "OBJECTID_2": 49,
-        "OBJECTID": 75.0,
-        "PRECINCT_N": 35.0,
+        "OBJECTID": 75,
+        "PRECINCT_N": 35,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_75",
@@ -508,7 +508,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.038813828001906, 38.923931654217967]
+        "coordinates": [-77.0388138280019, 38.92393165421797]
       }
     },
     {
@@ -516,8 +516,8 @@
       "properties": {
         "OBJECTID_1": 76,
         "OBJECTID_2": 50,
-        "OBJECTID": 76.0,
-        "PRECINCT_N": 37.0,
+        "OBJECTID": 76,
+        "PRECINCT_N": 37,
         "FACILITY_D": "Community Meeting Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_76",
@@ -528,7 +528,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.022579801385916, 38.922697600945042]
+        "coordinates": [-77.02257980138592, 38.92269760094504]
       }
     },
     {
@@ -536,8 +536,8 @@
       "properties": {
         "OBJECTID_1": 77,
         "OBJECTID_2": 51,
-        "OBJECTID": 77.0,
-        "PRECINCT_N": 38.0,
+        "OBJECTID": 77,
+        "PRECINCT_N": 38,
         "FACILITY_D": "Meeting Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_77",
@@ -548,7 +548,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.025887356034701, 38.929619476288885]
+        "coordinates": [-77.0258873560347, 38.929619476288885]
       }
     },
     {
@@ -556,8 +556,8 @@
       "properties": {
         "OBJECTID_1": 78,
         "OBJECTID_2": 52,
-        "OBJECTID": 78.0,
-        "PRECINCT_N": 40.0,
+        "OBJECTID": 78,
+        "PRECINCT_N": 40,
         "FACILITY_D": "Assembly Hall",
         "ACCESSIBLE": "Yes - Use entrance on Newton Street.",
         "GIS_ID": "plp_78",
@@ -568,7 +568,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.040553449803028, 38.934318023511061]
+        "coordinates": [-77.04055344980303, 38.93431802351106]
       }
     },
     {
@@ -576,8 +576,8 @@
       "properties": {
         "OBJECTID_1": 79,
         "OBJECTID_2": 53,
-        "OBJECTID": 79.0,
-        "PRECINCT_N": 46.0,
+        "OBJECTID": 79,
+        "PRECINCT_N": 46,
         "FACILITY_D": "Classroom",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_79",
@@ -588,7 +588,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.022416369914765, 38.94560156110601]
+        "coordinates": [-77.02241636991477, 38.94560156110601]
       }
     },
     {
@@ -596,8 +596,8 @@
       "properties": {
         "OBJECTID_1": 80,
         "OBJECTID_2": 54,
-        "OBJECTID": 80.0,
-        "PRECINCT_N": 47.0,
+        "OBJECTID": 80,
+        "PRECINCT_N": 47,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes - Accessible ramped entrance off of alley.",
         "GIS_ID": "plp_80",
@@ -608,7 +608,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.031227415751488, 38.941534009869706]
+        "coordinates": [-77.03122741575149, 38.941534009869706]
       }
     },
     {
@@ -616,8 +616,8 @@
       "properties": {
         "OBJECTID_1": 81,
         "OBJECTID_2": 55,
-        "OBJECTID": 81.0,
-        "PRECINCT_N": 48.0,
+        "OBJECTID": 81,
+        "PRECINCT_N": 48,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes - Use south entrance on 13th St.",
         "GIS_ID": "plp_81",
@@ -628,7 +628,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.030468336673792, 38.943474325156487]
+        "coordinates": [-77.03046833667379, 38.94347432515649]
       }
     },
     {
@@ -636,8 +636,8 @@
       "properties": {
         "OBJECTID_1": 82,
         "OBJECTID_2": 56,
-        "OBJECTID": 82.0,
-        "PRECINCT_N": 49.0,
+        "OBJECTID": 82,
+        "PRECINCT_N": 49,
         "FACILITY_D": "Science Room",
         "ACCESSIBLE": "Yes - Accessible entrance located on Rock Creek Church Road.",
         "GIS_ID": "plp_82",
@@ -648,7 +648,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.026432654256809, 38.935810871763174]
+        "coordinates": [-77.02643265425681, 38.935810871763174]
       }
     },
     {
@@ -656,8 +656,8 @@
       "properties": {
         "OBJECTID_1": 83,
         "OBJECTID_2": 57,
-        "OBJECTID": 83.0,
-        "PRECINCT_N": 51.0,
+        "OBJECTID": 83,
+        "PRECINCT_N": 51,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes - Use parking lot entrance on Northampton St.",
         "GIS_ID": "plp_83",
@@ -668,7 +668,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.06803711636698, 38.966627220648277]
+        "coordinates": [-77.06803711636698, 38.96662722064828]
       }
     },
     {
@@ -676,8 +676,8 @@
       "properties": {
         "OBJECTID_1": 84,
         "OBJECTID_2": 58,
-        "OBJECTID": 84.0,
-        "PRECINCT_N": 53.0,
+        "OBJECTID": 84,
+        "PRECINCT_N": 53,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_84",
@@ -688,7 +688,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.030688851988643, 38.960535392858461]
+        "coordinates": [-77.03068885198864, 38.96053539285846]
       }
     },
     {
@@ -696,8 +696,8 @@
       "properties": {
         "OBJECTID_1": 85,
         "OBJECTID_2": 59,
-        "OBJECTID": 85.0,
-        "PRECINCT_N": 54.0,
+        "OBJECTID": 85,
+        "PRECINCT_N": 54,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes - Use entrance located at 14th & Farragut Streets.",
         "GIS_ID": "plp_85",
@@ -708,7 +708,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.032253049830672, 38.951367080952416]
+        "coordinates": [-77.03225304983067, 38.951367080952416]
       }
     },
     {
@@ -716,8 +716,8 @@
       "properties": {
         "OBJECTID_1": 86,
         "OBJECTID_2": 60,
-        "OBJECTID": 86.0,
-        "PRECINCT_N": 55.0,
+        "OBJECTID": 86,
+        "PRECINCT_N": 55,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_86",
@@ -728,7 +728,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.017777080008301, 38.948230614415095]
+        "coordinates": [-77.0177770800083, 38.948230614415095]
       }
     },
     {
@@ -736,8 +736,8 @@
       "properties": {
         "OBJECTID_1": 87,
         "OBJECTID_2": 61,
-        "OBJECTID": 87.0,
-        "PRECINCT_N": 56.0,
+        "OBJECTID": 87,
+        "PRECINCT_N": 56,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_87",
@@ -748,7 +748,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.025071570135182, 38.953968358095487]
+        "coordinates": [-77.02507157013518, 38.95396835809549]
       }
     },
     {
@@ -756,8 +756,8 @@
       "properties": {
         "OBJECTID_1": 88,
         "OBJECTID_2": 62,
-        "OBJECTID": 88.0,
-        "PRECINCT_N": 57.0,
+        "OBJECTID": 88,
+        "PRECINCT_N": 57,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_88",
@@ -768,7 +768,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.017112348141424, 38.956388773368296]
+        "coordinates": [-77.01711234814142, 38.956388773368296]
       }
     },
     {
@@ -776,8 +776,8 @@
       "properties": {
         "OBJECTID_1": 89,
         "OBJECTID_2": 63,
-        "OBJECTID": 90.0,
-        "PRECINCT_N": 59.0,
+        "OBJECTID": 90,
+        "PRECINCT_N": 59,
         "FACILITY_D": "Armory",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_90",
@@ -796,8 +796,8 @@
       "properties": {
         "OBJECTID_1": 90,
         "OBJECTID_2": 64,
-        "OBJECTID": 91.0,
-        "PRECINCT_N": 62.0,
+        "OBJECTID": 91,
+        "PRECINCT_N": 62,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes - Use ramped entrance on 14th Street.",
         "GIS_ID": "plp_91",
@@ -808,7 +808,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.03399523386544, 38.984602950032162]
+        "coordinates": [-77.03399523386544, 38.98460295003216]
       }
     },
     {
@@ -816,8 +816,8 @@
       "properties": {
         "OBJECTID_1": 91,
         "OBJECTID_2": 65,
-        "OBJECTID": 92.0,
-        "PRECINCT_N": 63.0,
+        "OBJECTID": 92,
+        "PRECINCT_N": 63,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_92",
@@ -828,7 +828,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.018051676182949, 38.968886691314118]
+        "coordinates": [-77.01805167618295, 38.96888669131412]
       }
     },
     {
@@ -836,8 +836,8 @@
       "properties": {
         "OBJECTID_1": 92,
         "OBJECTID_2": 66,
-        "OBJECTID": 93.0,
-        "PRECINCT_N": 64.0,
+        "OBJECTID": 93,
+        "PRECINCT_N": 64,
         "FACILITY_D": "Recreation Area",
         "ACCESSIBLE": "Yes - Use rear entrance on 2nd St.",
         "GIS_ID": "plp_93",
@@ -848,7 +848,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.012867448323647, 38.962164521997181]
+        "coordinates": [-77.01286744832365, 38.96216452199718]
       }
     },
     {
@@ -856,8 +856,8 @@
       "properties": {
         "OBJECTID_1": 93,
         "OBJECTID_2": 67,
-        "OBJECTID": 94.0,
-        "PRECINCT_N": 65.0,
+        "OBJECTID": 94,
+        "PRECINCT_N": 65,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_94",
@@ -868,7 +868,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.999882538481089, 38.959971809983642]
+        "coordinates": [-76.99988253848109, 38.95997180998364]
       }
     },
     {
@@ -876,8 +876,8 @@
       "properties": {
         "OBJECTID_1": 94,
         "OBJECTID_2": 68,
-        "OBJECTID": 95.0,
-        "PRECINCT_N": 66.0,
+        "OBJECTID": 95,
+        "PRECINCT_N": 66,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes - Accessible entrance next to parking lot on Hamilton Street.",
         "GIS_ID": "plp_95",
@@ -888,7 +888,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.997267383153954, 38.953340525729047]
+        "coordinates": [-76.99726738315395, 38.95334052572905]
       }
     },
     {
@@ -896,8 +896,8 @@
       "properties": {
         "OBJECTID_1": 95,
         "OBJECTID_2": 69,
-        "OBJECTID": 96.0,
-        "PRECINCT_N": 67.0,
+        "OBJECTID": 96,
+        "PRECINCT_N": 67,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes - Accessible entrance next to the parking lot on 14th Street",
         "GIS_ID": "plp_96",
@@ -908,7 +908,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.98499562999821, 38.942012135008142]
+        "coordinates": [-76.98499562999821, 38.94201213500814]
       }
     },
     {
@@ -916,8 +916,8 @@
       "properties": {
         "OBJECTID_1": 96,
         "OBJECTID_2": 70,
-        "OBJECTID": 97.0,
-        "PRECINCT_N": 68.0,
+        "OBJECTID": 97,
+        "PRECINCT_N": 68,
         "FACILITY_D": "Reception Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_97",
@@ -928,7 +928,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.986529583871643, 38.9375726751204]
+        "coordinates": [-76.98652958387164, 38.9375726751204]
       }
     },
     {
@@ -936,8 +936,8 @@
       "properties": {
         "OBJECTID_1": 97,
         "OBJECTID_2": 71,
-        "OBJECTID": 98.0,
-        "PRECINCT_N": 69.0,
+        "OBJECTID": 98,
+        "PRECINCT_N": 69,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_98",
@@ -948,7 +948,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.978595514953696, 38.936796147384342]
+        "coordinates": [-76.9785955149537, 38.93679614738434]
       }
     },
     {
@@ -956,8 +956,8 @@
       "properties": {
         "OBJECTID_1": 98,
         "OBJECTID_2": 72,
-        "OBJECTID": 99.0,
-        "PRECINCT_N": 70.0,
+        "OBJECTID": 99,
+        "PRECINCT_N": 70,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes - Use entrance on Monroe Street.",
         "GIS_ID": "plp_99",
@@ -968,7 +968,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.978456370398874, 38.933502326896445]
+        "coordinates": [-76.97845637039887, 38.933502326896445]
       }
     },
     {
@@ -976,8 +976,8 @@
       "properties": {
         "OBJECTID_1": 99,
         "OBJECTID_2": 73,
-        "OBJECTID": 100.0,
-        "PRECINCT_N": 73.0,
+        "OBJECTID": 100,
+        "PRECINCT_N": 73,
         "FACILITY_D": "Library (Lower Level)",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_100",
@@ -988,7 +988,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.986864622728547, 38.929605590082105]
+        "coordinates": [-76.98686462272855, 38.929605590082105]
       }
     },
     {
@@ -996,8 +996,8 @@
       "properties": {
         "OBJECTID_1": 100,
         "OBJECTID_2": 74,
-        "OBJECTID": 101.0,
-        "PRECINCT_N": 74.0,
+        "OBJECTID": 101,
+        "PRECINCT_N": 74,
         "FACILITY_D": "Multipurpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_101",
@@ -1008,7 +1008,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.002538318002209, 38.923654687421774]
+        "coordinates": [-77.00253831800221, 38.923654687421774]
       }
     },
     {
@@ -1016,8 +1016,8 @@
       "properties": {
         "OBJECTID_1": 101,
         "OBJECTID_2": 75,
-        "OBJECTID": 102.0,
-        "PRECINCT_N": 78.0,
+        "OBJECTID": 102,
+        "PRECINCT_N": 78,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_102",
@@ -1028,7 +1028,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.982734368763062, 38.906442359837776]
+        "coordinates": [-76.98273436876306, 38.906442359837776]
       }
     },
     {
@@ -1036,8 +1036,8 @@
       "properties": {
         "OBJECTID_1": 102,
         "OBJECTID_2": 76,
-        "OBJECTID": 103.0,
-        "PRECINCT_N": 81.0,
+        "OBJECTID": 103,
+        "PRECINCT_N": 81,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_103",
@@ -1048,7 +1048,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.982904313087829, 38.897375682182471]
+        "coordinates": [-76.98290431308783, 38.89737568218247]
       }
     },
     {
@@ -1056,8 +1056,8 @@
       "properties": {
         "OBJECTID_1": 103,
         "OBJECTID_2": 77,
-        "OBJECTID": 104.0,
-        "PRECINCT_N": 79.0,
+        "OBJECTID": 104,
+        "PRECINCT_N": 79,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_104",
@@ -1068,7 +1068,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.970667052474028, 38.902598549008218]
+        "coordinates": [-76.97066705247403, 38.90259854900822]
       }
     },
     {
@@ -1076,8 +1076,8 @@
       "properties": {
         "OBJECTID_1": 104,
         "OBJECTID_2": 78,
-        "OBJECTID": 105.0,
-        "PRECINCT_N": 83.0,
+        "OBJECTID": 105,
+        "PRECINCT_N": 83,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes - Use entrance located on 7th Street.",
         "GIS_ID": "plp_105",
@@ -1088,7 +1088,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.996589027486436, 38.90275766582991]
+        "coordinates": [-76.99658902748644, 38.90275766582991]
       }
     },
     {
@@ -1096,8 +1096,8 @@
       "properties": {
         "OBJECTID_1": 105,
         "OBJECTID_2": 79,
-        "OBJECTID": 106.0,
-        "PRECINCT_N": 84.0,
+        "OBJECTID": 106,
+        "PRECINCT_N": 84,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_106",
@@ -1108,7 +1108,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.000004386249671, 38.896297370808789]
+        "coordinates": [-77.00000438624967, 38.89629737080879]
       }
     },
     {
@@ -1116,8 +1116,8 @@
       "properties": {
         "OBJECTID_1": 106,
         "OBJECTID_2": 80,
-        "OBJECTID": 107.0,
-        "PRECINCT_N": 85.0,
+        "OBJECTID": 107,
+        "PRECINCT_N": 85,
         "FACILITY_D": "Auditorium (A-Level)",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_107",
@@ -1128,7 +1128,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.995356592112472, 38.892321795813096]
+        "coordinates": [-76.99535659211247, 38.892321795813096]
       }
     },
     {
@@ -1136,8 +1136,8 @@
       "properties": {
         "OBJECTID_1": 107,
         "OBJECTID_2": 81,
-        "OBJECTID": 108.0,
-        "PRECINCT_N": 86.0,
+        "OBJECTID": 108,
+        "PRECINCT_N": 86,
         "FACILITY_D": "Recreation Room (lower level)",
         "ACCESSIBLE": "Yes - Accessible - side entrance, next to the parking lot.",
         "GIS_ID": "plp_108",
@@ -1148,7 +1148,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.978977913437262, 38.892431159766303]
+        "coordinates": [-76.97897791343726, 38.8924311597663]
       }
     },
     {
@@ -1156,8 +1156,8 @@
       "properties": {
         "OBJECTID_1": 108,
         "OBJECTID_2": 82,
-        "OBJECTID": 109.0,
-        "PRECINCT_N": 87.0,
+        "OBJECTID": 109,
+        "PRECINCT_N": 87,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes = Use entrance at the rear of the school, next to the parking lot.",
         "GIS_ID": "plp_109",
@@ -1168,7 +1168,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.98419490800174, 38.885132314488203]
+        "coordinates": [-76.98419490800174, 38.8851323144882]
       }
     },
     {
@@ -1176,8 +1176,8 @@
       "properties": {
         "OBJECTID_1": 109,
         "OBJECTID_2": 83,
-        "OBJECTID": 110.0,
-        "PRECINCT_N": 89.0,
+        "OBJECTID": 110,
+        "PRECINCT_N": 89,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_110",
@@ -1188,7 +1188,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.997028705938774, 38.886585046654147]
+        "coordinates": [-76.99702870593877, 38.88658504665415]
       }
     },
     {
@@ -1196,8 +1196,8 @@
       "properties": {
         "OBJECTID_1": 110,
         "OBJECTID_2": 84,
-        "OBJECTID": 111.0,
-        "PRECINCT_N": 91.0,
+        "OBJECTID": 111,
+        "PRECINCT_N": 91,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_111",
@@ -1208,7 +1208,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.989996763548163, 38.883466674788586]
+        "coordinates": [-76.98999676354816, 38.883466674788586]
       }
     },
     {
@@ -1216,8 +1216,8 @@
       "properties": {
         "OBJECTID_1": 111,
         "OBJECTID_2": 85,
-        "OBJECTID": 113.0,
-        "PRECINCT_N": 92.0,
+        "OBJECTID": 113,
+        "PRECINCT_N": 92,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_113",
@@ -1228,7 +1228,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.940484939136297, 38.908228732598651]
+        "coordinates": [-76.9404849391363, 38.90822873259865]
       }
     },
     {
@@ -1236,8 +1236,8 @@
       "properties": {
         "OBJECTID_1": 112,
         "OBJECTID_2": 86,
-        "OBJECTID": 114.0,
-        "PRECINCT_N": 93.0,
+        "OBJECTID": 114,
+        "PRECINCT_N": 93,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes - Accessible entrance at the rear of the school.",
         "GIS_ID": "plp_114",
@@ -1248,7 +1248,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.9299476407989, 38.905414987198981]
+        "coordinates": [-76.9299476407989, 38.90541498719898]
       }
     },
     {
@@ -1256,8 +1256,8 @@
       "properties": {
         "OBJECTID_1": 113,
         "OBJECTID_2": 87,
-        "OBJECTID": 115.0,
-        "PRECINCT_N": 94.0,
+        "OBJECTID": 115,
+        "PRECINCT_N": 94,
         "FACILITY_D": "Community Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_115",
@@ -1268,7 +1268,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.930131189589616, 38.900230067255841]
+        "coordinates": [-76.93013118958962, 38.90023006725584]
       }
     },
     {
@@ -1276,8 +1276,8 @@
       "properties": {
         "OBJECTID_1": 114,
         "OBJECTID_2": 88,
-        "OBJECTID": 116.0,
-        "PRECINCT_N": 95.0,
+        "OBJECTID": 116,
+        "PRECINCT_N": 95,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes -Use entrance located at 57th & Eads Streets.",
         "GIS_ID": "plp_116",
@@ -1288,7 +1288,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.922708043967461, 38.896192887555607]
+        "coordinates": [-76.92270804396746, 38.89619288755561]
       }
     },
     {
@@ -1296,8 +1296,8 @@
       "properties": {
         "OBJECTID_1": 115,
         "OBJECTID_2": 89,
-        "OBJECTID": 117.0,
-        "PRECINCT_N": 100.0,
+        "OBJECTID": 117,
+        "PRECINCT_N": 100,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_117",
@@ -1308,7 +1308,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.952110905321987, 38.901278637588895]
+        "coordinates": [-76.95211090532199, 38.901278637588895]
       }
     },
     {
@@ -1316,8 +1316,8 @@
       "properties": {
         "OBJECTID_1": 116,
         "OBJECTID_2": 90,
-        "OBJECTID": 118.0,
-        "PRECINCT_N": 98.0,
+        "OBJECTID": 118,
+        "PRECINCT_N": 98,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes - Use rear entrance of the school.",
         "GIS_ID": "plp_118",
@@ -1328,7 +1328,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.938468638784286, 38.893553701828701]
+        "coordinates": [-76.93846863878429, 38.8935537018287]
       }
     },
     {
@@ -1336,8 +1336,8 @@
       "properties": {
         "OBJECTID_1": 117,
         "OBJECTID_2": 91,
-        "OBJECTID": 120.0,
-        "PRECINCT_N": 103.0,
+        "OBJECTID": 120,
+        "PRECINCT_N": 103,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes - Use ground level entrance.",
         "GIS_ID": "plp_120",
@@ -1348,7 +1348,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.939934669841293, 38.8872398636938]
+        "coordinates": [-76.93993466984129, 38.8872398636938]
       }
     },
     {
@@ -1356,8 +1356,8 @@
       "properties": {
         "OBJECTID_1": 118,
         "OBJECTID_2": 92,
-        "OBJECTID": 121.0,
-        "PRECINCT_N": 104.0,
+        "OBJECTID": 121,
+        "PRECINCT_N": 104,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes- Use ground level entrance.",
         "GIS_ID": "plp_121",
@@ -1368,7 +1368,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.930796499569979, 38.885954085228562]
+        "coordinates": [-76.93079649956998, 38.88595408522856]
       }
     },
     {
@@ -1376,8 +1376,8 @@
       "properties": {
         "OBJECTID_1": 119,
         "OBJECTID_2": 93,
-        "OBJECTID": 122.0,
-        "PRECINCT_N": 105.0,
+        "OBJECTID": 122,
+        "PRECINCT_N": 105,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes - Use entrance located on D Street.",
         "GIS_ID": "plp_122",
@@ -1388,7 +1388,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.926115493732041, 38.883598497883369]
+        "coordinates": [-76.92611549373204, 38.88359849788337]
       }
     },
     {
@@ -1396,8 +1396,8 @@
       "properties": {
         "OBJECTID_1": 120,
         "OBJECTID_2": 94,
-        "OBJECTID": 123.0,
-        "PRECINCT_N": 106.0,
+        "OBJECTID": 123,
+        "PRECINCT_N": 106,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes - Accessible rear entrance, next to the parking lot.",
         "GIS_ID": "plp_123",
@@ -1408,7 +1408,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.937616302328593, 38.879067951063831]
+        "coordinates": [-76.93761630232859, 38.87906795106383]
       }
     },
     {
@@ -1416,8 +1416,8 @@
       "properties": {
         "OBJECTID_1": 121,
         "OBJECTID_2": 95,
-        "OBJECTID": 124.0,
-        "PRECINCT_N": 107.0,
+        "OBJECTID": 124,
+        "PRECINCT_N": 107,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_124",
@@ -1428,7 +1428,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.953161747717687, 38.883908000174614]
+        "coordinates": [-76.95316174771769, 38.883908000174614]
       }
     },
     {
@@ -1436,8 +1436,8 @@
       "properties": {
         "OBJECTID_1": 122,
         "OBJECTID_2": 96,
-        "OBJECTID": 125.0,
-        "PRECINCT_N": 142.0,
+        "OBJECTID": 125,
+        "PRECINCT_N": 142,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_125",
@@ -1448,7 +1448,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.022910654604146, 38.879870599424763]
+        "coordinates": [-77.02291065460415, 38.87987059942476]
       }
     },
     {
@@ -1456,8 +1456,8 @@
       "properties": {
         "OBJECTID_1": 123,
         "OBJECTID_2": 97,
-        "OBJECTID": 126.0,
-        "PRECINCT_N": 140.0,
+        "OBJECTID": 126,
+        "PRECINCT_N": 140,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_126",
@@ -1468,7 +1468,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.983077248298486, 38.870083725754895]
+        "coordinates": [-76.98307724829849, 38.870083725754895]
       }
     },
     {
@@ -1476,8 +1476,8 @@
       "properties": {
         "OBJECTID_1": 124,
         "OBJECTID_2": 98,
-        "OBJECTID": 127.0,
-        "PRECINCT_N": 139.0,
+        "OBJECTID": 127,
+        "PRECINCT_N": 139,
         "FACILITY_D": "Community Service Area",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_127",
@@ -1488,7 +1488,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.957633696697528, 38.927305943770008]
+        "coordinates": [-76.95763369669753, 38.92730594377001]
       }
     },
     {
@@ -1496,8 +1496,8 @@
       "properties": {
         "OBJECTID_1": 1,
         "OBJECTID_2": 101,
-        "OBJECTID": 130.0,
-        "PRECINCT_N": 131.0,
+        "OBJECTID": 130,
+        "PRECINCT_N": 131,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_130",
@@ -1508,7 +1508,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.999244002225964, 38.87679611768769]
+        "coordinates": [-76.99924400222596, 38.87679611768769]
       }
     },
     {
@@ -1516,8 +1516,8 @@
       "properties": {
         "OBJECTID_1": 2,
         "OBJECTID_2": 102,
-        "OBJECTID": 131.0,
-        "PRECINCT_N": 125.0,
+        "OBJECTID": 131,
+        "PRECINCT_N": 125,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_131",
@@ -1528,7 +1528,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.999184840242322, 38.828985580495711]
+        "coordinates": [-76.99918484024232, 38.82898558049571]
       }
     },
     {
@@ -1536,8 +1536,8 @@
       "properties": {
         "OBJECTID_1": 3,
         "OBJECTID_2": 103,
-        "OBJECTID": 132.0,
-        "PRECINCT_N": 126.0,
+        "OBJECTID": 132,
+        "PRECINCT_N": 126,
         "FACILITY_D": "Library",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_132",
@@ -1548,7 +1548,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.008475600194785, 38.826981192201202]
+        "coordinates": [-77.00847560019479, 38.8269811922012]
       }
     },
     {
@@ -1556,8 +1556,8 @@
       "properties": {
         "OBJECTID_1": 4,
         "OBJECTID_2": 104,
-        "OBJECTID": 133.0,
-        "PRECINCT_N": 123.0,
+        "OBJECTID": 133,
+        "PRECINCT_N": 123,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_133",
@@ -1568,7 +1568,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.997583187909655, 38.843386565863888]
+        "coordinates": [-76.99758318790965, 38.84338656586389]
       }
     },
     {
@@ -1576,8 +1576,8 @@
       "properties": {
         "OBJECTID_1": 5,
         "OBJECTID_2": 105,
-        "OBJECTID": 135.0,
-        "PRECINCT_N": 121.0,
+        "OBJECTID": 135,
+        "PRECINCT_N": 121,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_135",
@@ -1588,7 +1588,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.992268817990308, 38.834327886510565]
+        "coordinates": [-76.99226881799031, 38.834327886510565]
       }
     },
     {
@@ -1596,8 +1596,8 @@
       "properties": {
         "OBJECTID_1": 6,
         "OBJECTID_2": 106,
-        "OBJECTID": 136.0,
-        "PRECINCT_N": 120.0,
+        "OBJECTID": 136,
+        "PRECINCT_N": 120,
         "FACILITY_D": "Meeting Room",
         "ACCESSIBLE": "Yes - Use side Entrance",
         "GIS_ID": "plp_136",
@@ -1608,7 +1608,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.986212854490333, 38.844973623092343]
+        "coordinates": [-76.98621285449033, 38.84497362309234]
       }
     },
     {
@@ -1616,8 +1616,8 @@
       "properties": {
         "OBJECTID_1": 7,
         "OBJECTID_2": 107,
-        "OBJECTID": 137.0,
-        "PRECINCT_N": 118.0,
+        "OBJECTID": 137,
+        "PRECINCT_N": 118,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_137",
@@ -1628,7 +1628,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.985550422151263, 38.856844389461791]
+        "coordinates": [-76.98555042215126, 38.85684438946179]
       }
     },
     {
@@ -1636,8 +1636,8 @@
       "properties": {
         "OBJECTID_1": 8,
         "OBJECTID_2": 108,
-        "OBJECTID": 138.0,
-        "PRECINCT_N": 119.0,
+        "OBJECTID": 138,
+        "PRECINCT_N": 119,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_138",
@@ -1648,7 +1648,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.99535456253949, 38.859761758349642]
+        "coordinates": [-76.99535456253949, 38.85976175834964]
       }
     },
     {
@@ -1656,8 +1656,8 @@
       "properties": {
         "OBJECTID_1": 9,
         "OBJECTID_2": 109,
-        "OBJECTID": 139.0,
-        "PRECINCT_N": 117.0,
+        "OBJECTID": 139,
+        "PRECINCT_N": 117,
         "FACILITY_D": "Main Lobby",
         "ACCESSIBLE": "Yes - Use ramped entrance on Stanton Road.",
         "GIS_ID": "plp_139",
@@ -1668,7 +1668,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.977761548811543, 38.852636229366837]
+        "coordinates": [-76.97776154881154, 38.85263622936684]
       }
     },
     {
@@ -1676,8 +1676,8 @@
       "properties": {
         "OBJECTID_1": 10,
         "OBJECTID_2": 110,
-        "OBJECTID": 140.0,
-        "PRECINCT_N": 114.0,
+        "OBJECTID": 140,
+        "PRECINCT_N": 114,
         "FACILITY_D": "Church Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_140",
@@ -1688,7 +1688,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.988939737432986, 38.864499675202886]
+        "coordinates": [-76.98893973743299, 38.864499675202886]
       }
     },
     {
@@ -1696,8 +1696,8 @@
       "properties": {
         "OBJECTID_1": 11,
         "OBJECTID_2": 111,
-        "OBJECTID": 141.0,
-        "PRECINCT_N": 113.0,
+        "OBJECTID": 141,
+        "PRECINCT_N": 113,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_141",
@@ -1708,7 +1708,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.964116112055365, 38.860502954486471]
+        "coordinates": [-76.96411611205536, 38.86050295448647]
       }
     },
     {
@@ -1716,8 +1716,8 @@
       "properties": {
         "OBJECTID_1": 12,
         "OBJECTID_2": 112,
-        "OBJECTID": 142.0,
-        "PRECINCT_N": 112.0,
+        "OBJECTID": 142,
+        "PRECINCT_N": 112,
         "FACILITY_D": "Meeting Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_142",
@@ -1728,7 +1728,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.978485420182579, 38.865896402057949]
+        "coordinates": [-76.97848542018258, 38.86589640205795]
       }
     },
     {
@@ -1736,8 +1736,8 @@
       "properties": {
         "OBJECTID_1": 13,
         "OBJECTID_2": 113,
-        "OBJECTID": 2.0,
-        "PRECINCT_N": 99.0,
+        "OBJECTID": 2,
+        "PRECINCT_N": 99,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_2",
@@ -1748,7 +1748,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.938468638784286, 38.893553701828701]
+        "coordinates": [-76.93846863878429, 38.8935537018287]
       }
     },
     {
@@ -1756,8 +1756,8 @@
       "properties": {
         "OBJECTID_1": 14,
         "OBJECTID_2": 114,
-        "OBJECTID": 3.0,
-        "PRECINCT_N": 97.0,
+        "OBJECTID": 3,
+        "PRECINCT_N": 97,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_3",
@@ -1768,7 +1768,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.932456126905393, 38.893314974927328]
+        "coordinates": [-76.9324561269054, 38.89331497492733]
       }
     },
     {
@@ -1776,8 +1776,8 @@
       "properties": {
         "OBJECTID_1": 15,
         "OBJECTID_2": 115,
-        "OBJECTID": 4.0,
-        "PRECINCT_N": 130.0,
+        "OBJECTID": 4,
+        "PRECINCT_N": 130,
         "FACILITY_D": "Multi-Purpose Room (lower level)",
         "ACCESSIBLE": "Yes - Use west entrance.",
         "GIS_ID": "plp_4",
@@ -1788,7 +1788,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.002857667709918, 38.890112459701982]
+        "coordinates": [-77.00285766770992, 38.89011245970198]
       }
     },
     {
@@ -1796,8 +1796,8 @@
       "properties": {
         "OBJECTID_1": 16,
         "OBJECTID_2": 116,
-        "OBJECTID": 112.0,
-        "PRECINCT_N": 90.0,
+        "OBJECTID": 112,
+        "PRECINCT_N": 90,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_112",
@@ -1808,7 +1808,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.992041656836633, 38.881084023669693]
+        "coordinates": [-76.99204165683663, 38.88108402366969]
       }
     },
     {
@@ -1816,8 +1816,8 @@
       "properties": {
         "OBJECTID_1": 17,
         "OBJECTID_2": 117,
-        "OBJECTID": 119.0,
-        "PRECINCT_N": 101.0,
+        "OBJECTID": 119,
+        "PRECINCT_N": 101,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_119",
@@ -1828,7 +1828,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.957807551091278, 38.895428461353752]
+        "coordinates": [-76.95780755109128, 38.89542846135375]
       }
     },
     {
@@ -1836,8 +1836,8 @@
       "properties": {
         "OBJECTID_1": 18,
         "OBJECTID_2": 118,
-        "OBJECTID": 134.0,
-        "PRECINCT_N": 122.0,
+        "OBJECTID": 134,
+        "PRECINCT_N": 122,
         "FACILITY_D": "Armory",
         "ACCESSIBLE": "Yes - Accessible entrance adjacent to parking lot.",
         "GIS_ID": "plp_134",
@@ -1848,7 +1848,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.000975257588308, 38.839382331531922]
+        "coordinates": [-77.00097525758831, 38.83938233153192]
       }
     },
     {
@@ -1856,8 +1856,8 @@
       "properties": {
         "OBJECTID_1": 19,
         "OBJECTID_2": 119,
-        "OBJECTID": 1.0,
-        "PRECINCT_N": 2.0,
+        "OBJECTID": 1,
+        "PRECINCT_N": 2,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_1",
@@ -1868,7 +1868,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.048186465638153, 38.898123787570832]
+        "coordinates": [-77.04818646563815, 38.89812378757083]
       }
     },
     {
@@ -1876,8 +1876,8 @@
       "properties": {
         "OBJECTID_1": 20,
         "OBJECTID_2": 120,
-        "OBJECTID": 40.0,
-        "PRECINCT_N": 72.0,
+        "OBJECTID": 40,
+        "PRECINCT_N": 72,
         "FACILITY_D": "Community Room (1st floor)",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_40",
@@ -1888,7 +1888,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.975788486876453, 38.926822413922125]
+        "coordinates": [-76.97578848687645, 38.926822413922125]
       }
     },
     {
@@ -1896,8 +1896,8 @@
       "properties": {
         "OBJECTID_1": 21,
         "OBJECTID_2": 121,
-        "OBJECTID": 29.0,
-        "PRECINCT_N": 34.0,
+        "OBJECTID": 29,
+        "PRECINCT_N": 34,
         "FACILITY_D": "Gymnasium (lower level)",
         "ACCESSIBLE": "Yes - Use ramped entrance.",
         "GIS_ID": "plp_29",
@@ -1908,7 +1908,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.061628156880005, 38.942361327729408]
+        "coordinates": [-77.06162815688, 38.94236132772941]
       }
     },
     {
@@ -1916,8 +1916,8 @@
       "properties": {
         "OBJECTID_1": 22,
         "OBJECTID_2": 122,
-        "OBJECTID": 30.0,
-        "PRECINCT_N": 45.0,
+        "OBJECTID": 30,
+        "PRECINCT_N": 45,
         "FACILITY_D": "Community Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_30",
@@ -1928,7 +1928,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.023810447712307, 38.940088934414405]
+        "coordinates": [-77.02381044771231, 38.940088934414405]
       }
     },
     {
@@ -1936,8 +1936,8 @@
       "properties": {
         "OBJECTID_1": 23,
         "OBJECTID_2": 123,
-        "OBJECTID": 31.0,
-        "PRECINCT_N": 8.0,
+        "OBJECTID": 31,
+        "PRECINCT_N": 8,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_31",
@@ -1948,7 +1948,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.102634605747866, 38.924441924850953]
+        "coordinates": [-77.10263460574787, 38.92444192485095]
       }
     },
     {
@@ -1956,8 +1956,8 @@
       "properties": {
         "OBJECTID_1": 24,
         "OBJECTID_2": 124,
-        "OBJECTID": 32.0,
-        "PRECINCT_N": 41.0,
+        "OBJECTID": 32,
+        "PRECINCT_N": 41,
         "FACILITY_D": "Great Hall",
         "ACCESSIBLE": "Yes - Use entrance on Oak Street.",
         "GIS_ID": "plp_32",
@@ -1968,7 +1968,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.036080424552495, 38.934550552844456]
+        "coordinates": [-77.0360804245525, 38.934550552844456]
       }
     },
     {
@@ -1976,8 +1976,8 @@
       "properties": {
         "OBJECTID_1": 25,
         "OBJECTID_2": 125,
-        "OBJECTID": 33.0,
-        "PRECINCT_N": 43.0,
+        "OBJECTID": 33,
+        "PRECINCT_N": 43,
         "FACILITY_D": "Recreation Area",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_33",
@@ -1988,7 +1988,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.021350314279189, 38.935002875205896]
+        "coordinates": [-77.02135031427919, 38.935002875205896]
       }
     },
     {
@@ -1996,8 +1996,8 @@
       "properties": {
         "OBJECTID_1": 26,
         "OBJECTID_2": 126,
-        "OBJECTID": 34.0,
-        "PRECINCT_N": 42.0,
+        "OBJECTID": 34,
+        "PRECINCT_N": 42,
         "FACILITY_D": "Dining Room (lower level)",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_34",
@@ -2008,7 +2008,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.029452852579396, 38.932240970226857]
+        "coordinates": [-77.0294528525794, 38.93224097022686]
       }
     },
     {
@@ -2016,8 +2016,8 @@
       "properties": {
         "OBJECTID_1": 27,
         "OBJECTID_2": 1,
-        "OBJECTID": 5.0,
-        "PRECINCT_N": 80.0,
+        "OBJECTID": 5,
+        "PRECINCT_N": 80,
         "FACILITY_D": "Quander Room",
         "ACCESSIBLE": "Yes - Accessible entrance rear of Church.",
         "GIS_ID": "plp_5",
@@ -2028,7 +2028,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.975457535682949, 38.894225931293576]
+        "coordinates": [-76.97545753568295, 38.894225931293576]
       }
     },
     {
@@ -2036,8 +2036,8 @@
       "properties": {
         "OBJECTID_1": 28,
         "OBJECTID_2": 2,
-        "OBJECTID": 6.0,
-        "PRECINCT_N": 102.0,
+        "OBJECTID": 6,
+        "PRECINCT_N": 102,
         "FACILITY_D": "Meeting Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_6",
@@ -2048,7 +2048,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.947759549614048, 38.89419424144954]
+        "coordinates": [-76.94775954961405, 38.89419424144954]
       }
     },
     {
@@ -2056,8 +2056,8 @@
       "properties": {
         "OBJECTID_1": 29,
         "OBJECTID_2": 3,
-        "OBJECTID": 7.0,
-        "PRECINCT_N": 96.0,
+        "OBJECTID": 7,
+        "PRECINCT_N": 96,
         "FACILITY_D": "Fellowship Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_7",
@@ -2068,7 +2068,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.925776919030255, 38.890534557241999]
+        "coordinates": [-76.92577691903026, 38.890534557242]
       }
     },
     {
@@ -2076,8 +2076,8 @@
       "properties": {
         "OBJECTID_1": 30,
         "OBJECTID_2": 4,
-        "OBJECTID": 8.0,
-        "PRECINCT_N": 88.0,
+        "OBJECTID": 8,
+        "PRECINCT_N": 88,
         "FACILITY_D": "Church Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_8",
@@ -2088,7 +2088,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.98528389471295, 38.887379306202888]
+        "coordinates": [-76.98528389471295, 38.88737930620289]
       }
     },
     {
@@ -2096,8 +2096,8 @@
       "properties": {
         "OBJECTID_1": 31,
         "OBJECTID_2": 5,
-        "OBJECTID": 9.0,
-        "PRECINCT_N": 132.0,
+        "OBJECTID": 9,
+        "PRECINCT_N": 132,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_9",
@@ -2108,7 +2108,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.963203222616286, 38.880871575493281]
+        "coordinates": [-76.96320322261629, 38.88087157549328]
       }
     },
     {
@@ -2116,8 +2116,8 @@
       "properties": {
         "OBJECTID_1": 32,
         "OBJECTID_2": 6,
-        "OBJECTID": 10.0,
-        "PRECINCT_N": 128.0,
+        "OBJECTID": 10,
+        "PRECINCT_N": 128,
         "FACILITY_D": "Junior Church Hall",
         "ACCESSIBLE": "Yes - Accessible entrance adjacent to parking lot.",
         "GIS_ID": "plp_10",
@@ -2128,7 +2128,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.012497934269035, 38.878918819849204]
+        "coordinates": [-77.01249793426904, 38.878918819849204]
       }
     },
     {
@@ -2136,8 +2136,8 @@
       "properties": {
         "OBJECTID_1": 33,
         "OBJECTID_2": 7,
-        "OBJECTID": 11.0,
-        "PRECINCT_N": 111.0,
+        "OBJECTID": 11,
+        "PRECINCT_N": 111,
         "FACILITY_D": "John Bailey Room",
         "ACCESSIBLE": "Yes - Use the Center for Employment Training entrance for ground level access (2815",
         "GIS_ID": "plp_11",
@@ -2148,7 +2148,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.967509922797618, 38.872519727803635]
+        "coordinates": [-76.96750992279762, 38.872519727803635]
       }
     },
     {
@@ -2156,8 +2156,8 @@
       "properties": {
         "OBJECTID_1": 34,
         "OBJECTID_2": 8,
-        "OBJECTID": 12.0,
-        "PRECINCT_N": 108.0,
+        "OBJECTID": 12,
+        "PRECINCT_N": 108,
         "FACILITY_D": "Community Room",
         "ACCESSIBLE": "Yes - Accessible - rear entrance, near parking lot.",
         "GIS_ID": "plp_12",
@@ -2168,7 +2168,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.963813000815662, 38.871129274649782]
+        "coordinates": [-76.96381300081566, 38.87112927464978]
       }
     },
     {
@@ -2176,8 +2176,8 @@
       "properties": {
         "OBJECTID_1": 35,
         "OBJECTID_2": 9,
-        "OBJECTID": 13.0,
-        "PRECINCT_N": 127.0,
+        "OBJECTID": 13,
+        "PRECINCT_N": 127,
         "FACILITY_D": "Meeting Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_13",
@@ -2188,7 +2188,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.012792499594184, 38.875015810745062]
+        "coordinates": [-77.01279249959418, 38.87501581074506]
       }
     },
     {
@@ -2196,8 +2196,8 @@
       "properties": {
         "OBJECTID_1": 36,
         "OBJECTID_2": 10,
-        "OBJECTID": 14.0,
-        "PRECINCT_N": 109.0,
+        "OBJECTID": 14,
+        "PRECINCT_N": 109,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_14",
@@ -2208,7 +2208,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.964356281775736, 38.870091403187843]
+        "coordinates": [-76.96435628177574, 38.87009140318784]
       }
     },
     {
@@ -2216,8 +2216,8 @@
       "properties": {
         "OBJECTID_1": 37,
         "OBJECTID_2": 11,
-        "OBJECTID": 16.0,
-        "PRECINCT_N": 134.0,
+        "OBJECTID": 16,
+        "PRECINCT_N": 134,
         "FACILITY_D": "Multipurpose Room",
         "ACCESSIBLE": "Yes - Use rear entrance, adjacent to parking lot.",
         "GIS_ID": "plp_16",
@@ -2228,7 +2228,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.970282941213242, 38.856884832198325]
+        "coordinates": [-76.97028294121324, 38.856884832198325]
       }
     },
     {
@@ -2236,8 +2236,8 @@
       "properties": {
         "OBJECTID_1": 38,
         "OBJECTID_2": 12,
-        "OBJECTID": 17.0,
-        "PRECINCT_N": 115.0,
+        "OBJECTID": 17,
+        "PRECINCT_N": 115,
         "FACILITY_D": "Community Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_17",
@@ -2248,7 +2248,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.969521397067084, 38.853355764139451]
+        "coordinates": [-76.96952139706708, 38.85335576413945]
       }
     },
     {
@@ -2256,8 +2256,8 @@
       "properties": {
         "OBJECTID_1": 39,
         "OBJECTID_2": 13,
-        "OBJECTID": 18.0,
-        "PRECINCT_N": 116.0,
+        "OBJECTID": 18,
+        "PRECINCT_N": 116,
         "FACILITY_D": "Fellowship Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_18",
@@ -2268,7 +2268,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.977839930327974, 38.847658633098888]
+        "coordinates": [-76.97783993032797, 38.84765863309889]
       }
     },
     {
@@ -2276,8 +2276,8 @@
       "properties": {
         "OBJECTID_1": 40,
         "OBJECTID_2": 14,
-        "OBJECTID": 19.0,
-        "PRECINCT_N": 124.0,
+        "OBJECTID": 19,
+        "PRECINCT_N": 124,
         "FACILITY_D": "Church Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_19",
@@ -2296,8 +2296,8 @@
       "properties": {
         "OBJECTID_1": 41,
         "OBJECTID_2": 15,
-        "OBJECTID": 20.0,
-        "PRECINCT_N": 61.0,
+        "OBJECTID": 20,
+        "PRECINCT_N": 61,
         "FACILITY_D": "Multi-purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_20",
@@ -2308,7 +2308,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.031090800845547, 38.970269148593538]
+        "coordinates": [-77.03109080084555, 38.97026914859354]
       }
     },
     {
@@ -2316,8 +2316,8 @@
       "properties": {
         "OBJECTID_1": 42,
         "OBJECTID_2": 16,
-        "OBJECTID": 21.0,
-        "PRECINCT_N": 50.0,
+        "OBJECTID": 21,
+        "PRECINCT_N": 50,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes - Accessible rear entrance next to the parking lot.",
         "GIS_ID": "plp_21",
@@ -2328,7 +2328,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.075108613262955, 38.965158421273387]
+        "coordinates": [-77.07510861326296, 38.96515842127339]
       }
     },
     {
@@ -2336,8 +2336,8 @@
       "properties": {
         "OBJECTID_1": 43,
         "OBJECTID_2": 17,
-        "OBJECTID": 22.0,
-        "PRECINCT_N": 52.0,
+        "OBJECTID": 22,
+        "PRECINCT_N": 52,
         "FACILITY_D": "Roth Gymnasium Bldg.",
         "ACCESSIBLE": "Yes - Access from parking lot.",
         "GIS_ID": "plp_22",
@@ -2348,7 +2348,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.055204940372292, 38.962417220863394]
+        "coordinates": [-77.05520494037229, 38.962417220863394]
       }
     },
     {
@@ -2356,8 +2356,8 @@
       "properties": {
         "OBJECTID_1": 44,
         "OBJECTID_2": 18,
-        "OBJECTID": 24.0,
-        "PRECINCT_N": 60.0,
+        "OBJECTID": 24,
+        "PRECINCT_N": 60,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_24",
@@ -2368,7 +2368,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.028226985088239, 38.962848161689173]
+        "coordinates": [-77.02822698508824, 38.96284816168917]
       }
     },
     {
@@ -2376,8 +2376,8 @@
       "properties": {
         "OBJECTID_1": 45,
         "OBJECTID_2": 19,
-        "OBJECTID": 25.0,
-        "PRECINCT_N": 138.0,
+        "OBJECTID": 25,
+        "PRECINCT_N": 138,
         "FACILITY_D": "Fellowship Hall",
         "ACCESSIBLE": "Yes - Accessible entrance adjacent to parking lot.",
         "GIS_ID": "plp_25",
@@ -2388,7 +2388,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.06396319555985, 38.950203225069913]
+        "coordinates": [-77.06396319555985, 38.95020322506991]
       }
     },
     {
@@ -2396,8 +2396,8 @@
       "properties": {
         "OBJECTID_1": 46,
         "OBJECTID_2": 20,
-        "OBJECTID": 26.0,
-        "PRECINCT_N": 31.0,
+        "OBJECTID": 26,
+        "PRECINCT_N": 31,
         "FACILITY_D": "Church Hall",
         "ACCESSIBLE": "Yes - Accessible entrance located on 42nd St.",
         "GIS_ID": "plp_26",
@@ -2408,7 +2408,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.08244680641738, 38.948217666726201]
+        "coordinates": [-77.08244680641738, 38.9482176667262]
       }
     },
     {
@@ -2416,8 +2416,8 @@
       "properties": {
         "OBJECTID_1": 47,
         "OBJECTID_2": 21,
-        "OBJECTID": 27.0,
-        "PRECINCT_N": 44.0,
+        "OBJECTID": 27,
+        "PRECINCT_N": 44,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_27",
@@ -2428,7 +2428,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.00866515707142, 38.954067744263412]
+        "coordinates": [-77.00866515707142, 38.95406774426341]
       }
     },
     {
@@ -2436,8 +2436,8 @@
       "properties": {
         "OBJECTID_1": 48,
         "OBJECTID_2": 22,
-        "OBJECTID": 28.0,
-        "PRECINCT_N": 9.0,
+        "OBJECTID": 28,
+        "PRECINCT_N": 9,
         "FACILITY_D": "Vestry Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_28",
@@ -2448,7 +2448,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.087799340484636, 38.934959237025218]
+        "coordinates": [-77.08779934048464, 38.93495923702522]
       }
     },
     {
@@ -2456,8 +2456,8 @@
       "properties": {
         "OBJECTID_1": 49,
         "OBJECTID_2": 23,
-        "OBJECTID": 47.0,
-        "PRECINCT_N": 75.0,
+        "OBJECTID": 47,
+        "PRECINCT_N": 75,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_47",
@@ -2468,7 +2468,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.004122439059401, 38.915219785761813]
+        "coordinates": [-77.0041224390594, 38.91521978576181]
       }
     },
     {
@@ -2476,8 +2476,8 @@
       "properties": {
         "OBJECTID_1": 50,
         "OBJECTID_2": 24,
-        "OBJECTID": 48.0,
-        "PRECINCT_N": 141.0,
+        "OBJECTID": 48,
+        "PRECINCT_N": 141,
         "FACILITY_D": "North Lobby",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_48",
@@ -2488,7 +2488,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.032403524076486, 38.917444026973975]
+        "coordinates": [-77.03240352407649, 38.917444026973975]
       }
     },
     {
@@ -2496,8 +2496,8 @@
       "properties": {
         "OBJECTID_1": 125,
         "OBJECTID_2": 99,
-        "OBJECTID": 128.0,
-        "PRECINCT_N": 137.0,
+        "OBJECTID": 128,
+        "PRECINCT_N": 137,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes - Accessible entrance adjacent to parking lot.",
         "GIS_ID": "plp_128",
@@ -2508,7 +2508,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.028612550392012, 38.913900958245385]
+        "coordinates": [-77.02861255039201, 38.913900958245385]
       }
     },
     {
@@ -2516,8 +2516,8 @@
       "properties": {
         "OBJECTID_1": 126,
         "OBJECTID_2": 100,
-        "OBJECTID": 129.0,
-        "PRECINCT_N": 133.0,
+        "OBJECTID": 129,
+        "PRECINCT_N": 133,
         "FACILITY_D": "Library",
         "ACCESSIBLE": "Yes - Accessible entrance rear of school",
         "GIS_ID": "plp_129",
@@ -2528,7 +2528,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.974484011563916, 38.871796823975465]
+        "coordinates": [-76.97448401156392, 38.871796823975465]
       }
     },
     {
@@ -2536,8 +2536,8 @@
       "properties": {
         "OBJECTID_1": 127,
         "OBJECTID_2": 127,
-        "OBJECTID": 35.0,
-        "PRECINCT_N": 71.0,
+        "OBJECTID": 35,
+        "PRECINCT_N": 71,
         "FACILITY_D": "Upper Fellowship Hall",
         "ACCESSIBLE": "Yes - Accessible entrance on Bladensburg Road",
         "GIS_ID": "plp_35",
@@ -2548,7 +2548,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.962575827800578, 38.928281639524052]
+        "coordinates": [-76.96257582780058, 38.92828163952405]
       }
     },
     {
@@ -2556,8 +2556,8 @@
       "properties": {
         "OBJECTID_1": 128,
         "OBJECTID_2": 128,
-        "OBJECTID": 36.0,
-        "PRECINCT_N": 28.0,
+        "OBJECTID": 36,
+        "PRECINCT_N": 28,
         "FACILITY_D": "Parish Center (near Klingle Place)",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_36",
@@ -2568,7 +2568,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.075817469590191, 38.930148719361682]
+        "coordinates": [-77.07581746959019, 38.93014871936168]
       }
     },
     {
@@ -2576,8 +2576,8 @@
       "properties": {
         "OBJECTID_1": 129,
         "OBJECTID_2": 129,
-        "OBJECTID": 37.0,
-        "PRECINCT_N": 136.0,
+        "OBJECTID": 37,
+        "PRECINCT_N": 136,
         "FACILITY_D": "Conference Room",
         "ACCESSIBLE": "Yes - Use side entrance from parking lot",
         "GIS_ID": "plp_37",
@@ -2588,7 +2588,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.050817099689468, 38.923171900472795]
+        "coordinates": [-77.05081709968947, 38.923171900472795]
       }
     },
     {
@@ -2596,8 +2596,8 @@
       "properties": {
         "OBJECTID_1": 130,
         "OBJECTID_2": 130,
-        "OBJECTID": 38.0,
-        "PRECINCT_N": 12.0,
+        "OBJECTID": 38,
+        "PRECINCT_N": 12,
         "FACILITY_D": "Church Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_38",
@@ -2608,7 +2608,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.071174182052317, 38.926724696389051]
+        "coordinates": [-77.07117418205232, 38.92672469638905]
       }
     },
     {
@@ -2616,8 +2616,8 @@
       "properties": {
         "OBJECTID_1": 131,
         "OBJECTID_2": 131,
-        "OBJECTID": 39.0,
-        "PRECINCT_N": 39.0,
+        "OBJECTID": 39,
+        "PRECINCT_N": 39,
         "FACILITY_D": "Auditorium",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_39",
@@ -2628,7 +2628,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.035851518793763, 38.929540334081075]
+        "coordinates": [-77.03585151879376, 38.929540334081075]
       }
     },
     {
@@ -2636,8 +2636,8 @@
       "properties": {
         "OBJECTID_1": 132,
         "OBJECTID_2": 132,
-        "OBJECTID": 41.0,
-        "PRECINCT_N": 36.0,
+        "OBJECTID": 41,
+        "PRECINCT_N": 36,
         "FACILITY_D": "Community Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_41",
@@ -2648,7 +2648,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.033357815907635, 38.927766394492799]
+        "coordinates": [-77.03335781590764, 38.9277663944928]
       }
     },
     {
@@ -2656,8 +2656,8 @@
       "properties": {
         "OBJECTID_1": 133,
         "OBJECTID_2": 133,
-        "OBJECTID": 42.0,
-        "PRECINCT_N": 135.0,
+        "OBJECTID": 42,
+        "PRECINCT_N": 135,
         "FACILITY_D": "Church Hall",
         "ACCESSIBLE": "Yes - Use ramped entrance on Rhode Island Avenue.",
         "GIS_ID": "plp_42",
@@ -2668,7 +2668,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.01182725241577, 38.916136758622002]
+        "coordinates": [-77.01182725241577, 38.916136758622]
       }
     },
     {
@@ -2676,8 +2676,8 @@
       "properties": {
         "OBJECTID_1": 134,
         "OBJECTID_2": 134,
-        "OBJECTID": 43.0,
-        "PRECINCT_N": 11.0,
+        "OBJECTID": 43,
+        "PRECINCT_N": 11,
         "FACILITY_D": "Union Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_43",
@@ -2688,7 +2688,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.072501975359245, 38.92234916933058]
+        "coordinates": [-77.07250197535924, 38.92234916933058]
       }
     },
     {
@@ -2696,8 +2696,8 @@
       "properties": {
         "OBJECTID_1": 135,
         "OBJECTID_2": 135,
-        "OBJECTID": 44.0,
-        "PRECINCT_N": 23.0,
+        "OBJECTID": 44,
+        "PRECINCT_N": 23,
         "FACILITY_D": "Library and Computer Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_44",
@@ -2708,7 +2708,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.032362118987933, 38.921998738498395]
+        "coordinates": [-77.03236211898793, 38.921998738498395]
       }
     },
     {
@@ -2716,8 +2716,8 @@
       "properties": {
         "OBJECTID_1": 136,
         "OBJECTID_2": 136,
-        "OBJECTID": 45.0,
-        "PRECINCT_N": 25.0,
+        "OBJECTID": 45,
+        "PRECINCT_N": 25,
         "FACILITY_D": "Fellowship Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_45",
@@ -2728,7 +2728,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.043826034297922, 38.919316646134163]
+        "coordinates": [-77.04382603429792, 38.91931664613416]
       }
     },
     {
@@ -2736,8 +2736,8 @@
       "properties": {
         "OBJECTID_1": 137,
         "OBJECTID_2": 137,
-        "OBJECTID": 46.0,
-        "PRECINCT_N": 13.0,
+        "OBJECTID": 46,
+        "PRECINCT_N": 13,
         "FACILITY_D": "Fellowship Hall",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_46",
@@ -2748,7 +2748,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.043826034297922, 38.919316646134163]
+        "coordinates": [-77.04382603429792, 38.91931664613416]
       }
     },
     {
@@ -2756,8 +2756,8 @@
       "properties": {
         "OBJECTID_1": 138,
         "OBJECTID_2": 138,
-        "OBJECTID": 143.0,
-        "PRECINCT_N": 143.0,
+        "OBJECTID": 143,
+        "PRECINCT_N": 143,
         "FACILITY_D": "Church Hall/Meeting Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_143",
@@ -2768,7 +2768,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.019133548822794, 38.900621429714505]
+        "coordinates": [-77.0191335488228, 38.900621429714505]
       }
     },
     {
@@ -2776,8 +2776,8 @@
       "properties": {
         "OBJECTID_1": 139,
         "OBJECTID_2": 139,
-        "OBJECTID": 15.0,
-        "PRECINCT_N": 110.0,
+        "OBJECTID": 15,
+        "PRECINCT_N": 110,
         "FACILITY_D": "Multi-Purpose Room",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_15",
@@ -2788,7 +2788,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-76.956092288786962, 38.862989239014041]
+        "coordinates": [-76.95609228878696, 38.86298923901404]
       }
     },
     {
@@ -2796,8 +2796,8 @@
       "properties": {
         "OBJECTID_1": 140,
         "OBJECTID_2": 140,
-        "OBJECTID": 23.0,
-        "PRECINCT_N": 32.0,
+        "OBJECTID": 23,
+        "PRECINCT_N": 32,
         "FACILITY_D": "Fellowship Hall (1st Floor)",
         "ACCESSIBLE": "Yes - Use Connecticut Ave. entrance",
         "GIS_ID": "plp_23",
@@ -2808,7 +2808,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.07264987664179, 38.959324066446086]
+        "coordinates": [-77.07264987664179, 38.95932406644609]
       }
     },
     {
@@ -2816,8 +2816,8 @@
       "properties": {
         "OBJECTID_1": 141,
         "OBJECTID_2": 141,
-        "OBJECTID": 63.0,
-        "PRECINCT_N": 6.0,
+        "OBJECTID": 63,
+        "PRECINCT_N": 6,
         "FACILITY_D": "Gallery",
         "ACCESSIBLE": "Yes",
         "GIS_ID": "plp_63",
@@ -2828,7 +2828,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.070307562295099, 38.913446044424617]
+        "coordinates": [-77.0703075622951, 38.91344604442462]
       }
     },
     {
@@ -2836,8 +2836,8 @@
       "properties": {
         "OBJECTID_1": 142,
         "OBJECTID_2": 142,
-        "OBJECTID": 70.0,
-        "PRECINCT_N": 26.0,
+        "OBJECTID": 70,
+        "PRECINCT_N": 26,
         "FACILITY_D": "Gymnasium",
         "ACCESSIBLE": "Yes - Use ramped entrance on 27th Street",
         "GIS_ID": "plp_70",
@@ -2848,7 +2848,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.057203378566399, 38.923595492962626]
+        "coordinates": [-77.0572033785664, 38.923595492962626]
       }
     },
     {
@@ -2856,8 +2856,8 @@
       "properties": {
         "OBJECTID_1": 143,
         "OBJECTID_2": 143,
-        "OBJECTID": 89.0,
-        "PRECINCT_N": 58.0,
+        "OBJECTID": 89,
+        "PRECINCT_N": 58,
         "FACILITY_D": "Community Room.",
         "ACCESSIBLE": "Yes - Ground level at Georgia. Avenue & Quackenbos Street.",
         "GIS_ID": "plp_89",
@@ -2868,7 +2868,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-77.027410983594336, 38.963125449653411]
+        "coordinates": [-77.02741098359434, 38.96312544965341]
       }
     }
   ]
