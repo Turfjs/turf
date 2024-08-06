@@ -36,6 +36,12 @@ jobs:
           cache: "pnpm"
           node-version: ${{ matrix.node-version }}
 
+      - name: Cache nx data
+        uses: actions/cache@v4
+        with:
+          path: .nx
+          key: ${{ runner.os }}-nx
+
       - run: pnpm install --frozen-lockfile
       - run: git diff --exit-code
       - run: pnpm test
