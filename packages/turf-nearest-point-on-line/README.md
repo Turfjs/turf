@@ -34,7 +34,7 @@ var addToMap = [line, pt, snapped];
 snapped.properties['marker-color'] = '#00f';
 ```
 
-Returns **[Feature][4]<[Point][1]>** closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
+Returns **[Feature][4]<[Point][1]>** closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
