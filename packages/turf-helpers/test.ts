@@ -541,7 +541,7 @@ test("bearingToAzimuth", (t) => {
   t.end();
 });
 
-test('azimuthToBearing', t => {
+test("azimuthToBearing", t => {
   t.equal(azimuthToBearing(0), 0);
   t.equal(azimuthToBearing(360), 0);
   t.equal(azimuthToBearing(180), 180);
