@@ -15,6 +15,7 @@ import {
   radiansToDegrees,
   degreesToRadians,
   bearingToAzimuth,
+  azimuthToBearing,
   convertLength,
   convertArea,
   round,
@@ -537,6 +538,26 @@ test("bearingToAzimuth", (t) => {
   t.equal(bearingToAzimuth(410), 50);
   t.equal(bearingToAzimuth(-200), 160);
   t.equal(bearingToAzimuth(-395), 325);
+  t.end();
+});
+
+test("azimuthToBearing", (t) => {
+  t.equal(azimuthToBearing(0), 0);
+  t.equal(azimuthToBearing(360), 0);
+  t.equal(azimuthToBearing(180), 180);
+
+  t.equal(azimuthToBearing(40), 40);
+  t.equal(azimuthToBearing(40 + 360), 40);
+
+  t.equal(azimuthToBearing(-35), -35);
+  t.equal(azimuthToBearing(-35 - 360), -35);
+
+  t.equal(azimuthToBearing(255), -105);
+  t.equal(azimuthToBearing(255 + 360), -105);
+
+  t.equal(azimuthToBearing(-200), 160);
+  t.equal(azimuthToBearing(-200 - 360), 160);
+
   t.end();
 });
 

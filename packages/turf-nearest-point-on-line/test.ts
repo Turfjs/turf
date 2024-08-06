@@ -375,3 +375,25 @@ test("turf-point-on-line -- Geometry Support", (t) => {
   );
   t.end();
 });
+
+test("turf-point-on-line -- multifeature index", (t) => {
+  const pt = point([4, 30]);
+  const multiLine = multiLineString([
+    [
+      [7, 50],
+      [8, 50],
+      [9, 50],
+    ],
+    [
+      [17, 30],
+      [4, 30],
+      [2, 30],
+    ],
+  ]);
+  t.equal(
+    nearestPointOnLine(multiLine.geometry, pt).properties.multiFeatureIndex,
+    1,
+    "multiFeatureIndex"
+  );
+  t.end();
+});
