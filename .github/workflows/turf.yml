@@ -2,9 +2,13 @@ name: CI build
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
+      - support/6.x
   pull_request:
-    branches: [master]
+    branches:
+      - master
+      - support/6.x
 
 permissions:
   contents: read
