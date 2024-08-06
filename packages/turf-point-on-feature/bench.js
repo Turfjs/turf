@@ -1,5 +1,5 @@
 import path from "path";
-import glob from "glob";
+import { glob } from "glob";
 import load from "load-json-file";
 import Benchmark from "benchmark";
 import pointOnFeature from "./index";

@@ -8,8 +8,8 @@ const {
 const combine = require("./index").default;
 
 // MultiPoint
-var pt1 = point(50, 51);
-var pt2 = point(100, 101);
+var pt1 = point([50, 51]);
+var pt2 = point([100, 101]);
 
 // MultiLineString
 var l1 = lineString([
