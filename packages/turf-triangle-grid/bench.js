@@ -1,5 +1,5 @@
 import Benchmark from "benchmark";
-import grid from "./dist/js/index.js";
+import grid from "./index";
 
 var bbox1 = [
   -96.6357421875,

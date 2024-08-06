@@ -1,5 +1,5 @@
 import { BBox } from "@turf/helpers";
-import triangleGrid from "./dist/js/index";
+import triangleGrid from "./index";
 
 const bbox: BBox = [
   -96.6357421875,

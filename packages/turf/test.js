@@ -1,10 +1,10 @@
 const fs = require("fs");
 const path = require("path");
-const glob = require("glob");
+const { glob } = require("glob");
 const test = require("tape");
 const camelcase = require("camelcase");
 const documentation = require("documentation");
-const turf = require("./dist/js/index.js");
+const turf = require("./dist/cjs/index.js");
 
 // Helpers
 const directory = path.join(__dirname, "..");
@@ -216,7 +216,7 @@ test("turf -- parsing dependencies from index.js", (t) => {
 test("turf -- missing modules", (t) => {
   const files = {
     typescript: fs.readFileSync(path.join(__dirname, "index.d.ts")),
-    modules: fs.readFileSync(path.join(__dirname, "dist/js/index.js")),
+    modules: fs.readFileSync(path.join(__dirname, "dist/cjs/index.js")),
   };
 
   modules.forEach(({ name }) => {
@@ -325,7 +325,7 @@ const turfTypescriptPath = path.join(__dirname, "..", "turf-*", "index.d.ts");
 
 // Test Strings
 const requireString = `const test = require('tape');
-const turf = require('./dist/js/index.js');
+const turf = require('./dist/cjs/index.js');
 `;
 
 /**
@@ -371,29 +371,24 @@ test('turf-example-${turfName}', t => {
 }
 
 // Iterate over each module and retrieve @example to build tests from them
-glob(turfModulesPath, (err, files) => {
-  if (err) throw err;
-
-  // Read each JSDocs from index.js files
-  documentation.build(files, {}).then((turfFunctions) => {
-    if (err) throw err;
-
-    // Write header of test.js
-    const writeableStream = fs.createWriteStream(testFilePath);
-    writeableStream.write(requireString);
-    writeableStream.on("error", (err) => {
-      throw err;
-    });
-
-    // Retrieve @example
-    turfFunctions.forEach((turfFunction) => {
-      if (turfFunction.examples) {
-        // Save to test.js
-        turfFunction.examples.forEach((example) => {
-          writeableStream.write(testString(turfFunction, example));
-        });
-      }
-    });
-    writeableStream.end();
+const files = glob.sync(turfModulesPath);
+// Read each JSDocs from index.js files
+documentation.build(files, {}).then((turfFunctions) => {
+  // Write header of test.js
+  const writeableStream = fs.createWriteStream(testFilePath);
+  writeableStream.write(requireString);
+  writeableStream.on("error", (err) => {
+    throw err;
   });
+
+  // Retrieve @example
+  turfFunctions.forEach((turfFunction) => {
+    if (turfFunction.examples) {
+      // Save to test.js
+      turfFunction.examples.forEach((example) => {
+        writeableStream.write(testString(turfFunction, example));
+      });
+    }
+  });
+  writeableStream.end();
 });

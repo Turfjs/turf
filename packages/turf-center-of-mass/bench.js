@@ -1,8 +1,8 @@
 import path from "path";
-import glob from "glob";
+import { glob } from "glob";
 import load from "load-json-file";
 import Benchmark from "benchmark";
-import centerOfMass from "./dist/js/index.js";
+import centerOfMass from "./index";
 
 const fixtures = glob
   .sync(path.join(__dirname, "test", "in", "*.geojson"))
