@@ -1,5 +1,4 @@
 import { defineConfig, Options } from "tsup";
-import path from "path";
 
 const baseOptions: Options = {
   clean: true,
@@ -8,7 +7,7 @@ const baseOptions: Options = {
   minify: false,
   skipNodeModulesBundle: true,
   sourcemap: true,
-  target: "es2017",
+  target: "es5",
   tsconfig: "tsconfig.json",
   keepNames: true,
   // treeshake: true, causes "chunk.default" warning, breaks CJS exports?

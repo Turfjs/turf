@@ -1,7 +1,7 @@
 const test = require("tape");
 const path = require("path");
 const load = require("load-json-file");
-const moranIndex = require("./dist/js/index.js").default;
+const moranIndex = require("./index").default;
 
 test("turf-moran-index", (t) => {
   const pointPath = path.join(__dirname, "test", "in", "point.json");

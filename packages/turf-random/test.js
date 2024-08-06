@@ -1,5 +1,5 @@
 const test = require("tape");
-const { randomPoint, randomPolygon } = require("./dist/js/index.js");
+const { randomPoint, randomPolygon } = require("./index");
 
 test("random(points)", (t) => {
   var points = randomPoint();

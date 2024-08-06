@@ -3,7 +3,7 @@ export default function validES5() {
     name: "valid-es5",
     renderChunk(code) {
       removeComments(code)
-        .match(/[\w\=\>]+/g)
+        .match(/[\w\=\>]+/g) // eslint-disable-line
         .forEach((word) => {
           switch (word) {
             case "const":
@@ -19,7 +19,7 @@ export default function validES5() {
 
 function removeComments(code) {
   // Remove comments block comments
-  code = code.replace(/\/\*\*[\w\s*\.@{}|<>,=()[\];\/\-'`":]+\*\//g, "");
+  code = code.replace(/\/\*\*[\w\s*\.@{}|<>,=()[\];\/\-'`":]+\*\//g, ""); // eslint-disable-line
   // Remove inline comments
   code = code.replace(/\/\/.+\n/g, "\n");
   return code;

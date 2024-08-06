@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "@turf/along": "^6.5.0",
+    "@turf/length": "workspace:^6.5.0",
     "benchmark": "*",
     "load-json-file": "*",
     "npm-run-all": "*",

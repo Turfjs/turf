@@ -59,7 +59,7 @@
     "@turf/destination": "^6.5.0",
     "@turf/truncate": "^6.5.0",
     "benchmark": "*",
-    "glob": "*",
+    "glob": "^10.3.12",
     "load-json-file": "*",
     "npm-run-all": "*",
     "rollup": "*",

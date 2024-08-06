@@ -3,7 +3,7 @@ const path = require("path");
 const test = require("tape");
 const load = require("load-json-file");
 const { lineString } = require("@turf/helpers");
-const isClockwise = require("./dist/js/index.js").default;
+const isClockwise = require("./index").default;
 
 test("isClockwise#fixtures", (t) => {
   // True Fixtures

@@ -2,6 +2,7 @@
   "private": true,
   "funding": "https://opencollective.com/turf",
   "scripts": {
+    "docs": "tsx ./scripts/generate-readmes",
     "lint": "npm-run-all lint:*",
     "lint:eslint": "eslint packages",
     "lint:prettier": "prettier --check .",
@@ -10,11 +11,8 @@
     "lint:escheck-es": "es-check --module es5 packages/*/dist/esm/index.mjs",
     "postlint": "documentation lint packages/turf-*/index.js",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "lerna run build && node ./scripts/add-import-extensions.js",
-    "pretest": "npm run lint",
-    "test": "lerna run test",
-    "posttest": "lerna run --scope @turf/turf last-checks",
-    "docs": "node ./scripts/generate-readmes"
+    "prepare": "lerna run build && tsx ./scripts/add-import-extensions.js",
+    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
   },
   "husky": {
     "hooks": {

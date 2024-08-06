@@ -57,7 +57,7 @@
     "@types/tape": "*",
     "benchmark": "*",
     "geojson-fixtures": "*",
-    "glob": "*",
+    "glob": "^10.3.12",
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",

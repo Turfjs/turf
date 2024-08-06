@@ -57,6 +57,7 @@
     "@turf/meta": "^6.5.0",
     "@turf/truncate": "^6.5.0",
     "benchmark": "*",
+    "glob": "^10.3.12",
     "npm-run-all": "*",
     "rollup": "*",
     "tape": "*",

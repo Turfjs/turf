@@ -55,7 +55,7 @@
     "@turf/combine": "^6.5.0",
     "@types/tape": "*",
     "benchmark": "*",
-    "glob": "*",
+    "glob": "^10.3.12",
     "load-json-file": "*",
     "npm-run-all": "*",
     "tape": "*",

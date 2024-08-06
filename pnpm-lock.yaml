@@ -104,6 +104,9 @@ importers:
       tsup:
         specifier: ^8.0.1
         version: 8.0.2(postcss@8.3.5)(ts-node@10.9.2)(typescript@4.7.4)
+      tsx:
+        specifier: ^4.6.2
+        version: 4.9.1
       typescript:
         specifier: ~4.7.2
         version: 4.7.4
@@ -457,7 +460,7 @@ importers:
         specifier: ^13.2.5
         version: 13.2.5(vue@3.1.2)
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       rollup:
         specifier: ^2.68.0
@@ -552,7 +555,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -844,7 +847,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -887,7 +890,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -945,7 +948,7 @@ importers:
         specifier: '*'
         version: 0.1.2
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1000,7 +1003,7 @@ importers:
         specifier: '*'
         version: 0.1.2
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1107,7 +1110,7 @@ importers:
         specifier: '*'
         version: 0.1.2
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1214,7 +1217,7 @@ importers:
         specifier: '*'
         version: 0.1.2
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1343,7 +1346,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1401,7 +1404,7 @@ importers:
         specifier: '*'
         version: 0.1.2
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1474,7 +1477,7 @@ importers:
         specifier: '*'
         version: 0.1.2
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1532,7 +1535,7 @@ importers:
         specifier: '*'
         version: 0.1.2
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1636,7 +1639,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1691,7 +1694,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1810,7 +1813,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -1859,7 +1862,7 @@ importers:
         specifier: '*'
         version: 1.0.0
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -2370,7 +2373,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -2419,7 +2422,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -2465,7 +2468,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -2552,6 +2555,9 @@ importers:
 
   packages/turf-dissolve:
     dependencies:
+      '@turf/flatten':
+        specifier: workspace:^6.5.0
+        version: link:../turf-flatten
       '@turf/helpers':
         specifier: ^6.5.0
         version: link:../turf-helpers
@@ -2719,7 +2725,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -3114,7 +3120,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -4396,6 +4402,9 @@ importers:
       benchmark:
         specifier: '*'
         version: 2.1.4
+      glob:
+        specifier: ^10.3.12
+        version: 10.3.12
       npm-run-all:
         specifier: '*'
         version: 4.1.5
@@ -4526,7 +4535,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -4826,7 +4835,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       npm-run-all:
         specifier: '*'
@@ -5371,6 +5380,9 @@ importers:
       benchmark:
         specifier: '*'
         version: 2.1.4
+      glob:
+        specifier: ^10.3.12
+        version: 10.3.12
       load-json-file:
         specifier: '*'
         version: 6.2.0
@@ -5795,7 +5807,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -5890,7 +5902,7 @@ importers:
         specifier: '*'
         version: 2.1.4
       glob:
-        specifier: '*'
+        specifier: ^10.3.12
         version: 10.3.12
       load-json-file:
         specifier: '*'
@@ -17895,7 +17907,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       ansi-styles: 4.3.0
-      string-width: 4.2.2
+      string-width: 4.2.3
       strip-ansi: 6.0.1
     dev: true
 

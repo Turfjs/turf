@@ -1,6 +1,6 @@
 import test from "tape";
 import path from "path";
-import glob from "glob";
+import { glob } from "glob";
 import load from "load-json-file";
 import write from "write-json-file";
 import polygonSmooth from "./index";

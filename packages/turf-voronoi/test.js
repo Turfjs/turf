@@ -1,5 +1,5 @@
 import test from "tape";
-import glob from "glob";
+import { glob } from "glob";
 import path from "path";
 import load from "load-json-file";
 import write from "write-json-file";
