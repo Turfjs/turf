@@ -20,9 +20,6 @@ importers:
       '@monorepolint/rules':
         specifier: 0.5.0-alpha.132
         version: 0.5.0-alpha.132
-      '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
       '@types/node':
         specifier: 18.11.9
         version: 18.11.9
@@ -449,6 +446,9 @@ importers:
       '@turf/voronoi':
         specifier: workspace:^
         version: link:../turf-voronoi
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -519,6 +519,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -565,6 +568,9 @@ importers:
       '@turf/rhumb-bearing':
         specifier: workspace:^
         version: link:../turf-rhumb-bearing
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -620,6 +626,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -663,6 +672,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -700,6 +712,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -743,6 +758,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -780,6 +798,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -823,6 +844,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -866,6 +890,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -909,6 +936,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -961,6 +991,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1019,6 +1052,9 @@ importers:
       '@turf/polygon-to-line':
         specifier: workspace:^
         version: link:../turf-polygon-to-line
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1074,6 +1110,9 @@ importers:
       '@turf/polygon-to-line':
         specifier: workspace:^
         version: link:../turf-polygon-to-line
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1120,6 +1159,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       geojson-equality-ts:
         specifier: ^1.0.2
         version: 1.0.2
@@ -1172,6 +1214,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1224,6 +1269,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       geojson-equality-ts:
         specifier: ^1.0.2
         version: 1.0.2
@@ -1279,6 +1327,9 @@ importers:
       '@turf/rhumb-bearing':
         specifier: workspace:^
         version: link:../turf-rhumb-bearing
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1322,6 +1373,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       point-in-polygon-hao:
         specifier: ^1.1.0
         version: 1.1.0
@@ -1362,6 +1416,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1414,6 +1471,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1484,6 +1544,9 @@ importers:
       '@turf/line-intersect':
         specifier: workspace:^
         version: link:../turf-line-intersect
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       geojson-polygon-self-intersections:
         specifier: ^1.2.1
         version: 1.2.1
@@ -1545,6 +1608,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1606,6 +1672,9 @@ importers:
       '@turf/projection':
         specifier: workspace:^
         version: link:../turf-projection
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       d3-geo:
         specifier: 1.7.1
         version: 1.7.1
@@ -1649,6 +1718,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1704,6 +1776,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1765,6 +1840,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1829,6 +1907,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1875,6 +1956,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1921,6 +2005,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1970,6 +2057,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2013,6 +2103,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2053,6 +2146,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2096,6 +2192,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -2163,6 +2262,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       skmeans:
         specifier: 0.9.7
         version: 0.9.7
@@ -2230,6 +2332,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -2273,6 +2378,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2322,6 +2430,9 @@ importers:
       '@turf/tin':
         specifier: workspace:^
         version: link:../turf-tin
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       topojson-client:
         specifier: 3.x
         version: 3.1.0
@@ -2377,6 +2488,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       concaveman:
         specifier: ^1.2.1
         version: 1.2.1
@@ -2429,6 +2543,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2478,6 +2595,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -2542,6 +2662,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2591,6 +2714,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -2637,6 +2763,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2686,6 +2815,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2735,6 +2867,9 @@ importers:
       '@turf/transform-rotate':
         specifier: workspace:^
         version: link:../turf-transform-rotate
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2799,6 +2934,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2839,6 +2977,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2882,6 +3023,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2928,6 +3072,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2975,8 +3122,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-meta
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -3026,6 +3173,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3060,6 +3210,9 @@ importers:
 
   packages/turf-helpers:
     dependencies:
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3103,6 +3256,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3179,6 +3335,9 @@ importers:
       '@turf/triangle-grid':
         specifier: workspace:^
         version: link:../turf-triangle-grid
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3222,6 +3381,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -3268,6 +3430,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3320,6 +3485,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       marchingsquares:
         specifier: ^1.3.3
         version: 1.3.3
@@ -3387,6 +3555,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       marchingsquares:
         specifier: ^1.3.3
         version: 1.3.3
@@ -3445,6 +3616,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       sweepline-intersections:
         specifier: ^1.5.0
         version: 1.5.0
@@ -3497,6 +3671,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3543,6 +3720,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3595,6 +3775,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3632,6 +3815,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       sweepline-intersections:
         specifier: ^1.5.0
         version: 1.5.0
@@ -3684,6 +3870,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3739,6 +3928,9 @@ importers:
       '@turf/nearest-point-on-line':
         specifier: workspace:^
         version: link:../turf-nearest-point-on-line
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       fast-deep-equal:
         specifier: ^3.1.3
         version: 3.1.3
@@ -3788,6 +3980,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3834,6 +4029,9 @@ importers:
       '@turf/nearest-point-on-line':
         specifier: workspace:^
         version: link:../turf-nearest-point-on-line
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3880,6 +4078,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
     devDependencies:
       '@turf/along':
         specifier: workspace:^
@@ -3944,6 +4145,9 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
     devDependencies:
       '@types/benchmark':
         specifier: ^2.1.5
@@ -3987,6 +4191,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4028,8 +4235,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -4076,6 +4283,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
     devDependencies:
       '@turf/random':
         specifier: workspace:^
@@ -4114,8 +4324,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4156,6 +4366,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4217,6 +4430,9 @@ importers:
       '@turf/nearest-point':
         specifier: workspace:^
         version: link:../turf-nearest-point
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4269,6 +4485,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4327,6 +4546,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4385,6 +4607,9 @@ importers:
       '@turf/point-to-line-distance':
         specifier: workspace:^
         version: link:../turf-point-to-line-distance
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4438,8 +4663,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4483,6 +4708,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4541,6 +4769,9 @@ importers:
       '@turf/nearest-point':
         specifier: workspace:^
         version: link:../turf-nearest-point
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4605,6 +4836,9 @@ importers:
       '@turf/rhumb-distance':
         specifier: workspace:^
         version: link:../turf-rhumb-distance
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4654,6 +4888,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4691,6 +4928,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4749,6 +4989,9 @@ importers:
       '@turf/nearest-point':
         specifier: workspace:^
         version: link:../turf-nearest-point
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4792,6 +5035,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4844,6 +5090,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4890,6 +5139,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4960,6 +5212,9 @@ importers:
       '@turf/square-grid':
         specifier: workspace:^
         version: link:../turf-square-grid
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5003,6 +5258,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5046,6 +5304,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5104,6 +5365,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5147,6 +5411,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5190,6 +5457,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5236,6 +5506,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5279,6 +5552,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5325,6 +5601,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5392,6 +5671,9 @@ importers:
       '@turf/transform-scale':
         specifier: workspace:^
         version: link:../turf-transform-scale
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5444,6 +5726,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5491,8 +5776,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5530,6 +5815,9 @@ importers:
       '@turf/rectangle-grid':
         specifier: workspace:^
         version: link:../turf-rectangle-grid
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5589,8 +5877,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-points-within-polygon
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5646,6 +5934,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5684,8 +5975,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       earcut:
         specifier: ^2.2.4
         version: 2.2.4
@@ -5723,6 +6014,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5779,8 +6073,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-rhumb-distance
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5852,8 +6146,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-rhumb-distance
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5916,8 +6210,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-rhumb-destination
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5967,6 +6261,9 @@ importers:
       '@turf/intersect':
         specifier: workspace:^
         version: link:../turf-intersect
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -6016,6 +6313,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -6059,6 +6359,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.0
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -6115,8 +6418,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-meta
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -6173,8 +6476,8 @@ importers:
         specifier: ^1.1.12
         version: 1.1.12
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.0
+        version: 7946.0.14
       d3-voronoi:
         specifier: 1.1.2
         version: 1.1.2
@@ -9005,10 +9308,6 @@ packages:
 
   /@types/geojson@7946.0.14:
     resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
-    dev: false
-
-  /@types/geojson@7946.0.8:
-    resolution: {integrity: sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==}
 
   /@types/hast@2.3.10:
     resolution: {integrity: sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==}
@@ -9094,21 +9393,21 @@ packages:
   /@types/topojson-client@3.1.3:
     resolution: {integrity: sha512-liC+dHCxoqQy5bbJMsF59Cx1WZZwbcT084v/5bdp3NWSFUuzQpsm4gbLQh+wlv58Mng4jCsO4p8hWelqGlb7rg==}
     dependencies:
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.14
       '@types/topojson-specification': 1.0.5
     dev: true
 
   /@types/topojson-server@3.0.3:
     resolution: {integrity: sha512-Xi903I5D0pu9il0xXRNxugj5MuIAUalZzciGS0FTLbiW4jLyd2jkoVN2g80RavHw39Z8YTFaSdRgp8f8WHbyxg==}
     dependencies:
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.14
       '@types/topojson-specification': 1.0.5
     dev: true
 
   /@types/topojson-specification@1.0.5:
     resolution: {integrity: sha512-C7KvcQh+C2nr6Y2Ub4YfgvWvWCgP2nOQMtfhlnwsRL4pYmmwzBS7HclGiS87eQfDOU/DLQpX6GEscviaz4yLIQ==}
     dependencies:
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.14
     dev: true
 
   /@types/triple-beam@1.3.5:

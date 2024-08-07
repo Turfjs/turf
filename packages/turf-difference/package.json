@@ -64,6 +64,7 @@
   "dependencies": {
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
+    "@types/geojson": "^7946.0.0",
     "polygon-clipping": "^0.15.3",
     "tslib": "^2.6.2"
   }
