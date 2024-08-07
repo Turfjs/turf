@@ -57,15 +57,17 @@ export type AllGeoJSON =
  */
 
 /**
- * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
- *
+ * The {@link https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius arithmetic mean radius} of the Earth.
+ * Used by Turf modules that model the Earth as a sphere. This radii value
+ * was chosen over others because it is {@link https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended recommended for use} with the Haversine formula,
+ * used by turf/distance.
  * @memberof helpers
  * @type {number}
  */
 export const earthRadius = 6371008.8;
 
 /**
- * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ * Unit of measurement factors based on equatorial earthRadius.
  *
  * Keys are the name of the unit, values are the number of that unit in a single radian
  *

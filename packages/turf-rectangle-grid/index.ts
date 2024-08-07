@@ -14,14 +14,14 @@ import {
   Units,
 } from "@turf/helpers";
 /**
- * Creates a rectangular grid, with polygon cells of equal width and height in degrees.
+ * Creates a grid of rectangular polygon cells of equal width and height in degrees.
  *
  * @name rectangleGrid
  * @param {Array<number>} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
  * @param {number} cellWidth width of each cell, in units
  * @param {number} cellHeight height of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] the units the cellWidth and cellLenth values are expressed in. Internally cellWidth and cellLength values are converted to degrees, regardless of units specified.
+ * @param {string} [options.units='kilometers'] the units of the cellWidth and cellLenth values. Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/index.ts Units}. Internally cellWidth and cellLength values are converted to degrees, regardless of units specified.
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
  * the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid

@@ -10,13 +10,13 @@ import { Units } from "@turf/helpers";
 import { rectangleGrid } from "@turf/rectangle-grid";
 
 /**
- * Creates a square grid, with polygon cells with equal length sides in degrees.
+ * Creates a grid of square polygon cells with equal length sides in degrees.
  *
  * @name squareGrid
  * @param {Array<number>} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
  * @param {number} cellSide length of each cell side.
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] the units the cellSide value is expressed in. Internally cellSide value is converted to degrees, regardless of units specified.
+ * @param {string} [options.units='kilometers'] the units of the cellSide value. Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/index.ts Units}. Internally cellSide value is converted to degrees, regardless of units specified.
  * radians, miles, or kilometers
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
  * the grid Points will be created only inside it
