@@ -7,6 +7,10 @@
     "strict": true,
     "moduleResolution": "node16",
     "importHelpers": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@turf/turf": ["./packages/turf"],
+      "@turf/*": ["./packages/turf-*"]
+    }
   }
 }

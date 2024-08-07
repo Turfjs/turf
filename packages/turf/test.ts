@@ -331,7 +331,7 @@ const turfTypescriptPath = path.join(__dirname, "..", "turf-*", "index.d.ts");
 
 // Test Strings
 const requireString = `import test from 'tape';
-import * as turf from './dist/esm/index.js';
+import * as turf from './index.ts';
 `;
 
 /**

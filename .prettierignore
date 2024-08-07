@@ -10,6 +10,7 @@ packages/turf-directional-mean/test/in/bus_route_utm.json
 
 # is actually output
 packages/turf/turf.min.js
+packages/turf/test.example.js
 
 # Ignore test fixture json in case intentional line breaks help with coord
 # readability.
