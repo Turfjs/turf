@@ -670,6 +670,20 @@ export function bearingToAzimuth(bearing: number): number {
 }
 
 /**
+ * Converts any azimuth angle from the north line direction (positive clockwise)
+ * and returns an angle between -180 and +180 degrees (positive clockwise), 0 being the north line
+ *
+ * @name azimuthToBearing
+ * @param {number} angle between 0 and 360 degrees
+ * @returns {number} bearing between -180 and +180 degrees
+ */
+export function azimuthToBearing(angle: number): number {
+  angle = angle % 360;
+  if (angle > 0) return angle > 180 ? angle - 360 : angle;
+  return angle < -180 ? angle + 360 : angle;
+}
+
+/**
  * Converts an angle in radians to degrees
  *
  * @name radiansToDegrees

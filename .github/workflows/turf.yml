@@ -2,9 +2,13 @@ name: CI build
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
+      - support/6.x
   pull_request:
-    branches: [master]
+    branches:
+      - master
+      - support/6.x
 
 permissions:
   contents: read
@@ -21,16 +25,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
           run_install: false
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          cache: "pnpm"
+          node-version: ${{ matrix.node-version }}
 
       - run: pnpm install --frozen-lockfile
       - run: git diff --exit-code

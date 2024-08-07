@@ -85,6 +85,7 @@ export default {
           "scripts",
           "husky",
           "lint-staged",
+          "packageManager",
           "devDependencies",
           "dependencies",
         ],

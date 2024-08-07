@@ -8,4 +8,7 @@ const pts = points([
 const stdEllipse = standardDeviationalEllipse(pts);
 
 // Access custom properties
-stdEllipse.properties.standardDeviationalEllipse.meanCenterCoordinates;
+// It's correct to use optional chaining here ?. as even though the function
+// *always* adds properties, that does not change the overall optional nature of
+// the containing properties attribute.
+stdEllipse.properties?.standardDeviationalEllipse.meanCenterCoordinates;

@@ -4,38 +4,40 @@
 
 ## transformScale
 
-Scale a GeoJSON from a given point by a factor of scaling (ex: factor=2 would make the GeoJSON 200% larger).
-If a FeatureCollection is provided, the origin point will be calculated based on each individual Feature.
+Scale GeoJSON objects from a given point by a scaling factor e.g. factor=2
+would make each object 200% larger.
+If a FeatureCollection is provided, the origin point will be calculated
+based on each individual feature *unless* an exact
 
 ### Parameters
 
-*   `geojson` **[GeoJSON][1]** GeoJSON to be scaled
-*   `factor` **[number][2]** of scaling, positive values greater than 0. Numbers between 0 and 1 will shrink the geojson, numbers greater than 1 will expand it, a factor of 1 will not change the geojson.
-*   `options` **[Object][3]** Optional parameters (optional, default `{}`)
+*   `geojson` **([GeoJSON][1] | [GeometryCollection][2])** objects to be scaled
+*   `factor` **[number][3]** of scaling, positive values greater than 0. Numbers between 0 and 1 will shrink the geojson, numbers greater than 1 will expand it, a factor of 1 will not change the geojson.
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-    *   `options.origin` **([string][4] | [Coord][5])** Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid) (optional, default `'centroid'`)
-    *   `options.mutate` **[boolean][6]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+    *   `options.origin` **(Corners | [Coord][5])** Point from which the scaling will occur (string options: sw/se/nw/ne/center/centroid) (optional, default `'centroid'`)
+    *   `options.mutate` **[boolean][6]** allows GeoJSON input to be mutated (significant performance improvement if true) (optional, default `false`)
 
 ### Examples
 
 ```javascript
-var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
-var scaledPoly = turf.transformScale(poly, 3);
+const poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
+const scaledPoly = turf.transformScale(poly, 3);
 
 //addToMap
-var addToMap = [poly, scaledPoly];
+const addToMap = [poly, scaledPoly];
 scaledPoly.properties = {stroke: '#F00', 'stroke-width': 4};
 ```
 
-Returns **[GeoJSON][1]** scaled GeoJSON
+Returns **([GeoJSON][1] | [GeometryCollection][2])** scaled GeoJSON
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3
 
-[2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[2]: https://tools.ietf.org/html/rfc7946#section-3.1.8
 
-[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
 [5]: https://tools.ietf.org/html/rfc7946#section-3.1.1
 
