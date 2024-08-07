@@ -16,7 +16,7 @@ import { rectangleGrid } from "@turf/rectangle-grid";
  * @param {Array<number>} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
  * @param {number} cellSide length of each cell side.
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] the units the cellSide value is expressed in, defaults to kilometers. Internally cellSide value is converted to degrees, regardless of input units.
+ * @param {string} [options.units='kilometers'] the units the cellSide value is expressed in. Internally cellSide value is converted to degrees, regardless of units specified.
  * radians, miles, or kilometers
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
  * the grid Points will be created only inside it

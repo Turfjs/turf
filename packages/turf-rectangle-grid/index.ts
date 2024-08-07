@@ -18,10 +18,10 @@ import {
  *
  * @name rectangleGrid
  * @param {Array<number>} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
- * @param {number} cellWidth of each cell, in units
- * @param {number} cellHeight of each cell, in units
+ * @param {number} cellWidth width of each cell, in units
+ * @param {number} cellHeight height of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] the units the cellWidth and cellLenth values are expressed in, defaults to kilometers. Internally cellWidth and cellLength values are converted to degrees, regardless of input units.
+ * @param {string} [options.units='kilometers'] the units the cellWidth and cellLenth values are expressed in. Internally cellWidth and cellLength values are converted to degrees, regardless of units specified.
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
  * the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
