@@ -10,7 +10,7 @@ import { Units } from "@turf/helpers";
 import { rectangleGrid } from "@turf/rectangle-grid";
 
 /**
- * Creates a grid of square polygons with the same side length in degrees
+ * Creates a grid of square polygons with cell length consistent in degrees
  *
  * @name squareGrid
  * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.

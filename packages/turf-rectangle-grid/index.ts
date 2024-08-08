@@ -14,7 +14,7 @@ import {
   Units,
 } from "@turf/helpers";
 /**
- * Creates a grid of rectangular polygons with width and height in degrees
+ * Creates a grid of rectangular polygons with width and height consistent in degrees
  *
  * @name rectangleGrid
  * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
