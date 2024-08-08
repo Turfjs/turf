@@ -82,6 +82,7 @@
     "@turf/invariant": "workspace:^",
     "@turf/meta": "workspace:^",
     "@turf/tin": "workspace:^",
+    "@types/geojson": "^7946.0.0",
     "topojson-client": "3.x",
     "topojson-server": "3.x",
     "tslib": "^2.6.2"

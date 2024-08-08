@@ -80,6 +80,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/intersect": "workspace:^",
     "@turf/invariant": "workspace:^",
+    "@types/geojson": "^7946.0.0",
     "tslib": "^2.6.2"
   }
 }

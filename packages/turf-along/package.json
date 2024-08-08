@@ -68,6 +68,7 @@
     "@turf/distance": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
+    "@types/geojson": "^7946.0.0",
     "tslib": "^2.6.2"
   }
 }
