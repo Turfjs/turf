@@ -14,7 +14,10 @@ const isPolygonFeature = (
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const SKIP = [];
+// these test fixtures are not used for benchmarking because they contain a
+// FeatureCollection with a single MultiPolygon, instead of a FeatureCollection
+// with two Polygons, where the first one is the polygon and the second is the mask.
+const SKIP = ["multi-polygon.geojson", "overlapping.geojson"];
 
 const suite = new Benchmark.Suite("turf-mask");
 
