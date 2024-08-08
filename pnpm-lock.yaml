@@ -230,6 +230,9 @@ importers:
       '@turf/difference':
         specifier: workspace:^
         version: link:../turf-difference
+      '@turf/directional-mean':
+        specifier: workspace:^
+        version: link:../turf-directional-mean
       '@turf/dissolve':
         specifier: workspace:^
         version: link:../turf-dissolve
@@ -4256,9 +4259,6 @@ importers:
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
-      mkdirp:
-        specifier: ^3.0.1
-        version: 3.0.1
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -13931,12 +13931,6 @@ packages:
 
   /mkdirp@1.0.4:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dev: true
-
-  /mkdirp@3.0.1:
-    resolution: {integrity: sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==}
     engines: {node: '>=10'}
     hasBin: true
     dev: true
