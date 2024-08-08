@@ -4231,6 +4231,9 @@ importers:
 
   packages/turf-mask:
     dependencies:
+      '@turf/clone':
+        specifier: workspace:^
+        version: link:../turf-clone
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
