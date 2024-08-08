@@ -12,7 +12,7 @@
     "lint:mrl": "mrl check",
     "lint:prettier": "prettier --check .",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "lerna run build && husky install",
+    "prepare": "husky && lerna run build",
     "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
   },
   "lint-staged": {
@@ -20,13 +20,12 @@
       "mrl check --paths"
     ],
     "**/*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
+      "eslint --fix"
     ],
     "packages/*/index.{js,ts}": [
       "pnpm tsx ./scripts/generate-readmes"
     ],
-    "**/*": "prettier --write --ignore-unknown"
+    "*": "prettier --write --ignore-unknown"
   },
   "packageManager": "pnpm@8.15.8+sha512.d1a029e1a447ad90bc96cd58b0fad486d2993d531856396f7babf2d83eb1823bb83c5a3d0fc18f675b2d10321d49eb161fece36fe8134aa5823ecd215feed392",
   "devDependencies": {
@@ -50,13 +49,13 @@
     "esm": "^3.2.25",
     "fs-extra": "^11.1.1",
     "glob": "^10.3.10",
-    "husky": "^8.0.0",
+    "husky": "^9.0.0",
     "lerna": "^8.1.7",
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^15.2.8",
     "load-json-file": "^7.0.1",
     "meow": "^12.1.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.0.3",
+    "prettier": "^3.3.3",
     "progress": "^2.0.3",
     "ts-node": "^9.0.0",
     "tsup": "^8.0.1",
