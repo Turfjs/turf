@@ -76,7 +76,7 @@
     "@turf/invariant": "workspace:^",
     "@turf/meta": "workspace:^",
     "@turf/rhumb-destination": "workspace:^",
-    "@types/geojson": "7946.0.8",
+    "@types/geojson": "^7946.0.0",
     "tslib": "^2.6.2"
   }
 }

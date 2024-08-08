@@ -75,7 +75,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "@types/d3-voronoi": "^1.1.12",
-    "@types/geojson": "7946.0.8",
+    "@types/geojson": "^7946.0.0",
     "d3-voronoi": "1.1.2",
     "tslib": "^2.6.2"
   }

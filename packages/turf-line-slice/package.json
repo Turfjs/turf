@@ -68,6 +68,7 @@
   "dependencies": {
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
-    "@turf/nearest-point-on-line": "workspace:^"
+    "@turf/nearest-point-on-line": "workspace:^",
+    "@types/geojson": "^7946.0.0"
   }
 }

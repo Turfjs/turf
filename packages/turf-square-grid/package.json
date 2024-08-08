@@ -67,6 +67,7 @@
   "dependencies": {
     "@turf/helpers": "workspace:^",
     "@turf/rectangle-grid": "workspace:^",
+    "@types/geojson": "^7946.0.0",
     "tslib": "^2.6.2"
   }
 }

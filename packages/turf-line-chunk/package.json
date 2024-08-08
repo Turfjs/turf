@@ -74,6 +74,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/length": "workspace:^",
     "@turf/line-slice-along": "workspace:^",
-    "@turf/meta": "workspace:^"
+    "@turf/meta": "workspace:^",
+    "@types/geojson": "^7946.0.0"
   }
 }
