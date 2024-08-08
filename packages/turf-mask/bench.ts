@@ -14,7 +14,7 @@ const isPolygonFeature = (
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const SKIP = ["multi-polygon.geojson", "overlapping.geojson"];
+const SKIP = [];
 
 const suite = new Benchmark.Suite("turf-mask");
 
