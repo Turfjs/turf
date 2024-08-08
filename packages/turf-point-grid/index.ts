@@ -15,10 +15,10 @@ import { point, featureCollection, Units } from "@turf/helpers";
  * Creates a grid of points
  *
  * @name pointGrid
- * @param {Array<number>} bbox extent of grid in [minX, minY, maxX, maxY] order
+ * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order
  * @param {number} cellSide the distance between points
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] the units of the cellSide value.  Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/index.ts Units}
+ * @param {Units} [options.units='kilometers'] the units of the cellSide value.  Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/index.ts Units}
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Point>} grid of points

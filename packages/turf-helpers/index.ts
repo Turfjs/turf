@@ -57,17 +57,14 @@ export type AllGeoJSON =
  */
 
 /**
- * The {@link https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius arithmetic mean radius} of the Earth.
- * Used by Turf modules that model the Earth as a sphere. This radii value
- * was chosen over others because it is {@link https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended recommended for use} with the Haversine formula,
- * used by turf/distance.
+ * The Earth radius in kilometers. Used by Turf modules that model the Earth as a sphere. The {@link https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius mean radius} was selected because it is {@link https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended recommended } by the Haversine formula (used by turf/distance) to reduce error.
  * @memberof helpers
  * @type {number}
  */
 export const earthRadius = 6371008.8;
 
 /**
- * Unit of measurement factors based on equatorial earthRadius.
+ * Unit of measurement factors based on earthRadius.
  *
  * Keys are the name of the unit, values are the number of that unit in a single radian
  *

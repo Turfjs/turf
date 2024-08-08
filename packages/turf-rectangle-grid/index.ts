@@ -14,14 +14,17 @@ import {
   Units,
 } from "@turf/helpers";
 /**
- * Creates a grid of rectangular polygon cells of equal width and height in degrees.
+ * Creates a grid of rectangular polygons with width and height in degrees
  *
  * @name rectangleGrid
- * @param {Array<number>} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
+ * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
  * @param {number} cellWidth width of each cell, in units
  * @param {number} cellHeight height of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] the units of the cellWidth and cellLenth values. Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/index.ts Units}. Internally cellWidth and cellLength values are converted to degrees, regardless of units specified.
+ * @param {Units} [options.units='kilometers'] the units of the cell width and height value.
+ * Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/index.ts Units}.
+ * If you are looking for rectangles with equal width and height in linear units (e.g. kilometers) this is not the module for you.
+ * The cellWidth and cellHeight is converted from units provided to degrees internally, so the width and height of resulting polygons will be consistent only in degrees.
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
  * the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
