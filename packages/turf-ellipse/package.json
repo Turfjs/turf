@@ -74,7 +74,7 @@
     "@turf/invariant": "workspace:^",
     "@turf/rhumb-destination": "workspace:^",
     "@turf/transform-rotate": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

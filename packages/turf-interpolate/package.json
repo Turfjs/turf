@@ -78,6 +78,6 @@
     "@turf/point-grid": "workspace:^",
     "@turf/square-grid": "workspace:^",
     "@turf/triangle-grid": "workspace:^",
-    "@types/geojson": "^7946.0.0"
+    "@types/geojson": "^7946.0.10"
   }
 }

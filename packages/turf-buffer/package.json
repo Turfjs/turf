@@ -78,7 +78,7 @@
     "@turf/jsts": "^2.7.1",
     "@turf/meta": "workspace:^",
     "@turf/projection": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "d3-geo": "1.7.1"
   }
 }
