@@ -71,6 +71,7 @@
     "@turf/explode": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/nearest-point": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

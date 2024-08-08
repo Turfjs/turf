@@ -204,6 +204,7 @@
     "@turf/union": "workspace:^",
     "@turf/unkink-polygon": "workspace:^",
     "@turf/voronoi": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }
