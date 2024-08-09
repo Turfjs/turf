@@ -52,6 +52,7 @@ function difference(
   const properties = features.features[0].properties || {};
 
   const differenced = polygonClipping.difference(geoms[0], ...geoms.slice(1));
+
   if (differenced.length === 0) return null;
   if (differenced.length === 1) return polygon(differenced[0], properties);
   return multiPolygon(differenced, properties);
