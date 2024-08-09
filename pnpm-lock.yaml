@@ -20,9 +20,6 @@ importers:
       '@monorepolint/rules':
         specifier: 0.5.0-alpha.132
         version: 0.5.0-alpha.132
-      '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
       '@types/node':
         specifier: 18.11.9
         version: 18.11.9
@@ -61,7 +58,7 @@ importers:
         version: 9.1.0(eslint@8.55.0)
       eslint-plugin-prettier:
         specifier: ^5.0.1
-        version: 5.0.1(eslint-config-prettier@9.1.0)(eslint@8.55.0)(prettier@3.1.0)
+        version: 5.0.1(eslint-config-prettier@9.1.0)(eslint@8.55.0)(prettier@3.3.3)
       esm:
         specifier: ^3.2.25
         version: 3.2.25
@@ -72,14 +69,14 @@ importers:
         specifier: ^10.3.10
         version: 10.3.10
       husky:
-        specifier: ^8.0.0
-        version: 8.0.3
+        specifier: ^9.0.0
+        version: 9.1.4
       lerna:
         specifier: ^8.1.7
         version: 8.1.7
       lint-staged:
-        specifier: ^10.5.4
-        version: 10.5.4
+        specifier: ^15.2.8
+        version: 15.2.8
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -90,8 +87,8 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       prettier:
-        specifier: ^3.0.3
-        version: 3.1.0
+        specifier: ^3.3.3
+        version: 3.3.3
       progress:
         specifier: ^2.0.3
         version: 2.0.3
@@ -449,6 +446,9 @@ importers:
       '@turf/voronoi':
         specifier: workspace:^
         version: link:../turf-voronoi
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -519,6 +519,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -565,6 +568,9 @@ importers:
       '@turf/rhumb-bearing':
         specifier: workspace:^
         version: link:../turf-rhumb-bearing
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -620,6 +626,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -663,6 +672,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -700,6 +712,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -743,6 +758,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -780,6 +798,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -823,6 +844,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -866,6 +890,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -909,6 +936,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -961,6 +991,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1019,6 +1052,9 @@ importers:
       '@turf/polygon-to-line':
         specifier: workspace:^
         version: link:../turf-polygon-to-line
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1074,6 +1110,9 @@ importers:
       '@turf/polygon-to-line':
         specifier: workspace:^
         version: link:../turf-polygon-to-line
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1120,6 +1159,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       geojson-equality-ts:
         specifier: ^1.0.2
         version: 1.0.2
@@ -1172,6 +1214,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1224,6 +1269,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       geojson-equality-ts:
         specifier: ^1.0.2
         version: 1.0.2
@@ -1279,6 +1327,9 @@ importers:
       '@turf/rhumb-bearing':
         specifier: workspace:^
         version: link:../turf-rhumb-bearing
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1322,6 +1373,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       point-in-polygon-hao:
         specifier: ^1.1.0
         version: 1.1.0
@@ -1362,6 +1416,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1414,6 +1471,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1484,6 +1544,9 @@ importers:
       '@turf/line-intersect':
         specifier: workspace:^
         version: link:../turf-line-intersect
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       geojson-polygon-self-intersections:
         specifier: ^1.2.1
         version: 1.2.1
@@ -1545,6 +1608,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1606,6 +1672,9 @@ importers:
       '@turf/projection':
         specifier: workspace:^
         version: link:../turf-projection
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       d3-geo:
         specifier: 1.7.1
         version: 1.7.1
@@ -1649,6 +1718,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1704,6 +1776,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1765,6 +1840,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1829,6 +1907,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1875,6 +1956,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1921,6 +2005,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -1970,6 +2057,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2013,6 +2103,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2053,6 +2146,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2096,6 +2192,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -2163,6 +2262,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       skmeans:
         specifier: 0.9.7
         version: 0.9.7
@@ -2230,6 +2332,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -2273,6 +2378,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2322,6 +2430,9 @@ importers:
       '@turf/tin':
         specifier: workspace:^
         version: link:../turf-tin
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       topojson-client:
         specifier: 3.x
         version: 3.1.0
@@ -2377,6 +2488,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       concaveman:
         specifier: ^1.2.1
         version: 1.2.1
@@ -2429,6 +2543,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2478,6 +2595,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -2542,6 +2662,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2591,6 +2714,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -2637,6 +2763,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2686,6 +2815,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2735,6 +2867,9 @@ importers:
       '@turf/transform-rotate':
         specifier: workspace:^
         version: link:../turf-transform-rotate
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2799,6 +2934,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2839,6 +2977,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2882,6 +3023,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2928,6 +3072,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -2975,8 +3122,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-meta
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -3026,6 +3173,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3060,6 +3210,9 @@ importers:
 
   packages/turf-helpers:
     dependencies:
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3103,6 +3256,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3179,6 +3335,9 @@ importers:
       '@turf/triangle-grid':
         specifier: workspace:^
         version: link:../turf-triangle-grid
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3222,6 +3381,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -3268,6 +3430,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3320,6 +3485,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       marchingsquares:
         specifier: ^1.3.3
         version: 1.3.3
@@ -3387,6 +3555,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       marchingsquares:
         specifier: ^1.3.3
         version: 1.3.3
@@ -3445,9 +3616,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
-      sweepline-intersections:
-        specifier: ^1.5.0
-        version: 1.5.0
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3497,6 +3668,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3543,6 +3717,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3595,6 +3772,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3632,6 +3812,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       sweepline-intersections:
         specifier: ^1.5.0
         version: 1.5.0
@@ -3684,6 +3867,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3739,6 +3925,9 @@ importers:
       '@turf/nearest-point-on-line':
         specifier: workspace:^
         version: link:../turf-nearest-point-on-line
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       fast-deep-equal:
         specifier: ^3.1.3
         version: 3.1.3
@@ -3788,6 +3977,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3834,6 +4026,9 @@ importers:
       '@turf/nearest-point-on-line':
         specifier: workspace:^
         version: link:../turf-nearest-point-on-line
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3880,6 +4075,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
     devDependencies:
       '@turf/along':
         specifier: workspace:^
@@ -3944,6 +4142,9 @@ importers:
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
     devDependencies:
       '@types/benchmark':
         specifier: ^2.1.5
@@ -3987,6 +4188,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4024,12 +4228,15 @@ importers:
 
   packages/turf-mask:
     dependencies:
+      '@turf/clone':
+        specifier: workspace:^
+        version: link:../turf-clone
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -4076,6 +4283,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
     devDependencies:
       '@turf/random':
         specifier: workspace:^
@@ -4114,8 +4324,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4156,6 +4366,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4217,6 +4430,9 @@ importers:
       '@turf/nearest-point':
         specifier: workspace:^
         version: link:../turf-nearest-point
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4269,6 +4485,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4327,6 +4546,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4385,6 +4607,9 @@ importers:
       '@turf/point-to-line-distance':
         specifier: workspace:^
         version: link:../turf-point-to-line-distance
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4438,8 +4663,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4483,6 +4708,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4541,6 +4769,9 @@ importers:
       '@turf/nearest-point':
         specifier: workspace:^
         version: link:../turf-nearest-point
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4605,6 +4836,9 @@ importers:
       '@turf/rhumb-distance':
         specifier: workspace:^
         version: link:../turf-rhumb-distance
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4654,6 +4888,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4691,6 +4928,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4749,6 +4989,9 @@ importers:
       '@turf/nearest-point':
         specifier: workspace:^
         version: link:../turf-nearest-point
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4792,6 +5035,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4844,6 +5090,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4890,6 +5139,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -4960,6 +5212,9 @@ importers:
       '@turf/square-grid':
         specifier: workspace:^
         version: link:../turf-square-grid
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5003,6 +5258,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5046,6 +5304,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5104,6 +5365,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5147,6 +5411,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5190,6 +5457,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5236,6 +5506,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5279,6 +5552,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5325,6 +5601,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5392,6 +5671,9 @@ importers:
       '@turf/transform-scale':
         specifier: workspace:^
         version: link:../turf-transform-scale
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5444,6 +5726,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5491,8 +5776,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5530,6 +5815,9 @@ importers:
       '@turf/rectangle-grid':
         specifier: workspace:^
         version: link:../turf-rectangle-grid
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5589,8 +5877,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-points-within-polygon
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5646,6 +5934,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5684,8 +5975,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       earcut:
         specifier: ^2.2.4
         version: 2.2.4
@@ -5723,6 +6014,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5779,8 +6073,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-rhumb-distance
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5852,8 +6146,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-rhumb-distance
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5916,8 +6210,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-rhumb-destination
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -5967,6 +6261,9 @@ importers:
       '@turf/intersect':
         specifier: workspace:^
         version: link:../turf-intersect
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -6016,6 +6313,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -6059,6 +6359,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
       polygon-clipping:
         specifier: ^0.15.3
         version: 0.15.3
@@ -6115,8 +6418,8 @@ importers:
         specifier: workspace:^
         version: link:../turf-meta
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
@@ -6173,8 +6476,8 @@ importers:
         specifier: ^1.1.12
         version: 1.1.12
       '@types/geojson':
-        specifier: 7946.0.8
-        version: 7946.0.8
+        specifier: ^7946.0.10
+        version: 7946.0.14
       d3-voronoi:
         specifier: 1.1.2
         version: 1.1.2
@@ -6460,6 +6763,7 @@ packages:
   /@babel/helper-string-parser@7.24.8:
     resolution: {integrity: sha512-pO9KhhRcuUyGnJWwyEgnRJTSIZHiT+vMD0kPeD+so0l7mxkMT19g3pjY9GTnHySck/hDzq+dtW/4VgnMkippsQ==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dev: true
 
   /@babel/helper-validator-identifier@7.22.20:
@@ -6470,6 +6774,7 @@ packages:
   /@babel/helper-validator-identifier@7.24.7:
     resolution: {integrity: sha512-rR+PBcQ1SMQDDyF6X0wxtG8QyLCgUB0eRAGguqRLfkCA87l7yAP7ehq8SNj96OOGTO8OBV70KhuFYcIkHXOg0w==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dev: true
 
   /@babel/helper-validator-option@7.23.5:
@@ -9005,10 +9310,6 @@ packages:
 
   /@types/geojson@7946.0.14:
     resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
-    dev: false
-
-  /@types/geojson@7946.0.8:
-    resolution: {integrity: sha512-1rkryxURpr6aWP7R786/UQOkJ3PcpQiWkAXBmdWc7ryFWqN6a4xfK7BtjXvFBKO9LjQ+MWQSWxYeZX1OApnArA==}
 
   /@types/hast@2.3.10:
     resolution: {integrity: sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==}
@@ -9048,10 +9349,6 @@ packages:
 
   /@types/object-assign@4.0.33:
     resolution: {integrity: sha512-HeuamLPmpVPuJU/oY7z/YGAezy4HFy6mhvzwupi9Xc8n0FKY8tR1/U3AKaOn/I5Mb4dvbw2szSYcXi84eW07TQ==}
-    dev: true
-
-  /@types/parse-json@4.0.2:
-    resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
     dev: true
 
   /@types/parse5@6.0.3:
@@ -9094,21 +9391,21 @@ packages:
   /@types/topojson-client@3.1.3:
     resolution: {integrity: sha512-liC+dHCxoqQy5bbJMsF59Cx1WZZwbcT084v/5bdp3NWSFUuzQpsm4gbLQh+wlv58Mng4jCsO4p8hWelqGlb7rg==}
     dependencies:
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.14
       '@types/topojson-specification': 1.0.5
     dev: true
 
   /@types/topojson-server@3.0.3:
     resolution: {integrity: sha512-Xi903I5D0pu9il0xXRNxugj5MuIAUalZzciGS0FTLbiW4jLyd2jkoVN2g80RavHw39Z8YTFaSdRgp8f8WHbyxg==}
     dependencies:
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.14
       '@types/topojson-specification': 1.0.5
     dev: true
 
   /@types/topojson-specification@1.0.5:
     resolution: {integrity: sha512-C7KvcQh+C2nr6Y2Ub4YfgvWvWCgP2nOQMtfhlnwsRL4pYmmwzBS7HclGiS87eQfDOU/DLQpX6GEscviaz4yLIQ==}
     dependencies:
-      '@types/geojson': 7946.0.8
+      '@types/geojson': 7946.0.14
     dev: true
 
   /@types/triple-beam@1.3.5:
@@ -9435,6 +9732,13 @@ packages:
       type-fest: 0.21.3
     dev: true
 
+  /ansi-escapes@7.0.0:
+    resolution: {integrity: sha512-GdYO7a61mR0fOlAsvC9/rIHf7L96sBc6dEWzeOu+KAea5bZyQRPIpojrVoI4AXGJS/ycu/fBTdLrUkA4ODrvjw==}
+    engines: {node: '>=18'}
+    dependencies:
+      environment: 1.1.0
+    dev: true
+
   /ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
@@ -9560,11 +9864,6 @@ packages:
   /ast-module-types@6.0.0:
     resolution: {integrity: sha512-LFRg7178Fw5R4FAEwZxVqiRI8IxSM+Ay2UBrHoCerXNme+kMMMfz7T3xDGV/c2fer87hcrtgJGsnSOfUrPK6ng==}
     engines: {node: '>=18'}
-    dev: true
-
-  /astral-regex@2.0.0:
-    resolution: {integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==}
-    engines: {node: '>=8'}
     dev: true
 
   /async@3.2.5:
@@ -9920,6 +10219,13 @@ packages:
       restore-cursor: 3.1.0
     dev: true
 
+  /cli-cursor@5.0.0:
+    resolution: {integrity: sha512-aCj4O5wKyszjMmDT4tZj93kxyydN/K5zPWSCe6/0AV/AA1pqe5ZBIw0a2ZfPQV7lL5/yb5HsUreJ6UFAF1tEQw==}
+    engines: {node: '>=18'}
+    dependencies:
+      restore-cursor: 5.1.0
+    dev: true
+
   /cli-spinners@2.6.1:
     resolution: {integrity: sha512-x/5fWmGMnbKQAaNwN+UZlV79qBLM9JFnJuJ03gIi5whrob0xV0ofNVHy9DhwGdsMJQc2OKv0oGmLzvaqvAVv+g==}
     engines: {node: '>=6'}
@@ -9930,12 +10236,12 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /cli-truncate@2.1.0:
-    resolution: {integrity: sha512-n8fOixwDD6b/ObinzTrp1ZKFzbgvKZvuz/TvejnLn1aQfC6r52XEx85FmuC+3HI+JM7coBRXUvNqEU2PHVrHpg==}
-    engines: {node: '>=8'}
+  /cli-truncate@4.0.0:
+    resolution: {integrity: sha512-nPdaFdQ0h/GEigbPClz11D0v/ZJEwxmeVZGeMo3Z5StPtUTkA9o1lD6QwoirYiSDzbcwn2XcjwmCp68W1IS4TA==}
+    engines: {node: '>=18'}
     dependencies:
-      slice-ansi: 3.0.0
-      string-width: 4.2.3
+      slice-ansi: 5.0.0
+      string-width: 7.2.0
     dev: true
 
   /cli-width@3.0.0:
@@ -10064,11 +10370,6 @@ packages:
 
   /commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
-    engines: {node: '>= 6'}
-    dev: true
-
-  /commander@6.2.1:
-    resolution: {integrity: sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==}
     engines: {node: '>= 6'}
     dev: true
 
@@ -10203,17 +10504,6 @@ packages:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: true
 
-  /cosmiconfig@7.1.0:
-    resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
-    engines: {node: '>=10'}
-    dependencies:
-      '@types/parse-json': 4.0.2
-      import-fresh: 3.3.0
-      parse-json: 5.2.0
-      path-type: 4.0.0
-      yaml: 1.10.2
-    dev: true
-
   /cosmiconfig@8.3.6(typescript@5.5.4):
     resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
     engines: {node: '>=14'}
@@ -10305,6 +10595,18 @@ packages:
       ms: 2.1.2
     dev: true
 
+  /debug@4.3.6:
+    resolution: {integrity: sha512-O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.1.2
+    dev: true
+
   /decamelize-keys@1.1.1:
     resolution: {integrity: sha512-WiPxgEirIV0/eIOMcnFBA3/IJZAZqKnwAwWyvvdi4lsr1WCN22nhdf/3db3DoZcUjTV2SqfzIwNyp6y2xs3nmg==}
     engines: {node: '>=0.10.0'}
@@ -10327,10 +10629,6 @@ packages:
     resolution: {integrity: sha512-O8x12RzrUF8xyVcY0KJowWsmaJxQbmy0/EtnNtHRpsOcT7dFk5W598coHqBVpmWo1oQQfsCqfCmkZN5DJrZVdg==}
     dependencies:
       character-entities: 2.0.2
-    dev: true
-
-  /dedent@0.7.0:
-    resolution: {integrity: sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==}
     dev: true
 
   /dedent@1.5.3:
@@ -10690,6 +10988,10 @@ packages:
     resolution: {integrity: sha512-ihiCP7PJmjoGNuLpl7TjNA8pCQWu09vGyjlPYw1Rqww4gvNuCcmvl+44G+2QyJ6S2K4o+wbTS++Xz0YN8Q9ERw==}
     dev: true
 
+  /emoji-regex@10.3.0:
+    resolution: {integrity: sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==}
+    dev: true
+
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
     dev: true
@@ -10731,14 +11033,6 @@ packages:
       ansi-colors: 4.1.3
     dev: true
 
-  /enquirer@2.4.1:
-    resolution: {integrity: sha512-rRqJg/6gd538VHvR3PSrdRBb/1Vy2YfzHqzvbhGIQpDRKIa4FgV/54b5Q1xYSxOOwKvjXweS26E0Q+nAMwp2pQ==}
-    engines: {node: '>=8.6'}
-    dependencies:
-      ansi-colors: 4.1.3
-      strip-ansi: 6.0.1
-    dev: true
-
   /entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
@@ -10754,6 +11048,11 @@ packages:
     resolution: {integrity: sha512-cvcaMr7KqXVh4nyzGTVqTum+gAiL265x5jUWQIDLq//zOGbW+gSW/C+OWLleY/rs9Qole6AZLMXPbtIFQbqu+Q==}
     engines: {node: '>=4'}
     hasBin: true
+    dev: true
+
+  /environment@1.1.0:
+    resolution: {integrity: sha512-xUtoPkMggbz0MPyPiIWr1Kp4aeWJjDZ6SMvURhimjdZgsRuDplF5/s9hcgGhyXMhs+6vpnuoiZ2kFiu3FMnS8Q==}
+    engines: {node: '>=18'}
     dev: true
 
   /err-code@2.0.3:
@@ -10957,7 +11256,7 @@ packages:
       eslint: 8.55.0
     dev: true
 
-  /eslint-plugin-prettier@5.0.1(eslint-config-prettier@9.1.0)(eslint@8.55.0)(prettier@3.1.0):
+  /eslint-plugin-prettier@5.0.1(eslint-config-prettier@9.1.0)(eslint@8.55.0)(prettier@3.3.3):
     resolution: {integrity: sha512-m3u5RnR56asrwV/lDC4GHorlW75DsFfmUcjfCYylTUs85dBRnB7VM6xG8eCMJdeDRnppzmxZVf1GEPJvl1JmNg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -10973,7 +11272,7 @@ packages:
     dependencies:
       eslint: 8.55.0
       eslint-config-prettier: 9.1.0(eslint@8.55.0)
-      prettier: 3.1.0
+      prettier: 3.3.3
       prettier-linter-helpers: 1.0.0
       synckit: 0.8.6
     dev: true
@@ -11090,19 +11389,8 @@ packages:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
     dev: true
 
-  /execa@4.1.0:
-    resolution: {integrity: sha512-j5W0//W7f8UxAn8hXVnwG8tLwdiUy4FJLcSupCg6maBYZDpyBvTApK7KyuI4bKj8KOh1r2YH+6ucuYtJv1bTZA==}
-    engines: {node: '>=10'}
-    dependencies:
-      cross-spawn: 7.0.3
-      get-stream: 5.2.0
-      human-signals: 1.1.1
-      is-stream: 2.0.1
-      merge-stream: 2.0.0
-      npm-run-path: 4.0.1
-      onetime: 5.1.2
-      signal-exit: 3.0.7
-      strip-final-newline: 2.0.0
+  /eventemitter3@5.0.1:
+    resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
     dev: true
 
   /execa@5.0.0:
@@ -11147,6 +11435,21 @@ packages:
       npm-run-path: 5.1.0
       onetime: 6.0.0
       signal-exit: 3.0.7
+      strip-final-newline: 3.0.0
+    dev: true
+
+  /execa@8.0.1:
+    resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
+    engines: {node: '>=16.17'}
+    dependencies:
+      cross-spawn: 7.0.3
+      get-stream: 8.0.1
+      human-signals: 5.0.0
+      is-stream: 3.0.0
+      merge-stream: 2.0.0
+      npm-run-path: 5.1.0
+      onetime: 6.0.0
+      signal-exit: 4.1.0
       strip-final-newline: 3.0.0
     dev: true
 
@@ -11441,6 +11744,11 @@ packages:
     engines: {node: 6.* || 8.* || >= 10.*}
     dev: true
 
+  /get-east-asian-width@1.2.0:
+    resolution: {integrity: sha512-2nk+7SIVb14QrgXFHcm84tD4bKQz0RxPuMT8Ag5KPOq7J5fEmAg0UbXdTOSHqNuHSU28k55qnceesxXRZGzKWA==}
+    engines: {node: '>=18'}
+    dev: true
+
   /get-intrinsic@1.2.2:
     resolution: {integrity: sha512-0gSo4ml/0j98Y3lngkFEot/zhiCeWsbYIlZ+uZOVgzLyLaUw7wxUL+nCTP0XJvJg1AXulJRI3UJi8GsbDuxdGA==}
     dependencies:
@@ -11475,13 +11783,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /get-stream@5.2.0:
-    resolution: {integrity: sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==}
-    engines: {node: '>=8'}
-    dependencies:
-      pump: 3.0.0
-    dev: true
-
   /get-stream@6.0.0:
     resolution: {integrity: sha512-A1B3Bh1UmL0bidM/YX2NsCOTnGJePL9rO/M+Mw3m9f2gUpfokS0hi5Eah0WSUEWZdZhIZtMjkIYS7mDfOqNHbg==}
     engines: {node: '>=10'}
@@ -11490,6 +11791,11 @@ packages:
   /get-stream@6.0.1:
     resolution: {integrity: sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==}
     engines: {node: '>=10'}
+    dev: true
+
+  /get-stream@8.0.1:
+    resolution: {integrity: sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==}
+    engines: {node: '>=16'}
     dev: true
 
   /get-symbol-description@1.0.0:
@@ -11917,11 +12223,6 @@ packages:
       - supports-color
     dev: true
 
-  /human-signals@1.1.1:
-    resolution: {integrity: sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==}
-    engines: {node: '>=8.12.0'}
-    dev: true
-
   /human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
@@ -11932,9 +12233,14 @@ packages:
     engines: {node: '>=14.18.0'}
     dev: true
 
-  /husky@8.0.3:
-    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
-    engines: {node: '>=14'}
+  /human-signals@5.0.0:
+    resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
+    engines: {node: '>=16.17.0'}
+    dev: true
+
+  /husky@9.1.4:
+    resolution: {integrity: sha512-bho94YyReb4JV7LYWRWxZ/xr6TtOTt8cMfmQ39MQYJ7f/YE268s3GdghGwi+y4zAeqewE5zYLvuhV0M0ijsDEA==}
+    engines: {node: '>=18'}
     hasBin: true
     dev: true
 
@@ -12176,6 +12482,18 @@ packages:
   /is-fullwidth-code-point@3.0.0:
     resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==}
     engines: {node: '>=8'}
+    dev: true
+
+  /is-fullwidth-code-point@4.0.0:
+    resolution: {integrity: sha512-O4L094N2/dZ7xqVdrXhh9r1KODPJpFms8B5sGdJLPy664AgvXsreZUyCQQNItZRDlYug4xStLjNp/sz3HvBowQ==}
+    engines: {node: '>=12'}
+    dev: true
+
+  /is-fullwidth-code-point@5.0.0:
+    resolution: {integrity: sha512-OVa3u9kkBbw7b8Xw5F9P+D/T9X+Z4+JruYVNapTjPYZYUznQ5YfWeFkOj606XYYW8yugTfC8Pj0hYqvi4ryAhA==}
+    engines: {node: '>=18'}
+    dependencies:
+      get-east-asian-width: 1.2.0
     dev: true
 
   /is-glob@4.0.3:
@@ -12743,6 +13061,11 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
+  /lilconfig@3.1.2:
+    resolution: {integrity: sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==}
+    engines: {node: '>=14'}
+    dev: true
+
   /lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
@@ -12752,47 +13075,35 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: true
 
-  /lint-staged@10.5.4:
-    resolution: {integrity: sha512-EechC3DdFic/TdOPgj/RB3FicqE6932LTHCUm0Y2fsD9KGlLB+RwJl2q1IYBIvEsKzDOgn0D4gll+YxG5RsrKg==}
+  /lint-staged@15.2.8:
+    resolution: {integrity: sha512-PUWFf2zQzsd9EFU+kM1d7UP+AZDbKFKuj+9JNVTBkhUFhbg4MAt6WfyMMwBfM4lYqd4D2Jwac5iuTu9rVj4zCQ==}
+    engines: {node: '>=18.12.0'}
     hasBin: true
     dependencies:
-      chalk: 4.1.2
-      cli-truncate: 2.1.0
-      commander: 6.2.1
-      cosmiconfig: 7.1.0
-      debug: 4.3.4
-      dedent: 0.7.0
-      enquirer: 2.4.1
-      execa: 4.1.0
-      listr2: 3.14.0(enquirer@2.4.1)
-      log-symbols: 4.1.0
-      micromatch: 4.0.5
-      normalize-path: 3.0.0
-      please-upgrade-node: 3.2.0
-      string-argv: 0.3.1
-      stringify-object: 3.3.0
+      chalk: 5.3.0
+      commander: 12.1.0
+      debug: 4.3.6
+      execa: 8.0.1
+      lilconfig: 3.1.2
+      listr2: 8.2.4
+      micromatch: 4.0.7
+      pidtree: 0.6.0
+      string-argv: 0.3.2
+      yaml: 2.5.0
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /listr2@3.14.0(enquirer@2.4.1):
-    resolution: {integrity: sha512-TyWI8G99GX9GjE54cJ+RrNMcIFBfwMPxc3XTFiAYGN4s10hWROGtOg7+O6u6LE3mNkyld7RSLE6nrKBvTfcs3g==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      enquirer: '>= 2.3.0 < 3'
-    peerDependenciesMeta:
-      enquirer:
-        optional: true
+  /listr2@8.2.4:
+    resolution: {integrity: sha512-opevsywziHd3zHCVQGAj8zu+Z3yHNkkoYhWIGnq54RrCVwLz0MozotJEDnKsIBLvkfLGN6BLOyAeRrYI0pKA4g==}
+    engines: {node: '>=18.0.0'}
     dependencies:
-      cli-truncate: 2.1.0
+      cli-truncate: 4.0.0
       colorette: 2.0.20
-      enquirer: 2.4.1
-      log-update: 4.0.0
-      p-map: 4.0.0
-      rfdc: 1.3.0
-      rxjs: 7.8.1
-      through: 2.3.8
-      wrap-ansi: 7.0.0
+      eventemitter3: 5.0.1
+      log-update: 6.1.0
+      rfdc: 1.4.1
+      wrap-ansi: 9.0.0
     dev: true
 
   /load-json-file@4.0.0:
@@ -12882,14 +13193,15 @@ packages:
       is-unicode-supported: 0.1.0
     dev: true
 
-  /log-update@4.0.0:
-    resolution: {integrity: sha512-9fkkDevMefjg0mmzWFBW8YkFP91OrizzkW3diF7CpG+S2EYdy4+TVfGwz1zeF8x7hCx1ovSPTOE9Ngib74qqUg==}
-    engines: {node: '>=10'}
+  /log-update@6.1.0:
+    resolution: {integrity: sha512-9ie8ItPR6tjY5uYJh8K/Zrv/RMZ5VOlOWvtZdEHYSTFKZfIBPQa9tOAEeAWhd+AnIneLJ22w5fjOYtoutpWq5w==}
+    engines: {node: '>=18'}
     dependencies:
-      ansi-escapes: 4.3.2
-      cli-cursor: 3.1.0
-      slice-ansi: 4.0.0
-      wrap-ansi: 6.2.0
+      ansi-escapes: 7.0.0
+      cli-cursor: 5.0.0
+      slice-ansi: 7.1.0
+      strip-ansi: 7.1.0
+      wrap-ansi: 9.0.0
     dev: true
 
   /logform@2.6.0:
@@ -13455,6 +13767,14 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /micromatch@4.0.7:
+    resolution: {integrity: sha512-LPP/3KorzCwBxfeUuZmaR6bG2kdeHSbe0P2tY3FLRU4vYrjYz5hI4QZwV0njUx3jeuKe67YukQ1LSPZBKDqO/Q==}
+    engines: {node: '>=8.6'}
+    dependencies:
+      braces: 3.0.3
+      picomatch: 2.3.1
+    dev: true
+
   /mime-db@1.52.0:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
     engines: {node: '>= 0.6'}
@@ -13475,6 +13795,11 @@ packages:
   /mimic-fn@4.0.0:
     resolution: {integrity: sha512-vqiC06CuhBTUdZH+RYl8sFrL096vA45Ok5ISO6sE/Mr1jRbGH4Csnhi8f3wKVl7x8mO4Au7Ir9D3Oyv1VYMFJw==}
     engines: {node: '>=12'}
+    dev: true
+
+  /mimic-function@5.0.1:
+    resolution: {integrity: sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==}
+    engines: {node: '>=18'}
     dev: true
 
   /min-indent@1.0.1:
@@ -14017,6 +14342,13 @@ packages:
       mimic-fn: 4.0.0
     dev: true
 
+  /onetime@7.0.0:
+    resolution: {integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      mimic-function: 5.0.1
+    dev: true
+
   /open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
@@ -14390,6 +14722,12 @@ packages:
     hasBin: true
     dev: true
 
+  /pidtree@0.6.0:
+    resolution: {integrity: sha512-eG2dWTVw5bzqGRztnHExczNxt5VGsE6OwTeCG3fdUf9KBsZzO3R5OIIIzWR+iZA0NtZ+RDVdaoE2dK1cn6jH4g==}
+    engines: {node: '>=0.10'}
+    hasBin: true
+    dev: true
+
   /pify@2.3.0:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
@@ -14429,12 +14767,6 @@ packages:
 
   /platform@1.3.6:
     resolution: {integrity: sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==}
-    dev: true
-
-  /please-upgrade-node@3.2.0:
-    resolution: {integrity: sha512-gQR3WpIgNIKwBMVLkpMUeR3e1/E1y42bqDQZfql+kDeXd8COYfM8PQA4X6y7a8u9Ua9FHmsrrmirW2vHs45hWg==}
-    dependencies:
-      semver-compare: 1.0.0
     dev: true
 
   /point-in-polygon-hao@1.1.0:
@@ -14533,8 +14865,8 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier@3.1.0:
-    resolution: {integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==}
+  /prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -14621,13 +14953,6 @@ packages:
 
   /proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
-    dev: true
-
-  /pump@3.0.0:
-    resolution: {integrity: sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww==}
-    dependencies:
-      end-of-stream: 1.4.4
-      once: 1.4.0
     dev: true
 
   /punycode@2.3.1:
@@ -15000,6 +15325,14 @@ packages:
       signal-exit: 3.0.7
     dev: true
 
+  /restore-cursor@5.1.0:
+    resolution: {integrity: sha512-oMA2dcrw6u0YfxJQXm342bFKX/E4sG9rbTzO9ptUcR/e8A33cHuvStiYOwH7fszkZlZ1z/ta9AAoPk2F4qIOHA==}
+    engines: {node: '>=18'}
+    dependencies:
+      onetime: 7.0.0
+      signal-exit: 4.1.0
+    dev: true
+
   /retry@0.12.0:
     resolution: {integrity: sha512-9LkiTwjUh6rT555DtE9rTX+BKByPfrMzEAtnlEtdEwr3Nkffwiihqe2bWADg+OQRjt9gl6ICdmB/ZFDCGAtSow==}
     engines: {node: '>= 4'}
@@ -15010,8 +15343,8 @@ packages:
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
     dev: true
 
-  /rfdc@1.3.0:
-    resolution: {integrity: sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA==}
+  /rfdc@1.4.1:
+    resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
     dev: true
 
   /rimraf@3.0.2:
@@ -15146,10 +15479,6 @@ packages:
     hasBin: true
     dependencies:
       commander: 12.1.0
-    dev: true
-
-  /semver-compare@1.0.0:
-    resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==}
     dev: true
 
   /semver@5.7.2:
@@ -15291,22 +15620,20 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
-  /slice-ansi@3.0.0:
-    resolution: {integrity: sha512-pSyv7bSTC7ig9Dcgbw9AuRNUb5k5V6oDudjZoMBSr13qpLBG7tB+zgCkARjq7xIUgdz5P1Qe8u+rSGdouOOIyQ==}
-    engines: {node: '>=8'}
+  /slice-ansi@5.0.0:
+    resolution: {integrity: sha512-FC+lgizVPfie0kkhqUScwRu1O/lF6NOgJmlCgK+/LYxDCTk8sGelYaHDhFcDN+Sn3Cv+3VSa4Byeo+IMCzpMgQ==}
+    engines: {node: '>=12'}
     dependencies:
-      ansi-styles: 4.3.0
-      astral-regex: 2.0.0
-      is-fullwidth-code-point: 3.0.0
+      ansi-styles: 6.2.1
+      is-fullwidth-code-point: 4.0.0
     dev: true
 
-  /slice-ansi@4.0.0:
-    resolution: {integrity: sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==}
-    engines: {node: '>=10'}
+  /slice-ansi@7.1.0:
+    resolution: {integrity: sha512-bSiSngZ/jWeX93BqeIAbImyTbEihizcwNjFoRUIY/T1wWQsfsm2Vw1agPKylXvQTU7iASGdHhyqRlqQzfz+Htg==}
+    engines: {node: '>=18'}
     dependencies:
-      ansi-styles: 4.3.0
-      astral-regex: 2.0.0
-      is-fullwidth-code-point: 3.0.0
+      ansi-styles: 6.2.1
+      is-fullwidth-code-point: 5.0.0
     dev: true
 
   /smart-buffer@4.2.0:
@@ -15446,8 +15773,8 @@ packages:
       internal-slot: 1.0.6
     dev: true
 
-  /string-argv@0.3.1:
-    resolution: {integrity: sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==}
+  /string-argv@0.3.2:
+    resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
     engines: {node: '>=0.6.19'}
     dev: true
 
@@ -15466,6 +15793,15 @@ packages:
     dependencies:
       eastasianwidth: 0.2.0
       emoji-regex: 9.2.2
+      strip-ansi: 7.1.0
+    dev: true
+
+  /string-width@7.2.0:
+    resolution: {integrity: sha512-tsaTIkKW9b4N+AEj+SVA+WhJzV7/zMhcSu78mLKWSk7cXMOSHsBKFWUs0fWwq8QyK3MgJBQRX6Gbi4kYbdvGkQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      emoji-regex: 10.3.0
+      get-east-asian-width: 1.2.0
       strip-ansi: 7.1.0
     dev: true
 
@@ -16475,6 +16811,15 @@ packages:
       strip-ansi: 7.1.0
     dev: true
 
+  /wrap-ansi@9.0.0:
+    resolution: {integrity: sha512-G8ura3S+3Z2G+mkgNRq8dqaFZAuxfsxpBB8OCTGRTCtp+l/v9nbFNmCUP1BZMts3G1142MsZfn6eeUKrr4PD1Q==}
+    engines: {node: '>=18'}
+    dependencies:
+      ansi-styles: 6.2.1
+      string-width: 7.2.0
+      strip-ansi: 7.1.0
+    dev: true
+
   /wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: true
@@ -16561,14 +16906,15 @@ packages:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
 
-  /yaml@1.10.2:
-    resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
-    engines: {node: '>= 6'}
-    dev: true
-
   /yaml@2.3.4:
     resolution: {integrity: sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==}
     engines: {node: '>= 14'}
+    dev: true
+
+  /yaml@2.5.0:
+    resolution: {integrity: sha512-2wWLbGbYDiSqqIKoPjar3MPgB94ErzCtrNE1FdqGuaO0pi2JGjmE8aW8TDZwzU7vuxcGRdL/4gPQwQ7hD5AMSw==}
+    engines: {node: '>= 14'}
+    hasBin: true
     dev: true
 
   /yamljs@0.3.0:

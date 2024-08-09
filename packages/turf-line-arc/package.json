@@ -66,6 +66,7 @@
     "@turf/circle": "workspace:^",
     "@turf/destination": "workspace:^",
     "@turf/helpers": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

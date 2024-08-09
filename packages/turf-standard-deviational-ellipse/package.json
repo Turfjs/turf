@@ -75,7 +75,7 @@
     "@turf/invariant": "workspace:^",
     "@turf/meta": "workspace:^",
     "@turf/points-within-polygon": "workspace:^",
-    "@types/geojson": "7946.0.8",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

@@ -250,5 +250,14 @@ export default {
       },
       includePackages: [MAIN_PACKAGE],
     }),
+
+    requireDependency({
+      options: {
+        dependencies: {
+          "@types/geojson": "^7946.0.10",
+        },
+      },
+      includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
+    }),
   ],
 };
