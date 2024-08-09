@@ -70,7 +70,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/line-segment": "workspace:^",
     "@turf/rhumb-bearing": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

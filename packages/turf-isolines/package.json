@@ -78,7 +78,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "@turf/meta": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "marchingsquares": "^1.3.3",
     "tslib": "^2.6.2"
   }

@@ -70,7 +70,7 @@
     "@turf/boolean-point-in-polygon": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "rbush": "^3.0.1",
     "tslib": "^2.6.2"
   }

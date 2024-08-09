@@ -75,7 +75,7 @@
     "@turf/line-intersect": "workspace:^",
     "@turf/line-overlap": "workspace:^",
     "@turf/meta": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "geojson-equality-ts": "^1.0.2",
     "tslib": "^2.6.2"
   }

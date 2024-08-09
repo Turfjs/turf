@@ -22,3 +22,4 @@ const poly2 = polygon([
 
 mask(poly1);
 mask(poly1, poly2);
+mask(poly1, poly2, { mutate: true });
