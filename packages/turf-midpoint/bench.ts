@@ -1,4 +1,4 @@
-import Benchmark from "benchmark";
+import Benchmark, { Event } from "benchmark";
 import { point } from "@turf/helpers";
 import { midpoint } from "./index.js";
 
@@ -9,7 +9,7 @@ new Benchmark.Suite("turf-midpoint")
   .add("turf-midpoint", function () {
     midpoint(pt1, pt2);
   })
-  .on("cycle", function (event) {
+  .on("cycle", function (event: Event) {
     console.log(String(event.target));
   })
   .run();

@@ -74,6 +74,7 @@
     "@turf/point-grid": "workspace:^",
     "@turf/random": "workspace:^",
     "@turf/square-grid": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

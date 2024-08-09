@@ -139,6 +139,7 @@ toc:
   - booleanCrosses
   - booleanDisjoint
   - booleanEqual
+  - booleanIntersects
   - booleanOverlap
   - booleanParallel
   - booleanPointInPolygon
@@ -147,6 +148,7 @@ toc:
   - booleanWithin
   - name: Unit Conversion
   - bearingToAzimuth
+  - azimuthToBearing
   - convertArea
   - convertLength
   - degreesToRadians

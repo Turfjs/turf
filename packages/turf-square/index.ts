@@ -1,4 +1,5 @@
 import { distance } from "@turf/distance";
+import { BBox } from "geojson";
 
 /**
  * Takes a bounding box and calculates the minimum square bounding box that
@@ -8,13 +9,13 @@ import { distance } from "@turf/distance";
  * @param {BBox} bbox extent in [west, south, east, north] order
  * @returns {BBox} a square surrounding `bbox`
  * @example
- * var bbox = [-20, -20, -15, 0];
- * var squared = turf.square(bbox);
+ * const bbox = [-20, -20, -15, 0];
+ * const squared = turf.square(bbox);
  *
  * //addToMap
- * var addToMap = [turf.bboxPolygon(bbox), turf.bboxPolygon(squared)]
+ * const addToMap = [turf.bboxPolygon(bbox), turf.bboxPolygon(squared)]
  */
-function square(bbox) {
+function square(bbox: BBox): BBox {
   var west = bbox[0];
   var south = bbox[1];
   var east = bbox[2];

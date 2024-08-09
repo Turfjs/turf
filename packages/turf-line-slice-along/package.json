@@ -65,6 +65,7 @@
     "@turf/bearing": "workspace:^",
     "@turf/destination": "workspace:^",
     "@turf/distance": "workspace:^",
-    "@turf/helpers": "workspace:^"
+    "@turf/helpers": "workspace:^",
+    "@types/geojson": "^7946.0.10"
   }
 }

@@ -5,7 +5,8 @@
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",
-    "Denis Carriere <@DenisCarriere>"
+    "Denis Carriere <@DenisCarriere>",
+    "David Whittingham <@01100100>"
   ],
   "license": "MIT",
   "bugs": {
@@ -70,6 +71,7 @@
     "@turf/boolean-disjoint": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

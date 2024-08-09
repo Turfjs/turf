@@ -62,6 +62,7 @@
     "tape": "^5.7.2",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
+    "typescript": "^5.2.2",
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
@@ -69,6 +70,8 @@
     "@turf/boolean-point-in-polygon": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
-    "rbush": "^3.0.1"
+    "@types/geojson": "^7946.0.10",
+    "rbush": "^3.0.1",
+    "tslib": "^2.6.2"
   }
 }

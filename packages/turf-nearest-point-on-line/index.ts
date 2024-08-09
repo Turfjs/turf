@@ -15,7 +15,7 @@ import { getCoords } from "@turf/invariant";
  * @param {Geometry|Feature<Point>|number[]} pt point to snap from
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
- * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain three values: `index`: closest point was found on nth line part, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
+ * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
  * @example
  * var line = turf.lineString([
  *     [-77.031669, 38.878605],
@@ -42,6 +42,7 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
   {
     dist: number;
     index: number;
+    multiFeatureIndex: number;
     location: number;
     [key: string]: any;
   }
@@ -52,96 +53,111 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
 
   let closestPt: Feature<
     Point,
-    { dist: number; index: number; location: number }
+    { dist: number; index: number; multiFeatureIndex: number; location: number }
   > = point([Infinity, Infinity], {
     dist: Infinity,
     index: -1,
+    multiFeatureIndex: -1,
     location: -1,
   });
 
   let length = 0.0;
-  flattenEach(lines, function (line: any) {
-    const coords: any = getCoords(line);
+  flattenEach(
+    lines,
+    function (line: any, _featureIndex: number, multiFeatureIndex: number) {
+      const coords: any = getCoords(line);
 
-    for (let i = 0; i < coords.length - 1; i++) {
-      //start
-      const start: Feature<Point, { dist: number }> = point(coords[i]);
-      start.properties.dist = distance(pt, start, options);
-      //stop
-      const stop: Feature<Point, { dist: number }> = point(coords[i + 1]);
-      stop.properties.dist = distance(pt, stop, options);
-      // sectionLength
-      const sectionLength = distance(start, stop, options);
-      //perpendicular
-      const heightDistance = Math.max(
-        start.properties.dist,
-        stop.properties.dist
-      );
-      const direction = bearing(start, stop);
-      const perpendicularPt1 = destination(
-        pt,
-        heightDistance,
-        direction + 90,
-        options
-      );
-      const perpendicularPt2 = destination(
-        pt,
-        heightDistance,
-        direction - 90,
-        options
-      );
-      const intersect = lineIntersects(
-        lineString([
-          perpendicularPt1.geometry.coordinates,
-          perpendicularPt2.geometry.coordinates,
-        ]),
-        lineString([start.geometry.coordinates, stop.geometry.coordinates])
-      );
-      let intersectPt:
-        | Feature<Point, { dist: number; location: number }>
-        | undefined;
+      for (let i = 0; i < coords.length - 1; i++) {
+        //start
+        const start: Feature<Point, { dist: number }> = point(coords[i]);
+        start.properties.dist = distance(pt, start, options);
+        //stop
+        const stop: Feature<Point, { dist: number }> = point(coords[i + 1]);
+        stop.properties.dist = distance(pt, stop, options);
+        // sectionLength
+        const sectionLength = distance(start, stop, options);
+        //perpendicular
+        const heightDistance = Math.max(
+          start.properties.dist,
+          stop.properties.dist
+        );
+        const direction = bearing(start, stop);
+        const perpendicularPt1 = destination(
+          pt,
+          heightDistance,
+          direction + 90,
+          options
+        );
+        const perpendicularPt2 = destination(
+          pt,
+          heightDistance,
+          direction - 90,
+          options
+        );
+        const intersect = lineIntersects(
+          lineString([
+            perpendicularPt1.geometry.coordinates,
+            perpendicularPt2.geometry.coordinates,
+          ]),
+          lineString([start.geometry.coordinates, stop.geometry.coordinates])
+        );
+        let intersectPt:
+          | Feature<
+              Point,
+              { dist: number; multiFeatureIndex: number; location: number }
+            >
+          | undefined;
 
-      if (intersect.features.length > 0 && intersect.features[0]) {
-        intersectPt = {
-          ...intersect.features[0],
-          properties: {
-            dist: distance(pt, intersect.features[0], options),
-            location: length + distance(start, intersect.features[0], options),
-          },
-        };
+        if (intersect.features.length > 0 && intersect.features[0]) {
+          intersectPt = {
+            ...intersect.features[0],
+            properties: {
+              dist: distance(pt, intersect.features[0], options),
+              multiFeatureIndex: multiFeatureIndex,
+              location:
+                length + distance(start, intersect.features[0], options),
+            },
+          };
+        }
+
+        if (start.properties.dist < closestPt.properties.dist) {
+          closestPt = {
+            ...start,
+            properties: {
+              ...start.properties,
+              index: i,
+              multiFeatureIndex: multiFeatureIndex,
+              location: length,
+            },
+          };
+        }
+
+        if (stop.properties.dist < closestPt.properties.dist) {
+          closestPt = {
+            ...stop,
+            properties: {
+              ...stop.properties,
+              index: i + 1,
+              multiFeatureIndex: multiFeatureIndex,
+              location: length + sectionLength,
+            },
+          };
+        }
+
+        if (
+          intersectPt &&
+          intersectPt.properties.dist < closestPt.properties.dist
+        ) {
+          closestPt = {
+            ...intersectPt,
+            properties: { ...intersectPt.properties, index: i },
+          };
+        }
+        // update length
+        length += sectionLength;
       }
-
-      if (start.properties.dist < closestPt.properties.dist) {
-        closestPt = {
-          ...start,
-          properties: { ...start.properties, index: i, location: length },
-        };
-      }
-
-      if (stop.properties.dist < closestPt.properties.dist) {
-        closestPt = {
-          ...stop,
-          properties: {
-            ...stop.properties,
-            index: i + 1,
-            location: length + sectionLength,
-          },
-        };
-      }
-
-      if (
-        intersectPt &&
-        intersectPt.properties.dist < closestPt.properties.dist
-      ) {
-        closestPt = {
-          ...intersectPt,
-          properties: { ...intersectPt.properties, index: i },
-        };
-      }
-      // update length
-      length += sectionLength;
     }
-  });
+  );
 
   return closestPt;
 }

@@ -40,6 +40,7 @@
       "type": "Feature",
       "properties": {
         "dist": 5.964157,
+        "multiFeatureIndex": 0,
         "location": 19.828788,
         "index": 1,
         "marker-color": "#F0F"
