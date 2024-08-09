@@ -16,7 +16,7 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
  * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order
  * @param {number} cellSide dimension of each grid cell.  Two triangles are created in each cell.
  * @param {Object} [options={}] Optional parameters
- * @param {Units} [options.units='kilometers'] used in calculating cellSide.  Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/index.ts Units}
+ * @param {Units} [options.units='kilometers'] used in calculating cellSide.  Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}
  * @param {Feature<Polygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Polygon>} grid of polygons

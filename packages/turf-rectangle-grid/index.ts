@@ -22,7 +22,7 @@ import {
  * @param {number} cellHeight height of each cell, in units
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] the units of the cell width and height value.
- * Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/index.ts Units}.
+ * Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}.
  * If you are looking for rectangles with equal width and height in linear units (e.g. kilometers) this is not the module for you.
  * The cellWidth and cellHeight is converted from units provided to degrees internally, so the width and height of resulting polygons will be consistent only in degrees.
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,

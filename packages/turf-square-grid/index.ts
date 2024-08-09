@@ -17,7 +17,7 @@ import { rectangleGrid } from "@turf/rectangle-grid";
  * @param {number} cellSide length of each cell side.
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] the units of the cellSide value.
- * Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/index.ts Units}.
+ * Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}.
  * If you are looking for squares with sides of equal lengths in linear units (e.g. kilometers) this is not the module for you.
  * The cellSide is converted from units provided to degrees internally, so the width and height of resulting polygons will be consistent only in degrees.
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
