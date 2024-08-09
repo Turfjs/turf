@@ -5,6 +5,7 @@ const { glob } = require("glob");
 const path = require("path");
 const { loadJsonFileSync } = require("load-json-file");
 const yaml = require("yamljs");
+const { ast, query } = require("@phenomnomnominal/tsquery");
 
 (async () => {
   // documentation v14 has moved to ESM so need to import as if async, and wrap
@@ -59,6 +60,34 @@ const yaml = require("yamljs");
               /{module}/,
               name
             )}`;
+
+            if (packagePath.includes("turf-helpers")) {
+              const helpersTs = fs.readFileSync(indexPath, "utf8").toString();
+              const theAst = ast(helpersTs);
+
+              // Extract unit names
+
+              // ToDo: This is a malformed selector.  In addition to Units, it includes StringLiterals from AreaUnits as well (hectares, acres, degrees, radians)
+              const unitLiterals = query(
+                theAst,
+                'TypeAliasDeclaration:has(Identifier[name="Units"]) UnionType LiteralType StringLiteral'
+              );
+              const unitArray = unitLiterals.map((sLiteral) =>
+                sLiteral.getText().replaceAll('"', "")
+              );
+              const unitNames =
+                unitLiterals.length > 0 ? "Units: " + unitArray.join(", ") : "";
+              console.log(unitNames);
+
+              // extract area unit names.  unit names - exclusions + inclusions
+
+              const insertText = "## helpers\n";
+              markdown = markdown.replace(
+                insertText,
+                `${insertText}\n### units\n\n${unitNames}\n`
+              );
+            }
+
             if (diagrams.length)
               markdown += "\n\n### Diagrams\n\n" + diagramToMarkdown(diagrams);
             fs.writeFileSync(path.join(directory, "README.md"), markdown);
