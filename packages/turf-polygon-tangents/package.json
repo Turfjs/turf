@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-tangents",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf polygon tangents module",
   "author": "Turf Authors",
   "contributors": [
