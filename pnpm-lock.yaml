@@ -3619,9 +3619,6 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      sweepline-intersections:
-        specifier: ^1.5.0
-        version: 1.5.0
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
