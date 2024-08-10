@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-to-line-distance",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf point-to-line-distance module",
   "author": "Turf Authors",
   "contributors": [
@@ -75,6 +75,7 @@
     "@turf/projection": "workspace:^",
     "@turf/rhumb-bearing": "workspace:^",
     "@turf/rhumb-distance": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

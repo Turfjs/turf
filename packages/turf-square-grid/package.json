@@ -1,6 +1,6 @@
 {
   "name": "@turf/square-grid",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf square-grid module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -67,6 +67,7 @@
   "dependencies": {
     "@turf/helpers": "workspace:^",
     "@turf/rectangle-grid": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

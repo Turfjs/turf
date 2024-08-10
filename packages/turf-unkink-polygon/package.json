@@ -1,6 +1,6 @@
 {
   "name": "@turf/unkink-polygon",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf unkink-polygon module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -70,7 +70,7 @@
     "@turf/boolean-point-in-polygon": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
-    "@types/geojson": "7946.0.8",
+    "@types/geojson": "^7946.0.10",
     "rbush": "^3.0.1",
     "tslib": "^2.6.2"
   }

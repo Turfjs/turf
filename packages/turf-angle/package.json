@@ -1,6 +1,6 @@
 {
   "name": "@turf/angle",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf angle module",
   "author": "Turf Authors",
   "contributors": [
@@ -72,6 +72,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "@turf/rhumb-bearing": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

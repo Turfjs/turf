@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf dissolve module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -68,6 +68,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "@turf/meta": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "polygon-clipping": "^0.15.3",
     "tslib": "^2.6.2"
   }

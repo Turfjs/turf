@@ -1,6 +1,6 @@
 {
   "name": "@turf/moran-index",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf moran-index module",
   "author": "Turf Authors",
   "contributors": [
@@ -67,6 +67,7 @@
     "@turf/distance-weight": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

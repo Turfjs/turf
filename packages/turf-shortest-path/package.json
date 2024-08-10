@@ -1,6 +1,6 @@
 {
   "name": "@turf/shortest-path",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf shortest-path module",
   "author": "Turf Authors",
   "contributors": [
@@ -77,6 +77,7 @@
     "@turf/invariant": "workspace:^",
     "@turf/meta": "workspace:^",
     "@turf/transform-scale": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

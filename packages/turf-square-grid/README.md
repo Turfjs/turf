@@ -4,16 +4,18 @@
 
 ## squareGrid
 
-Creates a square grid from a bounding box.
+Creates a grid of square polygons with cell length consistent in degrees
 
 ### Parameters
 
-*   `bbox` **[Array][1]<[number][2]>** extent in \[minX, minY, maxX, maxY] order
-*   `cellSide` **[number][2]** of each cell, in units
+*   `bbox` **[BBox][1]** extent of grid in \[minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
+*   `cellSide` **[number][2]** length of each cell side.
 *   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][4]** used in calculating cellSide, can be degrees,
-        radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.units` **Units** the units of the cellSide value.
+        Supports all valid Turf [Units][4].
+        If you are looking for squares with sides of equal lengths in linear units (e.g. kilometers) this is not the module for you.
+        The cellSide is converted from units provided to degrees internally, so the width and height of resulting polygons will be consistent only in degrees. (optional, default `'kilometers'`)
     *   `options.mask` **[Feature][5]<([Polygon][6] | [MultiPolygon][7])>?** if passed a Polygon or MultiPolygon,
         the grid Points will be created only inside it
     *   `options.properties` **[Object][3]** passed to each point of the grid (optional, default `{}`)
@@ -31,15 +33,15 @@ var squareGrid = turf.squareGrid(bbox, cellSide, options);
 var addToMap = [squareGrid]
 ```
 
-Returns **[FeatureCollection][8]<[Polygon][6]>** grid a grid of polygons
+Returns **[FeatureCollection][8]<[Polygon][6]>** a grid of polygons with equal width and height in degrees.
 
-[1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[1]: https://tools.ietf.org/html/rfc7946#section-5
 
 [2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
 [3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[4]: https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md
 
 [5]: https://tools.ietf.org/html/rfc7946#section-3.2
 

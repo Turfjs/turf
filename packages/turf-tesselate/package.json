@@ -1,6 +1,6 @@
 {
   "name": "@turf/tesselate",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf tesselate module",
   "author": "Turf Authors",
   "contributors": [
@@ -70,7 +70,7 @@
   },
   "dependencies": {
     "@turf/helpers": "workspace:^",
-    "@types/geojson": "7946.0.8",
+    "@types/geojson": "^7946.0.10",
     "earcut": "^2.2.4",
     "tslib": "^2.6.2"
   }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/points-within-polygon",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf points-within-polygon module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -66,6 +66,7 @@
     "@turf/boolean-point-in-polygon": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }
