@@ -1,3 +1,4 @@
+import { Feature, LineString } from "geojson";
 import { lineString } from "@turf/helpers";
 import { orientationIndex } from "./util.js";
 import { Node } from "./Node.js";
@@ -74,7 +75,7 @@ class Edge {
    *
    * @returns {Feature<LineString>} - LineString representation of the Edge
    */
-  toLineString() {
+  toLineString(): Feature<LineString> {
     return lineString([this.from.coordinates, this.to.coordinates]);
   }
 

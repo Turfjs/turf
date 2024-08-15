@@ -6,6 +6,8 @@ import {
   GeoJsonProperties,
   BBox,
   Position,
+  Polygon,
+  MultiPolygon,
 } from "geojson";
 import { bbox as turfBBox } from "@turf/bbox";
 import { getCoords, getGeom } from "@turf/invariant";
@@ -16,7 +18,7 @@ import { clone } from "@turf/clone";
  * Converts (Multi)LineString(s) to Polygon(s).
  *
  * @name lineToPolygon
- * @param {FeatureCollection|Feature<LineString|MultiLineString>} lines Features to convert
+ * @param {FeatureCollection<LineString|MultiLineString>|Feature<LineString|MultiLineString>|<LineString|MultiLineString>} lines Features to convert
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] translates GeoJSON properties to Feature
  * @param {boolean} [options.autoComplete=true] auto complete linestrings (matches first & last coordinates)
@@ -39,7 +41,7 @@ function lineToPolygon<G extends LineString | MultiLineString>(
     orderCoords?: boolean;
     mutate?: boolean;
   } = {}
-) {
+): Feature<Polygon | MultiPolygon> {
   // Optional parameters
   var properties = options.properties;
   var autoComplete = options.autoComplete ?? true;
@@ -68,7 +70,7 @@ function lineToPolygon<G extends LineString | MultiLineString>(
  * LineString to Polygon
  *
  * @private
- * @param {Feature<LineString|MultiLineString>} line line
+ * @param {Feature<LineString|MultiLineString>|LineString|MultiLineString} line line
  * @param {Object} [properties] translates GeoJSON properties to Feature
  * @param {boolean} [autoComplete=true] auto complete linestrings
  * @param {boolean} [orderCoords=true] sorts linestrings to place outer ring at the first position of the coordinates
