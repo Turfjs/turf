@@ -1,0 +1,1 @@
+import { lineSplit } from "./index";

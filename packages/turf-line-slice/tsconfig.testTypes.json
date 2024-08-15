@@ -3,5 +3,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "include": ["types.ts"]
+  "files": ["types.ts"]
 }

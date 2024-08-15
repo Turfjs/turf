@@ -51,7 +51,7 @@
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.ts",
-    "test:types": "tsc -p ./tsconfig.testTypes.json"
+    "test:types": "tsc --noEmit"
   },
   "devDependencies": {
     "@turf/bbox-polygon": "workspace:^",

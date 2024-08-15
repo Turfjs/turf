@@ -1,0 +1,1 @@
+import { lineSliceAlong } from "./index";

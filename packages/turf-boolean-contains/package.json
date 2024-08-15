@@ -52,7 +52,8 @@
     "build": "tsup --config ../../tsup.config.ts",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
-    "test:tape": "tsx test.ts"
+    "test:tape": "tsx test.ts",
+    "test:types": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",

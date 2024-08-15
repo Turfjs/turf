@@ -1,3 +1,4 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "files": ["index.ts", "marchingsquares.d.ts"]
 }

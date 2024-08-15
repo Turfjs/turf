@@ -17,7 +17,6 @@ const JS_PACKAGES = []; // projects that use javascript/rollup to build
 const MAIN_PACKAGE = "@turf/turf";
 
 const TAPE_PACKAGES = []; // projects that have tape tests
-const TYPES_PACKAGES = []; // projects that have types tests
 const BENCH_PACKAGES = []; // projects that have benchmarks
 
 // iterate all the packages and figure out what buckets everything falls into
@@ -36,10 +35,6 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
   if (fs.existsSync(path.join(pk, "test.js"))) {
     TAPE_PACKAGES.push(name);
   }
-
-  if (fs.existsSync(path.join(pk, "types.ts"))) {
-    TYPES_PACKAGES.push(name);
-  }
 });
 
 const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
@@ -56,8 +51,48 @@ export default {
         file: "tsconfig.testTypes.json",
         templateFile: "./templates/tsconfig.testTypes.json",
       },
-      includePackages: TYPES_PACKAGES,
+      includePackages: JS_PACKAGES,
     }),
+    fileContents({
+      options: {
+        file: "tsconfig.json",
+        template: `{
+  "extends": "../../tsconfig.shared.json",
+  "files": ["index.ts"]
+}
+`,
+      },
+      includePackages: TS_PACKAGES.filter(
+        (elem) => !["@turf/isobands", "@turf/tesselate"].includes(elem)
+      ),
+    }),
+
+    // Special treatment for two packages with locally defined .d.ts files for
+    // untyped Javascript dependencies. Might be possible to remove should those
+    // libraries be retired / types added to DefinitelyTyped.
+    fileContents({
+      options: {
+        file: "tsconfig.json",
+        template: `{
+  "extends": "../../tsconfig.shared.json",
+  "files": ["index.ts", "marchingsquares.d.ts"]
+}
+`,
+      },
+      includePackages: ["@turf/isobands"],
+    }),
+    fileContents({
+      options: {
+        file: "tsconfig.json",
+        template: `{
+  "extends": "../../tsconfig.shared.json",
+  "files": ["index.ts", "earcut.d.ts"]
+}
+`,
+      },
+      includePackages: ["@turf/tesselate"],
+    }),
+
     packageOrder({
       options: {
         order: [
@@ -217,10 +252,19 @@ export default {
     packageScript({
       options: {
         scripts: {
+          "test:types": "tsc --noEmit",
+        },
+      },
+      includePackages: TS_PACKAGES,
+    }),
+
+    packageScript({
+      options: {
+        scripts: {
           "test:types": "tsc -p ./tsconfig.testTypes.json",
         },
       },
-      includePackages: TYPES_PACKAGES,
+      includePackages: JS_PACKAGES,
     }),
 
     requireDependency({
