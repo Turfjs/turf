@@ -63,11 +63,14 @@ export default {
 `,
       },
       includePackages: TS_PACKAGES.filter(
-        (elem) => !["@turf/isobands", "@turf/tesselate"].includes(elem)
+        (elem) =>
+          !["@turf/isobands", "@turf/isolines", "@turf/tesselate"].includes(
+            elem
+          )
       ),
     }),
 
-    // Special treatment for two packages with locally defined .d.ts files for
+    // Special treatment for three packages with locally defined .d.ts files for
     // untyped Javascript dependencies. Might be possible to remove should those
     // libraries be retired / types added to DefinitelyTyped.
     fileContents({
@@ -79,7 +82,7 @@ export default {
 }
 `,
       },
-      includePackages: ["@turf/isobands"],
+      includePackages: ["@turf/isobands", "@turf/isolines"],
     }),
     fileContents({
       options: {
@@ -226,17 +229,7 @@ export default {
           build: "tsup --config ../../tsup.config.ts",
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
-    }),
-
-    packageScript({
-      options: {
-        scripts: {
-          build:
-            "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
-        },
-      },
-      includePackages: [MAIN_PACKAGE],
+      includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
     }),
 
     packageScript({
