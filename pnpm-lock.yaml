@@ -25,10 +25,10 @@ importers:
         version: 18.11.9
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.10.0
-        version: 6.13.2(@typescript-eslint/parser@6.13.2)(eslint@8.55.0)(typescript@5.3.3)
+        version: 6.13.2(@typescript-eslint/parser@6.13.2)(eslint@8.55.0)(typescript@5.5.4)
       '@typescript-eslint/parser':
         specifier: ^6.10.0
-        version: 6.13.2(eslint@8.55.0)(typescript@5.3.3)
+        version: 6.13.2(eslint@8.55.0)(typescript@5.5.4)
       acorn:
         specifier: ^7.4.1
         version: 7.4.1
@@ -94,16 +94,16 @@ importers:
         version: 2.0.3
       ts-node:
         specifier: ^9.0.0
-        version: 9.1.1(typescript@5.3.3)
+        version: 9.1.1(typescript@5.5.4)
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       yamljs:
         specifier: ^0.3.0
         version: 0.3.0
@@ -494,13 +494,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-along:
     dependencies:
@@ -546,13 +546,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-angle:
     dependencies:
@@ -607,13 +607,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -653,13 +653,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -696,13 +696,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-bbox-clip:
     dependencies:
@@ -742,13 +742,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -782,13 +782,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-bearing:
     dependencies:
@@ -825,13 +825,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -871,13 +871,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -920,13 +920,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-concave:
     dependencies:
@@ -966,13 +966,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-contains:
     dependencies:
@@ -1027,13 +1027,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-crosses:
     dependencies:
@@ -1085,13 +1085,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-disjoint:
     dependencies:
@@ -1140,13 +1140,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-equal:
     dependencies:
@@ -1195,13 +1195,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-intersects:
     dependencies:
@@ -1244,13 +1244,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-overlap:
     dependencies:
@@ -1305,13 +1305,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-parallel:
     dependencies:
@@ -1354,13 +1354,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1400,13 +1400,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-point-on-line:
     dependencies:
@@ -1446,13 +1446,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1507,13 +1507,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-valid:
     dependencies:
@@ -1583,13 +1583,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-boolean-within:
     dependencies:
@@ -1644,13 +1644,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-buffer:
     dependencies:
@@ -1702,7 +1702,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -1754,13 +1754,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1812,13 +1812,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1879,13 +1879,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1937,13 +1937,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1986,13 +1986,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2038,13 +2038,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2087,13 +2087,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2130,13 +2130,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-clusters:
     dependencies:
@@ -2170,13 +2170,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-clusters-dbscan:
     dependencies:
@@ -2237,13 +2237,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2310,13 +2310,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2362,13 +2362,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-combine:
     dependencies:
@@ -2402,13 +2402,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-concave:
     dependencies:
@@ -2469,13 +2469,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2524,13 +2524,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2576,13 +2576,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2628,13 +2628,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2689,13 +2689,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2744,13 +2744,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2790,13 +2790,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2842,13 +2842,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2912,13 +2912,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -2961,13 +2961,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-explode:
     dependencies:
@@ -3004,13 +3004,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3050,13 +3050,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3099,13 +3099,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3200,7 +3200,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3234,13 +3234,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-hex-grid:
     dependencies:
@@ -3289,13 +3289,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3365,7 +3365,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3414,13 +3414,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3454,13 +3454,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-isobands:
     dependencies:
@@ -3530,13 +3530,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3600,13 +3600,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3646,13 +3646,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3695,13 +3695,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3747,13 +3747,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3799,7 +3799,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3845,13 +3845,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3894,7 +3894,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -3955,13 +3955,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4004,13 +4004,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4053,7 +4053,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4105,7 +4105,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4166,7 +4166,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4215,13 +4215,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4267,13 +4267,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4304,7 +4304,7 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
@@ -4347,13 +4347,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-moran-index:
     dependencies:
@@ -4393,13 +4393,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4460,13 +4460,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4512,13 +4512,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4582,13 +4582,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4643,13 +4643,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4686,13 +4686,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-point-grid:
     dependencies:
@@ -4741,13 +4741,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4799,13 +4799,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4866,13 +4866,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4912,13 +4912,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-polygon-smooth:
     dependencies:
@@ -4958,13 +4958,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5016,13 +5016,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5062,13 +5062,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5117,13 +5117,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5172,13 +5172,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5242,13 +5242,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5285,13 +5285,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-rectangle-grid:
     dependencies:
@@ -5337,13 +5337,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5392,13 +5392,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5438,13 +5438,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5487,13 +5487,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5536,13 +5536,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5576,13 +5576,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-sector:
     dependencies:
@@ -5631,13 +5631,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5701,13 +5701,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5756,13 +5756,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5799,13 +5799,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-square-grid:
     dependencies:
@@ -5845,13 +5845,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5909,13 +5909,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -5961,13 +5961,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-tesselate:
     dependencies:
@@ -6001,13 +6001,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-tin:
     dependencies:
@@ -6038,13 +6038,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-transform-rotate:
     dependencies:
@@ -6102,13 +6102,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -6181,13 +6181,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -6239,13 +6239,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -6294,13 +6294,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -6340,13 +6340,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -6392,13 +6392,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -6450,13 +6450,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -6508,13 +6508,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -9416,7 +9416,7 @@ packages:
     resolution: {integrity: sha512-IfYcSBWE3hLpBg8+X2SEa8LVkJdJEkT2Ese2aaLs3ptGdVtABxndrMaxuFlQ1qdFf9Q5rDvDpxI3WwgvKFAsQA==}
     dev: true
 
-  /@typescript-eslint/eslint-plugin@6.13.2(@typescript-eslint/parser@6.13.2)(eslint@8.55.0)(typescript@5.3.3):
+  /@typescript-eslint/eslint-plugin@6.13.2(@typescript-eslint/parser@6.13.2)(eslint@8.55.0)(typescript@5.5.4):
     resolution: {integrity: sha512-3+9OGAWHhk4O1LlcwLBONbdXsAhLjyCFogJY/cWy2lxdVJ2JrcTF2pTGMaLl2AE7U1l31n8Py4a8bx5DLf/0dQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -9428,10 +9428,10 @@ packages:
         optional: true
     dependencies:
       '@eslint-community/regexpp': 4.10.0
-      '@typescript-eslint/parser': 6.13.2(eslint@8.55.0)(typescript@5.3.3)
+      '@typescript-eslint/parser': 6.13.2(eslint@8.55.0)(typescript@5.5.4)
       '@typescript-eslint/scope-manager': 6.13.2
-      '@typescript-eslint/type-utils': 6.13.2(eslint@8.55.0)(typescript@5.3.3)
-      '@typescript-eslint/utils': 6.13.2(eslint@8.55.0)(typescript@5.3.3)
+      '@typescript-eslint/type-utils': 6.13.2(eslint@8.55.0)(typescript@5.5.4)
+      '@typescript-eslint/utils': 6.13.2(eslint@8.55.0)(typescript@5.5.4)
       '@typescript-eslint/visitor-keys': 6.13.2
       debug: 4.3.4
       eslint: 8.55.0
@@ -9439,13 +9439,13 @@ packages:
       ignore: 5.3.0
       natural-compare: 1.4.0
       semver: 7.5.4
-      ts-api-utils: 1.0.3(typescript@5.3.3)
-      typescript: 5.3.3
+      ts-api-utils: 1.0.3(typescript@5.5.4)
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@typescript-eslint/parser@6.13.2(eslint@8.55.0)(typescript@5.3.3):
+  /@typescript-eslint/parser@6.13.2(eslint@8.55.0)(typescript@5.5.4):
     resolution: {integrity: sha512-MUkcC+7Wt/QOGeVlM8aGGJZy1XV5YKjTpq9jK6r6/iLsGXhBVaGP5N0UYvFsu9BFlSpwY9kMretzdBH01rkRXg==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -9457,11 +9457,11 @@ packages:
     dependencies:
       '@typescript-eslint/scope-manager': 6.13.2
       '@typescript-eslint/types': 6.13.2
-      '@typescript-eslint/typescript-estree': 6.13.2(typescript@5.3.3)
+      '@typescript-eslint/typescript-estree': 6.13.2(typescript@5.5.4)
       '@typescript-eslint/visitor-keys': 6.13.2
       debug: 4.3.4
       eslint: 8.55.0
-      typescript: 5.3.3
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9474,7 +9474,7 @@ packages:
       '@typescript-eslint/visitor-keys': 6.13.2
     dev: true
 
-  /@typescript-eslint/type-utils@6.13.2(eslint@8.55.0)(typescript@5.3.3):
+  /@typescript-eslint/type-utils@6.13.2(eslint@8.55.0)(typescript@5.5.4):
     resolution: {integrity: sha512-Qr6ssS1GFongzH2qfnWKkAQmMUyZSyOr0W54nZNU1MDfo+U4Mv3XveeLZzadc/yq8iYhQZHYT+eoXJqnACM1tw==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -9484,12 +9484,12 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/typescript-estree': 6.13.2(typescript@5.3.3)
-      '@typescript-eslint/utils': 6.13.2(eslint@8.55.0)(typescript@5.3.3)
+      '@typescript-eslint/typescript-estree': 6.13.2(typescript@5.5.4)
+      '@typescript-eslint/utils': 6.13.2(eslint@8.55.0)(typescript@5.5.4)
       debug: 4.3.4
       eslint: 8.55.0
-      ts-api-utils: 1.0.3(typescript@5.3.3)
-      typescript: 5.3.3
+      ts-api-utils: 1.0.3(typescript@5.5.4)
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9504,7 +9504,7 @@ packages:
     engines: {node: ^18.18.0 || >=20.0.0}
     dev: true
 
-  /@typescript-eslint/typescript-estree@6.13.2(typescript@5.3.3):
+  /@typescript-eslint/typescript-estree@6.13.2(typescript@5.5.4):
     resolution: {integrity: sha512-SuD8YLQv6WHnOEtKv8D6HZUzOub855cfPnPMKvdM/Bh1plv1f7Q/0iFUDLKKlxHcEstQnaUU4QZskgQq74t+3w==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -9519,8 +9519,8 @@ packages:
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.5.4
-      ts-api-utils: 1.0.3(typescript@5.3.3)
-      typescript: 5.3.3
+      ts-api-utils: 1.0.3(typescript@5.5.4)
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9547,7 +9547,7 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/utils@6.13.2(eslint@8.55.0)(typescript@5.3.3):
+  /@typescript-eslint/utils@6.13.2(eslint@8.55.0)(typescript@5.5.4):
     resolution: {integrity: sha512-b9Ptq4eAZUym4idijCRzl61oPCwwREcfDI8xGk751Vhzig5fFZR9CyzDz4Sp/nxSLBYxUPyh4QdIDqWykFhNmQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -9558,7 +9558,7 @@ packages:
       '@types/semver': 7.5.6
       '@typescript-eslint/scope-manager': 6.13.2
       '@typescript-eslint/types': 6.13.2
-      '@typescript-eslint/typescript-estree': 6.13.2(typescript@5.3.3)
+      '@typescript-eslint/typescript-estree': 6.13.2(typescript@5.5.4)
       eslint: 8.55.0
       semver: 7.5.4
     transitivePeerDependencies:
@@ -14796,7 +14796,7 @@ packages:
     dependencies:
       lilconfig: 3.0.0
       postcss: 8.4.40
-      ts-node: 9.1.1(typescript@5.3.3)
+      ts-node: 9.1.1(typescript@5.5.4)
       yaml: 2.3.4
     dev: true
 
@@ -16194,13 +16194,13 @@ packages:
     resolution: {integrity: sha512-tmMpK00BjZiUyVyvrBK7knerNgmgvcV/KLVyuma/SC+TQN167GrMRciANTz09+k3zW8L8t60jWO1GpfkZdjTaw==}
     dev: true
 
-  /ts-api-utils@1.0.3(typescript@5.3.3):
+  /ts-api-utils@1.0.3(typescript@5.5.4):
     resolution: {integrity: sha512-wNMeqtMz5NtwpT/UZGY5alT+VoKdSsOOP/kqHFcUW1P/VRhH2wJ48+DN2WwUliNbQ976ETwDL0Ifd2VVvgonvg==}
     engines: {node: '>=16.13.0'}
     peerDependencies:
       typescript: '>=4.2.0'
     dependencies:
-      typescript: 5.3.3
+      typescript: 5.5.4
     dev: true
 
   /ts-api-utils@1.3.0(typescript@5.5.4):
@@ -16216,7 +16216,7 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /ts-node@9.1.1(typescript@5.3.3):
+  /ts-node@9.1.1(typescript@5.5.4):
     resolution: {integrity: sha512-hPlt7ZACERQGf03M253ytLY3dHbGNGrAq9qIHWUY9XHYl1z7wYngSr3OQ5xmui8o2AaxsONxIzjafLUiWBo1Fg==}
     engines: {node: '>=10.0.0'}
     hasBin: true
@@ -16228,7 +16228,7 @@ packages:
       diff: 4.0.2
       make-error: 1.3.6
       source-map-support: 0.5.21
-      typescript: 5.3.3
+      typescript: 5.5.4
       yn: 3.1.1
     dev: true
 
@@ -16279,6 +16279,46 @@ packages:
       sucrase: 3.34.0
       tree-kill: 1.2.2
       typescript: 5.3.3
+    transitivePeerDependencies:
+      - supports-color
+      - ts-node
+    dev: true
+
+  /tsup@8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4):
+    resolution: {integrity: sha512-hvW7gUSG96j53ZTSlT4j/KL0q1Q2l6TqGBFc6/mu/L46IoNWqLLUzLRLP1R8Q7xrJTmkDxxDoojV5uCVs1sVOg==}
+    engines: {node: '>=18'}
+    hasBin: true
+    peerDependencies:
+      '@microsoft/api-extractor': ^7.36.0
+      '@swc/core': ^1
+      postcss: ^8.4.12
+      typescript: '>=4.5.0'
+    peerDependenciesMeta:
+      '@microsoft/api-extractor':
+        optional: true
+      '@swc/core':
+        optional: true
+      postcss:
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      bundle-require: 4.0.2(esbuild@0.19.11)
+      cac: 6.7.14
+      chokidar: 3.5.3
+      debug: 4.3.4
+      esbuild: 0.19.11
+      execa: 5.1.1
+      globby: 11.1.0
+      joycon: 3.1.1
+      postcss: 8.4.40
+      postcss-load-config: 4.0.2(postcss@8.4.40)(ts-node@9.1.1)
+      resolve-from: 5.0.0
+      rollup: 4.9.0
+      source-map: 0.8.0-beta.0
+      sucrase: 3.34.0
+      tree-kill: 1.2.2
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
       - ts-node
