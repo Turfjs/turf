@@ -280,7 +280,7 @@ export default {
         devDependencies: {
           "@types/benchmark": "^2.1.5",
           "@types/tape": "^4.2.32",
-          typescript: "^5.2.2",
+          typescript: "^5.5.4",
         },
       },
       includePackages: TS_PACKAGES,
