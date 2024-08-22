@@ -1,6 +1,6 @@
 {
   "name": "@turf/clusters-dbscan",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf clusters-dbscan module",
   "author": "Turf Authors",
   "contributors": [
@@ -81,7 +81,7 @@
     "@turf/distance": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "rbush": "^3.0.1",
     "tslib": "^2.6.2"
   }

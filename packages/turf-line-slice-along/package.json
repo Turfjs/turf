@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-slice-along",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf line-slice-along module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -66,6 +66,6 @@
     "@turf/destination": "workspace:^",
     "@turf/distance": "workspace:^",
     "@turf/helpers": "workspace:^",
-    "@types/geojson": "^7946.0.0"
+    "@types/geojson": "^7946.0.10"
   }
 }

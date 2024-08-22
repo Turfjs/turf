@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-valid",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf boolean-valid module",
   "author": "Turf Authors",
   "contributors": [
@@ -78,7 +78,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "@turf/line-intersect": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "geojson-polygon-self-intersections": "^1.2.1",
     "tslib": "^2.6.2"
   }

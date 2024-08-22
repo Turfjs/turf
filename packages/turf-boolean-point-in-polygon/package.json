@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-point-in-polygon",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf boolean-point-in-polygon module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -65,7 +65,7 @@
   "dependencies": {
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "point-in-polygon-hao": "^1.1.0",
     "tslib": "^2.6.2"
   }

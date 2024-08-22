@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-chunk",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf line-chunk module",
   "author": "Turf Authors",
   "contributors": [
@@ -75,6 +75,6 @@
     "@turf/length": "workspace:^",
     "@turf/line-slice-along": "workspace:^",
     "@turf/meta": "workspace:^",
-    "@types/geojson": "^7946.0.0"
+    "@types/geojson": "^7946.0.10"
   }
 }

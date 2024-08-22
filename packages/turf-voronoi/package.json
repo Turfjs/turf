@@ -1,6 +1,6 @@
 {
   "name": "@turf/voronoi",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf voronoi module",
   "author": "Turf Authors",
   "contributors": [
@@ -75,7 +75,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "@types/d3-voronoi": "^1.1.12",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "d3-voronoi": "1.1.2",
     "tslib": "^2.6.2"
   }

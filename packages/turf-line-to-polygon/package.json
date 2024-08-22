@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-to-polygon",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf line-to-polygon module",
   "author": "Turf Authors",
   "contributors": [
@@ -72,7 +72,7 @@
     "@turf/clone": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

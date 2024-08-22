@@ -1,6 +1,6 @@
 {
   "name": "@turf/kinks",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf kinks module",
   "author": "Turf Authors",
   "license": "MIT",
@@ -65,8 +65,7 @@
   },
   "dependencies": {
     "@turf/helpers": "workspace:^",
-    "@types/geojson": "^7946.0.0",
-    "sweepline-intersections": "^1.5.0",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

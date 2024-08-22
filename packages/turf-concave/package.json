@@ -1,6 +1,6 @@
 {
   "name": "@turf/concave",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf concave module",
   "author": "Turf Authors",
   "contributors": [
@@ -82,7 +82,7 @@
     "@turf/invariant": "workspace:^",
     "@turf/meta": "workspace:^",
     "@turf/tin": "workspace:^",
-    "@types/geojson": "^7946.0.0",
+    "@types/geojson": "^7946.0.10",
     "topojson-client": "3.x",
     "topojson-server": "3.x",
     "tslib": "^2.6.2"

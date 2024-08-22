@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf meta module",
   "author": "Turf Authors",
   "contributors": [
@@ -83,6 +83,6 @@
   },
   "dependencies": {
     "@turf/helpers": "workspace:^",
-    "@types/geojson": "^7946.0.0"
+    "@types/geojson": "^7946.0.10"
   }
 }
