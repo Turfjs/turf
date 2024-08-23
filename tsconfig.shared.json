@@ -1,5 +1,8 @@
 {
+  "include": ["${configDir}/index.?s"], // While we have a mix of TS and JS packages
   "compilerOptions": {
+    "allowJs": true, // Required to run tsc in legacy JS projects
+    "outDir": "${configDir}/dist", // Required to run tsc in legacy JS projects
     "target": "es2017",
     "module": "esnext",
     "declaration": true,

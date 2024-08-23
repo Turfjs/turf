@@ -1,7 +1,4 @@
 // @ts-check
-import * as path from "node:path";
-import { glob } from "glob";
-import * as fs from "node:fs";
 import {
   alphabeticalDependencies,
   alphabeticalScripts,
@@ -12,62 +9,19 @@ import {
   requireDependency,
 } from "@monorepolint/rules";
 
-const TS_PACKAGES = []; // projects that use typescript to build
-const JS_PACKAGES = []; // projects that use javascript/rollup to build
 const MAIN_PACKAGE = "@turf/turf";
-
-const TAPE_PACKAGES = []; // projects that have tape tests
-const BENCH_PACKAGES = []; // projects that have benchmarks
-
-// iterate all the packages and figure out what buckets everything falls into
-const __dirname = new URL(".", import.meta.url).pathname;
-glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
-  const name = JSON.parse(
-    fs.readFileSync(path.join(pk, "package.json"), "utf8")
-  ).name;
-
-  if (fs.existsSync(path.join(pk, "index.ts"))) {
-    TS_PACKAGES.push(name);
-  } else {
-    JS_PACKAGES.push(name);
-  }
-
-  if (fs.existsSync(path.join(pk, "test.js"))) {
-    TAPE_PACKAGES.push(name);
-  }
-});
-
-const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
-);
-const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
-);
 
 export default {
   rules: [
     fileContents({
       options: {
-        file: "tsconfig.testTypes.json",
-        templateFile: "./templates/tsconfig.testTypes.json",
-      },
-      includePackages: JS_PACKAGES,
-    }),
-    fileContents({
-      options: {
         file: "tsconfig.json",
         template: `{
-  "extends": "../../tsconfig.shared.json",
-  "files": ["index.ts"]
+  "extends": "../../tsconfig.shared.json"
 }
 `,
       },
-      includePackages: TS_PACKAGES.filter(
-        (elem) =>
-          !["@turf/isobands", "@turf/isolines", "@turf/tesselate"].includes(
-            elem
-          )
-      ),
+      excludePackages: ["@turf/isobands", "@turf/isolines", "@turf/tesselate"],
     }),
 
     // Special treatment for three packages with locally defined .d.ts files for
@@ -132,41 +86,8 @@ export default {
     }),
     alphabeticalDependencies({ includeWorkspaceRoot: true }),
     alphabeticalScripts({ includeWorkspaceRoot: true }),
-    packageEntry({
-      options: {
-        entries: {
-          type: "module",
-          main: "dist/cjs/index.cjs",
-          module: "dist/esm/index.js",
-          types: "dist/esm/index.d.ts",
-          sideEffects: false,
-          publishConfig: {
-            access: "public",
-          },
-          // @turf/turf is commonly consumed through CDNs, moving this output file is a breaking change for anyone
-          // who has a hardcoded reference to this specific file, instead of letting the CDN pick the path.
-          // Example of a URL that will break: https://unpkg.com/@turf/turf/dist/turf.min.js
-          // Example of a URL that will keep working: https://unpkg.com/@turf/turf
-          browser: "turf.min.js",
-          files: ["dist", "turf.min.js"],
-          exports: {
-            "./package.json": "./package.json",
-            ".": {
-              import: {
-                types: "./dist/esm/index.d.ts",
-                default: "./dist/esm/index.js",
-              },
-              require: {
-                types: "./dist/cjs/index.d.cts",
-                default: "./dist/cjs/index.cjs",
-              },
-            },
-          },
-        },
-      },
-      includePackages: [MAIN_PACKAGE],
-    }),
 
+    // All packages ...
     packageEntry({
       options: {
         entries: {
@@ -175,6 +96,7 @@ export default {
           module: "dist/esm/index.js",
           types: "dist/esm/index.d.ts",
           sideEffects: false,
+          funding: "https://opencollective.com/turf",
           publishConfig: {
             access: "public",
           },
@@ -193,24 +115,29 @@ export default {
           },
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
     }),
-
+    // All except @turf/turf
     packageEntry({
       options: {
         entries: {
           files: ["dist"],
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      excludePackages: [MAIN_PACKAGE],
     }),
-
+    // @turf/turf only
     packageEntry({
       options: {
         entries: {
-          funding: "https://opencollective.com/turf",
+          // @turf/turf is commonly consumed through CDNs, moving this output file is a breaking change for anyone
+          // who has a hardcoded reference to this specific file, instead of letting the CDN pick the path.
+          // Example of a URL that will break: https://unpkg.com/@turf/turf/dist/turf.min.js
+          // Example of a URL that will keep working: https://unpkg.com/@turf/turf
+          browser: "turf.min.js",
+          files: ["dist", "turf.min.js"],
         },
       },
+      includePackages: [MAIN_PACKAGE],
     }),
 
     packageScript({
@@ -218,6 +145,8 @@ export default {
         scripts: {
           docs: "tsx ../../scripts/generate-readmes.ts",
           test: "npm-run-all --npm-path npm test:*",
+          "test:tape": "tsx test.ts",
+          "test:types": "tsc --noEmit",
         },
       },
       excludePackages: [MAIN_PACKAGE],
@@ -229,61 +158,24 @@ export default {
           build: "tsup --config ../../tsup.config.ts",
         },
       },
-      includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
-    }),
-
-    packageScript({
-      options: {
-        scripts: {
-          bench: "tsx bench.ts",
-          "test:tape": "tsx test.ts",
-        },
-      },
-      includePackages: [...TS_TAPE_PACKAGES, ...JS_TAPE_PACKAGES],
-    }),
-
-    packageScript({
-      options: {
-        scripts: {
-          "test:types": "tsc --noEmit",
-        },
-      },
-      includePackages: TS_PACKAGES,
-    }),
-
-    packageScript({
-      options: {
-        scripts: {
-          "test:types": "tsc -p ./tsconfig.testTypes.json",
-        },
-      },
-      includePackages: JS_PACKAGES,
-    }),
-
-    requireDependency({
-      options: {
-        devDependencies: {
-          benchmark: "^2.1.4",
-          "npm-run-all": "^4.1.5",
-          tape: "^5.7.2",
-          tsx: "^4.6.2",
-        },
-      },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
     }),
 
     requireDependency({
       options: {
         dependencies: {
+          "@types/geojson": "^7946.0.10",
           tslib: "^2.6.2",
         },
         devDependencies: {
           "@types/benchmark": "^2.1.5",
           "@types/tape": "^4.2.32",
+          benchmark: "^2.1.4",
+          "npm-run-all": "^4.1.5",
+          tape: "^5.7.2",
+          tsx: "^4.6.2",
           typescript: "^5.5.4",
         },
       },
-      includePackages: TS_PACKAGES,
     }),
 
     requireDependency({
@@ -293,15 +185,6 @@ export default {
         },
       },
       includePackages: [MAIN_PACKAGE],
-    }),
-
-    requireDependency({
-      options: {
-        dependencies: {
-          "@types/geojson": "^7946.0.10",
-        },
-      },
-      includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
     }),
   ],
 };

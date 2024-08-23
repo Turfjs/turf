@@ -471,9 +471,15 @@ importers:
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@2.79.1)
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
       '@types/tape':
         specifier: ^4.2.32
         version: 4.13.4
+      benchmark:
+        specifier: ^2.1.4
+        version: 2.1.4
       camelcase:
         specifier: ^8.0.0
         version: 8.0.0
@@ -483,6 +489,9 @@ importers:
       glob:
         specifier: ^10.3.10
         version: 10.3.10
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
       rollup:
         specifier: ^2.79.1
         version: 2.79.1
@@ -1678,6 +1687,9 @@ importers:
       d3-geo:
         specifier: 1.7.1
         version: 1.7.1
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -1706,6 +1718,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3127,6 +3142,9 @@ importers:
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:^
@@ -3154,13 +3172,13 @@ importers:
         version: 5.7.2
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
       typescript:
-        specifier: ^5.2.2
-        version: 5.3.3
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3176,6 +3194,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3204,6 +3225,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3338,6 +3362,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3369,6 +3396,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3775,6 +3805,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3803,6 +3836,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3870,6 +3906,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -3898,6 +3937,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4029,6 +4071,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@turf/truncate':
         specifier: workspace:^
@@ -4057,6 +4102,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4078,6 +4126,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@turf/along':
         specifier: workspace:^
@@ -4109,6 +4160,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-line-split:
     dependencies:
@@ -4145,6 +4199,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@types/benchmark':
         specifier: ^2.1.5
@@ -4170,6 +4227,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
       write-json-file:
         specifier: ^5.0.0
         version: 5.0.0
@@ -4286,6 +4346,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
     devDependencies:
       '@turf/random':
         specifier: workspace:^
@@ -4293,6 +4356,9 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -4308,6 +4374,9 @@ importers:
       tsx:
         specifier: ^4.6.2
         version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
 
   packages/turf-midpoint:
     dependencies:
@@ -16244,46 +16313,6 @@ packages:
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  /tsup@8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.3.3):
-    resolution: {integrity: sha512-hvW7gUSG96j53ZTSlT4j/KL0q1Q2l6TqGBFc6/mu/L46IoNWqLLUzLRLP1R8Q7xrJTmkDxxDoojV5uCVs1sVOg==}
-    engines: {node: '>=18'}
-    hasBin: true
-    peerDependencies:
-      '@microsoft/api-extractor': ^7.36.0
-      '@swc/core': ^1
-      postcss: ^8.4.12
-      typescript: '>=4.5.0'
-    peerDependenciesMeta:
-      '@microsoft/api-extractor':
-        optional: true
-      '@swc/core':
-        optional: true
-      postcss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      bundle-require: 4.0.2(esbuild@0.19.11)
-      cac: 6.7.14
-      chokidar: 3.5.3
-      debug: 4.3.4
-      esbuild: 0.19.11
-      execa: 5.1.1
-      globby: 11.1.0
-      joycon: 3.1.1
-      postcss: 8.4.40
-      postcss-load-config: 4.0.2(postcss@8.4.40)(ts-node@9.1.1)
-      resolve-from: 5.0.0
-      rollup: 4.9.0
-      source-map: 0.8.0-beta.0
-      sucrase: 3.34.0
-      tree-kill: 1.2.2
-      typescript: 5.3.3
-    transitivePeerDependencies:
-      - supports-color
-      - ts-node
-    dev: true
-
   /tsup@8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4):
     resolution: {integrity: sha512-hvW7gUSG96j53ZTSlT4j/KL0q1Q2l6TqGBFc6/mu/L46IoNWqLLUzLRLP1R8Q7xrJTmkDxxDoojV5uCVs1sVOg==}
     engines: {node: '>=18'}
@@ -16434,12 +16463,6 @@ packages:
 
   /typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
-    dev: true
-
-  /typescript@5.3.3:
-    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
     dev: true
 
   /typescript@5.5.4:

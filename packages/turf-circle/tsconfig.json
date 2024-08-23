@@ -1,4 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "files": ["index.ts"]
+  "extends": "../../tsconfig.shared.json"
 }

@@ -55,7 +55,7 @@
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.ts",
-    "test:types": "tsc -p ./tsconfig.testTypes.json"
+    "test:types": "tsc --noEmit"
   },
   "devDependencies": {
     "@turf/bbox-polygon": "workspace:^",
@@ -68,7 +68,7 @@
     "tape": "^5.7.2",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
-    "typescript": "^5.2.2",
+    "typescript": "^5.5.4",
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
@@ -76,6 +76,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
     "@types/geojson": "^7946.0.10",
-    "rbush": "^3.0.1"
+    "rbush": "^3.0.1",
+    "tslib": "^2.6.2"
   }
 }
