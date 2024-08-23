@@ -105,7 +105,7 @@ test("turf-polygon-tangents - Issue #1050", (t) => {
   try {
     t.assert(polygonTangents(pt, poly));
   } catch (e) {
-    t.skip("issue #1050 failed");
+    t.skip("issue #1050 failed", e);
   }
   t.end();
 });
