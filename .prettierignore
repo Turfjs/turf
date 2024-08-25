@@ -1,22 +1,10 @@
 dist
 *.md
 node_modules
-tsconfig.json
-lerna.json
-
-# slow
-packages/turf-directional-mean/test/in/bus_route_gps.json
-packages/turf-directional-mean/test/in/bus_route_utm.json
 
 # is actually output
 packages/turf/turf.min.js
-
-# Ignore test fixture json in case intentional line breaks help with coord
-# readability.
-packages/turf-*/test/in/**
-packages/turf-*/test/out/**
-packages/turf-*/test/true/**
-packages/turf-*/test/false/**
+packages/turf/test.example.js
 
 pnpm-lock.yaml
 

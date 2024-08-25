@@ -236,7 +236,7 @@ export default {
         devDependencies: {
           "@types/benchmark": "^2.1.5",
           "@types/tape": "^4.2.32",
-          typescript: "^5.2.2",
+          typescript: "^5.5.4",
         },
       },
       includePackages: TS_PACKAGES,
@@ -249,6 +249,15 @@ export default {
         },
       },
       includePackages: [MAIN_PACKAGE],
+    }),
+
+    requireDependency({
+      options: {
+        dependencies: {
+          "@types/geojson": "^7946.0.10",
+        },
+      },
+      includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
     }),
   ],
 };

@@ -7,6 +7,7 @@ import {
 } from "geojson";
 import { polygon as createPolygon, multiPolygon } from "@turf/helpers";
 import polygonClipping, { Geom } from "polygon-clipping";
+import { clone } from "@turf/clone";
 
 /**
  * Takes polygons or multipolygons and an optional mask, and returns an exterior
@@ -15,7 +16,9 @@ import polygonClipping, { Geom } from "polygon-clipping";
  * @name mask
  * @param {Polygon|MultiPolygon|Feature<Polygon|MultiPolygon>|FeatureCollection<Polygon|MultiPolygon>} polygon GeoJSON polygon used as interior rings or holes
  * @param {Polygon|Feature<Polygon>} [mask] GeoJSON polygon used as the exterior ring (if undefined, the world extent is used)
- * @returns {Feature<Polygon>} Masked Polygon (exterior ring with holes).
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.mutate=false] allows the `mask` GeoJSON input to be mutated (performance improvement if true)
+ * @returns {Feature<Polygon>} Masked Polygon (exterior ring with holes)
  * @example
  * const polygon = turf.polygon([[[112, -21], [116, -36], [146, -39], [153, -24], [133, -10], [112, -21]]]);
  * const mask = turf.polygon([[[90, -55], [170, -55], [170, 10], [90, 10], [90, -55]]]);
@@ -27,10 +30,19 @@ import polygonClipping, { Geom } from "polygon-clipping";
  */
 function mask<T extends Polygon | MultiPolygon>(
   polygon: T | Feature<T> | FeatureCollection<T>,
-  mask?: Polygon | Feature<Polygon>
+  mask?: Polygon | Feature<Polygon>,
+  options?: { mutate?: boolean }
 ): Feature<Polygon> {
-  // Define mask
-  const maskPolygon = createMask(mask);
+  const mutate = options?.mutate ?? false; // by default, do not mutate
+
+  let maskTemplate = mask;
+  if (mask && mutate === false) {
+    // Clone mask if requested to avoid side effects
+    maskTemplate = clone(mask);
+  }
+
+  // Define initial mask
+  const maskPolygon = createMask(maskTemplate);
 
   let polygonOuters = null;
   if (polygon.type === "FeatureCollection") {

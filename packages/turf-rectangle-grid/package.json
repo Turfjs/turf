@@ -1,6 +1,6 @@
 {
   "name": "@turf/rectangle-grid",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf rectangle-grid module",
   "author": "Turf Authors",
   "contributors": [
@@ -65,13 +65,14 @@
     "tape": "^5.7.2",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
-    "typescript": "^5.2.2",
+    "typescript": "^5.5.4",
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
     "@turf/boolean-intersects": "workspace:^",
     "@turf/distance": "workspace:^",
     "@turf/helpers": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }
