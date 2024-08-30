@@ -58,15 +58,14 @@ export type AllGeoJSON =
  */
 
 /**
- * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
- *
+ * The Earth radius in kilometers. Used by Turf modules that model the Earth as a sphere. The {@link https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius mean radius} was selected because it is {@link https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended recommended } by the Haversine formula (used by turf/distance) to reduce error.
  * @memberof helpers
  * @type {number}
  */
 export const earthRadius = 6371008.8;
 
 /**
- * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ * Unit of measurement factors based on earthRadius.
  *
  * Keys are the name of the unit, values are the number of that unit in a single radian
  *
@@ -669,6 +668,20 @@ export function bearingToAzimuth(bearing: number): number {
     angle += 360;
   }
   return angle;
+}
+
+/**
+ * Converts any azimuth angle from the north line direction (positive clockwise)
+ * and returns an angle between -180 and +180 degrees (positive clockwise), 0 being the north line
+ *
+ * @name azimuthToBearing
+ * @param {number} angle between 0 and 360 degrees
+ * @returns {number} bearing between -180 and +180 degrees
+ */
+export function azimuthToBearing(angle: number): number {
+  angle = angle % 360;
+  if (angle > 0) return angle > 180 ? angle - 360 : angle;
+  return angle < -180 ? angle + 360 : angle;
 }
 
 /**

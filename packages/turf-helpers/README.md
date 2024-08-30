@@ -6,36 +6,36 @@
 
 ### earthRadius
 
-Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
+The Earth radius in kilometers. Used by Turf modules that model the Earth as a sphere. The [mean radius][1] was selected because it is [recommended ][2] by the Haversine formula (used by turf/distance) to reduce error.
 
-Type: [number][1]
+Type: [number][3]
 
 ### factors
 
-Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+Unit of measurement factors based on earthRadius.
 
 Keys are the name of the unit, values are the number of that unit in a single radian
 
-Type: [Object][2]
+Type: [Object][4]
 
 ### areaFactors
 
 Area of measurement factors based on 1 square meter.
 
-Type: [Object][2]
+Type: [Object][4]
 
 ## feature
 
-Wraps a GeoJSON [Geometry][3] in a GeoJSON [Feature][4].
+Wraps a GeoJSON [Geometry][5] in a GeoJSON [Feature][6].
 
 ### Parameters
 
 *   `geometry` **[Geometry][5]** input geometry
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the Feature
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the Feature
 
 ### Examples
 
@@ -50,18 +50,18 @@ var feature = turf.feature(geometry);
 //=feature
 ```
 
-Returns **[Feature][8]** a GeoJSON Feature
+Returns **[Feature][6]** a GeoJSON Feature
 
 ## geometry
 
-Creates a GeoJSON [Geometry][3] from a Geometry string type & coordinates.
+Creates a GeoJSON [Geometry][5] from a Geometry string type & coordinates.
 For GeometryCollection type use `helpers.geometryCollection`
 
 ### Parameters
 
-*   `type` **[string][7]** Geometry Type
-*   `coordinates` **[Array][6]\<any>** Coordinates
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `type` **[string][8]** Geometry Type
+*   `coordinates` **[Array][7]\<any>** Coordinates
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
 ### Examples
 
@@ -76,16 +76,16 @@ Returns **[Geometry][5]** a GeoJSON Geometry
 
 ## point
 
-Creates a [Point][9] [Feature][4] from a Position.
+Creates a [Point][9] [Feature][6] from a Position.
 
 ### Parameters
 
-*   `coordinates` **[Array][6]<[number][1]>** longitude, latitude position (each in decimal degrees)
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][7]<[number][3]>** longitude, latitude position (each in decimal degrees)
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the Feature
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the Feature
 
 ### Examples
 
@@ -95,21 +95,21 @@ var point = turf.point([-75.343, 39.984]);
 //=point
 ```
 
-Returns **[Feature][8]<[Point][10]>** a Point feature
+Returns **[Feature][6]<[Point][9]>** a Point feature
 
 ## points
 
-Creates a [Point][9] [FeatureCollection][11] from an Array of Point coordinates.
+Creates a [Point][9] [FeatureCollection][10] from an Array of Point coordinates.
 
 ### Parameters
 
-*   `coordinates` **[Array][6]<[Array][6]<[number][1]>>** an array of Points
-*   `properties` **[Object][2]** Translate these properties to each Feature (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][7]<[Array][7]<[number][3]>>** an array of Points
+*   `properties` **[Object][4]** Translate these properties to each Feature (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north]
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north]
         associated with the FeatureCollection
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the FeatureCollection
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the FeatureCollection
 
 ### Examples
 
@@ -123,20 +123,20 @@ var points = turf.points([
 //=points
 ```
 
-Returns **[FeatureCollection][12]<[Point][10]>** Point Feature
+Returns **[FeatureCollection][10]<[Point][9]>** Point Feature
 
 ## polygon
 
-Creates a [Polygon][13] [Feature][4] from an Array of LinearRings.
+Creates a [Polygon][11] [Feature][6] from an Array of LinearRings.
 
 ### Parameters
 
-*   `coordinates` **[Array][6]<[Array][6]<[Array][6]<[number][1]>>>** an array of LinearRings
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][7]<[Array][7]<[Array][7]<[number][3]>>>** an array of LinearRings
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the Feature
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the Feature
 
 ### Examples
 
@@ -146,20 +146,20 @@ var polygon = turf.polygon([[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]],
 //=polygon
 ```
 
-Returns **[Feature][8]<[Polygon][14]>** Polygon Feature
+Returns **[Feature][6]<[Polygon][11]>** Polygon Feature
 
 ## polygons
 
-Creates a [Polygon][13] [FeatureCollection][11] from an Array of Polygon coordinates.
+Creates a [Polygon][11] [FeatureCollection][10] from an Array of Polygon coordinates.
 
 ### Parameters
 
-*   `coordinates` **[Array][6]<[Array][6]<[Array][6]<[Array][6]<[number][1]>>>>** an array of Polygon coordinates
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][7]<[Array][7]<[Array][7]<[Array][7]<[number][3]>>>>** an array of Polygon coordinates
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the FeatureCollection
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the FeatureCollection
 
 ### Examples
 
@@ -172,20 +172,20 @@ var polygons = turf.polygons([
 //=polygons
 ```
 
-Returns **[FeatureCollection][12]<[Polygon][14]>** Polygon FeatureCollection
+Returns **[FeatureCollection][10]<[Polygon][11]>** Polygon FeatureCollection
 
 ## lineString
 
-Creates a [LineString][15] [Feature][4] from an Array of Positions.
+Creates a [LineString][12] [Feature][6] from an Array of Positions.
 
 ### Parameters
 
-*   `coordinates` **[Array][6]<[Array][6]<[number][1]>>** an array of Positions
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][7]<[Array][7]<[number][3]>>** an array of Positions
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the Feature
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the Feature
 
 ### Examples
 
@@ -197,21 +197,21 @@ var linestring2 = turf.lineString([[-14, 43], [-13, 40], [-15, 45], [-10, 49]], 
 //=linestring2
 ```
 
-Returns **[Feature][8]<[LineString][16]>** LineString Feature
+Returns **[Feature][6]<[LineString][12]>** LineString Feature
 
 ## lineStrings
 
-Creates a [LineString][15] [FeatureCollection][11] from an Array of LineString coordinates.
+Creates a [LineString][12] [FeatureCollection][10] from an Array of LineString coordinates.
 
 ### Parameters
 
-*   `coordinates` **[Array][6]<[Array][6]<[Array][6]<[number][1]>>>** an array of LinearRings
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][7]<[Array][7]<[Array][7]<[number][3]>>>** an array of LinearRings
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north]
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north]
         associated with the FeatureCollection
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the FeatureCollection
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the FeatureCollection
 
 ### Examples
 
@@ -224,19 +224,19 @@ var linestrings = turf.lineStrings([
 //=linestrings
 ```
 
-Returns **[FeatureCollection][12]<[LineString][16]>** LineString FeatureCollection
+Returns **[FeatureCollection][10]<[LineString][12]>** LineString FeatureCollection
 
 ## featureCollection
 
-Takes one or more [Features][4] and creates a [FeatureCollection][11].
+Takes one or more [Features][6] and creates a [FeatureCollection][10].
 
 ### Parameters
 
-*   `features` **[Array][6]<[Feature][8]>** input features
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `features` **[Array][7]<[Feature][6]>** input features
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the Feature
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the Feature
 
 ### Examples
 
@@ -254,21 +254,21 @@ var collection = turf.featureCollection([
 //=collection
 ```
 
-Returns **[FeatureCollection][12]** FeatureCollection of Features
+Returns **[FeatureCollection][10]** FeatureCollection of Features
 
 ## multiLineString
 
-Creates a [Feature\<MultiLineString>][17] based on a
+Creates a [Feature\<MultiLineString>][13] based on a
 coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `coordinates` **[Array][6]<[Array][6]<[Array][6]<[number][1]>>>** an array of LineStrings
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][7]<[Array][7]<[Array][7]<[number][3]>>>** an array of LineStrings
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the Feature
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the Feature
 
 ### Examples
 
@@ -278,23 +278,23 @@ var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
 //=multiLine
 ```
 
-*   Throws **[Error][18]** if no coordinates are passed
+*   Throws **[Error][14]** if no coordinates are passed
 
-Returns **[Feature][8]<[MultiLineString][19]>** a MultiLineString feature
+Returns **[Feature][6]<[MultiLineString][15]>** a MultiLineString feature
 
 ## multiPoint
 
-Creates a [Feature\<MultiPoint>][20] based on a
+Creates a [Feature\<MultiPoint>][16] based on a
 coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `coordinates` **[Array][6]<[Array][6]<[number][1]>>** an array of Positions
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][7]<[Array][7]<[number][3]>>** an array of Positions
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the Feature
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the Feature
 
 ### Examples
 
@@ -304,23 +304,23 @@ var multiPt = turf.multiPoint([[0,0],[10,10]]);
 //=multiPt
 ```
 
-*   Throws **[Error][18]** if no coordinates are passed
+*   Throws **[Error][14]** if no coordinates are passed
 
-Returns **[Feature][8]<[MultiPoint][21]>** a MultiPoint feature
+Returns **[Feature][6]<[MultiPoint][17]>** a MultiPoint feature
 
 ## multiPolygon
 
-Creates a [Feature\<MultiPolygon>][22] based on a
+Creates a [Feature\<MultiPolygon>][18] based on a
 coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `coordinates` **[Array][6]<[Array][6]<[Array][6]<[Array][6]<[number][1]>>>>** an array of Polygons
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][7]<[Array][7]<[Array][7]<[Array][7]<[number][3]>>>>** an array of Polygons
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the Feature
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the Feature
 
 ### Examples
 
@@ -330,23 +330,23 @@ var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]]);
 //=multiPoly
 ```
 
-*   Throws **[Error][18]** if no coordinates are passed
+*   Throws **[Error][14]** if no coordinates are passed
 
-Returns **[Feature][8]<[MultiPolygon][23]>** a multipolygon feature
+Returns **[Feature][6]<[MultiPolygon][19]>** a multipolygon feature
 
 ## geometryCollection
 
-Creates a [Feature\<GeometryCollection>][24] based on a
+Creates a [Feature\<GeometryCollection>][20] based on a
 coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `geometries` **[Array][6]<[Geometry][5]>** an array of GeoJSON Geometries
-*   `properties` **[Object][2]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
+*   `geometries` **[Array][7]<[Geometry][5]>** an array of GeoJSON Geometries
+*   `properties` **[Object][4]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][6]<[number][1]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
-    *   `options.id` **([string][7] | [number][1])?** Identifier associated with the Feature
+    *   `options.bbox` **[Array][7]<[number][3]>?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.id` **([string][8] | [number][3])?** Identifier associated with the Feature
 
 ### Examples
 
@@ -358,7 +358,7 @@ var collection = turf.geometryCollection([pt, line]);
 // => collection
 ```
 
-Returns **[Feature][8]<[GeometryCollection][25]>** a GeoJSON GeometryCollection Feature
+Returns **[Feature][6]<[GeometryCollection][21]>** a GeoJSON GeometryCollection Feature
 
 ## round
 
@@ -366,8 +366,8 @@ Round number to precision
 
 ### Parameters
 
-*   `num` **[number][1]** Number
-*   `precision` **[number][1]** Precision (optional, default `0`)
+*   `num` **[number][3]** Number
+*   `precision` **[number][3]** Precision (optional, default `0`)
 
 ### Examples
 
@@ -379,7 +379,7 @@ turf.round(120.4321, 2)
 //=120.43
 ```
 
-Returns **[number][1]** rounded number
+Returns **[number][3]** rounded number
 
 ## radiansToLength
 
@@ -388,11 +388,11 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 ### Parameters
 
-*   `radians` **[number][1]** in radians across the sphere
-*   `units` **[string][7]** can be degrees, radians, miles, inches, yards, metres,
+*   `radians` **[number][3]** in radians across the sphere
+*   `units` **[string][8]** can be degrees, radians, miles, inches, yards, metres,
     meters, kilometres, kilometers. (optional, default `"kilometers"`)
 
-Returns **[number][1]** distance
+Returns **[number][3]** distance
 
 ## lengthToRadians
 
@@ -401,11 +401,11 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 ### Parameters
 
-*   `distance` **[number][1]** in real units
-*   `units` **[string][7]** can be degrees, radians, miles, inches, yards, metres,
+*   `distance` **[number][3]** in real units
+*   `units` **[string][8]** can be degrees, radians, miles, inches, yards, metres,
     meters, kilometres, kilometers. (optional, default `"kilometers"`)
 
-Returns **[number][1]** radians
+Returns **[number][3]** radians
 
 ## lengthToDegrees
 
@@ -414,11 +414,11 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, centimeters, k
 
 ### Parameters
 
-*   `distance` **[number][1]** in real units
-*   `units` **[string][7]** can be degrees, radians, miles, inches, yards, metres,
+*   `distance` **[number][3]** in real units
+*   `units` **[string][8]** can be degrees, radians, miles, inches, yards, metres,
     meters, kilometres, kilometers. (optional, default `"kilometers"`)
 
-Returns **[number][1]** degrees
+Returns **[number][3]** degrees
 
 ## bearingToAzimuth
 
@@ -427,9 +427,20 @@ and returns an angle between 0-360 degrees (positive clockwise), 0 being the nor
 
 ### Parameters
 
-*   `bearing` **[number][1]** angle, between -180 and +180 degrees
+*   `bearing` **[number][3]** angle, between -180 and +180 degrees
 
-Returns **[number][1]** angle between 0 and 360 degrees
+Returns **[number][3]** angle between 0 and 360 degrees
+
+## azimuthToBearing
+
+Converts any azimuth angle from the north line direction (positive clockwise)
+and returns an angle between -180 and +180 degrees (positive clockwise), 0 being the north line
+
+### Parameters
+
+*   `angle` **[number][3]** between 0 and 360 degrees
+
+Returns **[number][3]** bearing between -180 and +180 degrees
 
 ## radiansToDegrees
 
@@ -437,9 +448,9 @@ Converts an angle in radians to degrees
 
 ### Parameters
 
-*   `radians` **[number][1]** angle in radians
+*   `radians` **[number][3]** angle in radians
 
-Returns **[number][1]** degrees between 0 and 360 degrees
+Returns **[number][3]** degrees between 0 and 360 degrees
 
 ## degreesToRadians
 
@@ -447,9 +458,9 @@ Converts an angle in degrees to radians
 
 ### Parameters
 
-*   `degrees` **[number][1]** angle between 0 and 360 degrees
+*   `degrees` **[number][3]** angle between 0 and 360 degrees
 
-Returns **[number][1]** angle in radians
+Returns **[number][3]** angle in radians
 
 ## convertLength
 
@@ -458,11 +469,11 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 ### Parameters
 
-*   `length` **[number][1]** to be converted
+*   `length` **[number][3]** to be converted
 *   `originalUnit` **Units** of the length (optional, default `"kilometers"`)
 *   `finalUnit` **Units** returned unit (optional, default `"kilometers"`)
 
-Returns **[number][1]** the converted length
+Returns **[number][3]** the converted length
 
 ## convertArea
 
@@ -471,11 +482,11 @@ Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, a
 
 ### Parameters
 
-*   `area` **[number][1]** to be converted
+*   `area` **[number][3]** to be converted
 *   `originalUnit` **Units** of the distance (optional, default `"meters"`)
 *   `finalUnit` **Units** returned unit (optional, default `"kilometers"`)
 
-Returns **[number][1]** the converted area
+Returns **[number][3]** the converted area
 
 ## isNumber
 
@@ -494,7 +505,7 @@ turf.isNumber('foo')
 //=false
 ```
 
-Returns **[boolean][26]** true/false
+Returns **[boolean][22]** true/false
 
 ## isObject
 
@@ -513,59 +524,51 @@ turf.isObject('foo')
 //=false
 ```
 
-Returns **[boolean][26]** true/false, including false for Arrays and Functions
+Returns **[boolean][22]** true/false, including false for Arrays and Functions
 
-[1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[1]: https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius
 
-[2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[2]: https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended
 
-[3]: https://tools.ietf.org/html/rfc7946#section-3.1
+[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[4]: https://tools.ietf.org/html/rfc7946#section-3.2
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
 [5]: https://tools.ietf.org/html/rfc7946#section-3.1
 
-[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[6]: https://tools.ietf.org/html/rfc7946#section-3.2
 
-[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[8]: https://tools.ietf.org/html/rfc7946#section-3.2
+[8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
 [9]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[10]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+[10]: https://tools.ietf.org/html/rfc7946#section-3.3
 
-[11]: https://tools.ietf.org/html/rfc7946#section-3.3
+[11]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 
-[12]: https://tools.ietf.org/html/rfc7946#section-3.3
+[12]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 
-[13]: https://tools.ietf.org/html/rfc7946#section-3.1.6
+[13]: Feature<MultiLineString>
 
-[14]: https://tools.ietf.org/html/rfc7946#section-3.1.6
+[14]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[15]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+[15]: https://tools.ietf.org/html/rfc7946#section-3.1.5
 
-[16]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+[16]: Feature<MultiPoint>
 
-[17]: Feature<MultiLineString>
+[17]: https://tools.ietf.org/html/rfc7946#section-3.1.3
 
-[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+[18]: Feature<MultiPolygon>
 
-[19]: https://tools.ietf.org/html/rfc7946#section-3.1.5
+[19]: https://tools.ietf.org/html/rfc7946#section-3.1.7
 
-[20]: Feature<MultiPoint>
+[20]: Feature<GeometryCollection>
 
-[21]: https://tools.ietf.org/html/rfc7946#section-3.1.3
+[21]: https://tools.ietf.org/html/rfc7946#section-3.1.8
 
-[22]: Feature<MultiPolygon>
-
-[23]: https://tools.ietf.org/html/rfc7946#section-3.1.7
-
-[24]: Feature<GeometryCollection>
-
-[25]: https://tools.ietf.org/html/rfc7946#section-3.1.8
-
-[26]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
 <!-- This file is automatically generated. Please don't edit it directly. If you find an error, edit the source file of the module in question (likely index.js or index.ts), and re-run "yarn docs" from the root of the turf project. -->
 

@@ -3,10 +3,10 @@ import { earthRadius } from "@turf/helpers";
 import { geomReduce } from "@turf/meta";
 
 /**
- * Takes one or more features and returns their area in square meters.
+ * Calculates the geodesic area in square meters of one or more polygons.
  *
  * @name area
- * @param {GeoJSON} geojson input GeoJSON feature(s)
+ * @param {GeoJSON} geojson input polygon(s) as {@link Geometry}, {@link Feature}, or {@link FeatureCollection}
  * @returns {number} area in square meters
  * @example
  * var polygon = turf.polygon([[[125, -15], [113, -22], [154, -27], [144, -15], [125, -15]]]);
@@ -97,7 +97,7 @@ const PI_OVER_180 = Math.PI / 180;
  * @returns {number} The approximate signed geodesic area of the polygon in square meters.
  */
 function ringArea(coords: number[][]): number {
-  const coordsLength = coords.length;
+  const coordsLength = coords.length - 1;
 
   if (coordsLength <= 2) return 0;
   let total = 0;

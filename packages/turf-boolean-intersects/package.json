@@ -1,11 +1,12 @@
 {
   "name": "@turf/boolean-intersects",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "turf boolean-intersects module",
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",
-    "Denis Carriere <@DenisCarriere>"
+    "Denis Carriere <@DenisCarriere>",
+    "David Whittingham <@01100100>"
   ],
   "license": "MIT",
   "bugs": {
@@ -64,12 +65,13 @@
     "tape": "^5.7.2",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@turf/boolean-disjoint": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

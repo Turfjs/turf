@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "author": "Turf Authors",
   "license": "MIT",
@@ -82,14 +82,14 @@
     "@rollup/plugin-terser": "^0.4.4",
     "@types/tape": "^4.2.32",
     "camelcase": "^8.0.0",
-    "documentation": "^13.2.5",
+    "documentation": "^14.0.3",
     "glob": "^10.3.10",
     "rollup": "^2.79.1",
     "rollup-plugin-polyfill-node": "^0.13.0",
     "tape": "^5.7.2",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@turf/along": "workspace:^",
@@ -204,6 +204,7 @@
     "@turf/union": "workspace:^",
     "@turf/unkink-polygon": "workspace:^",
     "@turf/voronoi": "workspace:^",
+    "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"
   }
 }

@@ -1,4 +1,5 @@
-import Benchmark from "benchmark";
+import Benchmark, { Event } from "benchmark";
+import { FeatureCollection, Point } from "geojson";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
@@ -12,7 +13,7 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directory + filename),
+    geojson: loadJsonFileSync(directory + filename) as FeatureCollection<Point>,
   };
 });
 
@@ -23,7 +24,7 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
  */
 const suite = new Benchmark.Suite("turf-voronoi");
 for (const { name, geojson } of fixtures) {
-  suite.add(name, () => voronoi(geojson, geojson.features[0].properties.bbox));
+  suite.add(name, () => voronoi(geojson, { bbox: geojson.bbox }));
 }
 
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+suite.on("cycle", (e: Event) => console.log(String(e.target))).run();
