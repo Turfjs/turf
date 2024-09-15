@@ -170,7 +170,6 @@ function randomPolygon(
       .map(vertexToCoordinate(randomPositionUnchecked(paddedBbox)));
     features.push(polygon([vertices]));
   }
-  console.log(JSON.stringify(featureCollection(features)));
   return featureCollection(features);
 }
 
