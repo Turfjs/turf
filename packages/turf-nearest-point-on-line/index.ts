@@ -1,11 +1,8 @@
-import { Feature, Point, LineString, MultiLineString } from "geojson";
-import { bearing } from "@turf/bearing";
+import { Feature, Point, Position, LineString, MultiLineString } from "geojson";
 import { distance } from "@turf/distance";
-import { destination } from "@turf/destination";
-import { lineIntersect as lineIntersects } from "@turf/line-intersect";
 import { flattenEach } from "@turf/meta";
-import { point, lineString, Coord, Units } from "@turf/helpers";
-import { getCoords } from "@turf/invariant";
+import { point, Coord, Units } from "@turf/helpers";
+import { getCoord, getCoords } from "@turf/invariant";
 
 /**
  * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the (Multi)LineString.
@@ -51,6 +48,8 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     throw new Error("lines and pt are required arguments");
   }
 
+  const ptPos = getCoord(pt);
+
   let closestPt: Feature<
     Point,
     { dist: number; index: number; multiFeatureIndex: number; location: number }
@@ -68,39 +67,35 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
       const coords: any = getCoords(line);
 
       for (let i = 0; i < coords.length - 1; i++) {
-        //start
+        //start - start of current line section
         const start: Feature<Point, { dist: number }> = point(coords[i]);
         start.properties.dist = distance(pt, start, options);
-        //stop
+        const startPos = getCoord(start);
+
+        //stop - end of current line section
         const stop: Feature<Point, { dist: number }> = point(coords[i + 1]);
         stop.properties.dist = distance(pt, stop, options);
+        const stopPos = getCoord(stop);
+
         // sectionLength
         const sectionLength = distance(start, stop, options);
-        //perpendicular
-        const heightDistance = Math.max(
-          start.properties.dist,
-          stop.properties.dist
-        );
-        const direction = bearing(start, stop);
-        const perpendicularPt1 = destination(
-          pt,
-          heightDistance,
-          direction + 90,
-          options
-        );
-        const perpendicularPt2 = destination(
-          pt,
-          heightDistance,
-          direction - 90,
-          options
-        );
-        const intersect = lineIntersects(
-          lineString([
-            perpendicularPt1.geometry.coordinates,
-            perpendicularPt2.geometry.coordinates,
-          ]),
-          lineString([start.geometry.coordinates, stop.geometry.coordinates])
-        );
+        let intersectPos: Position;
+        let wasEnd: boolean;
+
+        // Short circuit if snap point is start or end position of the line
+        // segment.
+        if (startPos[0] === ptPos[0] && startPos[1] === ptPos[1]) {
+          [intersectPos, , wasEnd] = [startPos, undefined, false];
+        } else if (stopPos[0] === ptPos[0] && stopPos[1] === ptPos[1]) {
+          [intersectPos, , wasEnd] = [stopPos, undefined, true];
+        } else {
+          // Otherwise, find the nearest point the hard way.
+          [intersectPos, , wasEnd] = nearestPointOnSegment(
+            start.geometry.coordinates,
+            stop.geometry.coordinates,
+            getCoord(pt)
+          );
+        }
         let intersectPt:
           | Feature<
               Point,
@@ -108,40 +103,12 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
             >
           | undefined;
 
-        if (intersect.features.length > 0 && intersect.features[0]) {
-          intersectPt = {
-            ...intersect.features[0],
-            properties: {
-              dist: distance(pt, intersect.features[0], options),
-              multiFeatureIndex: multiFeatureIndex,
-              location:
-                length + distance(start, intersect.features[0], options),
-            },
-          };
-        }
-
-        if (start.properties.dist < closestPt.properties.dist) {
-          closestPt = {
-            ...start,
-            properties: {
-              ...start.properties,
-              index: i,
-              multiFeatureIndex: multiFeatureIndex,
-              location: length,
-            },
-          };
-        }
-
-        if (stop.properties.dist < closestPt.properties.dist) {
-          closestPt = {
-            ...stop,
-            properties: {
-              ...stop.properties,
-              index: i + 1,
-              multiFeatureIndex: multiFeatureIndex,
-              location: length + sectionLength,
-            },
-          };
+        if (intersectPos) {
+          intersectPt = point(intersectPos, {
+            dist: distance(pt, intersectPos, options),
+            multiFeatureIndex: multiFeatureIndex,
+            location: length + distance(start, intersectPos, options),
+          });
         }
 
         if (
@@ -150,9 +117,15 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         ) {
           closestPt = {
             ...intersectPt,
-            properties: { ...intersectPt.properties, index: i },
+            properties: {
+              ...intersectPt.properties,
+              // Legacy behaviour where index progresses to next segment # if we
+              // went with the end point this iteration.
+              index: wasEnd ? i + 1 : i,
+            },
           };
         }
+
         // update length
         length += sectionLength;
       }
@@ -160,6 +133,127 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
   );
 
   return closestPt;
+}
+
+type Vector = [number, number, number];
+
+function dot(v1: Vector, v2: Vector): number {
+  const [v1x, v1y, v1z] = v1;
+  const [v2x, v2y, v2z] = v2;
+  return v1x * v2x + v1y * v2y + v1z * v2z;
+}
+
+// https://en.wikipedia.org/wiki/Cross_product
+function cross(v1: Vector, v2: Vector): Vector {
+  const [v1x, v1y, v1z] = v1;
+  const [v2x, v2y, v2z] = v2;
+  return [v1y * v2z - v1z * v2y, v1z * v2x - v1x * v2z, v1x * v2y - v1y * v2x];
+}
+
+function magnitude(v: Vector) {
+  return Math.sqrt(Math.pow(v[0], 2) + Math.pow(v[1], 2) + Math.pow(v[2], 2));
+}
+
+function angle(v1: Vector, v2: Vector): number {
+  const theta = dot(v1, v2) / (magnitude(v1) * magnitude(v2));
+  return Math.acos(Math.min(Math.max(theta, -1), 1));
+}
+
+function toRadians(degrees: number) {
+  return degrees * (Math.PI / 180);
+}
+
+function toDegrees(radians: number) {
+  return radians * (180 / Math.PI);
+}
+
+function lngLatToVector(a: Position): Vector {
+  const lat = toRadians(a[1]);
+  const lng = toRadians(a[0]);
+  return [
+    Math.cos(lat) * Math.cos(lng),
+    Math.cos(lat) * Math.sin(lng),
+    Math.sin(lat),
+  ];
+}
+
+function vectorToLngLat(v: Vector): Position {
+  const [x, y, z] = v;
+  const lat = toDegrees(Math.asin(z));
+  const lng = toDegrees(Math.atan2(y, x));
+
+  return [lng, lat];
+}
+
+function nearestPointOnSegment(
+  posA: Position,
+  posB: Position,
+  posC: Position
+): [Position, boolean, boolean] {
+  // Based heavily on this article on finding cross track distance to an arc:
+  // https://gis.stackexchange.com/questions/209540/projecting-cross-track-distance-on-great-circle
+
+  // Convert lng/lat to spherical coords
+  const A = lngLatToVector(posA); // the vector from 0,0,0 to posA
+  const B = lngLatToVector(posB);
+  const C = lngLatToVector(posC);
+
+  // Components of target point.
+  const [Cx, Cy, Cz] = C;
+
+  // Calculate coefficients.
+  const [D, E, F] = cross(A, B);
+  const a = E * Cz - F * Cy;
+  const b = F * Cx - D * Cz;
+  const c = D * Cy - E * Cx;
+
+  const f = c * E - b * F;
+  const g = a * F - c * D;
+  const h = b * D - a * E;
+
+  const t = 1 / Math.sqrt(Math.pow(f, 2) + Math.pow(g, 2) + Math.pow(h, 2));
+
+  // Vectors to the two points these great circles intersect.
+  const I1: Vector = [f * t, g * t, h * t];
+  const I2: Vector = [-1 * f * t, -1 * g * t, -1 * h * t];
+
+  // Figure out which is the closest intersection to this segment of the great
+  // circle.
+  const angleAB = angle(A, B);
+  const angleAI1 = angle(A, I1);
+  const angleBI1 = angle(B, I1);
+  const angleAI2 = angle(A, I2);
+  const angleBI2 = angle(B, I2);
+
+  let I: Vector;
+
+  if (
+    (angleAI1 < angleAI2 && angleAI1 < angleBI2) ||
+    (angleBI1 < angleAI2 && angleBI1 < angleBI2)
+  ) {
+    I = I1;
+  } else {
+    I = I2;
+  }
+
+  // I is the closest intersection to the segment, though might not actually be
+  // ON the segment.
+
+  // If angle AI or BI is greater than angleAB, I lies on the circle *beyond* A
+  // and B so use the closest of A or B as the intersection
+  if (angle(A, I) > angleAB || angle(B, I) > angleAB) {
+    if (
+      distance(vectorToLngLat(I), vectorToLngLat(A)) <=
+      distance(vectorToLngLat(I), vectorToLngLat(B))
+    ) {
+      return [vectorToLngLat(A), true, false];
+    } else {
+      return [vectorToLngLat(B), false, true];
+    }
+  }
+
+  // As angleAI nor angleBI don't exceed angleAB, I is on the segment
+  return [vectorToLngLat(I), false, false];
 }
 
 export { nearestPointOnLine };

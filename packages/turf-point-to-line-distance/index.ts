@@ -1,6 +1,5 @@
 // Taken from http://geomalgorithms.com/a02-_lines.html
 import { Feature, LineString } from "geojson";
-import { distance as getDistance } from "@turf/distance";
 import {
   convertLength,
   Coord,
@@ -9,9 +8,10 @@ import {
   point,
   Units,
 } from "@turf/helpers";
+import { nearestPointOnLine } from "@turf/nearest-point-on-line";
 import { featureOf } from "@turf/invariant";
 import { segmentEach } from "@turf/meta";
-import { rhumbDistance as getPlanarDistance } from "@turf/rhumb-distance";
+import { rhumbDistance } from "@turf/rhumb-distance";
 
 /**
  * Returns the minimum distance between a {@link Point} and a {@link LineString}, being the distance from a line the
@@ -75,11 +75,13 @@ function pointToLineDistance(
   let distance = Infinity;
   const p = pt.geometry.coordinates;
   segmentEach(line, (segment) => {
-    const a = segment!.geometry.coordinates[0];
-    const b = segment!.geometry.coordinates[1];
-    const d = distanceToSegment(p, a, b, options);
-    if (d < distance) {
-      distance = d;
+    if (segment) {
+      const a = segment.geometry.coordinates[0];
+      const b = segment.geometry.coordinates[1];
+      const d = distanceToSegment(p, a, b, options);
+      if (d < distance) {
+        distance = d;
+      }
     }
   });
   return convertLength(distance, "degrees", options.units);
@@ -101,30 +103,35 @@ function distanceToSegment(
   b: number[],
   options: any
 ) {
+  if (options.method === "geodesic") {
+    // Use nearestPointOnLine to properly calcuate distances on a spherical
+    // Earth.
+    const nearest = nearestPointOnLine(lineString([a, b]).geometry, p, {
+      units: "degrees",
+    });
+    return nearest.properties.dist;
+  }
+
+  // Perform scalar calculations instead using rhumb lines.
   const v = [b[0] - a[0], b[1] - a[1]];
   const w = [p[0] - a[0], p[1] - a[1]];
 
   const c1 = dot(w, v);
   if (c1 <= 0) {
-    return calcDistance(p, a, { method: options.method, units: "degrees" });
+    return rhumbDistance(p, a, { units: "degrees" });
   }
   const c2 = dot(v, v);
   if (c2 <= c1) {
-    return calcDistance(p, b, { method: options.method, units: "degrees" });
+    return rhumbDistance(p, b, { units: "degrees" });
   }
   const b2 = c1 / c2;
   const Pb = [a[0] + b2 * v[0], a[1] + b2 * v[1]];
-  return calcDistance(p, Pb, { method: options.method, units: "degrees" });
+
+  return rhumbDistance(p, Pb, { units: "degrees" });
 }
 
 function dot(u: number[], v: number[]) {
   return u[0] * v[0] + u[1] * v[1];
-}
-
-function calcDistance(a: number[], b: number[], options: any) {
-  return options.method === "planar"
-    ? getPlanarDistance(a, b, options)
-    : getDistance(a, b, options);
 }
 
 export { pointToLineDistance };

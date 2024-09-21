@@ -61,12 +61,9 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/bearing": "workspace:^",
-    "@turf/destination": "workspace:^",
     "@turf/distance": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
-    "@turf/line-intersect": "workspace:^",
     "@turf/meta": "workspace:^",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"

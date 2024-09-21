@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
-import Benchmark from "benchmark";
+import Benchmark, { Event } from "benchmark";
 import { nearestPointOnLine } from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,10 +29,19 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
  * route1 x 195 ops/sec ±2.23% (80 runs sampled)
  * route2 x 218 ops/sec ±2.42% (78 runs sampled)
  */
+let totalTime = 0.0;
 const suite = new Benchmark.Suite("turf-nearest-point-on-line");
 for (const { name, geojson } of fixtures) {
   const [line, point] = geojson.features;
-  suite.add(name, () => nearestPointOnLine(line, point));
+  suite.add(name, () => nearestPointOnLine(line, point), {
+    onComplete: (e: Event) =>
+      (totalTime = totalTime += e.target.times?.elapsed),
+  });
 }
 
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+suite
+  .on("cycle", (e: Event) => console.log(String(e.target)))
+  .on("complete", () =>
+    console.log(`completed in ${totalTime.toFixed(2)} seconds`)
+  )
+  .run();

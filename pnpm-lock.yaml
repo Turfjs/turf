@@ -4525,12 +4525,6 @@ importers:
 
   packages/turf-nearest-point-on-line:
     dependencies:
-      '@turf/bearing':
-        specifier: workspace:^
-        version: link:../turf-bearing
-      '@turf/destination':
-        specifier: workspace:^
-        version: link:../turf-destination
       '@turf/distance':
         specifier: workspace:^
         version: link:../turf-distance
@@ -4540,9 +4534,6 @@ importers:
       '@turf/invariant':
         specifier: workspace:^
         version: link:../turf-invariant
-      '@turf/line-intersect':
-        specifier: workspace:^
-        version: link:../turf-line-intersect
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
@@ -4827,6 +4818,9 @@ importers:
       '@turf/meta':
         specifier: workspace:^
         version: link:../turf-meta
+      '@turf/nearest-point-on-line':
+        specifier: workspace:^
+        version: link:../turf-nearest-point-on-line
       '@turf/projection':
         specifier: workspace:^
         version: link:../turf-projection
