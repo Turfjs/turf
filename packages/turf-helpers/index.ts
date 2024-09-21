@@ -677,9 +677,16 @@ export function bearingToAzimuth(bearing: number): number {
  * @returns {number} bearing between -180 and +180 degrees
  */
 export function azimuthToBearing(angle: number): number {
+  // Ignore full revolutions (multiples of 360)
   angle = angle % 360;
-  if (angle > 0) return angle > 180 ? angle - 360 : angle;
-  return angle < -180 ? angle + 360 : angle;
+
+  if (angle > 180) {
+    return angle - 360;
+  } else if (angle < -180) {
+    return angle + 360;
+  }
+
+  return angle;
 }
 
 /**
@@ -690,8 +697,9 @@ export function azimuthToBearing(angle: number): number {
  * @returns {number} degrees between 0 and 360 degrees
  */
 export function radiansToDegrees(radians: number): number {
-  const degrees = radians % (2 * Math.PI);
-  return (degrees * 180) / Math.PI;
+  // % (2 * Math.PI) radians in case someone passes value > 2π
+  const normalisedRadians = radians % (2 * Math.PI);
+  return (normalisedRadians * 180) / Math.PI;
 }
 
 /**
@@ -702,8 +710,9 @@ export function radiansToDegrees(radians: number): number {
  * @returns {number} angle in radians
  */
 export function degreesToRadians(degrees: number): number {
-  const radians = degrees % 360;
-  return (radians * Math.PI) / 180;
+  // % 360 degrees in case someone passes value > 360
+  const normalisedDegrees = degrees % 360;
+  return (normalisedDegrees * Math.PI) / 180;
 }
 
 /**
