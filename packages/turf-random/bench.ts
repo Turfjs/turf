@@ -1,15 +1,16 @@
-// I don't think this bench test does anything? There is no entry point into
-// the module called random() that takes a string?
+import Benchmark, { Event } from "benchmark";
+import { randomPolygon } from "./index.js";
 
-import { random } from "./index.js";
-import Benchmark from "benchmark";
+let totalTime = 0.0;
+const suite = new Benchmark.Suite("turf-random");
 
-var suite = new Benchmark.Suite("turf-random");
 suite
-  .add("turf-random", function () {
-    random("point");
+  .add("turf-random", () => randomPolygon(1, { num_vertices: 100000 }), {
+    onComplete: (e: Event) =>
+      (totalTime = totalTime += e.target.times?.elapsed),
   })
-  .on("cycle", function (event) {
-    console.log(String(event.target));
-  })
+  .on("cycle", (e: Event) => console.log(String(e.target)))
+  .on("complete", () =>
+    console.log(`completed in ${totalTime.toFixed(2)} seconds`)
+  )
   .run();

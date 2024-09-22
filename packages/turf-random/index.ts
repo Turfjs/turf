@@ -145,16 +145,16 @@ function randomPolygon(
 
   const features = [];
   for (let i = 0; i < count; i++) {
-    let vertices: any[] = [];
+    let vertices: number[][] = [];
     const circleOffsets = [...Array(options.num_vertices + 1)].map(Math.random);
 
     // Sum Offsets
-    circleOffsets.forEach((cur: any, index: number, arr: any[]) => {
+    circleOffsets.forEach((cur, index, arr) => {
       arr[index] = index > 0 ? cur + arr[index - 1] : cur;
     });
 
     // scaleOffsets
-    circleOffsets.forEach((cur: any) => {
+    circleOffsets.forEach((cur) => {
       cur = (cur * 2 * Math.PI) / circleOffsets[circleOffsets.length - 1];
       const radialScaler = Math.random();
       vertices.push([
@@ -165,9 +165,9 @@ function randomPolygon(
     vertices[vertices.length - 1] = vertices[0]; // close the ring
 
     // center the polygon around something
-    vertices = vertices.map(
-      vertexToCoordinate(randomPositionUnchecked(paddedBbox))
-    );
+    vertices = vertices
+      .reverse() // Make counter-clockwise to adhere to right hand rule.
+      .map(vertexToCoordinate(randomPositionUnchecked(paddedBbox)));
     features.push(polygon([vertices]));
   }
   return featureCollection(features);
