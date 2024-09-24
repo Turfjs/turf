@@ -14,8 +14,8 @@ import { segmentEach } from "@turf/meta";
 import { rhumbDistance } from "@turf/rhumb-distance";
 
 /**
- * Returns the minimum distance between a {@link Point} and a {@link LineString}, being the distance from a line the
- * minimum distance between the point and any segment of the `LineString`.
+ * Calculates the distance between a given point and the nearest point on a
+ * line. Sometimes referred to as the cross track distance.
  *
  * @name pointToLineDistance
  * @param {Feature<Point>|Array<number>} pt Feature or Geometry
@@ -42,12 +42,8 @@ function pointToLineDistance(
   } = {}
 ): number {
   // Optional parameters
-  if (!options.method) {
-    options.method = "geodesic";
-  }
-  if (!options.units) {
-    options.units = "kilometers";
-  }
+  const method = options.method ?? "geodesic";
+  const units = options.units ?? "kilometers";
 
   // validation
   if (!pt) {
@@ -78,13 +74,13 @@ function pointToLineDistance(
     if (segment) {
       const a = segment.geometry.coordinates[0];
       const b = segment.geometry.coordinates[1];
-      const d = distanceToSegment(p, a, b, options);
+      const d = distanceToSegment(p, a, b, { method });
       if (d < distance) {
         distance = d;
       }
     }
   });
-  return convertLength(distance, "degrees", options.units);
+  return convertLength(distance, "degrees", units);
 }
 
 /**
@@ -98,13 +94,17 @@ function pointToLineDistance(
  * @returns {number} distance
  */
 function distanceToSegment(
-  p: number[],
-  a: number[],
-  b: number[],
-  options: any
+  p: number[], // point to measure from
+  a: number[], // start point of the segment to measure to
+  b: number[], // end point of the segment to measure to
+  options: {
+    method: "geodesic" | "planar";
+  }
 ) {
+  // Internally just use degrees, and then convert to the user's requested units
+  // in the calling function.
   if (options.method === "geodesic") {
-    // Use nearestPointOnLine to properly calcuate distances on a spherical
+    // Use nearestPointOnLine to properly calculate distances on a spherical
     // Earth.
     const nearest = nearestPointOnLine(lineString([a, b]).geometry, p, {
       units: "degrees",

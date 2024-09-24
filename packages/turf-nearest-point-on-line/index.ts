@@ -1,11 +1,17 @@
 import { Feature, Point, Position, LineString, MultiLineString } from "geojson";
 import { distance } from "@turf/distance";
 import { flattenEach } from "@turf/meta";
-import { point, Coord, Units } from "@turf/helpers";
+import {
+  point,
+  degreesToRadians,
+  radiansToDegrees,
+  Coord,
+  Units,
+} from "@turf/helpers";
 import { getCoord, getCoords } from "@turf/invariant";
 
 /**
- * Takes a {@link Point} and a {@link LineString} and calculates the closest Point on the (Multi)LineString.
+ * Returns the nearest point on a line to a given point.
  *
  * @name nearestPointOnLine
  * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
@@ -135,6 +141,12 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
   return closestPt;
 }
 
+/*
+ * Plan is to externalise these vector functions to a simple third party
+ * library.
+ * Possible candidate is @amandaghassaei/vector-math though having some import
+ * issues.
+ */
 type Vector = [number, number, number];
 
 function dot(v1: Vector, v2: Vector): number {
@@ -159,17 +171,9 @@ function angle(v1: Vector, v2: Vector): number {
   return Math.acos(Math.min(Math.max(theta, -1), 1));
 }
 
-function toRadians(degrees: number) {
-  return degrees * (Math.PI / 180);
-}
-
-function toDegrees(radians: number) {
-  return radians * (180 / Math.PI);
-}
-
 function lngLatToVector(a: Position): Vector {
-  const lat = toRadians(a[1]);
-  const lng = toRadians(a[0]);
+  const lat = degreesToRadians(a[1]);
+  const lng = degreesToRadians(a[0]);
   return [
     Math.cos(lat) * Math.cos(lng),
     Math.cos(lat) * Math.sin(lng),
@@ -179,24 +183,26 @@ function lngLatToVector(a: Position): Vector {
 
 function vectorToLngLat(v: Vector): Position {
   const [x, y, z] = v;
-  const lat = toDegrees(Math.asin(z));
-  const lng = toDegrees(Math.atan2(y, x));
+  const lat = radiansToDegrees(Math.asin(z));
+  const lng = radiansToDegrees(Math.atan2(y, x));
 
   return [lng, lat];
 }
 
 function nearestPointOnSegment(
-  posA: Position,
-  posB: Position,
-  posC: Position
+  posA: Position, // start point of segment to measure to
+  posB: Position, // end point of segment to measure to
+  posC: Position // point to measure from
 ): [Position, boolean, boolean] {
   // Based heavily on this article on finding cross track distance to an arc:
   // https://gis.stackexchange.com/questions/209540/projecting-cross-track-distance-on-great-circle
 
-  // Convert lng/lat to spherical coords
+  // Convert spherical (lng, lat) to cartesian vector coords (x, y, z)
+  // In the below https://tikz.net/spherical_1/ we convert lng (𝜙) and lat (𝜃)
+  // into vectors with x, y, and z components with a length (r) of 1.
   const A = lngLatToVector(posA); // the vector from 0,0,0 to posA
-  const B = lngLatToVector(posB);
-  const C = lngLatToVector(posC);
+  const B = lngLatToVector(posB); // ... to posB
+  const C = lngLatToVector(posC); // ... to posC
 
   // Components of target point.
   const [Cx, Cy, Cz] = C;
