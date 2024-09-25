@@ -72,6 +72,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "@turf/meta": "workspace:^",
+    "@turf/nearest-point-on-line": "workspace:^",
     "@turf/projection": "workspace:^",
     "@turf/rhumb-bearing": "workspace:^",
     "@turf/rhumb-distance": "workspace:^",

@@ -4,12 +4,12 @@
 
 ## nearestPointOnLine
 
-Takes a [Point][1] and a [LineString][2] and calculates the closest Point on the (Multi)LineString.
+Returns the nearest point on a line to a given point.
 
 ### Parameters
 
-*   `lines` **([Geometry][3] | [Feature][4]<([LineString][2] | [MultiLineString][5])>)** lines to snap to
-*   `pt` **([Geometry][3] | [Feature][4]<[Point][1]> | [Array][6]<[number][7]>)** point to snap from
+*   `lines` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4])>)** lines to snap to
+*   `pt` **([Geometry][1] | [Feature][2]<[Point][5]> | [Array][6]<[number][7]>)** point to snap from
 *   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
     *   `options.units` **[string][9]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
@@ -34,17 +34,17 @@ var addToMap = [line, pt, snapped];
 snapped.properties['marker-color'] = '#00f';
 ```
 
-Returns **[Feature][4]<[Point][1]>** closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
+Returns **[Feature][2]<[Point][5]>** closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
 
-[1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+[1]: https://tools.ietf.org/html/rfc7946#section-3.1
 
-[2]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+[2]: https://tools.ietf.org/html/rfc7946#section-3.2
 
-[3]: https://tools.ietf.org/html/rfc7946#section-3.1
+[3]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 
-[4]: https://tools.ietf.org/html/rfc7946#section-3.2
+[4]: https://tools.ietf.org/html/rfc7946#section-3.1.5
 
-[5]: https://tools.ietf.org/html/rfc7946#section-3.1.5
+[5]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
 [6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 

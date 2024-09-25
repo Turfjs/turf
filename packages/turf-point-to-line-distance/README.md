@@ -4,13 +4,13 @@
 
 ## pointToLineDistance
 
-Returns the minimum distance between a [Point][1] and a [LineString][2], being the distance from a line the
-minimum distance between the point and any segment of the `LineString`.
+Calculates the distance between a given point and the nearest point on a
+line. Sometimes referred to as the cross track distance.
 
 ### Parameters
 
-*   `pt` **([Feature][3]<[Point][1]> | [Array][4]<[number][5]>)** Feature or Geometry
-*   `line` **[Feature][3]<[LineString][2]>** GeoJSON Feature or Geometry
+*   `pt` **([Feature][1]<[Point][2]> | [Array][3]<[number][4]>)** Feature or Geometry
+*   `line` **[Feature][1]<[LineString][5]>** GeoJSON Feature or Geometry
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
     *   `options.units` **[string][7]** can be anything supported by turf/convertLength
@@ -28,17 +28,17 @@ var distance = turf.pointToLineDistance(pt, line, {units: 'miles'});
 //=69.11854715938406
 ```
 
-Returns **[number][5]** distance between point and line
+Returns **[number][4]** distance between point and line
 
-[1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+[1]: https://tools.ietf.org/html/rfc7946#section-3.2
 
-[2]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+[2]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[3]: https://tools.ietf.org/html/rfc7946#section-3.2
+[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[5]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 
 [6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
