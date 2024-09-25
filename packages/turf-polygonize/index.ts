@@ -23,7 +23,7 @@ import { EdgeRing } from "./lib/EdgeRing.js";
  * - Cut Edges (bridges): edges that are connected at both ends but which do not form part of a polygon.
  *
  * @name polygonize
- * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geoJson Lines in order to polygonize
+ * @param {FeatureCollection<LineString|MultiLineString>|Feature<LineString|MultiLineString>|LineString|MultiLineString} geoJson Lines in order to polygonize
  * @returns {FeatureCollection<Polygon>} Polygons created
  * @throws {Error} if geoJson is invalid.
  */

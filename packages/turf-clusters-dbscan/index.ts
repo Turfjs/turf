@@ -2,7 +2,7 @@ import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import { clone } from "@turf/clone";
 import { distance } from "@turf/distance";
 import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
-import { rbush as RBush } from "./lib/rbush-export.js";
+import rbush from "rbush";
 
 type Dbscan = "core" | "edge" | "noise";
 type DbscanProps = GeoJsonProperties & {
@@ -67,7 +67,7 @@ function clustersDbscan(
   const latDistanceInDegrees = lengthToDegrees(maxDistance, options.units);
 
   // Create a spatial index
-  var tree = new RBush(points.features.length);
+  var tree = new rbush(points.features.length);
 
   // Keeps track of whether a point has been visited or not.
   var visited = points.features.map((_) => false);

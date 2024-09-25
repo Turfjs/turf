@@ -1,4 +1,4 @@
-import { Polygon, Feature, Point, Position } from "geojson";
+import { Polygon, Feature, MultiPoint, Point, Position } from "geojson";
 import {
   orientationIndex,
   envelopeIsEqual,
@@ -156,7 +156,7 @@ class EdgeRing {
    * @memberof EdgeRing
    * @returns {Feature<MultiPoint>} - Multipoint representation of the EdgeRing
    */
-  toMultiPoint() {
+  toMultiPoint(): Feature<MultiPoint> {
     return multiPoint(this.edges.map((edge) => edge.from.coordinates));
   }
 

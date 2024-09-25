@@ -70,19 +70,22 @@
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
     "test:tape": "tsx test.ts",
-    "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
+    "test:types": "tsc --noEmit"
   },
   "devDependencies": {
     "@turf/random": "workspace:^",
     "@types/benchmark": "^2.1.5",
+    "@types/tape": "^4.2.32",
     "benchmark": "^2.1.4",
     "npm-run-all": "^4.1.5",
     "tape": "^5.7.2",
     "tsup": "^8.0.1",
-    "tsx": "^4.6.2"
+    "tsx": "^4.6.2",
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@turf/helpers": "workspace:^",
-    "@types/geojson": "^7946.0.10"
+    "@types/geojson": "^7946.0.10",
+    "tslib": "^2.6.2"
   }
 }

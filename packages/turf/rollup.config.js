@@ -4,7 +4,7 @@ import terser from "@rollup/plugin-terser";
 import { babel } from "@rollup/plugin-babel";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 
-const pckg = require("./package.json");
+import pckg from "./package.json";
 const input = "index.ts";
 
 export default [
