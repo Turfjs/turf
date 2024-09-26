@@ -68,10 +68,9 @@
   ],
   "scripts": {
     "build": "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
-    "last-checks": "npm-run-all last-checks:testjs last-checks:example",
-    "last-checks:example": "tsx test.example.js",
-    "last-checks:testjs": "tsx test.ts",
-    "test": "echo '@turf/turf tests run in the last-checks step'"
+    "test": "npm-run-all test:testjs test:example",
+    "test:example": "tsx test.example.js",
+    "test:testjs": "tsx test.ts"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
@@ -132,6 +131,7 @@
     "@turf/convex": "workspace:^",
     "@turf/destination": "workspace:^",
     "@turf/difference": "workspace:^",
+    "@turf/directional-mean": "workspace:^",
     "@turf/dissolve": "workspace:^",
     "@turf/distance": "workspace:^",
     "@turf/distance-weight": "workspace:^",

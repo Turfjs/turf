@@ -13,7 +13,7 @@
     "lint:prettier": "prettier --check .",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky && lerna run build",
-    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
+    "test": "pnpm run lint && lerna run test"
   },
   "lint-staged": {
     "package.json": [

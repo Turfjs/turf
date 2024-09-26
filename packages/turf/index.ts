@@ -46,6 +46,7 @@ export { concave } from "@turf/concave";
 export { convex } from "@turf/convex";
 export { destination } from "@turf/destination";
 export { difference } from "@turf/difference"; // JSTS Module
+export { directionalMean } from "@turf/directional-mean";
 export { dissolve } from "@turf/dissolve"; // JSTS Sub-Model
 export { distance } from "@turf/distance";
 export { distanceWeight } from "@turf/distance-weight";
