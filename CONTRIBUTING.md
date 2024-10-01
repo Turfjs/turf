@@ -237,8 +237,8 @@ Run the following release commands, replacing `7.0.0` with your version number:
   - If you don't get this message, just go to https://github.com/Turfjs/turf/pulls and you should be prompted at the top to create a PR for this new branch you just pushed.
   - If that prompt doesn't appear, then just create a new pull request from the PR page and make sure the title is the version number e.g. `v7.0.0` and that it is merging your release branch -> to master.
   - Here is an example PR - https://github.com/Turfjs/turf/pull/2615.
-  - Get approval for the release PR and merge it
-  - You will then need to click the "Restore branch" button because Github will have auto-deleted it on merge.  Restoring is required because the release tag points at this release branch.
+  - Get approval for the release PR, then "Squash and merge" it
+  - Click "Restore branch".  Github will have auto-deleted the release branch on merge.  Restoring is required because the release tag points at this release branch.
 
 #### Follow-on steps
 - As part of the release action, a draft Github release will have been created at https://github.com/Turfjs/turf/releases with an auto-generated changelog.
