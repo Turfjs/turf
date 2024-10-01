@@ -245,7 +245,7 @@ export default {
     requireDependency({
       options: {
         devDependencies: {
-          rollup: "^2.79.1",
+          rollup: "^3.29.5",
         },
       },
       includePackages: [MAIN_PACKAGE],
