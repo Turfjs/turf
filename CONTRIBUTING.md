@@ -212,7 +212,7 @@ Before release:
 
 Run the following release commands, replacing `7.0.0` with your version number:
 
-- create a release branch
+- create a release branch and switch to it. All building, tagging and publishing will be done on the release branch, and then merged back into master in a later step.
   - `git checkout origin/master -b release-7.0.0`
 
 - increment the version number of all packages, and create a local commit, without pushing to origin.  This will also create a release tag.
@@ -232,7 +232,7 @@ Run the following release commands, replacing `7.0.0` with your version number:
     - `git branch -d release-7.0.0`
   - Now redo the steps above starting with creating "A clean local copy of the Turf Github repository"
 
-- If the release action was successful, now create a Pull Request for the release to update master.
+- If the release action was successful, now create a Pull Request for the release to merge back to master.
   - You may be given a link in the output of the branch/tag push command to create the PR.
   - If you don't get this message, just go to https://github.com/Turfjs/turf/pulls and you should be prompted at the top to create a PR for this new branch you just pushed.
   - If that prompt doesn't appear, then just create a new pull request from the PR page and make sure the title is the version number e.g. `v7.0.0` and that it is merging your release branch -> to master.
