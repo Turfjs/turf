@@ -14,7 +14,8 @@ import { point, featureCollection, Units } from "@turf/helpers";
 /**
  * Creates a grid of points
  *
- * @name pointGrid
+ * @turfcategory Grids
+ * @function
  * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order
  * @param {number} cellSide the distance between points
  * @param {Object} [options={}] Optional parameters

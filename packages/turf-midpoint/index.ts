@@ -9,7 +9,8 @@ import { Coord } from "@turf/helpers";
  * calculated geodesically, meaning the curvature of the earth is taken into
  * account.
  *
- * @name midpoint
+ * @turfcategory Measurement
+ * @function
  * @param {Coord} point1 first point
  * @param {Coord} point2 second point
  * @returns {Feature<Point>} a point midway between `pt1` and `pt2`

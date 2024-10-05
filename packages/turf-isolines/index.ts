@@ -17,7 +17,8 @@ import {
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
  * value breaks and generates [isolines](https://en.wikipedia.org/wiki/Contour_line).
  *
- * @name isolines
+ * @turfcategory Interpolation
+ * @function
  * @param {FeatureCollection<Point>} pointGrid input points
  * @param {Array<number>} breaks values of `zProperty` where to draw isolines
  * @param {Object} [options={}] Optional parameters

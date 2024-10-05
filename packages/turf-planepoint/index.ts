@@ -11,7 +11,8 @@ import { Coord } from "@turf/helpers";
  * of each triangle point can be provided by their respective 3rd coordinate
  * if their values are not provided as properties.
  *
- * @name planepoint
+ * @turfcategory Interpolation
+ * @function
  * @param {Coord} point the Point for which a z-value will be calculated
  * @param {Feature<Polygon>} triangle a Polygon feature with three vertices
  * @returns {number} the z-value for `interpolatedPoint`

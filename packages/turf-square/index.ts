@@ -5,7 +5,8 @@ import { BBox } from "geojson";
  * Takes a bounding box and calculates the minimum square bounding box that
  * would contain the input.
  *
- * @name square
+ * @turfcategory Measurement
+ * @function
  * @param {BBox} bbox extent in [west, south, east, north] order
  * @returns {BBox} a square surrounding `bbox`
  * @example

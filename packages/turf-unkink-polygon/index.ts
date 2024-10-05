@@ -9,7 +9,8 @@ import { simplepolygon } from "./lib/simplepolygon.js";
  *
  * Uses [simplepolygon](https://github.com/mclaeysb/simplepolygon) internally.
  *
- * @name unkinkPolygon
+ * @turfcategory Misc
+ * @function
  * @param {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to unkink
  * @returns {FeatureCollection<Polygon>} Unkinked polygons
  * @example

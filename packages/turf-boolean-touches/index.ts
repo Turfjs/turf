@@ -6,7 +6,9 @@ import { getGeom } from "@turf/invariant";
 /**
  * Boolean-touches true if none of the points common to both geometries
  * intersect the interiors of both geometries.
- * @name booleanTouches
+ *
+ * @turfcategory Booleans
+ * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {boolean} true/false

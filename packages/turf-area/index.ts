@@ -5,7 +5,8 @@ import { geomReduce } from "@turf/meta";
 /**
  * Calculates the geodesic area in square meters of one or more polygons.
  *
- * @name area
+ * @turfcategory Measurement
+ * @function
  * @param {GeoJSON} geojson input polygon(s) as {@link Geometry}, {@link Feature}, or {@link FeatureCollection}
  * @returns {number} area in square meters
  * @example

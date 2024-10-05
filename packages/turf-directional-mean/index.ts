@@ -36,7 +36,8 @@ interface DirectionalMeanLine extends Feature<LineString> {
  * This module calculate the average angle of a set of lines, measuring the trend of it.
  * It can be used in both project coordinate system and geography coordinate system.
  * It can handle segments of line or the whole line.
- * @name directionalMean
+ *
+ * @function
  * @param {FeatureCollection<LineString>} lines
  * @param {object} [options={}]
  * @param {boolean} [options.planar=true] whether the spatial reference system is projected or geographical.

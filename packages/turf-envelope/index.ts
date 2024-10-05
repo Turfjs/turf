@@ -6,7 +6,8 @@ import { bboxPolygon } from "@turf/bbox-polygon";
 /**
  * Takes any number of features and returns a rectangular {@link Polygon} that encompasses all vertices.
  *
- * @name envelope
+ * @turfcategory Measurement
+ * @function
  * @param {GeoJSON} geojson input features
  * @returns {Feature<Polygon>} a rectangular Polygon feature that encompasses all vertices
  * @example

@@ -13,7 +13,8 @@ import { featureCollection, feature, point } from "@turf/helpers";
  * * Given a {@link LineString}, the point will be along the string
  * * Given a {@link Point}, the point will the same as the input
  *
- * @name pointOnFeature
+ * @turfcategory Measurement
+ * @function
  * @param {GeoJSON} geojson any Feature or FeatureCollection
  * @returns {Feature<Point>} a point on the surface of `input`
  * @example

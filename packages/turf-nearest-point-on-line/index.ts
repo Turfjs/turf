@@ -13,7 +13,8 @@ import { getCoord, getCoords } from "@turf/invariant";
 /**
  * Returns the nearest point on a line to a given point.
  *
- * @name nearestPointOnLine
+ * @turfcategory Misc
+ * @function
  * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
  * @param {Geometry|Feature<Point>|number[]} pt point to snap from
  * @param {Object} [options={}] Optional parameters

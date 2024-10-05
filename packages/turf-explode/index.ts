@@ -6,7 +6,8 @@ import type { Feature, FeatureCollection, Point } from "geojson";
 /**
  * Takes a feature or set of features and returns all positions as {@link Point|points}.
  *
- * @name explode
+ * @turfcategory Feature Conversion
+ * @function
  * @param {GeoJSON} geojson input features
  * @returns {FeatureCollection<point>} points representing the exploded input features
  * @throws {Error} if it encounters an unknown geometry type

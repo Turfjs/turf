@@ -22,7 +22,8 @@ import { EdgeRing } from "./lib/EdgeRing.js";
  * - Dangles: edges which have one or both ends which are not incident on another edge endpoint.
  * - Cut Edges (bridges): edges that are connected at both ends but which do not form part of a polygon.
  *
- * @name polygonize
+ * @turfcategory Feature Conversion
+ * @function
  * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geoJson Lines in order to polygonize
  * @returns {FeatureCollection<Polygon>} Polygons created
  * @throws {Error} if geoJson is invalid.

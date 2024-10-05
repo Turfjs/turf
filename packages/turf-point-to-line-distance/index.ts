@@ -17,7 +17,8 @@ import { rhumbDistance } from "@turf/rhumb-distance";
  * Calculates the distance between a given point and the nearest point on a
  * line. Sometimes referred to as the cross track distance.
  *
- * @name pointToLineDistance
+ * @turfcategory Measurement
+ * @function
  * @param {Feature<Point>|Array<number>} pt Feature or Geometry
  * @param {Feature<LineString>} line GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters

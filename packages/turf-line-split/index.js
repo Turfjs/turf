@@ -12,7 +12,8 @@ import { lineString, featureCollection } from "@turf/helpers";
 /**
  * Split a LineString by another GeoJSON Feature.
  *
- * @name lineSplit
+ * @turfcategory Misc
+ * @function
  * @param {Feature<LineString>} line LineString Feature to split
  * @param {Feature<any>} splitter Feature used to split line
  * @returns {FeatureCollection<LineString>} Split LineStrings

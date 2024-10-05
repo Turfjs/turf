@@ -4,7 +4,8 @@ import { getGeom } from "@turf/invariant";
 /**
  * Takes a polygon and return true or false as to whether it is concave or not.
  *
- * @name booleanConcave
+ * @turfcategory Booleans
+ * @function
  * @param {Feature<Polygon>} polygon to be evaluated
  * @returns {boolean} true/false
  * @example

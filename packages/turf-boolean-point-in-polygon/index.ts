@@ -16,7 +16,8 @@ import { getCoord, getGeom } from "@turf/invariant";
  * Takes a {@link Point} and a {@link Polygon} or {@link MultiPolygon} and determines if the point
  * resides inside the polygon. The polygon can be convex or concave. The function accounts for holes.
  *
- * @name booleanPointInPolygon
+ * @turfcategory Booleans
+ * @function
  * @param {Coord} point input point
  * @param {Feature<Polygon|MultiPolygon>} polygon input polygon or multipolygon
  * @param {Object} [options={}] Optional parameters

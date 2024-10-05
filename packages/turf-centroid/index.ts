@@ -5,7 +5,8 @@ import { coordEach } from "@turf/meta";
 /**
  * Computes the centroid as the mean of all vertices within the object.
  *
- * @name centroid
+ * @turfcategory Measurement
+ * @function
  * @param {GeoJSON} geojson GeoJSON to be centered
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] an Object that is used as the {@link Feature}'s properties

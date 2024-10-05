@@ -13,7 +13,8 @@ import { clone } from "@turf/clone";
  * Takes polygons or multipolygons and an optional mask, and returns an exterior
  * ring polygon with holes.
  *
- * @name mask
+ * @turfcategory Misc
+ * @function
  * @param {Polygon|MultiPolygon|Feature<Polygon|MultiPolygon>|FeatureCollection<Polygon|MultiPolygon>} polygon GeoJSON polygon used as interior rings or holes
  * @param {Polygon|Feature<Polygon>} [mask] GeoJSON polygon used as the exterior ring (if undefined, the world extent is used)
  * @param {Object} [options={}] Optional parameters

@@ -34,7 +34,8 @@ type GroupedRings =
  * Takes a square or rectangular grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
  * value breaks and generates filled contour isobands.
  *
- * @name isobands
+ * @turfcategory Interpolation
+ * @function
  * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular
  * @param {Array<number>} breaks where to draw contours
  * @param {Object} [options={}] options on output

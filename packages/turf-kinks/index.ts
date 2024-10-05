@@ -14,7 +14,8 @@ import { point } from "@turf/helpers";
  * {@link MultiPolygon|multi-polygon} or {@link Polygon|polygon} and
  * returns {@link Point|points} at all self-intersections.
  *
- * @name kinks
+ * @turfcategory Misc
+ * @function
  * @param {Feature<LineString|MultiLineString|MultiPolygon|Polygon>} featureIn input feature
  * @returns {FeatureCollection<Point>} self-intersections
  * @example

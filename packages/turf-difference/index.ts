@@ -6,7 +6,8 @@ import { geomEach } from "@turf/meta";
 /**
  * Finds the difference between multiple {@link Polygon|polygons} by clipping the subsequent polygon from the first.
  *
- * @name difference
+ * @turfcategory Transformation
+ * @function
  * @param {FeatureCollection<Polygon|MultiPolygon>} features input Polygon features
  * @returns {Feature<Polygon|MultiPolygon>|null} a Polygon or MultiPolygon feature showing the area of `polygon1` excluding the area of `polygon2` (if empty returns `null`)
  * @example

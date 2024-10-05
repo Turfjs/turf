@@ -12,7 +12,8 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
 /**
  * Creates a grid of triangular polygons.
  *
- * @name triangleGrid
+ * @turfcategory Grids
+ * @function
  * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order
  * @param {number} cellSide dimension of each grid cell.  Two triangles are created in each cell.
  * @param {Object} [options={}] Optional parameters

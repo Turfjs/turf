@@ -6,7 +6,8 @@ import { getCoord, getCoords } from "@turf/invariant";
  * Returns true if a point is on a line. Accepts a optional parameter to ignore the
  * start and end vertices of the linestring.
  *
- * @name booleanPointOnLine
+ * @turfcategory Booleans
+ * @function
  * @param {Coord} pt GeoJSON Point
  * @param {Feature<LineString>} line GeoJSON LineString
  * @param {Object} [options={}] Optional parameters

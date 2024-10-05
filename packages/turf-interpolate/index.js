@@ -13,7 +13,8 @@ import { collectionOf } from "@turf/invariant";
 /**
  * Takes a set of points and estimates their 'property' values on a grid using the [Inverse Distance Weighting (IDW) method](https://en.wikipedia.org/wiki/Inverse_distance_weighting).
  *
- * @name interpolate
+ * @turfcategory Interpolation
+ * @function
  * @param {FeatureCollection<Point>} points with known value
  * @param {number} cellSize the distance across each grid point
  * @param {Object} [options={}] Optional parameters

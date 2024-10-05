@@ -7,7 +7,8 @@ import { getCoords, getType } from "@turf/invariant";
 /**
  * Removes redundant coordinates from any GeoJSON Geometry.
  *
- * @name cleanCoords
+ * @turfcategory Coordinate Mutation
+ * @function
  * @param {Geometry|Feature} geojson Feature or Geometry
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated

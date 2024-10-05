@@ -4,7 +4,8 @@ import { AllGeoJSON, isObject } from "@turf/helpers";
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
  *
- * @name truncate
+ * @turfcategory Coordinate Mutation
+ * @function
  * @param {GeoJSON} geojson any GeoJSON Feature, FeatureCollection, Geometry or GeometryCollection.
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.precision=6] coordinate decimal precision
