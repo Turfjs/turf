@@ -27,14 +27,15 @@ import { Graph, GridNode, astar } from "./lib/javascript-astar.js";
 
 /**
  * Returns the shortest {@link LineString|path} from {@link Point|start} to {@link Point|end} without colliding with
- * any {@link Feature} in {@link FeatureCollection<Polygon>| obstacles}
+ * any {@link Feature} in obstacles {@link FeatureCollection}<{@link Polygon}>
  *
- * @name shortestPath
+ * @turfcategory Misc
+ * @function
  * @param {Coord} start point
  * @param {Coord} end point
  * @param {Object} [options={}] optional parameters
- * @param {Geometry|Feature|FeatureCollection<Polygon>} [options.obstacles] areas which path cannot travel
- * @param {string} [options.units='kilometers'] unit in which resolution & minimum distance will be expressed in; it can be degrees, radians, miles, kilometers, ...
+ * @param {Polygon|Feature<Polygon>|FeatureCollection<Polygon>} [options.obstacles] areas which path cannot travel
+ * @param {Units} [options.units='kilometers'] unit in which resolution & minimum distance will be expressed in; it can be degrees, radians, miles, kilometers, ...
  * @param {number} [options.resolution=100] distance between matrix points on which the path will be calculated
  * @returns {Feature<LineString>} shortest path between start and end
  * @example

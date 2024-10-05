@@ -4,7 +4,21 @@ import { distance } from "@turf/distance";
 import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
 import { rbush as RBush } from "./lib/rbush-export.js";
 
+/**
+ * Point classification within the cluster.
+ *
+ * @typedef {"core" | "edge" | "noise"} Dbscan
+ */
 type Dbscan = "core" | "edge" | "noise";
+
+/**
+ * Properties assigned to each clustered point.
+ *
+ * @extends GeoJsonProperties
+ * @typedef {object} DbscanProps
+ * @property {Dbscan} [dbscan] type of point it has been classified as
+ * @property {number} [cluster] associated clusterId
+ */
 type DbscanProps = GeoJsonProperties & {
   dbscan?: Dbscan;
   cluster?: number;
@@ -20,9 +34,10 @@ type IndexedPoint = {
 };
 
 /**
- * Takes a set of {@link Point|points} and partition them into clusters according to {@link DBSCAN's|https://en.wikipedia.org/wiki/DBSCAN} data clustering algorithm.
+ * Takes a set of {@link Point|points} and partition them into clusters according to {@link https://en.wikipedia.org/wiki/DBSCAN|DBSCAN's} data clustering algorithm.
  *
- * @name clustersDbscan
+ * @turfcategory Aggregation
+ * @function
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers by default, see options)
  * @param {Object} [options={}] Optional parameters
@@ -30,7 +45,7 @@ type IndexedPoint = {
  * @param {boolean} [options.mutate=false] Allows GeoJSON input to be mutated
  * @param {number} [options.minPoints=3] Minimum number of points to generate a single cluster,
  * points which do not meet this requirement will be classified as an 'edge' or 'noise'.
- * @returns {FeatureCollection<Point>} Clustered Points with an additional two properties associated to each Feature:
+ * @returns {FeatureCollection<Point, DbscanProps>} Clustered Points with an additional two properties associated to each Feature:
  * - {number} cluster - the associated clusterId
  * - {string} dbscan - type of point it has been classified as ('core'|'edge'|'noise')
  * @example

@@ -6,10 +6,11 @@ import { flatten } from "@turf/flatten";
 import polygonClipping, { Geom } from "polygon-clipping";
 
 /**
- * Dissolves a FeatureCollection of {@link polygon} features, filtered by an optional property name:value.
- * Note that {@link mulitpolygon} features within the collection are not supported
+ * Dissolves a FeatureCollection of {@link Polygon} features, filtered by an optional property name:value.
+ * Note that {@link MultiPolygon} features within the collection are not supported
  *
- * @name dissolve
+ * @turfcategory Transformation
+ * @function
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.propertyName] features with the same `propertyName` value will be dissolved.
