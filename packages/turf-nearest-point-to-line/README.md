@@ -11,7 +11,7 @@ to a [line][3]. The returned point has a `dist` property indicating its distance
 
 *   `points` **([FeatureCollection][2] | [GeometryCollection][4]<[Point][1]>)** Point Collection
 *   `line` **([Feature][5] | [Geometry][6]<[LineString][3]>)** Line Feature
-*   `options` **[Object][7]?** Optional parameters
+*   `options` **[Object][7]?** Optional parameters (optional, default `{}`)
 
     *   `options.units` **[string][8]** unit of the output distance property
         (eg: degrees, radians, miles, or kilometers) (optional, default `'kilometers'`)
@@ -32,14 +32,6 @@ var addToMap = [nearest, line];
 ```
 
 Returns **[Feature][5]<[Point][1]>** the closest point
-
-## pt
-
-Translate Properties to final Point, priorities:
-
-1.  options.properties
-2.  inherent Point properties
-3.  dist custom properties created by NearestPointToLine
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

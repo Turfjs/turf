@@ -8,8 +8,9 @@ Takes a [FeatureCollection][1] and returns a FeatureCollection with given number
 
 ### Parameters
 
-*   `featurecollection` **[FeatureCollection][1]** set of input features
+*   `fc` **[FeatureCollection][1]\<T>**&#x20;
 *   `num` **[number][3]** number of features to select
+*   `featurecollection` **[FeatureCollection][1]** set of input features
 
 ### Examples
 
