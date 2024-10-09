@@ -182,6 +182,41 @@ test("turf-buffer - undefined return", (t) => {
   t.end();
 });
 
+test("turf-buffer - units none", (t) => {
+  const point: GeoJSON.Feature<GeoJSON.Point> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "Point",
+      coordinates: [0, 0],
+    },
+  };
+
+  const polygon: GeoJSON.Feature<GeoJSON.Polygon> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [+1, +0],
+          [+0, -1],
+          [-1, -0],
+          [-0, +1],
+          [+1, +0],
+        ],
+      ],
+    },
+  };
+
+  t.deepEqual(
+    truncate(buffer(point, 1, { units: "none", steps: 1 })),
+    polygon,
+    "unitless geometry should not be projected"
+  );
+  t.end();
+});
+
 function colorize(feature, color) {
   color = color || "#F00";
   if (feature.properties) {

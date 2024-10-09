@@ -37,9 +37,10 @@ export type Units =
   | "yards"
   | "feet"
   | "radians"
-  | "degrees";
+  | "degrees"
+  | "none";
 export type AreaUnits =
-  | Exclude<Units, "radians" | "degrees">
+  | Exclude<Units, "radians" | "degrees" | "none">
   | "acres"
   | "hectares";
 export type Grid = "point" | "square" | "hex" | "triangle";
@@ -87,6 +88,7 @@ export const factors: Record<Units, number> = {
   nauticalmiles: earthRadius / 1852,
   radians: 1,
   yards: earthRadius * 1.0936,
+  none: NaN,
 };
 
 /**
