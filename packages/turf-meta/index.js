@@ -457,7 +457,7 @@ function featureReduce(geojson, callback, initialValue) {
  *
  * @function
  * @param {AllGeoJSON} geojson any GeoJSON object
- * @returns {number[][]} coordinate position array
+ * @returns {Array<Array<number>>} coordinate position array
  * @example
  * var features = turf.featureCollection([
  *   turf.point([26, 37], {foo: 'bar'}),
@@ -1128,7 +1128,7 @@ function lineEach(geojson, callback) {
  * Reduce features in any GeoJSON object, similar to Array.reduce().
  *
  * @function
- * @param {FeatureCollection<Lines|Feature<Lines>|Lines|Feature<GeometryCollection>|GeometryCollection} geojson object
+ * @param {FeatureCollection<Lines>|Feature<Lines>|Lines|Feature<GeometryCollection>|GeometryCollection} geojson object
  * @param {Function} callback a method that takes (previousValue, currentLine, featureIndex, multiFeatureIndex, geometryIndex)
  * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {Reducer} The value that results from the reduction.

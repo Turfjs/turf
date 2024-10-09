@@ -316,6 +316,8 @@ var coords = turf.coordAll(features);
 //= [[26, 37], [36, 53]]
 ```
 
+Returns **[Array][2]<[Array][2]<[number][3]>>** coordinate position array
+
 ## geomEachCallback
 
 Callback for geomEach
@@ -713,7 +715,7 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 
 ### Parameters
 
-*   `geojson` &#x20;
+*   `geojson` **([FeatureCollection][8]\<Lines> | [Feature][7]\<Lines> | Lines | [Feature][7]<[GeometryCollection][12]> | [GeometryCollection][12])** object
 *   `callback` **[Function][1]** a method that takes (previousValue, currentLine, featureIndex, multiFeatureIndex, geometryIndex)
 *   `initialValue` **Reducer?** Value to use as the first argument to the first call of the callback.
 
