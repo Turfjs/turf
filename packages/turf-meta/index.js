@@ -15,7 +15,6 @@ import { feature, point, lineString, isObject } from "@turf/helpers";
 /**
  * Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
  *
- * @turfcategory Meta
  * @function
  * @param {AllGeoJSON} geojson any GeoJSON object
  * @param {coordEachCallback} callback a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
@@ -218,7 +217,6 @@ function coordEach(geojson, callback, excludeWrapCoord) {
  * Reduce coordinates in any GeoJSON object, similar to Array.reduce()
  *
  * @function
- * @turfcategory Meta
  * @param {AllGeoJSON} geojson any GeoJSON object
  * @param {coordReduceCallback} callback a method that takes (previousValue, currentCoord, coordIndex)
  * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
@@ -280,7 +278,6 @@ function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
  * Iterate over properties in any GeoJSON object, similar to Array.forEach()
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection|Feature} geojson any GeoJSON object
  * @param {propEachCallback} callback a method that takes (currentProperties, featureIndex)
  * @returns {void}
@@ -337,7 +334,6 @@ function propEach(geojson, callback) {
  * the reduction, so an array of all properties is unnecessary.
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
  * @param {propReduceCallback} callback a method that takes (previousValue, currentProperties, featureIndex)
  * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
@@ -380,7 +376,6 @@ function propReduce(geojson, callback, initialValue) {
  * Array.forEach.
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection|Feature|Feature<GeometryCollection>} geojson any GeoJSON object
  * @param {featureEachCallback} callback a method that takes (currentFeature, featureIndex)
  * @returns {void}
@@ -430,7 +425,6 @@ function featureEach(geojson, callback) {
  * Reduce features in any GeoJSON object, similar to Array.reduce().
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection|Feature|Feature<GeometryCollection>} geojson any GeoJSON object
  * @param {Function} callback a method that takes (previousValue, currentFeature, featureIndex)
  * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
@@ -462,7 +456,6 @@ function featureReduce(geojson, callback, initialValue) {
  * Get all coordinates from any GeoJSON object.
  *
  * @function
- * @turfcategory Meta
  * @param {AllGeoJSON} geojson any GeoJSON object
  * @returns {number[][]} coordinate position array
  * @example
@@ -498,7 +491,6 @@ function coordAll(geojson) {
  * Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection|Feature|Geometry|GeometryObject|Feature<GeometryCollection>} geojson any GeoJSON object
  * @param {geomEachCallback} callback a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
  * @returns {void}
@@ -662,7 +654,6 @@ function geomEach(geojson, callback) {
  * Reduce geometry in any GeoJSON object, similar to Array.reduce().
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection|Feature|GeometryObject|GeometryCollection|Feature<GeometryCollection>} geojson any GeoJSON object
  * @param {geomReduceCallback} callback a method that takes (previousValue, currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
  * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
@@ -725,7 +716,6 @@ function geomReduce(geojson, callback, initialValue) {
  * Array.forEach.
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection|Feature|GeometryObject|GeometryCollection|Feature<GeometryCollection>} geojson any GeoJSON object
  * @param {flattenEachCallback} callback a method that takes (currentFeature, featureIndex, multiFeatureIndex)
  * @returns {void}
@@ -822,7 +812,6 @@ function flattenEach(geojson, callback) {
  * Reduce flattened features in any GeoJSON object, similar to Array.reduce().
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection|Feature|GeometryObject|GeometryCollection|Feature<GeometryCollection>} geojson any GeoJSON object
  * @param {flattenReduceCallback} callback a method that takes (previousValue, currentFeature, featureIndex, multiFeatureIndex)
  * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.

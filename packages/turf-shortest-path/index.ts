@@ -29,7 +29,6 @@ import { Graph, GridNode, astar } from "./lib/javascript-astar.js";
  * Returns the shortest {@link LineString|path} from {@link Point|start} to {@link Point|end} without colliding with
  * any {@link Feature} in obstacles {@link FeatureCollection}<{@link Polygon}>
  *
- * @turfcategory Misc
  * @function
  * @param {Coord} start point
  * @param {Coord} end point

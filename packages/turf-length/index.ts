@@ -6,7 +6,6 @@ import { segmentReduce } from "@turf/meta";
 /**
  * Takes a {@link GeoJSON} and measures its length in the specified units, {@link (Multi)Point}'s distance are ignored.
  *
- * @turfcategory Measurement
  * @function
  * @param {Feature<LineString|MultiLineString>} geojson GeoJSON to measure
  * @param {Object} [options={}] Optional parameters

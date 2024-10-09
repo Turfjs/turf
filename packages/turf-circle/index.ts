@@ -5,7 +5,6 @@ import { polygon, Units } from "@turf/helpers";
 /**
  * Takes a {@link Point} and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
  *
- * @turfcategory Transformation
  * @function
  * @param {Feature<Point>|number[]} center center point
  * @param {number} radius radius of the circle

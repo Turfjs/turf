@@ -6,7 +6,6 @@ import { GreatCircle } from "./lib/arc.js";
  * If the `start` and `end` points span the antimeridian, the resulting feature will
  * be split into a `MultiLineString`.
  *
- * @turfcategory Measurement
  * @function
  * @param {Coord} start source point feature
  * @param {Coord} end destination point feature

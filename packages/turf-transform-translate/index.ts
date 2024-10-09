@@ -9,7 +9,6 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  * Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
  * on the provided direction angle.
  *
- * @turfcategory Transformation
  * @function
  * @param {GeoJSON|GeometryCollection} geojson object to be translated
  * @param {number} distance length of the motion; negative values determine motion in opposite direction

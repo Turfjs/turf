@@ -14,7 +14,6 @@ import { isNumber } from "@turf/helpers";
 /**
  * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate.
  *
- * @turfcategory Meta
  * @function
  * @param {Array<number>|Geometry<Point>|Feature<Point>} coord GeoJSON Point or an Array of numbers
  * @returns {Array<number>} coordinates
@@ -56,7 +55,6 @@ function getCoord(coord: Feature<Point> | Point | number[]): number[] {
 /**
  * Unwrap coordinates from a Feature, Geometry Object or an Array
  *
- * @turfcategory Meta
  * @function
  * @param {Array<any>|Geometry|Feature} coords Feature, Geometry Object or an Array
  * @returns {Array<any>} coordinates
@@ -99,7 +97,6 @@ function getCoords<
 /**
  * Checks if coordinates contains a number
  *
- * @turfcategory Assertions
  * @function
  * @param {Array<any>} coordinates GeoJSON Coordinates
  * @returns {boolean} true if Array contains a number
@@ -122,7 +119,6 @@ function containsNumber(coordinates: any[]): boolean {
 /**
  * Enforce expectations about types of GeoJSON objects for Turf.
  *
- * @turfcategory Assertions
  * @function
  * @param {GeoJSON} value any GeoJSON object
  * @param {string} type expected GeoJSON type
@@ -150,7 +146,6 @@ function geojsonType(value: any, type: string, name: string): void {
  * Enforce expectations about types of {@link Feature} inputs for Turf.
  * Internally this uses {@link geojsonType} to judge geometry types.
  *
- * @turfcategory Assertions
  * @function
  * @param {Feature} feature a feature with an expected geometry type
  * @param {string} type expected GeoJSON type
@@ -185,7 +180,6 @@ function featureOf(feature: Feature<any>, type: string, name: string): void {
  * Enforce expectations about types of {@link FeatureCollection} inputs for Turf.
  * Internally this uses {@link geojsonType} to judge geometry types.
  *
- * @turfcategory Assertions
  * @function
  * @param {FeatureCollection} featureCollection a FeatureCollection for which features will be judged
  * @param {string} type expected GeoJSON type

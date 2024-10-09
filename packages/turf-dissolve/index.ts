@@ -9,7 +9,6 @@ import polygonClipping, { Geom } from "polygon-clipping";
  * Dissolves a FeatureCollection of {@link Polygon} features, filtered by an optional property name:value.
  * Note that {@link MultiPolygon} features within the collection are not supported
  *
- * @turfcategory Transformation
  * @function
  * @param {FeatureCollection<Polygon>} featureCollection input feature collection to be dissolved
  * @param {Object} [options={}] Optional parameters

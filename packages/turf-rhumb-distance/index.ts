@@ -6,7 +6,6 @@ import { getCoord } from "@turf/invariant";
  * Calculates the distance along a rhumb line between two {@link Point|points} in degrees, radians,
  * miles, or kilometers.
  *
- * @turfcategory Measurement
  * @function
  * @param {Coord} from origin point
  * @param {Coord} to destination point

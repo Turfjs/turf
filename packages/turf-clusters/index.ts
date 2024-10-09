@@ -10,7 +10,6 @@ import { featureCollection } from "@turf/helpers";
 /**
  * Get Cluster
  *
- * @turfcategory Meta
  * @function
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {*} filter Filter used on GeoJSON properties to get Cluster
@@ -70,7 +69,6 @@ function getCluster<
  * clusterEach
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string|number} property GeoJSON property key/value used to create clusters
  * @param {Function} callback a method that takes (cluster, clusterValue, currentIndex)
@@ -166,7 +164,6 @@ function clusterEach<
  * Reduce clusters in GeoJSON Features, similar to Array.reduce()
  *
  * @function
- * @turfcategory Meta
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string|number} property GeoJSON property key/value used to create clusters
  * @param {Function} callback a method that takes (previousValue, cluster, clusterValue, currentIndex)

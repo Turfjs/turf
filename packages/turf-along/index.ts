@@ -8,7 +8,6 @@ import { getGeom } from "@turf/invariant";
 /**
  * Takes a {@link LineString} and returns a {@link Point} at a specified distance along the line.
  *
- * @turfcategory Measurement
  * @function
  * @param {Feature<LineString>|LineString} line input line
  * @param {number} distance distance along the line

@@ -16,7 +16,6 @@ import {
 /**
  * Creates a grid of rectangular polygons with width and height consistent in degrees
  *
- * @turfcategory Grids
  * @function
  * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
  * @param {number} cellWidth width of each cell, in units

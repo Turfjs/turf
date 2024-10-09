@@ -15,7 +15,6 @@ import { clone } from "@turf/clone";
 /**
  * Converts (Multi)LineString(s) to Polygon(s).
  *
- * @turfcategory Feature Conversion
  * @function
  * @param {FeatureCollection|Feature<LineString|MultiLineString>} lines Features to convert
  * @param {Object} [options={}] Optional parameters

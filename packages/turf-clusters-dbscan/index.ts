@@ -36,7 +36,6 @@ type IndexedPoint = {
 /**
  * Takes a set of {@link Point|points} and partition them into clusters according to {@link https://en.wikipedia.org/wiki/DBSCAN|DBSCAN's} data clustering algorithm.
  *
- * @turfcategory Aggregation
  * @function
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers by default, see options)

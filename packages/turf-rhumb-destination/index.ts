@@ -14,7 +14,6 @@ import { getCoord } from "@turf/invariant";
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
  * origin Point with the (varant) given bearing.
  *
- * @turfcategory Measurement
  * @function
  * @param {Coord} origin starting point
  * @param {number} distance distance from the starting point

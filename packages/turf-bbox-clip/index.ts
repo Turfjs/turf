@@ -22,7 +22,6 @@ import { lineclip, polygonclip } from "./lib/lineclip.js";
  * [lineclip](https://github.com/mapbox/lineclip).
  * May result in degenerate edges when clipping Polygons.
  *
- * @turfcategory Transformation
  * @function
  * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature feature to clip to the bbox
  * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order

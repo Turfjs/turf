@@ -11,7 +11,6 @@ import { isObject, Coord } from "@turf/helpers";
 /**
  * Rotates any geojson Feature or Geometry of a specified angle, around its `centroid` or a given `pivot` point.
  *
- * @turfcategory Transformation
  * @function
  * @param {GeoJSON} geojson object to be rotated
  * @param {number} angle of rotation in decimal degrees, positive clockwise

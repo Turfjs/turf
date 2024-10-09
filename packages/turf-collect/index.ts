@@ -18,7 +18,6 @@ interface Entry {
  * `inProperty` values from those points, and adds them as an array to `outProperty`
  * on the polygon.
  *
- * @turfcategory Aggregation
  * @function
  * @param {FeatureCollection<Polygon>} polygons polygons with values on which to aggregate
  * @param {FeatureCollection<Point>} points points to be aggregated

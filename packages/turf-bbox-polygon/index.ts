@@ -4,7 +4,6 @@ import { polygon, Id } from "@turf/helpers";
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
  *
- * @turfcategory Measurement
  * @function
  * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @param {Object} [options={}] Optional parameters

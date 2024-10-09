@@ -14,7 +14,6 @@ import { sweeplineIntersections as findIntersections } from "./lib/sweepline-int
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
  *
- * @turfcategory Misc
  * @function
  * @param {GeoJSON} line1 any LineString or Polygon
  * @param {GeoJSON} line2 any LineString or Polygon

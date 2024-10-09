@@ -148,7 +148,6 @@ export const areaFactors: Record<AreaUnits, number> = {
 /**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
  *
- * @turfcategory Helpers
  * @function
  * @param {GeometryObject} geometry input geometry
  * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
@@ -233,7 +232,6 @@ export function geometry(
 /**
  * Creates a {@link Point} {@link Feature} from a Position.
  *
- * @turfcategory Helpers
  * @function
  * @param {Position} coordinates longitude, latitude position (each in decimal degrees)
  * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
@@ -307,7 +305,6 @@ export function points<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * Creates a {@link Polygon} {@link Feature} from an Array of LinearRings.
  *
- * @turfcategory Helpers
  * @function
  * @param {Position[][]} coordinates an array of LinearRings
  * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
@@ -384,7 +381,6 @@ export function polygons<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * Creates a {@link LineString} {@link Feature} from an Array of Positions.
  *
- * @turfcategory Helpers
  * @function
  * @param {Position[]} coordinates an array of Positions
  * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
@@ -449,7 +445,6 @@ export function lineStrings<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * Takes one or more {@link Feature|Features} and creates a {@link FeatureCollection}.
  *
- * @turfcategory Helpers
  * @function
  * @param {Array<Feature<GeometryObject, GeoJsonProperties>>} features input features
  * @param {Object} [options={}] Optional Parameters
@@ -491,7 +486,6 @@ export function featureCollection<
  * Creates a {@link Feature}<{@link MultiLineString}> based on a
  * coordinate array. Properties can be added optionally.
  *
- * @turfcategory Helpers
  * @function
  * @param {Position[][]} coordinates an array of LineStrings
  * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
@@ -523,7 +517,6 @@ export function multiLineString<
  * Creates a {@link Feature}<{@link MultiPoint}> based on a
  * coordinate array. Properties can be added optionally.
  *
- * @turfcategory Helpers
  * @function
  * @param {Position[]} coordinates an array of Positions
  * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
@@ -553,7 +546,6 @@ export function multiPoint<P extends GeoJsonProperties = GeoJsonProperties>(
  * Creates a {@link Feature}<{@link MultiPolygon}> based on a
  * coordinate array. Properties can be added optionally.
  *
- * @turfcategory Helpers
  * @function
  * @param {Position[][][]} coordinates an array of Polygons
  * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
@@ -584,7 +576,6 @@ export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
  * Creates a Feature<GeometryCollection> based on a
  * coordinate array. Properties can be added optionally.
  *
- * @turfcategory Helpers
  * @function
  * @param {Array<Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon>} geometries an array of GeoJSON Geometries
  * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
@@ -641,7 +632,6 @@ export function round(num: number, precision = 0): number {
  * Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
- * @turfcategory Unit Conversion
  * @function
  * @param {number} radians in radians across the sphere
  * @param {Units} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
@@ -663,7 +653,6 @@ export function radiansToLength(
  * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into radians
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
- * @turfcategory Unit Conversion
  * @function
  * @param {number} distance in real units
  * @param {Units} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
@@ -699,7 +688,6 @@ export function lengthToDegrees(distance: number, units?: Units): number {
  * Converts any bearing angle from the north line direction (positive clockwise)
  * and returns an angle between 0-360 degrees (positive clockwise), 0 being the north line
  *
- * @turfcategory Unit Conversion
  * @function
  * @param {number} bearing angle, between -180 and +180 degrees
  * @returns {number} angle between 0 and 360 degrees
@@ -716,7 +704,6 @@ export function bearingToAzimuth(bearing: number): number {
  * Converts any azimuth angle from the north line direction (positive clockwise)
  * and returns an angle between -180 and +180 degrees (positive clockwise), 0 being the north line
  *
- * @turfcategory Unit Conversion
  * @function
  * @param {number} angle between 0 and 360 degrees
  * @returns {number} bearing between -180 and +180 degrees
@@ -737,7 +724,6 @@ export function azimuthToBearing(angle: number): number {
 /**
  * Converts an angle in radians to degrees
  *
- * @turfcategory Unit Conversion
  * @function
  * @param {number} radians angle in radians
  * @returns {number} degrees between 0 and 360 degrees
@@ -751,7 +737,6 @@ export function radiansToDegrees(radians: number): number {
 /**
  * Converts an angle in degrees to radians
  *
- * @turfcategory Unit Conversion
  * @function
  * @param {number} degrees angle between 0 and 360 degrees
  * @returns {number} angle in radians

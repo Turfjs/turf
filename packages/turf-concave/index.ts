@@ -16,7 +16,6 @@ import { dissolve } from "./lib/turf-dissolve.js";
  * Takes a set of {@link Point|points} and returns a concave hull Polygon or MultiPolygon.
  * Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
  *
- * @turfcategory Transformation
  * @function
  * @param {FeatureCollection<Point>} points input points
  * @param {Object} [options={}] Optional parameters

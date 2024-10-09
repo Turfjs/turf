@@ -19,7 +19,6 @@ import type { AllGeoJSON } from "@turf/helpers";
 /**
  * Rewind {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon} outer ring counterclockwise and inner rings clockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
  *
- * @turfcategory Coordinate Mutation
  * @function
  * @param {GeoJSON} geojson input GeoJSON Polygon
  * @param {Object} [options={}] Optional parameters

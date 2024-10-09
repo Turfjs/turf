@@ -10,7 +10,6 @@ import { Spline } from "./lib/spline.js";
  *
  * The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc/).
  *
- * @turfcategory Transformation
  * @function
  * @param {Feature<LineString>} line input LineString
  * @param {Object} [options={}] Optional parameters

@@ -9,7 +9,6 @@ import { Coord } from "@turf/helpers";
  * calculated geodesically, meaning the curvature of the earth is taken into
  * account.
  *
- * @turfcategory Measurement
  * @function
  * @param {Coord} point1 first point
  * @param {Coord} point2 second point

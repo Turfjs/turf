@@ -13,7 +13,6 @@ import { point } from "@turf/helpers";
  * Boolean-Crosses returns t (TRUE) for only multipoint/polygon, multipoint/linestring, linestring/linestring, linestring/polygon, and linestring/multipolygon comparisons.
  * Other comparisons are not supported as they are outside the OpenGIS Simple Features spec and may give unexpected results.
  *
- * @turfcategory Booleans
  * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry

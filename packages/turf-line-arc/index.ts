@@ -7,7 +7,6 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
  * 0 bearing is North of center point, positive clockwise.
  *
- * @turfcategory Misc
  * @function
  * @param {Coord} center center point
  * @param {number} radius radius of the circle

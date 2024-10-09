@@ -7,7 +7,6 @@ import { bearingToAzimuth } from "@turf/helpers";
 /**
  * Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
  *
- * @turfcategory Booleans
  * @function
  * @param {Geometry|Feature<LineString>} line1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<LineString>} line2 GeoJSON Feature or Geometry

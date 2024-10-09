@@ -16,7 +16,6 @@ import { getCoord } from "@turf/invariant";
  * degrees, radians, miles, or kilometers; and bearing in degrees.
  * This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
- * @turfcategory Measurement
  * @function
  * @param {Coord} origin starting point
  * @param {number} distance distance from the origin point

@@ -12,7 +12,6 @@ import { rectangleGrid } from "@turf/rectangle-grid";
 /**
  * Creates a grid of square polygons with cell length consistent in degrees
  *
- * @turfcategory Grids
  * @function
  * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order.  If the grid does not fill the bbox perfectly, it is centered.
  * @param {number} cellSide length of each cell side.

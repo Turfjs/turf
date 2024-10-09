@@ -19,7 +19,6 @@ import {
 /**
  * Returns a random position within a {@link BBox|bounding box}.
  *
- * @turfcategory Random
  * @function
  * @param {BBox} [bbox=[-180, -90, 180, 90]] a bounding box inside of which positions are placed.
  * @returns {Position} Position [longitude, latitude]
@@ -57,7 +56,6 @@ function checkBBox(bbox?: BBox | { bbox: BBox }) {
 /**
  * Returns a random {@link point}.
  *
- * @turfcategory Random
  * @function
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
@@ -88,7 +86,6 @@ function randomPoint(
 /**
  * Returns a random {@link polygon}.
  *
- * @turfcategory Random
  * @function
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
@@ -179,7 +176,6 @@ function randomPolygon(
 /**
  * Returns a random {@link LineString}.
  *
- * @turfcategory Random
  * @function
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters

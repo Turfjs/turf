@@ -8,7 +8,6 @@ import { getCoord } from "@turf/invariant";
  * Takes two {@link Point|points} and finds the geographic bearing between them,
  * i.e. the angle measured in degrees from the north line (0 degrees)
  *
- * @turfcategory Measurement
  * @function
  * @param {Coord} start starting Point
  * @param {Coord} end ending Point

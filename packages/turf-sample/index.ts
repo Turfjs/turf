@@ -5,7 +5,6 @@ import { featureCollection } from "@turf/helpers";
 /**
  * Takes a {@link FeatureCollection} and returns a FeatureCollection with given number of {@link Feature|features} at random.
  *
- * @turfcategory Data
  * @function
  * @param {FeatureCollection} featurecollection set of input features
  * @param {number} num number of features to select

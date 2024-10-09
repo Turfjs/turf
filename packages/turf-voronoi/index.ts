@@ -30,7 +30,6 @@ function coordsToPolygon(coords: Position[]) {
  *
  * The Voronoi algorithim used comes from the d3-voronoi package.
  *
- * @turfcategory Transformation
  * @function
  * @param {FeatureCollection<Point>} points points around which to calculate the Voronoi polygons
  * @param {Object} [options={}] Optional parameters

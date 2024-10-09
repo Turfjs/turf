@@ -6,7 +6,6 @@ import { clone } from "@turf/clone";
 /**
  * Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
  *
- * @turfcategory Unit Conversion
  * @function
  * @param {GeoJSON|Position} geojson WGS84 GeoJSON object
  * @param {Object} [options] Optional parameters
@@ -29,7 +28,6 @@ function toMercator<G = AllGeoJSON | Position>(
 /**
  * Converts a Mercator (EPSG:900913) GeoJSON object into WGS84 projection
  *
- * @turfcategory Unit Conversion
  * @function
  * @param {GeoJSON|Position} geojson Mercator GeoJSON object
  * @param {Object} [options] Optional parameters
