@@ -167,7 +167,7 @@ tree.fromJSON(exported)
 
 Returns **RBush** GeoJSON RBush
 
-## geojsonRbush
+## rbush
 
 GeoJSON implementation of [RBush][13] spatial index.
 
@@ -181,6 +181,169 @@ GeoJSON implementation of [RBush][13] spatial index.
 ```javascript
 var geojsonRbush = require('geojson-rbush').default;
 var tree = geojsonRbush();
+```
+
+Returns **RBush** GeoJSON RBush
+
+### insert
+
+[insert][1]
+
+#### Parameters
+
+*   `feature` **[Feature][2]** insert single GeoJSON Feature
+
+#### Examples
+
+```javascript
+var poly = turf.polygon([[[-78, 41], [-67, 41], [-67, 48], [-78, 48], [-78, 41]]]);
+tree.insert(poly)
+```
+
+Returns **RBush** GeoJSON RBush
+
+### load
+
+[load][3]
+
+#### Parameters
+
+*   `features` **([FeatureCollection][4] | [Array][5]<[Feature][2]>)** load entire GeoJSON FeatureCollection
+
+#### Examples
+
+```javascript
+var polys = turf.polygons([
+    [[[-78, 41], [-67, 41], [-67, 48], [-78, 48], [-78, 41]]],
+    [[[-93, 32], [-83, 32], [-83, 39], [-93, 39], [-93, 32]]]
+]);
+tree.load(polys);
+```
+
+Returns **RBush** GeoJSON RBush
+
+### remove
+
+[remove][6]
+
+#### Parameters
+
+*   `feature` **[Feature][2]** remove single GeoJSON Feature
+*   `equals` **[Function][7]** Pass a custom equals function to compare by value for removal.
+
+#### Examples
+
+```javascript
+var poly = turf.polygon([[[-78, 41], [-67, 41], [-67, 48], [-78, 48], [-78, 41]]]);
+
+tree.remove(poly);
+```
+
+Returns **RBush** GeoJSON RBush
+
+### clear
+
+[clear][6]
+
+#### Examples
+
+```javascript
+tree.clear()
+```
+
+Returns **RBush** GeoJSON Rbush
+
+### search
+
+[search][8]
+
+#### Parameters
+
+*   `geojson` **([BBox][9] | [FeatureCollection][4] | [Feature][2])** search with GeoJSON
+
+#### Examples
+
+```javascript
+var poly = turf.polygon([[[-78, 41], [-67, 41], [-67, 48], [-78, 48], [-78, 41]]]);
+
+tree.search(poly);
+```
+
+Returns **[FeatureCollection][4]** all features that intersects with the given GeoJSON.
+
+### collides
+
+[collides][10]
+
+#### Parameters
+
+*   `geojson` **([BBox][9] | [FeatureCollection][4] | [Feature][2])** collides with GeoJSON
+
+#### Examples
+
+```javascript
+var poly = turf.polygon([[[-78, 41], [-67, 41], [-67, 48], [-78, 48], [-78, 41]]]);
+
+tree.collides(poly);
+```
+
+Returns **[boolean][11]** true if there are any items intersecting the given GeoJSON, otherwise false.
+
+### all
+
+[all][8]
+
+#### Examples
+
+```javascript
+tree.all()
+```
+
+Returns **[FeatureCollection][4]** all the features in RBush
+
+### toJSON
+
+[toJSON][12]
+
+#### Examples
+
+```javascript
+var exported = tree.toJSON()
+```
+
+Returns **any** export data as JSON object
+
+### fromJSON
+
+[fromJSON][12]
+
+#### Parameters
+
+*   `json` **any** import previously exported data
+
+#### Examples
+
+```javascript
+var exported = {
+  "children": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110, 50]
+      },
+      "properties": {},
+      "bbox": [110, 50, 110, 50]
+    }
+  ],
+  "height": 1,
+  "leaf": true,
+  "minX": 110,
+  "minY": 50,
+  "maxX": 110,
+  "maxY": 50
+}
+tree.fromJSON(exported)
 ```
 
 Returns **RBush** GeoJSON RBush
