@@ -23,7 +23,7 @@ any [Feature][3] in obstacles [FeatureCollection][4]<[Polygon][5]>
 var start = [-5, -6];
 var end = [9, -6];
 var options = {
-  obstacles: turf.polygon([[[0, -7], [5, -7], [5, -3], [0, -3], [0, -7]]])
+  obstacles: turf.polygon([[[0, -7], [5, -7], [5, -3], [0, -3], [0, -7]]]).geometry
 };
 
 var path = turf.shortestPath(start, end, options);
