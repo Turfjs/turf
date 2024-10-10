@@ -8,7 +8,7 @@ import { radiansToLength, degreesToRadians, Coord, Units } from "@turf/helpers";
  * Calculates the distance between two {@link Coord|coordinates} in degrees, radians, miles, or kilometers.
  * This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
- * @name distance
+ * @function
  * @param {Coord} from origin coordinate
  * @param {Coord} to destination coordinate
  * @param {Object} [options={}] Optional parameters

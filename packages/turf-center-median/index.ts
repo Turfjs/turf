@@ -43,7 +43,7 @@ import { featureEach } from "@turf/meta";
  * Statistics for Geographers_, 3rd ed., New York: The Guilford
  * Press, 2009, 150–151.
  *
- * @name centerMedian
+ * @function
  * @param {FeatureCollection<any>} features Any GeoJSON Feature Collection
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.weight] the property name used to weight the center

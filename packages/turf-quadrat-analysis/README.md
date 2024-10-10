@@ -34,8 +34,8 @@ which is simply the area of the study area divided by the number of features.
 *   `pointFeatureSet` **[FeatureCollection][1]<[Point][2]>** point set to study
 *   `options` **[Object][3]** optional parameters (optional, default `{}`)
 
-    *   `options.studyBbox` **bbox?** bbox representing the study area
-    *   `options.confidenceLevel` **[number][4]** a confidence level.
+    *   `options.studyBbox` **\[[number][4], [number][4], [number][4], [number][4]]?** bbox representing the study area
+    *   `options.confidenceLevel` **(`20` | `15` | `10` | `5` | `2` | `1`)** a confidence level.
         The unit is percentage . 5 means 95%, value must be in [K\_TABLE][5] (optional, default `20`)
 
 ### Examples
@@ -46,7 +46,7 @@ var dataset = turf.randomPoint(100, { bbox: bbox });
 var result = turf.quadratAnalysis(dataset);
 ```
 
-Returns **[Object][3]** result [QuadratAnalysisResult][6]
+Returns **[QuadratAnalysisResult][6]** result
 
 ## K\_TABLE
 
@@ -56,18 +56,18 @@ Type: [Object][3]
 
 ### Properties
 
-*   `20` **[number][4]**&#x20;
-*   `15` **[number][4]**&#x20;
-*   `10` **[number][4]**&#x20;
-*   `5` **[number][4]**&#x20;
-*   `2` **[number][4]**&#x20;
-*   `1` **[number][4]**&#x20;
+*   `20` **[number][4]** 1.07275
+*   `15` **[number][4]** 1.13795
+*   `10` **[number][4]** 1.22385
+*   `5` **[number][4]** 1.3581
+*   `2` **[number][4]** 1.51743
+*   `1` **[number][4]** 1.62762
 
 ## QuadratAnalysisResult
 
 the return type of the quadratAnalysis
 
-Type: [Object][3]
+Type: [object][3]
 
 ### Properties
 

@@ -9,7 +9,7 @@ import { nearestPointOnLine } from "@turf/nearest-point-on-line";
  *
  * This can be useful for extracting only the part of a route between waypoints.
  *
- * @name lineSlice
+ * @function
  * @param {Coord} startPt starting point
  * @param {Coord} stopPt stopping point
  * @param {Feature<LineString>|LineString} line line to slice

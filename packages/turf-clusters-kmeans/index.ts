@@ -12,7 +12,7 @@ type KmeansProps = GeoJsonProperties & {
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .
  * It uses the [k-means algorithm](https://en.wikipedia.org/wiki/K-means_clustering)
  *
- * @name clustersKmeans
+ * @function
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.numberOfClusters=Math.sqrt(numberOfPoints/2)] numberOfClusters that will be generated

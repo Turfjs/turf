@@ -6,7 +6,7 @@ import { coordEach } from "@turf/meta";
  * Calculates the bounding box for any GeoJSON object, including FeatureCollection.
  * Uses geojson.bbox if available and options.recompute is not set.
  *
- * @name bbox
+ * @function
  * @param {GeoJSON} geojson any GeoJSON object
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.recompute] Whether to ignore an existing bbox property on geojson

@@ -6,7 +6,7 @@ import { featureEach } from "@turf/meta";
 /**
  * Takes a set of {@link Point|points} and a set of {@link Polygon|polygons} and/or {@link MultiPolygon|multipolygons} and performs a spatial join.
  *
- * @name tag
+ * @function
  * @param {FeatureCollection<Point>} points input points
  * @param {FeatureCollection<Polygon|MultiPolygon>} polygons input (multi)polygons
  * @param {string} field property in `polygons` to add to joined {<Point>} features

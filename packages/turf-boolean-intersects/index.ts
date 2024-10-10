@@ -5,7 +5,7 @@ import { flattenEach } from "@turf/meta";
 /**
  * Boolean-intersects returns (TRUE) if the intersection of the two geometries is NOT an empty set.
  *
- * @name booleanIntersects
+ * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters

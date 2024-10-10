@@ -5,6 +5,8 @@ import { featureEach } from "@turf/meta";
 
 /**
  * calcualte the Minkowski p-norm distance between two features.
+ *
+ * @function
  * @param feature1 point feature
  * @param feature2 point feature
  * @param p p-norm 1=<p<=infinity 1: Manhattan distance 2: Euclidean distance
@@ -27,7 +29,7 @@ function pNormDistance(
 /**
  *
  *
- * @name distanceWeight
+ * @function
  * @param {FeatureCollection<any>} fc FeatureCollection.
  * @param {Object} [options] option object.
  * @param {number} [options.threshold=10000] If the distance between neighbor and

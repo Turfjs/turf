@@ -5,7 +5,7 @@ import { clone } from "@turf/clone";
 /**
  * Takes input features and flips all of their coordinates from `[x, y]` to `[y, x]`.
  *
- * @name flip
+ * @function
  * @param {GeoJSON} geojson input features
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)

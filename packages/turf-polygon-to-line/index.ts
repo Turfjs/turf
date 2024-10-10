@@ -14,7 +14,7 @@ import { getGeom } from "@turf/invariant";
  * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a
  * {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
  *
- * @name polygonToLine
+ * @function
  * @param {Feature<Polygon|MultiPolygon>} poly Feature to convert
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] translates GeoJSON properties to Feature

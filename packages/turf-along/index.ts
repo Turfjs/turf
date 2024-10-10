@@ -8,11 +8,11 @@ import { getGeom } from "@turf/invariant";
 /**
  * Takes a {@link LineString} and returns a {@link Point} at a specified distance along the line.
  *
- * @name along
- * @param {Feature<LineString>} line input line
+ * @function
+ * @param {Feature<LineString>|LineString} line input line
  * @param {number} distance distance along the line
  * @param {Object} [options] Optional parameters
- * @param {string} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
  * @returns {Feature<Point>} Point `distance` `units` along the line
  * @example
  * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]]);

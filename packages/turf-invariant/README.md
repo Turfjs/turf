@@ -64,6 +64,8 @@ Enforce expectations about types of GeoJSON objects for Turf.
 
 *   Throws **[Error][9]** if value is not the expected type.
 
+Returns **void**&#x20;
+
 ## featureOf
 
 Enforce expectations about types of [Feature][5] inputs for Turf.
@@ -78,6 +80,8 @@ Internally this uses [geojsonType][10] to judge geometry types.
 <!---->
 
 *   Throws **[Error][9]** error if value is not the expected type.
+
+Returns **void**&#x20;
 
 ## collectionOf
 

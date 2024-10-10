@@ -12,7 +12,7 @@ import {
 /**
  * Takes input {@link (Multi)Polygon(s)} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
- * @name union
+ * @function
  * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon features
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate Properties to output Feature

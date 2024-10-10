@@ -5,7 +5,7 @@ import { isNumber, point, Id } from "@turf/helpers";
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the mean center. Can be weighted.
  *
- * @name centerMean
+ * @function
  * @param {GeoJSON} geojson GeoJSON to be centered
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Point

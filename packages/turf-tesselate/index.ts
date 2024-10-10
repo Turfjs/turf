@@ -12,7 +12,7 @@ import { polygon } from "@turf/helpers";
  * Tesselates a polygon or multipolygon into a collection of triangle polygons
  * using [earcut](https://github.com/mapbox/earcut).
  *
- * @name tesselate
+ * @function
  * @param {Feature<Polygon|MultiPolygon>} poly the polygon to tesselate
  * @returns {FeatureCollection<Polygon>} collection of polygon tesselations
  * @example

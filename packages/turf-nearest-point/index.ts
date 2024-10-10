@@ -18,7 +18,7 @@ interface NearestPoint extends Feature<Point> {
  * point from the FeatureCollection closest to the reference. This calculation
  * is geodesic.
  *
- * @name nearestPoint
+ * @function
  * @param {Coord} targetPoint the reference point
  * @param {FeatureCollection<Point>} points against input point set
  * @param {Object} [options={}] Optional parameters

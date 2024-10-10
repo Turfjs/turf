@@ -16,15 +16,17 @@ Type: [Function][1]
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
 
+Returns **void**&#x20;
+
 ## coordEach
 
 Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
-*   `excludeWrapCoord` **[boolean][7]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
+*   `geojson` **AllGeoJSON** any GeoJSON object
+*   `callback` **[coordEachCallback][4]** a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
+*   `excludeWrapCoord` **[boolean][5]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
 ### Examples
 
@@ -66,7 +68,7 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
+*   `previousValue` **Reducer** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
 *   `currentCoord` **[Array][2]<[number][3]>** The current coordinate being processed.
 *   `coordIndex` **[number][3]** The current index of the coordinate being processed.
@@ -75,16 +77,18 @@ Type: [Function][1]
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
 
+Returns **Reducer**&#x20;
+
 ## coordReduce
 
 Reduce coordinates in any GeoJSON object, similar to Array.reduce()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Geometry][6] | [Feature][5])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentCoord, coordIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
-*   `excludeWrapCoord` **[boolean][7]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
+*   `geojson` **AllGeoJSON** any GeoJSON object
+*   `callback` **[coordReduceCallback][6]** a method that takes (previousValue, currentCoord, coordIndex)
+*   `initialValue` **Reducer?** Value to use as the first argument to the first call of the callback.
+*   `excludeWrapCoord` **[boolean][5]** whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration. (optional, default `false`)
 
 ### Examples
 
@@ -105,7 +109,7 @@ turf.coordReduce(features, function (previousValue, currentCoord, coordIndex, fe
 });
 ```
 
-Returns **any** The value that results from the reduction.
+Returns **Reducer** The value that results from the reduction.
 
 ## propEachCallback
 
@@ -115,8 +119,10 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentProperties` **[Object][8]** The current Properties being processed.
+*   `currentProperties` **[GeoJsonProperties][7]** The current Properties being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
+
+Returns **void**&#x20;
 
 ## propEach
 
@@ -124,8 +130,8 @@ Iterate over properties in any GeoJSON object, similar to Array.forEach()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentProperties, featureIndex)
+*   `geojson` **([FeatureCollection][8] | [Feature][7])** any GeoJSON object
+*   `callback` **[propEachCallback][9]** a method that takes (currentProperties, featureIndex)
 
 ### Examples
 
@@ -164,10 +170,12 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
+*   `previousValue` **Reducer** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
-*   `currentProperties` **any** The current Properties being processed.
+*   `currentProperties` **[GeoJsonProperties][7]** The current Properties being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
+
+Returns **Reducer**&#x20;
 
 ## propReduce
 
@@ -177,9 +185,9 @@ the reduction, so an array of all properties is unnecessary.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentProperties, featureIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [Geometry][10])** any GeoJSON object
+*   `callback` **[propReduceCallback][11]** a method that takes (previousValue, currentProperties, featureIndex)
+*   `initialValue` **Reducer?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
@@ -197,7 +205,7 @@ turf.propReduce(features, function (previousValue, currentProperties, featureInd
 });
 ```
 
-Returns **any** The value that results from the reduction.
+Returns **Reducer** The value that results from the reduction.
 
 ## featureEachCallback
 
@@ -207,8 +215,10 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentFeature` **[Feature][5]\<any>** The current Feature being processed.
+*   `currentFeature` **[Feature][7]\<any>** The current Feature being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
+
+Returns **void**&#x20;
 
 ## featureEach
 
@@ -217,8 +227,8 @@ Array.forEach.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentFeature, featureIndex)
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [Feature][7]<[GeometryCollection][12]>)** any GeoJSON object
+*   `callback` **[featureEachCallback][13]** a method that takes (currentFeature, featureIndex)
 
 ### Examples
 
@@ -257,10 +267,12 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
+*   `previousValue` **Reducer** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
-*   `currentFeature` **[Feature][5]** The current Feature being processed.
+*   `currentFeature` **[Feature][7]** The current Feature being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
+
+Returns **Reducer**&#x20;
 
 ## featureReduce
 
@@ -268,9 +280,9 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentFeature, featureIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [Feature][7]<[GeometryCollection][12]>)** any GeoJSON object
+*   `callback` **[featureReduceCallback][14]** a method that takes (previousValue, currentFeature, featureIndex)
+*   `initialValue` **Reducer?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
@@ -288,7 +300,7 @@ turf.featureReduce(features, function (previousValue, currentFeature, featureInd
 });
 ```
 
-Returns **any** The value that results from the reduction.
+Returns **Reducer** The value that results from the reduction.
 
 ## coordAll
 
@@ -296,7 +308,7 @@ Get all coordinates from any GeoJSON object.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
+*   `geojson` **AllGeoJSON** any GeoJSON object
 
 ### Examples
 
@@ -320,11 +332,13 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentGeometry` **[Geometry][6]** The current Geometry being processed.
+*   `currentGeometry` **[GeometryObject][10]** The current Geometry being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `featureProperties` **[Object][8]** The current Feature Properties being processed.
-*   `featureBBox` **[Array][2]<[number][3]>** The current Feature BBox being processed.
-*   `featureId` **([number][3] | [string][9])** The current Feature Id being processed.
+*   `featureProperties` **[GeoJsonProperties][7]** The current Feature Properties being processed.
+*   `featureBBox` **[BBox][15]** The current Feature BBox being processed.
+*   `featureId` **Id** The current Feature Id being processed.
+
+Returns **void**&#x20;
 
 ## geomEach
 
@@ -332,8 +346,8 @@ Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [Geometry][10] | [GeometryObject][10] | [Feature][7]<[GeometryCollection][12]>)** any GeoJSON object
+*   `callback` **[geomEachCallback][16]** a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
 
 ### Examples
 
@@ -375,13 +389,15 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
+*   `previousValue` **Reducer** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
-*   `currentGeometry` **[Geometry][6]** The current Geometry being processed.
+*   `currentGeometry` **[GeometryObject][10]** The current Geometry being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
-*   `featureProperties` **[Object][8]** The current Feature Properties being processed.
-*   `featureBBox` **[Array][2]<[number][3]>** The current Feature BBox being processed.
-*   `featureId` **([number][3] | [string][9])** The current Feature Id being processed.
+*   `featureProperties` **[GeoJsonProperties][7]** The current Feature Properties being processed.
+*   `featureBBox` **[BBox][15]** The current Feature BBox being processed.
+*   `featureId` **Id** The current Feature Id being processed.
+
+Returns **Reducer**&#x20;
 
 ## geomReduce
 
@@ -389,9 +405,9 @@ Reduce geometry in any GeoJSON object, similar to Array.reduce().
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [GeometryObject][10] | [GeometryCollection][12] | [Feature][7]<[GeometryCollection][12]>)** any GeoJSON object
+*   `callback` **[geomReduceCallback][17]** a method that takes (previousValue, currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
+*   `initialValue` **Reducer?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
@@ -412,7 +428,7 @@ turf.geomReduce(features, function (previousValue, currentGeometry, featureIndex
 });
 ```
 
-Returns **any** The value that results from the reduction.
+Returns **Reducer** The value that results from the reduction.
 
 ## flattenEachCallback
 
@@ -422,9 +438,11 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentFeature` **[Feature][5]** The current flattened feature being processed.
+*   `currentFeature` **[Feature][7]** The current flattened feature being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
+
+Returns **void**&#x20;
 
 ## flattenEach
 
@@ -433,8 +451,8 @@ Array.forEach.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (currentFeature, featureIndex, multiFeatureIndex)
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [GeometryObject][10] | [GeometryCollection][12] | [Feature][7]<[GeometryCollection][12]>)** any GeoJSON object
+*   `callback` **[flattenEachCallback][18]** a method that takes (currentFeature, featureIndex, multiFeatureIndex)
 
 ### Examples
 
@@ -450,6 +468,8 @@ turf.flattenEach(features, function (currentFeature, featureIndex, multiFeatureI
   //=multiFeatureIndex
 });
 ```
+
+Returns **void**&#x20;
 
 ## flattenReduceCallback
 
@@ -472,11 +492,13 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
+*   `previousValue` **Reducer** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
-*   `currentFeature` **[Feature][5]** The current Feature being processed.
+*   `currentFeature` **[Feature][7]** The current Feature being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
+
+Returns **Reducer**&#x20;
 
 ## flattenReduce
 
@@ -484,9 +506,9 @@ Reduce flattened features in any GeoJSON object, similar to Array.reduce().
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON object
-*   `callback` **[Function][1]** a method that takes (previousValue, currentFeature, featureIndex, multiFeatureIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [GeometryObject][10] | [GeometryCollection][12] | [Feature][7]<[GeometryCollection][12]>)** any GeoJSON object
+*   `callback` **[flattenReduceCallback][19]** a method that takes (previousValue, currentFeature, featureIndex, multiFeatureIndex)
+*   `initialValue` **Reducer?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
@@ -505,7 +527,7 @@ turf.flattenReduce(features, function (previousValue, currentFeature, featureInd
 });
 ```
 
-Returns **any** The value that results from the reduction.
+Returns **Reducer** The value that results from the reduction.
 
 ## segmentEachCallback
 
@@ -515,7 +537,7 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentSegment` **[Feature][5]<[LineString][10]>** The current Segment being processed.
+*   `currentSegment` **[Feature][7]<[LineString][20]>** The current Segment being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
@@ -530,8 +552,8 @@ Iterate over 2-vertex line segment in any GeoJSON object, similar to Array.forEa
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON
-*   `callback` **[Function][1]** a method that takes (currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex)
+*   `geojson` **AllGeoJSON** any GeoJSON
+*   `callback` **[segmentEachCallback][21]** a method that takes (currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex)
 
 ### Examples
 
@@ -577,13 +599,15 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
+*   `previousValue` **Reducer** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
-*   `currentSegment` **[Feature][5]<[LineString][10]>** The current Segment being processed.
+*   `currentSegment` **[Feature][7]<[LineString][20]>** The current Segment being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
 *   `segmentIndex` **[number][3]** The current index of the Segment being processed.
+
+Returns **Reducer**&#x20;
 
 ## segmentReduce
 
@@ -592,9 +616,9 @@ Reduce 2-vertex line segment in any GeoJSON object, similar to Array.reduce()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** any GeoJSON
-*   `callback` **[Function][1]** a method that takes (previousValue, currentSegment, currentIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [Geometry][10])** any GeoJSON
+*   `callback` **[segmentReduceCallback][22]** a method that takes (previousValue, currentSegment, currentIndex)
+*   `initialValue` **Reducer?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
@@ -620,7 +644,7 @@ var total = turf.segmentReduce(polygon, function (previousValue) {
 }, initialValue);
 ```
 
-Returns **void**&#x20;
+Returns **Reducer**&#x20;
 
 ## lineEachCallback
 
@@ -630,10 +654,12 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `currentLine` **[Feature][5]<[LineString][10]>** The current LineString|LinearRing being processed
+*   `currentLine` **[Feature][7]<[LineString][20]>** The current LineString|LinearRing being processed
 *   `featureIndex` **[number][3]** The current index of the Feature being processed
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed
+
+Returns **void**&#x20;
 
 ## lineEach
 
@@ -642,8 +668,8 @@ similar to Array.forEach.
 
 ### Parameters
 
-*   `geojson` **([Geometry][6] | [Feature][5]<([LineString][10] | [Polygon][11] | [MultiLineString][12] | [MultiPolygon][13])>)** object
-*   `callback` **[Function][1]** a method that takes (currentLine, featureIndex, multiFeatureIndex, geometryIndex)
+*   `geojson` **([FeatureCollection][8]\<Lines> | [Feature][7]\<Lines> | Lines | [Feature][7]<[GeometryCollection][12]> | [GeometryCollection][12])** object
+*   `callback` **[lineEachCallback][23]** a method that takes (currentLine, featureIndex, multiFeatureIndex, geometryIndex)
 
 ### Examples
 
@@ -660,6 +686,8 @@ turf.lineEach(multiLine, function (currentLine, featureIndex, multiFeatureIndex,
   //=geometryIndex
 });
 ```
+
+Returns **void**&#x20;
 
 ## lineReduceCallback
 
@@ -682,12 +710,14 @@ Type: [Function][1]
 
 ### Parameters
 
-*   `previousValue` **any** The accumulated value previously returned in the last invocation
+*   `previousValue` **Reducer** The accumulated value previously returned in the last invocation
     of the callback, or initialValue, if supplied.
-*   `currentLine` **[Feature][5]<[LineString][10]>** The current LineString|LinearRing being processed.
+*   `currentLine` **[Feature][7]<[LineString][20]>** The current LineString|LinearRing being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed
+
+Returns **Reducer**&#x20;
 
 ## lineReduce
 
@@ -695,9 +725,9 @@ Reduce features in any GeoJSON object, similar to Array.reduce().
 
 ### Parameters
 
-*   `geojson` **([Geometry][6] | [Feature][5]<([LineString][10] | [Polygon][11] | [MultiLineString][12] | [MultiPolygon][13])>)** object
+*   `geojson` **([FeatureCollection][8]\<Lines> | [Feature][7]\<Lines> | Lines | [Feature][7]<[GeometryCollection][12]> | [GeometryCollection][12])** object
 *   `callback` **[Function][1]** a method that takes (previousValue, currentLine, featureIndex, multiFeatureIndex, geometryIndex)
-*   `initialValue` **any?** Value to use as the first argument to the first call of the callback.
+*   `initialValue` **Reducer?** Value to use as the first argument to the first call of the callback.
 
 ### Examples
 
@@ -717,7 +747,7 @@ turf.lineReduce(multiPoly, function (previousValue, currentLine, featureIndex, m
 });
 ```
 
-Returns **any** The value that results from the reduction.
+Returns **Reducer** The value that results from the reduction.
 
 ## findSegment
 
@@ -728,16 +758,16 @@ Point & MultiPoint will always return null.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** Any GeoJSON Feature or Geometry
-*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [Geometry][10])** Any GeoJSON Feature or Geometry
+*   `options` **[Object][24]** Optional parameters (optional, default `{}`)
 
     *   `options.featureIndex` **[number][3]** Feature Index (optional, default `0`)
     *   `options.multiFeatureIndex` **[number][3]** Multi-Feature Index (optional, default `0`)
     *   `options.geometryIndex` **[number][3]** Geometry Index (optional, default `0`)
     *   `options.segmentIndex` **[number][3]** Segment Index (optional, default `0`)
-    *   `options.properties` **[Object][8]** Translate Properties to output LineString (optional, default `{}`)
-    *   `options.bbox` **[BBox][14]** Translate BBox to output LineString (optional, default `{}`)
-    *   `options.id` **([number][3] | [string][9])** Translate Id to output LineString (optional, default `{}`)
+    *   `options.properties` **[Object][24]** Translate Properties to output LineString (optional, default `{}`)
+    *   `options.bbox` **[BBox][15]** Translate BBox to output LineString (optional, default `{}`)
+    *   `options.id` **([number][3] | [string][25])** Translate Id to output LineString (optional, default `{}`)
 
 ### Examples
 
@@ -760,7 +790,7 @@ turf.findSegment(multiLine, {multiFeatureIndex: -1, segmentIndex: -1});
 // => Feature<LineString<[[-50, -30], [-30, -40]]>>
 ```
 
-Returns **[Feature][5]<[LineString][10]>** 2-vertex GeoJSON Feature LineString
+Returns **[Feature][7]<[LineString][20]>** 2-vertex GeoJSON Feature LineString
 
 ## findPoint
 
@@ -770,16 +800,16 @@ Negative indexes are permitted.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][4] | [Feature][5] | [Geometry][6])** Any GeoJSON Feature or Geometry
-*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
+*   `geojson` **([FeatureCollection][8] | [Feature][7] | [Geometry][10])** Any GeoJSON Feature or Geometry
+*   `options` **[Object][24]** Optional parameters (optional, default `{}`)
 
     *   `options.featureIndex` **[number][3]** Feature Index (optional, default `0`)
     *   `options.multiFeatureIndex` **[number][3]** Multi-Feature Index (optional, default `0`)
     *   `options.geometryIndex` **[number][3]** Geometry Index (optional, default `0`)
     *   `options.coordIndex` **[number][3]** Coord Index (optional, default `0`)
-    *   `options.properties` **[Object][8]** Translate Properties to output Point (optional, default `{}`)
-    *   `options.bbox` **[BBox][14]** Translate BBox to output Point (optional, default `{}`)
-    *   `options.id` **([number][3] | [string][9])** Translate Id to output Point (optional, default `{}`)
+    *   `options.properties` **[Object][24]** Translate Properties to output Point (optional, default `{}`)
+    *   `options.bbox` **[BBox][15]** Translate BBox to output Point (optional, default `{}`)
+    *   `options.id` **([number][3] | [string][25])** Translate Id to output Point (optional, default `{}`)
 
 ### Examples
 
@@ -802,7 +832,7 @@ turf.findPoint(multiLine, {multiFeatureIndex: -1, coordIndex: -1});
 // => Feature<Point<[-30, -40]>>
 ```
 
-Returns **[Feature][5]<[Point][15]>** 2-vertex GeoJSON Feature Point
+Returns **[Feature][7]<[Point][26]>** 2-vertex GeoJSON Feature Point
 
 [1]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
@@ -810,29 +840,51 @@ Returns **[Feature][5]<[Point][15]>** 2-vertex GeoJSON Feature Point
 
 [3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[4]: https://tools.ietf.org/html/rfc7946#section-3.3
+[4]: #coordeachcallback
 
-[5]: https://tools.ietf.org/html/rfc7946#section-3.2
+[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-[6]: https://tools.ietf.org/html/rfc7946#section-3.1
+[6]: #coordreducecallback
 
-[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[7]: https://tools.ietf.org/html/rfc7946#section-3.2
 
-[8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[8]: https://tools.ietf.org/html/rfc7946#section-3.3
 
-[9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[9]: #propeachcallback
 
-[10]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+[10]: https://tools.ietf.org/html/rfc7946#section-3.1
 
-[11]: https://tools.ietf.org/html/rfc7946#section-3.1.6
+[11]: #propreducecallback
 
-[12]: https://tools.ietf.org/html/rfc7946#section-3.1.5
+[12]: https://tools.ietf.org/html/rfc7946#section-3.1.8
 
-[13]: https://tools.ietf.org/html/rfc7946#section-3.1.7
+[13]: #featureeachcallback
 
-[14]: https://tools.ietf.org/html/rfc7946#section-5
+[14]: #featurereducecallback
 
-[15]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+[15]: https://tools.ietf.org/html/rfc7946#section-5
+
+[16]: #geomeachcallback
+
+[17]: #geomreducecallback
+
+[18]: #flatteneachcallback
+
+[19]: #flattenreducecallback
+
+[20]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+
+[21]: #segmenteachcallback
+
+[22]: #segmentreducecallback
+
+[23]: #lineeachcallback
+
+[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[25]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[26]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
 <!-- This file is automatically generated. Please don't edit it directly. If you find an error, edit the source file of the module in question (likely index.js or index.ts), and re-run "yarn docs" from the root of the turf project. -->
 

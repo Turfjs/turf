@@ -5,7 +5,7 @@ import { AllGeoJSON } from "@turf/helpers";
  * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
  * ~3-5x faster than the common JSON.parse + JSON.stringify combo method.
  *
- * @name clone
+ * @function
  * @param {GeoJSON} geojson GeoJSON Object
  * @returns {GeoJSON} cloned GeoJSON Object
  * @example

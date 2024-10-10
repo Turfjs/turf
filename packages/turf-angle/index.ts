@@ -6,7 +6,7 @@ import { rhumbBearing } from "@turf/rhumb-bearing";
  * Finds the angle formed by two adjacent segments defined by 3 points. The result will be the (positive clockwise)
  * angle with origin on the `startPoint-midPoint` segment, or its explementary angle if required.
  *
- * @name angle
+ * @function
  * @param {Coord} startPoint Start Point Coordinates
  * @param {Coord} midPoint Mid Point Coordinates
  * @param {Coord} endPoint End Point Coordinates

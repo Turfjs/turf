@@ -14,7 +14,7 @@ import { polygonToLine } from "@turf/polygon-to-line";
 /**
  * Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an empty set.
  *
- * @name booleanDisjoint
+ * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters

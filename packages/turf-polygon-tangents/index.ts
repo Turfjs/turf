@@ -16,7 +16,7 @@ import { nearestPoint } from "@turf/nearest-point";
 /**
  * Finds the tangents of a {@link Polygon|(Multi)Polygon} from a {@link Point}.
  *
- * @name polygonTangents
+ * @function
  * @param {Coord} pt to calculate the tangent points from
  * @param {Feature<Polygon|MultiPolygon>} polygon to get tangents from
  * @returns {FeatureCollection<Point>} Feature Collection containing the two tangent points

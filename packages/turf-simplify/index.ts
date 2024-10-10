@@ -10,7 +10,7 @@ import { simplify as simplifyJS } from "./lib/simplify.js";
  * [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification using the Ramer-Douglas-Peucker algorithm.
  *
  *
- * @name simplify
+ * @function
  * @param {GeoJSON} geojson object to be simplified
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.tolerance=1] simplification tolerance
