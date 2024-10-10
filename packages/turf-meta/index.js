@@ -211,6 +211,7 @@ function coordEach(geojson, callback, excludeWrapCoord) {
  * @param {number} featureIndex The current index of the Feature being processed.
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed.
  * @param {number} geometryIndex The current index of the Geometry being processed.
+ * @returns {Reducer}
  */
 
 /**
@@ -272,6 +273,7 @@ function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
  * @callback propEachCallback
  * @param {GeoJsonProperties} currentProperties The current Properties being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
+ * @returns {void}
  */
 
 /**
@@ -419,6 +421,7 @@ function featureEach(geojson, callback) {
  * of the callback, or initialValue, if supplied.
  * @param {Feature} currentFeature The current Feature being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
+ * @returns {Reducer}
  */
 
 /**
@@ -426,7 +429,7 @@ function featureEach(geojson, callback) {
  *
  * @function
  * @param {FeatureCollection|Feature|Feature<GeometryCollection>} geojson any GeoJSON object
- * @param {Function} callback a method that takes (previousValue, currentFeature, featureIndex)
+ * @param {featureReduceCallback} callback a method that takes (previousValue, currentFeature, featureIndex)
  * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {Reducer} The value that results from the reduction.
  * @example
@@ -648,6 +651,7 @@ function geomEach(geojson, callback) {
  * @param {GeoJsonProperties} featureProperties The current Feature Properties being processed.
  * @param {BBox} featureBBox The current Feature BBox being processed.
  * @param {Id} featureId The current Feature Id being processed.
+ * @returns {Reducer}
  */
 
 /**
@@ -967,13 +971,14 @@ function segmentEach(geojson, callback) {
  *  - The currentValue argument is the value of the second element present in the array.
  *
  * @callback segmentReduceCallback
- * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * @param {Reducer} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
  * @param {Feature<LineString>} currentSegment The current Segment being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed.
  * @param {number} geometryIndex The current index of the Geometry being processed.
  * @param {number} segmentIndex The current index of the Segment being processed.
+ * @returns {Reducer}
  */
 
 /**
@@ -981,9 +986,9 @@ function segmentEach(geojson, callback) {
  * (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
  *
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON
- * @param {Function} callback a method that takes (previousValue, currentSegment, currentIndex)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @returns {void}
+ * @param {segmentReduceCallback} callback a method that takes (previousValue, currentSegment, currentIndex)
+ * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {Reducer}
  * @example
  * var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
  *
