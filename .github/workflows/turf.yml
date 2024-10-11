@@ -1,14 +1,9 @@
 name: CI build
 
 on:
-  push:
-    branches:
-      - master
-      - support/6.x
   pull_request:
     branches:
       - master
-      - support/6.x
 
 permissions:
   contents: read
@@ -24,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -37,5 +34,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - run: pnpm install --frozen-lockfile
+      - run: pnpm lerna run build --since origin/master --ignore @turf/turf
       - run: git diff --exit-code
-      - run: pnpm test
+      - run: pnpm lerna run test --since origin/master
+      # note: does not run linting
+      # note: does not run last-checks

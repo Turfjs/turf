@@ -28,7 +28,7 @@
         "{projectRoot}/test/**",
         "{projectRoot}/types.ts"
       ],
-      "dependsOn": ["build"],
+      "dependsOn": [],
       "cache": true
     },
     "last-checks": {
