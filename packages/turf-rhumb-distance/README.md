@@ -11,7 +11,7 @@ miles, or kilometers.
 
 *   `from` **[Coord][2]** origin point
 *   `to` **[Coord][2]** destination point
-*   `options` **[Object][3]?** Optional parameters
+*   `options` **[Object][3]?** Optional parameters (optional, default `{}`)
 
     *   `options.units` **[string][4]** can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
 

@@ -9,7 +9,7 @@ import { getCoords } from "@turf/invariant";
  * Creates a circular sector of a circle of given radius and center {@link Point},
  * between (clockwise) bearing1 and bearing2; 0 bearing is North of center point, positive clockwise.
  *
- * @name sector
+ * @function
  * @param {Coord} center center point
  * @param {number} radius radius of the circle
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the sector

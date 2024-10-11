@@ -39,13 +39,13 @@ interface QuadratAnalysisResult {
  * which is simply the area of the study area divided by the number of features.
  *
  *
- * @name quadratAnalysis
+ * @function
  * @param {FeatureCollection<Point>} pointFeatureSet point set to study
  * @param {Object} [options={}] optional parameters
- * @param {bbox} [options.studyBbox] bbox representing the study area
- * @param {number} [options.confidenceLevel=20] a confidence level.
+ * @param {[number, number, number, number]} [options.studyBbox] bbox representing the study area
+ * @param {20 | 15 | 10 | 5 | 2 | 1} [options.confidenceLevel=20] a confidence level.
  * The unit is percentage . 5 means 95%, value must be in {@link K_TABLE}
- * @returns {Object} result {@link QuadratAnalysisResult}
+ * @returns {QuadratAnalysisResult} result
  * @example
  *
  * var bbox = [-65, 40, -63, 42];
@@ -160,13 +160,15 @@ function quadratAnalysis(
 
 /**
  * the confidence level
- * @type {Object} K_TABLE
- * @property {number} 20
- * @property {number} 15
- * @property {number} 10
- * @property {number} 5
- * @property {number} 2
- * @property {number} 1
+ *
+ * @constant
+ * @type {Object}
+ * @property {number} 20 1.07275
+ * @property {number} 15 1.13795
+ * @property {number} 10 1.22385
+ * @property {number} 5 1.3581
+ * @property {number} 2 1.51743
+ * @property {number} 1 1.62762
  */
 const K_TABLE = {
   20: 1.07275,
@@ -179,11 +181,12 @@ const K_TABLE = {
 
 /**
  * the return type of the quadratAnalysis
- * @typedef {Object} QuadratAnalysisResult
+ *
+ * @typedef {object} QuadratAnalysisResult
  * @property {number} criticalValue
  * @property {number} maxAbsoluteDifference
  * @property {boolean} isRandom
- * @property {Array.<number>} observedDistribution the cumulative distribution of observed features,
+ * @property {Array<number>} observedDistribution the cumulative distribution of observed features,
  * the index represents the number of features in the quadrat.
  */
 
