@@ -31,8 +31,8 @@
       "dependsOn": ["build"],
       "cache": true
     },
-    "last-checks": {
-      "inputs": ["default", "{projectRoot}/test.ts"],
+    "@turf/turf:test": {
+      "inputs": ["default", "{projectRoot}/test.ts", "{projectRoot}/index.ts"],
       "dependsOn": ["build", "^last-checks"],
       "cache": true
     }

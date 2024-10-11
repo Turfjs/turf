@@ -66,9 +66,7 @@ test("turf -- invalid dependencies", (t) => {
       t.fail(
         `${name} @turf/helpers should be located in Dependencies instead of DevDependencies`
       );
-    // if (devDependencies['mkdirp']) t.fail(`${name} tests should not have to create folders`);
   }
-  t.skip('remove "mkdirp" from testing');
   t.end();
 });
 
@@ -164,8 +162,6 @@ test("turf -- pre-defined attributes in package.json", (t) => {
   for (const { name, pckg } of modules) {
     if (pckg.author !== "Turf Authors")
       t.fail(name + ' (author) should be "Turf Authors"');
-    // if (pckg.main !== 'main.js') t.skip(`${name} (main) must be "main.js" in package.json`);
-    // if (pckg.module !== 'main.es.js') t.skip(`${name} (module) must be "main.es.js" in package.json`);
     if (pckg["jsnext:main"])
       t.fail(
         `${name} (jsnext:main) is no longer required in favor of using (module) in package.json`
