@@ -4,7 +4,7 @@ import { getCoords } from "@turf/invariant";
 /**
  * Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.
  *
- * @name booleanClockwise
+ * @function
  * @param {Feature<LineString>|LineString|Array<Array<number>>} line to be evaluated
  * @returns {boolean} true/false
  * @example

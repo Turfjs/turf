@@ -5,7 +5,7 @@ import { point, Id, AllGeoJSON } from "@turf/helpers";
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.
  *
- * @name center
+ * @function
  * @param {GeoJSON} geojson GeoJSON to be centered
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Point

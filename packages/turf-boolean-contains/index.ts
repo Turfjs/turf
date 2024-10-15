@@ -19,7 +19,7 @@ import { getGeom } from "@turf/invariant";
  * must not intersect the exterior of the primary (geometry a).
  * Boolean-contains returns the exact opposite result of the `@turf/boolean-within`.
  *
- * @name booleanContains
+ * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {boolean} true/false

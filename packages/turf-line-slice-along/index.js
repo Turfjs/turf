@@ -10,7 +10,7 @@ import { lineString, isObject } from "@turf/helpers";
  *
  * This can be useful for extracting only the part of a route between two distances.
  *
- * @name lineSliceAlong
+ * @function
  * @param {Feature<LineString>|LineString} line input line
  * @param {number} startDist distance along the line to starting point
  * @param {number} stopDist distance along the line to ending point

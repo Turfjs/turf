@@ -19,7 +19,7 @@ import equal from "fast-deep-equal";
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.
  *
- * @name lineOverlap
+ * @function
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
  * @param {Object} [options={}] Optional parameters

@@ -6,7 +6,7 @@ import { getCoord } from "@turf/invariant";
  * Takes two {@link Point|points} and finds the bearing angle between them along a Rhumb line
  * i.e. the angle measured in degrees start the north line (0 degrees)
  *
- * @name rhumbBearing
+ * @function
  * @param {Coord} start starting Point
  * @param {Coord} end ending Point
  * @param {Object} [options] Optional parameters
