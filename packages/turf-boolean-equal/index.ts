@@ -1,13 +1,13 @@
 import { Feature, Geometry } from "geojson";
-import GeojsonEquality from "geojson-equality";
-import cleanCoords from "@turf/clean-coords";
+import { geojsonEquality } from "geojson-equality-ts";
+import { cleanCoords } from "@turf/clean-coords";
 import { getGeom } from "@turf/invariant";
 
 /**
  * Determine whether two geometries of the same type have identical X,Y coordinate values.
  * See http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relations.htm
  *
- * @name booleanEqual
+ * @function
  * @param {Geometry|Feature} feature1 GeoJSON input
  * @param {Geometry|Feature} feature2 GeoJSON input
  * @param {Object} [options={}] Optional parameters
@@ -45,8 +45,10 @@ function booleanEqual(
   const type2 = getGeom(feature2).type;
   if (type1 !== type2) return false;
 
-  const equality = new GeojsonEquality({ precision: precision });
-  return equality.compare(cleanCoords(feature1), cleanCoords(feature2));
+  return geojsonEquality(cleanCoords(feature1), cleanCoords(feature2), {
+    precision,
+  });
 }
 
+export { booleanEqual };
 export default booleanEqual;

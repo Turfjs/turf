@@ -1,6 +1,6 @@
 {
   "name": "@turf/interpolate",
-  "version": "6.5.0",
+  "version": "7.1.0",
   "description": "turf interpolate module",
   "author": "Turf Authors",
   "contributors": [
@@ -24,50 +24,60 @@
     "idw",
     "interpolate"
   ],
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/es/index.js",
-      "require": "./dist/js/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
     }
   },
-  "types": "index.d.ts",
   "sideEffects": false,
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
-    "bench": "node -r esm bench.js",
-    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
-    "docs": "node ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
-    "test:tape": "node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "bench": "tsx bench.ts",
+    "build": "tsup --config ../../tsup.config.ts",
+    "docs": "tsx ../../scripts/generate-readmes.ts",
+    "test": "npm-run-all --npm-path npm test:*",
+    "test:tape": "tsx test.ts",
+    "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "^6.5.0",
-    "benchmark": "*",
-    "chromatism": "*",
-    "load-json-file": "*",
-    "npm-run-all": "*",
-    "rollup": "*",
-    "tape": "*",
-    "write-json-file": "*"
+    "@turf/truncate": "workspace:^",
+    "@types/benchmark": "^2.1.5",
+    "@types/tape": "^4.2.32",
+    "benchmark": "^2.1.4",
+    "chromatism": "^3.0.0",
+    "load-json-file": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "tape": "^5.7.2",
+    "tsup": "^8.0.1",
+    "tsx": "^4.6.2",
+    "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "^6.5.0",
-    "@turf/centroid": "^6.5.0",
-    "@turf/clone": "^6.5.0",
-    "@turf/distance": "^6.5.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/hex-grid": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
-    "@turf/meta": "^6.5.0",
-    "@turf/point-grid": "^6.5.0",
-    "@turf/square-grid": "^6.5.0",
-    "@turf/triangle-grid": "^6.5.0"
+    "@turf/bbox": "workspace:^",
+    "@turf/centroid": "workspace:^",
+    "@turf/clone": "workspace:^",
+    "@turf/distance": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/hex-grid": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/point-grid": "workspace:^",
+    "@turf/square-grid": "workspace:^",
+    "@turf/triangle-grid": "workspace:^",
+    "@types/geojson": "^7946.0.10"
   }
 }

@@ -13,7 +13,7 @@ import polygonClipping from "polygon-clipping";
  * Takes {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
  * finds their polygonal intersection. If they don't intersect, returns null.
  *
- * @name intersect
+ * @function
  * @param {FeatureCollection<Polygon | MultiPolygon>} features the features to intersect
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Feature
@@ -44,7 +44,7 @@ import polygonClipping from "polygon-clipping";
  * //addToMap
  * var addToMap = [poly1, poly2, intersection];
  */
-export default function intersect<P = GeoJsonProperties>(
+function intersect<P extends GeoJsonProperties = GeoJsonProperties>(
   features: FeatureCollection<Polygon | MultiPolygon>,
   options: {
     properties?: P;
@@ -68,3 +68,6 @@ export default function intersect<P = GeoJsonProperties>(
     return polygon(intersection[0], options.properties);
   return multiPolygon(intersection, options.properties);
 }
+
+export { intersect };
+export default intersect;

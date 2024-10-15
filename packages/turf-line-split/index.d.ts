@@ -9,14 +9,17 @@ import {
   MultiPolygon,
 } from "geojson";
 
-export type Splitter = Feature<
+declare type Splitter = Feature<
   Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon
 >;
 
 /**
  * http://turfjs.org/docs/#linesplit
  */
-export default function lineSplit<T extends LineString>(
+declare function lineSplit<T extends LineString>(
   line: Feature<T> | T,
   splitter: Splitter
 ): FeatureCollection<T>;
+
+export { Splitter, lineSplit };
+export default lineSplit;

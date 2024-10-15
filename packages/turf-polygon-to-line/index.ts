@@ -14,7 +14,7 @@ import { getGeom } from "@turf/invariant";
  * Converts a {@link Polygon} to {@link LineString|(Multi)LineString} or {@link MultiPolygon} to a
  * {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
  *
- * @name polygonToLine
+ * @function
  * @param {Feature<Polygon|MultiPolygon>} poly Feature to convert
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] translates GeoJSON properties to Feature
@@ -27,9 +27,9 @@ import { getGeom } from "@turf/invariant";
  * //addToMap
  * var addToMap = [line];
  */
-export default function <
+function polygonToLine<
   G extends Polygon | MultiPolygon,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   poly: Feature<G, P> | G,
   options: { properties?: any } = {}
@@ -42,7 +42,7 @@ export default function <
   }
   switch (geom.type) {
     case "Polygon":
-      return polygonToLine(geom, options);
+      return singlePolygonToLine(geom, options);
     case "MultiPolygon":
       return multiPolygonToLine(geom, options);
     default:
@@ -53,7 +53,10 @@ export default function <
 /**
  * @private
  */
-export function polygonToLine<G extends Polygon, P = GeoJsonProperties>(
+function singlePolygonToLine<
+  G extends Polygon,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
   poly: Feature<G, P> | G,
   options: { properties?: any } = {}
 ): Feature<LineString | MultiLineString, P> {
@@ -62,8 +65,8 @@ export function polygonToLine<G extends Polygon, P = GeoJsonProperties>(
   const properties: any = options.properties
     ? options.properties
     : poly.type === "Feature"
-    ? poly.properties
-    : {};
+      ? poly.properties
+      : {};
 
   return coordsToLine(coords, properties);
 }
@@ -71,9 +74,9 @@ export function polygonToLine<G extends Polygon, P = GeoJsonProperties>(
 /**
  * @private
  */
-export function multiPolygonToLine<
+function multiPolygonToLine<
   G extends MultiPolygon,
-  P = GeoJsonProperties
+  P extends GeoJsonProperties = GeoJsonProperties,
 >(
   multiPoly: Feature<G, P> | G,
   options: { properties?: P } = {}
@@ -83,8 +86,8 @@ export function multiPolygonToLine<
   const properties: any = options.properties
     ? options.properties
     : multiPoly.type === "Feature"
-    ? multiPoly.properties
-    : {};
+      ? multiPoly.properties
+      : {};
 
   const lines: Array<Feature<LineString | MultiLineString, P>> = [];
   coords.forEach((coord) => {
@@ -96,7 +99,7 @@ export function multiPolygonToLine<
 /**
  * @private
  */
-export function coordsToLine<P = GeoJsonProperties>(
+function coordsToLine<P extends GeoJsonProperties = GeoJsonProperties>(
   coords: number[][][],
   properties: P
 ): Feature<LineString | MultiLineString, P> {
@@ -105,3 +108,6 @@ export function coordsToLine<P = GeoJsonProperties>(
   }
   return lineString(coords[0], properties);
 }
+
+export { polygonToLine, coordsToLine, multiPolygonToLine, singlePolygonToLine };
+export default polygonToLine;

@@ -1,5 +1,5 @@
 import { featureCollection, polygon } from "@turf/helpers";
-import intersect from "./index";
+import { intersect } from "./index.js";
 
 const poly1 = polygon([
   [

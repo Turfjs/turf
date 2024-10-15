@@ -9,13 +9,13 @@ import {
 import { Units } from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { featureEach, geomEach } from "@turf/meta";
-import pointToLineDistance from "@turf/point-to-line-distance";
+import { pointToLineDistance } from "@turf/point-to-line-distance";
 
 /**
  * Returns the closest {@link Point|point}, of a {@link FeatureCollection|collection} of points,
  * to a {@link LineString|line}. The returned point has a `dist` property indicating its distance to the line.
  *
- * @name nearestPointToLine
+ * @function
  * @param {FeatureCollection|GeometryCollection<Point>} points Point Collection
  * @param {Feature|Geometry<LineString>} line Line Feature
  * @param {Object} [options] Optional parameters
@@ -71,7 +71,7 @@ function nearestPointToLine<P = { dist: number; [key: string]: any }>(
       pt = point;
     }
   });
-  /**
+  /*
    * Translate Properties to final Point, priorities:
    * 1. options.properties
    * 2. inherent Point properties
@@ -111,4 +111,5 @@ function normalize(points: any): FeatureCollection<Point> {
   }
 }
 
+export { nearestPointToLine };
 export default nearestPointToLine;

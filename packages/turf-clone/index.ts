@@ -5,7 +5,7 @@ import { AllGeoJSON } from "@turf/helpers";
  * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
  * ~3-5x faster than the common JSON.parse + JSON.stringify combo method.
  *
- * @name clone
+ * @function
  * @param {GeoJSON} geojson GeoJSON Object
  * @returns {GeoJSON} cloned GeoJSON Object
  * @example
@@ -58,7 +58,11 @@ function cloneFeature(geojson: any) {
   });
   // Add properties & geometry last
   cloned.properties = cloneProperties(geojson.properties);
-  cloned.geometry = cloneGeometry(geojson.geometry);
+  if (geojson.geometry == null) {
+    cloned.geometry = null;
+  } else {
+    cloned.geometry = cloneGeometry(geojson.geometry);
+  }
   return cloned;
 }
 
@@ -163,4 +167,5 @@ function deepSlice<C = any[]>(coords: C): C {
   });
 }
 
+export { clone, cloneProperties };
 export default clone;

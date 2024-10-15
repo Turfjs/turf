@@ -1,6 +1,6 @@
 import { getCoords, getType } from "@turf/invariant";
 import { lineString as linestring } from "@turf/helpers";
-import nearestPointOnLine from "@turf/nearest-point-on-line";
+import { nearestPointOnLine } from "@turf/nearest-point-on-line";
 
 /**
  * Takes a {@link LineString|line}, a start {@link Point}, and a stop point
@@ -9,7 +9,7 @@ import nearestPointOnLine from "@turf/nearest-point-on-line";
  *
  * This can be useful for extracting only the part of a route between waypoints.
  *
- * @name lineSlice
+ * @function
  * @param {Coord} startPt starting point
  * @param {Coord} stopPt stopping point
  * @param {Feature<LineString>|LineString} line line to slice
@@ -57,4 +57,5 @@ function lineSlice(startPt, stopPt, line) {
   return linestring(clipCoords, line.properties);
 }
 
+export { lineSlice };
 export default lineSlice;

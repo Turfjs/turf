@@ -143,6 +143,7 @@
     {
       "type": "Feature",
       "properties": {
+        "description": "Debug line for testing",
         "stroke": "#F00",
         "stroke-width": 1
       },

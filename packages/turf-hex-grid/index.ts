@@ -1,5 +1,5 @@
-import distance from "@turf/distance";
-import intersect from "@turf/intersect";
+import { distance } from "@turf/distance";
+import { intersect } from "@turf/intersect";
 import {
   Feature,
   FeatureCollection,
@@ -14,7 +14,7 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
  * hexagons or triangles ({@link Polygon} features) aligned in an "odd-q" vertical grid as
  * described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
  *
- * @name hexGrid
+ * @function
  * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide length of the side of the the hexagons or triangles, in units. It will also coincide with the
  * radius of the circumcircle of the hexagons.
@@ -34,7 +34,7 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
  * //addToMap
  * var addToMap = [hexgrid];
  */
-function hexGrid<P = GeoJsonProperties>(
+function hexGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,
   cellSide: number,
   options: {
@@ -215,4 +215,5 @@ function hexTriangles(
   return triangles;
 }
 
+export { hexGrid };
 export default hexGrid;

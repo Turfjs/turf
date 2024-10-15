@@ -16,7 +16,7 @@ import { getCoord } from "@turf/invariant";
  * degrees, radians, miles, or kilometers; and bearing in degrees.
  * This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
- * @name destination
+ * @function
  * @param {Coord} origin starting point
  * @param {number} distance distance from the origin point
  * @param {number} bearing ranging from -180 to 180
@@ -37,7 +37,7 @@ import { getCoord } from "@turf/invariant";
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
  */
-export default function destination<P = GeoJsonProperties>(
+function destination<P extends GeoJsonProperties = GeoJsonProperties>(
   origin: Coord,
   distance: number,
   bearing: number,
@@ -69,3 +69,6 @@ export default function destination<P = GeoJsonProperties>(
 
   return point([lng, lat], options.properties);
 }
+
+export { destination };
+export default destination;

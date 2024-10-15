@@ -5,7 +5,7 @@ import { isNumber, point, Id } from "@turf/helpers";
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the mean center. Can be weighted.
  *
- * @name centerMean
+ * @function
  * @param {GeoJSON} geojson GeoJSON to be centered
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Point
@@ -28,7 +28,7 @@ import { isNumber, point, Id } from "@turf/helpers";
  * mean.properties['marker-size'] = 'large';
  * mean.properties['marker-color'] = '#000';
  */
-function centerMean<P = GeoJsonProperties>(
+function centerMean<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: any, // To-Do include Typescript AllGeoJSON
   options: { properties?: P; bbox?: BBox; id?: Id; weight?: string } = {}
 ): Feature<Point, P> {
@@ -54,4 +54,5 @@ function centerMean<P = GeoJsonProperties>(
   return point([sumXs / sumNs, sumYs / sumNs], options.properties, options);
 }
 
+export { centerMean };
 export default centerMean;

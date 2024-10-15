@@ -1,9 +1,9 @@
 import { FeatureCollection, Point, GeoJsonProperties } from "geojson";
-import clone from "@turf/clone";
+import { clone } from "@turf/clone";
 import { coordAll, featureEach } from "@turf/meta";
 import skmeans from "skmeans";
 
-export type KmeansProps = GeoJsonProperties & {
+type KmeansProps = GeoJsonProperties & {
   cluster?: number;
   centroid?: [number, number];
 };
@@ -12,7 +12,7 @@ export type KmeansProps = GeoJsonProperties & {
  * Takes a set of {@link Point|points} and partition them into clusters using the k-mean .
  * It uses the [k-means algorithm](https://en.wikipedia.org/wiki/K-means_clustering)
  *
- * @name clustersKmeans
+ * @function
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.numberOfClusters=Math.sqrt(numberOfPoints/2)] numberOfClusters that will be generated
@@ -76,4 +76,5 @@ function clustersKmeans(
   return points as FeatureCollection<Point, KmeansProps>;
 }
 
+export { clustersKmeans, KmeansProps };
 export default clustersKmeans;

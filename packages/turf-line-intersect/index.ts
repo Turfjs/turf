@@ -8,12 +8,13 @@ import {
   Point,
   Polygon,
 } from "geojson";
-import findIntersections, { Intersection } from "sweepline-intersections";
+import type { Intersection } from "sweepline-intersections";
+import { sweeplineIntersections as findIntersections } from "./lib/sweepline-intersections-export.js";
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
  *
- * @name lineIntersect
+ * @function
  * @param {GeoJSON} line1 any LineString or Polygon
  * @param {GeoJSON} line2 any LineString or Polygon
  * @param {Object} [options={}] Optional parameters
@@ -30,7 +31,7 @@ import findIntersections, { Intersection } from "sweepline-intersections";
  */
 function lineIntersect<
   G1 extends LineString | MultiLineString | Polygon | MultiPolygon,
-  G2 extends LineString | MultiLineString | Polygon | MultiPolygon
+  G2 extends LineString | MultiLineString | Polygon | MultiPolygon,
 >(
   line1: FeatureCollection<G1> | Feature<G1> | G1,
   line2: FeatureCollection<G2> | Feature<G2> | G2,
@@ -86,4 +87,5 @@ function lineIntersect<
   return featureCollection(results.map((r) => point(r)));
 }
 
+export { lineIntersect };
 export default lineIntersect;

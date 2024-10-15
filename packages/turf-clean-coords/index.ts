@@ -7,7 +7,7 @@ import { getCoords, getType } from "@turf/invariant";
 /**
  * Removes redundant coordinates from any GeoJSON Geometry.
  *
- * @name cleanCoords
+ * @function
  * @param {Geometry|Feature} geojson Feature or Geometry
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated
@@ -142,6 +142,10 @@ function cleanLine(line: Position[], type: string) {
     throw new Error("invalid polygon");
   }
 
+  if (type === "LineString" && newPointsLength < 3) {
+    return newPoints;
+  }
+
   if (
     isPointOnLineSegment(
       newPoints[newPointsLength - 3],
@@ -196,4 +200,5 @@ function isPointOnLineSegment(start: Position, end: Position, point: Position) {
   else return dyl > 0 ? startY <= y && y <= endY : endY <= y && y <= startY;
 }
 
+export { cleanCoords };
 export default cleanCoords;

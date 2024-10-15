@@ -1,5 +1,5 @@
-import length from "@turf/length";
-import lineSliceAlong from "@turf/line-slice-along";
+import { length } from "@turf/length";
+import { lineSliceAlong } from "@turf/line-slice-along";
 import { flattenEach } from "@turf/meta";
 import { featureCollection, isObject } from "@turf/helpers";
 
@@ -7,7 +7,7 @@ import { featureCollection, isObject } from "@turf/helpers";
  * Divides a {@link LineString} into chunks of a specified length.
  * If the line is shorter than the segment length then the original line is returned.
  *
- * @name lineChunk
+ * @function
  * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson the lines to split
  * @param {number} segmentLength how long to make each segment
  * @param {Object} [options={}] Optional parameters
@@ -84,4 +84,5 @@ function sliceLineSegments(line, segmentLength, units, callback) {
   }
 }
 
+export { lineChunk };
 export default lineChunk;

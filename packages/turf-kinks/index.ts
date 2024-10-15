@@ -14,7 +14,7 @@ import { point } from "@turf/helpers";
  * {@link MultiPolygon|multi-polygon} or {@link Polygon|polygon} and
  * returns {@link Point|points} at all self-intersections.
  *
- * @name kinks
+ * @function
  * @param {Feature<LineString|MultiLineString|MultiPolygon|Polygon>} featureIn input feature
  * @returns {FeatureCollection<Point>} self-intersections
  * @example
@@ -31,9 +31,9 @@ import { point } from "@turf/helpers";
  * //addToMap
  * var addToMap = [poly, kinks]
  */
-export default function kinks<
-  T extends LineString | MultiLineString | Polygon | MultiPolygon
->(featureIn: Feature<T> | T): FeatureCollection<Point> {
+function kinks<T extends LineString | MultiLineString | Polygon | MultiPolygon>(
+  featureIn: Feature<T> | T
+): FeatureCollection<Point> {
   let coordinates: any;
   let feature: any;
   const results: FeatureCollection<Point> = {
@@ -164,3 +164,6 @@ function lineIntersects(
     return false;
   }
 }
+
+export { kinks };
+export default kinks;

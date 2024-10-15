@@ -9,7 +9,7 @@ import { Coord } from "@turf/helpers";
 /**
  * http://turfjs.org/docs/#greatcircle
  */
-export default function greatCircle(
+declare function greatCircle(
   start: Coord,
   end: Coord,
   options?: {
@@ -18,3 +18,6 @@ export default function greatCircle(
     offset?: number;
   }
 ): Feature<LineString | MultiLineString>;
+
+export { greatCircle };
+export default greatCircle;

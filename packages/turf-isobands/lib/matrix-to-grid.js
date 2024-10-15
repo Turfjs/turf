@@ -1,5 +1,5 @@
 import { isObject, featureCollection, point } from "@turf/helpers";
-import rhumbDestination from "@turf/rhumb-destination";
+import { rhumbDestination } from "@turf/rhumb-destination";
 
 /**
  * Takes a {@link Point} grid and returns a correspondent matrix {Array<Array<number>>}
@@ -31,7 +31,7 @@ import rhumbDestination from "@turf/rhumb-destination";
  *    matrixToGrid(matrix, origin, 10);
  *    //= pointGrid
  */
-export default function matrixToGrid(matrix, origin, cellSize, options) {
+function matrixToGrid(matrix, origin, cellSize, options) {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
@@ -77,3 +77,6 @@ export default function matrixToGrid(matrix, origin, cellSize, options) {
   var grid = featureCollection(points);
   return grid;
 }
+
+export { matrixToGrid };
+export default matrixToGrid;

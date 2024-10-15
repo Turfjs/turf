@@ -6,12 +6,12 @@ import {
   multiLineString,
   lengthToDegrees,
 } from "@turf/helpers";
-import intersection from "./lib/intersection";
+import { intersection } from "./lib/intersection.js";
 
 /**
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.
  *
- * @name lineOffset
+ * @function
  * @param {Geometry|Feature<LineString|MultiLineString>} geojson input GeoJSON
  * @param {number} distance distance to offset the line (can be of negative value)
  * @param {Object} [options={}] Optional parameters
@@ -130,4 +130,5 @@ function processSegment(point1, point2, offset) {
   ];
 }
 
+export { lineOffset };
 export default lineOffset;

@@ -1,11 +1,11 @@
-import bbox from "@turf/bbox";
-import hexGrid from "@turf/hex-grid";
-import pointGrid from "@turf/point-grid";
-import distance from "@turf/distance";
-import centroid from "@turf/centroid";
-import squareGrid from "@turf/square-grid";
-import triangleGrid from "@turf/triangle-grid";
-import clone from "@turf/clone";
+import { bbox } from "@turf/bbox";
+import { hexGrid } from "@turf/hex-grid";
+import { pointGrid } from "@turf/point-grid";
+import { distance } from "@turf/distance";
+import { centroid } from "@turf/centroid";
+import { squareGrid } from "@turf/square-grid";
+import { triangleGrid } from "@turf/triangle-grid";
+import { clone } from "@turf/clone";
 import { featureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
@@ -13,7 +13,7 @@ import { collectionOf } from "@turf/invariant";
 /**
  * Takes a set of points and estimates their 'property' values on a grid using the [Inverse Distance Weighting (IDW) method](https://en.wikipedia.org/wiki/Inverse_distance_weighting).
  *
- * @name interpolate
+ * @function
  * @param {FeatureCollection<Point>} points with known value
  * @param {number} cellSize the distance across each grid point
  * @param {Object} [options={}] Optional parameters
@@ -104,4 +104,5 @@ function interpolate(points, cellSize, options) {
   return featureCollection(results);
 }
 
+export { interpolate };
 export default interpolate;

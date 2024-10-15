@@ -12,7 +12,7 @@ import {
 /**
  * Takes input {@link (Multi)Polygon(s)} and returns a combined polygon. If the input polygons are not contiguous, this function returns a {@link MultiPolygon} feature.
  *
- * @name union
+ * @function
  * @param {Feature<Polygon|MultiPolygon>} polygon1 input Polygon features
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate Properties to output Feature
@@ -38,7 +38,7 @@ import {
  * //addToMap
  * var addToMap = [poly1, poly2, union];
  */
-function union<P = GeoJsonProperties>(
+function union<P extends GeoJsonProperties = GeoJsonProperties>(
   features: FeatureCollection<Polygon | MultiPolygon>,
   options: { properties?: P } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {
@@ -57,4 +57,5 @@ function union<P = GeoJsonProperties>(
   else return multiPolygon(unioned, options.properties);
 }
 
+export { union };
 export default union;

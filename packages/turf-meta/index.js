@@ -4,19 +4,20 @@ import { feature, point, lineString, isObject } from "@turf/helpers";
  * Callback for coordEach
  *
  * @callback coordEachCallback
- * @param {Array<number>} currentCoord The current coordinate being processed.
+ * @param {number[]} currentCoord The current coordinate being processed.
  * @param {number} coordIndex The current index of the coordinate being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed.
  * @param {number} geometryIndex The current index of the Geometry being processed.
+ * @returns {void}
  */
 
 /**
  * Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
  *
- * @name coordEach
- * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
+ * @function
+ * @param {AllGeoJSON} geojson any GeoJSON object
+ * @param {coordEachCallback} callback a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
  * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
  * @returns {void}
  * @example
@@ -33,7 +34,7 @@ import { feature, point, lineString, isObject } from "@turf/helpers";
  *   //=geometryIndex
  * });
  */
-export function coordEach(geojson, callback, excludeWrapCoord) {
+function coordEach(geojson, callback, excludeWrapCoord) {
   // Handles null Geometry -- Skips this GeoJSON
   if (geojson === null) return;
   var j,
@@ -67,8 +68,8 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
     geometryMaybeCollection = isFeatureCollection
       ? geojson.features[featureIndex].geometry
       : isFeature
-      ? geojson.geometry
-      : geojson;
+        ? geojson.geometry
+        : geojson;
     isGeometryCollection = geometryMaybeCollection
       ? geometryMaybeCollection.type === "GeometryCollection"
       : false;
@@ -202,25 +203,26 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
  *  - The currentValue argument is the value of the second element present in the array.
  *
  * @callback coordReduceCallback
- * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * @param {Reducer} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
- * @param {Array<number>} currentCoord The current coordinate being processed.
+ * @param {number[]} currentCoord The current coordinate being processed.
  * @param {number} coordIndex The current index of the coordinate being processed.
  * Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
  * @param {number} featureIndex The current index of the Feature being processed.
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed.
  * @param {number} geometryIndex The current index of the Geometry being processed.
+ * @returns {Reducer}
  */
 
 /**
  * Reduce coordinates in any GeoJSON object, similar to Array.reduce()
  *
- * @name coordReduce
- * @param {FeatureCollection|Geometry|Feature} geojson any GeoJSON object
- * @param {Function} callback a method that takes (previousValue, currentCoord, coordIndex)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @function
+ * @param {AllGeoJSON} geojson any GeoJSON object
+ * @param {coordReduceCallback} callback a method that takes (previousValue, currentCoord, coordIndex)
+ * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
  * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
- * @returns {*} The value that results from the reduction.
+ * @returns {Reducer} The value that results from the reduction.
  * @example
  * var features = turf.featureCollection([
  *   turf.point([26, 37], {"foo": "bar"}),
@@ -237,7 +239,7 @@ export function coordEach(geojson, callback, excludeWrapCoord) {
  *   return currentCoord;
  * });
  */
-export function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
+function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
   var previousValue = initialValue;
   coordEach(
     geojson,
@@ -269,16 +271,17 @@ export function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
  * Callback for propEach
  *
  * @callback propEachCallback
- * @param {Object} currentProperties The current Properties being processed.
+ * @param {GeoJsonProperties} currentProperties The current Properties being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
+ * @returns {void}
  */
 
 /**
  * Iterate over properties in any GeoJSON object, similar to Array.forEach()
  *
- * @name propEach
+ * @function
  * @param {FeatureCollection|Feature} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentProperties, featureIndex)
+ * @param {propEachCallback} callback a method that takes (currentProperties, featureIndex)
  * @returns {void}
  * @example
  * var features = turf.featureCollection([
@@ -291,7 +294,7 @@ export function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
  *   //=featureIndex
  * });
  */
-export function propEach(geojson, callback) {
+function propEach(geojson, callback) {
   var i;
   switch (geojson.type) {
     case "FeatureCollection":
@@ -320,10 +323,11 @@ export function propEach(geojson, callback) {
  *  - The currentValue argument is the value of the second element present in the array.
  *
  * @callback propReduceCallback
- * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * @param {Reducer} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
- * @param {*} currentProperties The current Properties being processed.
+ * @param {GeoJsonProperties} currentProperties The current Properties being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
+ * @returns {Reducer}
  */
 
 /**
@@ -331,11 +335,11 @@ export function propEach(geojson, callback) {
  * similar to how Array.reduce works. However, in this case we lazily run
  * the reduction, so an array of all properties is unnecessary.
  *
- * @name propReduce
- * @param {FeatureCollection|Feature} geojson any GeoJSON object
- * @param {Function} callback a method that takes (previousValue, currentProperties, featureIndex)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @returns {*} The value that results from the reduction.
+ * @function
+ * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
+ * @param {propReduceCallback} callback a method that takes (previousValue, currentProperties, featureIndex)
+ * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {Reducer} The value that results from the reduction.
  * @example
  * var features = turf.featureCollection([
  *     turf.point([26, 37], {foo: 'bar'}),
@@ -349,7 +353,7 @@ export function propEach(geojson, callback) {
  *   return currentProperties
  * });
  */
-export function propReduce(geojson, callback, initialValue) {
+function propReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
   propEach(geojson, function (currentProperties, featureIndex) {
     if (featureIndex === 0 && initialValue === undefined)
@@ -366,15 +370,16 @@ export function propReduce(geojson, callback, initialValue) {
  * @callback featureEachCallback
  * @param {Feature<any>} currentFeature The current Feature being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
+ * @returns {void}
  */
 
 /**
  * Iterate over features in any GeoJSON object, similar to
  * Array.forEach.
  *
- * @name featureEach
- * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentFeature, featureIndex)
+ * @function
+ * @param {FeatureCollection|Feature|Feature<GeometryCollection>} geojson any GeoJSON object
+ * @param {featureEachCallback} callback a method that takes (currentFeature, featureIndex)
  * @returns {void}
  * @example
  * var features = turf.featureCollection([
@@ -387,7 +392,7 @@ export function propReduce(geojson, callback, initialValue) {
  *   //=featureIndex
  * });
  */
-export function featureEach(geojson, callback) {
+function featureEach(geojson, callback) {
   if (geojson.type === "Feature") {
     callback(geojson, 0);
   } else if (geojson.type === "FeatureCollection") {
@@ -412,20 +417,21 @@ export function featureEach(geojson, callback) {
  *  - The currentValue argument is the value of the second element present in the array.
  *
  * @callback featureReduceCallback
- * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * @param {Reducer} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
  * @param {Feature} currentFeature The current Feature being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
+ * @returns {Reducer}
  */
 
 /**
  * Reduce features in any GeoJSON object, similar to Array.reduce().
  *
- * @name featureReduce
- * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (previousValue, currentFeature, featureIndex)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @returns {*} The value that results from the reduction.
+ * @function
+ * @param {FeatureCollection|Feature|Feature<GeometryCollection>} geojson any GeoJSON object
+ * @param {featureReduceCallback} callback a method that takes (previousValue, currentFeature, featureIndex)
+ * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {Reducer} The value that results from the reduction.
  * @example
  * var features = turf.featureCollection([
  *   turf.point([26, 37], {"foo": "bar"}),
@@ -439,7 +445,7 @@ export function featureEach(geojson, callback) {
  *   return currentFeature
  * });
  */
-export function featureReduce(geojson, callback, initialValue) {
+function featureReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
   featureEach(geojson, function (currentFeature, featureIndex) {
     if (featureIndex === 0 && initialValue === undefined)
@@ -452,8 +458,8 @@ export function featureReduce(geojson, callback, initialValue) {
 /**
  * Get all coordinates from any GeoJSON object.
  *
- * @name coordAll
- * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
+ * @function
+ * @param {AllGeoJSON} geojson any GeoJSON object
  * @returns {Array<Array<number>>} coordinate position array
  * @example
  * var features = turf.featureCollection([
@@ -464,7 +470,7 @@ export function featureReduce(geojson, callback, initialValue) {
  * var coords = turf.coordAll(features);
  * //= [[26, 37], [36, 53]]
  */
-export function coordAll(geojson) {
+function coordAll(geojson) {
   var coords = [];
   coordEach(geojson, function (coord) {
     coords.push(coord);
@@ -476,19 +482,20 @@ export function coordAll(geojson) {
  * Callback for geomEach
  *
  * @callback geomEachCallback
- * @param {Geometry} currentGeometry The current Geometry being processed.
+ * @param {GeometryObject} currentGeometry The current Geometry being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
- * @param {Object} featureProperties The current Feature Properties being processed.
- * @param {Array<number>} featureBBox The current Feature BBox being processed.
- * @param {number|string} featureId The current Feature Id being processed.
+ * @param {GeoJsonProperties} featureProperties The current Feature Properties being processed.
+ * @param {BBox} featureBBox The current Feature BBox being processed.
+ * @param {Id} featureId The current Feature Id being processed.
+ * @returns {void}
  */
 
 /**
  * Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
  *
- * @name geomEach
- * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
+ * @function
+ * @param {FeatureCollection|Feature|Geometry|GeometryObject|Feature<GeometryCollection>} geojson any GeoJSON object
+ * @param {geomEachCallback} callback a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
  * @returns {void}
  * @example
  * var features = turf.featureCollection([
@@ -504,7 +511,7 @@ export function coordAll(geojson) {
  *   //=featureId
  * });
  */
-export function geomEach(geojson, callback) {
+function geomEach(geojson, callback) {
   var i,
     j,
     g,
@@ -536,23 +543,23 @@ export function geomEach(geojson, callback) {
     geometryMaybeCollection = isFeatureCollection
       ? geojson.features[i].geometry
       : isFeature
-      ? geojson.geometry
-      : geojson;
+        ? geojson.geometry
+        : geojson;
     featureProperties = isFeatureCollection
       ? geojson.features[i].properties
       : isFeature
-      ? geojson.properties
-      : {};
+        ? geojson.properties
+        : {};
     featureBBox = isFeatureCollection
       ? geojson.features[i].bbox
       : isFeature
-      ? geojson.bbox
-      : undefined;
+        ? geojson.bbox
+        : undefined;
     featureId = isFeatureCollection
       ? geojson.features[i].id
       : isFeature
-      ? geojson.id
-      : undefined;
+        ? geojson.id
+        : undefined;
     isGeometryCollection = geometryMaybeCollection
       ? geometryMaybeCollection.type === "GeometryCollection"
       : false;
@@ -637,23 +644,24 @@ export function geomEach(geojson, callback) {
  *  - The currentValue argument is the value of the second element present in the array.
  *
  * @callback geomReduceCallback
- * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * @param {Reducer} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
- * @param {Geometry} currentGeometry The current Geometry being processed.
+ * @param {GeometryObject} currentGeometry The current Geometry being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
- * @param {Object} featureProperties The current Feature Properties being processed.
- * @param {Array<number>} featureBBox The current Feature BBox being processed.
- * @param {number|string} featureId The current Feature Id being processed.
+ * @param {GeoJsonProperties} featureProperties The current Feature Properties being processed.
+ * @param {BBox} featureBBox The current Feature BBox being processed.
+ * @param {Id} featureId The current Feature Id being processed.
+ * @returns {Reducer}
  */
 
 /**
  * Reduce geometry in any GeoJSON object, similar to Array.reduce().
  *
- * @name geomReduce
- * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (previousValue, currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @returns {*} The value that results from the reduction.
+ * @function
+ * @param {FeatureCollection|Feature|GeometryObject|GeometryCollection|Feature<GeometryCollection>} geojson any GeoJSON object
+ * @param {geomReduceCallback} callback a method that takes (previousValue, currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
+ * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {Reducer} The value that results from the reduction.
  * @example
  * var features = turf.featureCollection([
  *     turf.point([26, 37], {foo: 'bar'}),
@@ -670,7 +678,7 @@ export function geomEach(geojson, callback) {
  *   return currentGeometry
  * });
  */
-export function geomReduce(geojson, callback, initialValue) {
+function geomReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
   geomEach(
     geojson,
@@ -704,15 +712,17 @@ export function geomReduce(geojson, callback, initialValue) {
  * @param {Feature} currentFeature The current flattened feature being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed.
+ * @returns {void}
  */
 
 /**
  * Iterate over flattened features in any GeoJSON object, similar to
  * Array.forEach.
  *
- * @name flattenEach
- * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (currentFeature, featureIndex, multiFeatureIndex)
+ * @function
+ * @param {FeatureCollection|Feature|GeometryObject|GeometryCollection|Feature<GeometryCollection>} geojson any GeoJSON object
+ * @param {flattenEachCallback} callback a method that takes (currentFeature, featureIndex, multiFeatureIndex)
+ * @returns {void}
  * @example
  * var features = turf.featureCollection([
  *     turf.point([26, 37], {foo: 'bar'}),
@@ -725,7 +735,7 @@ export function geomReduce(geojson, callback, initialValue) {
  *   //=multiFeatureIndex
  * });
  */
-export function flattenEach(geojson, callback) {
+function flattenEach(geojson, callback) {
   geomEach(geojson, function (geometry, featureIndex, properties, bbox, id) {
     // Callback for single geometry
     var type = geometry === null ? null : geometry.type;
@@ -794,21 +804,22 @@ export function flattenEach(geojson, callback) {
  *  - The currentValue argument is the value of the second element present in the array.
  *
  * @callback flattenReduceCallback
- * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * @param {Reducer} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
  * @param {Feature} currentFeature The current Feature being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed.
+ * @returns {Reducer}
  */
 
 /**
  * Reduce flattened features in any GeoJSON object, similar to Array.reduce().
  *
- * @name flattenReduce
- * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON object
- * @param {Function} callback a method that takes (previousValue, currentFeature, featureIndex, multiFeatureIndex)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @returns {*} The value that results from the reduction.
+ * @function
+ * @param {FeatureCollection|Feature|GeometryObject|GeometryCollection|Feature<GeometryCollection>} geojson any GeoJSON object
+ * @param {flattenReduceCallback} callback a method that takes (previousValue, currentFeature, featureIndex, multiFeatureIndex)
+ * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {Reducer} The value that results from the reduction.
  * @example
  * var features = turf.featureCollection([
  *     turf.point([26, 37], {foo: 'bar'}),
@@ -823,7 +834,7 @@ export function flattenEach(geojson, callback) {
  *   return currentFeature
  * });
  */
-export function flattenReduce(geojson, callback, initialValue) {
+function flattenReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
   flattenEach(
     geojson,
@@ -862,8 +873,8 @@ export function flattenReduce(geojson, callback, initialValue) {
  * Iterate over 2-vertex line segment in any GeoJSON object, similar to Array.forEach()
  * (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
  *
- * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON
- * @param {Function} callback a method that takes (currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex)
+ * @param {AllGeoJSON} geojson any GeoJSON
+ * @param {segmentEachCallback} callback a method that takes (currentSegment, featureIndex, multiFeatureIndex, geometryIndex, segmentIndex)
  * @returns {void}
  * @example
  * var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
@@ -883,7 +894,7 @@ export function flattenReduce(geojson, callback, initialValue) {
  *     total++;
  * });
  */
-export function segmentEach(geojson, callback) {
+function segmentEach(geojson, callback) {
   flattenEach(geojson, function (feature, featureIndex, multiFeatureIndex) {
     var segmentIndex = 0;
 
@@ -960,13 +971,14 @@ export function segmentEach(geojson, callback) {
  *  - The currentValue argument is the value of the second element present in the array.
  *
  * @callback segmentReduceCallback
- * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * @param {Reducer} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
  * @param {Feature<LineString>} currentSegment The current Segment being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed.
  * @param {number} geometryIndex The current index of the Geometry being processed.
  * @param {number} segmentIndex The current index of the Segment being processed.
+ * @returns {Reducer}
  */
 
 /**
@@ -974,9 +986,9 @@ export function segmentEach(geojson, callback) {
  * (Multi)Point geometries do not contain segments therefore they are ignored during this operation.
  *
  * @param {FeatureCollection|Feature|Geometry} geojson any GeoJSON
- * @param {Function} callback a method that takes (previousValue, currentSegment, currentIndex)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @returns {void}
+ * @param {segmentReduceCallback} callback a method that takes (previousValue, currentSegment, currentIndex)
+ * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {Reducer}
  * @example
  * var polygon = turf.polygon([[[-50, 5], [-40, -10], [-50, -10], [-40, 5], [-50, 5]]]);
  *
@@ -998,7 +1010,7 @@ export function segmentEach(geojson, callback) {
  *     return previousValue;
  * }, initialValue);
  */
-export function segmentReduce(geojson, callback, initialValue) {
+function segmentReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
   var started = false;
   segmentEach(
@@ -1035,15 +1047,17 @@ export function segmentReduce(geojson, callback, initialValue) {
  * @param {number} featureIndex The current index of the Feature being processed
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed
  * @param {number} geometryIndex The current index of the Geometry being processed
+ * @returns {void}
  */
 
 /**
  * Iterate over line or ring coordinates in LineString, Polygon, MultiLineString, MultiPolygon Features or Geometries,
  * similar to Array.forEach.
  *
- * @name lineEach
- * @param {Geometry|Feature<LineString|Polygon|MultiLineString|MultiPolygon>} geojson object
- * @param {Function} callback a method that takes (currentLine, featureIndex, multiFeatureIndex, geometryIndex)
+ * @function
+ * @param {FeatureCollection<Lines>|Feature<Lines>|Lines|Feature<GeometryCollection>|GeometryCollection} geojson object
+ * @param {lineEachCallback} callback a method that takes (currentLine, featureIndex, multiFeatureIndex, geometryIndex)
+ * @returns {void}
  * @example
  * var multiLine = turf.multiLineString([
  *   [[26, 37], [35, 45]],
@@ -1057,7 +1071,7 @@ export function segmentReduce(geojson, callback, initialValue) {
  *   //=geometryIndex
  * });
  */
-export function lineEach(geojson, callback) {
+function lineEach(geojson, callback) {
   // validation
   if (!geojson) throw new Error("geojson is required");
 
@@ -1106,22 +1120,23 @@ export function lineEach(geojson, callback) {
  *  - The currentValue argument is the value of the second element present in the array.
  *
  * @callback lineReduceCallback
- * @param {*} previousValue The accumulated value previously returned in the last invocation
+ * @param {Reducer} previousValue The accumulated value previously returned in the last invocation
  * of the callback, or initialValue, if supplied.
  * @param {Feature<LineString>} currentLine The current LineString|LinearRing being processed.
  * @param {number} featureIndex The current index of the Feature being processed
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed
  * @param {number} geometryIndex The current index of the Geometry being processed
+ * @returns {Reducer}
  */
 
 /**
  * Reduce features in any GeoJSON object, similar to Array.reduce().
  *
- * @name lineReduce
- * @param {Geometry|Feature<LineString|Polygon|MultiLineString|MultiPolygon>} geojson object
+ * @function
+ * @param {FeatureCollection<Lines>|Feature<Lines>|Lines|Feature<GeometryCollection>|GeometryCollection} geojson object
  * @param {Function} callback a method that takes (previousValue, currentLine, featureIndex, multiFeatureIndex, geometryIndex)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @returns {*} The value that results from the reduction.
+ * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {Reducer} The value that results from the reduction.
  * @example
  * var multiPoly = turf.multiPolygon([
  *   turf.polygon([[[12,48],[2,41],[24,38],[12,48]], [[9,44],[13,41],[13,45],[9,44]]]),
@@ -1137,7 +1152,7 @@ export function lineEach(geojson, callback) {
  *   return currentLine
  * });
  */
-export function lineReduce(geojson, callback, initialValue) {
+function lineReduce(geojson, callback, initialValue) {
   var previousValue = initialValue;
   lineEach(
     geojson,
@@ -1191,7 +1206,7 @@ export function lineReduce(geojson, callback, initialValue) {
  * turf.findSegment(multiLine, {multiFeatureIndex: -1, segmentIndex: -1});
  * // => Feature<LineString<[[-50, -30], [-30, -40]]>>
  */
-export function findSegment(geojson, options) {
+function findSegment(geojson, options) {
   // Optional Parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
@@ -1320,7 +1335,7 @@ export function findSegment(geojson, options) {
  * turf.findPoint(multiLine, {multiFeatureIndex: -1, coordIndex: -1});
  * // => Feature<Point<[-30, -40]>>
  */
-export function findPoint(geojson, options) {
+function findPoint(geojson, options) {
   // Optional Parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
@@ -1397,3 +1412,23 @@ export function findPoint(geojson, options) {
   }
   throw new Error("geojson is invalid");
 }
+
+export {
+  coordReduce,
+  coordEach,
+  propEach,
+  propReduce,
+  featureReduce,
+  featureEach,
+  coordAll,
+  geomReduce,
+  geomEach,
+  flattenReduce,
+  flattenEach,
+  segmentReduce,
+  segmentEach,
+  lineReduce,
+  lineEach,
+  findSegment,
+  findPoint,
+};

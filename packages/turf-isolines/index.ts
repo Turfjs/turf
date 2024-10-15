@@ -1,9 +1,10 @@
-import bbox from "@turf/bbox";
+import { bbox } from "@turf/bbox";
 import { coordEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
 import { multiLineString, featureCollection, isObject } from "@turf/helpers";
-import isoContours from "./lib/marchingsquares-isocontours";
-import gridToMatrix from "./lib/grid-to-matrix";
+// @ts-expect-error Legacy JS library with no types defined
+import { isoContours } from "marchingsquares";
+import { gridToMatrix } from "./lib/grid-to-matrix.js";
 import {
   FeatureCollection,
   Point,
@@ -16,7 +17,7 @@ import {
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
  * value breaks and generates [isolines](https://en.wikipedia.org/wiki/Contour_line).
  *
- * @name isolines
+ * @function
  * @param {FeatureCollection<Point>} pointGrid input points
  * @param {Array<number>} breaks values of `zProperty` where to draw isolines
  * @param {Object} [options={}] Optional parameters
@@ -103,12 +104,17 @@ function createIsoLines(
   breaksProperties: GeoJsonProperties[]
 ): Feature<MultiLineString>[] {
   const results = [];
-  for (let i = 1; i < breaks.length; i++) {
+  for (let i = 0; i < breaks.length; i++) {
     const threshold = +breaks[i]; // make sure it's a number
 
     const properties = { ...commonProperties, ...breaksProperties[i] };
     properties[zProperty] = threshold;
-    const isoline = multiLineString(isoContours(matrix, threshold), properties);
+    // Pass options to marchingsquares lib to reproduce historical turf
+    // behaviour.
+    const isoline = multiLineString(
+      isoContours(matrix, threshold, { linearRing: false, noFrame: true }),
+      properties
+    );
 
     results.push(isoline);
   }
@@ -158,4 +164,5 @@ function rescaleIsolines(
   return createdIsoLines;
 }
 
+export { isolines };
 export default isolines;

@@ -1,11 +1,16 @@
-import { Feature, FeatureCollection, GeometryObject } from "geojson";
+import {
+  Feature,
+  FeatureCollection,
+  GeoJsonProperties,
+  GeometryObject,
+} from "geojson";
 import { featureEach } from "@turf/meta";
 import { featureCollection } from "@turf/helpers";
 
 /**
  * Get Cluster
  *
- * @name getCluster
+ * @function
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {*} filter Filter used on GeoJSON properties to get Cluster
  * @returns {FeatureCollection} Single Cluster filtered by GeoJSON Properties
@@ -31,10 +36,10 @@ import { featureCollection } from "@turf/helpers";
  * turf.getCluster(clustered, {'marker-symbol': 'square'}).length;
  * //= 1
  */
-export function getCluster<G extends GeometryObject, P = any>(
-  geojson: FeatureCollection<G, P>,
-  filter: any
-): FeatureCollection<G, P> {
+function getCluster<
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(geojson: FeatureCollection<G, P>, filter: any): FeatureCollection<G, P> {
   // Validation
   if (!geojson) throw new Error("geojson is required");
   if (geojson.type !== "FeatureCollection")
@@ -55,7 +60,7 @@ export function getCluster<G extends GeometryObject, P = any>(
  *
  * @callback clusterEachCallback
  * @param {FeatureCollection} [cluster] The current cluster being processed.
- * @param {*} [clusterValue] Value used to create cluster being processed.
+ * @param {any} [clusterValue] Value used to create cluster being processed.
  * @param {number} [currentIndex] The index of the current element being processed in the array.Starts at index 0
  * @returns {void}
  */
@@ -63,10 +68,10 @@ export function getCluster<G extends GeometryObject, P = any>(
 /**
  * clusterEach
  *
- * @name clusterEach
+ * @function
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string|number} property GeoJSON property key/value used to create clusters
- * @param {Function} callback a method that takes (cluster, clusterValue, currentIndex)
+ * @param {clusterEachCallback} callback a method that takes (cluster, clusterValue, currentIndex)
  * @returns {void}
  * @example
  * var geojson = turf.featureCollection([
@@ -99,11 +104,14 @@ export function getCluster<G extends GeometryObject, P = any>(
  *     values.push(clusterValue);
  * });
  */
-export function clusterEach<G extends GeometryObject, P = any>(
+function clusterEach<
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
   geojson: FeatureCollection<G, P>,
   property: number | string,
   callback: (
-    cluster?: FeatureCollection<G, P>,
+    cluster: FeatureCollection<G, P>,
     clusterValue?: any,
     currentIndex?: number
   ) => void
@@ -150,17 +158,18 @@ export function clusterEach<G extends GeometryObject, P = any>(
  * @param {*} [clusterValue] Value used to create cluster being processed.
  * @param {number} [currentIndex] The index of the current element being processed in the
  * array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ * @returns {void}
  */
 
 /**
  * Reduce clusters in GeoJSON Features, similar to Array.reduce()
  *
- * @name clusterReduce
+ * @function
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string|number} property GeoJSON property key/value used to create clusters
- * @param {Function} callback a method that takes (previousValue, cluster, clusterValue, currentIndex)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @returns {*} The value that results from the reduction.
+ * @param {clusterReduceCallback} callback a method that takes (previousValue, cluster, clusterValue, currentIndex)
+ * @param {any} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {any} The value that results from the reduction.
  * @example
  * var geojson = turf.featureCollection([
  *     turf.point([0, 0]),
@@ -193,12 +202,15 @@ export function clusterEach<G extends GeometryObject, P = any>(
  *     return previousValue.concat(clusterValue);
  * }, []);
  */
-export function clusterReduce<G extends GeometryObject, P = any>(
+function clusterReduce<
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
   geojson: FeatureCollection<G, P>,
   property: number | string,
   callback: (
-    previousValue?: any,
-    cluster?: FeatureCollection<G, P>,
+    previousValue: any | undefined,
+    cluster: FeatureCollection<G, P>,
     clusterValue?: any,
     currentIndex?: number
   ) => void,
@@ -240,7 +252,7 @@ export function clusterReduce<G extends GeometryObject, P = any>(
  * createBins(geojson, 'cluster');
  * //= { '0': [ 0 ], '1': [ 1, 3 ] }
  */
-export function createBins(
+function createBins(
   geojson: FeatureCollection<any>,
   property: string | number
 ) {
@@ -266,7 +278,7 @@ export function createBins(
  * @param {*} filter Filter
  * @returns {boolean} applied Filter to properties
  */
-export function applyFilter(properties: any, filter: any) {
+function applyFilter(properties: any, filter: any) {
   if (properties === undefined) return false;
   var filterType = typeof filter;
 
@@ -298,10 +310,7 @@ export function applyFilter(properties: any, filter: any) {
  * propertiesContainsFilter({foo: 'bar', cluster: 0}, {cluster: 1})
  * //= false
  */
-export function propertiesContainsFilter(
-  properties: any,
-  filter: any
-): boolean {
+function propertiesContainsFilter(properties: any, filter: any): boolean {
   var keys = Object.keys(filter);
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i];
@@ -321,7 +330,7 @@ export function propertiesContainsFilter(
  * filterProperties({foo: 'bar', cluster: 0}, ['cluster'])
  * //= {cluster: 0}
  */
-export function filterProperties(
+function filterProperties(
   properties: Record<string, any>,
   keys: string[]
 ): any {
@@ -336,3 +345,14 @@ export function filterProperties(
   }
   return newProperties;
 }
+
+export {
+  getCluster,
+  clusterEach,
+  clusterReduce,
+  createBins,
+  applyFilter,
+  propertiesContainsFilter,
+  filterProperties,
+};
+// No default export!

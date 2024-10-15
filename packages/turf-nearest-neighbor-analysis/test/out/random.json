@@ -1204,10 +1204,7 @@
     {
       "type": "Feature",
       "bbox": [
-        -9.29867379414539,
-        38.10372140158265,
-        -8.900609997813907,
-        38.49492542236455
+        -9.29867379414539, 38.10372140158265, -8.900609997813907, 38.49492542236455
       ],
       "properties": {
         "fill-opacity": 0,
@@ -1217,10 +1214,10 @@
           "units": "kilometers",
           "arealUnits": "kilometers²",
           "observedMeanDistance": 1.6516270145942438,
-          "expectedMeanDistance": 1.5869473002517003,
-          "nearestNeighborIndex": 1.0407573171032742,
+          "expectedMeanDistance": 1.5869473002516816,
+          "nearestNeighborIndex": 1.0407573171032865,
           "numberOfPoints": 150,
-          "zScore": 0.9549532272328554
+          "zScore": 0.9549532272331418
         }
       },
       "geometry": {

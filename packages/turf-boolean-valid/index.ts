@@ -1,15 +1,15 @@
 import { Feature, Geometry, Position } from "geojson";
 import { getGeom } from "@turf/invariant";
 import { polygon, lineString } from "@turf/helpers";
-import booleanDisjoint from "@turf/boolean-disjoint";
-import booleanCrosses from "@turf/boolean-crosses";
-import lineIntersect from "@turf/line-intersect";
-import isPointOnLine from "@turf/boolean-point-on-line";
+import { booleanDisjoint } from "@turf/boolean-disjoint";
+import { booleanCrosses } from "@turf/boolean-crosses";
+import { lineIntersect } from "@turf/line-intersect";
+import { booleanPointOnLine as isPointOnLine } from "@turf/boolean-point-on-line";
 
 /**
  * booleanValid checks if the geometry is a valid according to the OGC Simple Feature Specification.
  *
- * @name booleanValid
+ * @function
  * @param {Geometry|Feature<any>} feature GeoJSON Feature or Geometry
  * @returns {boolean} true/false
  * @example
@@ -18,7 +18,7 @@ import isPointOnLine from "@turf/boolean-point-on-line";
  * turf.booleanValid(line); // => true
  * turf.booleanValid({foo: "bar"}); // => false
  */
-export default function booleanValid(feature: Feature<any> | Geometry) {
+function booleanValid(feature: Feature<any> | Geometry) {
   // Automatic False
   if (!feature.type) return false;
 
@@ -90,7 +90,7 @@ export default function booleanValid(feature: Feature<any> | Geometry) {
 
 function checkRingsClose(geom: Position[]) {
   return (
-    geom[0][0] === geom[geom.length - 1][0] ||
+    geom[0][0] === geom[geom.length - 1][0] &&
     geom[0][1] === geom[geom.length - 1][1]
   );
 }
@@ -119,3 +119,6 @@ function checkPolygonAgainstOthers(
   }
   return true;
 }
+
+export { booleanValid };
+export default booleanValid;

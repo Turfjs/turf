@@ -1,1 +1,11 @@
-{}
+{
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": "*.{geojson,json}",
+      "options": {
+        "printWidth": 90
+      }
+    }
+  ]
+}

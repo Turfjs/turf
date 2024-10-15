@@ -1,13 +1,13 @@
 import { Feature, FeatureCollection, LineString, Point } from "geojson";
-import bearing from "@turf/bearing";
-import centroid from "@turf/centroid";
-import destination from "@turf/destination";
+import { bearing } from "@turf/bearing";
+import { centroid } from "@turf/centroid";
+import { destination } from "@turf/destination";
 import { featureCollection, lineString, point } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
-import length from "@turf/length";
+import { length } from "@turf/length";
 import { featureEach, segmentEach, segmentReduce } from "@turf/meta";
 
-export interface DirectionalMeanLine extends Feature<LineString> {
+interface DirectionalMeanLine extends Feature<LineString> {
   properties: {
     cartesianAngle: number;
     bearingAngle: number;
@@ -36,7 +36,8 @@ export interface DirectionalMeanLine extends Feature<LineString> {
  * This module calculate the average angle of a set of lines, measuring the trend of it.
  * It can be used in both project coordinate system and geography coordinate system.
  * It can handle segments of line or the whole line.
- * @name directionalMean
+ *
+ * @function
  * @param {FeatureCollection<LineString>} lines
  * @param {object} [options={}]
  * @param {boolean} [options.planar=true] whether the spatial reference system is projected or geographical.
@@ -51,7 +52,7 @@ export interface DirectionalMeanLine extends Feature<LineString> {
  * var directionalMeanLine = turf.directionalMean(lines);
  * // => directionalMeanLine
  */
-export default function directionalMean(
+function directionalMean(
   lines: FeatureCollection<LineString>,
   options: {
     planar?: boolean;
@@ -59,7 +60,7 @@ export default function directionalMean(
   } = {}
 ): DirectionalMeanLine {
   const isPlanar = !!options.planar; // you can't use options.planar || true here.
-  const isSegment: boolean = options.segment || false;
+  const isSegment: boolean = options.segment ?? false;
   let sigmaSin = 0;
   let sigmaCos = 0;
   let countOfLines = 0;
@@ -289,3 +290,6 @@ function getMeanLineString(
     return [getCoord(begin), getCoord(end)];
   }
 }
+
+export { directionalMean, DirectionalMeanLine };
+export default directionalMean;

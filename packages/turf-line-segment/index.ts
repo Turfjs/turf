@@ -15,7 +15,7 @@ import { flattenEach } from "@turf/meta";
  * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a
  * {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon}.
  *
- * @name lineSegment
+ * @function
  * @param {GeoJSON} geojson GeoJSON Polygon or LineString
  * @returns {FeatureCollection<LineString>} 2-vertex line segments
  * @example
@@ -26,7 +26,7 @@ import { flattenEach } from "@turf/meta";
  * var addToMap = [polygon, segments]
  */
 function lineSegment<
-  G extends LineString | MultiLineString | Polygon | MultiPolygon
+  G extends LineString | MultiLineString | Polygon | MultiPolygon,
 >(
   geojson: Feature<G> | FeatureCollection<G> | G
 ): FeatureCollection<LineString> {
@@ -112,4 +112,5 @@ function bbox(coords1: number[], coords2: number[]): BBox {
   return [west, south, east, north];
 }
 
+export { lineSegment };
 export default lineSegment;

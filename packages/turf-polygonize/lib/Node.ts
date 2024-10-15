@@ -1,10 +1,10 @@
-import { orientationIndex } from "./util";
-import Edge from "./Edge";
+import { orientationIndex } from "./util.js";
+import { Edge } from "./Edge.js";
 
 /**
  * Node
  */
-export default class Node {
+class Node {
   static buildId(coordinates: number[]) {
     return coordinates.join(",");
   }
@@ -124,3 +124,6 @@ export default class Node {
     this.innerEdges.push(edge);
   }
 }
+
+export { Node };
+export default Node;

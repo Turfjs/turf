@@ -6,7 +6,7 @@ import { getCoord } from "@turf/invariant";
  * Calculates the distance along a rhumb line between two {@link Point|points} in degrees, radians,
  * miles, or kilometers.
  *
- * @name rhumbDistance
+ * @function
  * @param {Coord} from origin point
  * @param {Coord} to destination point
  * @param {Object} [options] Optional parameters
@@ -40,8 +40,8 @@ function rhumbDistance(
     destination[0] - origin[0] > 180
       ? -360
       : origin[0] - destination[0] > 180
-      ? 360
-      : 0;
+        ? 360
+        : 0;
   const distanceInMeters = calculateRhumbDistance(origin, destination);
   const distance = convertLength(distanceInMeters, "meters", options.units);
   return distance;
@@ -103,4 +103,5 @@ function calculateRhumbDistance(
   return dist;
 }
 
+export { rhumbDistance };
 export default rhumbDistance;

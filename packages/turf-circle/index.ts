@@ -1,11 +1,11 @@
 import { GeoJsonProperties, Feature, Point, Polygon } from "geojson";
-import destination from "@turf/destination";
+import { destination } from "@turf/destination";
 import { polygon, Units } from "@turf/helpers";
 
 /**
  * Takes a {@link Point} and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
  *
- * @name circle
+ * @function
  * @param {Feature<Point>|number[]} center center point
  * @param {number} radius radius of the circle
  * @param {Object} [options={}] Optional parameters
@@ -22,7 +22,7 @@ import { polygon, Units } from "@turf/helpers";
  * //addToMap
  * var addToMap = [turf.point(center), circle]
  */
-function circle<P = GeoJsonProperties>(
+function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   center: number[] | Point | Feature<Point, P>,
   radius: number,
   options: {
@@ -36,8 +36,8 @@ function circle<P = GeoJsonProperties>(
   const properties: any = options.properties
     ? options.properties
     : !Array.isArray(center) && center.type === "Feature" && center.properties
-    ? center.properties
-    : {};
+      ? center.properties
+      : {};
 
   // main
   const coordinates = [];
@@ -52,4 +52,5 @@ function circle<P = GeoJsonProperties>(
   return polygon([coordinates], properties);
 }
 
+export { circle };
 export default circle;

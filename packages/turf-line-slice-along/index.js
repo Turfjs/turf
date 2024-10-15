@@ -1,6 +1,6 @@
-import bearing from "@turf/bearing";
-import distance from "@turf/distance";
-import destination from "@turf/destination";
+import { bearing } from "@turf/bearing";
+import { distance } from "@turf/distance";
+import { destination } from "@turf/destination";
 import { lineString, isObject } from "@turf/helpers";
 
 /**
@@ -10,7 +10,7 @@ import { lineString, isObject } from "@turf/helpers";
  *
  * This can be useful for extracting only the part of a route between two distances.
  *
- * @name lineSliceAlong
+ * @function
  * @param {Feature<LineString>|LineString} line input line
  * @param {number} startDist distance along the line to starting point
  * @param {number} stopDist distance along the line to ending point
@@ -84,4 +84,5 @@ function lineSliceAlong(line, startDist, stopDist, options) {
   return lineString([last, last]);
 }
 
+export { lineSliceAlong };
 export default lineSliceAlong;

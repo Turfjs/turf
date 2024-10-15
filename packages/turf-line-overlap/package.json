@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-overlap",
-  "version": "6.5.0",
+  "version": "7.1.0",
   "description": "turf line-overlap module",
   "author": "Turf Authors",
   "contributors": [
@@ -26,51 +26,57 @@
     "line",
     "overlap"
   ],
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/es/index.js",
-      "require": "./dist/js/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
     }
   },
-  "types": "dist/js/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist"
   ],
   "scripts": {
-    "bench": "ts-node bench.js",
-    "build": "npm-run-all build:*",
-    "build:es": "tsc --outDir dist/es --module esnext --declaration false && echo '{\"type\":\"module\"}' > dist/es/package.json",
-    "build:js": "tsc",
-    "docs": "node ../../scripts/generate-readmes",
-    "test": "npm-run-all test:*",
-    "test:tape": "ts-node -r esm test.js",
-    "test:types": "tsc --esModuleInterop --noEmit types.ts"
+    "bench": "tsx bench.ts",
+    "build": "tsup --config ../../tsup.config.ts",
+    "docs": "tsx ../../scripts/generate-readmes.ts",
+    "test": "npm-run-all --npm-path npm test:*",
+    "test:tape": "tsx test.ts",
+    "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@types/deep-equal": "^1.0.1",
-    "@types/tape": "*",
-    "benchmark": "*",
-    "load-json-file": "*",
-    "npm-run-all": "*",
-    "tape": "*",
-    "ts-node": "*",
-    "tslint": "*",
-    "typescript": "*",
-    "write-json-file": "*"
+    "@types/benchmark": "^2.1.5",
+    "@types/tape": "^4.2.32",
+    "benchmark": "^2.1.4",
+    "load-json-file": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "tape": "^5.7.2",
+    "tsup": "^8.0.1",
+    "tsx": "^4.6.2",
+    "typescript": "^5.5.4",
+    "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/boolean-point-on-line": "^6.5.0",
-    "@turf/geojson-rbush": "^3.2.0",
-    "@turf/helpers": "^6.5.0",
-    "@turf/invariant": "^6.5.0",
-    "@turf/line-segment": "^6.5.0",
-    "@turf/meta": "^6.5.0",
-    "@turf/nearest-point-on-line": "^6.5.0",
-    "deep-equal": "1.x",
-    "tslib": "^2.3.0"
+    "@turf/boolean-point-on-line": "workspace:^",
+    "@turf/geojson-rbush": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/line-segment": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/nearest-point-on-line": "workspace:^",
+    "@types/geojson": "^7946.0.10",
+    "fast-deep-equal": "^3.1.3",
+    "tslib": "^2.6.2"
   }
 }

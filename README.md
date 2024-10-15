@@ -15,11 +15,11 @@
 
 ***A modular geospatial engine written in JavaScript***
 
-[turfjs.org](http://turfjs.org/)
+[turfjs.org](https://turfjs.org/)
 
 - - -
 
-[Turf](https://turfjs.org) is a [JavaScript library](https://en.wikipedia.org/wiki/JavaScript_library) for [spatial analysis](http://en.wikipedia.org/wiki/Spatial_analysis). It includes traditional spatial operations, helper functions for creating [GeoJSON](http://geojson.org) data, and data classification and statistics tools. Turf can be added to your website as a client-side plugin, or you can [run Turf server-side](https://www.npmjs.com/package/@turf/turf) with [Node.js](http://nodejs.org/) (see below).
+[Turf](https://turfjs.org) is a [JavaScript library](https://en.wikipedia.org/wiki/JavaScript_library) for [spatial analysis](https://en.wikipedia.org/wiki/Spatial_analysis). It includes traditional spatial operations, helper functions for creating [GeoJSON](https://geojson.org) data, and data classification and statistics tools. Turf can be added to your website as a client-side plugin, or you can [run Turf server-side](https://www.npmjs.com/package/@turf/turf) with [Node.js](https://nodejs.org/) (see below).
 
 ## Installation
 
@@ -61,12 +61,12 @@ Ports of Turf.js are available in:
 - [Swift](https://github.com/mapbox/turf-swift/) (iOS, macOS, tvOS, watchOS, Linux)
   - > Turf for Swift is **experimental** and its public API is subject to change. Please use with care.
 - [Dart/Flutter](https://github.com/dartclub/turf_dart) (Dart Web, Dart Native; Flutter for iOS, Android, macOS, Windows, Linux, Web)
-  - > Thr Turf for Dart port is still in progress, the implementation status can be found in the [README](https://github.com/dartclub/turf_dart#components).
+  - > The Turf for Dart port is still in progress, the implementation status can be found in the [README](https://github.com/dartclub/turf_dart#components).
 - - -
 
 ## Data in Turf
 
-Turf uses <a href='http://geojson.org/'>GeoJSON</a> for all geographic data. Turf expects the data to be standard <a href='http://en.wikipedia.org/wiki/World_Geodetic_System'>WGS84</a> longitude, latitude coordinates. Check out <a href='http://geojson.io/#id=gist:anonymous/844f013aae8354eb889c&map=12/38.8955/-77.0135'>geojson.io</a> for a tool to easily create this data.
+Turf uses <a href='https://geojson.org/'>GeoJSON</a> for all geographic data. Turf expects the data to be standard <a href='https://en.wikipedia.org/wiki/World_Geodetic_System'>WGS84</a> longitude, latitude coordinates. Check out <a href='https://geojson.io/#id=gist:anonymous/844f013aae8354eb889c&map=12/38.8955/-77.0135'>geojson.io</a> for a tool to easily create this data.
 
 > **NOTE:** Turf expects data in (longitude, latitude) order per the GeoJSON standard.
 

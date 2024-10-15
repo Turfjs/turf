@@ -16,7 +16,7 @@ import {
   point,
   polygon,
   radiansToLength,
-} from "./";
+} from "./index.js";
 
 // Fixtures
 const bbox: BBox = [-180, -90, 180, 90];
@@ -152,7 +152,7 @@ isNumber(-123);
 isNumber("123");
 isNumber(+"123");
 isNumber("1e10000");
-isNumber(1e10000);
+isNumber(1e100);
 isNumber(Infinity);
 isNumber(-Infinity);
 

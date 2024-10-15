@@ -4,12 +4,13 @@ import {
   Geometry,
   LineString,
   MultiPoint,
+  MultiPolygon,
   Point,
   Polygon,
 } from "geojson";
-import calcBbox from "@turf/bbox";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import isPointOnLine from "@turf/boolean-point-on-line";
+import { bbox as calcBbox } from "@turf/bbox";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import { booleanPointOnLine as isPointOnLine } from "@turf/boolean-point-on-line";
 import { getGeom } from "@turf/invariant";
 
 /**
@@ -18,7 +19,7 @@ import { getGeom } from "@turf/invariant";
  * must not intersect the exterior of the primary (geometry a).
  * Boolean-contains returns the exact opposite result of the `@turf/boolean-within`.
  *
- * @name booleanContains
+ * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {boolean} true/false
@@ -29,7 +30,7 @@ import { getGeom } from "@turf/invariant";
  * turf.booleanContains(line, point);
  * //=true
  */
-export default function booleanContains(
+function booleanContains(
   feature1: Feature<any> | Geometry,
   feature2: Feature<any> | Geometry
 ) {
@@ -81,12 +82,25 @@ export default function booleanContains(
         default:
           throw new Error("feature2 " + type2 + " geometry not supported");
       }
+    case "MultiPolygon":
+      switch (type2) {
+        case "Polygon":
+          return isPolygonInMultiPolygon(geom1, geom2);
+        default:
+          throw new Error("feature2 " + type2 + " geometry not supported");
+      }
     default:
       throw new Error("feature1 " + type1 + " geometry not supported");
   }
 }
 
-export function isPointInMultiPoint(multiPoint: MultiPoint, pt: Point) {
+function isPolygonInMultiPolygon(multiPolygon: MultiPolygon, polygon: Polygon) {
+  return multiPolygon.coordinates.some((coords) =>
+    isPolyInPoly({ type: "Polygon", coordinates: coords }, polygon)
+  );
+}
+
+function isPointInMultiPoint(multiPoint: MultiPoint, pt: Point) {
   let i;
   let output = false;
   for (i = 0; i < multiPoint.coordinates.length; i++) {
@@ -98,7 +112,7 @@ export function isPointInMultiPoint(multiPoint: MultiPoint, pt: Point) {
   return output;
 }
 
-export function isMultiPointInMultiPoint(
+function isMultiPointInMultiPoint(
   multiPoint1: MultiPoint,
   multiPoint2: MultiPoint
 ) {
@@ -117,10 +131,7 @@ export function isMultiPointInMultiPoint(
   return true;
 }
 
-export function isMultiPointOnLine(
-  lineString: LineString,
-  multiPoint: MultiPoint
-) {
+function isMultiPointOnLine(lineString: LineString, multiPoint: MultiPoint) {
   let haveFoundInteriorPoint = false;
   for (const coord of multiPoint.coordinates) {
     if (isPointOnLine(coord, lineString, { ignoreEndVertices: true })) {
@@ -136,7 +147,7 @@ export function isMultiPointOnLine(
   return false;
 }
 
-export function isMultiPointInPoly(polygon: Polygon, multiPoint: MultiPoint) {
+function isMultiPointInPoly(polygon: Polygon, multiPoint: MultiPoint) {
   for (const coord of multiPoint.coordinates) {
     if (!booleanPointInPolygon(coord, polygon, { ignoreBoundary: true })) {
       return false;
@@ -145,7 +156,7 @@ export function isMultiPointInPoly(polygon: Polygon, multiPoint: MultiPoint) {
   return true;
 }
 
-export function isLineOnLine(lineString1: LineString, lineString2: LineString) {
+function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   let haveFoundInteriorPoint = false;
   for (const coords of lineString2.coordinates) {
     if (
@@ -166,7 +177,7 @@ export function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   return haveFoundInteriorPoint;
 }
 
-export function isLineInPoly(polygon: Polygon, linestring: LineString) {
+function isLineInPoly(polygon: Polygon, linestring: LineString) {
   let output = false;
   let i = 0;
 
@@ -201,7 +212,7 @@ export function isLineInPoly(polygon: Polygon, linestring: LineString) {
  * @param {Geometry|Feature<Polygon>} feature2 Polygon2
  * @returns {boolean} true/false
  */
-export function isPolyInPoly(
+function isPolyInPoly(
   feature1: Feature<Polygon> | Polygon,
   feature2: Feature<Polygon> | Polygon
 ) {
@@ -230,7 +241,7 @@ export function isPolyInPoly(
   return true;
 }
 
-export function doBBoxOverlap(bbox1: BBox, bbox2: BBox) {
+function doBBoxOverlap(bbox1: BBox, bbox2: BBox) {
   if (bbox1[0] > bbox2[0]) {
     return false;
   }
@@ -254,10 +265,27 @@ export function doBBoxOverlap(bbox1: BBox, bbox2: BBox) {
  * @param {Position} pair2 point [x,y]
  * @returns {boolean} true/false if coord pairs match
  */
-export function compareCoords(pair1: number[], pair2: number[]) {
+function compareCoords(pair1: number[], pair2: number[]) {
   return pair1[0] === pair2[0] && pair1[1] === pair2[1];
 }
 
-export function getMidpoint(pair1: number[], pair2: number[]) {
+function getMidpoint(pair1: number[], pair2: number[]) {
   return [(pair1[0] + pair2[0]) / 2, (pair1[1] + pair2[1]) / 2];
 }
+
+export {
+  booleanContains,
+  isPolygonInMultiPolygon,
+  isPointInMultiPoint,
+  isMultiPointInMultiPoint,
+  isMultiPointOnLine,
+  isMultiPointInPoly,
+  isLineOnLine,
+  isLineInPoly,
+  isPolyInPoly,
+  doBBoxOverlap,
+  compareCoords,
+  getMidpoint,
+};
+
+export default booleanContains;

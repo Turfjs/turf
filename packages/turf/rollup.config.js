@@ -1,17 +1,23 @@
-import node from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import { terser } from "rollup-plugin-terser";
 import { babel } from "@rollup/plugin-babel";
-import base from "../../rollup.config";
+import { readFileSync } from "fs";
+import commonjs from "@rollup/plugin-commonjs";
+import nodePolyfills from "rollup-plugin-polyfill-node";
+import nodeResolve from "@rollup/plugin-node-resolve";
+import terser from "@rollup/plugin-terser";
 
-const pckg = require("./package.json");
-const input = "index.mjs";
+const pckg = JSON.parse(readFileSync("./package.json", "utf-8"));
+const input = "index.ts";
 
 export default [
-  { ...base, input },
   {
     input,
     output: [{ file: pckg.browser, format: "umd", name: "turf" }],
-    plugins: [commonjs(), node(), babel({ babelHelpers: "bundled" }), terser()],
+    plugins: [
+      commonjs(),
+      nodeResolve(),
+      nodePolyfills(),
+      babel({ babelHelpers: "bundled" }),
+      terser(),
+    ],
   },
 ];

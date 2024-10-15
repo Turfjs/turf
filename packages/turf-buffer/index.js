@@ -1,5 +1,5 @@
-import center from "@turf/center";
-import { BufferOp, GeoJSONReader, GeoJSONWriter } from "@turf/jsts";
+import { center } from "@turf/center";
+import jsts from "@turf/jsts";
 import { geomEach, featureEach } from "@turf/meta";
 import { geoAzimuthalEquidistant } from "d3-geo";
 import {
@@ -10,6 +10,8 @@ import {
   earthRadius,
 } from "@turf/helpers";
 
+const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
+
 /**
  * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
  *
@@ -19,7 +21,7 @@ import {
  * FeatureCollection - i.e., the output collection may have fewer members than
  * the input, or even be empty.
  *
- * @name buffer
+ * @function
  * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer (negative values are allowed)
  * @param {Object} [options={}] Optional parameters
@@ -178,4 +180,5 @@ function defineProjection(geojson) {
   return geoAzimuthalEquidistant().rotate(rotation).scale(earthRadius);
 }
 
+export { buffer };
 export default buffer;

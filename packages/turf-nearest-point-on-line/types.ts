@@ -1,4 +1,4 @@
-import nearestPointOnLine from "./index";
+import { nearestPointOnLine } from "./index.js";
 import { point, lineString, multiLineString } from "@turf/helpers";
 
 const pt = point([1.5, 1.5]);
@@ -28,5 +28,6 @@ nearestPointOnLine(line, output);
 
 // Extra properties being generated from module
 output.properties.dist;
+output.properties.multiFeatureIndex;
 output.properties.index;
 output.properties.location;

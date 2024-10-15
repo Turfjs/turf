@@ -14,7 +14,7 @@ import { getCoord } from "@turf/invariant";
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
  * origin Point with the (varant) given bearing.
  *
- * @name rhumbDestination
+ * @function
  * @param {Coord} origin starting point
  * @param {number} distance distance from the starting point
  * @param {number} bearing varant bearing angle ranging from -180 to 180 degrees from north
@@ -34,7 +34,7 @@ import { getCoord } from "@turf/invariant";
  * var addToMap = [pt, destination]
  * destination.properties['marker-color'] = '#00F';
  */
-function rhumbDestination<P = GeoJsonProperties>(
+function rhumbDestination<P extends GeoJsonProperties = GeoJsonProperties>(
   origin: Coord,
   distance: number,
   bearing: number,
@@ -63,8 +63,8 @@ function rhumbDestination<P = GeoJsonProperties>(
     destination[0] - coords[0] > 180
       ? -360
       : coords[0] - destination[0] > 180
-      ? 360
-      : 0;
+        ? 360
+        : 0;
   return point(destination, options.properties);
 }
 
@@ -123,4 +123,5 @@ function calculateRhumbDestination(
   ]; // normalise to −180..+180°
 }
 
+export { rhumbDestination };
 export default rhumbDestination;

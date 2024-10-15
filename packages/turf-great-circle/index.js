@@ -1,6 +1,6 @@
 import { lineString } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
-import { GreatCircle } from "./lib/arc";
+import { GreatCircle } from "./lib/arc.js";
 
 /**
  * Calculate great circles routes as {@link LineString} or {@link MultiLineString}.
@@ -8,7 +8,7 @@ import { GreatCircle } from "./lib/arc";
  * be split into a `MultiLineString`. If the `start` and `end` positions are the same
  * then a `LineString` will be returned with duplicate coordinates the length of the `npoints` option.
  *
- * @name greatCircle
+ * @function
  * @param {Coord} start source point feature
  * @param {Coord} end destination point feature
  * @param {Object} [options={}] Optional parameters
@@ -59,4 +59,5 @@ function greatCircle(start, end, options) {
   return line.json();
 }
 
+export { greatCircle };
 export default greatCircle;
