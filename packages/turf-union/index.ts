@@ -1,4 +1,4 @@
-import polygonClipping from "polygon-clipping";
+import * as polyclip from "polyclip-ts";
 import { multiPolygon, polygon } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
 import {
@@ -42,16 +42,16 @@ function union<P extends GeoJsonProperties = GeoJsonProperties>(
   features: FeatureCollection<Polygon | MultiPolygon>,
   options: { properties?: P } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {
-  const geoms: polygonClipping.Geom[] = [];
+  const geoms: polyclip.Geom[] = [];
   geomEach(features, (geom) => {
-    geoms.push(geom.coordinates as polygonClipping.Geom);
+    geoms.push(geom.coordinates as polyclip.Geom);
   });
 
   if (geoms.length < 2) {
     throw new Error("Must have at least 2 geometries");
   }
 
-  const unioned = polygonClipping.union(geoms[0], ...geoms.slice(1));
+  const unioned = polyclip.union(geoms[0], ...geoms.slice(1));
   if (unioned.length === 0) return null;
   if (unioned.length === 1) return polygon(unioned[0], options.properties);
   else return multiPolygon(unioned, options.properties);
