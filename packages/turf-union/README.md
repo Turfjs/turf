@@ -4,47 +4,64 @@
 
 ## union
 
-Takes input [(Multi)Polygon(s)][1] and returns a combined polygon. If the input polygons are not contiguous, this function returns a [MultiPolygon][2] feature.
+Takes a collection of input polygons and returns a combined polygon. If the
+input polygons are not contiguous, this function returns a multi-polygon
+feature.
 
 ### Parameters
 
-*   `features` **[FeatureCollection][3]<([Polygon][1] | [MultiPolygon][2])>**&#x20;
+*   `features` **[FeatureCollection][1]<([Polygon][2] | [MultiPolygon][3])>** input polygon features
 *   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.properties` **[Object][4]** Translate Properties to output Feature (optional, default `{}`)
-*   `polygon1` **[Feature][5]<([Polygon][1] | [MultiPolygon][2])>** input Polygon features
+    *   `options.properties` **[GeoJsonProperties][5]** properties to assign to output feature (optional, default `{}`)
 
 ### Examples
 
 ```javascript
-var poly1 = turf.polygon([[
-    [-82.574787, 35.594087],
-    [-82.574787, 35.615581],
-    [-82.545261, 35.615581],
-    [-82.545261, 35.594087],
-    [-82.574787, 35.594087]
-]], {"fill": "#0f0"});
-var poly2 = turf.polygon([[
-    [-82.560024, 35.585153],
-    [-82.560024, 35.602602],
-    [-82.52964, 35.602602],
-    [-82.52964, 35.585153],
-    [-82.560024, 35.585153]
-]], {"fill": "#00f"});
+const poly1 = turf.polygon(
+  [
+    [
+      [-82.574787, 35.594087],
+      [-82.574787, 35.615581],
+      [-82.545261, 35.615581],
+      [-82.545261, 35.594087],
+      [-82.574787, 35.594087],
+    ],
+  ],
+  { fill: "#0f0" }
+);
 
-var union = turf.union(turf.featureCollection([poly1, poly2]));
+const poly2 = turf.polygon(
+  [
+    [
+      [-82.560024, 35.585153],
+      [-82.560024, 35.602602],
+      [-82.52964, 35.602602],
+      [-82.52964, 35.585153],
+      [-82.560024, 35.585153],
+    ],
+  ],
+);
+
+const union = turf.union(turf.featureCollection([poly1, poly2]));
 
 //addToMap
-var addToMap = [poly1, poly2, union];
+const addToMap = { poly1, poly2, union };
+
+poly1.properties.fill = "#0f0";
+poly2.properties.fill = "#00f";
+union.properties.stroke = "red";
+union.properties["stroke-width"] = 4;
+union.properties.fill = "transparent";
 ```
 
-Returns **[Feature][5]<([Polygon][1] | [MultiPolygon][2])>** a combined [Polygon][1] or [MultiPolygon][2] feature, or null if the inputs are empty
+Returns **([Feature][5]<([Polygon][2] | [MultiPolygon][3])> | null)** a combined polygon or multi-polygon feature, or null if there were no input polygons to combine
 
-[1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
+[1]: https://tools.ietf.org/html/rfc7946#section-3.3
 
-[2]: https://tools.ietf.org/html/rfc7946#section-3.1.7
+[2]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 
-[3]: https://tools.ietf.org/html/rfc7946#section-3.3
+[3]: https://tools.ietf.org/html/rfc7946#section-3.1.7
 
 [4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
