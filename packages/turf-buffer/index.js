@@ -21,7 +21,7 @@ const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
  * FeatureCollection - i.e., the output collection may have fewer members than
  * the input, or even be empty.
  *
- * @name buffer
+ * @function
  * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer (negative values are allowed)
  * @param {Object} [options={}] Optional parameters

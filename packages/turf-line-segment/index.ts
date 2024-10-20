@@ -15,7 +15,7 @@ import { flattenEach } from "@turf/meta";
  * Creates a {@link FeatureCollection} of 2-vertex {@link LineString} segments from a
  * {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon}.
  *
- * @name lineSegment
+ * @function
  * @param {GeoJSON} geojson GeoJSON Polygon or LineString
  * @returns {FeatureCollection<LineString>} 2-vertex line segments
  * @example

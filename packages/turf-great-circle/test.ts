@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
-import { featureCollection } from "@turf/helpers";
+import { featureCollection, point, lineString } from "@turf/helpers";
 import { greatCircle } from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -37,5 +37,25 @@ test("turf-great-circle", (t) => {
       writeJsonFileSync(directories.out + filename, results);
     t.deepEquals(results, loadJsonFileSync(directories.out + filename), name);
   });
+  t.end();
+});
+
+test("turf-great-circle with same input and output", (t) => {
+  const start = point([0, 0]);
+  const end = point([0, 0]);
+  const line = greatCircle(start, end, {
+    npoints: 4,
+  });
+
+  t.deepEquals(
+    lineString([
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+    ]),
+    line
+  );
+
   t.end();
 });

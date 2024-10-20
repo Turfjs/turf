@@ -13,7 +13,7 @@ import polygonClipping from "polygon-clipping";
  * Takes {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
  * finds their polygonal intersection. If they don't intersect, returns null.
  *
- * @name intersect
+ * @function
  * @param {FeatureCollection<Polygon | MultiPolygon>} features the features to intersect
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Feature

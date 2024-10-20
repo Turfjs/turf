@@ -30,7 +30,7 @@ function coordsToPolygon(coords: Position[]) {
  *
  * The Voronoi algorithim used comes from the d3-voronoi package.
  *
- * @name voronoi
+ * @function
  * @param {FeatureCollection<Point>} points points around which to calculate the Voronoi polygons
  * @param {Object} [options={}] Optional parameters
  * @param {BBox} [options.bbox=[-180, -85, 180, -85]] clipping rectangle, in [minX, minY, maxX, MaxY] order

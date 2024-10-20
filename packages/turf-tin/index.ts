@@ -24,7 +24,7 @@ interface Vertice {
  * and `c` representing its value at each of the points that represent the corners of the
  * triangle.
  *
- * @name tin
+ * @function
  * @param {FeatureCollection<Point>} points input points
  * @param {String} [z] name of the property from which to pull z values
  * This is optional: if not given, then there will be no extra data added to the derived triangles.

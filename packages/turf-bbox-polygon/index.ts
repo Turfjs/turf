@@ -4,10 +4,10 @@ import { polygon, Id } from "@turf/helpers";
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
  *
- * @name bboxPolygon
+ * @function
  * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @param {Object} [options={}] Optional parameters
- * @param {Properties} [options.properties={}] Translate properties to Polygon
+ * @param {GeoJsonProperties} [options.properties={}] Translate properties to Polygon
  * @param {string|number} [options.id={}] Translate Id to Polygon
  * @returns {Feature<Polygon>} a Polygon representation of the bounding box
  * @example

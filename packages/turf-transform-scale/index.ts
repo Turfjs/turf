@@ -17,7 +17,7 @@ import { getCoord, getCoords, getType } from "@turf/invariant";
  * If a FeatureCollection is provided, the origin point will be calculated
  * based on each individual feature _unless_ an exact
  *
- * @name transformScale
+ * @function
  * @param {GeoJSON|GeometryCollection} geojson objects to be scaled
  * @param {number} factor of scaling, positive values greater than 0. Numbers between 0 and 1 will shrink the geojson, numbers greater than 1 will expand it, a factor of 1 will not change the geojson.
  * @param {Object} [options={}] Optional parameters

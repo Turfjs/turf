@@ -9,7 +9,7 @@ import { booleanPointOnLine as isPointOnLine } from "@turf/boolean-point-on-line
 /**
  * booleanValid checks if the geometry is a valid according to the OGC Simple Feature Specification.
  *
- * @name booleanValid
+ * @function
  * @param {Geometry|Feature<any>} feature GeoJSON Feature or Geometry
  * @returns {boolean} true/false
  * @example

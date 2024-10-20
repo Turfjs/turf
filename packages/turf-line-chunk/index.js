@@ -7,7 +7,7 @@ import { featureCollection, isObject } from "@turf/helpers";
  * Divides a {@link LineString} into chunks of a specified length.
  * If the line is shorter than the segment length then the original line is returned.
  *
- * @name lineChunk
+ * @function
  * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson the lines to split
  * @param {number} segmentLength how long to make each segment
  * @param {Object} [options={}] Optional parameters

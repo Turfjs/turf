@@ -11,7 +11,7 @@ i.e. the angle measured in degrees start the north line (0 degrees)
 
 *   `start` **[Coord][2]** starting Point
 *   `end` **[Coord][2]** ending Point
-*   `options` **[Object][3]?** Optional parameters
+*   `options` **[Object][3]?** Optional parameters (optional, default `{}`)
 
     *   `options.final` **[boolean][4]** calculates the final bearing if true (optional, default `false`)
 
