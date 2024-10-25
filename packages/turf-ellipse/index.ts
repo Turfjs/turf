@@ -5,8 +5,9 @@ import {
   isNumber,
   Coord,
   Units,
+  point,
 } from "@turf/helpers";
-import { rhumbDestination } from "@turf/rhumb-destination";
+import { destination } from "@turf/destination";
 import { transformRotate } from "@turf/transform-rotate";
 import { getCoord } from "@turf/invariant";
 import { GeoJsonProperties, Feature, Polygon } from "geojson";
@@ -61,62 +62,31 @@ function ellipse(
   if (!isNumber(steps)) throw new Error("steps must be a number");
   if (!isNumber(angle)) throw new Error("angle must be a number");
 
-  const centerCoords = getCoord(center);
-  if (units !== "degrees") {
-    const xDest = rhumbDestination(center, xSemiAxis, 90, { units });
-    const yDest = rhumbDestination(center, ySemiAxis, 0, { units });
-    xSemiAxis = getCoord(xDest)[0] - centerCoords[0];
-    ySemiAxis = getCoord(yDest)[1] - centerCoords[1];
-  }
+  const centerCoords = getCoord(
+    transformRotate(point(getCoord(center)), angle, { pivot })
+  );
 
   const coordinates: number[][] = [];
   for (let i = 0; i < steps; i += 1) {
     const stepAngle = (i * -360) / steps;
-    let x =
-      (xSemiAxis * ySemiAxis) /
-      Math.sqrt(
-        Math.pow(ySemiAxis, 2) +
-          Math.pow(xSemiAxis, 2) * Math.pow(getTanDeg(stepAngle), 2)
-      );
-    let y =
-      (xSemiAxis * ySemiAxis) /
-      Math.sqrt(
-        Math.pow(xSemiAxis, 2) +
-          Math.pow(ySemiAxis, 2) / Math.pow(getTanDeg(stepAngle), 2)
-      );
-
-    if (stepAngle < -90 && stepAngle >= -270) x = -x;
-    if (stepAngle < -180 && stepAngle >= -360) y = -y;
-    if (units === "degrees") {
-      const angleRad = degreesToRadians(angle);
-      const newx = x * Math.cos(angleRad) + y * Math.sin(angleRad);
-      const newy = y * Math.cos(angleRad) - x * Math.sin(angleRad);
-      x = newx;
-      y = newy;
-    }
-
-    coordinates.push([x + centerCoords[0], y + centerCoords[1]]);
+    const r = Math.sqrt(
+      (Math.pow(xSemiAxis, 2) * Math.pow(ySemiAxis, 2)) /
+        (Math.pow(
+          xSemiAxis * Math.cos(degreesToRadians(stepAngle - angle)),
+          2
+        ) +
+          Math.pow(
+            ySemiAxis * Math.sin(degreesToRadians(stepAngle - angle)),
+            2
+          ))
+    );
+    const coords = getCoord(
+      destination(centerCoords, r, stepAngle, { units: units })
+    );
+    coordinates.push(coords);
   }
   coordinates.push(coordinates[0]);
-  if (units === "degrees") {
-    return polygon([coordinates], properties);
-  } else {
-    return transformRotate(polygon([coordinates], properties), angle, {
-      pivot,
-    });
-  }
-}
-
-/**
- * Get Tan Degrees
- *
- * @private
- * @param {number} deg Degrees
- * @returns {number} Tan Degrees
- */
-function getTanDeg(deg: number) {
-  const rad = (deg * Math.PI) / 180;
-  return Math.tan(rad);
+  return polygon([coordinates], properties);
 }
 
 export { ellipse };
