@@ -56,7 +56,6 @@
     "@turf/area": "workspace:^",
     "@turf/bbox-polygon": "workspace:^",
     "@turf/circle": "workspace:^",
-    "@turf/destination": "workspace:^",
     "@turf/intersect": "workspace:^",
     "@turf/truncate": "workspace:^",
     "@types/benchmark": "^2.1.5",
