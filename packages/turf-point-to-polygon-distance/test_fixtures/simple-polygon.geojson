@@ -5,7 +5,8 @@
       "type": "Feature",
       "properties": {
         "name": "outer",
-        "expected_distance": 2.0673867731590976
+        "expected_distance": 0.0020673867731590976,
+        "units": "kilometers"
       },
       "geometry": {
         "coordinates": [13.40811681056141, 52.52027359015821],
@@ -16,7 +17,8 @@
       "type": "Feature",
       "properties": {
         "name": "inner",
-        "expected_distance": -7.980019325365333
+        "expected_distance": -7.980019325365333,
+        "units": "meters"
       },
       "geometry": {
         "coordinates": [13.408017009112001, 52.52035996357455],

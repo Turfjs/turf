@@ -27,15 +27,18 @@ const fixtures = fs.readdirSync(fixturesPath).map((filename) => {
 /**
  * Benchmark Results
  *
- * multi-polygon - outer x 16,672 ops/sec ±0.24% (98 runs sampled)
- * multi-polygon - inner1 x 16,442 ops/sec ±0.65% (100 runs sampled)
- * multi-polygon - inner2 x 16,172 ops/sec ±1.01% (97 runs sampled)
- * multi-polygon - inner3-close-to-hole x 16,405 ops/sec ±0.19% (99 runs sampled)
- * multi-polygon - in-hole-close-to-poly-in-hole x 16,597 ops/sec ±0.15% (99 runs sampled)
- * multi-polygon - in-hole-close-to-hole-border x 16,319 ops/sec ±0.14% (99 runs sampled)
- * multi-polygon - in-poly-in-hole x 16,857 ops/sec ±0.19% (101 runs sampled)
- * simple-polygon - outer x 117,860 ops/sec ±0.12% (102 runs sampled)
- * simple-polygon - inner x 121,045 ops/sec ±0.15% (100 runs sampled)
+ * long-lines-poly - pointA x 154,135 ops/sec ±0.36% (96 runs sampled)
+ * long-lines-poly - pointB x 167,645 ops/sec ±0.30% (98 runs sampled)
+ * long-lines-poly - pointC x 164,454 ops/sec ±0.25% (100 runs sampled)
+ * multi-polygon - outer x 16,604 ops/sec ±0.22% (97 runs sampled)
+ * multi-polygon - inner1 x 16,428 ops/sec ±0.20% (99 runs sampled)
+ * multi-polygon - inner2 x 16,329 ops/sec ±0.19% (100 runs sampled)
+ * multi-polygon - inner3-close-to-hole x 16,409 ops/sec ±0.26% (99 runs sampled)
+ * multi-polygon - in-hole-close-to-poly-in-hole x 16,589 ops/sec ±0.27% (101 runs sampled)
+ * multi-polygon - in-hole-close-to-hole-border x 16,251 ops/sec ±0.26% (98 runs sampled)
+ * multi-polygon - in-poly-in-hole x 16,763 ops/sec ±0.50% (98 runs sampled)
+ * simple-polygon - outer x 118,008 ops/sec ±0.17% (101 runs sampled)
+ * simple-polygon - inner x 121,173 ops/sec ±0.17% (99 runs sampled)
  **/
 const suite = new Benchmark.Suite("turf-point-to-polygon-distance");
 

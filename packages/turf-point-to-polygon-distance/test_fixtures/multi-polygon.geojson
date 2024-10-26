@@ -5,7 +5,8 @@
       "type": "Feature",
       "properties": {
         "name": "outer",
-        "expected_distance": 22.10311139107688
+        "expected_distance": 22.10311139107688,
+        "units": "meters"
       },
       "geometry": {
         "coordinates": [13.403019116525968, 52.4749917692433],
@@ -16,7 +17,8 @@
       "type": "Feature",
       "properties": {
         "name": "inner1",
-        "expected_distance": -187.12846397492154
+        "expected_distance": -0.18712846397492156,
+        "units": "kilometers"
       },
       "geometry": {
         "coordinates": [13.399915241855979, 52.472957280225245],
@@ -27,7 +29,8 @@
       "type": "Feature",
       "properties": {
         "name": "inner2",
-        "expected_distance": -253.9006541753242
+        "expected_distance": -0.2539006541753242,
+        "units": "kilometers"
       },
       "geometry": {
         "coordinates": [13.396946319940724, 52.47723165382479],
@@ -38,7 +41,8 @@
       "type": "Feature",
       "properties": {
         "name": "inner3-close-to-hole",
-        "expected_distance": -16.135385380792886
+        "expected_distance": -16.135385380792886,
+        "units": "meters"
       },
       "geometry": {
         "coordinates": [13.403283336358811, 52.47790995176382],
@@ -49,7 +53,8 @@
       "type": "Feature",
       "properties": {
         "name": "in-hole-close-to-poly-in-hole",
-        "expected_distance": 16.36078019912375
+        "expected_distance": 16.36078019912375,
+        "units": "meters"
       },
       "geometry": {
         "coordinates": [13.403043879952975, 52.47832947539942],
@@ -60,7 +65,8 @@
       "type": "Feature",
       "properties": {
         "name": "in-hole-close-to-hole-border",
-        "expected_distance": 6.627508849855802
+        "expected_distance": 6.627508849855802,
+        "units": "meters"
       },
       "geometry": {
         "coordinates": [13.40253783003243, 52.47852394247576],
@@ -71,7 +77,8 @@
       "type": "Feature",
       "properties": {
         "name": "in-poly-in-hole",
-        "expected_distance": -5.519191580154778
+        "expected_distance": -5.519191580154778,
+        "units": "meters"
       },
       "geometry": {
         "coordinates": [13.403378284487616, 52.47824096630322],

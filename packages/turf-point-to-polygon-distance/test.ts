@@ -40,8 +40,10 @@ test("turf-point-to-polygon-distance", (t) => {
     if (!polygon)
       throw new Error(`No polygon found in the feature collection in ${name}`);
     for (const point of points) {
-      const distance = pointToPolygonDistance(point, polygon);
-      t.equal(distance, point.properties?.expected_distance, name, {
+      const expectedDistance = point.properties?.expected_distance;
+      const units = point.properties?.units;
+      const distance = pointToPolygonDistance(point, polygon, { units });
+      t.equal(distance, expectedDistance, name, {
         message: `${name} - ${point.properties?.name}`,
       });
     }
