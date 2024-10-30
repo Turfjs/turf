@@ -12,8 +12,8 @@ Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
 *   `line2` **[GeoJSON][1]** any LineString or Polygon
 *   `options` **[Object][2]** Optional parameters (optional, default `{}`)
 
-    *   `options.removeDuplicates` **[boolean][3]** remove duplicate intersections (optional, default `true`)
-    *   `options.ignoreSelfIntersections` **[boolean][3]** ignores self-intersections on input features (optional, default `false`)
+    *   `options.removeDuplicates` **[boolean][3]** remove duplicate intersections (default `true`) (optional, default `true`)
+    *   `options.ignoreSelfIntersections` **[boolean][3]** ignores self-intersections on input features (default `true`) (optional, default `true`)
 
 ### Examples
 
@@ -21,9 +21,6 @@ Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
 var line1 = turf.lineString([[126, -11], [129, -21]]);
 var line2 = turf.lineString([[123, -18], [131, -14]]);
 var intersects = turf.lineIntersect(line1, line2);
-
-//addToMap
-var addToMap = [line1, line2, intersects]
 ```
 
 Returns **[FeatureCollection][4]<[Point][5]>** point(s) that intersect both

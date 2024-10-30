@@ -18,16 +18,13 @@ import { sweeplineIntersections as findIntersections } from "./lib/sweepline-int
  * @param {GeoJSON} line1 any LineString or Polygon
  * @param {GeoJSON} line2 any LineString or Polygon
  * @param {Object} [options={}] Optional parameters
- * @param {boolean} [options.removeDuplicates=true] remove duplicate intersections
- * @param {boolean} [options.ignoreSelfIntersections=false] ignores self-intersections on input features
+ * @param {boolean} [options.removeDuplicates=true] remove duplicate intersections (default `true`)
+ * @param {boolean} [options.ignoreSelfIntersections=true] ignores self-intersections on input features (default `true`)
  * @returns {FeatureCollection<Point>} point(s) that intersect both
  * @example
  * var line1 = turf.lineString([[126, -11], [129, -21]]);
  * var line2 = turf.lineString([[123, -18], [131, -14]]);
  * var intersects = turf.lineIntersect(line1, line2);
- *
- * //addToMap
- * var addToMap = [line1, line2, intersects]
  */
 function lineIntersect<
   G1 extends LineString | MultiLineString | Polygon | MultiPolygon,
@@ -40,7 +37,7 @@ function lineIntersect<
     ignoreSelfIntersections?: boolean;
   } = {}
 ): FeatureCollection<Point> {
-  const { removeDuplicates = true, ignoreSelfIntersections = false } = options;
+  const { removeDuplicates = true, ignoreSelfIntersections = true } = options;
   let features: Feature<G1 | G2>[] = [];
   if (line1.type === "FeatureCollection")
     features = features.concat(line1.features);
