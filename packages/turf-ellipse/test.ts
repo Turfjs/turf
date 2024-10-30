@@ -66,8 +66,8 @@ test("turf-ellipse", (t) => {
 });
 
 test("turf-ellipse -- circle consistency", (t) => {
-  const ellipseGeom = ellipse([0, 60], 2000, 2000);
-  const circleGeom = circle([0, 60], 2000);
+  const ellipseGeom = truncate(ellipse([0, 60], 2000, 2000, { steps: 300 }));
+  const circleGeom = truncate(circle([0, 60], 2000, { steps: 300 }));
   const intersectionGeom = intersect(
     featureCollection([ellipseGeom, circleGeom])
   );
