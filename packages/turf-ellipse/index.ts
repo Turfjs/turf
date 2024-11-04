@@ -56,7 +56,7 @@ function ellipse(
   const angle = options.angle || 0;
   const pivot = options.pivot || center;
   const properties = options.properties || {};
-  const accuracy = options.accuracy || 3;
+  const accuracy = options.accuracy === undefined ? 0 : options.accuracy;
   // validation
   if (!center) throw new Error("center is required");
   if (!xSemiAxis) throw new Error("xSemiAxis is required");
@@ -65,6 +65,10 @@ function ellipse(
   if (!isNumber(steps)) throw new Error("steps must be a number");
   if (!isNumber(angle)) throw new Error("angle must be a number");
   if (!isNumber(accuracy)) throw new Error("accuracy must be a number");
+  if (accuracy !== 0 && accuracy < 1)
+    throw new Error(
+      "accuracy must either be equal to -1 or greater or equal to 1"
+    );
 
   const internalSteps = Math.floor(Math.pow(accuracy, 2) * steps);
 
@@ -89,43 +93,47 @@ function ellipse(
   let previousCoords = currentCoords;
   const cumulatedArcLength = [0];
   const cumulatedAngle = [0];
-
-  for (let i = 1; i < internalSteps + 1; i += 1) {
-    previousCoords = currentCoords;
-    currentAngle = (360 * i) / internalSteps;
-    r = Math.sqrt(
-      (Math.pow(xSemiAxis, 2) * Math.pow(ySemiAxis, 2)) /
-        (Math.pow(
-          xSemiAxis * Math.cos(degreesToRadians(currentAngle - angle)),
-          2
-        ) +
-          Math.pow(
-            ySemiAxis * Math.sin(degreesToRadians(currentAngle - angle)),
+  let circumference = 0;
+  if (accuracy != 0) {
+    for (let i = 1; i < internalSteps + 1; i += 1) {
+      previousCoords = currentCoords;
+      currentAngle = (360 * i) / internalSteps;
+      r = Math.sqrt(
+        (Math.pow(xSemiAxis, 2) * Math.pow(ySemiAxis, 2)) /
+          (Math.pow(
+            xSemiAxis * Math.cos(degreesToRadians(currentAngle - angle)),
             2
-          ))
-    );
-    currentCoords = getCoord(
-      destination(centerCoords, r, currentAngle, { units: units })
-    );
-    currentArcLength += distance(previousCoords, currentCoords);
-    cumulatedAngle.push(currentAngle);
-    cumulatedArcLength.push(currentArcLength);
+          ) +
+            Math.pow(
+              ySemiAxis * Math.sin(degreesToRadians(currentAngle - angle)),
+              2
+            ))
+      );
+      currentCoords = getCoord(
+        destination(centerCoords, r, currentAngle, { units: units })
+      );
+      currentArcLength += distance(previousCoords, currentCoords);
+      cumulatedAngle.push(currentAngle);
+      cumulatedArcLength.push(currentArcLength);
+    }
+    circumference = cumulatedArcLength[cumulatedArcLength.length - 1];
   }
-  const circumference = cumulatedArcLength[cumulatedArcLength.length - 1];
 
   let j = 0;
   for (let i = 1; i < steps; i += 1) {
-    const targetArcLength = (i * circumference) / steps;
-    while (cumulatedArcLength[j] < targetArcLength) {
-      j += 1;
+    let angleNewPoint = (360 * i) / steps;
+    if (accuracy != 0) {
+      const targetArcLength = (i * circumference) / steps;
+      while (cumulatedArcLength[j] < targetArcLength) {
+        j += 1;
+      }
+      const ratio =
+        (targetArcLength - cumulatedArcLength[j - 1]) /
+        (cumulatedArcLength[j] - cumulatedArcLength[j - 1]);
+      angleNewPoint =
+        cumulatedAngle[j - 1] +
+        ratio * (cumulatedAngle[j] - cumulatedAngle[j - 1]);
     }
-    const ratio =
-      (targetArcLength - cumulatedArcLength[j - 1]) /
-      (cumulatedArcLength[j] - cumulatedArcLength[j - 1]);
-    const angleNewPoint =
-      cumulatedAngle[j - 1] +
-      ratio * (cumulatedAngle[j] - cumulatedAngle[j - 1]);
-
     r = Math.sqrt(
       (Math.pow(xSemiAxis, 2) * Math.pow(ySemiAxis, 2)) /
         (Math.pow(

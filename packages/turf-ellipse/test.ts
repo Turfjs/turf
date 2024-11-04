@@ -34,9 +34,15 @@ test("turf-ellipse", (t) => {
     const name = fixture.name;
     const geojson = fixture.geojson;
     const center = geojson.geometry.coordinates;
-    let { xSemiAxis, ySemiAxis, steps, angle, units } = geojson.properties;
+    let { xSemiAxis, ySemiAxis, steps, angle, units, accuracy } =
+      geojson.properties;
     angle = angle || 0;
-    const options = { steps, angle, units };
+    const options = {
+      steps: steps,
+      angle: angle,
+      units: units,
+      accuracy: accuracy,
+    };
     const maxAxis = Math.max(xSemiAxis, ySemiAxis);
 
     const results = featureCollection([
@@ -51,6 +57,7 @@ test("turf-ellipse", (t) => {
             steps,
             angle: angle + 90,
             units,
+            accuracy: accuracy,
           }),
           "#0F0"
         )
