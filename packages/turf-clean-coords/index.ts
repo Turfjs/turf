@@ -45,24 +45,14 @@ function cleanCoords(
     case "MultiLineString":
     case "Polygon":
       getCoords(geojson).forEach(function (line) {
-        // Run cleanLine twice in case polygon start point is one of the points
-        // that ought to get cleaned.
-        // https://github.com/Turfjs/turf/issues/2406
-        const firstPass = cleanLine(line, type);
-        const secondPass = cleanLine(rotatePoints(firstPass), type);
-        newCoords.push(secondPass);
+        newCoords.push(cleanLine(line, type));
       });
       break;
     case "MultiPolygon":
       getCoords(geojson).forEach(function (polygons: any) {
         var polyPoints: Position[] = [];
         polygons.forEach(function (ring: Position[]) {
-          // Run cleanLine twice in case polygon start point is one of the points
-          // that ought to get cleaned.
-          // https://github.com/Turfjs/turf/issues/2406
-          const firstPass = cleanLine(ring, type);
-          const secondPass = cleanLine(rotatePoints(firstPass), type);
-          polyPoints.push(secondPass);
+          polyPoints.push(cleanLine(ring, type));
         });
         newCoords.push(polyPoints);
       });
@@ -149,9 +139,26 @@ function cleanLine(line: Position[], type: string) {
   // No remaining points, so commit the current a-b segment.
   newPoints.push(points[b]);
 
-  // (Multi)Polygons must have at least 4 points and be closed.
   if (type === "Polygon" || type === "MultiPolygon") {
-    if (!equals(points[0], points[points.length - 1])) {
+    // For polygons need to make sure the start / end point wasn't one of the
+    // points that needed to be cleaned.
+    // https://github.com/Turfjs/turf/issues/2406
+    // For points [a, b, c, ..., z, a]
+    // if a is on line b-z, it too can be removed. New array becomes
+    // [b, c, ..., z, b]
+    if (
+      booleanPointOnLine(
+        newPoints[0],
+        lineString([newPoints[1], points[newPoints.length - 2]])
+      )
+    ) {
+      newPoints.shift(); // Discard starting point.
+      newPoints.pop(); // Discard closing point.
+      newPoints.push(newPoints[0]); // Duplicate the new closing point to end of array.
+    }
+
+    // (Multi)Polygons must have at least 4 points and be closed.
+    if (!equals(newPoints[0], newPoints[newPoints.length - 1])) {
       throw new Error("invalid polygon, first and last points not equal");
     }
     if (newPoints.length < 4) {
@@ -172,26 +179,6 @@ function cleanLine(line: Position[], type: string) {
  */
 function equals(pt1: Position, pt2: Position) {
   return pt1[0] === pt2[0] && pt1[1] === pt2[1];
-}
-
-/**
- * Rotates a set of points to alter the start point of the polygon.
- *
- * @private
- * @param {Position[]} pts Points to rotate
- * @returns {Position[]} Rotated points
- */
-function rotatePoints(pts: Position[]) {
-  // Don't alter the input pts array. Avoid side effects.
-  const points = pts.slice();
-  if (!equals(points[0], points[points.length - 1])) {
-    // Not a closed polygon so don't touch it.
-    return points;
-  }
-  points.pop(); // Discard duplicate closing point temporarily.
-  points.push(points.shift() as Position); // Shuffle points along a place.
-  points.push(points[0]); // Duplicate the new closing point to end of array.
-  return points;
 }
 
 export { cleanCoords };
