@@ -151,3 +151,100 @@ test("turf-clean-coords -- prevent input mutation", (t) => {
   t.deepEqual(multiPolyBefore, multiPoly, "multiPolygon should NOT be mutated");
   t.end();
 });
+
+test("turf-clean-coords -- issue 2305", (t) => {
+  // From https://github.com/Turfjs/turf/issues/2305#issue-1287442870
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 1],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 1],
+      [0, 0],
+    ])
+  );
+
+  // From https://github.com/Turfjs/turf/issues/2305#issue-1287442870
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 0],
+        [0, 2],
+        [0, 2],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 2],
+      [0, 0],
+    ])
+  );
+
+  t.end();
+});
+
+test("turf-clean-coords -- issue 2740", (t) => {
+  // Issue 2740 is cleanCoords was too aggresive at removing points.
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 2],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 2],
+      [0, 0],
+    ]),
+    "#2740 north-south retraced line"
+  );
+
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 3],
+      [0, 0],
+    ]),
+    "#2740 north-south retraced line extra points"
+  );
+
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 1],
+        [0, 2],
+        [0, -2],
+        [0, -1],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 2],
+      [0, -2],
+      [0, 0],
+    ]),
+    "#2740 north-south retraced past origin and back to start"
+  );
+
+  t.end();
+});

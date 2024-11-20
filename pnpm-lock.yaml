@@ -2057,6 +2057,9 @@ importers:
 
   packages/turf-clean-coords:
     dependencies:
+      '@turf/boolean-point-on-line':
+        specifier: workspace:^
+        version: link:../turf-boolean-point-on-line
       '@turf/helpers':
         specifier: workspace:^
         version: link:../turf-helpers
