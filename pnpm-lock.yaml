@@ -2073,6 +2073,9 @@ importers:
         specifier: ^2.8.1
         version: 2.8.1
     devDependencies:
+      '@turf/boolean-equal':
+        specifier: workspace:^
+        version: link:../turf-boolean-equal
       '@turf/truncate':
         specifier: workspace:^
         version: link:../turf-truncate

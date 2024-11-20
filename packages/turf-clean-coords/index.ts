@@ -45,14 +45,24 @@ function cleanCoords(
     case "MultiLineString":
     case "Polygon":
       getCoords(geojson).forEach(function (line) {
-        newCoords.push(cleanLine(line, type));
+        // Run cleanLine twice in case polygon start point is one of the points
+        // that ought to get cleaned.
+        // https://github.com/Turfjs/turf/issues/2406
+        const firstPass = cleanLine(line, type);
+        const secondPass = cleanLine(rotatePoints(firstPass), type);
+        newCoords.push(secondPass);
       });
       break;
     case "MultiPolygon":
       getCoords(geojson).forEach(function (polygons: any) {
         var polyPoints: Position[] = [];
         polygons.forEach(function (ring: Position[]) {
-          polyPoints.push(cleanLine(ring, type));
+          // Run cleanLine twice in case polygon start point is one of the points
+          // that ought to get cleaned.
+          // https://github.com/Turfjs/turf/issues/2406
+          const firstPass = cleanLine(ring, type);
+          const secondPass = cleanLine(rotatePoints(firstPass), type);
+          polyPoints.push(secondPass);
         });
         newCoords.push(polyPoints);
       });
@@ -162,6 +172,26 @@ function cleanLine(line: Position[], type: string) {
  */
 function equals(pt1: Position, pt2: Position) {
   return pt1[0] === pt2[0] && pt1[1] === pt2[1];
+}
+
+/**
+ * Rotates a set of points to alter the start point of the polygon.
+ *
+ * @private
+ * @param {Position[]} pts Points to rotate
+ * @returns {Position[]} Rotated points
+ */
+function rotatePoints(pts: Position[]) {
+  // Don't alter the input pts array. Avoid side effects.
+  const points = pts.slice();
+  if (!equals(points[0], points[points.length - 1])) {
+    // Not a closed polygon so don't touch it.
+    return points;
+  }
+  points.pop(); // Discard duplicate closing point temporarily.
+  points.push(points.shift() as Position); // Shuffle points along a place.
+  points.push(points[0]); // Duplicate the new closing point to end of array.
+  return points;
 }
 
 export { cleanCoords };

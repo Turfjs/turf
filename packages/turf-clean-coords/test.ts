@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { truncate } from "@turf/truncate";
+import { booleanEqual } from "@turf/boolean-equal";
 import {
   point,
   multiPoint,
@@ -38,7 +39,10 @@ test("turf-clean-coords", (t) => {
 
     if (process.env.REGEN)
       writeJsonFileSync(directories.out + filename, results);
-    t.deepEqual(results, loadJsonFileSync(directories.out + filename), name);
+    t.true(
+      booleanEqual(results, loadJsonFileSync(directories.out + filename)),
+      name
+    );
   });
   t.end();
 });
@@ -244,6 +248,38 @@ test("turf-clean-coords -- issue 2740", (t) => {
       [0, 0],
     ]),
     "#2740 north-south retraced past origin and back to start"
+  );
+
+  t.end();
+});
+
+test("turf-clean-coords -- issue 2406", (t) => {
+  t.true(
+    booleanEqual(
+      cleanCoords(
+        polygon([
+          [
+            [1, 3], // a
+            [3, 3], // b
+            [3, 1], // c
+            [3, -3], // d
+            [-3, -3], // e
+            [-3, 3], // f
+            [1, 3], // a
+          ],
+        ])
+      ),
+      polygon([
+        [
+          [-3, 3], // f
+          [3, 3], // b
+          [3, -3], // d
+          [-3, -3], // e
+          [-3, 3], // f
+        ],
+      ])
+    ),
+    "#2406 polygon start point (a) should also be removed"
   );
 
   t.end();
