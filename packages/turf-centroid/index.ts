@@ -1,5 +1,11 @@
 import { Feature, GeoJsonProperties, Point } from "geojson";
-import { point, AllGeoJSON } from "@turf/helpers";
+import {
+  point,
+  degreesToRadians,
+  radiansToDegrees,
+  earthRadius,
+  AllGeoJSON,
+} from "@turf/helpers";
 import { coordEach } from "@turf/meta";
 
 /**
@@ -26,17 +32,41 @@ function centroid<P extends GeoJsonProperties = GeoJsonProperties>(
 ): Feature<Point, P> {
   let xSum = 0;
   let ySum = 0;
+  let zSum = 0;
   let len = 0;
   coordEach(
     geojson,
     function (coord) {
-      xSum += coord[0];
-      ySum += coord[1];
+      xSum +=
+        Math.cos(degreesToRadians(coord[0])) *
+        Math.cos(degreesToRadians(coord[1])) *
+        earthRadius;
+      ySum +=
+        Math.sin(degreesToRadians(coord[0])) *
+        Math.cos(degreesToRadians(coord[1])) *
+        earthRadius;
+      zSum += Math.sin(degreesToRadians(coord[1])) * earthRadius;
       len++;
     },
     true
   );
-  return point([xSum / len, ySum / len], options.properties);
+  return point(
+    [
+      radiansToDegrees(Math.atan2(ySum / len, xSum / len)),
+      radiansToDegrees(
+        Math.asin(
+          zSum /
+            len /
+            Math.sqrt(
+              Math.pow(xSum / len, 2) +
+                Math.pow(ySum / len, 2) +
+                Math.pow(zSum / len, 2)
+            )
+        )
+      ),
+    ],
+    options.properties
+  );
 }
 
 export { centroid };

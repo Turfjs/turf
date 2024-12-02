@@ -1963,6 +1963,9 @@ importers:
         specifier: ^2.6.2
         version: 2.6.2
     devDependencies:
+      '@turf/circle':
+        specifier: workspace:^
+        version: link:../turf-circle
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
