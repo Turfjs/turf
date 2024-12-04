@@ -173,6 +173,7 @@
     "@turf/point-grid": "workspace:^",
     "@turf/point-on-feature": "workspace:^",
     "@turf/point-to-line-distance": "workspace:^",
+    "@turf/point-to-polygon-distance": "workspace:^",
     "@turf/points-within-polygon": "workspace:^",
     "@turf/polygon-smooth": "workspace:^",
     "@turf/polygon-tangents": "workspace:^",
