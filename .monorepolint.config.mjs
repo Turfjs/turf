@@ -245,15 +245,6 @@ export default {
 
     requireDependency({
       options: {
-        devDependencies: {
-          rollup: "^3.29.5",
-        },
-      },
-      includePackages: [MAIN_PACKAGE],
-    }),
-
-    requireDependency({
-      options: {
         dependencies: {
           "@types/geojson": "^7946.0.10",
         },
