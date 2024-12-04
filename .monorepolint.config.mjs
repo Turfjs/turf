@@ -221,8 +221,9 @@ export default {
         devDependencies: {
           benchmark: "^2.1.4",
           "npm-run-all": "^4.1.5",
-          tape: "^5.7.2",
-          tsx: "^4.6.2",
+          tape: "^5.9.0",
+          tsup: "^8.3.5",
+          tsx: "^4.19.2",
         },
       },
       includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
@@ -231,11 +232,11 @@ export default {
     requireDependency({
       options: {
         dependencies: {
-          tslib: "^2.6.2",
+          tslib: "^2.8.1",
         },
         devDependencies: {
           "@types/benchmark": "^2.1.5",
-          "@types/tape": "^4.2.32",
+          "@types/tape": "^4.13.4",
           typescript: "^5.5.4",
         },
       },
