@@ -3,7 +3,10 @@ import path from "path";
 import { fileURLToPath } from "url";
 import test from "tape";
 import { loadJsonFileSync } from "load-json-file";
-import { booleanPointOnLine as pointOnLine } from "./index.js";
+import { point, lineString } from "@turf/helpers";
+import booleanPointOnLine, {
+  booleanPointOnLine as pointOnLine,
+} from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -34,5 +37,35 @@ test("turf-boolean-point-on-line", (t) => {
 
       t.false(result, "[false] " + name);
     });
+  t.end();
+});
+
+test("turf-boolean-point-on-line - issue 2750", (t) => {
+  // Issue 2750 was that in the first test below where point is on a different
+  // longitude to a zero length line booleanPointOnLine gave the correct result,
+  // while the second test where a point on the SAME longitude, but nowhere
+  // near, that zero length line incorrectly returned true.
+  t.false(
+    booleanPointOnLine(
+      point([2, 13]),
+      lineString([
+        [1, 1],
+        [1, 1],
+      ])
+    ),
+    "#2750 different longitude point not on zero length line"
+  );
+
+  t.false(
+    booleanPointOnLine(
+      point([1, 13]),
+      lineString([
+        [1, 1],
+        [1, 1],
+      ])
+    ),
+    "#2750 same longitude point not on zero length line"
+  );
+
   t.end();
 });

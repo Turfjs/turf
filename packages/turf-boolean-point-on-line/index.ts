@@ -97,6 +97,25 @@ function isPointOnLineSegment(
   } else if (cross !== 0) {
     return false;
   }
+
+  // Special cases for zero length lines
+  // https://github.com/Turfjs/turf/issues/2750
+  if (Math.abs(dxl) === Math.abs(dyl) && Math.abs(dxl) === 0) {
+    // Zero length line.
+    if (excludeBoundary) {
+      // To be on a zero length line pt has to be on the start (and end), BUT we
+      // are excluding start and end from possible matches.
+      return false;
+    }
+    if (pt[0] === lineSegmentStart[0] && pt[1] === lineSegmentStart[1]) {
+      // If point is same as start (and end) it's on the line segment
+      return true;
+    } else {
+      // Otherwise point is somewhere else
+      return false;
+    }
+  }
+
   if (!excludeBoundary) {
     if (Math.abs(dxl) >= Math.abs(dyl)) {
       return dxl > 0 ? x1 <= x && x <= x2 : x2 <= x && x <= x1;
