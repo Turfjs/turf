@@ -188,23 +188,11 @@ function ellipseRiemann(
     transformRotate(point(getCoord(center)), angle, { pivot })
   );
 
-  const coordinates: number[][] = [];
-
-  let r = Math.sqrt(
-    (Math.pow(xSemiAxis, 2) * Math.pow(ySemiAxis, 2)) /
-      (Math.pow(xSemiAxis * Math.cos(degreesToRadians(-angle)), 2) +
-        Math.pow(ySemiAxis * Math.sin(degreesToRadians(-angle)), 2))
-  );
-  let currentCoords = getCoord(
-    destination(centerCoords, r, 0, { units: units })
-  );
-  coordinates.push(currentCoords);
-
   // Divide steps by 4 for one quadrant
-  steps = steps / 4;
-  steps = 10;
+  steps = Math.floor(steps / 4);
 
-  let quadrant: Position[] = [];
+  let quadrantParameters = []; // should be a list of parameters and not positions
+  let parameters = [];
 
   const a = xSemiAxis;
   const b = ySemiAxis;
@@ -240,81 +228,60 @@ function ellipseRiemann(
           Math.sqrt(Math.pow(m * x + c, 2) - 4 * (v * m) * -(A / k))) /
         (2 * (v * m));
     }
-
-    // console.log("Aw", v * m * Math.pow(w, 2) + (m * x + c) * w);
-
-    // Scale x (between 0 and PI/2) up to the length of the xSemiAxis
-    const scaleX = (x / (Math.PI / 2)) * a;
-
-    // x^2 / a^2 + y^2 / b^2 = 1, solve for y
-    const y = Math.sqrt(
-      (1 - Math.pow(scaleX, 2) / Math.pow(a, 2)) * Math.pow(b, 2)
-    );
-
-    // console.log("scaleX", scaleX, y);
-    const dist = Math.sqrt(Math.pow(scaleX, 2) + Math.pow(y, 2));
-    const baseAngle =
-      (Math.atan(Math.abs(y) / Math.abs(scaleX)) * 180) / Math.PI;
-    quadrant.push([scaleX, y, baseAngle, dist]);
-
-    console.log(scaleX);
+    if (x != 0) {
+      // easier to add it later to avoid having twice the same point
+      quadrantParameters.push(x);
+    }
   }
 
-  // Add final point which is just [a, 0]
-  // const dist = Math.sqrt(Math.pow(a, 2) + Math.pow(0, 2));
-  // const baseAngle = (Math.atan(Math.abs(0) / Math.abs(a)) * 180) / Math.PI;
-  // quadrant.push([a, 0, baseAngle, dist]);
+  //NE
+  parameters.push(0);
+  for (let i = 0; i < quadrantParameters.length; i++) {
+    parameters.push(quadrantParameters[i]);
+  }
 
-  // console.log(JSON.stringify(quadrant));
-  const geometricPoints: Position[] = [];
-  const geodesicPoints: Position[] = [];
+  //NW
+  parameters.push(Math.PI / 2);
+  for (let i = 0; i < quadrantParameters.length; i++) {
+    parameters.push(
+      Math.PI - quadrantParameters[quadrantParameters.length - i - 1]
+    );
+  }
+
+  //SW
+  parameters.push(Math.PI);
+  for (let i = 0; i < quadrantParameters.length; i++) {
+    parameters.push(Math.PI + quadrantParameters[i]);
+  }
+
+  //SE
+  parameters.push((3 * Math.PI) / 2);
+  for (let i = 0; i < quadrantParameters.length; i++) {
+    parameters.push(
+      2 * Math.PI - quadrantParameters[quadrantParameters.length - i - 1]
+    );
+  }
+
+  parameters.push(0);
+
+  // We can now construct the ellipse
+
+  const coords: Position[] = [];
 
   // Push the quadrant forwards, with x values negated (NW quadrant)
-  for (const pt of quadrant) {
-    const [baseAngle, dist] = [pt[2], pt[3]];
-    const bearing = 0 - (90 - baseAngle);
-    geodesicPoints.push(
-      destination(center, dist, bearing).geometry.coordinates
+  for (const param of parameters) {
+    const theta = Math.atan2(b * Math.sin(param), a * Math.cos(param));
+    const r = Math.sqrt(
+      (Math.pow(a, 2) * Math.pow(b, 2)) /
+        (Math.pow(a * Math.cos(theta), 2) + Math.pow(b * Math.sin(theta), 2))
     );
-    geometricPoints.push([-pt[0], pt[1]]);
+    coords.push(
+      destination(centerCoords, r, angle + (theta * 180) / Math.PI).geometry
+        .coordinates
+    );
   }
 
-  // Push the quadrant backwards, with x and y values negated (SW quadrant)
-  quadrant.reverse();
-  for (const pt of quadrant) {
-    const [baseAngle, dist] = [pt[2], pt[3]];
-    const bearing = -90 - baseAngle;
-    geodesicPoints.push(
-      destination(center, dist, bearing).geometry.coordinates
-    );
-    geometricPoints.push([-pt[0], -pt[1]]);
-  }
-
-  // Push the quadrant forwards, with y values negated (SE quadrant)
-  quadrant.reverse();
-  for (const pt of quadrant) {
-    const [baseAngle, dist] = [pt[2], pt[3]];
-    const bearing = 180 - (90 - baseAngle);
-    geodesicPoints.push(
-      destination(center, dist, bearing).geometry.coordinates
-    );
-    geometricPoints.push([pt[0], -pt[1]]);
-  }
-
-  // Push the quadrant backwards, verbatim (NE quadrant)
-  quadrant.reverse();
-  for (const pt of quadrant) {
-    const [baseAngle, dist] = [pt[2], pt[3]];
-    const bearing = 90 - baseAngle;
-    geodesicPoints.push(
-      destination(center, dist, bearing).geometry.coordinates
-    );
-    geometricPoints.push([pt[0], pt[1]]);
-  }
-
-  console.log(JSON.stringify(lineString(geometricPoints)));
-
-  return polygon([geodesicPoints], properties);
+  return polygon([coords], properties);
 }
 
 function ellipseOld(
