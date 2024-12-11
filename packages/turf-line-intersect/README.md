@@ -12,8 +12,8 @@ Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
 *   `line2` **[GeoJSON][1]** any LineString or Polygon
 *   `options` **[Object][2]** Optional parameters (optional, default `{}`)
 
-    *   `options.removeDuplicates` **[boolean][3]** remove duplicate intersections (default `true`) (optional, default `true`)
-    *   `options.ignoreSelfIntersections` **[boolean][3]** ignores self-intersections on input features (default `true`) (optional, default `true`)
+    *   `options.removeDuplicates` **[boolean][3]** remove duplicate intersections (optional, default `true`)
+    *   `options.ignoreSelfIntersections` **[boolean][3]** ignores self-intersections on input features (optional, default `true`)
 
 ### Examples
 

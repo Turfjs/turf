@@ -18,8 +18,8 @@ import { sweeplineIntersections as findIntersections } from "./lib/sweepline-int
  * @param {GeoJSON} line1 any LineString or Polygon
  * @param {GeoJSON} line2 any LineString or Polygon
  * @param {Object} [options={}] Optional parameters
- * @param {boolean} [options.removeDuplicates=true] remove duplicate intersections (default `true`)
- * @param {boolean} [options.ignoreSelfIntersections=true] ignores self-intersections on input features (default `true`)
+ * @param {boolean} [options.removeDuplicates=true] remove duplicate intersections
+ * @param {boolean} [options.ignoreSelfIntersections=true] ignores self-intersections on input features
  * @returns {FeatureCollection<Point>} point(s) that intersect both
  * @example
  * var line1 = turf.lineString([[126, -11], [129, -21]]);
