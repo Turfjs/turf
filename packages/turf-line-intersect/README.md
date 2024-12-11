@@ -13,7 +13,7 @@ Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
 *   `options` **[Object][2]** Optional parameters (optional, default `{}`)
 
     *   `options.removeDuplicates` **[boolean][3]** remove duplicate intersections (optional, default `true`)
-    *   `options.ignoreSelfIntersections` **[boolean][3]** ignores self-intersections on input features (optional, default `false`)
+    *   `options.ignoreSelfIntersections` **[boolean][3]** ignores self-intersections on input features (optional, default `true`)
 
 ### Examples
 
