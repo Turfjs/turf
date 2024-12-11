@@ -1,4 +1,4 @@
-import { Point, Polygon, FeatureCollection } from "geojson";
+import { Point, Polygon, FeatureCollection, BBox } from "geojson";
 import { Units, Grid } from "@turf/helpers";
 
 /**
@@ -12,6 +12,7 @@ declare function interpolate(
     property?: string;
     units?: Units;
     weight?: number;
+    bbox?: BBox;
   }
 ): FeatureCollection<Point>;
 declare function interpolate(
@@ -22,6 +23,7 @@ declare function interpolate(
     property?: string;
     units?: Units;
     weight?: number;
+    bbox?: BBox;
   }
 ): FeatureCollection<Polygon>;
 

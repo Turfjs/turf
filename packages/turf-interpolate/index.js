@@ -6,9 +6,19 @@ import { centroid } from "@turf/centroid";
 import { squareGrid } from "@turf/square-grid";
 import { triangleGrid } from "@turf/triangle-grid";
 import { clone } from "@turf/clone";
-import { featureCollection } from "@turf/helpers";
+import { featureCollection, validateBBox } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
+
+function checkBBox(bbox) {
+  if (bbox == null) {
+    return;
+  } else if (Array.isArray(bbox)) {
+    validateBBox(bbox);
+  } else if (bbox.bbox != null) {
+    validateBBox(bbox.bbox);
+  }
+}
 
 /**
  * Takes a set of points and estimates their 'property' values on a grid using the [Inverse Distance Weighting (IDW) method](https://en.wikipedia.org/wiki/Inverse_distance_weighting).
@@ -21,6 +31,7 @@ import { collectionOf } from "@turf/invariant";
  * @param {string} [options.property='elevation'] the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists.
  * @param {string} [options.units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
  * @param {number} [options.weight=1] exponent regulating the distance-decay weighting
+ * @param {BBox}   [options.bbox] assigned interpolation region
  * @returns {FeatureCollection<Point|Polygon>} grid of points or polygons with interpolated 'property'
  * @example
  * var points = turf.randomPoint(30, {bbox: [50, 30, 70, 50]});
@@ -42,6 +53,7 @@ function interpolate(points, cellSize, options) {
   var gridType = options.gridType;
   var property = options.property;
   var weight = options.weight;
+  var box = options.bbox;
 
   // validation
   if (!points) throw new Error("points is required");
@@ -55,7 +67,8 @@ function interpolate(points, cellSize, options) {
   gridType = gridType || "square";
   weight = weight || 1;
 
-  var box = bbox(points);
+  box = box || bbox(points);
+  checkBBox(box);
   var grid;
   switch (gridType) {
     case "point":
