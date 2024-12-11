@@ -21,6 +21,8 @@ Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
 var line1 = turf.lineString([[126, -11], [129, -21]]);
 var line2 = turf.lineString([[123, -18], [131, -14]]);
 var intersects = turf.lineIntersect(line1, line2);
+//addToMap
+var addToMap = [line1, line2, intersects]
 ```
 
 Returns **[FeatureCollection][4]<[Point][5]>** point(s) that intersect both

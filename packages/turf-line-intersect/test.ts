@@ -133,6 +133,10 @@ test("turf-line-intersect - polygon support #586", (t) => {
   t.end();
 });
 
+/**
+ * ensures that the self intersection param behaves as expected -
+ * since it cannot be verified in the fixture format.
+ */
 test("turf-line-intersect - self intersection behavior", (t) => {
   const line1: Feature<LineString> = {
     type: "Feature",
