@@ -353,6 +353,9 @@ importers:
       '@turf/point-to-line-distance':
         specifier: workspace:^
         version: link:../turf-point-to-line-distance
+      '@turf/point-to-polygon-distance':
+        specifier: workspace:^
+        version: link:../turf-point-to-polygon-distance
       '@turf/points-within-polygon':
         specifier: workspace:^
         version: link:../turf-points-within-polygon
@@ -4840,6 +4843,64 @@ importers:
       '@turf/circle':
         specifier: workspace:^
         version: link:../turf-circle
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^4.2.32
+        version: 4.13.4
+      benchmark:
+        specifier: ^2.1.4
+        version: 2.1.4
+      load-json-file:
+        specifier: ^7.0.1
+        version: 7.0.1
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
+      tape:
+        specifier: ^5.7.2
+        version: 5.7.2
+      tsup:
+        specifier: ^8.0.1
+        version: 8.0.1(postcss@8.4.40)(ts-node@9.1.1)(typescript@5.5.4)
+      tsx:
+        specifier: ^4.6.2
+        version: 4.6.2
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+      write-json-file:
+        specifier: ^5.0.0
+        version: 5.0.0
+
+  packages/turf-point-to-polygon-distance:
+    dependencies:
+      '@turf/boolean-point-in-polygon':
+        specifier: workspace:^
+        version: link:../turf-boolean-point-in-polygon
+      '@turf/helpers':
+        specifier: workspace:^
+        version: link:../turf-helpers
+      '@turf/invariant':
+        specifier: workspace:^
+        version: link:../turf-invariant
+      '@turf/meta':
+        specifier: workspace:^
+        version: link:../turf-meta
+      '@turf/point-to-line-distance':
+        specifier: workspace:^
+        version: link:../turf-point-to-line-distance
+      '@turf/polygon-to-line':
+        specifier: workspace:^
+        version: link:../turf-polygon-to-line
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
+    devDependencies:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
@@ -9530,7 +9591,7 @@ packages:
     dependencies:
       '@typescript-eslint/types': 7.18.0
       '@typescript-eslint/visitor-keys': 7.18.0
-      debug: 4.3.4
+      debug: 4.3.6
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.4
@@ -16262,7 +16323,7 @@ packages:
       bundle-require: 4.0.2(esbuild@0.19.11)
       cac: 6.7.14
       chokidar: 3.5.3
-      debug: 4.3.4
+      debug: 4.3.6
       esbuild: 0.19.11
       execa: 5.1.1
       globby: 11.1.0
