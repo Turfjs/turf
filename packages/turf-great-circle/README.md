@@ -6,7 +6,8 @@
 
 Calculate great circles routes as [LineString][1] or [MultiLineString][2].
 If the `start` and `end` points span the antimeridian, the resulting feature will
-be split into a `MultiLineString`.
+be split into a `MultiLineString`. If the `start` and `end` positions are the same
+then a `LineString` will be returned with duplicate coordinates the length of the `npoints` option.
 
 ### Parameters
 

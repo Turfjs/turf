@@ -3,6 +3,7 @@ import {
   point,
   lineString,
   polygon,
+  feature,
   featureCollection,
   geometryCollection,
 } from "@turf/helpers";
@@ -317,5 +318,31 @@ test("turf-clone -- Feature with null geometry", (t) => {
   const cloned = clone(fc);
 
   t.deepEqual(fc, cloned);
+  t.end();
+});
+
+test("turf-clone -- Feature with property called 'length', issue #1621", (t) => {
+  const f = feature(
+    { type: "Point", coordinates: [0, 0] },
+    {
+      processed: {
+        length: {
+          orig: 123.456,
+          opti: 100.0,
+        },
+      },
+    }
+  );
+
+  // Clone
+  const cloned = clone(f);
+
+  t.deepEqual(f, cloned, "cloned feature should be deeply equal");
+  t.equal(
+    cloned.properties.processed.length.orig,
+    123.456,
+    "'orig' property should be preserved on 'processed.length' element"
+  );
+
   t.end();
 });
