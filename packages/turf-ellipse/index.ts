@@ -173,7 +173,7 @@ function ellipseRiemann(
   options = options || {};
   let steps = options.steps || 64;
   const units = options.units || "kilometers";
-  const angle = options.angle || 0;
+  let angle = options.angle || 0;
   const pivot = options.pivot || center;
   const properties = options.properties || {};
   // validation
@@ -187,6 +187,8 @@ function ellipseRiemann(
   const centerCoords = getCoord(
     transformRotate(point(getCoord(center)), angle, { pivot })
   );
+
+  angle = -90 + angle;
 
   // Divide steps by 4 for one quadrant
   steps = Math.floor(steps / 4);
@@ -214,7 +216,7 @@ function ellipseRiemann(
   let w = 0;
   let x = 0;
 
-  for (let i = 0; i <= steps; i++) {
+  for (let i = 0; i < steps; i++) {
     x += w;
 
     if (m === 0) {
@@ -273,7 +275,7 @@ function ellipseRiemann(
     const theta = Math.atan2(b * Math.sin(param), a * Math.cos(param));
     const r = Math.sqrt(
       (Math.pow(a, 2) * Math.pow(b, 2)) /
-        (Math.pow(a * Math.cos(theta), 2) + Math.pow(b * Math.sin(theta), 2))
+        (Math.pow(a * Math.sin(theta), 2) + Math.pow(b * Math.cos(theta), 2))
     );
     coords.push(
       destination(centerCoords, r, angle + (theta * 180) / Math.PI).geometry
