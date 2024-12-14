@@ -55,7 +55,7 @@ Turf modules ship with type definitions packaged in each module. No DefinitelyTy
 The types defined in the GeoJSON specification are maintained separately (Geometry, Polygon, etc). To refer to these in your own code, install `@types/geojson` and import from there:
 
 ```typescript
-import { type Polygon } from "@types/geojson";
+import { type Polygon } from "geojson";
 ```
 
 ### Other languages
