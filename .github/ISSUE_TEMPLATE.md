@@ -1,6 +1,6 @@
 Please provide the following when reporting an issue:
 
-- [ ] What you expected to happen, and what is happening instead.
+- [ ] Description of the problem, and how it differs from what you expected.
 - [ ] Version of Turf you are using, and of any other relevant software.
 - [ ] GeoJSON data as a [gist file](https://gist.github.com/) or [geojson.io](https://geojson.io/) (filename extension must be `.geojson`). Simple reproducible examples are preferrable.
 - [ ] Snippet of source code for complex examples using [jsfiddle](https://jsfiddle.net/).
