@@ -16,7 +16,7 @@ Takes a set of points and estimates their 'property' values on a grid using the 
     *   `options.property` **[string][6]** the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists. (optional, default `'elevation'`)
     *   `options.units` **[string][6]** used in calculating cellSize, can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
     *   `options.weight` **[number][4]** exponent regulating the distance-decay weighting (optional, default `1`)
-    *   `options.bbox` **[BBox][7]?** assigned interpolation region
+    *   `options.bbox` **[BBox][7]** Bounding Box Array \[west, south, east, north] associated with the FeatureCollection. (optional, default `bbox(points)`)
 
 ### Examples
 
