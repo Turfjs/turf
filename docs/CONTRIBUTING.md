@@ -1,22 +1,25 @@
+# Contributing to Turf
+
 ## Getting Started
 
-One of the most important things you can do is report bugs. Please reference [how to report a bug](http://polite.technology/reportabug.html) and when opening an [issue](https://github.com/Turfjs/turf/issues), follow the template.
+One of the most important things you can do is report bugs. Please reference [how to report a bug](https://macwright.com/sites/polite.technology/reportabug) and when opening an [issue](https://github.com/Turfjs/turf/issues), follow the template.
 
-To propose an enhancement for Turf, open an [issue](https://github.com/Turfjs/turf/issues), or start a [discussion](https://github.com/Turfjs/turf/discussions).
+To propose an enhancement for Turf, it's usually best to [start a discussion](https://github.com/Turfjs/turf/discussions) to work through the requirements. Unless you know exactly what you need! In which case [open an issue](https://github.com/Turfjs/turf/issues) to request it.
 
 To make a code contribution, follow the steps for [how to contribute](#how-to-contribute).
 
 ## Architecture
+
 - GeoJSON is the lingua franca of Turf. It should be used as the data structure for anything that can be represented as geography.
 - Most work happens in sub modules. These are found in the `packages` directory prefixed with "turf-".
-- Turf modules are small, containing a single exported function.  This function is exported from a top-level index file.
+- Turf modules are small, generally containing a single exported function.
 - Many turf modules depend on other smaller Turf modules.
 
 ## How to contribute
 
-If you don't have write access to the Turf repository (most will not), you will need to follow the [Github guidelines](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project) and fork the [Turf repo](https://github.com/Turfjs/turf) to your own account, create a feature branch, and open a Pull Request back to the main Turf repo.
+The best way for a new contributor to help with Turf is to find an open issue, fix it, and then share that back to the project via a pull request (PR). A maintainer will review your PR and get it merged with the rest of the code.
 
-If you do have write access to the Turf repo (core contributor), you can [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) it locally. This is required for doing a [release](#release).  You can also push feature branches directly to the Turf repo and open PR's against them.  Consider prefixing your feature branch names with your initials (for example `tw/my-feature`).
+Here is a great article on how to fork a repo, and start contributing to Turf.
 
 If you'd like to become a core contributor, just start making contributions, and inquire.
 
@@ -41,11 +44,9 @@ Turf modules are under the `packages` directory.  For example `packages/turf-are
 
 ```
 turf-<MODULE NAME>
-│   index.js
-│   index.d.ts
-│   bench.js
-│   test.js
-│   types.ts
+│   index.ts
+│   bench.ts
+│   test.ts
 │   package.json
 │   README.md
 │   LICENSE
@@ -58,49 +59,20 @@ turf-<MODULE NAME>
     └───out
         points.geojson
 ```
-To get started with a new module navigate to the root directory and run
-```sh
-$ node ./scripts/create-new-module <MODULE NAME>
-```
-it will create a new folder inside `packages` with a simple boilerplate for your module.
 
-* `index.js` - This file contains, in order, the various modules you need to
-  import, the [JSDocs](http://usejsdoc.org) documentation, and, finally, the
-  single exported function that the module provides. For more on the types
-  supported in the documentation, see…
-* `index.d.ts` - This is a [TypeScript](https://www.typescriptlang.org/) file
-  that describes your function’s signature. For more on the types supported in
-  TypeScript, see…
-* `index.ts` - If you prefer to write Typescript instead of Javascript, use this
-  instead of index.js and index.d.ts.
-* `bench.js` - This file uses [Benchmark](https://benchmarkjs.com/) to time
-  your function.
-* `test.js` - This file includes your [tape](https://github.com/substack/tape)
-  tests. We prefer dynamic testing built from GeoJSON files placed in
-  `./test/in` that are subsequently written to `./test/out` if your `REGEN`
-  [environment variable is set](https://askubuntu.com/a/58828) to `true`. If
-  `REGEN` is set to a different value, then running `pnpm t` will compare the
-  output of the tests to the files already present in `./test/out`.
-* `types.ts` - A file that tests the custom TypeScript types declared in
-  `index.d.ts`.
+* `index.ts` - This file contains the definition of the function including [TypeScript](https://www.typescriptlang.org/) types, function implementation, the embedded [JSDocs](http://usejsdoc.org) documentation, and finally the single exported function that the module provides.
+* `bench.ts` - This file uses [Benchmark](https://benchmarkjs.com/) to establish benchmark performance tests for your function.
+* `test.ts` - This file includes your [tape](https://github.com/substack/tape)
+  unit tests. Tests can either be traditional code based tests, or tests that pull in data files and compare inputs to outputs (see below).
 * `package.json` - The [node](http://nodejs.org) metadata container file.
-  Modules imported in `index.js` should be listed here under `dependencies`,
-  and modules used in `test.js` and/or `bench.js` should be listed under
-  `devDependencies`. `pnpm install` looks to this file to install dependencies
-  in `./node_modules`.
+  Modules imported in `index.ts` should be listed here under `dependencies`,
+  and modules used in `test.ts` or `bench.ts` should be listed under
+  `devDependencies`.
 * `README.md` - This README is generated _automatically_ by running `pnpm run
-  docs` from the project root level. **DO NOT edit this file**.
+  docs`. **DO NOT edit this file**.
 * `LICENCE` - Like the README, this file should not be edited.
 * `test/` - This directory holds the GeoJSON files that provide data for
-  dynamic tests (in `./test/in`) and the results of the tests (in
-  `./test/out`). The files in `./test/out` should **not** be edited by hand.
-  They should be generated dynamically by [setting the environment
-  variable](https://askubuntu.com/a/58828) `REGEN` to `true`, and then the
-  tests should be checked against these files by setting `REGEN` to some other
-  value. The resulting out-files can be drag-dropped into
-  [geojson.io](http://geojson.io) to see, visually, if the module is behaving
-  appropriately.
-
+  dynamic tests. Input data in `./test/in`, and expected output data in `./test/out`.
 </details>
 
 <details>
@@ -109,28 +81,11 @@ it will create a new folder inside `packages` with a simple boilerplate for your
 Work in a feature branch when possible
 - `git checkout -b my-feature`
 - Create it right away off of master.
-- This allows you to keep your local master branch clean and in sync with the official remote, for creating new branches at any time.
+- This allows you to keep your local master branch clean and in sync with the official remote. This will ease your ability to keep your local repo up to date with changes other people have made while you work on your feature.
 
 As you make code changes
-- Run `npm test` from any submodule to make sure tests keep passing as you go.  (for example `cd packages/turf-area` and `npm test`)
-- Occasionally Run `npm test` at the top-level directory to run test for all modules.
-  - This will ensure that you haven't introduced errors affecting other turf modules.
-</details>
-
-<details>
-<summary>Cleaning up</summary>
-<br/>
-To reset your current branch, throwing away any partial and uncommitted work
-- `git reset --hard`
-
-Merging branches, deleting branches and other management tasks are left for you to work out on your own.
-</details>
-
-<details>
-<summary>Staying up to date</summary>
-<br/>
-To update your local master branch with the latest code for all branches from the Github remote `origin`.
-- `git fetch remote`
+- Regularly run `pnpm test` in whatever submodule you are working in to avoid unintended bugs.
+- Occasionally run `pnpm test` at the top-level directory to run test for all modules, to make sure you haven't introduced a problem that affects another module.
 </details>
 
 ## Preparing a pull request
@@ -140,49 +95,52 @@ A simple, complete pull request is more likely to get merged.
 <details>
 <summary>But I don't know how</summary>
 <br>
-If you don't know how to make a solid PR, just submit a draft PR, and ask for feedback.  Then improve it and re-ask for feedback until it's ready.
+If you don't know how to make a solid PR, submit a draft PR and ask for feedback.  Take on any feedback to improve the PR ready. There may be multiple rounds of feedback. While this seems tedious it greatly reduces the risk of someone else
+having to revisit the same code any time soon.
 </details>
 
 ### Pull Request Checklist
 - Briefly summarize the need and solution. Link to the issue it's resolving if exists.
-- Add tests.  Even for bug fixes.  Just a simple test case that reproduces the issue and demonstrates it's fixed.
+- Add tests.  Even for bug fixes. A simple test case that reproduces the issue and demonstrates it's fixed.
 - Update JSDoc comments if the function signature changes or docs need improvement (See for example `packages/turf-area/index.ts`)
 - Run a full `npm test` at root level, confirming no cross-module issues.  If you don't catch this now, the Github CI will.
 
 ### Guidelines
+
 - Feel free to [ask](#getting-started) if a feature/enhancement is needed/wanted before doing the work.
 - Keep pull requests small and focused.
 - Avoid large dependencies at all costs.
 - Make sure that your code can run in the browser (ie: don't make calls to external services, don't hit the filesystem, etc.).
 
-### Doc generation
+### Documentation
 
-Know that module README.md files and https://turfjs.org API docs are auto-generated from JSDoc comments.
-- As a contributor, all you need to do is update the JSDoc comments.
-- For example if you change a top-level Turf functions signature (params, return type) or just want to improve the docs.
-- JSDoc comments are found in the top-level index file for each module (for example `turf/packages/turf-area/index.ts`).  For example look for `@name`, `@params`, `@returns`, `@example`.
+The module README.md files and https://turfjs.org API docs are auto-generated from JSDoc comments in each modules' source file.
+
+As a contributor, all you need to do is keep the JSDoc comments up to date, and the rest is automated. For example if you change a top-level Turf functions signature (params, return type) or just want to improve the descriptiveness of the docs.
+
+JSDoc comments are found in the top-level index file for each module (for example `turf/packages/turf-area/index.ts`).  Look for the `@name`, `@params`, `@returns`, `@example` tags.
 
 ## Code Style
 
 We have lots of tooling dedicated to ensuring consistent code. We use [Prettier](https://prettier.io/), [Typescript](https://www.typescriptlang.org/), and [ESLint](https://eslint.org/) to help us deliver quality code. These are checked by the build system and should be enforced at commit time by [Husky](https://typicode.github.io/husky/#/).
 
-Some of the modules are written in Typescript, others are still plain Javascript. In the javascript modules and any dependencies we include, it is important to only write ES5 code. This ensures good browser compatability for Turf users, and is checked at build time.
+Most modules are written in Typescript, while a few plain Javascript still linger. You can generally use modern Javascript when modifying Turf itself as all exported code is transpiled to (currently es2017).
 
-Making sure that the monorepo packages can be managed at scale, we use [Monorepolint](https://github.com/monorepolint/monorepolint) which allows us to programatically manage the various files in each package.
+Code for consumption by browsers is transpiled by babel as described in the README.
 
-- Linters are run at commit time, using a pre-commit hook in `.husky/pre-commit`.  See the package.json `lint:staged` section.
+Making sure that the monorepo packages can be managed at scale, we use [Monorepolint](https://github.com/monorepolint/monorepolint) to programmatically ensure the individual packages remain consistent.
 
 ## Documentation
 
-- API docs for each turf package are extracted from JSDoc comments in the source code into the top-level README.md files.  README's are automatically updated on commit using via the pre-commit hook.
+- API docs for each turf package are extracted from JSDoc comments in the source code into the top-level README.md files. README's are automatically updated on commit via a pre-commit hook.
 
 Should you want to generate new README files manually, use `pnpm run docs`:
   - **inside a module:** will generate the docs for that module.
-  - **main folder:** will generate docs for all modules.
+  - **from root folder:** will generate docs for all modules.
 
 ### Documentation - Examples
 
-**Only build docs for `@turf/center`**
+**Build docs for only `@turf/center`**
 
 ```bash
 $ cd ./turf/packages/turf-center
@@ -215,10 +173,11 @@ Building Docs: @turf/boolean-clockwise
 
 ### Public website
 
-The [turfjs.org](http://turfjs.org/) website is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
+The [turfjs.org](https://turfjs.org/) website is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
 
 ## Other Dependencies
-- Turf uses [pnpm 8](https://pnpm.io/8.x) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
+
+  - Turf uses [pnpm](https://pnpm.io/) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
   - Lerna will be automatically installed when you run `pnpm install` in the root directory.
   - Pnpm will need to be installed on your computer, installers are available via the pnpm website. When using [corepack](https://nodejs.org/api/corepack.html), this is automatically installed when running `pnpm`.
 
