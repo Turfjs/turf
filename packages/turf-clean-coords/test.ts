@@ -156,7 +156,7 @@ test("turf-clean-coords -- prevent input mutation", (t) => {
   t.end();
 });
 
-test("turf-clean-coords -- issue 2305", (t) => {
+test("turf-clean-coords - north south lines - issue 2305", (t) => {
   // From https://github.com/Turfjs/turf/issues/2305#issue-1287442870
   t.deepEqual(
     cleanCoords(
@@ -170,7 +170,8 @@ test("turf-clean-coords -- issue 2305", (t) => {
       [0, 0],
       [0, 1],
       [0, 0],
-    ])
+    ]),
+    "northern turnaround point is kept"
   );
 
   // From https://github.com/Turfjs/turf/issues/2305#issue-1287442870
@@ -188,13 +189,14 @@ test("turf-clean-coords -- issue 2305", (t) => {
       [0, 0],
       [0, 2],
       [0, 0],
-    ])
+    ]),
+    "northern turnaround point is kept"
   );
 
   t.end();
 });
 
-test("turf-clean-coords -- issue 2740", (t) => {
+test("turf-clean-coords - overly aggressive removal - issue 2740", (t) => {
   // Issue 2740 is cleanCoords was too aggresive at removing points.
   t.deepEqual(
     cleanCoords(
@@ -209,7 +211,7 @@ test("turf-clean-coords -- issue 2740", (t) => {
       [0, 2],
       [0, 0],
     ]),
-    "#2740 north-south retraced line"
+    "north-south retraced line turnaround point kept"
   );
 
   t.deepEqual(
@@ -227,7 +229,7 @@ test("turf-clean-coords -- issue 2740", (t) => {
       [0, 3],
       [0, 0],
     ]),
-    "#2740 north-south retraced line extra points"
+    "north-south retraced line properly cleaned"
   );
 
   t.deepEqual(
@@ -247,13 +249,13 @@ test("turf-clean-coords -- issue 2740", (t) => {
       [0, -2],
       [0, 0],
     ]),
-    "#2740 north-south retraced past origin and back to start"
+    "north-south retraced past origin and back to start line properly cleaned"
   );
 
   t.end();
 });
 
-test("turf-clean-coords -- issue 2406", (t) => {
+test("turf-clean-coords - start point protected - issue 2406", (t) => {
   t.true(
     booleanEqual(
       cleanCoords(
@@ -279,7 +281,7 @@ test("turf-clean-coords -- issue 2406", (t) => {
         ],
       ])
     ),
-    "#2406 polygon start point (a) should also be removed"
+    "polygon start point (a) was also removed"
   );
 
   t.end();

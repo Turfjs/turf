@@ -4,7 +4,8 @@
   "description": "turf clean-coords module",
   "author": "Turf Authors",
   "contributors": [
-    "Stefano Borghi <@stebogit>"
+    "Stefano Borghi <@stebogit>",
+    "James Beard <@smallsaucepan>"
   ],
   "license": "MIT",
   "bugs": {
