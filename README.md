@@ -50,7 +50,13 @@ You can also include it directly from a CDN:
 
 ### TypeScript
 
-TypeScript definitions are packaged with each module. No DefinitelyTyped packages required.
+Turf modules ship with type definitions packaged in each module. No DefinitelyTyped packages required.
+
+The types defined in the GeoJSON specification are maintained separately (Geometry, Polygon, etc). To refer to these in your own code, install `@types/geojson` and import from there:
+
+```typescript
+import { type Polygon } from "geojson";
+```
 
 ### Other languages
 
