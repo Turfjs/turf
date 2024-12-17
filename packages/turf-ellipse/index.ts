@@ -10,7 +10,7 @@ import {
 import { destination } from "@turf/destination";
 import { transformRotate } from "@turf/transform-rotate";
 import { getCoord } from "@turf/invariant";
-import { GeoJsonProperties, Feature, Polygon, Point, Position } from "geojson";
+import { GeoJsonProperties, Feature, Polygon, Position } from "geojson";
 
 /**
  * Takes a {@link Point} and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.
@@ -148,8 +148,9 @@ function ellipse(
         (Math.pow(a * Math.sin(theta), 2) + Math.pow(b * Math.cos(theta), 2))
     );
     coords.push(
-      destination(centerCoords, r, angle + radiansToDegrees(theta)).geometry
-        .coordinates
+      destination(centerCoords, r, angle + radiansToDegrees(theta), {
+        units: units,
+      }).geometry.coordinates
     );
   }
   return polygon([coords], properties);
