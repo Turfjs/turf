@@ -58,6 +58,9 @@
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
+    "@turf/area": "workspace:^",
+    "@turf/circle": "workspace:^",
+    "@turf/intersect": "workspace:^",
     "@turf/truncate": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.13.4",
@@ -71,7 +74,11 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
+    "@turf/bearing": "workspace:^",
+    "@turf/centroid": "workspace:^",
     "@turf/clone": "workspace:^",
+    "@turf/destination": "workspace:^",
+    "@turf/distance": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
     "@turf/meta": "workspace:^",

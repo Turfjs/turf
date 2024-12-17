@@ -20,6 +20,20 @@
       "properties": {
         "distance": 20,
         "units": "miles",
+        "direction": 45,
+        "marker-color": "#00F",
+        "marker-symbol": "star"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.407065, 45.636132]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "distance": 20,
+        "units": "miles",
         "direction": 45
       },
       "geometry": {
