@@ -57,7 +57,6 @@
     "@turf/bbox-polygon": "workspace:^",
     "@turf/circle": "workspace:^",
     "@turf/intersect": "workspace:^",
-    "@turf/meta": "workspace:^",
     "@turf/truncate": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.2.32",
@@ -76,8 +75,6 @@
     "@turf/distance": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@turf/invariant": "workspace:^",
-    "@turf/rhumb-bearing": "workspace:^",
-    "@turf/rhumb-destination": "workspace:^",
     "@turf/transform-rotate": "workspace:^",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.6.2"

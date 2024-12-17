@@ -9,7 +9,7 @@ import { check } from "@placemarkio/check-geojson";
 import { featureCollection } from "@turf/helpers";
 import { intersect } from "@turf/intersect";
 import { area } from "@turf/area";
-import { ellipse, ellipseRiemann } from "./index.js";
+import { ellipse } from "./index.js";
 import fs from "fs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -69,23 +69,6 @@ test("turf-ellipse", (t) => {
     if (process.env.REGEN) writeJsonFileSync(out, results);
     t.deepEqual(results, loadJsonFileSync(out), name);
   });
-  t.end();
-});
-
-test("turf-ellipse -- mytest", (t) => {
-  let center = [-70, 40];
-  let list_features = [];
-  const a = 2000;
-  const b = 3000;
-  const theta = 30;
-  let ellipseGeom = ellipseRiemann(center, a, b, { steps: 40, angle: theta });
-  list_features.push(ellipseGeom);
-  ellipseGeom = ellipse(center, a, b, { steps: 40, angle: theta });
-  list_features.push(ellipseGeom);
-
-  const result = featureCollection(list_features);
-  const out = path.join(directories.out, "mytest.json");
-  writeJsonFileSync(out, result);
   t.end();
 });
 

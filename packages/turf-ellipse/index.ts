@@ -156,3 +156,4 @@ function ellipse(
 }
 
 export { ellipse };
+export default ellipse;
