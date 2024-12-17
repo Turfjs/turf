@@ -30,13 +30,12 @@ import { polygonToLine } from "@turf/polygon-to-line";
 function booleanDisjoint(
   feature1: Feature<any> | Geometry,
   feature2: Feature<any> | Geometry,
-  options: {
+  {
+    ignoreSelfIntersections = true,
+  }: {
     ignoreSelfIntersections?: boolean;
-  } = {}
+  } = { ignoreSelfIntersections: true }
 ): boolean {
-  const ignoreSelfIntersections: boolean =
-    options.ignoreSelfIntersections ?? true;
-
   let bool = true;
   flattenEach(feature1, (flatten1) => {
     flattenEach(feature2, (flatten2) => {
