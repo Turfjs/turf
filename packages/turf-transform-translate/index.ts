@@ -118,8 +118,8 @@ function transformTranslate<T extends GeoJSON | GeometryCollection>(
  *
  * @private
  * @param {GeoJSON|GeometryCollection} feature feature or geometry collection to translate
- * @param {number} distance of translation greater than 0
- * @param {number} direction of translation
+ * @param {number} distanceTranslation of translation greater than 0
+ * @param {number} directionTranslation of translation
  * @param {number} zTranslation
  * @param {Units} units in which the distance is expressed
  * @returns {GeoJSON|GeometryCollection} translated GeoJSON Feature/Geometry

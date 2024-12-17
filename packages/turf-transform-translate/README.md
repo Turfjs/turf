@@ -17,6 +17,7 @@ on the provided direction angle.
     *   `options.units` **Units** in which `distance` will be express; miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
     *   `options.zTranslation` **[number][3]** length of the vertical motion, same unit of distance (optional, default `0`)
     *   `options.mutate` **[boolean][5]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+    *   `options.aroundCenter` **[boolean][5]** when set to true, for each feature the center is translated and the geometry reconstructed around it. Otherwise, points are independently translated. (optional, default `false`)
 
 ### Examples
 
