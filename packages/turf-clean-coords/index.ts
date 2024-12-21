@@ -149,7 +149,7 @@ function cleanLine(line: Position[], type: string) {
     if (
       booleanPointOnLine(
         newPoints[0],
-        lineString([newPoints[1], points[newPoints.length - 2]])
+        lineString([newPoints[1], newPoints[newPoints.length - 2]])
       )
     ) {
       newPoints.shift(); // Discard starting point.
@@ -158,11 +158,11 @@ function cleanLine(line: Position[], type: string) {
     }
 
     // (Multi)Polygons must have at least 4 points and be closed.
-    if (!equals(newPoints[0], newPoints[newPoints.length - 1])) {
-      throw new Error("invalid polygon, first and last points not equal");
-    }
     if (newPoints.length < 4) {
       throw new Error("invalid polygon, fewer than 4 points");
+    }
+    if (!equals(newPoints[0], newPoints[newPoints.length - 1])) {
+      throw new Error("invalid polygon, first and last points not equal");
     }
   }
 

@@ -1,10 +1,10 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { geojsonEquality } from "geojson-equality-ts";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { truncate } from "@turf/truncate";
-import { booleanEqual } from "@turf/boolean-equal";
 import {
   point,
   multiPoint,
@@ -40,7 +40,7 @@ test("turf-clean-coords", (t) => {
     if (process.env.REGEN)
       writeJsonFileSync(directories.out + filename, results);
     t.true(
-      booleanEqual(results, loadJsonFileSync(directories.out + filename)),
+      geojsonEquality(results, loadJsonFileSync(directories.out + filename)),
       name
     );
   });
@@ -257,7 +257,7 @@ test("turf-clean-coords - overly aggressive removal - issue 2740", (t) => {
 
 test("turf-clean-coords - start point protected - issue 2406", (t) => {
   t.true(
-    booleanEqual(
+    geojsonEquality(
       cleanCoords(
         polygon([
           [
@@ -282,6 +282,38 @@ test("turf-clean-coords - start point protected - issue 2406", (t) => {
       ])
     ),
     "polygon start point (a) was also removed"
+  );
+
+  t.end();
+});
+
+test("turf-clean-coords - multipolygon - issue #918", (t) => {
+  // Copied from turf-simplify as (at heart) it's cleanCoords that's being
+  // tested here.
+  // simplify hangs on this input #918
+  t.throws(
+    () =>
+      cleanCoords(
+        multiPolygon([
+          [
+            [
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+            ],
+          ],
+        ])
+      ),
+    /invalid polygon/,
+    "invalid polygon"
   );
 
   t.end();
