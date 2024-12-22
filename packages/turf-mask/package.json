@@ -67,7 +67,7 @@
     "@turf/clone": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@types/geojson": "^7946.0.10",
-    "polyclip-ts": "^0.16.6",
+    "polyclip-ts": "^0.16.8",
     "tslib": "^2.8.1"
   }
 }
