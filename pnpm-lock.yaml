@@ -2604,9 +2604,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      polygon-clipping:
-        specifier: ^0.15.3
-        version: 0.15.3
+      polyclip-ts:
+        specifier: ^0.16.8
+        version: 0.16.8
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -2723,9 +2723,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      polygon-clipping:
-        specifier: ^0.15.3
-        version: 0.15.3
+      polyclip-ts:
+        specifier: ^0.16.8
+        version: 0.16.8
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -3390,9 +3390,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      polygon-clipping:
-        specifier: ^0.15.3
-        version: 0.15.3
+      polyclip-ts:
+        specifier: ^0.16.8
+        version: 0.16.8
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -4243,9 +4243,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      polygon-clipping:
-        specifier: ^0.15.3
-        version: 0.15.3
+      polyclip-ts:
+        specifier: ^0.16.8
+        version: 0.16.8
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -6420,9 +6420,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      polygon-clipping:
-        specifier: ^0.15.3
-        version: 0.15.3
+      polyclip-ts:
+        specifier: ^0.16.8
+        version: 0.16.8
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -10207,6 +10207,10 @@ packages:
       lodash: 4.17.21
       platform: 1.3.6
     dev: true
+
+  /bignumber.js@9.1.2:
+    resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
+    dev: false
 
   /bin-links@4.0.4:
     resolution: {integrity: sha512-cMtq4W5ZsEwcutJrVId+a/tjt8GSbS+h0oNkdl6+6rBuEv8Ot33Bevj5KPm40t309zuhVic8NjpuL42QCiJWWA==}
@@ -15376,10 +15380,11 @@ packages:
   /point-in-polygon@1.1.0:
     resolution: {integrity: sha512-3ojrFwjnnw8Q9242TzgXuTD+eKiutbzyslcq1ydfu82Db2y+Ogbmyrkpv0Hgj31qwT3lbS9+QAAO/pIQM35XRw==}
 
-  /polygon-clipping@0.15.3:
-    resolution: {integrity: sha512-ho0Xx5DLkgxRx/+n4O74XyJ67DcyN3Tu9bGYKsnTukGAW6ssnuak6Mwcyb1wHy9MZc9xsUWqIoiazkZB5weECg==}
+  /polyclip-ts@0.16.8:
+    resolution: {integrity: sha512-JPtKbDRuPEuAjuTdhR62Gph7Is2BS1Szx69CFOO3g71lpJDFo78k4tFyi+qFOMVPePEzdSKkpGU3NBXPHHjvKQ==}
     dependencies:
-      splaytree: 3.1.2
+      bignumber.js: 9.1.2
+      splaytree-ts: 1.0.2
     dev: false
 
   /possible-typed-array-names@1.0.0:
@@ -16431,8 +16436,8 @@ packages:
     resolution: {integrity: sha512-eWN+LnM3GR6gPu35WxNgbGl8rmY1AEmoMDvL/QD6zYmPWgywxWqJWNdLGT+ke8dKNWrcYgYjPpG5gbTfghP8rw==}
     dev: true
 
-  /splaytree@3.1.2:
-    resolution: {integrity: sha512-4OM2BJgC5UzrhVnnJA4BkHKGtjXNzzUfpQjCO8I05xYPsfS/VuQDwjCGGMi8rYQilHEV4j8NBqTFbls/PZEE7A==}
+  /splaytree-ts@1.0.2:
+    resolution: {integrity: sha512-0kGecIZNIReCSiznK3uheYB8sbstLjCZLiwcQwbmLhgHJj2gz6OnSPkVzJQCMnmEz1BQ4gPK59ylhBoEWOhGNA==}
     dev: false
 
   /split2@3.2.2:
