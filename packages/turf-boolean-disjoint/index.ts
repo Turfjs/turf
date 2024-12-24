@@ -18,7 +18,7 @@ import { polygonToLine } from "@turf/polygon-to-line";
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters
- * @param {boolean} [options.ignoreSelfIntersections=false] ignores self-intersections on input features
+ * @param {boolean} [options.ignoreSelfIntersections=true] ignore self-intersections on input features
  * @returns {boolean} true if the intersection is an empty set, false otherwise
  * @example
  * var point = turf.point([2, 2]);
@@ -30,13 +30,12 @@ import { polygonToLine } from "@turf/polygon-to-line";
 function booleanDisjoint(
   feature1: Feature<any> | Geometry,
   feature2: Feature<any> | Geometry,
-  options: {
+  {
+    ignoreSelfIntersections = true,
+  }: {
     ignoreSelfIntersections?: boolean;
-  } = {}
+  } = { ignoreSelfIntersections: true }
 ): boolean {
-  const ignoreSelfIntersections: boolean =
-    options.ignoreSelfIntersections ?? false;
-
   let bool = true;
   flattenEach(feature1, (flatten1) => {
     flattenEach(feature2, (flatten2) => {
