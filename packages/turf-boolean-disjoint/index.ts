@@ -64,7 +64,6 @@ function booleanDisjoint(
 function disjoint(geom1: any, geom2: any, ignoreSelfIntersections: boolean) {
   switch (geom1.type) {
     case "Point":
-      /* eslint-disable @typescript-eslint/no-unused-vars */
       switch (geom2.type) {
         case "Point":
           return !compareCoords(geom1.coordinates, geom2.coordinates);
