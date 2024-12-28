@@ -66,7 +66,7 @@
     "@turf/helpers": "workspace:^",
     "@turf/meta": "workspace:^",
     "@types/geojson": "^7946.0.10",
-    "polygon-clipping": "^0.15.3",
+    "polyclip-ts": "^0.16.8",
     "tslib": "^2.8.1"
   }
 }
