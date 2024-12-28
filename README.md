@@ -20,7 +20,7 @@
 
 ## Getting Started
 
-Read our [getting started guide](docs/GETTING_STARTED.md) to begin working with Turf.
+Read our [getting started guide](https://turfjs.org/docs/getting-started) to begin working with Turf.
 
 Or explore the Turf API and examples at [turfjs.org](https://turfjs.org/).
 
