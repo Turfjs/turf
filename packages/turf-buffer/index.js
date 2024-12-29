@@ -13,7 +13,18 @@ import {
 const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
 
 /**
- * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
+ * Calculates a buffer for input features for a given radius. Units supported are:
+ *   * centimeters or centimetres
+ *   * degrees
+ *   * feet
+ *   * inches
+ *   * kilometers or kilometres
+ *   * meters, metres
+ *   * miles
+ *   * millimeters, millimetres
+ *   * nauticalmiles
+ *   * radians
+ *   * yards
  *
  * When using a negative radius, the resulting geometry may be invalid if
  * it's too small compared to the radius magnitude. If the input is a
