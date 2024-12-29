@@ -25,6 +25,26 @@
       "type": "Feature",
       "properties": {
         "direction": 70,
+        "distance": 300,
+        "stroke": "#00F",
+        "stroke-width": 4
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [2.923008, 29.92219],
+            [6.45499, 29.922438],
+            [5.446431, 32.922722],
+            [2.923008, 29.92219]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "direction": 70,
         "distance": 300
       },
       "geometry": {
