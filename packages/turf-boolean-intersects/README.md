@@ -12,7 +12,7 @@ Boolean-intersects returns (TRUE) if the intersection of the two geometries is N
 *   `feature2` **([Geometry][1] | [Feature][2]\<any>)** GeoJSON Feature or Geometry
 *   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-    *   `options.ignoreSelfIntersections` **[boolean][4]** ignores self-intersections on input features (optional, default `false`)
+    *   `options.ignoreSelfIntersections` **[boolean][4]** ignore self-intersections on input features (optional, default `true`)
 
 ### Examples
 

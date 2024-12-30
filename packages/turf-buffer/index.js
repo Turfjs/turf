@@ -22,18 +22,18 @@ const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
  * the input, or even be empty.
  *
  * @function
- * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
- * @param {number} radius distance to draw the buffer (negative values are allowed)
+ * @param {FeatureCollection|Geometry|Feature<any>} geojson Input to be buffered
+ * @param {number} radius Distance to draw the buffer (negative values are allowed)
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units="kilometers"] any of the options supported by turf units
- * @param {number} [options.steps=8] number of steps
- * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
+ * @param {Units} [options.units="kilometers"] Units in which linear values are expressed
+ * @param {number} [options.steps=8] Number of steps
+ * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} Buffered features
  * @example
- * var point = turf.point([-90.548630, 14.616599]);
- * var buffered = turf.buffer(point, 500, {units: 'miles'});
+ * const point = turf.point([-90.548630, 14.616599]);
+ * const buffered = turf.buffer(point, 500, {units: 'miles'});
  *
  * //addToMap
- * var addToMap = [point, buffered]
+ * const addToMap = [point, buffered]
  */
 function buffer(geojson, radius, options) {
   // Optional params

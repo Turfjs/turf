@@ -15,20 +15,20 @@ import { getCoords } from "@turf/invariant";
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the sector
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the sector
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @param {number} [options.steps=64] number of steps
- * @param {Properties} [options.properties={}] Translate properties to Feature Polygon
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {Feature<Polygon>} sector polygon
  * @example
- * var center = turf.point([-75, 40]);
- * var radius = 5;
- * var bearing1 = 25;
- * var bearing2 = 45;
+ * const center = turf.point([-75, 40]);
+ * const radius = 5;
+ * const bearing1 = 25;
+ * const bearing2 = 45;
  *
- * var sector = turf.sector(center, radius, bearing1, bearing2);
+ * const sector = turf.sector(center, radius, bearing1, bearing2);
  *
  * //addToMap
- * var addToMap = [center, sector];
+ * const addToMap = [center, sector];
  */
 function sector(
   center: Coord,

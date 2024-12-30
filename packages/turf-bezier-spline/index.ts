@@ -11,14 +11,14 @@ import { Spline } from "./lib/spline.js";
  * The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc/).
  *
  * @function
- * @param {Feature<LineString>} line input LineString
+ * @param {Feature<LineString>} line Input LineString
  * @param {Object} [options={}] Optional parameters
- * @param {Object} [options.properties={}] Translate properties to output
- * @param {number} [options.resolution=10000] time in milliseconds between points
- * @param {number} [options.sharpness=0.85] a measure of how curvy the path should be between splines
- * @returns {Feature<LineString>} curved line
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
+ * @param {number} [options.resolution=10000] Time in milliseconds between points
+ * @param {number} [options.sharpness=0.85] Measure of how curvy the path should be between splines
+ * @returns {Feature<LineString>} Curved line
  * @example
- * var line = turf.lineString([
+ * const line = turf.lineString([
  *   [-76.091308, 18.427501],
  *   [-76.695556, 18.729501],
  *   [-76.552734, 19.40443],
@@ -27,10 +27,10 @@ import { Spline } from "./lib/spline.js";
  *   [-73.157958, 20.210656]
  * ]);
  *
- * var curved = turf.bezierSpline(line);
+ * const curved = turf.bezierSpline(line);
  *
  * //addToMap
- * var addToMap = [line, curved]
+ * const addToMap = [line, curved]
  * curved.properties = { stroke: '#0F0' };
  */
 function bezierSpline<P extends GeoJsonProperties = GeoJsonProperties>(

@@ -17,14 +17,14 @@ import { dissolve } from "./lib/turf-dissolve.js";
  * Internally, this uses [turf-tin](https://github.com/Turfjs/turf-tin) to generate geometries.
  *
  * @function
- * @param {FeatureCollection<Point>} points input points
+ * @param {FeatureCollection<Point>} points Input points
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.maxEdge=Infinity] the length (in 'units') of an edge necessary for part of the
+ * @param {number} [options.maxEdge=Infinity] Length of an edge necessary for part of the
  * hull to become concave.
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @returns {Feature<(Polygon|MultiPolygon)>|null} a concave hull (null value is returned if unable to compute hull)
  * @example
- * var points = turf.featureCollection([
+ * const points = turf.featureCollection([
  *   turf.point([-63.601226, 44.642643]),
  *   turf.point([-63.591442, 44.651436]),
  *   turf.point([-63.580799, 44.648749]),
@@ -32,12 +32,12 @@ import { dissolve } from "./lib/turf-dissolve.js";
  *   turf.point([-63.587665, 44.64533]),
  *   turf.point([-63.595218, 44.64765])
  * ]);
- * var options = {units: 'miles', maxEdge: 1};
+ * const options = {units: 'miles', maxEdge: 1};
  *
- * var hull = turf.concave(points, options);
+ * const hull = turf.concave(points, options);
  *
  * //addToMap
- * var addToMap = [points, hull]
+ * const addToMap = [points, hull]
  */
 function concave(
   points: FeatureCollection<Point>,

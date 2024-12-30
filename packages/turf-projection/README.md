@@ -50,7 +50,7 @@ Returns **[GeoJSON][1]** Projected GeoJSON
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3
 
-[2]: https://developer.mozilla.org/docs/Web/API/Position
+[2]: https://tools.ietf.org/html/rfc7946#section-3.1.1
 
 [3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 

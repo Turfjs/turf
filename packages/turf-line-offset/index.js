@@ -15,15 +15,15 @@ import { intersection } from "./lib/intersection.js";
  * @param {Geometry|Feature<LineString|MultiLineString>} geojson input GeoJSON
  * @param {number} distance distance to offset the line (can be of negative value)
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, kilometers, inches, yards, meters
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @returns {Feature<LineString|MultiLineString>} Line offset from the input line
  * @example
- * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
+ * const line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });
  *
- * var offsetLine = turf.lineOffset(line, 2, {units: 'miles'});
+ * const offsetLine = turf.lineOffset(line, 2, {units: 'miles'});
  *
  * //addToMap
- * var addToMap = [offsetLine, line]
+ * const addToMap = [offsetLine, line]
  * offsetLine.properties.stroke = "#00F"
  */
 function lineOffset(geojson, distance, options) {

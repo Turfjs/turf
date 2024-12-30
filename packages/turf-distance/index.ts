@@ -12,17 +12,17 @@ import { radiansToLength, degreesToRadians, Coord, Units } from "@turf/helpers";
  * @param {Coord} from origin coordinate
  * @param {Coord} to destination coordinate
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @returns {number} distance between the two coordinates
  * @example
- * var from = turf.point([-75.343, 39.984]);
- * var to = turf.point([-75.534, 39.123]);
- * var options = {units: 'miles'};
+ * const from = turf.point([-75.343, 39.984]);
+ * const to = turf.point([-75.534, 39.123]);
+ * const options = {units: 'miles'};
  *
- * var distance = turf.distance(from, to, options);
+ * const distance = turf.distance(from, to, options);
  *
  * //addToMap
- * var addToMap = [from, to];
+ * const addToMap = [from, to];
  * from.properties.distance = distance;
  * to.properties.distance = distance;
  */

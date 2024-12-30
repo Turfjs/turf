@@ -1184,12 +1184,12 @@ function lineReduce(geojson, callback, initialValue) {
  * @param {number} [options.multiFeatureIndex=0] Multi-Feature Index
  * @param {number} [options.geometryIndex=0] Geometry Index
  * @param {number} [options.segmentIndex=0] Segment Index
- * @param {Object} [options.properties={}] Translate Properties to output LineString
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @param {BBox} [options.bbox={}] Translate BBox to output LineString
  * @param {number|string} [options.id={}] Translate Id to output LineString
  * @returns {Feature<LineString>} 2-vertex GeoJSON Feature LineString
  * @example
- * var multiLine = turf.multiLineString([
+ * const multiLine = turf.multiLineString([
  *     [[10, 10], [50, 30], [30, 40]],
  *     [[-10, -10], [-50, -30], [-30, -40]]
  * ]);
@@ -1313,7 +1313,7 @@ function findSegment(geojson, options) {
  * @param {number} [options.multiFeatureIndex=0] Multi-Feature Index
  * @param {number} [options.geometryIndex=0] Geometry Index
  * @param {number} [options.coordIndex=0] Coord Index
- * @param {Object} [options.properties={}] Translate Properties to output Point
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @param {BBox} [options.bbox={}] Translate BBox to output Point
  * @param {number|string} [options.id={}] Translate Id to output Point
  * @returns {Feature<Point>} 2-vertex GeoJSON Feature Point

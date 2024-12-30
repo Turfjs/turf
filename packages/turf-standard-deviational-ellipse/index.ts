@@ -55,7 +55,7 @@ declare interface StandardDeviationalEllipse extends Feature<Polygon> {
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.weight] the property name used to weight the center
  * @param {number} [options.steps=64] number of steps for the polygon
- * @param {Object} [options.properties={}] properties to pass to the resulting ellipse
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {Feature<Polygon>} an elliptical Polygon that includes approximately 1 SD of the dataset within it.
  * @example
  *
