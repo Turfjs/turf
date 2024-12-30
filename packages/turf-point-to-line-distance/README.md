@@ -33,7 +33,7 @@ Returns **[number][7]** distance between point and line
 
 [2]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[3]: https://developer.mozilla.org/docs/Web/API/Position
+[3]: https://tools.ietf.org/html/rfc7946#section-3.1.1
 
 [4]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

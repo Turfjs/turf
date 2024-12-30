@@ -32,7 +32,7 @@ Returns **[Feature][3]<[Polygon][6]>** Circle polygon
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[2]: https://developer.mozilla.org/docs/Web/API/Position
+[2]: https://tools.ietf.org/html/rfc7946#section-3.1.1
 
 [3]: https://tools.ietf.org/html/rfc7946#section-3.2
 

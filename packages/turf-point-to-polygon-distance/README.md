@@ -28,7 +28,7 @@ Returns **[number][8]** Distance to nearest edge of input polygon (negative valu
 
 [2]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[3]: https://developer.mozilla.org/docs/Web/API/Position
+[3]: https://tools.ietf.org/html/rfc7946#section-3.1.1
 
 [4]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 
