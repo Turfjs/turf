@@ -10,10 +10,10 @@ feature.
 
 ### Parameters
 
-*   `features` **[FeatureCollection][1]<([Polygon][2] | [MultiPolygon][3])>** input polygon features
-*   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
+*   `features` **[FeatureCollection][1]<([Polygon][2] | [MultiPolygon][3])>** Input polygon features
+*   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-    *   `options.properties` **[GeoJsonProperties][5]** properties to assign to output feature (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][5]** Properties to set on returned feature (optional, default `{}`)
 
 ### Examples
 
@@ -55,7 +55,7 @@ union.properties["stroke-width"] = 4;
 union.properties.fill = "transparent";
 ```
 
-Returns **([Feature][5]<([Polygon][2] | [MultiPolygon][3])> | null)** a combined polygon or multi-polygon feature, or null if there were no input polygons to combine
+Returns **([Feature][5]<([Polygon][2] | [MultiPolygon][3])> | null)** Combined polygon or multi-polygon feature, or null if there were no input polygons to combine
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 

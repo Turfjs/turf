@@ -15,7 +15,6 @@ import {
   GeoJsonProperties,
 } from "geojson";
 
-import { Id } from "./lib/geojson.js";
 export * from "./lib/geojson.js";
 
 /**
@@ -178,7 +177,7 @@ export function feature<
 >(
   geom: G | null,
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): Feature<G, P> {
   const feat: any = { type: "Feature" };
   if (options.id === 0 || options.id) {
@@ -254,7 +253,7 @@ export function geometry(
 export function point<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position,
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): Feature<Point, P> {
   if (!coordinates) {
     throw new Error("coordinates is required");
@@ -299,7 +298,7 @@ export function point<P extends GeoJsonProperties = GeoJsonProperties>(
 export function points<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): FeatureCollection<Point, P> {
   return featureCollection(
     coordinates.map((coords) => {
@@ -327,7 +326,7 @@ export function points<P extends GeoJsonProperties = GeoJsonProperties>(
 export function polygon<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): Feature<Polygon, P> {
   for (const ring of coordinates) {
     if (ring.length < 4) {
@@ -375,7 +374,7 @@ export function polygon<P extends GeoJsonProperties = GeoJsonProperties>(
 export function polygons<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): FeatureCollection<Polygon, P> {
   return featureCollection(
     coordinates.map((coords) => {
@@ -405,7 +404,7 @@ export function polygons<P extends GeoJsonProperties = GeoJsonProperties>(
 export function lineString<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): Feature<LineString, P> {
   if (coordinates.length < 2) {
     throw new Error("coordinates must be an array of two or more positions");
@@ -439,7 +438,7 @@ export function lineString<P extends GeoJsonProperties = GeoJsonProperties>(
 export function lineStrings<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][],
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): FeatureCollection<LineString, P> {
   return featureCollection(
     coordinates.map((coords) => {
@@ -476,7 +475,7 @@ export function featureCollection<
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
   features: Array<Feature<G, P>>,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): FeatureCollection<G, P> {
   const fc: any = { type: "FeatureCollection" };
   if (options.id) {
@@ -511,7 +510,7 @@ export function multiLineString<
 >(
   coordinates: Position[][],
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): Feature<MultiLineString, P> {
   const geom: MultiLineString = {
     type: "MultiLineString",
@@ -540,7 +539,7 @@ export function multiLineString<
 export function multiPoint<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[],
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): Feature<MultiPoint, P> {
   const geom: MultiPoint = {
     type: "MultiPoint",
@@ -570,7 +569,7 @@ export function multiPoint<P extends GeoJsonProperties = GeoJsonProperties>(
 export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
   coordinates: Position[][][],
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): Feature<MultiPolygon, P> {
   const geom: MultiPolygon = {
     type: "MultiPolygon",
@@ -604,7 +603,7 @@ export function geometryCollection<
     Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
   >,
   properties?: P,
-  options: { bbox?: BBox; id?: Id } = {}
+  options: { bbox?: BBox; id?: string | number } = {}
 ): Feature<GeometryCollection, P> {
   const geom: GeometryCollection = {
     type: "GeometryCollection",

@@ -15,17 +15,17 @@ import { getGeom } from "@turf/invariant";
  * {@link FeatureCollection} of {@link LineString|(Multi)LineString}.
  *
  * @function
- * @param {Feature<Polygon|MultiPolygon>} poly Feature to convert
+ * @param {Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} poly Feature to convert
  * @param {Object} [options={}] Optional parameters
- * @param {Object} [options.properties={}] translates GeoJSON properties to Feature
- * @returns {FeatureCollection|Feature<LineString|MultiLinestring>} converted (Multi)Polygon to (Multi)LineString
+ * @param {Object} [options.properties={}] Properties to set on returned feature
+ * @returns {FeatureCollection<LineString|MultiLinestring>|Feature<LineString|MultiLinestring>} converted (Multi)Polygon to (Multi)LineString
  * @example
- * var poly = turf.polygon([[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]);
+ * const poly = turf.polygon([[[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]]);
  *
- * var line = turf.polygonToLine(poly);
+ * const line = turf.polygonToLine(poly);
  *
  * //addToMap
- * var addToMap = [line];
+ * const addToMap = [line];
  */
 function polygonToLine<
   G extends Polygon | MultiPolygon,

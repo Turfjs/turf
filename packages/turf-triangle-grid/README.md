@@ -14,19 +14,19 @@ Creates a grid of triangular polygons.
 
     *   `options.units` **Units** used in calculating cellSide.  Supports all valid Turf [Units][4] (optional, default `'kilometers'`)
     *   `options.mask` **[Feature][5]<[Polygon][6]>?** if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
-    *   `options.properties` **[Object][3]** passed to each point of the grid (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][5]** Properties to set on each polygon of the grid (optional, default `{}`)
 
 ### Examples
 
 ```javascript
-var bbox = [-95, 30 ,-85, 40];
-var cellSide = 50;
-var options = {units: 'miles'};
+const bbox = [-95, 30 ,-85, 40];
+const cellSide = 50;
+const options = {units: 'miles'};
 
-var triangleGrid = turf.triangleGrid(bbox, cellSide, options);
+const triangleGrid = turf.triangleGrid(bbox, cellSide, options);
 
 //addToMap
-var addToMap = [triangleGrid];
+const addToMap = [triangleGrid];
 ```
 
 Returns **[FeatureCollection][7]<[Polygon][6]>** grid of polygons

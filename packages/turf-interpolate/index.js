@@ -19,22 +19,22 @@ import { collectionOf } from "@turf/invariant";
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.gridType='square'] defines the output format based on a Grid Type (options: 'square' | 'point' | 'hex' | 'triangle')
  * @param {string} [options.property='elevation'] the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists.
- * @param {string} [options.units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @param {number} [options.weight=1] exponent regulating the distance-decay weighting
  * @param {BBox}   [options.bbox=bbox(points)] Bounding Box Array [west, south, east, north] associated with the FeatureCollection.
  * @returns {FeatureCollection<Point|Polygon>} grid of points or polygons with interpolated 'property'
  * @example
- * var points = turf.randomPoint(30, {bbox: [50, 30, 70, 50]});
+ * const points = turf.randomPoint(30, {bbox: [50, 30, 70, 50]});
  *
  * // add a random property to each point
  * turf.featureEach(points, function(point) {
  *     point.properties.solRad = Math.random() * 50;
  * });
- * var options = {gridType: 'points', property: 'solRad', units: 'miles'};
- * var grid = turf.interpolate(points, 100, options);
+ * const options = {gridType: 'points', property: 'solRad', units: 'miles'};
+ * const grid = turf.interpolate(points, 100, options);
  *
  * //addToMap
- * var addToMap = [grid];
+ * const addToMap = [grid];
  */
 function interpolate(points, cellSize, options) {
   // Optional parameters

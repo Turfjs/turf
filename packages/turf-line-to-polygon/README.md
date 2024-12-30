@@ -11,7 +11,7 @@ Converts (Multi)LineString(s) to Polygon(s).
 *   `lines` **([FeatureCollection][1] | [Feature][2]<([LineString][3] | [MultiLineString][4])>)** Features to convert
 *   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-    *   `options.properties` **[Object][5]** translates GeoJSON properties to Feature (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][2]** Properties to set on returned feature (optional, default `{}`)
     *   `options.autoComplete` **[boolean][6]** auto complete linestrings (matches first & last coordinates) (optional, default `true`)
     *   `options.orderCoords` **[boolean][6]** sorts linestrings to place outer ring at the first position of the coordinates (optional, default `true`)
     *   `options.mutate` **[boolean][6]** mutate the original linestring using autoComplete (matches first & last coordinates) (optional, default `false`)
@@ -19,12 +19,12 @@ Converts (Multi)LineString(s) to Polygon(s).
 ### Examples
 
 ```javascript
-var line = turf.lineString([[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]);
+const line = turf.lineString([[125, -30], [145, -30], [145, -20], [125, -20], [125, -30]]);
 
-var polygon = turf.lineToPolygon(line);
+const polygon = turf.lineToPolygon(line);
 
 //addToMap
-var addToMap = [polygon];
+const addToMap = [polygon];
 ```
 
 Returns **[Feature][2]<([Polygon][7] | [MultiPolygon][8])>** converted to Polygons

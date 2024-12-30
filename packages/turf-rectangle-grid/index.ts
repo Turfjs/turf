@@ -21,24 +21,23 @@ import {
  * @param {number} cellWidth width of each cell, in units
  * @param {number} cellHeight height of each cell, in units
  * @param {Object} [options={}] Optional parameters
- * @param {Units} [options.units='kilometers'] the units of the cell width and height value.
- * Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}.
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed.
  * If you are looking for rectangles with equal width and height in linear units (e.g. kilometers) this is not the module for you.
  * The cellWidth and cellHeight is converted from units provided to degrees internally, so the width and height of resulting polygons will be consistent only in degrees.
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon,
  * the grid Points will be created only inside it
- * @param {Object} [options.properties={}] passed to each point of the grid
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on each polygon of the grid
  * @returns {FeatureCollection<Polygon>} a grid of polygons
  * @example
- * var bbox = [-95, 30 ,-85, 40];
- * var cellWidth = 50;
- * var cellHeight = 20;
- * var options = {units: 'miles'};
+ * const bbox = [-95, 30 ,-85, 40];
+ * const cellWidth = 50;
+ * const cellHeight = 20;
+ * const options = {units: 'miles'};
  *
- * var rectangleGrid = turf.rectangleGrid(bbox, cellWidth, cellHeight, options);
+ * const rectangleGrid = turf.rectangleGrid(bbox, cellWidth, cellHeight, options);
  *
  * //addToMap
- * var addToMap = [rectangleGrid]
+ * const addToMap = [rectangleGrid]
  */
 function rectangleGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,

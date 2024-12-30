@@ -1,6 +1,6 @@
 import { BBox, Feature, Point, GeoJsonProperties } from "geojson";
 import { geomEach, coordEach } from "@turf/meta";
-import { isNumber, point, Id } from "@turf/helpers";
+import { isNumber, point } from "@turf/helpers";
 
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the mean center. Can be weighted.
@@ -8,29 +8,34 @@ import { isNumber, point, Id } from "@turf/helpers";
  * @function
  * @param {GeoJSON} geojson GeoJSON to be centered
  * @param {Object} [options={}] Optional parameters
- * @param {Object} [options.properties={}] Translate GeoJSON Properties to Point
- * @param {Object} [options.bbox={}] Translate GeoJSON BBox to Point
- * @param {Object} [options.id={}] Translate GeoJSON Id to Point
- * @param {string} [options.weight] the property name used to weight the center
- * @returns {Feature<Point>} a Point feature at the mean center point of all input features
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
+ * @param {BBox} [options.bbox={}] TranslBBox to set on returned feature
+ * @param {string | number} [options.id={}] Id to set on returned feature
+ * @param {string} [options.weight] Property name used to weight the center
+ * @returns {Feature<Point>} Point feature at the mean center point of all input features
  * @example
- * var features = turf.featureCollection([
+ * const features = turf.featureCollection([
  *   turf.point([-97.522259, 35.4691], {value: 10}),
  *   turf.point([-97.502754, 35.463455], {value: 3}),
  *   turf.point([-97.508269, 35.463245], {value: 5})
  * ]);
  *
- * var options = {weight: "value"}
- * var mean = turf.centerMean(features, options);
+ * const options = {weight: "value"}
+ * const mean = turf.centerMean(features, options);
  *
  * //addToMap
- * var addToMap = [features, mean]
+ * const addToMap = [features, mean]
  * mean.properties['marker-size'] = 'large';
  * mean.properties['marker-color'] = '#000';
  */
 function centerMean<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: any, // To-Do include Typescript AllGeoJSON
-  options: { properties?: P; bbox?: BBox; id?: Id; weight?: string } = {}
+  options: {
+    properties?: P;
+    bbox?: BBox;
+    id?: string | number;
+    weight?: string;
+  } = {}
 ): Feature<Point, P> {
   let sumXs = 0;
   let sumYs = 0;

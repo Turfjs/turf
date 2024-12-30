@@ -12,7 +12,7 @@ import {
   GeoJsonProperties,
   BBox,
 } from "geojson";
-import { AllGeoJSON, Lines, Id } from "@turf/helpers";
+import { AllGeoJSON, Lines } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#coordreduce
@@ -128,7 +128,7 @@ declare function geomReduce<
     featureIndex: number,
     featureProperties: P,
     featureBBox: BBox,
-    featureId: Id
+    featureId: string | number
   ) => Reducer,
   initialValue?: Reducer
 ): Reducer;
@@ -151,7 +151,7 @@ declare function geomEach<
     featureIndex: number,
     featureProperties: P,
     featureBBox: BBox,
-    featureId: Id
+    featureId: string | number
   ) => void
 ): void;
 
@@ -292,7 +292,7 @@ declare function findSegment<
     segmentIndex?: number;
     properties?: P;
     bbox?: BBox;
-    id?: Id;
+    id?: string | number;
   }
 ): Feature<LineString, P>;
 
@@ -311,7 +311,7 @@ declare function findPoint<
     coordIndex?: number;
     properties?: P;
     bbox?: BBox;
-    id?: Id;
+    id?: string | number;
   }
 ): Feature<Point, P>;
 

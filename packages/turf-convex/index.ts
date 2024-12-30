@@ -14,10 +14,10 @@ import concaveman from "concaveman";
  * @param {GeoJSON} geojson input Feature or FeatureCollection
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.concavity=Infinity] 1 - thin shape. Infinity - convex hull.
- * @param {Object} [options.properties={}] Translate Properties to Feature
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {Feature<Polygon>} a convex hull
  * @example
- * var points = turf.featureCollection([
+ * const points = turf.featureCollection([
  *   turf.point([10.195312, 43.755225]),
  *   turf.point([10.404052, 43.8424511]),
  *   turf.point([10.579833, 43.659924]),
@@ -26,10 +26,10 @@ import concaveman from "concaveman";
  *   turf.point([10.195312, 43.755225])
  * ]);
  *
- * var hull = turf.convex(points);
+ * const hull = turf.convex(points);
  *
  * //addToMap
- * var addToMap = [points, hull]
+ * const addToMap = [points, hull]
  */
 function convex<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: AllGeoJSON,

@@ -11,17 +11,17 @@ Computes the centroid as the mean of all vertices within the object.
 *   `geojson` **[GeoJSON][1]** GeoJSON to be centered
 *   `options` **[Object][2]** Optional Parameters (optional, default `{}`)
 
-    *   `options.properties` **[Object][2]** an Object that is used as the [Feature][3]'s properties (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][3]** Properties to set on returned feature (optional, default `{}`)
 
 ### Examples
 
 ```javascript
-var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
+const polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
 
-var centroid = turf.centroid(polygon);
+const centroid = turf.centroid(polygon);
 
 //addToMap
-var addToMap = [polygon, centroid]
+const addToMap = [polygon, centroid]
 ```
 
 Returns **[Feature][3]<[Point][4]>** the centroid of the input object
