@@ -9,7 +9,7 @@ import { featureCollection, multiPolygon, polygon } from "@turf/helpers";
 import { coordEach, geomEach } from "@turf/meta";
 
 /**
- * Smooths a {@link Polygon} or {@link MultiPolygon}. Based on [Chaikin's algorithm](http://graphics.cs.ucdavis.edu/education/CAGDNotes/Chaikins-Algorithm/Chaikins-Algorithm.html).
+ * Smooths a {@link Polygon} or {@link MultiPolygon}. Based on [Chaikin's algorithm](https://www.cs.unc.edu/~dm/UNC/COMP258/LECTURES/Chaikins-Algorithm.pdf).
  * Warning: may create degenerate polygons.
  *
  * @function

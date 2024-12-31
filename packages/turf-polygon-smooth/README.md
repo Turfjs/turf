@@ -31,7 +31,7 @@ Returns **[FeatureCollection][4]<([Polygon][1] | [MultiPolygon][2])>** FeatureCo
 
 [2]: https://tools.ietf.org/html/rfc7946#section-3.1.7
 
-[3]: http://graphics.cs.ucdavis.edu/education/CAGDNotes/Chaikins-Algorithm/Chaikins-Algorithm.html
+[3]: https://www.cs.unc.edu/~dm/UNC/COMP258/LECTURES/Chaikins-Algorithm.pdf
 
 [4]: https://tools.ietf.org/html/rfc7946#section-3.3
 
