@@ -1,7 +1,7 @@
 {
   "name": "@turf/point-to-polygon-distance",
   "version": "7.2.0",
-  "description": "turf point-to-polygon-distance module",
+  "description": "Calculates the distance from a point to the edges of a polygon or multi-polygon.",
   "author": "Turf Authors",
   "contributors": [
     "Marc <@pachacamac>"

@@ -1,7 +1,7 @@
 {
   "name": "@turf/flip",
   "version": "7.2.0",
-  "description": "turf flip module",
+  "description": "Takes input features and flips all of their coordinates.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

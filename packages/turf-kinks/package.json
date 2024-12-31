@@ -1,7 +1,7 @@
 {
   "name": "@turf/kinks",
   "version": "7.2.0",
-  "description": "turf kinks module",
+  "description": "Takes a linestring, multi-linestring, multi-polygon or polygon and returns points at all self-intersections.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

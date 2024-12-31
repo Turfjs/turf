@@ -1,7 +1,7 @@
 {
   "name": "@turf/line-segment",
   "version": "7.2.0",
-  "description": "turf line-segment module",
+  "description": "Creates a FeatureCollection of 2-vertex LineString segments from a (Multi)LineString or (Multi)Polygon.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

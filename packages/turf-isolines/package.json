@@ -1,7 +1,7 @@
 {
   "name": "@turf/isolines",
   "version": "7.2.0",
-  "description": "turf isolines module",
+  "description": "Generate contour lines from a grid of data.",
   "author": "Turf Authors",
   "contributors": [
     "Stefano Borghi <@stebogit>"

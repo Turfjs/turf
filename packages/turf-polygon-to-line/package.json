@@ -1,7 +1,7 @@
 {
   "name": "@turf/polygon-to-line",
   "version": "7.2.0",
-  "description": "turf polygon-to-line module",
+  "description": "Converts a Polygon to (Multi)LineString or MultiPolygon to a FeatureCollection of (Multi)LineString.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

@@ -1,7 +1,7 @@
 {
   "name": "@turf/line-chunk",
   "version": "7.2.0",
-  "description": "turf line-chunk module",
+  "description": "Divides a LineString into chunks of a specified length. If the line is shorter than the segment length then the original line is returned.",
   "author": "Turf Authors",
   "contributors": [
     "Tim Channell <@tcql>",

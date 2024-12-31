@@ -1,7 +1,7 @@
 {
   "name": "@turf/points-within-polygon",
   "version": "7.2.0",
-  "description": "turf points-within-polygon module",
+  "description": "Finds Points or MultiPoint coordinate positions that fall within (Multi)Polygon(s).",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

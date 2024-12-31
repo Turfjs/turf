@@ -1,7 +1,7 @@
 {
   "name": "@turf/rhumb-destination",
   "version": "7.2.0",
-  "description": "turf rhumb-destination module",
+  "description": "Returns the destination point having travelled the given distance along a Rhumb line from the origin point with the (varant) given bearing.",
   "author": "Turf Authors",
   "contributors": [
     "Chris Veness <@chrisveness>",
