@@ -1,7 +1,7 @@
 {
   "name": "@turf/sample",
   "version": "7.2.0",
-  "description": "turf sample module",
+  "description": "Takes a FeatureCollection and returns a FeatureCollection with given number of features at random.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
