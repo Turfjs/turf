@@ -1,7 +1,7 @@
 {
   "name": "@turf/length",
   "version": "7.2.0",
-  "description": " Calculates the length of a LineString or MultiLineString, perfect for paths or routes.",
+  "description": " Calculates the length of a line, perfect for paths or routes.",
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>",

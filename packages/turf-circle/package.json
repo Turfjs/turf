@@ -1,7 +1,7 @@
 {
   "name": "@turf/circle",
   "version": "7.2.0",
-  "description": "Takes a Point and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.",
+  "description": "Takes a point and calculates the circle polygon given a radius.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

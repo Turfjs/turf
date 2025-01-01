@@ -1,7 +1,7 @@
 {
   "name": "@turf/angle",
   "version": "7.2.0",
-  "description": "Finds the angle formed by two adjacent segments defined by 3 points. The result will be the (positive clockwise) angle with origin on the startPoint-midPoint segment, or its explementary angle if required.",
+  "description": "Finds the angle formed by two adjacent segments.",
   "author": "Turf Authors",
   "contributors": [
     "Denis <@DenisCarriere>"

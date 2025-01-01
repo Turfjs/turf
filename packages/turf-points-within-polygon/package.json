@@ -1,7 +1,7 @@
 {
   "name": "@turf/points-within-polygon",
   "version": "7.2.0",
-  "description": "Finds Points or MultiPoint coordinate positions that fall within (Multi)Polygon(s).",
+  "description": "Finds points that fall within polygon(s).",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

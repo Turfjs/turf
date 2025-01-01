@@ -1,7 +1,7 @@
 {
   "name": "@turf/sector",
   "version": "7.2.0",
-  "description": "Creates a circular sector of a circle of given radius and center Point, between two bearings.",
+  "description": "Creates a circular sector of a circle.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
