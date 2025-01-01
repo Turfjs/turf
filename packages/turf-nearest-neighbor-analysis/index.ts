@@ -55,7 +55,7 @@ interface NearestNeighborStudyArea extends Feature<Polygon> {
 }
 
 /**
- * Nearest Neighbor Analysis calculates an index based the average distances
+ * Nearest Neighbor Analysis calculates an index based on the average distances
  * between points in the dataset, thereby providing inference as to whether the
  * data is clustered, dispersed, or randomly distributed within the study area.
  *

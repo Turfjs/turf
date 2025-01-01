@@ -1,7 +1,7 @@
 {
   "name": "@turf/polygonize",
   "version": "7.2.0",
-  "description": "turf polygonize module",
+  "description": "Polygonizes a set of lines that represents edges in a planar graph.",
   "author": "Turf Authors",
   "contributors": [
     "Nicolas Cisco <@nickcis>",

@@ -1,7 +1,7 @@
 {
   "name": "@turf/center-median",
   "version": "7.2.0",
-  "description": "turf center-median module",
+  "description": "Takes a FeatureCollection of points and calculates the median center.",
   "author": "Turf Authors",
   "contributors": [
     "Moacir P. de Sá Pereira <@muziejus>"

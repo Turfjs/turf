@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-touches",
   "version": "7.2.0",
-  "description": "turf boolean-touches module",
+  "description": "Determine whether none of the points common to both geometries intersect the interiors of both geometries.",
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>"

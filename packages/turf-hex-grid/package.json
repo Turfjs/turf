@@ -1,7 +1,7 @@
 {
   "name": "@turf/hex-grid",
   "version": "7.2.0",
-  "description": "turf hex-grid module",
+  "description": "Creates a honeycomb-like grid of hexagons within a bounding box.",
   "author": "Turf Authors",
   "contributors": [
     "James Seppi <@jseppi>",

@@ -1,7 +1,7 @@
 {
   "name": "@turf/clone",
   "version": "7.2.0",
-  "description": "turf clone module",
+  "description": "Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.",
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>"

@@ -1,7 +1,7 @@
 {
   "name": "@turf/tesselate",
   "version": "7.2.0",
-  "description": "turf tesselate module",
+  "description": "Tesselates a polygon or multipolygon into a collection of triangle polygons using earcut.",
   "author": "Turf Authors",
   "contributors": [
     "Abel Vázquez <@AbelVM>",

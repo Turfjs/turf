@@ -1,7 +1,7 @@
 {
   "name": "@turf/distance-weight",
   "version": "7.2.0",
-  "description": "turf distance-weight module",
+  "description": "Calculate the influence or weight of points over an area based on their distances.",
   "author": "Turf Authors",
   "contributors": [
     "Haoming Zhuang <@zhuang-hao-ming>"

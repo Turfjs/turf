@@ -1,7 +1,7 @@
 {
   "name": "@turf/transform-scale",
   "version": "7.2.0",
-  "description": "turf transform-scale module",
+  "description": "Changes the size of a geometry by scaling it up or down.",
   "author": "Turf Authors",
   "contributors": [
     "Stefano Borghi <@stebogit>",

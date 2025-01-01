@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-point-on-line",
   "version": "7.2.0",
-  "description": "turf boolean-point-on-line module",
+  "description": "Checks if a point lies directly on a line, like a path or road.",
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>"

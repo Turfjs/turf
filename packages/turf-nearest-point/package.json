@@ -1,7 +1,7 @@
 {
   "name": "@turf/nearest-point",
   "version": "7.2.0",
-  "description": "turf nearest-point module",
+  "description": "Finds the nearest point from a FeatureCollection of Features with Point geometries to a given point.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

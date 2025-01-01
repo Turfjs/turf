@@ -1,7 +1,7 @@
 {
   "name": "@turf/centroid",
   "version": "7.2.0",
-  "description": "turf centroid module",
+  "description": "Determines the geometric center of a polygon or shape.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

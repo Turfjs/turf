@@ -1,7 +1,7 @@
 {
   "name": "@turf/center-mean",
   "version": "7.2.0",
-  "description": "turf center-mean module",
+  "description": "Takes a Feature or FeatureCollection and returns the mean center.",
   "author": "Turf Authors",
   "contributors": [
     "Moacir P. de Sá Pereira <@muziejus>"

@@ -1,7 +1,7 @@
 {
   "name": "@turf/simplify",
   "version": "7.2.0",
-  "description": "turf simplify module",
+  "description": "Reduces the number of points in a shape while keeping its overall look.",
   "author": "Turf Authors",
   "contributors": [
     "Vladimir Agafonkin <@mourner>",

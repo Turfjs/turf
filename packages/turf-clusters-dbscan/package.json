@@ -1,7 +1,7 @@
 {
   "name": "@turf/clusters-dbscan",
   "version": "7.2.0",
-  "description": "turf clusters-dbscan module",
+  "description": "Takes a set of points and partition them into clusters according to DBSCAN's data clustering algorithm.",
   "author": "Turf Authors",
   "contributors": [
     "Lukasz <@uhho>",

@@ -1,7 +1,7 @@
 {
   "name": "@turf/union",
   "version": "7.2.0",
-  "description": "turf union module",
+  "description": "Combines two or more polygons into a single polygon.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
