@@ -1,7 +1,7 @@
 {
   "name": "@turf/helpers",
   "version": "7.2.0",
-  "description": "turf helpers module",
+  "description": "Provides helper functions to create GeoJSON features, like points, lines, or areas on a map.",
   "author": "Turf Authors",
   "contributors": [
     "Tom MacWright <@tmcw>",

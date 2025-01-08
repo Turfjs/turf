@@ -1,7 +1,7 @@
 {
   "name": "@turf/transform-translate",
   "version": "7.2.0",
-  "description": "turf transform-translate module",
+  "description": "Moves a shape or location in a specific direction.",
   "author": "Turf Authors",
   "contributors": [
     "Stefano Borghi <@stebogit>",
