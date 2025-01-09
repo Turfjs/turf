@@ -1,7 +1,7 @@
 {
   "name": "@turf/ellipse",
-  "version": "7.1.0",
-  "description": "turf ellipse module",
+  "version": "7.2.0",
+  "description": "Takes a Point and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.",
   "author": "Turf Authors",
   "contributors": [
     "Moacir P. de Sá Pereira <@muziejus>"

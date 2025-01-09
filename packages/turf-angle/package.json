@@ -1,7 +1,7 @@
 {
   "name": "@turf/angle",
-  "version": "7.1.0",
-  "description": "turf angle module",
+  "version": "7.2.0",
+  "description": "Finds the angle formed by two adjacent segments.",
   "author": "Turf Authors",
   "contributors": [
     "Denis <@DenisCarriere>"

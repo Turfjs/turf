@@ -1,7 +1,7 @@
 {
   "name": "@turf/rhumb-distance",
-  "version": "7.1.0",
-  "description": "turf rhumb-distance module",
+  "version": "7.2.0",
+  "description": "Calculates the distance along a rhumb line between two points.",
   "author": "Turf Authors",
   "contributors": [
     "Chris Veness <@chrisveness>",

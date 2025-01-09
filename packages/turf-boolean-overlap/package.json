@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-overlap",
-  "version": "7.1.0",
-  "description": "turf boolean-overlap module",
+  "version": "7.2.0",
+  "description": "Checks if two geometries have an area of overlap without one being completely contained inside the other.",
   "author": "Turf Authors",
   "contributors": [
     "Tim Channell <@tcql>",

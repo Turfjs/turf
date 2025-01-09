@@ -1,7 +1,7 @@
 {
   "name": "@turf/truncate",
-  "version": "7.1.0",
-  "description": "turf truncate module",
+  "version": "7.2.0",
+  "description": "Truncates precision of GeoJSON coordinates.",
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>"

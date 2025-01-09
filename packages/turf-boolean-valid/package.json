@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-valid",
-  "version": "7.1.0",
-  "description": "turf boolean-valid module",
+  "version": "7.2.0",
+  "description": "Checks if the geometry is a valid according to the OGC Simple Feature Specification.",
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",

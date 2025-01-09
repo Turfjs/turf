@@ -1,7 +1,7 @@
 {
   "name": "@turf/along",
-  "version": "7.1.0",
-  "description": "turf along module",
+  "version": "7.2.0",
+  "description": "Calculates a point along a line at a specific distance",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

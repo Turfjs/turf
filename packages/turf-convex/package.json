@@ -1,7 +1,7 @@
 {
   "name": "@turf/convex",
-  "version": "7.1.0",
-  "description": "turf convex module",
+  "version": "7.2.0",
+  "description": "Creates a convex hull around points",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

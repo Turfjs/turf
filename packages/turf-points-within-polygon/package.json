@@ -1,7 +1,7 @@
 {
   "name": "@turf/points-within-polygon",
-  "version": "7.1.0",
-  "description": "turf points-within-polygon module",
+  "version": "7.2.0",
+  "description": "Finds points that fall within polygon(s).",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

@@ -1,7 +1,7 @@
 {
   "name": "@turf/polygon-tangents",
-  "version": "7.1.0",
-  "description": "turf polygon tangents module",
+  "version": "7.2.0",
+  "description": "Finds the tangents of a polygon from a point.",
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",

@@ -1,7 +1,7 @@
 {
   "name": "@turf/tag",
-  "version": "7.1.0",
-  "description": "turf tag module",
+  "version": "7.2.0",
+  "description": "Takes a set of points and a set of polygons and/or multipolygons and performs a spatial join.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

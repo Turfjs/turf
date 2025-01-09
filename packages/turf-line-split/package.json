@@ -1,7 +1,7 @@
 {
   "name": "@turf/line-split",
-  "version": "7.1.0",
-  "description": "turf line-split module",
+  "version": "7.2.0",
+  "description": "Split a LineString by another GeoJSON Feature.",
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>"

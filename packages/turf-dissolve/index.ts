@@ -3,7 +3,7 @@ import { featureCollection, isObject, multiPolygon } from "@turf/helpers";
 import { collectionOf } from "@turf/invariant";
 import { featureEach } from "@turf/meta";
 import { flatten } from "@turf/flatten";
-import polygonClipping, { Geom } from "polygon-clipping";
+import * as polyclip from "polyclip-ts";
 
 /**
  * Dissolves a FeatureCollection of {@link Polygon} features, filtered by an optional property name:value.
@@ -45,12 +45,12 @@ function dissolve(
   if (!propertyName) {
     return flatten(
       multiPolygon(
-        polygonClipping.union.apply(
+        polyclip.union.apply(
           null,
           // List of polygons expressed as Position[][][] a.k.a. Geom[]
           fc.features.map(function (f) {
             return f.geometry.coordinates;
-          }) as [Geom, ...Geom[]]
+          }) as [polyclip.Geom, ...polyclip.Geom[]]
         )
       )
     );
@@ -76,12 +76,12 @@ function dissolve(
     // Export each group of polygons as a separate feature.
     for (let i = 0; i < vals.length; i++) {
       const mp = multiPolygon(
-        polygonClipping.union.apply(
+        polyclip.union.apply(
           null,
           // List of polygons expressed as Position[][][] a.k.a. Geom[]
           (uniquePropertyVals[vals[i]] as Feature<Polygon>[]).map(function (f) {
             return f.geometry.coordinates;
-          }) as [Geom, ...Geom[]]
+          }) as [polyclip.Geom, ...polyclip.Geom[]]
         )
       );
       if (mp && mp.properties) {

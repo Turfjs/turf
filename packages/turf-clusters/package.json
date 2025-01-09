@@ -1,7 +1,7 @@
 {
   "name": "@turf/clusters",
-  "version": "7.1.0",
-  "description": "turf clusters module",
+  "version": "7.2.0",
+  "description": "Group points into clusters based on their spatial proximity or properties.",
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>"

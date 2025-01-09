@@ -1,7 +1,7 @@
 {
   "name": "@turf/combine",
-  "version": "7.1.0",
-  "description": "turf combine module",
+  "version": "7.2.0",
+  "description": "Combines a FeatureCollection of Point, LineString, or Polygon features into MultiPoint, MultiLineString, or MultiPolygon features.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

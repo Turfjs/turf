@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-point-in-polygon",
-  "version": "7.1.0",
-  "description": "turf boolean-point-in-polygon module",
+  "version": "7.2.0",
+  "description": "Checks if a point is inside an area, like a city boundary.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

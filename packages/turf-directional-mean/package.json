@@ -1,7 +1,7 @@
 {
   "name": "@turf/directional-mean",
-  "version": "7.1.0",
-  "description": "turf directional-mean module",
+  "version": "7.2.0",
+  "description": "Calculates the average angle of a set of lines, measuring the trend of it.",
   "author": "Turf Authors",
   "contributors": [
     "Haoming Zhuang <@zhuang-hao-ming>"

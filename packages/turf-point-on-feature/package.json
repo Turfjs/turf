@@ -1,7 +1,7 @@
 {
   "name": "@turf/point-on-feature",
-  "version": "7.1.0",
-  "description": "turf point-on-feature module",
+  "version": "7.2.0",
+  "description": "Takes a Feature or FeatureCollection and returns a Point guaranteed to be on the surface of the feature.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
