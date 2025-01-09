@@ -1,7 +1,7 @@
 {
   "name": "@turf/flatten",
   "version": "7.2.0",
-  "description": "turf flatten module",
+  "description": "Flattens any GeoJSON to a FeatureCollection",
   "author": "Turf Authors",
   "contributors": [
     "Tom MacWright <@tmcw>",

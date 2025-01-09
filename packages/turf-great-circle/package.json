@@ -1,7 +1,7 @@
 {
   "name": "@turf/great-circle",
   "version": "7.2.0",
-  "description": "turf great-circle module",
+  "description": "Calculate great circles routes as LineString or MultiLineString.",
   "author": "Turf Authors",
   "contributors": [
     "Dane Springmeyer <@springmeyer>",

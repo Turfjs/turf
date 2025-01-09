@@ -1,7 +1,7 @@
 {
   "name": "@turf/line-slice-along",
   "version": "7.2.0",
-  "description": "turf line-slice-along module",
+  "description": "Useful for extracting only the part of a route between two distances.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

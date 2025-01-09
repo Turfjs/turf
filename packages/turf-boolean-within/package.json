@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-within",
   "version": "7.2.0",
-  "description": "turf boolean-within module",
+  "description": "Determines whether the first geometry is completely within the second geometry.",
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>"

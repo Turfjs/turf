@@ -1,7 +1,7 @@
 {
   "name": "@turf/bezier-spline",
   "version": "7.2.0",
-  "description": "turf bezier-spline module",
+  "description": "Smooths a line into a curve using Bézier splines, great for visualizing routes.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
