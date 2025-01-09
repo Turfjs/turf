@@ -16,12 +16,12 @@ the [convex-hull][4] module that implements a
 *   `options` **[Object][7]** Optional parameters (optional, default `{}`)
 
     *   `options.concavity` **[number][8]** 1 - thin shape. Infinity - convex hull. (optional, default `Infinity`)
-    *   `options.properties` **[Object][7]** Translate Properties to Feature (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][1]** Properties to set on returned feature (optional, default `{}`)
 
 ### Examples
 
 ```javascript
-var points = turf.featureCollection([
+const points = turf.featureCollection([
   turf.point([10.195312, 43.755225]),
   turf.point([10.404052, 43.8424511]),
   turf.point([10.579833, 43.659924]),
@@ -30,10 +30,10 @@ var points = turf.featureCollection([
   turf.point([10.195312, 43.755225])
 ]);
 
-var hull = turf.convex(points);
+const hull = turf.convex(points);
 
 //addToMap
-var addToMap = [points, hull]
+const addToMap = [points, hull]
 ```
 
 Returns **[Feature][1]<[Polygon][3]>** a convex hull

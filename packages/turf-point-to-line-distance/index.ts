@@ -1,8 +1,7 @@
 // Taken from http://geomalgorithms.com/a02-_lines.html
-import { Feature, LineString } from "geojson";
+import { Feature, LineString, Point, Position } from "geojson";
 import {
   convertLength,
-  Coord,
   feature,
   lineString,
   point,
@@ -18,23 +17,22 @@ import { rhumbDistance } from "@turf/rhumb-distance";
  * line. Sometimes referred to as the cross track distance.
  *
  * @function
- * @param {Feature<Point>|Array<number>} pt Feature or Geometry
+ * @param {Feature<Point>|Point|Position} pt Feature or Geometry
  * @param {Feature<LineString>} line GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units="kilometers"] can be anything supported by turf/convertLength
- * (ex: degrees, radians, miles, or kilometers)
+ * @param {Units} [options.units="kilometers"] Units in which linear values are expressed
  * @param {string} [options.method="geodesic"] whether to calculate the distance based on geodesic (spheroid) or
  * planar (flat) method. Valid options are 'geodesic' or 'planar'.
  * @returns {number} distance between point and line
  * @example
- * var pt = turf.point([0, 0]);
- * var line = turf.lineString([[1, 1],[-1, 1]]);
+ * const pt = turf.point([0, 0]);
+ * const line = turf.lineString([[1, 1],[-1, 1]]);
  *
- * var distance = turf.pointToLineDistance(pt, line, {units: 'miles'});
+ * const distance = turf.pointToLineDistance(pt, line, {units: 'miles'});
  * //=69.11854715938406
  */
 function pointToLineDistance(
-  pt: Coord,
+  pt: Feature<Point> | Point | Position,
   line: Feature<LineString> | LineString,
   options: {
     units?: Units;

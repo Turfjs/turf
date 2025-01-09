@@ -21,17 +21,17 @@ import { GeoJsonProperties, Feature, Polygon } from "geojson";
  * @param {number} [options.angle=0] angle of rotation in decimal degrees, positive clockwise
  * @param {Coord} [options.pivot=center] point around which any rotation will be performed
  * @param {number} [options.steps=64] number of steps
- * @param {string} [options.units='kilometers'] unit of measurement for axes
- * @param {Object} [options.properties={}] properties
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {Feature<Polygon>} ellipse polygon
  * @example
- * var center = [-75, 40];
- * var xSemiAxis = 5;
- * var ySemiAxis = 2;
- * var ellipse = turf.ellipse(center, xSemiAxis, ySemiAxis);
+ * const center = [-75, 40];
+ * const xSemiAxis = 5;
+ * const ySemiAxis = 2;
+ * const ellipse = turf.ellipse(center, xSemiAxis, ySemiAxis);
  *
  * //addToMap
- * var addToMap = [turf.point(center), ellipse]
+ * const addToMap = [turf.point(center), ellipse]
  */
 function ellipse(
   center: Coord,

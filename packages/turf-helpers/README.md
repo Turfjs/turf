@@ -607,7 +607,7 @@ Returns **[boolean][23]** true/false, including false for Arrays and Functions
 
 [19]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[20]: https://developer.mozilla.org/docs/Web/API/Position
+[20]: https://tools.ietf.org/html/rfc7946#section-3.1.1
 
 [21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 

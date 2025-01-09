@@ -15,10 +15,10 @@ import {
  * feature.
  *
  * @function
- * @param {FeatureCollection<Polygon|MultiPolygon>} features input polygon features
- * @param {Object} [options={}] Optional Parameters
- * @param {GeoJsonProperties} [options.properties={}] properties to assign to output feature
- * @returns {Feature<(Polygon|MultiPolygon)>|null} a combined polygon or multi-polygon feature, or null if there were no input polygons to combine
+ * @param {FeatureCollection<Polygon|MultiPolygon>} features Input polygon features
+ * @param {Object} [options={}] Optional parameters
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
+ * @returns {Feature<(Polygon|MultiPolygon)>|null} Combined polygon or multi-polygon feature, or null if there were no input polygons to combine
  * @example
  *
  * const poly1 = turf.polygon(

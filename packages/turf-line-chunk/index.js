@@ -11,16 +11,16 @@ import { featureCollection, isObject } from "@turf/helpers";
  * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson the lines to split
  * @param {number} segmentLength how long to make each segment
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] units can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @param {boolean} [options.reverse=false] reverses coordinates to start the first chunked segment at the end
  * @returns {FeatureCollection<LineString>} collection of line segments
  * @example
- * var line = turf.lineString([[-95, 40], [-93, 45], [-85, 50]]);
+ * const line = turf.lineString([[-95, 40], [-93, 45], [-85, 50]]);
  *
- * var chunk = turf.lineChunk(line, 15, {units: 'miles'});
+ * const chunk = turf.lineChunk(line, 15, {units: 'miles'});
  *
  * //addToMap
- * var addToMap = [chunk];
+ * const addToMap = [chunk];
  */
 function lineChunk(geojson, segmentLength, options) {
   // Optional parameters

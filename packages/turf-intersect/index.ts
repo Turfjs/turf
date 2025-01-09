@@ -16,11 +16,11 @@ import * as polyclip from "polyclip-ts";
  * @function
  * @param {FeatureCollection<Polygon | MultiPolygon>} features the features to intersect
  * @param {Object} [options={}] Optional Parameters
- * @param {Object} [options.properties={}] Translate GeoJSON Properties to Feature
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {Feature|null} returns a feature representing the area they share (either a {@link Polygon} or
  * {@link MultiPolygon}). If they do not share any area, returns `null`.
  * @example
- * var poly1 = turf.polygon([[
+ * const poly1 = turf.polygon([[
  *   [-122.801742, 45.48565],
  *   [-122.801742, 45.60491],
  *   [-122.584762, 45.60491],
@@ -28,7 +28,7 @@ import * as polyclip from "polyclip-ts";
  *   [-122.801742, 45.48565]
  * ]]);
  *
- * var poly2 = turf.polygon([[
+ * const poly2 = turf.polygon([[
  *   [-122.520217, 45.535693],
  *   [-122.64038, 45.553967],
  *   [-122.720031, 45.526554],
@@ -39,10 +39,10 @@ import * as polyclip from "polyclip-ts";
  *   [-122.520217, 45.535693]
  * ]]);
  *
- * var intersection = turf.intersect(turf.featureCollection([poly1, poly2]));
+ * const intersection = turf.intersect(turf.featureCollection([poly1, poly2]));
  *
  * //addToMap
- * var addToMap = [poly1, poly2, intersection];
+ * const addToMap = [poly1, poly2, intersection];
  */
 function intersect<P extends GeoJsonProperties = GeoJsonProperties>(
   features: FeatureCollection<Polygon | MultiPolygon>,
