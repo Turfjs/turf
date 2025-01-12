@@ -31,6 +31,30 @@
         "distance": 120,
         "units": "miles",
         "direction": 165,
+        "zTranslation": 15,
+        "stroke": "#00F",
+        "stroke-width": 4
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [121.896083, -25.557737, 25],
+            [125.992335, -29.166271, 26],
+            [130.18447, -27.236726, 27],
+            [129.776416, -23.740417, 28],
+            [125.417422, -22.063039, 29],
+            [121.896083, -25.557737, 25]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "distance": 120,
+        "units": "miles",
+        "direction": 165,
         "zTranslation": 15
       },
       "geometry": {
