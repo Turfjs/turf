@@ -532,7 +532,7 @@ test("null geometries", (t) => {
     0,
     "coordReduce"
   );
-  /* eslint-enable no-return-assign */
+
   t.end();
 });
 

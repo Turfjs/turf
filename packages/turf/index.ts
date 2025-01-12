@@ -91,6 +91,7 @@ export { pointGrid } from "@turf/point-grid";
 export { pointOnFeature } from "@turf/point-on-feature";
 export { pointsWithinPolygon } from "@turf/points-within-polygon";
 export { pointToLineDistance } from "@turf/point-to-line-distance";
+export { pointToPolygonDistance } from "@turf/point-to-polygon-distance";
 export { polygonize } from "@turf/polygonize";
 export { polygonSmooth } from "@turf/polygon-smooth";
 export { polygonTangents } from "@turf/polygon-tangents";

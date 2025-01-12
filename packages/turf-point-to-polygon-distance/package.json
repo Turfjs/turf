@@ -1,0 +1,79 @@
+{
+  "name": "@turf/point-to-polygon-distance",
+  "version": "7.2.0",
+  "description": "Calculates the distance from a point to the edges of a polygon or multi-polygon.",
+  "author": "Turf Authors",
+  "contributors": [
+    "Marc <@pachacamac>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "funding": "https://opencollective.com/turf",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "gis",
+    "point",
+    "polygon",
+    "distance"
+  ],
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "tsx bench.ts",
+    "build": "tsup --config ../../tsup.config.ts",
+    "docs": "tsx ../../scripts/generate-readmes.ts",
+    "test": "npm-run-all --npm-path npm test:*",
+    "test:tape": "tsx test.ts"
+  },
+  "devDependencies": {
+    "@types/benchmark": "^2.1.5",
+    "@types/tape": "^4.13.4",
+    "benchmark": "^2.1.4",
+    "load-json-file": "^7.0.1",
+    "npm-run-all": "^4.1.5",
+    "tape": "^5.9.0",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.4",
+    "write-json-file": "^5.0.0"
+  },
+  "dependencies": {
+    "@turf/boolean-point-in-polygon": "workspace:^",
+    "@turf/helpers": "workspace:^",
+    "@turf/invariant": "workspace:^",
+    "@turf/meta": "workspace:^",
+    "@turf/point-to-line-distance": "workspace:^",
+    "@turf/polygon-to-line": "workspace:^",
+    "@types/geojson": "^7946.0.10",
+    "tslib": "^2.8.1"
+  }
+}
