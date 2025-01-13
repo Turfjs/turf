@@ -19,20 +19,20 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
  * @param {number} cellSide length of the side of the the hexagons or triangles, in units. It will also coincide with the
  * radius of the circumcircle of the hexagons.
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] used in calculating cell size, can be degrees, radians, miles, or kilometers
- * @param {Object} [options.properties={}] passed to each hexagon or triangle of the grid
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @param {Feature<Polygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {boolean} [options.triangles=false] whether to return as triangles instead of hexagons
  * @returns {FeatureCollection<Polygon>} a hexagonal grid
  * @example
- * var bbox = [-96,31,-84,40];
- * var cellSide = 50;
- * var options = {units: 'miles'};
+ * const bbox = [-96, 31, -84, 40];
+ * const cellSide = 50;
+ * const options = {units: 'miles'};
  *
- * var hexgrid = turf.hexGrid(bbox, cellSide, options);
+ * const hexgrid = turf.hexGrid(bbox, cellSide, options);
  *
  * //addToMap
- * var addToMap = [hexgrid];
+ * const addToMap = [hexgrid];
  */
 function hexGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,

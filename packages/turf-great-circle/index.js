@@ -12,19 +12,19 @@ import { GreatCircle } from "./lib/arc.js";
  * @param {Coord} start source point feature
  * @param {Coord} end destination point feature
  * @param {Object} [options={}] Optional parameters
- * @param {Object} [options.properties={}] line feature properties
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @param {number} [options.npoints=100] number of points
  * @param {number} [options.offset=10] offset controls the likelyhood that lines will
  * be split which cross the dateline. The higher the number the more likely.
  * @returns {Feature<LineString | MultiLineString>} great circle line feature
  * @example
- * var start = turf.point([-122, 48]);
- * var end = turf.point([-77, 39]);
+ * const start = turf.point([-122, 48]);
+ * const end = turf.point([-77, 39]);
  *
- * var greatCircle = turf.greatCircle(start, end, {properties: {name: 'Seattle to DC'}});
+ * const greatCircle = turf.greatCircle(start, end, {properties: {name: 'Seattle to DC'}});
  *
  * //addToMap
- * var addToMap = [start, end, greatCircle]
+ * const addToMap = [start, end, greatCircle]
  */
 function greatCircle(start, end, options) {
   // Optional parameters

@@ -15,14 +15,14 @@ A hole is treated as the exterior of the polygon.
 *   `polygonOrMultiPolygon` **([Feature][1]<([Polygon][4] | [MultiPolygon][5])> | [Polygon][4] | [MultiPolygon][5])** Input polygon or multipolygon
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **Units** Units of the result e.g. "kilometers", "miles", "meters"
-    *   `options.method` **(`"geodesic"` | `"planar"`)** Method of the result
+    *   `options.units` **Units** Units in which linear values are expressed (optional, default `'kilometers'`)
+    *   `options.method` **(`"geodesic"` | `"planar"`)** Method of calculation (optional, default `"geodesic"`)
 
 <!---->
 
 *   Throws **[Error][7]** If input geometries are invalid
 
-Returns **[number][8]** Distance in meters (negative values for points inside the polygon)
+Returns **[number][8]** Distance to nearest edge of input polygon (negative values for points inside the polygon)
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.2
 

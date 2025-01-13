@@ -12,17 +12,17 @@ The bezier spline implementation is by [Leszek Rybicki][3].
 
 ### Parameters
 
-*   `line` **[Feature][4]<[LineString][1]>** input LineString
+*   `line` **[Feature][4]<[LineString][1]>** Input LineString
 *   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-    *   `options.properties` **[Object][5]** Translate properties to output (optional, default `{}`)
-    *   `options.resolution` **[number][6]** time in milliseconds between points (optional, default `10000`)
-    *   `options.sharpness` **[number][6]** a measure of how curvy the path should be between splines (optional, default `0.85`)
+    *   `options.properties` **[GeoJsonProperties][4]** Properties to set on returned feature (optional, default `{}`)
+    *   `options.resolution` **[number][6]** Time in milliseconds between points (optional, default `10000`)
+    *   `options.sharpness` **[number][6]** Measure of how curvy the path should be between splines (optional, default `0.85`)
 
 ### Examples
 
 ```javascript
-var line = turf.lineString([
+const line = turf.lineString([
   [-76.091308, 18.427501],
   [-76.695556, 18.729501],
   [-76.552734, 19.40443],
@@ -31,14 +31,14 @@ var line = turf.lineString([
   [-73.157958, 20.210656]
 ]);
 
-var curved = turf.bezierSpline(line);
+const curved = turf.bezierSpline(line);
 
 //addToMap
-var addToMap = [line, curved]
+const addToMap = [line, curved]
 curved.properties = { stroke: '#0F0' };
 ```
 
-Returns **[Feature][4]<[LineString][1]>** curved line
+Returns **[Feature][4]<[LineString][1]>** Curved line
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 

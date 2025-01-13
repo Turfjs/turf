@@ -8,24 +8,24 @@ Takes a bbox and returns an equivalent [polygon][1].
 
 ### Parameters
 
-*   `bbox` **[BBox][2]** extent in \[minX, minY, maxX, maxY] order
+*   `bbox` **[BBox][2]** Extent in \[minX, minY, maxX, maxY] order
 *   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-    *   `options.properties` **[GeoJsonProperties][4]** Translate properties to Polygon (optional, default `{}`)
-    *   `options.id` **([string][5] | [number][6])** Translate Id to Polygon (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][4]** Properties to set on returned feature (optional, default `{}`)
+    *   `options.id` **([string][5] | [number][6])** Id to set on returned feature (optional, default `{}`)
 
 ### Examples
 
 ```javascript
-var bbox = [0, 0, 10, 10];
+const bbox = [0, 0, 10, 10];
 
-var poly = turf.bboxPolygon(bbox);
+const poly = turf.bboxPolygon(bbox);
 
 //addToMap
-var addToMap = [poly]
+const addToMap = [poly]
 ```
 
-Returns **[Feature][4]<[Polygon][1]>** a Polygon representation of the bounding box
+Returns **[Feature][4]<[Polygon][1]>** Polygon representing the bounding box
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

@@ -14,18 +14,18 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps (straight segments) that will constitute the arc
- * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @returns {Feature<LineString>} line arc
  * @example
- * var center = turf.point([-75, 40]);
- * var radius = 5;
- * var bearing1 = 25;
- * var bearing2 = 47;
+ * const center = turf.point([-75, 40]);
+ * const radius = 5;
+ * const bearing1 = 25;
+ * const bearing2 = 47;
  *
- * var arc = turf.lineArc(center, radius, bearing1, bearing2);
+ * const arc = turf.lineArc(center, radius, bearing1, bearing2);
  *
  * //addToMap
- * var addToMap = [center, arc]
+ * const addToMap = [center, arc]
  */
 function lineArc(
   center: Coord,

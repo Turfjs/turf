@@ -18,17 +18,17 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] used in calculating cellSide.  Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}
  * @param {Feature<Polygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
- * @param {Object} [options.properties={}] passed to each point of the grid
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on each polygon of the grid
  * @returns {FeatureCollection<Polygon>} grid of polygons
  * @example
- * var bbox = [-95, 30 ,-85, 40];
- * var cellSide = 50;
- * var options = {units: 'miles'};
+ * const bbox = [-95, 30 ,-85, 40];
+ * const cellSide = 50;
+ * const options = {units: 'miles'};
  *
- * var triangleGrid = turf.triangleGrid(bbox, cellSide, options);
+ * const triangleGrid = turf.triangleGrid(bbox, cellSide, options);
  *
  * //addToMap
- * var addToMap = [triangleGrid];
+ * const addToMap = [triangleGrid];
  */
 function triangleGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,

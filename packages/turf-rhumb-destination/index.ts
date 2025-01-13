@@ -19,19 +19,19 @@ import { getCoord } from "@turf/invariant";
  * @param {number} distance distance from the starting point
  * @param {number} bearing varant bearing angle ranging from -180 to 180 degrees from north
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
- * @param {Object} [options.properties={}] translate properties to destination point
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {Feature<Point>} Destination point.
  * @example
- * var pt = turf.point([-75.343, 39.984], {"marker-color": "F00"});
- * var distance = 50;
- * var bearing = 90;
- * var options = {units: 'miles'};
+ * const pt = turf.point([-75.343, 39.984], {"marker-color": "F00"});
+ * const distance = 50;
+ * const bearing = 90;
+ * const options = {units: 'miles'};
  *
- * var destination = turf.rhumbDestination(pt, distance, bearing, options);
+ * const destination = turf.rhumbDestination(pt, distance, bearing, options);
  *
  * //addToMap
- * var addToMap = [pt, destination]
+ * const addToMap = [pt, destination]
  * destination.properties['marker-color'] = '#00F';
  */
 function rhumbDestination<P extends GeoJsonProperties = GeoJsonProperties>(
