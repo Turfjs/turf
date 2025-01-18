@@ -71,7 +71,10 @@ function booleanPointInPolygon<
 
   for (var i = 0; i < polys.length; ++i) {
     const polyResult = pip(pt, polys[i]);
-    if (polyResult === 0) return options.ignoreBoundary ? false : true;
+    // If being on the boundary doesn't count, stay in the loop to see if we're inside another polygon
+    // The RFC does not prevent polygons from overlapping; https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.7
+    if (polyResult === 0 && !options.ignoreBoundary) return true;
+    // If point is in the polygon, exit early the loop
     else if (polyResult) return true;
   }
 

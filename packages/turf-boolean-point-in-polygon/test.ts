@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import test from "tape";
-import { point } from "@turf/helpers";
+import { multiPolygon, point } from "@turf/helpers";
 import { polygon } from "@turf/helpers";
 import { booleanPointInPolygon } from "./index.js";
 
@@ -143,6 +143,26 @@ test("boolean-point-in-polygon -- Boundary test", function (t) {
       [10, 20],
     ],
   ]);
+  var poly6 = multiPolygon([
+    [
+      [
+        [10, 20],
+        [20, 10],
+        [30, 20],
+        [20, 30],
+        [10, 20],
+      ],
+    ],
+    [
+      [
+        [0, 20],
+        [20, 0],
+        [40, 20],
+        [20, 40],
+        [0, 20],
+      ],
+    ],
+  ]);
   function runTest(t, ignoreBoundary) {
     var isBoundaryIncluded = ignoreBoundary === false;
     var tests = [
@@ -183,6 +203,7 @@ test("boolean-point-in-polygon -- Boundary test", function (t) {
       [poly5, point([10, 20]), isBoundaryIncluded],
       [poly5, point([15, 25]), isBoundaryIncluded],
       [poly5, point([20, 20]), false],
+      [poly6, point([25, 25]), true], // Point on the boundary of the first polygon, but inside the second polygon
     ];
 
     var testTitle =
