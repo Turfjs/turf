@@ -68,14 +68,14 @@ function booleanPointInPolygon<
   if (type === "Polygon") {
     polys = [polys];
   }
-  let result = false;
+
   for (var i = 0; i < polys.length; ++i) {
     const polyResult = pip(pt, polys[i]);
     if (polyResult === 0) return options.ignoreBoundary ? false : true;
-    else if (polyResult) result = true;
+    else if (polyResult) return true;
   }
 
-  return result;
+  return false;
 }
 
 /**
