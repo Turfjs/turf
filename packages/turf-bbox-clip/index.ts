@@ -27,14 +27,6 @@ import {
 import { getGeom } from "@turf/invariant";
 import { lineclip, polygonclip } from "./lib/lineclip.js";
 
-type OneGeometry =
-  | Point
-  | MultiPoint
-  | LineString
-  | MultiLineString
-  | Polygon
-  | MultiPolygon;
-
 /**
  * Takes a {@link Feature}, {@link Geometry} or {@link FeatureCollection} and a bbox and clips the object to the bbox using
  * [lineclip](https://github.com/mapbox/lineclip).
@@ -54,28 +46,63 @@ type OneGeometry =
  * //addToMap
  * var addToMap = [bbox, poly, clipped]
  */
+// pass a specific geometry type or FeatureCollection, get the same type back
+function bboxClip<
+  G extends Point | MultiPoint,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(feature: Feature<G, P> | G, bbox: BBox): Feature<Point | MultiPoint, P>;
+function bboxClip<
+  G extends LineString | MultiLineString,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  feature: Feature<G, P> | G,
+  bbox: BBox
+): Feature<LineString | MultiLineString, P>;
+function bboxClip<
+  G extends Polygon | MultiPolygon,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(feature: Feature<G, P> | G, bbox: BBox): Feature<Polygon | MultiPolygon, P>;
+
+function bboxClip<
+  G extends GeometryCollection,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(feature: Feature<G, P> | G, bbox: BBox): Feature<G, P>;
+function bboxClip<
+  G extends FeatureCollection,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(feature: G, bbox: BBox): FeatureCollection<Geometry, P>;
+
+// pass a non-specific geometry type, get a generic feature back
+function bboxClip<P extends GeoJsonProperties = GeoJsonProperties>(
+  feature: Feature<Geometry, P>,
+  bbox: BBox
+): Feature<Geometry, P>;
+function bboxClip(feature: Geometry, bbox: BBox): Feature<Geometry>;
+
+// "implementation signature", can't be called directly
 function bboxClip<
   G extends Geometry,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
   feature: Feature<G, P> | G | FeatureCollection,
   bbox: BBox
-): Feature | FeatureCollection {
+): Feature<Geometry> | FeatureCollection {
   if (feature.type === "FeatureCollection") {
     return featureCollection(
       feature.features.map((f: Feature) => bboxClip(f, bbox) as Feature)
     );
   }
+
   const geom = getGeom(feature);
   const type = geom.type;
-  const properties = feature.type === "Feature" ? feature.properties : {};
+  const properties: GeoJsonProperties =
+    feature.type === "Feature" ? feature.properties : {};
 
   if (type === "GeometryCollection") {
-    const gs = geom.geometries as OneGeometry[];
-    const outGs: OneGeometry[] = gs.map(
-      (g: OneGeometry) =>
-        (bboxClip(g as OneGeometry, bbox) as Feature<OneGeometry>).geometry
-    );
+    const gs = geom.geometries;
+    const outGs = gs.map(
+      (g: Geometry) => (bboxClip(g, bbox) as Feature<Geometry>).geometry
+    ) as Exclude<Geometry, GeometryCollection>[];
     return geometryCollection(outGs, properties) as Feature<
       GeometryCollection,
       P
@@ -83,7 +110,6 @@ function bboxClip<
   }
 
   let coords: any[] = geom.coordinates;
-
   switch (type) {
     case "LineString":
     case "MultiLineString": {
@@ -137,8 +163,8 @@ function checkCoord(coord: Position, bbox: BBox) {
   );
 }
 
-function clipPolygon(rings: number[][][], bbox: BBox) {
-  const outRings = [];
+function clipPolygon(rings: Position[][], bbox: BBox) {
+  const outRings: Position[][] = [];
   for (const ring of rings) {
     const clipped = polygonclip(ring, bbox);
     if (clipped.length > 0) {
