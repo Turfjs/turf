@@ -31,7 +31,7 @@
         "fill-opacity": 0.1
       },
       "geometry": {
-        "type": "MultiPolygon",
+        "type": "Polygon",
         "coordinates": []
       }
     },

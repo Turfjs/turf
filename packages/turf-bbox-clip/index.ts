@@ -30,8 +30,8 @@ import { lineclip, polygonclip } from "./lib/lineclip.js";
 /**
  * Takes a {@link Feature}, {@link Geometry} or {@link FeatureCollection} and a bbox and clips the object to the bbox using
  * [lineclip](https://github.com/mapbox/lineclip).
- * If a geometry is entirely outside the bbox, a Multi-geometry with no coordinates is returned.
- * LineString and Polygon geometries may also become Multi-geometry if the clipping process cuts them into several pieces.
+ * If a Point or LineString geometry is entirely outside the bbox, a {@link MultiPoint} or {@link MultiLineString} with empty `coordinates` array is returned.
+ * LineString and Polygon geometries may also become MultiLineString or {@link MultiPolygon} if the clipping process cuts them into several pieces.
  *
  * @function
  * @param {Feature<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>} feature feature to clip to the bbox
@@ -62,7 +62,6 @@ function bboxClip<
   G extends Polygon | MultiPolygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(feature: Feature<G, P> | G, bbox: BBox): Feature<Polygon | MultiPolygon, P>;
-
 function bboxClip<
   G extends GeometryCollection,
   P extends GeoJsonProperties = GeoJsonProperties,
@@ -120,18 +119,14 @@ function bboxClip<
       coords.forEach((line) => {
         lineclip(line, bbox, lines);
       });
-      if (lines.length === 1) {
+      if (lines.length === 1 && type === "LineString") {
         return lineString(lines[0], properties);
       }
       return multiLineString(lines, properties);
     }
     case "Polygon": {
       const poly = clipPolygon(coords, bbox);
-      if (poly.length === 0) {
-        return multiPolygon([], properties);
-      } else {
-        return polygon(poly, properties);
-      }
+      return polygon(poly, properties);
     }
     case "MultiPolygon":
       return multiPolygon(

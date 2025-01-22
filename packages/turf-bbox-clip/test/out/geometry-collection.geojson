@@ -106,7 +106,7 @@
             "coordinates": []
           },
           {
-            "type": "MultiPolygon",
+            "type": "Polygon",
             "coordinates": []
           }
         ]
