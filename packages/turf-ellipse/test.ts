@@ -1,5 +1,4 @@
 import test from "tape";
-import { glob } from "glob";
 import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
@@ -7,124 +6,101 @@ import { writeJsonFileSync } from "write-json-file";
 import { circle } from "@turf/circle";
 import { truncate } from "@turf/truncate";
 import { check } from "@placemarkio/check-geojson";
-import { bboxPolygon } from "@turf/bbox-polygon";
-import { rhumbDestination } from "@turf/rhumb-destination";
-// import { destination } from '@turf/destination';
 import { featureCollection } from "@turf/helpers";
+import { intersect } from "@turf/intersect";
+import { area } from "@turf/area";
 import { ellipse } from "./index.js";
+import fs from "fs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const directories = {
+  in: path.join(__dirname, "test", "in") + path.sep,
+  out: path.join(__dirname, "test", "out") + path.sep,
+};
+
+const fixtures = fs.readdirSync(directories.in).map((filename) => {
+  return {
+    filename,
+    name: path.parse(filename).name,
+    geojson: loadJsonFileSync(directories.in + filename),
+  };
+});
+
 test("turf-ellipse", (t) => {
-  glob
-    .sync(path.join(__dirname, "test", "in", "*.json"))
-    .forEach((filepath) => {
-      // Define params
-      const { name } = path.parse(filepath);
-      const geojson = loadJsonFileSync(filepath);
-      const center = geojson.geometry.coordinates;
-      let { xSemiAxis, ySemiAxis, steps, angle, units } = geojson.properties;
-      angle = angle || 0;
-      const options = { steps, angle, units };
-      const maxAxis = Math.max(xSemiAxis, ySemiAxis);
+  fixtures.forEach((fixture) => {
+    console.log(fixture.filename);
+    const filename = fixture.filename;
+    const name = fixture.name;
+    const geojson = fixture.geojson;
+    const center = geojson.geometry.coordinates;
+    let { xSemiAxis, ySemiAxis, steps, angle, units, accuracy } =
+      geojson.properties;
+    angle = angle || 0;
+    const options = {
+      steps: steps,
+      angle: angle,
+      units: units,
+      accuracy: accuracy,
+    };
+    const maxAxis = Math.max(xSemiAxis, ySemiAxis);
 
-      // Styled results
-      const maxDestination0 = rhumbDestination(center, maxAxis, angle, {
-        units,
-      });
-      const maxDestination90 = rhumbDestination(center, maxAxis, angle + 90, {
-        units,
-      });
-      const maxDestination180 = rhumbDestination(center, maxAxis, angle + 180, {
-        units,
-      });
-      const maxDestination270 = rhumbDestination(center, maxAxis, angle + 270, {
-        units,
-      });
+    const results = featureCollection([
+      geojson,
+      truncate(colorize(circle(center, maxAxis, options), "#F00")),
+      truncate(
+        colorize(ellipse(center, xSemiAxis, ySemiAxis, options), "#00F")
+      ),
+      truncate(
+        colorize(
+          ellipse(center, xSemiAxis, ySemiAxis, {
+            steps,
+            angle: angle + 90,
+            units,
+            accuracy: accuracy,
+          }),
+          "#0F0"
+        )
+      ),
+    ]);
 
-      const xDestination0 = rhumbDestination(center, xSemiAxis, angle, {
-        units,
-      });
-      const xDestination90 = rhumbDestination(center, xSemiAxis, angle + 90, {
-        units,
-      });
-      const xDestination180 = rhumbDestination(center, xSemiAxis, angle + 180, {
-        units,
-      });
-      const xDestination270 = rhumbDestination(center, xSemiAxis, angle + 270, {
-        units,
-      });
+    // Save to file
+    const out = path.join(directories.out, filename);
+    if (process.env.REGEN) writeJsonFileSync(out, results);
+    t.deepEqual(results, loadJsonFileSync(out), name);
+  });
+  t.end();
+});
 
-      const yDestination0 = rhumbDestination(center, ySemiAxis, angle, {
-        units,
-      });
-      const yDestination90 = rhumbDestination(center, ySemiAxis, angle + 90, {
-        units,
-      });
-      const yDestination180 = rhumbDestination(center, ySemiAxis, angle + 180, {
-        units,
-      });
-      const yDestination270 = rhumbDestination(center, ySemiAxis, angle + 270, {
-        units,
-      });
+test("turf-ellipse -- circle consistency", (t) => {
+  const ellipseGeom = truncate(ellipse([0, 60], 2000, 2000, { steps: 300 }));
+  const circleGeom = truncate(circle([0, 60], 2000, { steps: 300 }));
+  const intersectionGeom = intersect(
+    featureCollection([ellipseGeom, circleGeom])
+  );
+  const areaIntersection =
+    intersectionGeom != null ? area(intersectionGeom.geometry) : 0;
+  const areaCircle = circleGeom != null ? area(circleGeom.geometry) : 0;
+  t.true(
+    Math.abs(areaIntersection - areaCircle) / areaCircle < 0.00001,
+    "both areas are equal"
+  );
+  t.end();
+});
 
-      const bboxX = colorize(
-        bboxPolygon([
-          xDestination270.geometry.coordinates[0],
-          yDestination180.geometry.coordinates[1],
-          xDestination90.geometry.coordinates[0],
-          yDestination0.geometry.coordinates[1],
-        ]),
-        "#FFF"
-      );
-      const bboxY = colorize(
-        bboxPolygon([
-          yDestination270.geometry.coordinates[0],
-          xDestination180.geometry.coordinates[1],
-          yDestination90.geometry.coordinates[0],
-          xDestination0.geometry.coordinates[1],
-        ]),
-        "#666"
-      );
-      const bboxMax = colorize(
-        bboxPolygon([
-          maxDestination270.geometry.coordinates[0],
-          maxDestination180.geometry.coordinates[1],
-          maxDestination90.geometry.coordinates[0],
-          maxDestination0.geometry.coordinates[1],
-        ]),
-        "#000"
-      );
-
-      const results = featureCollection([
-        bboxX,
-        bboxY,
-        bboxMax,
-        geojson,
-        truncate(colorize(circle(center, maxAxis, options), "#F00")),
-        truncate(
-          colorize(ellipse(center, xSemiAxis, ySemiAxis, options), "#00F")
-        ),
-        truncate(
-          colorize(
-            ellipse(center, xSemiAxis, ySemiAxis, {
-              steps,
-              angle: angle + 90,
-              units,
-            }),
-            "#0F0"
-          )
-        ),
-      ]);
-
-      // Save to file
-      const out = filepath.replace(
-        path.join("test", "in"),
-        path.join("test", "out")
-      );
-      if (process.env.REGEN) writeJsonFileSync(out, results);
-      t.deepEqual(results, loadJsonFileSync(out), name);
-    });
+test("turf-ellipse -- rotation consistency", (t) => {
+  const ellipseGeom = ellipse([0, 60], 2000, 2000, { angle: 0 });
+  const ellipseTurnedGeom = ellipse([0, 60], 2000, 2000, { angle: 90 });
+  const intersectionGeom = intersect(
+    featureCollection([ellipseGeom, ellipseTurnedGeom])
+  );
+  const areaIntersection =
+    intersectionGeom != null ? area(intersectionGeom.geometry) : 0;
+  const areaEllipse = ellipseGeom != null ? area(ellipseGeom.geometry) : 0;
+  t.true(
+    Math.abs(areaIntersection - areaEllipse) / areaEllipse < 0.00001,
+    "both areas are equal"
+  );
   t.end();
 });
 
