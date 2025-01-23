@@ -1,7 +1,7 @@
 {
   "name": "@turf/envelope",
   "version": "7.2.0",
-  "description": "turf envelope module",
+  "description": "Takes any number of features and returns a rectangular Polygon that encompasses all vertices.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-crosses",
   "version": "7.2.0",
-  "description": "turf boolean-crosses module",
+  "description": "Checks if two geometries cross each other.",
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",

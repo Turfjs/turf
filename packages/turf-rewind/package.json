@@ -1,7 +1,7 @@
 {
   "name": "@turf/rewind",
   "version": "7.2.0",
-  "description": "turf rewind module",
+  "description": "Rewind using Shoelace Formula.",
   "author": "Turf Authors",
   "contributors": [
     "Abel Vázquez Montoro <@AbelVM>",

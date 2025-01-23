@@ -1,7 +1,7 @@
 {
   "name": "@turf/intersect",
   "version": "7.2.0",
-  "description": "turf intersect module",
+  "description": "Finds the shared area between two polygons.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

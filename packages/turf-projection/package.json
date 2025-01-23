@@ -1,7 +1,7 @@
 {
   "name": "@turf/projection",
   "version": "7.2.0",
-  "description": "turf projection module",
+  "description": "Provides tools for conversion between geographic coordinates and projected coordinates.",
   "author": "Turf Authors",
   "contributors": [
     "Stefano Borghi <@stebogit>"

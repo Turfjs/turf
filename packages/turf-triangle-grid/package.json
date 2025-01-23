@@ -1,7 +1,7 @@
 {
   "name": "@turf/triangle-grid",
   "version": "7.2.0",
-  "description": "turf triangle-grid module",
+  "description": "Creates a triangular grid within a bounding box.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
