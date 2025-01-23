@@ -4,7 +4,7 @@
     "units": "degrees",
     "xSemiAxis": 0.125,
     "ySemiAxis": 0.025,
-    "angle": 45
+    "angle": 30
   },
   "geometry": {
     "type": "Point",
