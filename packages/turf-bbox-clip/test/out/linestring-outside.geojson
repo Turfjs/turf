@@ -7,7 +7,8 @@
         "stroke": "#080",
         "fill": "#080",
         "stroke-width": 6,
-        "fill-opacity": 0.1
+        "fill-opacity": 0.1,
+        "name": "input"
       },
       "geometry": {
         "coordinates": [
@@ -23,7 +24,8 @@
         "stroke": "#F00",
         "fill": "#F00",
         "stroke-width": 6,
-        "fill-opacity": 0.1
+        "fill-opacity": 0.1,
+        "name": "output"
       },
       "geometry": {
         "type": "MultiLineString",
@@ -36,7 +38,8 @@
         "stroke": "#00F",
         "fill": "#00F",
         "stroke-width": 3,
-        "fill-opacity": 0.1
+        "fill-opacity": 0.1,
+        "name": "clipping bbox"
       },
       "geometry": {
         "coordinates": [

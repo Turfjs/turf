@@ -39,15 +39,15 @@ test("turf-bbox-clip", (t) => {
     let results;
     if (isFeatureCollection) {
       results = featureCollection([
-        ...feature.features.map((f) => colorize(f, "#080")),
-        ...clipped.features.map((c) => colorize(c, "#F00")),
-        colorize(clipRegion, "#00F", 3),
+        ...feature.features.map((f) => colorize(f, "#080", "input")),
+        ...clipped.features.map((c) => colorize(c, "#F00", "output")),
+        colorize(clipRegion, "#00F", "clipping bbox", 3),
       ]);
     } else {
       results = featureCollection([
-        colorize(feature, "#080"),
-        colorize(clipped, "#F00"),
-        colorize(clipRegion, "#00F", 3),
+        colorize(feature, "#080", "input"),
+        colorize(clipped, "#F00", "output"),
+        colorize(clipRegion, "#00F", "clipping bbox", 3),
       ]);
     }
 
@@ -58,7 +58,7 @@ test("turf-bbox-clip", (t) => {
   t.end();
 });
 
-function colorize(feature, color, width) {
+function colorize(feature, color, name, width) {
   color = color || "#F00";
   width = width || 6;
   feature.properties = {
@@ -66,6 +66,7 @@ function colorize(feature, color, width) {
     fill: color,
     "stroke-width": width,
     "fill-opacity": 0.1,
+    name,
   };
   return feature;
 }
