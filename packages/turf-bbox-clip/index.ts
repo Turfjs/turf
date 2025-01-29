@@ -28,15 +28,15 @@ import { getGeom } from "@turf/invariant";
 import { lineclip, polygonclip } from "./lib/lineclip.js";
 
 /**
- * Takes a {@link Feature}, {@link Geometry} or {@link FeatureCollection} and a bbox and clips the object to the bbox using
- * [lineclip](https://github.com/mapbox/lineclip).
+ * Takes a {@link Feature}, {@link Geometry} or {@link FeatureCollection} and a bbox and returns the part of the object within the bbox.
+ * Lines and polygons are clipped using [lineclip](https://github.com/mapbox/lineclip).
  * If a Point or LineString geometry is entirely outside the bbox, a {@link MultiPoint} or {@link MultiLineString} with empty `coordinates` array is returned.
- * LineString and Polygon geometries may also become MultiLineString or {@link MultiPolygon} if the clipping process cuts them into several pieces.
+ * LineString geometries may also become MultiLineString if the clipping process cuts them into several pieces.
  *
  * @function
- * @param {Feature<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>} feature feature to clip to the bbox
+ * @param {Geometry|Feature|FeatureCollection} feature GeoJSON object to clip to the bbox
  * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
- * @returns {Feature<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>} clipped Feature
+ * @returns {Feature|FeatureCollection} clipped GeoJSON object.
  * @example
  * var bbox = [0, 0, 10, 10];
  * var poly = turf.polygon([[[2, 2], [8, 4], [12, 8], [3, 7], [2, 2]]]);
@@ -91,6 +91,9 @@ function bboxClip<
       feature.features.map((f: Feature) => bboxClip(f, bbox) as Feature)
     );
   }
+
+  // const test = { type: "Point", coordinates: [0, 0] } as Geometry;
+  // const out = bboxClip(test, bbox);
 
   const geom = getGeom(feature);
   const type = geom.type;

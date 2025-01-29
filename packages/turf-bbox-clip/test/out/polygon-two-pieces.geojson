@@ -1,0 +1,73 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#080",
+        "fill": "#080",
+        "stroke-width": 6,
+        "fill-opacity": 0.1,
+        "name": "input"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [60, 47],
+            [65, 49],
+            [70, 46],
+            [65, 51],
+            [60, 47]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#F00",
+        "fill": "#F00",
+        "stroke-width": 6,
+        "fill-opacity": 0.1,
+        "name": "output"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [60, 47],
+            [62.5, 48],
+            [66.66666666666667, 48],
+            [70, 46],
+            [68, 48],
+            [61.25, 48],
+            [60, 47]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#00F",
+        "fill": "#00F",
+        "stroke-width": 3,
+        "fill-opacity": 0.1,
+        "name": "clipping bbox"
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            [58, 48],
+            [58, 45],
+            [71, 45],
+            [71, 48],
+            [58, 48]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    }
+  ]
+}
