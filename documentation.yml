@@ -195,3 +195,4 @@ paths:
   BBox: "https://tools.ietf.org/html/rfc7946#section-5"
   BoundingBox: "https://tools.ietf.org/html/rfc7946#section-5"
   Coord: "https://tools.ietf.org/html/rfc7946#section-3.1.1"
+  Position: "https://tools.ietf.org/html/rfc7946#section-3.1.1"

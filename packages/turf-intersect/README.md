@@ -12,12 +12,12 @@ finds their polygonal intersection. If they don't intersect, returns null.
 *   `features` **[FeatureCollection][3]<([Polygon][1] | [MultiPolygon][2])>** the features to intersect
 *   `options` **[Object][4]** Optional Parameters (optional, default `{}`)
 
-    *   `options.properties` **[Object][4]** Translate GeoJSON Properties to Feature (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][5]** Properties to set on returned feature (optional, default `{}`)
 
 ### Examples
 
 ```javascript
-var poly1 = turf.polygon([[
+const poly1 = turf.polygon([[
   [-122.801742, 45.48565],
   [-122.801742, 45.60491],
   [-122.584762, 45.60491],
@@ -25,7 +25,7 @@ var poly1 = turf.polygon([[
   [-122.801742, 45.48565]
 ]]);
 
-var poly2 = turf.polygon([[
+const poly2 = turf.polygon([[
   [-122.520217, 45.535693],
   [-122.64038, 45.553967],
   [-122.720031, 45.526554],
@@ -36,10 +36,10 @@ var poly2 = turf.polygon([[
   [-122.520217, 45.535693]
 ]]);
 
-var intersection = turf.intersect(turf.featureCollection([poly1, poly2]));
+const intersection = turf.intersect(turf.featureCollection([poly1, poly2]));
 
 //addToMap
-var addToMap = [poly1, poly2, intersection];
+const addToMap = [poly1, poly2, intersection];
 ```
 
 Returns **([Feature][5] | null)** returns a feature representing the area they share (either a [Polygon][1] or

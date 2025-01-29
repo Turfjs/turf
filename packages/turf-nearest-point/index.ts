@@ -22,20 +22,20 @@ interface NearestPoint extends Feature<Point> {
  * @param {Coord} targetPoint the reference point
  * @param {FeatureCollection<Point>} points against input point set
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] the units of the numeric result
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @returns {Feature<Point>} the closest point in the set to the reference point
  * @example
- * var targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0F0"});
- * var points = turf.featureCollection([
+ * const targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0F0"});
+ * const points = turf.featureCollection([
  *     turf.point([28.973865, 41.011122]),
  *     turf.point([28.948459, 41.024204]),
  *     turf.point([28.938674, 41.013324])
  * ]);
  *
- * var nearest = turf.nearestPoint(targetPoint, points);
+ * const nearest = turf.nearestPoint(targetPoint, points);
  *
  * //addToMap
- * var addToMap = [targetPoint, points, nearest];
+ * const addToMap = [targetPoint, points, nearest];
  * nearest.properties['marker-color'] = '#F00';
  */
 function nearestPoint(
