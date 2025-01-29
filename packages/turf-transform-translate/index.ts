@@ -9,6 +9,9 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  * Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
  * on the provided direction angle.
  *
+ * Note that this moves the points of your shape individually and can therefore change
+ * the overall shape. How noticable this is depends on the distance and the used projection.
+ *
  * @function
  * @param {GeoJSON|GeometryCollection} geojson object to be translated
  * @param {number} distance length of the motion; negative values determine motion in opposite direction
