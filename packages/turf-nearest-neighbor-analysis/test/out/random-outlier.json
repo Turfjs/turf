@@ -1219,11 +1219,11 @@
         "nearestNeighborAnalysis": {
           "units": "kilometers",
           "arealUnits": "kilometers²",
-          "observedMeanDistance": 7.363991103875287,
+          "observedMeanDistance": 7.363991103875259,
           "expectedMeanDistance": 25.377020579774225,
-          "nearestNeighborIndex": 0.29018343901823024,
+          "nearestNeighborIndex": 0.29018343901822913,
           "numberOfPoints": 151,
-          "zScore": -16.686508895950315
+          "zScore": -16.686508895950343
         }
       },
       "geometry": {
