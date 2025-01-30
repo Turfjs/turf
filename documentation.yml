@@ -16,6 +16,7 @@ toc:
     - pointOnFeature
     - polygonTangents
     - pointToLineDistance
+    - pointToPolygonDistance
     - rhumbBearing
     - rhumbDestination
     - rhumbDistance

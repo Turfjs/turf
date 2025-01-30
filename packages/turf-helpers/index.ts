@@ -28,6 +28,13 @@ export type Coord = Feature<Point> | Point | Position;
 /**
  * Linear measurement units.
  *
+ * ⚠️ Warning. Be aware of the implications of using radian or degree units to
+ * measure distance. The distance represented by a degree of longitude *varies*
+ * depending on latitude.
+ *
+ * See https://www.thoughtco.com/degree-of-latitude-and-longitude-distance-4070616
+ * for an illustration of this behaviour.
+ *
  * @typedef
  */
 export type Units =
@@ -748,14 +755,13 @@ export function degreesToRadians(degrees: number): number {
 }
 
 /**
- * Converts a length to the requested unit.
- * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
+ * Converts a length from one unit to another.
  *
  * @function
- * @param {number} length to be converted
- * @param {Units} [originalUnit="kilometers"] of the length
- * @param {Units} [finalUnit="kilometers"] returned unit
- * @returns {number} the converted length
+ * @param {number} length Length to be converted
+ * @param {Units} [originalUnit="kilometers"] Input length unit
+ * @param {Units} [finalUnit="kilometers"] Returned length unit
+ * @returns {number} The converted length
  */
 export function convertLength(
   length: number,
@@ -769,14 +775,13 @@ export function convertLength(
 }
 
 /**
- * Converts a area to the requested unit.
- * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, acres, miles, yards, feet, inches, hectares
+ * Converts an area from one unit to another.
  *
  * @function
- * @param {number} area to be converted
- * @param {AreaUnits} [originalUnit="meters"] of the distance
- * @param {AreaUnits} [finalUnit="kilometers"] returned unit
- * @returns {number} the converted area
+ * @param {number} area Area to be converted
+ * @param {AreaUnits} [originalUnit="meters"] Input area unit
+ * @param {AreaUnits} [finalUnit="kilometers"] Returned area unit
+ * @returns {number} The converted length
  */
 export function convertArea(
   area: number,
