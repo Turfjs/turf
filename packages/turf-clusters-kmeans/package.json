@@ -1,7 +1,7 @@
 {
   "name": "@turf/clusters-kmeans",
-  "version": "7.1.0",
-  "description": "turf clusters-kmeans module",
+  "version": "7.2.0",
+  "description": "Takes a set of points and partition them into clusters using the k-means algorithm.",
   "author": "Turf Authors",
   "contributors": [
     "David Gómez Matarrodona <@solzimer>",

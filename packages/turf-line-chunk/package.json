@@ -1,7 +1,7 @@
 {
   "name": "@turf/line-chunk",
-  "version": "7.1.0",
-  "description": "turf line-chunk module",
+  "version": "7.2.0",
+  "description": "Divides a LineString into chunks of a specified length.",
   "author": "Turf Authors",
   "contributors": [
     "Tim Channell <@tcql>",

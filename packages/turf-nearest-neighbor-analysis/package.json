@@ -1,7 +1,7 @@
 {
   "name": "@turf/nearest-neighbor-analysis",
-  "version": "7.1.0",
-  "description": "turf nearest-neighbor-analysis module",
+  "version": "7.2.0",
+  "description": "Calculates an index based the average distances between points in the dataset, thereby providing inference as to whether the data is clustered, dispersed, or randomly distributed within the study area.",
   "author": "Turf Authors",
   "contributors": [
     "Moacir P. de Sá Pereira <@muziejus>"

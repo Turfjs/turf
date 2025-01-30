@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-parallel",
-  "version": "7.1.0",
-  "description": "turf boolean-parallel module",
+  "version": "7.2.0",
+  "description": "Determine whether each segment of a line is parallel to the correspondent segment of another line.",
   "author": "Turf Authors",
   "contributors": [
     "Stefano Borghi <@stebogit>"

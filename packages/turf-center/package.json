@@ -1,7 +1,7 @@
 {
   "name": "@turf/center",
-  "version": "7.1.0",
-  "description": "turf center module",
+  "version": "7.2.0",
+  "description": "Finds the central point of a GeoJSON feature, like a city or a park. Ideal for placing labels or markers.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

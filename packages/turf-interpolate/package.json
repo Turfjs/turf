@@ -1,7 +1,7 @@
 {
   "name": "@turf/interpolate",
-  "version": "7.1.0",
-  "description": "turf interpolate module",
+  "version": "7.2.0",
+  "description": "Creates an interpolated grid of points using the Inverse Distance Weighting method.",
   "author": "Turf Authors",
   "contributors": [
     "Stefano Borghi <@stebogit>"

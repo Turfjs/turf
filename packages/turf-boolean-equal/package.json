@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-equal",
-  "version": "7.1.0",
-  "description": "turf boolean-equal module",
+  "version": "7.2.0",
+  "description": "Determine whether two geometries of the same type have identical X,Y coordinate values",
   "author": "Turf Authors",
   "contributors": [
     "Tom MacWright <@tmcw>",

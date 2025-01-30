@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-disjoint",
-  "version": "7.1.0",
-  "description": "turf boolean-disjoint module",
+  "version": "7.2.0",
+  "description": "Checks if two geometries have no overlapping areas.",
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",

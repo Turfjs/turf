@@ -1,7 +1,7 @@
 {
   "name": "@turf/nearest-point-on-line",
-  "version": "7.1.0",
-  "description": "turf nearest-point-on-line module",
+  "version": "7.2.0",
+  "description": "Finds the nearest point on a line to a given point",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

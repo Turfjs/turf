@@ -1,7 +1,7 @@
 {
   "name": "@turf/boolean-contains",
-  "version": "7.1.0",
-  "description": "turf boolean-contains module",
+  "version": "7.2.0",
+  "description": "Determines whether the second geometry is completely within the first geometry.",
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",

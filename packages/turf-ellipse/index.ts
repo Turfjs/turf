@@ -1,15 +1,16 @@
 import {
-  degreesToRadians,
   polygon,
   isObject,
   isNumber,
   Coord,
   Units,
+  point,
+  radiansToDegrees,
 } from "@turf/helpers";
-import { rhumbDestination } from "@turf/rhumb-destination";
+import { destination } from "@turf/destination";
 import { transformRotate } from "@turf/transform-rotate";
 import { getCoord } from "@turf/invariant";
-import { GeoJsonProperties, Feature, Polygon } from "geojson";
+import { GeoJsonProperties, Feature, Polygon, Position } from "geojson";
 
 /**
  * Takes a {@link Point} and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.
@@ -47,12 +48,11 @@ function ellipse(
 ): Feature<Polygon> {
   // Optional params
   options = options || {};
-  const steps = options.steps || 64;
+  let steps = options.steps || 64;
   const units = options.units || "kilometers";
-  const angle = options.angle || 0;
+  let angle = options.angle || 0;
   const pivot = options.pivot || center;
   const properties = options.properties || {};
-
   // validation
   if (!center) throw new Error("center is required");
   if (!xSemiAxis) throw new Error("xSemiAxis is required");
@@ -61,62 +61,99 @@ function ellipse(
   if (!isNumber(steps)) throw new Error("steps must be a number");
   if (!isNumber(angle)) throw new Error("angle must be a number");
 
-  const centerCoords = getCoord(center);
-  if (units !== "degrees") {
-    const xDest = rhumbDestination(center, xSemiAxis, 90, { units });
-    const yDest = rhumbDestination(center, ySemiAxis, 0, { units });
-    xSemiAxis = getCoord(xDest)[0] - centerCoords[0];
-    ySemiAxis = getCoord(yDest)[1] - centerCoords[1];
-  }
+  const centerCoords = getCoord(
+    transformRotate(point(getCoord(center)), angle, { pivot })
+  );
 
-  const coordinates: number[][] = [];
-  for (let i = 0; i < steps; i += 1) {
-    const stepAngle = (i * -360) / steps;
-    let x =
-      (xSemiAxis * ySemiAxis) /
-      Math.sqrt(
-        Math.pow(ySemiAxis, 2) +
-          Math.pow(xSemiAxis, 2) * Math.pow(getTanDeg(stepAngle), 2)
-      );
-    let y =
-      (xSemiAxis * ySemiAxis) /
-      Math.sqrt(
-        Math.pow(xSemiAxis, 2) +
-          Math.pow(ySemiAxis, 2) / Math.pow(getTanDeg(stepAngle), 2)
-      );
+  angle = -90 + angle;
 
-    if (stepAngle < -90 && stepAngle >= -270) x = -x;
-    if (stepAngle < -180 && stepAngle >= -360) y = -y;
-    if (units === "degrees") {
-      const angleRad = degreesToRadians(angle);
-      const newx = x * Math.cos(angleRad) + y * Math.sin(angleRad);
-      const newy = y * Math.cos(angleRad) - x * Math.sin(angleRad);
-      x = newx;
-      y = newy;
+  // Divide steps by 4 for one quadrant
+  steps = Math.ceil(steps / 4);
+
+  let quadrantParameters = [];
+  let parameters = [];
+
+  const a = xSemiAxis;
+  const b = ySemiAxis;
+
+  // Gradient x intersect
+  const c = b;
+
+  // Gradient of line
+  const m = (a - b) / (Math.PI / 2);
+
+  // Area under line
+  const A = ((a + b) * Math.PI) / 4;
+
+  // Weighting function
+  const v = 0.5;
+
+  const k = steps;
+
+  let w = 0;
+  let x = 0;
+
+  for (let i = 0; i < steps; i++) {
+    x += w;
+
+    if (m === 0) {
+      // It's a circle, so use simplified c*w - A/k == 0
+      w = A / k / c;
+    } else {
+      // Otherwise, use full (v*m)*w^2 + (m*x+c)*w - A/k == 0
+      // Solve as quadratic ax^2 + bx + c = 0
+      w =
+        (-(m * x + c) +
+          Math.sqrt(Math.pow(m * x + c, 2) - 4 * (v * m) * -(A / k))) /
+        (2 * (v * m));
     }
-
-    coordinates.push([x + centerCoords[0], y + centerCoords[1]]);
+    if (x != 0) {
+      // easier to add it later to avoid having twice the same point
+      quadrantParameters.push(x);
+    }
   }
-  coordinates.push(coordinates[0]);
-  if (units === "degrees") {
-    return polygon([coordinates], properties);
-  } else {
-    return transformRotate(polygon([coordinates], properties), angle, {
-      pivot,
-    });
-  }
-}
 
-/**
- * Get Tan Degrees
- *
- * @private
- * @param {number} deg Degrees
- * @returns {number} Tan Degrees
- */
-function getTanDeg(deg: number) {
-  const rad = (deg * Math.PI) / 180;
-  return Math.tan(rad);
+  //NE
+  parameters.push(0);
+  for (let i = 0; i < quadrantParameters.length; i++) {
+    parameters.push(quadrantParameters[i]);
+  }
+  //NW
+  parameters.push(Math.PI / 2);
+  for (let i = 0; i < quadrantParameters.length; i++) {
+    parameters.push(
+      Math.PI - quadrantParameters[quadrantParameters.length - i - 1]
+    );
+  }
+  //SW
+  parameters.push(Math.PI);
+  for (let i = 0; i < quadrantParameters.length; i++) {
+    parameters.push(Math.PI + quadrantParameters[i]);
+  }
+  //SE
+  parameters.push((3 * Math.PI) / 2);
+  for (let i = 0; i < quadrantParameters.length; i++) {
+    parameters.push(
+      2 * Math.PI - quadrantParameters[quadrantParameters.length - i - 1]
+    );
+  }
+  parameters.push(0);
+
+  // We can now construct the ellipse
+  const coords: Position[] = [];
+  for (const param of parameters) {
+    const theta = Math.atan2(b * Math.sin(param), a * Math.cos(param));
+    const r = Math.sqrt(
+      (Math.pow(a, 2) * Math.pow(b, 2)) /
+        (Math.pow(a * Math.sin(theta), 2) + Math.pow(b * Math.cos(theta), 2))
+    );
+    coords.push(
+      destination(centerCoords, r, angle + radiansToDegrees(theta), {
+        units: units,
+      }).geometry.coordinates
+    );
+  }
+  return polygon([coords], properties);
 }
 
 export { ellipse };

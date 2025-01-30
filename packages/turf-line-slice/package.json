@@ -1,7 +1,7 @@
 {
   "name": "@turf/line-slice",
-  "version": "7.1.0",
-  "description": "turf line-slice module",
+  "version": "7.2.0",
+  "description": "Useful for extracting only the part of a route between waypoints.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

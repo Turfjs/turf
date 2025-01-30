@@ -1,7 +1,7 @@
 {
   "name": "@turf/unkink-polygon",
-  "version": "7.1.0",
-  "description": "turf unkink-polygon module",
+  "version": "7.2.0",
+  "description": "Takes a kinked polygon and returns a feature collection of polygons that have no kinks.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {

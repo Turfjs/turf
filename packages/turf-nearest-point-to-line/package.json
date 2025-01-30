@@ -1,7 +1,7 @@
 {
   "name": "@turf/nearest-point-to-line",
-  "version": "7.1.0",
-  "description": "turf nearest-point-to-line module",
+  "version": "7.2.0",
+  "description": "Returns the closest point, of a collection of points, to a line.",
   "author": "Turf Authors",
   "contributors": [
     "Stefano Borghi <@stebogit>"

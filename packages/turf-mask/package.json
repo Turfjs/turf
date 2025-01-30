@@ -1,7 +1,7 @@
 {
   "name": "@turf/mask",
-  "version": "7.1.0",
-  "description": "turf mask module",
+  "version": "7.2.0",
+  "description": "Takes polygons or multipolygons and an optional mask, and returns an exterior ring polygon with holes.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
@@ -67,7 +67,7 @@
     "@turf/clone": "workspace:^",
     "@turf/helpers": "workspace:^",
     "@types/geojson": "^7946.0.10",
-    "polygon-clipping": "^0.15.3",
+    "polyclip-ts": "^0.16.8",
     "tslib": "^2.8.1"
   }
 }
