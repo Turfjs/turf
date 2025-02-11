@@ -22,7 +22,7 @@ import { GeoJsonProperties, Feature, Polygon, Position } from "geojson";
  * @param {number} [options.angle=0] angle of rotation in decimal degrees, positive clockwise
  * @param {Coord} [options.pivot=center] point around which any rotation will be performed
  * @param {number} [options.steps=64] number of steps
- * @param {string} [options.units='kilometers'] unit of measurement for axes
+ * @param {Units} [options.units='kilometers'] unit of measurement for axes. Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} ellipse polygon
  * @example
