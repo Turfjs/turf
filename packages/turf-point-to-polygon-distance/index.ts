@@ -69,7 +69,10 @@ export function pointToPolygonDistance(
     // point is inside one of the holes?
     if (smallestInteriorDistance < 0) return Math.abs(smallestInteriorDistance);
     // find which is closer, the distance to the hole or the distance to the edge of the exterior
-    return Math.min(smallestInteriorDistance, Math.abs(exteriorDistance));
+    return (
+      Math.min(smallestInteriorDistance, Math.abs(exteriorDistance)) *
+      (booleanPointInPolygon(point, polygonOrMultiPolygon) ? -1 : 1)
+    );
   }
   // The actual distance operation - on a normal, hole-less polygon in meters
   const lines = polygonToLine(geom);
