@@ -21,19 +21,19 @@ import { getCoord } from "@turf/invariant";
  * @param {number} distance distance from the origin point
  * @param {number} bearing ranging from -180 to 180
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
- * @param {Object} [options.properties={}] Translate properties to Point
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {Feature<Point>} destination point
  * @example
- * var point = turf.point([-75.343, 39.984]);
- * var distance = 50;
- * var bearing = 90;
- * var options = {units: 'miles'};
+ * const point = turf.point([-75.343, 39.984]);
+ * const distance = 50;
+ * const bearing = 90;
+ * const options = {units: 'miles'};
  *
- * var destination = turf.destination(point, distance, bearing, options);
+ * const destination = turf.destination(point, distance, bearing, options);
  *
  * //addToMap
- * var addToMap = [point, destination]
+ * const addToMap = [point, destination]
  * destination.properties['marker-color'] = '#f00';
  * point.properties['marker-color'] = '#0f0';
  */

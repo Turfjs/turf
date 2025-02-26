@@ -30,7 +30,7 @@ doi:{@link [https://doi.org/10.1086/214336|10.1086/214336}][4].
 
     *   `options.weight` **[string][8]?** the property name used to weight the center
     *   `options.steps` **[number][9]** number of steps for the polygon (optional, default `64`)
-    *   `options.properties` **[Object][7]** properties to pass to the resulting ellipse (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][10]** Properties to set on returned feature (optional, default `{}`)
 
 ### Examples
 

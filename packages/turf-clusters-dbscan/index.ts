@@ -37,10 +37,10 @@ type IndexedPoint = {
  * Takes a set of {@link Point|points} and partition them into clusters according to {@link https://en.wikipedia.org/wiki/DBSCAN|DBSCAN's} data clustering algorithm.
  *
  * @function
- * @param {FeatureCollection<Point>} points to be clustered
+ * @param {FeatureCollection<Point>} points Points to be clustered
  * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers by default, see options)
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units="kilometers"] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units="kilometers"] Units in which linear values are expressed
  * @param {boolean} [options.mutate=false] Allows GeoJSON input to be mutated
  * @param {number} [options.minPoints=3] Minimum number of points to generate a single cluster,
  * points which do not meet this requirement will be classified as an 'edge' or 'noise'.
@@ -49,12 +49,12 @@ type IndexedPoint = {
  * - {string} dbscan - type of point it has been classified as ('core'|'edge'|'noise')
  * @example
  * // create random points with random z-values in their properties
- * var points = turf.randomPoint(100, {bbox: [0, 30, 20, 50]});
- * var maxDistance = 100;
- * var clustered = turf.clustersDbscan(points, maxDistance);
+ * const points = turf.randomPoint(100, {bbox: [0, 30, 20, 50]});
+ * const maxDistance = 100;
+ * const clustered = turf.clustersDbscan(points, maxDistance);
  *
  * //addToMap
- * var addToMap = [clustered];
+ * const addToMap = [clustered];
  */
 function clustersDbscan(
   points: FeatureCollection<Point>,

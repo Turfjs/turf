@@ -71,17 +71,17 @@ Measure of Spatial Relationships in Populations,” *Ecology* 35, no. 4
 *   `options` **[Object][1]** Optional parameters (optional, default `{}`)
 
     *   `options.studyArea` **[Feature][4]<[Polygon][6]>?** polygon representing the study area
-    *   `options.properties` **[GeoJsonProperties][4]** properties (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][4]** Properties to set on returned feature (optional, default `{}`)
 
 ### Examples
 
 ```javascript
-var bbox = [-65, 40, -63, 42];
-var dataset = turf.randomPoint(100, { bbox: bbox });
-var nearestNeighborStudyArea = turf.nearestNeighborAnalysis(dataset);
+const bbox = [-65, 40, -63, 42];
+const dataset = turf.randomPoint(100, { bbox: bbox });
+const nearestNeighborStudyArea = turf.nearestNeighborAnalysis(dataset);
 
 //addToMap
-var addToMap = [dataset, nearestNeighborStudyArea];
+const addToMap = [dataset, nearestNeighborStudyArea];
 ```
 
 Returns **[NearestNeighborStudyArea][11]** A polygon of the study area or an approximation of one.

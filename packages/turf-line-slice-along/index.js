@@ -15,16 +15,16 @@ import { lineString, isObject } from "@turf/helpers";
  * @param {number} startDist distance along the line to starting point
  * @param {number} stopDist distance along the line to ending point
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @returns {Feature<LineString>} sliced line
  * @example
- * var line = turf.lineString([[7, 45], [9, 45], [14, 40], [14, 41]]);
- * var start = 12.5;
- * var stop = 25;
- * var sliced = turf.lineSliceAlong(line, start, stop, {units: 'miles'});
+ * const line = turf.lineString([[7, 45], [9, 45], [14, 40], [14, 41]]);
+ * const start = 12.5;
+ * const stop = 25;
+ * const sliced = turf.lineSliceAlong(line, start, stop, {units: 'miles'});
  *
  * //addToMap
- * var addToMap = [line, start, stop, sliced]
+ * const addToMap = [line, start, stop, sliced]
  */
 function lineSliceAlong(line, startDist, stopDist, options) {
   // Optional parameters

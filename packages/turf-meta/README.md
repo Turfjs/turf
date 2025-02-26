@@ -765,14 +765,14 @@ Point & MultiPoint will always return null.
     *   `options.multiFeatureIndex` **[number][3]** Multi-Feature Index (optional, default `0`)
     *   `options.geometryIndex` **[number][3]** Geometry Index (optional, default `0`)
     *   `options.segmentIndex` **[number][3]** Segment Index (optional, default `0`)
-    *   `options.properties` **[Object][24]** Translate Properties to output LineString (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][7]** Properties to set on returned feature (optional, default `{}`)
     *   `options.bbox` **[BBox][15]** Translate BBox to output LineString (optional, default `{}`)
     *   `options.id` **([number][3] | [string][25])** Translate Id to output LineString (optional, default `{}`)
 
 ### Examples
 
 ```javascript
-var multiLine = turf.multiLineString([
+const multiLine = turf.multiLineString([
     [[10, 10], [50, 30], [30, 40]],
     [[-10, -10], [-50, -30], [-30, -40]]
 ]);
@@ -807,7 +807,7 @@ Negative indexes are permitted.
     *   `options.multiFeatureIndex` **[number][3]** Multi-Feature Index (optional, default `0`)
     *   `options.geometryIndex` **[number][3]** Geometry Index (optional, default `0`)
     *   `options.coordIndex` **[number][3]** Coord Index (optional, default `0`)
-    *   `options.properties` **[Object][24]** Translate Properties to output Point (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][7]** Properties to set on returned feature (optional, default `{}`)
     *   `options.bbox` **[BBox][15]** Translate BBox to output Point (optional, default `{}`)
     *   `options.id` **([number][3] | [string][25])** Translate Id to output Point (optional, default `{}`)
 

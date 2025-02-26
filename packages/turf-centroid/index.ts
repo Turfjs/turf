@@ -8,15 +8,15 @@ import { coordEach } from "@turf/meta";
  * @function
  * @param {GeoJSON} geojson GeoJSON to be centered
  * @param {Object} [options={}] Optional Parameters
- * @param {Object} [options.properties={}] an Object that is used as the {@link Feature}'s properties
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {Feature<Point>} the centroid of the input object
  * @example
- * var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
+ * const polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
  *
- * var centroid = turf.centroid(polygon);
+ * const centroid = turf.centroid(polygon);
  *
  * //addToMap
- * var addToMap = [polygon, centroid]
+ * const addToMap = [polygon, centroid]
  */
 function centroid<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: AllGeoJSON,

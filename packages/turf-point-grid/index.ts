@@ -15,22 +15,22 @@ import { point, featureCollection, Units } from "@turf/helpers";
  * Creates a grid of points
  *
  * @function
- * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order
- * @param {number} cellSide the distance between points
+ * @param {BBox} bbox Extent of grid in [minX, minY, maxX, maxY] order
+ * @param {number} cellSide Distance between points
  * @param {Object} [options={}] Optional parameters
- * @param {Units} [options.units='kilometers'] the units of the cellSide value.  Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
- * @param {Object} [options.properties={}] passed to each point of the grid
- * @returns {FeatureCollection<Point>} grid of points
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on each point of the returned grid
+ * @returns {FeatureCollection<Point>} Grid of points
  * @example
- * var extent = [-70.823364, -33.553984, -70.473175, -33.302986];
- * var cellSide = 3;
- * var options = {units: 'miles'};
+ * const extent = [-70.823364, -33.553984, -70.473175, -33.302986];
+ * const cellSide = 3;
+ * const options = {units: 'miles'};
  *
- * var grid = turf.pointGrid(extent, cellSide, options);
+ * const grid = turf.pointGrid(extent, cellSide, options);
  *
  * //addToMap
- * var addToMap = [grid];
+ * const addToMap = [grid];
  */
 function pointGrid<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,

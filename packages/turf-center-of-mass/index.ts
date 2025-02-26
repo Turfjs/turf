@@ -11,15 +11,15 @@ import { coordEach } from "@turf/meta";
  * @function
  * @param {GeoJSON} geojson GeoJSON to be centered
  * @param {Object} [options={}] Optional Parameters
- * @param {Object} [options.properties={}] Translate Properties to Feature
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {Feature<Point>} the center of mass
  * @example
- * var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
+ * const polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
  *
- * var center = turf.centerOfMass(polygon);
+ * const center = turf.centerOfMass(polygon);
  *
  * //addToMap
- * var addToMap = [polygon, center]
+ * const addToMap = [polygon, center]
  */
 function centerOfMass<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: any,

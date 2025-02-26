@@ -11,13 +11,13 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  * @param {number} cellSize the distance across each cell
  * @param {Object} [options={}] optional parameters
  * @param {string} [options.zProperty='elevation'] the grid points property name associated with the matrix value
- * @param {Object} [options.properties={}] GeoJSON properties passed to all the points
- * @param {string} [options.units='kilometers'] used in calculating cellSize, can be miles, or kilometers
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
  * @returns {FeatureCollection<Point>} grid of points
  *
  * @example
- *    var matrixToGrid = require('matrix-to-grid');
- *    var matrix = [
+ *    const matrixToGrid = require('matrix-to-grid');
+ *    const matrix = [
  *      [ 1, 13, 20,  9, 10, 13, 18],
  *      [34,  8,  0,  4,  5,  8, 13],
  *      [10,  5,  2,  1,  2,  5, 24],
@@ -27,7 +27,7 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  *      [ 3, 13,  0,  9,  5, 13, 35],
  *      [18, 13, 10,  9, 78, 13, 18]
  *    ];
- *    var origin = [-70.823364, -33.553984]
+ *    const origin = [-70.823364, -33.553984]
  *    matrixToGrid(matrix, origin, 10);
  *    //= pointGrid
  */

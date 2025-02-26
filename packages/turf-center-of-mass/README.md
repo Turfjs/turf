@@ -11,17 +11,17 @@ Takes any [Feature][1] or a [FeatureCollection][2] and returns its [center of ma
 *   `geojson` **[GeoJSON][5]** GeoJSON to be centered
 *   `options` **[Object][6]** Optional Parameters (optional, default `{}`)
 
-    *   `options.properties` **[Object][6]** Translate Properties to Feature (optional, default `{}`)
+    *   `options.properties` **[GeoJsonProperties][1]** Properties to set on returned feature (optional, default `{}`)
 
 ### Examples
 
 ```javascript
-var polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
+const polygon = turf.polygon([[[-81, 41], [-88, 36], [-84, 31], [-80, 33], [-77, 39], [-81, 41]]]);
 
-var center = turf.centerOfMass(polygon);
+const center = turf.centerOfMass(polygon);
 
 //addToMap
-var addToMap = [polygon, center]
+const addToMap = [polygon, center]
 ```
 
 Returns **[Feature][1]<[Point][7]>** the center of mass

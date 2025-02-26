@@ -21,10 +21,10 @@ import { polygon, Units } from "@turf/helpers";
  *
  * @param {Feature<Point> | Point | Position} point Input point
  * @param {Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon} polygonOrMultiPolygon Input polygon or multipolygon
- * @param {Object} options Optional parameters
- * @param {Units} options.units Units of the result e.g. "kilometers", "miles", "meters"
- * @param {"geodesic" | "planar"} options.method Method of the result
- * @returns {number} Distance in meters (negative values for points inside the polygon)
+ * @param {Object} [options={}] Optional parameters
+ * @param {Units} [options.units='kilometers'] Units in which linear values are expressed
+ * @param {"geodesic" | "planar"} [options.method="geodesic"] Method of calculation
+ * @returns {number} Distance to nearest edge of input polygon (negative values for points inside the polygon)
  * @throws {Error} If input geometries are invalid
  */
 export function pointToPolygonDistance(

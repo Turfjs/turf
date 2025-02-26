@@ -1,28 +1,28 @@
 import { BBox, Feature, Polygon, GeoJsonProperties } from "geojson";
-import { polygon, Id } from "@turf/helpers";
+import { polygon } from "@turf/helpers";
 
 /**
  * Takes a bbox and returns an equivalent {@link Polygon|polygon}.
  *
  * @function
- * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
+ * @param {BBox} bbox Extent in [minX, minY, maxX, maxY] order
  * @param {Object} [options={}] Optional parameters
- * @param {GeoJsonProperties} [options.properties={}] Translate properties to Polygon
- * @param {string|number} [options.id={}] Translate Id to Polygon
- * @returns {Feature<Polygon>} a Polygon representation of the bounding box
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
+ * @param {string|number} [options.id={}] Id to set on returned feature
+ * @returns {Feature<Polygon>} Polygon representing the bounding box
  * @example
- * var bbox = [0, 0, 10, 10];
+ * const bbox = [0, 0, 10, 10];
  *
- * var poly = turf.bboxPolygon(bbox);
+ * const poly = turf.bboxPolygon(bbox);
  *
  * //addToMap
- * var addToMap = [poly]
+ * const addToMap = [poly]
  */
 function bboxPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
   bbox: BBox,
   options: {
     properties?: P;
-    id?: Id;
+    id?: string | number;
   } = {}
 ): Feature<Polygon, P> {
   // Convert BBox positions to Numbers

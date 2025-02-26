@@ -95,15 +95,15 @@ interface NearestNeighborStudyArea extends Feature<Polygon> {
  * @param {Object} [options={}] Optional parameters
  * @param {Feature<Polygon>} [options.studyArea] polygon representing the study area
  * @param {Units & AreaUnits} [options.units='kilometers'] unit of measurement for distances and, squared, area.
- * @param {GeoJsonProperties} [options.properties={}] properties
+ * @param {GeoJsonProperties} [options.properties={}] Properties to set on returned feature
  * @returns {NearestNeighborStudyArea}  A polygon of the study area or an approximation of one.
  * @example
- * var bbox = [-65, 40, -63, 42];
- * var dataset = turf.randomPoint(100, { bbox: bbox });
- * var nearestNeighborStudyArea = turf.nearestNeighborAnalysis(dataset);
+ * const bbox = [-65, 40, -63, 42];
+ * const dataset = turf.randomPoint(100, { bbox: bbox });
+ * const nearestNeighborStudyArea = turf.nearestNeighborAnalysis(dataset);
  *
  * //addToMap
- * var addToMap = [dataset, nearestNeighborStudyArea];
+ * const addToMap = [dataset, nearestNeighborStudyArea];
  */
 function nearestNeighborAnalysis(
   dataset: FeatureCollection<any>,
