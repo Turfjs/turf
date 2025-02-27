@@ -187,27 +187,13 @@ function isLineInPoly(polygon: Polygon, linestring: LineString) {
     return false;
   }
 
-  let isContainedByPolygonBoundary = false;
-
-  for (let i = 0; i < linestring.coordinates.length - 1; i++) {
-    const coord1 = linestring.coordinates[i];
-
-    if (!booleanPointInPolygon(coord1, polygon)) {
+  for (const coord of linestring.coordinates) {
+    if (!booleanPointInPolygon(coord, polygon)) {
       return false;
-    }
-
-    if (isContainedByPolygonBoundary) continue;
-
-    const coord2 = linestring.coordinates[i + 1];
-    const midpoint = getMidpoint(coord1, coord2);
-
-    if (booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })) {
-      isContainedByPolygonBoundary = true;
     }
   }
 
-  if (!isContainedByPolygonBoundary) return false;
-
+  let isContainedByPolygonBoundary = false;
   const lineSegments = lineSplit(feature(linestring), feature(polygon));
 
   for (const lineSegment of lineSegments.features) {
@@ -215,12 +201,20 @@ function isLineInPoly(polygon: Polygon, linestring: LineString) {
       lineSegment.geometry.coordinates[0],
       lineSegment.geometry.coordinates[1]
     );
+
     if (!booleanPointInPolygon(midpoint, polygon)) {
       return false;
     }
+
+    if (
+      !isContainedByPolygonBoundary &&
+      booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })
+    ) {
+      isContainedByPolygonBoundary = true;
+    }
   }
 
-  return true;
+  return isContainedByPolygonBoundary;
 }
 
 /**
