@@ -12,6 +12,8 @@ import { bbox as calcBbox } from "@turf/bbox";
 import { booleanPointOnLine } from "@turf/boolean-point-on-line";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
+import { feature } from "@turf/helpers";
+import { lineSplit } from "@turf/line-split";
 
 /**
  * Boolean-within returns true if the first geometry is completely within the second geometry.
@@ -166,35 +168,47 @@ function isLineOnLine(lineString1: LineString, lineString2: LineString) {
 }
 
 function isLineInPoly(linestring: LineString, polygon: Polygon) {
-  var polyBbox = calcBbox(polygon);
-  var lineBbox = calcBbox(linestring);
+  const polyBbox = calcBbox(polygon);
+  const lineBbox = calcBbox(linestring);
+
   if (!doBBoxOverlap(polyBbox, lineBbox)) {
     return false;
   }
-  var foundInsidePoint = false;
 
-  for (var i = 0; i < linestring.coordinates.length; i++) {
-    if (!booleanPointInPolygon(linestring.coordinates[i], polygon)) {
+  let isContainedByPolygonBoundary = false;
+
+  for (let i = 0; i < linestring.coordinates.length - 1; i++) {
+    const coord1 = linestring.coordinates[i];
+
+    if (!booleanPointInPolygon(coord1, polygon)) {
       return false;
     }
-    if (!foundInsidePoint) {
-      foundInsidePoint = booleanPointInPolygon(
-        linestring.coordinates[i],
-        polygon,
-        { ignoreBoundary: true }
-      );
-    }
-    if (!foundInsidePoint && i < linestring.coordinates.length - 1) {
-      var midpoint = getMidpoint(
-        linestring.coordinates[i],
-        linestring.coordinates[i + 1]
-      );
-      foundInsidePoint = booleanPointInPolygon(midpoint, polygon, {
-        ignoreBoundary: true,
-      });
+
+    if (isContainedByPolygonBoundary) continue;
+
+    const coord2 = linestring.coordinates[i + 1];
+    const midpoint = getMidpoint(coord1, coord2);
+
+    if (booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })) {
+      isContainedByPolygonBoundary = true;
     }
   }
-  return foundInsidePoint;
+
+  if (!isContainedByPolygonBoundary) return false;
+
+  const lineSegments = lineSplit(feature(linestring), feature(polygon));
+
+  for (const lineSegment of lineSegments.features) {
+    const midpoint = getMidpoint(
+      lineSegment.geometry.coordinates[0],
+      lineSegment.geometry.coordinates[1]
+    );
+    if (!booleanPointInPolygon(midpoint, polygon)) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 /**
