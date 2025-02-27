@@ -4,7 +4,8 @@
   "description": "Determines whether the first geometry is completely within the second geometry.",
   "author": "Turf Authors",
   "contributors": [
-    "Rowan Winsemius <@rowanwins>"
+    "Rowan Winsemius <@rowanwins>",
+    "Samuel Arbibe <@samuelarbibe>"
   ],
   "license": "MIT",
   "bugs": {
