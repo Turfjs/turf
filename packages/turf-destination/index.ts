@@ -66,7 +66,9 @@ function destination<P extends GeoJsonProperties = GeoJsonProperties>(
     );
   const lng = radiansToDegrees(longitude2);
   const lat = radiansToDegrees(latitude2);
-
+  if (coordinates1[2] !== undefined) {
+    return point([lng, lat, coordinates1[2]], options.properties);
+  }
   return point([lng, lat], options.properties);
 }
 
