@@ -50,7 +50,7 @@ function tesselate(
 
 function processPolygon(coordinates: Position[][]) {
   const data = flattenCoords(coordinates);
-  const dim: number = coordinates[0][0].length;
+  const dim = 2;
   const result = earcut(data.vertices, data.holes, dim);
 
   const features: Feature<Polygon>[] = [];
@@ -58,19 +58,7 @@ function processPolygon(coordinates: Position[][]) {
 
   result.forEach(function (vert: any, i: number) {
     const index = result[i];
-    // if elevation component is included in the original coordinates, include it in the output coordinates
-    if (dim > 2) {
-      vertices.push([
-        data.vertices[index * dim],
-        data.vertices[index * dim + 1],
-        data.vertices[index * dim + 2],
-      ]);
-    } else {
-      vertices.push([
-        data.vertices[index * dim],
-        data.vertices[index * dim + 1],
-      ]);
-    }
+    vertices.push([data.vertices[index * dim], data.vertices[index * dim + 1]]);
   });
 
   for (var i = 0; i < vertices.length; i += 3) {
