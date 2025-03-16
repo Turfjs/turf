@@ -3538,5 +3538,59 @@ test("tesselate", function (t) {
     130,
     "triangle coordinates contain elevation"
   );
+
+  var simpleSquareWithVariableElevation = {
+    type: "Feature",
+    id: "SquareWithVariableElevation",
+    properties: { name: "SquareWithVariableElevation" },
+    geometry: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [1, 1],
+          [1, 2, 50],
+          [2, 2, 75],
+          [2, 1],
+          [1, 1],
+        ],
+      ],
+    },
+  };
+
+  var simpleVariableElevationTriangles = tesselate(
+    simpleSquareWithVariableElevation
+  );
+
+  t.equal(
+    simpleVariableElevationTriangles.type,
+    "FeatureCollection",
+    "Polygon returns a FeatureCollection"
+  );
+
+  t.deepEqual(
+    simpleVariableElevationTriangles.features[0].geometry.coordinates,
+    [
+      [
+        [1, 2, 50],
+        [1, 1],
+        [2, 1],
+        [1, 2, 50],
+      ],
+    ],
+    "first triangle coordinates contain original elevations"
+  );
+  t.deepEqual(
+    simpleVariableElevationTriangles.features[1].geometry.coordinates,
+    [
+      [
+        [2, 1],
+        [2, 2, 75],
+        [1, 2, 50],
+        [2, 1],
+      ],
+    ],
+    "second triangle coordinates contain original elevations"
+  );
+
   t.end();
 });

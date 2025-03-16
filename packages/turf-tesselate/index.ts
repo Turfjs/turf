@@ -50,7 +50,8 @@ function tesselate(
 
 function processPolygon(coordinates: Position[][]) {
   const data = flattenCoords(coordinates);
-  const dim: number = coordinates[0][0].length;
+  // coordinates are normalized to 3 dimensions by passing through original elevation value, or padding with undefined
+  const dim = 3;
   const result = earcut(data.vertices, data.holes, dim);
 
   const features: Feature<Polygon>[] = [];
@@ -58,8 +59,8 @@ function processPolygon(coordinates: Position[][]) {
 
   result.forEach(function (vert: any, i: number) {
     const index = result[i];
-    // if elevation component is included in the original coordinates, include it in the output coordinates
-    if (dim > 2) {
+    // if elevation component is included in the original coordinate, include it in the output coordinate
+    if (data.vertices[index * dim + 2] !== undefined) {
       vertices.push([
         data.vertices[index * dim],
         data.vertices[index * dim + 1],
@@ -83,7 +84,8 @@ function processPolygon(coordinates: Position[][]) {
 }
 
 function flattenCoords(data: Position[][]) {
-  const dim: number = data[0][0].length,
+  // coordinates are normalized to 3 dimensions by passing through original elevation value, or padding with undefined
+  const dim = 3,
     result: { vertices: number[]; holes: number[]; dimensions: number } = {
       vertices: [],
       holes: [],
@@ -93,6 +95,7 @@ function flattenCoords(data: Position[][]) {
 
   for (let i = 0; i < data.length; i++) {
     for (let j = 0; j < data[i].length; j++) {
+      // elevation member is either included, or undefined is put in its place
       for (let d = 0; d < dim; d++) result.vertices.push(data[i][j][d]);
     }
     if (i > 0) {
