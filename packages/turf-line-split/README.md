@@ -20,7 +20,10 @@ var splitter = turf.lineString([[130, -15], [130, -35]]);
 var split = turf.lineSplit(line, splitter);
 
 //addToMap
-var addToMap = [line, splitter]
+var addToMap = [line, splitter, split]
+
+split.features[0].properties.stroke = "red";
+split.features[1].properties.stroke = "blue";
 ```
 
 Returns **[FeatureCollection][3]<[LineString][2]>** Split LineStrings
