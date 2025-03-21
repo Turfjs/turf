@@ -42,7 +42,7 @@ function booleanValid(feature: Feature<any> | Geometry) {
       }
       return true;
     case "MultiLineString":
-      if (coords.length < 2) return false;
+      if (coords.length < 1) return false;
       for (var i = 0; i < coords.length; i++) {
         if (coords[i].length < 2) return false;
       }
