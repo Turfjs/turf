@@ -14,7 +14,7 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  * @param {number} distance length of the motion; negative values determine motion in opposite direction
  * @param {number} direction of the motion; angle from North in decimal degrees, positive clockwise
  * @param {Object} [options={}] Optional parameters
- * @param {Units} [options.units='kilometers'] in which `distance` will be express; miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] in which `distance` will be expressed; Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}
  * @param {number} [options.zTranslation=0] length of the vertical motion, same unit of distance
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON|GeometryCollection} the translated GeoJSON object

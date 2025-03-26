@@ -22,7 +22,7 @@ interface NearestPoint extends Feature<Point> {
  * @param {Coord} targetPoint the reference point
  * @param {FeatureCollection<Point>} points against input point set
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] the units of the numeric result
+ * @param {Units} [options.units='kilometers'] the units of the numeric result. Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}.
  * @returns {Feature<Point>} the closest point in the set to the reference point
  * @example
  * var targetPoint = turf.point([28.965797, 41.010086], {"marker-color": "#0F0"});
