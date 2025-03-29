@@ -12,6 +12,8 @@ import { bbox as calcBbox } from "@turf/bbox";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { booleanPointOnLine as isPointOnLine } from "@turf/boolean-point-on-line";
 import { getGeom } from "@turf/invariant";
+import { feature } from "@turf/helpers";
+import { lineSplit } from "@turf/line-split";
 
 /**
  * Boolean-contains returns True if the second geometry is completely contained by the first geometry.
@@ -178,29 +180,41 @@ function isLineOnLine(lineString1: LineString, lineString2: LineString) {
 }
 
 function isLineInPoly(polygon: Polygon, linestring: LineString) {
-  let output = false;
-  let i = 0;
-
   const polyBbox = calcBbox(polygon);
   const lineBbox = calcBbox(linestring);
+
   if (!doBBoxOverlap(polyBbox, lineBbox)) {
     return false;
   }
-  for (i; i < linestring.coordinates.length - 1; i++) {
-    const midPoint = getMidpoint(
-      linestring.coordinates[i],
-      linestring.coordinates[i + 1]
-    );
-    if (
-      booleanPointInPolygon({ type: "Point", coordinates: midPoint }, polygon, {
-        ignoreBoundary: true,
-      })
-    ) {
-      output = true;
-      break;
+
+  for (const coord of linestring.coordinates) {
+    if (!booleanPointInPolygon(coord, polygon)) {
+      return false;
     }
   }
-  return output;
+
+  let isContainedByPolygonBoundary = false;
+  const lineSegments = lineSplit(feature(linestring), feature(polygon));
+
+  for (const lineSegment of lineSegments.features) {
+    const midpoint = getMidpoint(
+      lineSegment.geometry.coordinates[0],
+      lineSegment.geometry.coordinates[1]
+    );
+
+    if (!booleanPointInPolygon(midpoint, polygon)) {
+      return false;
+    }
+
+    if (
+      !isContainedByPolygonBoundary &&
+      booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })
+    ) {
+      isContainedByPolygonBoundary = true;
+    }
+  }
+
+  return isContainedByPolygonBoundary;
 }
 
 /**
