@@ -499,3 +499,31 @@ test("turf-nearest-point-on-line -- issue 965", (t) => {
   );
   t.end();
 });
+
+test("turf-nearest-point-on-line -- issue 2808 redundant point support", (t) => {
+  // include redundant points in both lines
+  const line1 = lineString([
+    [-77.031669, 38.878605],
+    [-77.029609, 38.881946],
+    [-77.029609, 38.881946],
+    [-77.029609, 38.881946],
+    [-77.020339, 38.884084],
+    [-77.025661, 38.885821],
+    [-77.021884, 38.889563],
+    [-77.019824, 38.892368],
+  ]);
+  const line2 = lineString([
+    [10.57846, 49.8463959],
+    [10.57846, 49.8468386],
+    [10.57846, 49.8468386],
+    [10.57846, 49.8468386],
+    [10.57846, 49.8472814],
+    [10.57846, 49.8472814],
+  ]);
+
+  const thePoint = point([-122.3102, 47.6634]);
+
+  const nearest = nearestPointOnLine(line2, thePoint); // should not throw
+
+  t.end();
+});
