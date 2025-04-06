@@ -89,10 +89,12 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         let wasEnd: boolean;
 
         // Short circuit if snap point is start or end position of the line
-        // segment.
+        // segment or if start is equal to stop position.
         if (startPos[0] === ptPos[0] && startPos[1] === ptPos[1]) {
           [intersectPos, , wasEnd] = [startPos, undefined, false];
         } else if (stopPos[0] === ptPos[0] && stopPos[1] === ptPos[1]) {
+          [intersectPos, , wasEnd] = [stopPos, undefined, true];
+        } else if (startPos[0] === stopPos[0] && startPos[1] === stopPos[1]) {
           [intersectPos, , wasEnd] = [stopPos, undefined, true];
         } else {
           // Otherwise, find the nearest point the hard way.
