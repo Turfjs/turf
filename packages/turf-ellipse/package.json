@@ -4,7 +4,8 @@
   "description": "Takes a Point and calculates the ellipse polygon given two semi-axes expressed in variable units and steps for precision.",
   "author": "Turf Authors",
   "contributors": [
-    "Moacir P. de Sá Pereira <@muziejus>"
+    "Moacir P. de Sá Pereira <@muziejus>",
+    "Pavel Rozvora <@prozvora>"
   ],
   "license": "MIT",
   "bugs": {
