@@ -22,7 +22,7 @@ import { getCoord, getCoords } from "@turf/invariant";
  * @param {Geometry|Feature<Point>|number[]} pt point to snap from
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
- * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
+ * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point, `multiFeatureLocation`: distance along the line between start of the `MultiLineString` where closest point was found and the closest point.
  * @example
  * var line = turf.lineString([
  *     [-77.031669, 38.878605],
@@ -51,6 +51,7 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     index: number;
     multiFeatureIndex: number;
     location: number;
+    multiFeatureLocation: number;
     [key: string]: any;
   }
 > {
@@ -62,18 +63,33 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
 
   let closestPt: Feature<
     Point,
-    { dist: number; index: number; multiFeatureIndex: number; location: number }
+    {
+      dist: number;
+      index: number;
+      multiFeatureIndex: number;
+      location: number;
+      multiFeatureLocation: number;
+    }
   > = point([Infinity, Infinity], {
     dist: Infinity,
     index: -1,
     multiFeatureIndex: -1,
     location: -1,
+    multiFeatureLocation: -1,
   });
 
   let length = 0.0;
+  let multiFeatureLength = 0.0;
+  let currentMultiFeatureIndex = -1;
   flattenEach(
     lines,
     function (line: any, _featureIndex: number, multiFeatureIndex: number) {
+      //reset multiFeatureLength at each changed multiFeatureIndex
+      if (currentMultiFeatureIndex !== multiFeatureIndex) {
+        currentMultiFeatureIndex = multiFeatureIndex;
+        multiFeatureLength = 0.0;
+      }
+
       const coords: any = getCoords(line);
 
       for (let i = 0; i < coords.length - 1; i++) {
@@ -106,10 +122,12 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
           );
         }
 
+        const lineLocationDist = distance(start, intersectPos, options);
         const intersectPt = point(intersectPos, {
           dist: distance(pt, intersectPos, options),
           multiFeatureIndex: multiFeatureIndex,
-          location: length + distance(start, intersectPos, options),
+          location: length + lineLocationDist,
+          multiFeatureLocation: multiFeatureLength + lineLocationDist,
         });
 
         if (intersectPt.properties.dist < closestPt.properties.dist) {
@@ -124,8 +142,9 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
           };
         }
 
-        // update length
+        // update length and multiFeatureLength
         length += sectionLength;
+        multiFeatureLength += sectionLength;
       }
     }
   );

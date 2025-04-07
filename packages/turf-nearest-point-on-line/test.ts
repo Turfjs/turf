@@ -40,6 +40,10 @@ test("turf-nearest-point-on-line", (t) => {
     onLine.properties["marker-color"] = "#F0F";
     onLine.properties.dist = round(onLine.properties.dist, 6);
     onLine.properties.location = round(onLine.properties.location, 6);
+    onLine.properties.multiFeatureLocation = round(
+      onLine.properties.multiFeatureLocation,
+      6
+    );
     const between = lineString(
       [onLine.geometry.coordinates, point.geometry.coordinates],
       { stroke: "#F00", "stroke-width": 6 }
@@ -395,6 +399,37 @@ test("turf-nearest-point-on-line -- multifeature index", (t) => {
     nearestPointOnLine(multiLine.geometry, pt).properties.multiFeatureIndex,
     1,
     "multiFeatureIndex"
+  );
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 2753 multifeature location", (t) => {
+  const multiLine = multiLineString([
+    [
+      [-122.3125, 47.6632],
+      [-122.3102, 47.6646],
+    ],
+    [
+      [-122.3116, 47.6623],
+      [-122.3091, 47.6636],
+    ],
+  ]);
+
+  const ptA = point([-122.3106, 47.6638], { name: "A" });
+  const ptB = point([-122.3102, 47.6634], { name: "B" });
+
+  const nearestToA = nearestPointOnLine(multiLine, ptA, { units: "meters" });
+  const nearestToB = nearestPointOnLine(multiLine, ptB, { units: "meters" });
+
+  t.equal(
+    Number(nearestToA.properties.multiFeatureLocation.toFixed(6)),
+    150.296465,
+    "nearestToA multiFeatureLocation"
+  );
+  t.equal(
+    Number(nearestToB.properties.multiFeatureLocation.toFixed(6)),
+    157.738215,
+    "nearestToB multiFeatureLocation"
   );
   t.end();
 });
