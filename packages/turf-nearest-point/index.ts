@@ -1,15 +1,15 @@
-import { Feature, FeatureCollection, Point } from "geojson";
+import { Feature, FeatureCollection, GeoJsonProperties, Point } from "geojson";
 import { Coord, Units } from "@turf/helpers";
 import { clone } from "@turf/clone";
 import { distance } from "@turf/distance";
 import { featureEach } from "@turf/meta";
 
-interface NearestPoint extends Feature<Point> {
+interface NearestPoint<P extends GeoJsonProperties = GeoJsonProperties>
+  extends Feature<Point> {
   properties: {
     featureIndex: number;
     distanceToPoint: number;
-    [key: string]: any;
-  };
+  } & P;
 }
 
 /**
@@ -38,13 +38,13 @@ interface NearestPoint extends Feature<Point> {
  * var addToMap = [targetPoint, points, nearest];
  * nearest.properties['marker-color'] = '#F00';
  */
-function nearestPoint(
+function nearestPoint<P extends GeoJsonProperties = GeoJsonProperties>(
   targetPoint: Coord,
-  points: FeatureCollection<Point>,
+  points: FeatureCollection<Point, P>,
   options: {
     units?: Units;
   } = {}
-): NearestPoint {
+): NearestPoint<P> {
   // Input validation
   if (!targetPoint) throw new Error("targetPoint is required");
   if (!points) throw new Error("points is required");
