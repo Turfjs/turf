@@ -29,6 +29,30 @@
       "type": "Feature",
       "properties": {
         "distance": 13.45,
+        "direction": 0,
+        "stroke": "#00F",
+        "stroke-width": 4
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [-99.200073, 19.220958],
+            [-99.1, 19.290959],
+            [-98.999927, 19.220958]
+          ],
+          [
+            [-99.200074, 19.280958],
+            [-99.1, 19.350959],
+            [-98.999926, 19.280958]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "distance": 13.45,
         "direction": 0
       },
       "geometry": {
