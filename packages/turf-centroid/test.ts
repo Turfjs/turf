@@ -7,6 +7,7 @@ import { writeJsonFileSync } from "write-json-file";
 import { featureEach } from "@turf/meta";
 import { featureCollection, lineString } from "@turf/helpers";
 import { centroid } from "./index.js";
+import { circle } from "@turf/circle";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -40,6 +41,20 @@ test("centroid", (t) => {
     if (process.env.REGEN) writeJsonFileSync(out, result);
     t.deepEqual(result, loadJsonFileSync(out), name);
   });
+  t.end();
+});
+
+test("centroid -- circle consistency", (t) => {
+  const circ = circle([4.832, 45.7578], 4000);
+  const center = centroid(circ);
+  t.true(
+    Math.abs(center.geometry.coordinates[0] - 4.832) < 0.0000001,
+    "lon equality"
+  );
+  t.true(
+    Math.abs(center.geometry.coordinates[1] - 45.7578) < 0.0000001,
+    "lat equality"
+  );
   t.end();
 });
 
