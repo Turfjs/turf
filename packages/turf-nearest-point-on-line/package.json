@@ -3,6 +3,9 @@
   "version": "7.2.0",
   "description": "Finds the nearest point on a line to a given point",
   "author": "Turf Authors",
+  "contributors": [
+    "mike castleman <@mlc>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
