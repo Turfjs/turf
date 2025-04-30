@@ -64,7 +64,7 @@
     "@turf/clusters": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/rbush": "^3.0.2",
-    "@types/tape": "^4.13.4",
+    "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "chromatism": "^3.0.0",
     "concaveman": "^1.2.1",
@@ -74,7 +74,7 @@
     "tsup": "^8.4.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
-    "write-json-file": "^5.0.0"
+    "write-json-file": "^6.0.0"
   },
   "dependencies": {
     "@turf/clone": "workspace:^",

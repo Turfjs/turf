@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",
-    "@types/tape": "^4.13.4",
+    "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "boolean-shapely": "*",
     "load-json-file": "^7.0.1",

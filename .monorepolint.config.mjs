@@ -236,7 +236,7 @@ export default {
         },
         devDependencies: {
           "@types/benchmark": "^2.1.5",
-          "@types/tape": "^4.13.4",
+          "@types/tape": "^5.8.1",
           typescript: "^5.8.3",
         },
       },
