@@ -35,7 +35,7 @@
     "@monorepolint/config": "0.5.0",
     "@monorepolint/core": "0.5.0",
     "@monorepolint/rules": "0.5.0",
-    "@types/node": "18.11.9",
+    "@types/node": "22.15.3",
     "acorn": "^7.4.1",
     "camelcase": "^8.0.0",
     "d3-queue": "*",
