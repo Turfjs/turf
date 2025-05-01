@@ -5,6 +5,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
+import { area } from "@turf/area";
+import { circle } from "@turf/circle";
+import { intersect } from "@turf/intersect";
 import { truncate } from "@turf/truncate";
 import {
   point,
@@ -37,8 +40,17 @@ test("translate", (t) => {
       units,
       zTranslation,
     });
+    const translatedAroundCenter = translate(geojson, distance, direction, {
+      units,
+      zTranslation,
+      aroundCenter: true,
+    });
     const result = featureCollection([
-      colorize(truncate(translated, { precision: 6, coordinates: 3 })),
+      colorize(truncate(translated, { precision: 6, coordinates: 3 }), "#F00"),
+      colorize(
+        truncate(translatedAroundCenter, { precision: 6, coordinates: 3 }),
+        "#00F"
+      ),
       geojson,
     ]);
 
@@ -135,19 +147,43 @@ test("rotate -- geometry support", (t) => {
   t.end();
 });
 
+test("turf-translate -- circle consistency", (t) => {
+  const circleCenter = point([0, 60]);
+  const circleCenterTranslated = translate(circleCenter, 1000, 30);
+  const circleOrigin = circle(circleCenter, 1000);
+  const circleTranslated = translate(circleOrigin, 1000, 30, {
+    aroundCenter: true,
+  });
+  const circleReconstructed = circle(circleCenterTranslated, 1000);
+
+  const intersectionGeom = intersect(
+    featureCollection([circleTranslated, circleReconstructed])
+  );
+  const areaIntersection =
+    intersectionGeom != null ? area(intersectionGeom.geometry) : 0;
+  const areaCircle =
+    circleTranslated != null ? area(circleTranslated.geometry) : 0;
+  t.true(
+    Math.abs(areaIntersection - areaCircle) / areaCircle < 0.01,
+    "both areas are equal"
+  );
+  t.end();
+});
+
 // style result
-function colorize(geojson: Feature) {
+function colorize(geojson: Feature, color?) {
   // We are going to add some properties, so make sure properties attribute is
   // present.
+  color = color || "#F00";
   geojson.properties = geojson.properties ?? {};
   if (
     geojson.geometry.type === "Point" ||
     geojson.geometry.type === "MultiPoint"
   ) {
-    geojson.properties["marker-color"] = "#F00";
+    geojson.properties["marker-color"] = color;
     geojson.properties["marker-symbol"] = "star";
   } else {
-    geojson.properties["stroke"] = "#F00";
+    geojson.properties["stroke"] = color;
     geojson.properties["stroke-width"] = 4;
   }
   return geojson;

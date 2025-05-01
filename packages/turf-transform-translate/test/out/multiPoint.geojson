@@ -25,6 +25,25 @@
       "properties": {
         "distance": -10,
         "units": "miles",
+        "direction": 90,
+        "marker-color": "#00F",
+        "marker-symbol": "star"
+      },
+      "geometry": {
+        "type": "MultiPoint",
+        "coordinates": [
+          [99.855263, 0],
+          [100.855263, 1],
+          [101.005263, -0.86],
+          [99.655263, 1.8]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "distance": -10,
+        "units": "miles",
         "direction": 90
       },
       "geometry": {
