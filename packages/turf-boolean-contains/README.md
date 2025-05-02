@@ -55,4 +55,4 @@ $ npm install @turf/turf
 
 ### Diagrams
 
-![esri-contains](diagrams/esri-contains.gif)
+![esri-contains](diagrams/esri-contains.png)

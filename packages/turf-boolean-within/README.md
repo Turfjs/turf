@@ -51,3 +51,8 @@ Or install the all-encompassing @turf/turf module that includes all modules as f
 ```sh
 $ npm install @turf/turf
 ```
+
+
+### Diagrams
+
+![esri-within](diagrams/esri-within.png)
