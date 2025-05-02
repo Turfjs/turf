@@ -64,13 +64,13 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/bearing": "workspace:^",
-    "@turf/centroid": "workspace:^",
-    "@turf/destination": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
-    "@turf/length": "workspace:^",
-    "@turf/meta": "workspace:^",
+    "@turf/bearing": "workspace:*",
+    "@turf/centroid": "workspace:*",
+    "@turf/destination": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
+    "@turf/length": "workspace:*",
+    "@turf/meta": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

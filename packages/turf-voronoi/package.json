@@ -71,9 +71,9 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/clone": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
+    "@turf/clone": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
     "@types/d3-voronoi": "^1.1.12",
     "@types/geojson": "^7946.0.10",
     "d3-voronoi": "1.1.2",

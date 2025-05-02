@@ -66,16 +66,16 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "workspace:^",
-    "@turf/geojson-rbush": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
-    "@turf/line-intersect": "workspace:^",
-    "@turf/line-segment": "workspace:^",
-    "@turf/meta": "workspace:^",
-    "@turf/nearest-point-on-line": "workspace:^",
-    "@turf/square": "workspace:^",
-    "@turf/truncate": "workspace:^",
+    "@turf/bbox": "workspace:*",
+    "@turf/geojson-rbush": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
+    "@turf/line-intersect": "workspace:*",
+    "@turf/line-segment": "workspace:*",
+    "@turf/meta": "workspace:*",
+    "@turf/nearest-point-on-line": "workspace:*",
+    "@turf/square": "workspace:*",
+    "@turf/truncate": "workspace:*",
     "@types/geojson": "^7946.0.10"
   }
 }

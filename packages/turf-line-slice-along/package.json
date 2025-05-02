@@ -50,8 +50,8 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/along": "workspace:^",
-    "@turf/length": "workspace:^",
+    "@turf/along": "workspace:*",
+    "@turf/length": "workspace:*",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^4.13.4",
     "benchmark": "^2.1.4",
@@ -62,10 +62,10 @@
     "tsx": "^4.19.2"
   },
   "dependencies": {
-    "@turf/bearing": "workspace:^",
-    "@turf/destination": "workspace:^",
-    "@turf/distance": "workspace:^",
-    "@turf/helpers": "workspace:^",
+    "@turf/bearing": "workspace:*",
+    "@turf/destination": "workspace:*",
+    "@turf/distance": "workspace:*",
+    "@turf/helpers": "workspace:*",
     "@types/geojson": "^7946.0.10"
   }
 }

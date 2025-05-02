@@ -67,12 +67,12 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/boolean-point-in-polygon": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
-    "@turf/meta": "workspace:^",
-    "@turf/point-to-line-distance": "workspace:^",
-    "@turf/polygon-to-line": "workspace:^",
+    "@turf/boolean-point-in-polygon": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
+    "@turf/meta": "workspace:*",
+    "@turf/point-to-line-distance": "workspace:*",
+    "@turf/polygon-to-line": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }
