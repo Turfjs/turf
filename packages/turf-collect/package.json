@@ -67,9 +67,9 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@turf/bbox": "workspace:^",
-    "@turf/boolean-point-in-polygon": "workspace:^",
-    "@turf/helpers": "workspace:^",
+    "@turf/bbox": "workspace:*",
+    "@turf/boolean-point-in-polygon": "workspace:*",
+    "@turf/helpers": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "rbush": "^3.0.1",
     "tslib": "^2.8.1"

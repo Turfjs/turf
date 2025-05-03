@@ -63,8 +63,8 @@
     "write-json-file": "^5.0.0"
   },
   "dependencies": {
-    "@turf/helpers": "workspace:^",
-    "@turf/meta": "workspace:^",
+    "@turf/helpers": "workspace:*",
+    "@turf/meta": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "concaveman": "^1.2.1",
     "tslib": "^2.8.1"
