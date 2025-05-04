@@ -61,7 +61,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@turf/helpers": "workspace:^",
+    "@turf/helpers": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

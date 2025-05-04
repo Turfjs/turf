@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@placemarkio/check-geojson": "^0.1.12",
-    "@turf/truncate": "workspace:^",
+    "@turf/truncate": "workspace:*",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
@@ -68,8 +68,8 @@
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/destination": "workspace:^",
-    "@turf/helpers": "workspace:^",
+    "@turf/destination": "workspace:*",
+    "@turf/helpers": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

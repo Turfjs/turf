@@ -69,9 +69,9 @@
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/distance": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/meta": "workspace:^",
+    "@turf/distance": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/meta": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

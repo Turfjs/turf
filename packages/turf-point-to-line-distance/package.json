@@ -54,7 +54,7 @@
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/circle": "workspace:^",
+    "@turf/circle": "workspace:*",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
@@ -67,15 +67,15 @@
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/bearing": "workspace:^",
-    "@turf/distance": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
-    "@turf/meta": "workspace:^",
-    "@turf/nearest-point-on-line": "workspace:^",
-    "@turf/projection": "workspace:^",
-    "@turf/rhumb-bearing": "workspace:^",
-    "@turf/rhumb-distance": "workspace:^",
+    "@turf/bearing": "workspace:*",
+    "@turf/distance": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
+    "@turf/meta": "workspace:*",
+    "@turf/nearest-point-on-line": "workspace:*",
+    "@turf/projection": "workspace:*",
+    "@turf/rhumb-bearing": "workspace:*",
+    "@turf/rhumb-distance": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

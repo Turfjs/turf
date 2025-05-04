@@ -71,11 +71,11 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@turf/bbox": "workspace:^",
-    "@turf/boolean-point-in-polygon": "workspace:^",
-    "@turf/boolean-point-on-line": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
+    "@turf/bbox": "workspace:*",
+    "@turf/boolean-point-in-polygon": "workspace:*",
+    "@turf/boolean-point-on-line": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

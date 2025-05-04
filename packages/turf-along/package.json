@@ -63,11 +63,11 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@turf/bearing": "workspace:^",
-    "@turf/destination": "workspace:^",
-    "@turf/distance": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
+    "@turf/bearing": "workspace:*",
+    "@turf/destination": "workspace:*",
+    "@turf/distance": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

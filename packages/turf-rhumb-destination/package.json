@@ -61,7 +61,7 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/truncate": "workspace:^",
+    "@turf/truncate": "workspace:*",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
@@ -74,8 +74,8 @@
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

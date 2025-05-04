@@ -76,12 +76,12 @@
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/clone": "workspace:^",
-    "@turf/distance": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
-    "@turf/meta": "workspace:^",
-    "@turf/tin": "workspace:^",
+    "@turf/clone": "workspace:*",
+    "@turf/distance": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
+    "@turf/meta": "workspace:*",
+    "@turf/tin": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "topojson-client": "3.x",
     "topojson-server": "3.x",

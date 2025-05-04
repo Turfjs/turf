@@ -71,9 +71,9 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@turf/clean-coords": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
+    "@turf/clean-coords": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "geojson-equality-ts": "^1.0.2",
     "tslib": "^2.8.1"

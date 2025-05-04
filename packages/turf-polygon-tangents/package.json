@@ -69,12 +69,12 @@
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "workspace:^",
-    "@turf/boolean-within": "workspace:^",
-    "@turf/explode": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
-    "@turf/nearest-point": "workspace:^",
+    "@turf/bbox": "workspace:*",
+    "@turf/boolean-within": "workspace:*",
+    "@turf/explode": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
+    "@turf/nearest-point": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

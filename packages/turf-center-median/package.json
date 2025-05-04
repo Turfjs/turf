@@ -52,10 +52,10 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/center": "workspace:^",
-    "@turf/center-of-mass": "workspace:^",
-    "@turf/random": "workspace:^",
-    "@turf/truncate": "workspace:^",
+    "@turf/center": "workspace:*",
+    "@turf/center-of-mass": "workspace:*",
+    "@turf/random": "workspace:*",
+    "@turf/truncate": "workspace:*",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
@@ -68,11 +68,11 @@
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/center-mean": "workspace:^",
-    "@turf/centroid": "workspace:^",
-    "@turf/distance": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/meta": "workspace:^",
+    "@turf/center-mean": "workspace:*",
+    "@turf/centroid": "workspace:*",
+    "@turf/distance": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/meta": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }
