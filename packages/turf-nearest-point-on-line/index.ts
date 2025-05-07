@@ -250,13 +250,10 @@ function nearestPointOnSegment(
   // If angle AI or BI is greater than angleAB, I lies on the circle *beyond* A
   // and B so use the closest of A or B as the intersection
   if (angle(A, I) > angleAB || angle(B, I) > angleAB) {
-    if (
-      distance(vectorToLngLat(I), vectorToLngLat(A)) <=
-      distance(vectorToLngLat(I), vectorToLngLat(B))
-    ) {
-      return [vectorToLngLat(A), true, false];
+    if (distance(posC, posA) <= distance(posC, posB)) {
+      return [posA, true, false];
     } else {
-      return [vectorToLngLat(B), false, true];
+      return [posB, false, true];
     }
   }
 

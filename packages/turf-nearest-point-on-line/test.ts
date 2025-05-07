@@ -517,3 +517,20 @@ test("turf-nearest-point-on-line -- issue 2808 redundant point support", (t) => 
 
   t.end();
 });
+
+test("turf-nearest-point-on-line -- issue 2870 faraway point", (t) => {
+  const line1 = lineString([
+    [-96.80974, -58.32062],
+    [-50.2464, 38.36643],
+  ]);
+  const thePoint = point([13.6023, 46.50646]);
+
+  const nearest = nearestPointOnLine(line1, thePoint);
+  t.deepEqual(
+    truncate(nearest, { precision: 8 }).geometry.coordinates,
+    [-50.2464, 38.36643],
+    "nearest point should be [-50.2464, 38.36643]"
+  );
+
+  t.end();
+});
