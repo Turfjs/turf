@@ -16,7 +16,7 @@ Creates a circular arc, of a circle of the given radius and center point, betwee
 *   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
     *   `options.steps` **[number][2]** number of steps (straight segments) that will constitute the arc (optional, default `64`)
-    *   `options.units` **[string][4]** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
+    *   `options.units` **Units** Supports all valid Turf [Units][4]. (optional, default `'kilometers'`)
 
 ### Examples
 
@@ -40,7 +40,7 @@ Returns **[Feature][5]<[LineString][6]>** line arc
 
 [3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[4]: https://turfjs.org/docs/api/types/Units
 
 [5]: https://tools.ietf.org/html/rfc7946#section-3.2
 
