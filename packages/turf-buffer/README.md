@@ -4,7 +4,7 @@
 
 ## buffer
 
-Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
+Calculates a buffer for input features for a given radius.
 
 When using a negative radius, the resulting geometry may be invalid if
 it's too small compared to the radius magnitude. If the input is a
@@ -18,7 +18,7 @@ the input, or even be empty.
 *   `radius` **[number][4]** distance to draw the buffer (negative values are allowed)
 *   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][6]** any of the options supported by turf units (optional, default `"kilometers"`)
+    *   `options.units` **Units** Supports all valid Turf [Units][6]. (optional, default `"kilometers"`)
     *   `options.steps` **[number][4]** number of steps (optional, default `8`)
 
 ### Examples
@@ -43,7 +43,7 @@ Returns **([FeatureCollection][1] | [Feature][3]<([Polygon][7] | [MultiPolygon][
 
 [5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[6]: https://turfjs.org/docs/api/types/Units
 
 [7]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

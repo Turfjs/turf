@@ -21,7 +21,7 @@ import { getCoord } from "@turf/invariant";
  * @param {number} distance distance from the origin point
  * @param {number} bearing ranging from -180 to 180
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {Object} [options.properties={}] Translate properties to Point
  * @returns {Feature<Point>} destination point
  * @example
