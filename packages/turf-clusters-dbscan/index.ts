@@ -1,8 +1,8 @@
 import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import { clone } from "@turf/clone";
-import { distance } from "@turf/distance";
-import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
-import { rbush as RBush } from "./lib/rbush-export.js";
+import { Units } from "@turf/helpers";
+import KDBush from "kdbush";
+import * as geokdbush from "geokdbush";
 
 /**
  * Point classification within the cluster.
@@ -77,11 +77,13 @@ function clustersDbscan(
   // Defaults
   const minPoints = options.minPoints || 3;
 
-  // Calculate the distance in degrees for region queries
-  const latDistanceInDegrees = lengthToDegrees(maxDistance, options.units);
-
   // Create a spatial index
-  var tree = new RBush(points.features.length);
+  const kdIndex = new KDBush(points.features.length);
+  // Index each point for spatial queries
+  for (const point of points.features) {
+    kdIndex.add(point.geometry.coordinates[0], point.geometry.coordinates[1]);
+  }
+  kdIndex.finish();
 
   // Keeps track of whether a point has been visited or not.
   var visited = points.features.map((_) => false);
@@ -95,54 +97,22 @@ function clustersDbscan(
   // Keeps track of the clusterId for each point
   var clusterIds: number[] = points.features.map((_) => -1);
 
-  // Index each point for spatial queries
-  tree.load(
-    points.features.map((point, index) => {
-      var [x, y] = point.geometry.coordinates;
-      return {
-        minX: x,
-        minY: y,
-        maxX: x,
-        maxY: y,
-        index: index,
-      } as IndexedPoint;
-    })
-  );
-
   // Function to find neighbors of a point within a given distance
   const regionQuery = (index: number): IndexedPoint[] => {
     const point = points.features[index];
     const [x, y] = point.geometry.coordinates;
 
-    const minY = Math.max(y - latDistanceInDegrees, -90.0);
-    const maxY = Math.min(y + latDistanceInDegrees, 90.0);
-
-    const lonDistanceInDegrees = (function () {
-      // Handle the case where the bounding box crosses the poles
-      if (minY < 0 && maxY > 0) {
-        return latDistanceInDegrees;
-      }
-      if (Math.abs(minY) < Math.abs(maxY)) {
-        return latDistanceInDegrees / Math.cos(degreesToRadians(maxY));
-      } else {
-        return latDistanceInDegrees / Math.cos(degreesToRadians(minY));
-      }
-    })();
-
-    const minX = Math.max(x - lonDistanceInDegrees, -360.0);
-    const maxX = Math.min(x + lonDistanceInDegrees, 360.0);
-
-    // Calculate the bounding box for the region query
-    const bbox = { minX, minY, maxX, maxY };
-    return (tree.search(bbox) as ReadonlyArray<IndexedPoint>).filter(
-      (neighbor) => {
-        const neighborIndex = neighbor.index;
-        const neighborPoint = points.features[neighborIndex];
-        const distanceInKm = distance(point, neighborPoint, {
-          units: "kilometers",
-        });
-        return distanceInKm <= maxDistance;
-      }
+    return (
+      geokdbush
+        // @ts-expect-error - until https://github.com/mourner/geokdbush/issues/20 is resolved
+        .around<number>(kdIndex, x, y, undefined, maxDistance)
+        .map((id) => ({
+          minX: points.features[id].geometry.coordinates[0],
+          minY: points.features[id].geometry.coordinates[1],
+          maxX: points.features[id].geometry.coordinates[0],
+          maxY: points.features[id].geometry.coordinates[1],
+          index: id,
+        }))
     );
   };
 
