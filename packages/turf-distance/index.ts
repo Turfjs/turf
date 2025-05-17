@@ -8,11 +8,11 @@ import { radiansToLength, degreesToRadians, Coord, Units } from "@turf/helpers";
  * Calculates the distance between two {@link Coord|coordinates} in degrees, radians, miles, or kilometers.
  * This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
- * @name distance
+ * @function
  * @param {Coord} from origin coordinate
  * @param {Coord} to destination coordinate
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {number} distance between the two coordinates
  * @example
  * var from = turf.point([-75.343, 39.984]);

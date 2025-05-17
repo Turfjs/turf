@@ -50,7 +50,7 @@ declare interface StandardDeviationalEllipse extends Feature<Polygon> {
  * doi:{@link https://doi.org/10.1086/214336|10.1086/214336}.
  *
  *
- * @name standardDeviationalEllipse
+ * @function
  * @param {FeatureCollection<Point>} points GeoJSON points
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.weight] the property name used to weight the center

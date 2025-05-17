@@ -1,7 +1,7 @@
 {
   "name": "@turf/line-split",
-  "version": "7.0.0",
-  "description": "turf line-split module",
+  "version": "7.2.0",
+  "description": "Split a LineString by another GeoJSON Feature.",
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>"
@@ -56,26 +56,26 @@
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",
-    "@types/tape": "^4.2.32",
+    "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
-    "tape": "^5.7.2",
-    "tsup": "^8.0.1",
-    "tsx": "^4.6.2",
-    "write-json-file": "^5.0.0"
+    "tape": "^5.9.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.4",
+    "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "workspace:^",
-    "@turf/geojson-rbush": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
-    "@turf/line-intersect": "workspace:^",
-    "@turf/line-segment": "workspace:^",
-    "@turf/meta": "workspace:^",
-    "@turf/nearest-point-on-line": "workspace:^",
-    "@turf/square": "workspace:^",
-    "@turf/truncate": "workspace:^",
+    "@turf/bbox": "workspace:*",
+    "@turf/geojson-rbush": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
+    "@turf/line-intersect": "workspace:*",
+    "@turf/line-segment": "workspace:*",
+    "@turf/meta": "workspace:*",
+    "@turf/nearest-point-on-line": "workspace:*",
+    "@turf/square": "workspace:*",
+    "@turf/truncate": "workspace:*",
     "@types/geojson": "^7946.0.10"
   }
 }

@@ -10,7 +10,7 @@ import concaveman from "concaveman";
  * the [convex-hull](https://github.com/mikolalysenko/convex-hull) module that implements a
  * [monotone chain hull](http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain).
  *
- * @name convex
+ * @function
  * @param {GeoJSON} geojson input Feature or FeatureCollection
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.concavity=Infinity] 1 - thin shape. Infinity - convex hull.

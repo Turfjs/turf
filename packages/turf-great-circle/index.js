@@ -1,12 +1,14 @@
+import { lineString } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 import { GreatCircle } from "./lib/arc.js";
 
 /**
  * Calculate great circles routes as {@link LineString} or {@link MultiLineString}.
  * If the `start` and `end` points span the antimeridian, the resulting feature will
- * be split into a `MultiLineString`.
+ * be split into a `MultiLineString`. If the `start` and `end` positions are the same
+ * then a `LineString` will be returned with duplicate coordinates the length of the `npoints` option.
  *
- * @name greatCircle
+ * @function
  * @param {Coord} start source point feature
  * @param {Coord} end destination point feature
  * @param {Object} [options={}] Optional parameters
@@ -34,8 +36,16 @@ function greatCircle(start, end, options) {
 
   start = getCoord(start);
   end = getCoord(end);
+
   properties = properties || {};
   npoints = npoints || 100;
+
+  if (start[0] === end[0] && start[1] === end[1]) {
+    const arr = Array(npoints);
+    arr.fill([start[0], start[1]]);
+    return lineString(arr, properties);
+  }
+
   offset = offset || 10;
 
   var generator = new GreatCircle(

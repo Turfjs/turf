@@ -1,13 +1,15 @@
 import { Position } from "geojson";
 import { feature } from "@turf/helpers";
 import { getCoords, getType } from "@turf/invariant";
+import { booleanPointOnLine } from "@turf/boolean-point-on-line";
+import { lineString } from "@turf/helpers";
 
 // To-Do => Improve Typescript GeoJSON handling
 
 /**
  * Removes redundant coordinates from any GeoJSON Geometry.
  *
- * @name cleanCoords
+ * @function
  * @param {Geometry|Feature} geojson Feature or Geometry
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated
@@ -99,61 +101,70 @@ function cleanCoords(
  * @returns {Array<number>} Cleaned coordinates
  */
 function cleanLine(line: Position[], type: string) {
-  var points = getCoords(line);
+  const points = getCoords(line);
   // handle "clean" segment
   if (points.length === 2 && !equals(points[0], points[1])) return points;
 
-  var newPoints = [];
-  var secondToLast = points.length - 1;
-  var newPointsLength = newPoints.length;
+  const newPoints = [];
 
-  newPoints.push(points[0]);
-  for (var i = 1; i < secondToLast; i++) {
-    var prevAddedPoint = newPoints[newPoints.length - 1];
+  // Segments based approach. With initial segment a-b, keep comparing to a
+  // longer segment a-c and as long as b is still on a-c, b is a redundant
+  // point.
+  let a = 0,
+    b = 1,
+    c = 2;
+
+  // Guaranteed we'll use the first point.
+  newPoints.push(points[a]);
+  // While there is still room to extend the segment ...
+  while (c < points.length) {
+    if (booleanPointOnLine(points[b], lineString([points[a], points[c]]))) {
+      // b is on a-c, so we can discard point b, and extend a-b to be the same
+      // as a-c as the basis for comparison during the next iteration.
+      b = c;
+    } else {
+      // b is NOT on a-c, suggesting a-c is not an extension of a-b. Commit a-b
+      // as a necessary segment.
+      newPoints.push(points[b]);
+
+      // Make our a-b for the next iteration start from the end of the segment
+      // that was just locked in i.e. next a-b should be the current b-(b+1).
+      a = b;
+      b++;
+      c = b;
+    }
+    // Plan to look at the next point during the next iteration.
+    c++;
+  }
+  // No remaining points, so commit the current a-b segment.
+  newPoints.push(points[b]);
+
+  if (type === "Polygon" || type === "MultiPolygon") {
+    // For polygons need to make sure the start / end point wasn't one of the
+    // points that needed to be cleaned.
+    // https://github.com/Turfjs/turf/issues/2406
+    // For points [a, b, c, ..., z, a]
+    // if a is on line b-z, it too can be removed. New array becomes
+    // [b, c, ..., z, b]
     if (
-      points[i][0] === prevAddedPoint[0] &&
-      points[i][1] === prevAddedPoint[1]
-    )
-      continue;
-    else {
-      newPoints.push(points[i]);
-      newPointsLength = newPoints.length;
-      if (newPointsLength > 2) {
-        if (
-          isPointOnLineSegment(
-            newPoints[newPointsLength - 3],
-            newPoints[newPointsLength - 1],
-            newPoints[newPointsLength - 2]
-          )
-        )
-          newPoints.splice(newPoints.length - 2, 1);
-      }
+      booleanPointOnLine(
+        newPoints[0],
+        lineString([newPoints[1], newPoints[newPoints.length - 2]])
+      )
+    ) {
+      newPoints.shift(); // Discard starting point.
+      newPoints.pop(); // Discard closing point.
+      newPoints.push(newPoints[0]); // Duplicate the new closing point to end of array.
+    }
+
+    // (Multi)Polygons must have at least 4 points and be closed.
+    if (newPoints.length < 4) {
+      throw new Error("invalid polygon, fewer than 4 points");
+    }
+    if (!equals(newPoints[0], newPoints[newPoints.length - 1])) {
+      throw new Error("invalid polygon, first and last points not equal");
     }
   }
-  newPoints.push(points[points.length - 1]);
-  newPointsLength = newPoints.length;
-
-  // (Multi)Polygons must have at least 4 points, but a closed LineString with only 3 points is acceptable
-  if (
-    (type === "Polygon" || type === "MultiPolygon") &&
-    equals(points[0], points[points.length - 1]) &&
-    newPointsLength < 4
-  ) {
-    throw new Error("invalid polygon");
-  }
-
-  if (type === "LineString" && newPointsLength < 3) {
-    return newPoints;
-  }
-
-  if (
-    isPointOnLineSegment(
-      newPoints[newPointsLength - 3],
-      newPoints[newPointsLength - 1],
-      newPoints[newPointsLength - 2]
-    )
-  )
-    newPoints.splice(newPoints.length - 2, 1);
 
   return newPoints;
 }
@@ -168,36 +179,6 @@ function cleanLine(line: Position[], type: string) {
  */
 function equals(pt1: Position, pt2: Position) {
   return pt1[0] === pt2[0] && pt1[1] === pt2[1];
-}
-
-/**
- * Returns if `point` is on the segment between `start` and `end`.
- * Borrowed from `@turf/boolean-point-on-line` to speed up the evaluation (instead of using the module as dependency)
- *
- * @private
- * @param {Position} start coord pair of start of line
- * @param {Position} end coord pair of end of line
- * @param {Position} point coord pair of point to check
- * @returns {boolean} true/false
- */
-function isPointOnLineSegment(start: Position, end: Position, point: Position) {
-  var x = point[0],
-    y = point[1];
-  var startX = start[0],
-    startY = start[1];
-  var endX = end[0],
-    endY = end[1];
-
-  var dxc = x - startX;
-  var dyc = y - startY;
-  var dxl = endX - startX;
-  var dyl = endY - startY;
-  var cross = dxc * dyl - dyc * dxl;
-
-  if (cross !== 0) return false;
-  else if (Math.abs(dxl) >= Math.abs(dyl))
-    return dxl > 0 ? startX <= x && x <= endX : endX <= x && x <= startX;
-  else return dyl > 0 ? startY <= y && y <= endY : endY <= y && y <= startY;
 }
 
 export { cleanCoords };

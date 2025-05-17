@@ -9,10 +9,10 @@ import { featureCollection, multiPolygon, polygon } from "@turf/helpers";
 import { coordEach, geomEach } from "@turf/meta";
 
 /**
- * Smooths a {@link Polygon} or {@link MultiPolygon}. Based on [Chaikin's algorithm](http://graphics.cs.ucdavis.edu/education/CAGDNotes/Chaikins-Algorithm/Chaikins-Algorithm.html).
+ * Smooths a {@link Polygon} or {@link MultiPolygon}. Based on [Chaikin's algorithm](https://www.cs.unc.edu/~dm/UNC/COMP258/LECTURES/Chaikins-Algorithm.pdf).
  * Warning: may create degenerate polygons.
  *
- * @name polygonSmooth
+ * @function
  * @param {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} inputPolys (Multi)Polygon(s) to smooth
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.iterations=1] The number of times to smooth the polygon. A higher value means a smoother polygon.

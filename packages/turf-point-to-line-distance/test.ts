@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { Feature, LineString, Point } from "geojson";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
@@ -115,5 +116,71 @@ test("turf-point-to-line-distance -- Check planar and geodesic results are diffe
     method: "planar",
   });
   t.notEqual(geoOut, planarOut);
+  t.end();
+});
+
+test("turf-point-to-line-distance -- issue 2270", (t) => {
+  let pt: Feature<Point>;
+  let line: Feature<LineString>;
+  let d: number;
+
+  // This point should be about 3.4m from the line. Definitely not 4.3!
+  // https://github.com/Turfjs/turf/issues/2270#issuecomment-1073787691
+  pt = point([10.748363481687537, 59.94785299224352]);
+  line = lineString([
+    [10.7482034954027, 59.9477463357725],
+    [10.7484686179823, 59.9480515133037],
+  ]);
+
+  d = round(pointToLineDistance(pt, line, { units: "meters" }), 1);
+  t.equal(d, 3.4, "Point is approx 3.4m from line");
+
+  // This point should be about 1000m from the line. Definitely not 1017!
+  // https://github.com/Turfjs/turf/issues/2270#issuecomment-2307907374
+  pt = point([11.991689565382663, 34.00578044047174]);
+  line = lineString([
+    [12, 34],
+    [11.993027757380355, 33.99311060965808],
+  ]);
+
+  d = round(pointToLineDistance(pt, line, { units: "meters" }));
+  t.equal(d, 1000, "Point is approx 1000m from line");
+
+  t.end();
+});
+
+test("turf-point-to-line-distance -- issue 1156", (t) => {
+  // According to issue 1156 the result of pointToLineDistance varies suddenly
+  // at a certain longitude. Code below
+
+  // When the error occurs we would expect to see 'd' jump from about 188 to
+  // over 800
+  // ...
+  // [ 11.028347, 41 ] 188.9853459755496 189.00642024172396
+  // [ 11.028348, 41 ] 842.5784253401666 189.08988164279026
+  //                   ^^^
+
+  // https://github.com/Turfjs/turf/issues/1156#issue-279806209
+  let lineCoords = [
+    [10.964832305908203, 41.004681939880314],
+    [10.977363586425781, 40.99096148527727],
+    [10.983200073242188, 40.97075154073346],
+    [11.02834701538086, 40.98372150040732],
+    [11.02508544921875, 41.00716631272605],
+    [10.994186401367188, 41.01947819666632],
+    [10.964832305908203, 41.004681939880314],
+  ];
+
+  let line = lineString(lineCoords);
+
+  let x0 = 11.02834;
+  let x1 = 11.02835;
+  let dx = 0.000001;
+  for (let i = 0, x = x0; x <= x1; i++, x = x0 + i * dx) {
+    let p = point([x, 41.0]);
+    let d = pointToLineDistance(p, line, { units: "meters" });
+    t.true(d < 190, "pointToLineDistance never jumps past 190");
+  }
+
   t.end();
 });

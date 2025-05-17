@@ -6,7 +6,7 @@ import { rhumbBearing } from "@turf/rhumb-bearing";
  * Finds the angle formed by two adjacent segments defined by 3 points. The result will be the (positive clockwise)
  * angle with origin on the `startPoint-midPoint` segment, or its explementary angle if required.
  *
- * @name angle
+ * @function
  * @param {Coord} startPoint Start Point Coordinates
  * @param {Coord} midPoint Mid Point Coordinates
  * @param {Coord} endPoint End Point Coordinates
@@ -49,19 +49,23 @@ function angle(
   const B = endPoint;
 
   // Main
-  const azimuthAO = bearingToAzimuth(
-    options.mercator !== true ? bearing(A, O) : rhumbBearing(A, O)
+  const azimuthOA = bearingToAzimuth(
+    options.mercator !== true ? bearing(O, A) : rhumbBearing(O, A)
   );
-  const azimuthBO = bearingToAzimuth(
-    options.mercator !== true ? bearing(B, O) : rhumbBearing(B, O)
+  let azimuthOB = bearingToAzimuth(
+    options.mercator !== true ? bearing(O, B) : rhumbBearing(O, B)
   );
-  const angleAO = Math.abs(azimuthAO - azimuthBO);
+  // If OB "trails" OA advance OB one revolution so we get the clockwise angle.
+  if (azimuthOB < azimuthOA) {
+    azimuthOB = azimuthOB + 360;
+  }
+  const angleAOB = azimuthOB - azimuthOA;
 
   // Explementary angle
   if (options.explementary === true) {
-    return 360 - angleAO;
+    return 360 - angleAOB;
   }
-  return angleAO;
+  return angleAOB;
 }
 
 export { angle };

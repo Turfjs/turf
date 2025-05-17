@@ -16,12 +16,12 @@ import { getCoord } from "@turf/invariant";
  * degrees, radians, miles, or kilometers; and bearing in degrees.
  * This uses the [Haversine formula](http://en.wikipedia.org/wiki/Haversine_formula) to account for global curvature.
  *
- * @name destination
+ * @function
  * @param {Coord} origin starting point
  * @param {number} distance distance from the origin point
  * @param {number} bearing ranging from -180 to 180
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {Object} [options.properties={}] Translate properties to Point
  * @returns {Feature<Point>} destination point
  * @example
@@ -66,7 +66,9 @@ function destination<P extends GeoJsonProperties = GeoJsonProperties>(
     );
   const lng = radiansToDegrees(longitude2);
   const lat = radiansToDegrees(latitude2);
-
+  if (coordinates1[2] !== undefined) {
+    return point([lng, lat, coordinates1[2]], options.properties);
+  }
   return point([lng, lat], options.properties);
 }
 

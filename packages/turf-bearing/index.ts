@@ -2,13 +2,13 @@ import { Coord, degreesToRadians, radiansToDegrees } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 
 // http://en.wikipedia.org/wiki/Haversine_formula
-// http://www.movable-type.co.uk/scripts/latlong.html
+// http://www.movable-type.co.uk/scripts/latlong.html#bearing
 
 /**
  * Takes two {@link Point|points} and finds the geographic bearing between them,
  * i.e. the angle measured in degrees from the north line (0 degrees)
  *
- * @name bearing
+ * @function
  * @param {Coord} start starting Point
  * @param {Coord} end ending Point
  * @param {Object} [options={}] Optional parameters

@@ -14,12 +14,12 @@ import { sweeplineIntersections as findIntersections } from "./lib/sweepline-int
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).
  *
- * @name lineIntersect
+ * @function
  * @param {GeoJSON} line1 any LineString or Polygon
  * @param {GeoJSON} line2 any LineString or Polygon
  * @param {Object} [options={}] Optional parameters
  * @param {boolean} [options.removeDuplicates=true] remove duplicate intersections
- * @param {boolean} [options.ignoreSelfIntersections=false] ignores self-intersections on input features
+ * @param {boolean} [options.ignoreSelfIntersections=true] ignores self-intersections on input features
  * @returns {FeatureCollection<Point>} point(s) that intersect both
  * @example
  * var line1 = turf.lineString([[126, -11], [129, -21]]);
@@ -40,7 +40,7 @@ function lineIntersect<
     ignoreSelfIntersections?: boolean;
   } = {}
 ): FeatureCollection<Point> {
-  const { removeDuplicates = true, ignoreSelfIntersections = false } = options;
+  const { removeDuplicates = true, ignoreSelfIntersections = true } = options;
   let features: Feature<G1 | G2>[] = [];
   if (line1.type === "FeatureCollection")
     features = features.concat(line1.features);

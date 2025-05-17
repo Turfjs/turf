@@ -5,11 +5,11 @@ import { flattenEach } from "@turf/meta";
 /**
  * Boolean-intersects returns (TRUE) if the intersection of the two geometries is NOT an empty set.
  *
- * @name booleanIntersects
+ * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters
- * @param {boolean} [options.ignoreSelfIntersections=false] ignores self-intersections on input features
+ * @param {boolean} [options.ignoreSelfIntersections=true] ignore self-intersections on input features
  * @returns {boolean} true if geometries intersect, false otherwise
  * @example
  * var point1 = turf.point([2, 2]);
@@ -30,13 +30,12 @@ import { flattenEach } from "@turf/meta";
 function booleanIntersects(
   feature1: Feature<any> | Geometry,
   feature2: Feature<any> | Geometry,
-  options: {
+  {
+    ignoreSelfIntersections = true,
+  }: {
     ignoreSelfIntersections?: boolean;
   } = {}
 ) {
-  const ignoreSelfIntersections: boolean =
-    options.ignoreSelfIntersections ?? false;
-
   let bool = false;
   flattenEach(feature1, (flatten1) => {
     flattenEach(feature2, (flatten2) => {

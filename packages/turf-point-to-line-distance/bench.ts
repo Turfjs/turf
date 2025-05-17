@@ -72,12 +72,21 @@ for (const { name, geojson } of fixtures) {
  * segment3 x 692,171 ops/sec ±1.16% (82 runs sampled)
  * segment4 x 681,063 ops/sec ±0.95% (86 runs sampled)
  */
+let totalTime = 0.0;
 const suite = new Benchmark.Suite("turf-point-to-line-distance");
 for (const { name, geojson } of fixtures) {
   const [point, line] = geojson.features;
   let { units } = geojson.properties || {};
   if (!units) units = "kilometers";
-  suite.add(name, () => pointToLineDistance(point, line, { units: units }));
+  suite.add(name, () => pointToLineDistance(point, line, { units: units }), {
+    onComplete: (e: Event) =>
+      (totalTime = totalTime += e.target.times?.elapsed),
+  });
 }
 
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+suite
+  .on("cycle", (e: Event) => console.log(String(e.target)))
+  .on("complete", () =>
+    console.log(`completed in ${totalTime.toFixed(2)} seconds`)
+  )
+  .run();

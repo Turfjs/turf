@@ -1,12 +1,12 @@
 import { Polygon, MultiPolygon, Feature, FeatureCollection } from "geojson";
-import polygonClipping, { Geom } from "polygon-clipping";
+import * as polyclip from "polyclip-ts";
 import { polygon, multiPolygon } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
 
 /**
  * Finds the difference between multiple {@link Polygon|polygons} by clipping the subsequent polygon from the first.
  *
- * @name difference
+ * @function
  * @param {FeatureCollection<Polygon|MultiPolygon>} features input Polygon features
  * @returns {Feature<Polygon|MultiPolygon>|null} a Polygon or MultiPolygon feature showing the area of `polygon1` excluding the area of `polygon2` (if empty returns `null`)
  * @example
@@ -39,10 +39,10 @@ import { geomEach } from "@turf/meta";
 function difference(
   features: FeatureCollection<Polygon | MultiPolygon>
 ): Feature<Polygon | MultiPolygon> | null {
-  const geoms: Array<Geom> = [];
+  const geoms: Array<polyclip.Geom> = [];
 
   geomEach(features, (geom) => {
-    geoms.push(geom.coordinates as Geom);
+    geoms.push(geom.coordinates as polyclip.Geom);
   });
 
   if (geoms.length < 2) {
@@ -51,7 +51,7 @@ function difference(
 
   const properties = features.features[0].properties || {};
 
-  const differenced = polygonClipping.difference(geoms[0], ...geoms.slice(1));
+  const differenced = polyclip.difference(geoms[0], ...geoms.slice(1));
   if (differenced.length === 0) return null;
   if (differenced.length === 1) return polygon(differenced[0], properties);
   return multiPolygon(differenced, properties);

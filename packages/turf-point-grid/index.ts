@@ -12,13 +12,13 @@ import { distance } from "@turf/distance";
 import { point, featureCollection, Units } from "@turf/helpers";
 
 /**
- * Creates a {@link Point} grid from a bounding box, {@link FeatureCollection} or {@link Feature}.
+ * Creates a grid of points
  *
- * @name pointGrid
- * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
- * @param {number} cellSide the distance between points, in units
+ * @function
+ * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order
+ * @param {number} cellSide the distance between points
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] used in calculating cellSide, can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] the units of the cellSide value.  Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}
  * @param {Feature<Polygon|MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Point>} grid of points

@@ -18,10 +18,25 @@ import {
 import { Id } from "./lib/geojson.js";
 export * from "./lib/geojson.js";
 
+/**
+ * @module helpers
+ */
+
 // TurfJS Combined Types
 export type Coord = Feature<Point> | Point | Position;
 
-// TurfJS String Types
+/**
+ * Linear measurement units.
+ *
+ * ⚠️ Warning. Be aware of the implications of using radian or degree units to
+ * measure distance. The distance represented by a degree of longitude *varies*
+ * depending on latitude.
+ *
+ * See https://www.thoughtco.com/degree-of-latitude-and-longitude-distance-4070616
+ * for an illustration of this behaviour.
+ *
+ * @typedef
+ */
 export type Units =
   | "meters"
   | "metres"
@@ -38,14 +53,43 @@ export type Units =
   | "feet"
   | "radians"
   | "degrees";
+
+/**
+ * Area measurement units.
+ *
+ * @typedef
+ */
 export type AreaUnits =
   | Exclude<Units, "radians" | "degrees">
   | "acres"
   | "hectares";
+
+/**
+ * Grid types.
+ *
+ * @typedef
+ */
 export type Grid = "point" | "square" | "hex" | "triangle";
+
+/**
+ * Shorthand corner identifiers.
+ *
+ * @typedef
+ */
 export type Corners = "sw" | "se" | "nw" | "ne" | "center" | "centroid";
 
+/**
+ * Geometries made up of lines i.e. lines and polygons.
+ *
+ * @typedef
+ */
 export type Lines = LineString | MultiLineString | Polygon | MultiPolygon;
+
+/**
+ * Convenience type for all possible GeoJSON.
+ *
+ * @typedef
+ */
 export type AllGeoJSON =
   | Feature
   | FeatureCollection
@@ -53,24 +97,18 @@ export type AllGeoJSON =
   | GeometryCollection;
 
 /**
- * @module helpers
- */
-
-/**
- * Earth Radius used with the Harvesine formula and approximates using a spherical (non-ellipsoid) Earth.
+ * The Earth radius in meters. Used by Turf modules that model the Earth as a sphere. The {@link https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius mean radius} was selected because it is {@link https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended recommended } by the Haversine formula (used by turf/distance) to reduce error.
  *
- * @memberof helpers
- * @type {number}
+ * @constant
  */
 export const earthRadius = 6371008.8;
 
 /**
- * Unit of measurement factors using a spherical (non-ellipsoid) earth radius.
+ * Unit of measurement factors based on earthRadius.
  *
  * Keys are the name of the unit, values are the number of that unit in a single radian
  *
- * @memberof helpers
- * @type {Object}
+ * @constant
  */
 export const factors: Record<Units, number> = {
   centimeters: earthRadius * 100,
@@ -94,8 +132,7 @@ export const factors: Record<Units, number> = {
 
  * Area of measurement factors based on 1 square meter.
  *
- * @memberof helpers
- * @type {Object}
+ * @constant
  */
 export const areaFactors: Record<AreaUnits, number> = {
   acres: 0.000247105,
@@ -118,13 +155,13 @@ export const areaFactors: Record<AreaUnits, number> = {
 /**
  * Wraps a GeoJSON {@link Geometry} in a GeoJSON {@link Feature}.
  *
- * @name feature
- * @param {Geometry} geometry input geometry
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {GeometryObject} geometry input geometry
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
- * @returns {Feature} a GeoJSON Feature
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the Feature
+ * @returns {Feature<GeometryObject, GeoJsonProperties>} a GeoJSON Feature
  * @example
  * var geometry = {
  *   "type": "Point",
@@ -159,8 +196,8 @@ export function feature<
  * Creates a GeoJSON {@link Geometry} from a Geometry string type & coordinates.
  * For GeometryCollection type use `helpers.geometryCollection`
  *
- * @name geometry
- * @param {string} type Geometry Type
+ * @function
+ * @param {("Point" | "LineString" | "Polygon" | "MultiPoint" | "MultiLineString" | "MultiPolygon")} type Geometry Type
  * @param {Array<any>} coordinates Coordinates
  * @param {Object} [options={}] Optional Parameters
  * @returns {Geometry} a GeoJSON Geometry
@@ -202,13 +239,13 @@ export function geometry(
 /**
  * Creates a {@link Point} {@link Feature} from a Position.
  *
- * @name point
- * @param {Array<number>} coordinates longitude, latitude position (each in decimal degrees)
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {Position} coordinates longitude, latitude position (each in decimal degrees)
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
- * @returns {Feature<Point>} a Point feature
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the Feature
+ * @returns {Feature<Point, GeoJsonProperties>} a Point feature
  * @example
  * var point = turf.point([-75.343, 39.984]);
  *
@@ -242,13 +279,13 @@ export function point<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * Creates a {@link Point} {@link FeatureCollection} from an Array of Point coordinates.
  *
- * @name points
- * @param {Array<Array<number>>} coordinates an array of Points
- * @param {Object} [properties={}] Translate these properties to each Feature
+ * @function
+ * @param {Position[]} coordinates an array of Points
+ * @param {GeoJsonProperties} [properties={}] Translate these properties to each Feature
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north]
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north]
  * associated with the FeatureCollection
- * @param {string|number} [options.id] Identifier associated with the FeatureCollection
+ * @param {Id} [options.id] Identifier associated with the FeatureCollection
  * @returns {FeatureCollection<Point>} Point Feature
  * @example
  * var points = turf.points([
@@ -275,13 +312,13 @@ export function points<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * Creates a {@link Polygon} {@link Feature} from an Array of LinearRings.
  *
- * @name polygon
- * @param {Array<Array<Array<number>>>} coordinates an array of LinearRings
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {Position[][]} coordinates an array of LinearRings
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
- * @returns {Feature<Polygon>} Polygon Feature
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the Feature
+ * @returns {Feature<Polygon, GeoJsonProperties>} Polygon Feature
  * @example
  * var polygon = turf.polygon([[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]], { name: 'poly1' });
  *
@@ -320,13 +357,13 @@ export function polygon<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * Creates a {@link Polygon} {@link FeatureCollection} from an Array of Polygon coordinates.
  *
- * @name polygons
- * @param {Array<Array<Array<Array<number>>>>} coordinates an array of Polygon coordinates
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {Position[][][]} coordinates an array of Polygon coordinates
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the FeatureCollection
- * @returns {FeatureCollection<Polygon>} Polygon FeatureCollection
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the FeatureCollection
+ * @returns {FeatureCollection<Polygon, GeoJsonProperties>} Polygon FeatureCollection
  * @example
  * var polygons = turf.polygons([
  *   [[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]],
@@ -351,13 +388,13 @@ export function polygons<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * Creates a {@link LineString} {@link Feature} from an Array of Positions.
  *
- * @name lineString
- * @param {Array<Array<number>>} coordinates an array of Positions
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {Position[]} coordinates an array of Positions
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
- * @returns {Feature<LineString>} LineString Feature
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the Feature
+ * @returns {Feature<LineString, GeoJsonProperties>} LineString Feature
  * @example
  * var linestring1 = turf.lineString([[-24, 63], [-23, 60], [-25, 65], [-20, 69]], {name: 'line 1'});
  * var linestring2 = turf.lineString([[-14, 43], [-13, 40], [-15, 45], [-10, 49]], {name: 'line 2'});
@@ -383,14 +420,14 @@ export function lineString<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * Creates a {@link LineString} {@link FeatureCollection} from an Array of LineString coordinates.
  *
- * @name lineStrings
- * @param {Array<Array<Array<number>>>} coordinates an array of LinearRings
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {Position[][]} coordinates an array of LinearRings
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north]
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north]
  * associated with the FeatureCollection
- * @param {string|number} [options.id] Identifier associated with the FeatureCollection
- * @returns {FeatureCollection<LineString>} LineString FeatureCollection
+ * @param {Id} [options.id] Identifier associated with the FeatureCollection
+ * @returns {FeatureCollection<LineString, GeoJsonProperties>} LineString FeatureCollection
  * @example
  * var linestrings = turf.lineStrings([
  *   [[-24, 63], [-23, 60], [-25, 65], [-20, 69]],
@@ -415,12 +452,12 @@ export function lineStrings<P extends GeoJsonProperties = GeoJsonProperties>(
 /**
  * Takes one or more {@link Feature|Features} and creates a {@link FeatureCollection}.
  *
- * @name featureCollection
- * @param {Feature[]} features input features
+ * @function
+ * @param {Array<Feature<GeometryObject, GeoJsonProperties>>} features input features
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
- * @returns {FeatureCollection} FeatureCollection of Features
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the Feature
+ * @returns {FeatureCollection<GeometryObject, GeoJsonProperties>} FeatureCollection of Features
  * @example
  * var locationA = turf.point([-75.343, 39.984], {name: 'Location A'});
  * var locationB = turf.point([-75.833, 39.284], {name: 'Location B'});
@@ -453,16 +490,16 @@ export function featureCollection<
 }
 
 /**
- * Creates a {@link Feature<MultiLineString>} based on a
+ * Creates a {@link Feature}<{@link MultiLineString}> based on a
  * coordinate array. Properties can be added optionally.
  *
- * @name multiLineString
- * @param {Array<Array<Array<number>>>} coordinates an array of LineStrings
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {Position[][]} coordinates an array of LineStrings
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
- * @returns {Feature<MultiLineString>} a MultiLineString feature
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the Feature
+ * @returns {Feature<MultiLineString, GeoJsonProperties>} a MultiLineString feature
  * @throws {Error} if no coordinates are passed
  * @example
  * var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
@@ -484,16 +521,16 @@ export function multiLineString<
 }
 
 /**
- * Creates a {@link Feature<MultiPoint>} based on a
+ * Creates a {@link Feature}<{@link MultiPoint}> based on a
  * coordinate array. Properties can be added optionally.
  *
- * @name multiPoint
- * @param {Array<Array<number>>} coordinates an array of Positions
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {Position[]} coordinates an array of Positions
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
- * @returns {Feature<MultiPoint>} a MultiPoint feature
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the Feature
+ * @returns {Feature<MultiPoint, GeoJsonProperties>} a MultiPoint feature
  * @throws {Error} if no coordinates are passed
  * @example
  * var multiPt = turf.multiPoint([[0,0],[10,10]]);
@@ -513,16 +550,16 @@ export function multiPoint<P extends GeoJsonProperties = GeoJsonProperties>(
 }
 
 /**
- * Creates a {@link Feature<MultiPolygon>} based on a
+ * Creates a {@link Feature}<{@link MultiPolygon}> based on a
  * coordinate array. Properties can be added optionally.
  *
- * @name multiPolygon
- * @param {Array<Array<Array<Array<number>>>>} coordinates an array of Polygons
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {Position[][][]} coordinates an array of Polygons
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
- * @returns {Feature<MultiPolygon>} a multipolygon feature
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the Feature
+ * @returns {Feature<MultiPolygon, GeoJsonProperties>} a multipolygon feature
  * @throws {Error} if no coordinates are passed
  * @example
  * var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]]);
@@ -543,16 +580,16 @@ export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
 }
 
 /**
- * Creates a {@link Feature<GeometryCollection>} based on a
+ * Creates a Feature<GeometryCollection> based on a
  * coordinate array. Properties can be added optionally.
  *
- * @name geometryCollection
- * @param {Array<Geometry>} geometries an array of GeoJSON Geometries
- * @param {Object} [properties={}] an Object of key-value pairs to add as properties
+ * @function
+ * @param {Array<Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon>} geometries an array of GeoJSON Geometries
+ * @param {GeoJsonProperties} [properties={}] an Object of key-value pairs to add as properties
  * @param {Object} [options={}] Optional Parameters
- * @param {Array<number>} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
- * @param {string|number} [options.id] Identifier associated with the Feature
- * @returns {Feature<GeometryCollection>} a GeoJSON GeometryCollection Feature
+ * @param {BBox} [options.bbox] Bounding Box Array [west, south, east, north] associated with the Feature
+ * @param {Id} [options.id] Identifier associated with the Feature
+ * @returns {Feature<GeometryCollection, GeoJsonProperties>} a GeoJSON GeometryCollection Feature
  * @example
  * var pt = turf.geometry("Point", [100, 0]);
  * var line = turf.geometry("LineString", [[101, 0], [102, 1]]);
@@ -579,6 +616,7 @@ export function geometryCollection<
 /**
  * Round number to precision
  *
+ * @function
  * @param {number} num Number
  * @param {number} [precision=0] Precision
  * @returns {number} rounded number
@@ -601,9 +639,9 @@ export function round(num: number, precision = 0): number {
  * Convert a distance measurement (assuming a spherical Earth) from radians to a more friendly unit.
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
- * @name radiansToLength
+ * @function
  * @param {number} radians in radians across the sphere
- * @param {string} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
+ * @param {Units} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
  * meters, kilometres, kilometers.
  * @returns {number} distance
  */
@@ -622,9 +660,9 @@ export function radiansToLength(
  * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into radians
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
  *
- * @name lengthToRadians
+ * @function
  * @param {number} distance in real units
- * @param {string} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
+ * @param {Units} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
  * meters, kilometres, kilometers.
  * @returns {number} radians
  */
@@ -643,9 +681,9 @@ export function lengthToRadians(
  * Convert a distance measurement (assuming a spherical Earth) from a real-world unit into degrees
  * Valid units: miles, nauticalmiles, inches, yards, meters, metres, centimeters, kilometres, feet
  *
- * @name lengthToDegrees
+ * @function
  * @param {number} distance in real units
- * @param {string} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
+ * @param {Units} [units="kilometers"] can be degrees, radians, miles, inches, yards, metres,
  * meters, kilometres, kilometers.
  * @returns {number} degrees
  */
@@ -657,7 +695,7 @@ export function lengthToDegrees(distance: number, units?: Units): number {
  * Converts any bearing angle from the north line direction (positive clockwise)
  * and returns an angle between 0-360 degrees (positive clockwise), 0 being the north line
  *
- * @name bearingToAzimuth
+ * @function
  * @param {number} bearing angle, between -180 and +180 degrees
  * @returns {number} angle between 0 and 360 degrees
  */
@@ -673,48 +711,57 @@ export function bearingToAzimuth(bearing: number): number {
  * Converts any azimuth angle from the north line direction (positive clockwise)
  * and returns an angle between -180 and +180 degrees (positive clockwise), 0 being the north line
  *
- * @name azimuthToBearing
+ * @function
  * @param {number} angle between 0 and 360 degrees
  * @returns {number} bearing between -180 and +180 degrees
  */
 export function azimuthToBearing(angle: number): number {
+  // Ignore full revolutions (multiples of 360)
   angle = angle % 360;
-  if (angle > 0) return angle > 180 ? angle - 360 : angle;
-  return angle < -180 ? angle + 360 : angle;
+
+  if (angle > 180) {
+    return angle - 360;
+  } else if (angle < -180) {
+    return angle + 360;
+  }
+
+  return angle;
 }
 
 /**
  * Converts an angle in radians to degrees
  *
- * @name radiansToDegrees
+ * @function
  * @param {number} radians angle in radians
  * @returns {number} degrees between 0 and 360 degrees
  */
 export function radiansToDegrees(radians: number): number {
-  const degrees = radians % (2 * Math.PI);
-  return (degrees * 180) / Math.PI;
+  // % (2 * Math.PI) radians in case someone passes value > 2π
+  const normalisedRadians = radians % (2 * Math.PI);
+  return (normalisedRadians * 180) / Math.PI;
 }
 
 /**
  * Converts an angle in degrees to radians
  *
- * @name degreesToRadians
+ * @function
  * @param {number} degrees angle between 0 and 360 degrees
  * @returns {number} angle in radians
  */
 export function degreesToRadians(degrees: number): number {
-  const radians = degrees % 360;
-  return (radians * Math.PI) / 180;
+  // % 360 degrees in case someone passes value > 360
+  const normalisedDegrees = degrees % 360;
+  return (normalisedDegrees * Math.PI) / 180;
 }
 
 /**
- * Converts a length to the requested unit.
- * Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, centimeters, feet
+ * Converts a length from one unit to another.
  *
- * @param {number} length to be converted
- * @param {Units} [originalUnit="kilometers"] of the length
- * @param {Units} [finalUnit="kilometers"] returned unit
- * @returns {number} the converted length
+ * @function
+ * @param {number} length Length to be converted
+ * @param {Units} [originalUnit="kilometers"] Input length unit
+ * @param {Units} [finalUnit="kilometers"] Returned length unit
+ * @returns {number} The converted length
  */
 export function convertLength(
   length: number,
@@ -728,12 +775,13 @@ export function convertLength(
 }
 
 /**
- * Converts a area to the requested unit.
- * Valid units: kilometers, kilometres, meters, metres, centimetres, millimeters, acres, miles, yards, feet, inches, hectares
- * @param {number} area to be converted
- * @param {Units} [originalUnit="meters"] of the distance
- * @param {Units} [finalUnit="kilometers"] returned unit
- * @returns {number} the converted area
+ * Converts an area from one unit to another.
+ *
+ * @function
+ * @param {number} area Area to be converted
+ * @param {AreaUnits} [originalUnit="meters"] Input area unit
+ * @param {AreaUnits} [finalUnit="kilometers"] Returned area unit
+ * @returns {number} The converted length
  */
 export function convertArea(
   area: number,
@@ -760,7 +808,8 @@ export function convertArea(
 /**
  * isNumber
  *
- * @param {*} num Number to validate
+ * @function
+ * @param {any} num Number to validate
  * @returns {boolean} true/false
  * @example
  * turf.isNumber(123)
@@ -775,7 +824,8 @@ export function isNumber(num: any): boolean {
 /**
  * isObject
  *
- * @param {*} input variable to validate
+ * @function
+ * @param {any} input variable to validate
  * @returns {boolean} true/false, including false for Arrays and Functions
  * @example
  * turf.isObject({elevation: 10})
@@ -791,7 +841,7 @@ export function isObject(input: any): boolean {
  * Validate BBox
  *
  * @private
- * @param {Array<number>} bbox BBox to validate
+ * @param {any} bbox BBox to validate
  * @returns {void}
  * @throws {Error} if BBox is not valid
  * @example
@@ -829,7 +879,7 @@ export function validateBBox(bbox: any): void {
  * Validate Id
  *
  * @private
- * @param {string|number} id Id to validate
+ * @param {any} id Id to validate
  * @returns {void}
  * @throws {Error} if Id is not valid
  * @example

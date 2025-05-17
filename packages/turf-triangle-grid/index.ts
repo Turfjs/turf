@@ -10,13 +10,13 @@ import { intersect } from "@turf/intersect";
 import { polygon, featureCollection, Units } from "@turf/helpers";
 
 /**
- * Takes a bounding box and a cell depth and returns a set of triangular {@link Polygon|polygons} in a grid.
+ * Creates a grid of triangular polygons.
  *
- * @name triangleGrid
- * @param {Array<number>} bbox extent in [minX, minY, maxX, maxY] order
- * @param {number} cellSide dimension of each cell
+ * @function
+ * @param {BBox} bbox extent of grid in [minX, minY, maxX, maxY] order
+ * @param {number} cellSide dimension of each grid cell.  Two triangles are created in each cell.
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] used in calculating cellSide, can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] used in calculating cellSide.  Supports all valid Turf {@link https://github.com/Turfjs/turf/blob/master/packages/turf-helpers/README_UNITS.md Units}
  * @param {Feature<Polygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {Object} [options.properties={}] passed to each point of the grid
  * @returns {FeatureCollection<Polygon>} grid of polygons

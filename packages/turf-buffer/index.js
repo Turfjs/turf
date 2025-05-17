@@ -13,7 +13,7 @@ import {
 const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
 
 /**
- * Calculates a buffer for input features for a given radius. Units supported are miles, kilometers, and degrees.
+ * Calculates a buffer for input features for a given radius.
  *
  * When using a negative radius, the resulting geometry may be invalid if
  * it's too small compared to the radius magnitude. If the input is a
@@ -21,11 +21,11 @@ const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
  * FeatureCollection - i.e., the output collection may have fewer members than
  * the input, or even be empty.
  *
- * @name buffer
+ * @function
  * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer (negative values are allowed)
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units="kilometers"] any of the options supported by turf units
+ * @param {Units} [options.units="kilometers"] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @param {number} [options.steps=8] number of steps
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|undefined} buffered features
  * @example
@@ -80,7 +80,7 @@ function buffer(geojson, radius, options) {
  * @private
  * @param {Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer
- * @param {string} [units='kilometers'] any of the options supported by turf units
+ * @param {Units} [units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @param {number} [steps=8] number of steps
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */

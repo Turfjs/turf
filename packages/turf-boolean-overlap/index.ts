@@ -12,7 +12,7 @@ import { geojsonEquality } from "geojson-equality-ts";
  *
  * In other words, it returns true if the two geometries overlap, provided that neither completely contains the other.
  *
- * @name booleanOverlap
+ * @function
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature1 input
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature2 input
  * @returns {boolean} true/false

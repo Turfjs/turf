@@ -10,7 +10,7 @@ import { featureCollection } from "@turf/helpers";
 /**
  * Get Cluster
  *
- * @name getCluster
+ * @function
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {*} filter Filter used on GeoJSON properties to get Cluster
  * @returns {FeatureCollection} Single Cluster filtered by GeoJSON Properties
@@ -60,7 +60,7 @@ function getCluster<
  *
  * @callback clusterEachCallback
  * @param {FeatureCollection} [cluster] The current cluster being processed.
- * @param {*} [clusterValue] Value used to create cluster being processed.
+ * @param {any} [clusterValue] Value used to create cluster being processed.
  * @param {number} [currentIndex] The index of the current element being processed in the array.Starts at index 0
  * @returns {void}
  */
@@ -68,10 +68,10 @@ function getCluster<
 /**
  * clusterEach
  *
- * @name clusterEach
+ * @function
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string|number} property GeoJSON property key/value used to create clusters
- * @param {Function} callback a method that takes (cluster, clusterValue, currentIndex)
+ * @param {clusterEachCallback} callback a method that takes (cluster, clusterValue, currentIndex)
  * @returns {void}
  * @example
  * var geojson = turf.featureCollection([
@@ -158,17 +158,18 @@ function clusterEach<
  * @param {*} [clusterValue] Value used to create cluster being processed.
  * @param {number} [currentIndex] The index of the current element being processed in the
  * array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
+ * @returns {void}
  */
 
 /**
  * Reduce clusters in GeoJSON Features, similar to Array.reduce()
  *
- * @name clusterReduce
+ * @function
  * @param {FeatureCollection} geojson GeoJSON Features
  * @param {string|number} property GeoJSON property key/value used to create clusters
- * @param {Function} callback a method that takes (previousValue, cluster, clusterValue, currentIndex)
- * @param {*} [initialValue] Value to use as the first argument to the first call of the callback.
- * @returns {*} The value that results from the reduction.
+ * @param {clusterReduceCallback} callback a method that takes (previousValue, cluster, clusterValue, currentIndex)
+ * @param {any} [initialValue] Value to use as the first argument to the first call of the callback.
+ * @returns {any} The value that results from the reduction.
  * @example
  * var geojson = turf.featureCollection([
  *     turf.point([0, 0]),

@@ -6,14 +6,14 @@ import {
   MultiPolygon,
 } from "geojson";
 import { polygon as createPolygon, multiPolygon } from "@turf/helpers";
-import polygonClipping, { Geom } from "polygon-clipping";
+import * as polyclip from "polyclip-ts";
 import { clone } from "@turf/clone";
 
 /**
  * Takes polygons or multipolygons and an optional mask, and returns an exterior
  * ring polygon with holes.
  *
- * @name mask
+ * @function
  * @param {Polygon|MultiPolygon|Feature<Polygon|MultiPolygon>|FeatureCollection<Polygon|MultiPolygon>} polygon GeoJSON polygon used as interior rings or holes
  * @param {Polygon|Feature<Polygon>} [mask] GeoJSON polygon used as the exterior ring (if undefined, the world extent is used)
  * @param {Object} [options={}] Optional parameters
@@ -51,14 +51,14 @@ function mask<T extends Polygon | MultiPolygon>(
     // Need to cast below as Position[][] isn't quite as strict as Geom, even
     // though they should be equivalent.
     polygonOuters = createGeomFromPolygonClippingOutput(
-      polygonClipping.union(polygon.geometry.coordinates as Geom)
+      polyclip.union(polygon.geometry.coordinates as polyclip.Geom)
     );
   } else {
     // Geometry
     // Need to cast below as Position[][] isn't quite as strict as Geom, even
     // though they should be equivalent.
     polygonOuters = createGeomFromPolygonClippingOutput(
-      polygonClipping.union(polygon.coordinates as Geom)
+      polyclip.union(polygon.coordinates as polyclip.Geom)
     );
   }
 
@@ -78,15 +78,15 @@ function unionFc(fc: FeatureCollection<Polygon | MultiPolygon>) {
   /* eslint-disable prefer-spread */
   const unioned =
     fc.features.length === 2
-      ? polygonClipping.union(
-          fc.features[0].geometry.coordinates as Geom,
-          fc.features[1].geometry.coordinates as Geom
+      ? polyclip.union(
+          fc.features[0].geometry.coordinates as polyclip.Geom,
+          fc.features[1].geometry.coordinates as polyclip.Geom
         )
-      : polygonClipping.union.apply(
-          polygonClipping,
+      : polyclip.union.apply(
+          polyclip,
           fc.features.map(function (f) {
             return f.geometry.coordinates;
-          }) as [Geom, ...Geom[]]
+          }) as [polyclip.Geom, ...polyclip.Geom[]]
         );
   /* eslint-enable */
   return createGeomFromPolygonClippingOutput(unioned);

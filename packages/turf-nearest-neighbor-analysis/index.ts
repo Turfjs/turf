@@ -19,6 +19,17 @@ import {
   AreaUnits,
 } from "@turf/helpers";
 
+/**
+ * Nearest neighbour statistics.
+ *
+ * @typedef {object} NearestNeighborStatistics
+ * @property {(Units & AreaUnits)} units
+ * @property {string} arealUnits
+ * @property {number} observedMeanDistance
+ * @property {number} expectedMeanDistance
+ * @property {number} numberOfPoints
+ * @property {number} zScore
+ */
 interface NearestNeighborStatistics {
   units: Units & AreaUnits;
   arealUnits: string;
@@ -28,6 +39,14 @@ interface NearestNeighborStatistics {
   zScore: number;
 }
 
+/**
+ * Nearest neighbour study area polygon feature.
+ *
+ * @typedef {object} NearestNeighborStudyArea
+ * @extends Feature<Polygon>
+ * @property {GeoJsonProperties} properties
+ * @property {NearestNeighborStatistics} properties.nearestNeighborAnalysis
+ */
 interface NearestNeighborStudyArea extends Feature<Polygon> {
   properties: {
     nearestNeighborAnalysis: NearestNeighborStatistics;
@@ -36,11 +55,11 @@ interface NearestNeighborStudyArea extends Feature<Polygon> {
 }
 
 /**
- * Nearest Neighbor Analysis calculates an index based the average distances
+ * Nearest Neighbor Analysis calculates an index based on the average distances
  * between points in the dataset, thereby providing inference as to whether the
  * data is clustered, dispersed, or randomly distributed within the study area.
  *
- * It returns a {@link Feature<Polygon>} of the study area, with the results of
+ * It returns a {@link Feature}<{@link Polygon}> of the study area, with the results of
  * the analysis attached as part of of the `nearestNeighborAnalysis` property
  * of the study area's `properties`. The attached
  * [_z_-score](https://en.wikipedia.org/wiki/Standard_score) indicates how many
@@ -57,7 +76,7 @@ interface NearestNeighborStudyArea extends Feature<Polygon> {
  * works best with {@link Point} collections.
  *
  * - This analysis is _very_ sensitive to the study area provided.
- * If no {@link Feature<Polygon>} is passed as the study area, the function draws a box
+ * If no {@link Feature}<{@link Polygon}> is passed as the study area, the function draws a box
  * around the data, which may distort the findings. This analysis works best
  * with a bounded area of interest within with the data is either clustered,
  * dispersed, or randomly distributed. For example, a city's subway stops may
@@ -71,13 +90,13 @@ interface NearestNeighborStudyArea extends Feature<Polygon> {
  * Measure of Spatial Relationships in Populations,” _Ecology_ 35, no. 4
  * (1954): 445–453, doi:[10.2307/1931034](http://doi.org/10.2307/1931034).
  *
- * @name nearestNeighborAnalysis
+ * @function
  * @param {FeatureCollection<any>} dataset FeatureCollection (pref. of points) to study
  * @param {Object} [options={}] Optional parameters
  * @param {Feature<Polygon>} [options.studyArea] polygon representing the study area
- * @param {string} [options.units='kilometers'] unit of measurement for distances and, squared, area.
- * @param {Object} [options.properties={}] properties
- * @returns {Feature<Polygon>} A polygon of the study area or an approximation of one.
+ * @param {Units & AreaUnits} [options.units='kilometers'] unit of measurement for distances and, squared, area.
+ * @param {GeoJsonProperties} [options.properties={}] properties
+ * @returns {NearestNeighborStudyArea}  A polygon of the study area or an approximation of one.
  * @example
  * var bbox = [-65, 40, -63, 42];
  * var dataset = turf.randomPoint(100, { bbox: bbox });

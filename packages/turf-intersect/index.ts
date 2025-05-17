@@ -7,13 +7,13 @@ import {
 } from "geojson";
 import { multiPolygon, polygon } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
-import polygonClipping from "polygon-clipping";
+import * as polyclip from "polyclip-ts";
 
 /**
  * Takes {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
  * finds their polygonal intersection. If they don't intersect, returns null.
  *
- * @name intersect
+ * @function
  * @param {FeatureCollection<Polygon | MultiPolygon>} features the features to intersect
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate GeoJSON Properties to Feature
@@ -50,19 +50,16 @@ function intersect<P extends GeoJsonProperties = GeoJsonProperties>(
     properties?: P;
   } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {
-  const geoms: polygonClipping.Geom[] = [];
+  const geoms: polyclip.Geom[] = [];
 
   geomEach(features, (geom) => {
-    geoms.push(geom.coordinates as polygonClipping.Geom);
+    geoms.push(geom.coordinates as polyclip.Geom);
   });
 
   if (geoms.length < 2) {
     throw new Error("Must specify at least 2 geometries");
   }
-  const intersection = polygonClipping.intersection(
-    geoms[0],
-    ...geoms.slice(1)
-  );
+  const intersection = polyclip.intersection(geoms[0], ...geoms.slice(1));
   if (intersection.length === 0) return null;
   if (intersection.length === 1)
     return polygon(intersection[0], options.properties);

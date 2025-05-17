@@ -1,7 +1,7 @@
 {
   "name": "@turf/quadrat-analysis",
-  "version": "7.0.0",
-  "description": "turf quadrat-analysis module",
+  "version": "7.2.0",
+  "description": "Quadrat analysis lays a set of equal-size areas(quadrat) over the study area and counts the number of features in each quadrat and creates a frequency table.",
   "author": "Turf Authors",
   "contributors": [
     "Haoming Zhuang <@zhuang-hao-ming>"
@@ -52,29 +52,29 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@turf/nearest-neighbor-analysis": "workspace:^",
+    "@turf/nearest-neighbor-analysis": "workspace:*",
     "@types/benchmark": "^2.1.5",
-    "@types/tape": "^4.2.32",
+    "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
-    "tape": "^5.7.2",
-    "tsup": "^8.0.1",
-    "tsx": "^4.6.2",
-    "typescript": "^5.2.2",
-    "write-json-file": "^5.0.0"
+    "tape": "^5.9.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/area": "workspace:^",
-    "@turf/bbox": "workspace:^",
-    "@turf/bbox-polygon": "workspace:^",
-    "@turf/centroid": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/invariant": "workspace:^",
-    "@turf/point-grid": "workspace:^",
-    "@turf/random": "workspace:^",
-    "@turf/square-grid": "workspace:^",
+    "@turf/area": "workspace:*",
+    "@turf/bbox": "workspace:*",
+    "@turf/bbox-polygon": "workspace:*",
+    "@turf/centroid": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
+    "@turf/point-grid": "workspace:*",
+    "@turf/random": "workspace:*",
+    "@turf/square-grid": "workspace:*",
     "@types/geojson": "^7946.0.10",
-    "tslib": "^2.6.2"
+    "tslib": "^2.8.1"
   }
 }
