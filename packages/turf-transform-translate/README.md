@@ -7,6 +7,9 @@
 Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
 on the provided direction angle.
 
+Note that this moves the points of your shape individually and can therefore change
+the overall shape. How noticable this is depends on the distance and the used projection.
+
 ### Parameters
 
 *   `geojson` **([GeoJSON][1] | [GeometryCollection][2])** object to be translated
