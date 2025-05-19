@@ -79,6 +79,8 @@ function booleanContains(
           return isPolyInPoly(geom1, geom2);
         case "MultiPoint":
           return isMultiPointInPoly(geom1, geom2);
+        case "MultiPolygon":
+          return isMultiPolyInPoly(geom1, geom2);
         default:
           throw new Error("feature2 " + type2 + " geometry not supported");
       }
@@ -97,6 +99,12 @@ function booleanContains(
 function isPolygonInMultiPolygon(multiPolygon: MultiPolygon, polygon: Polygon) {
   return multiPolygon.coordinates.some((coords) =>
     isPolyInPoly({ type: "Polygon", coordinates: coords }, polygon)
+  );
+}
+
+function isMultiPolyInPoly(polygon: Polygon, multiPolygon: MultiPolygon) {
+  return multiPolygon.coordinates.every((coords) =>
+    isPolyInPoly(polygon, { type: "Polygon", coordinates: coords })
   );
 }
 
@@ -283,6 +291,7 @@ export {
   isLineOnLine,
   isLineInPoly,
   isPolyInPoly,
+  isMultiPolyInPoly,
   doBBoxOverlap,
   compareCoords,
   getMidpoint,
