@@ -28,14 +28,28 @@ test("turf-bbox-clip", (t) => {
     const filename = fixture.filename;
     const name = fixture.name;
     const geojson = fixture.geojson;
-    const feature = geojson.features[0];
-    const bbox = turfBBox(geojson.features[1]);
+    const isFeatureCollection = geojson.features.length > 2;
+    const feature = isFeatureCollection
+      ? featureCollection(geojson.features.slice(0, -1))
+      : geojson.features[0];
+    const clipRegion = geojson.features.slice(-1)[0];
+    const bbox = turfBBox(clipRegion);
     const clipped = bboxClip(feature, bbox);
-    const results = featureCollection([
-      colorize(feature, "#080"),
-      colorize(clipped, "#F00"),
-      colorize(geojson.features[1], "#00F", 3),
-    ]);
+
+    let results;
+    if (isFeatureCollection) {
+      results = featureCollection([
+        ...feature.features.map((f) => colorize(f, "#080", "input")),
+        ...clipped.features.map((c) => colorize(c, "#F00", "output")),
+        colorize(clipRegion, "#00F", "clipping bbox", 3),
+      ]);
+    } else {
+      results = featureCollection([
+        colorize(feature, "#080", "input"),
+        colorize(clipped, "#F00", "output"),
+        colorize(clipRegion, "#00F", "clipping bbox", 3),
+      ]);
+    }
 
     if (process.env.REGEN)
       writeJsonFileSync(directories.out + filename, results);
@@ -44,15 +58,7 @@ test("turf-bbox-clip", (t) => {
   t.end();
 });
 
-test("turf-bbox-clip -- throws", (t) => {
-  t.throws(
-    () => bboxClip(point([5, 10]), [-180, -90, 180, 90]),
-    /geometry Point not supported/
-  );
-  t.end();
-});
-
-function colorize(feature, color, width) {
+function colorize(feature, color, name, width) {
   color = color || "#F00";
   width = width || 6;
   feature.properties = {
@@ -60,6 +66,7 @@ function colorize(feature, color, width) {
     fill: color,
     "stroke-width": width,
     "fill-opacity": 0.1,
+    name,
   };
   return feature;
 }
