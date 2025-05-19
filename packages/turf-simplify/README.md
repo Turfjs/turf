@@ -4,22 +4,22 @@
 
 ## simplify
 
-Takes a [GeoJSON][1] object and returns a simplified version. Internally uses the 2d version of
-[simplify-js][2] to perform simplification using the Ramer-Douglas-Peucker algorithm.
+Simplifies the geometries in a GeoJSON object. Uses the 2d version of
+[simplify-js][1].
 
 ### Parameters
 
-*   `geojson` **[GeoJSON][1]** object to be simplified
+*   `geojson` **[GeoJSON][2]** GeoJSON object to be simplified
 *   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-    *   `options.tolerance` **[number][4]** simplification tolerance (optional, default `1`)
-    *   `options.highQuality` **[boolean][5]** whether or not to spend more time to create a higher-quality simplification with a different algorithm (optional, default `false`)
-    *   `options.mutate` **[boolean][5]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
+    *   `options.tolerance` **[number][4]** Simplification tolerance (optional, default `1`)
+    *   `options.highQuality` **[boolean][5]** Produce a higher-quality simplification using a slower algorithm (optional, default `false`)
+    *   `options.mutate` **[boolean][5]** Allow GeoJSON input to be mutated (significant performance improvement if true) (optional, default `false`)
 
 ### Examples
 
 ```javascript
-var geojson = turf.polygon([[
+const geojson = turf.polygon([[
   [-70.603637, -33.399918],
   [-70.614624, -33.395332],
   [-70.639343, -33.392466],
@@ -41,18 +41,18 @@ var geojson = turf.polygon([[
   [-70.594711, -33.406224],
   [-70.603637, -33.399918]
 ]]);
-var options = {tolerance: 0.01, highQuality: false};
-var simplified = turf.simplify(geojson, options);
+const result0_01 = turf.simplify(geojson, {tolerance: 0.01 });
+const result0_005 = turf.simplify(geojson, {tolerance: 0.005 });
 
 //addToMap
-var addToMap = [geojson, simplified]
+const addToMap = [geojson, result0_01, result0_005]
 ```
 
-Returns **[GeoJSON][1]** a simplified GeoJSON
+Returns **[GeoJSON][2]** Simplified GeoJSON
 
-[1]: https://tools.ietf.org/html/rfc7946#section-3
+[1]: https://mourner.github.io/simplify-js/
 
-[2]: http://mourner.github.io/simplify-js/
+[2]: https://tools.ietf.org/html/rfc7946#section-3
 
 [3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 

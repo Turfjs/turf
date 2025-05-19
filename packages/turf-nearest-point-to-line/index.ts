@@ -19,7 +19,7 @@ import { pointToLineDistance } from "@turf/point-to-line-distance";
  * @param {FeatureCollection|GeometryCollection<Point>} points Point Collection
  * @param {Feature|Geometry<LineString>} line Line Feature
  * @param {Object} [options] Optional parameters
- * @param {string} [options.units='kilometers'] unit of the output distance property
+ * @param {Units} [options.units='kilometers'] unit of the output distance property. Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * (eg: degrees, radians, miles, or kilometers)
  * @param {Object} [options.properties={}] Translate Properties to Point
  * @returns {Feature<Point>} the closest point

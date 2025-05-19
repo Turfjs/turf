@@ -49,7 +49,7 @@ Type: ([Feature][7] | [FeatureCollection][8] | [Geometry][9] | [GeometryCollecti
 
 ## earthRadius
 
-The Earth radius in kilometers. Used by Turf modules that model the Earth as a sphere. The [mean radius][11] was selected because it is [recommended ][12] by the Haversine formula (used by turf/distance) to reduce error.
+The Earth radius in meters. Used by Turf modules that model the Earth as a sphere. The [mean radius][11] was selected because it is [recommended ][12] by the Haversine formula (used by turf/distance) to reduce error.
 
 Type: [number][13]
 

@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { geojsonEquality } from "geojson-equality-ts";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { truncate } from "@turf/truncate";
@@ -38,7 +39,10 @@ test("turf-clean-coords", (t) => {
 
     if (process.env.REGEN)
       writeJsonFileSync(directories.out + filename, results);
-    t.deepEqual(results, loadJsonFileSync(directories.out + filename), name);
+    t.true(
+      geojsonEquality(results, loadJsonFileSync(directories.out + filename)),
+      name
+    );
   });
   t.end();
 });
@@ -149,5 +153,168 @@ test("turf-clean-coords -- prevent input mutation", (t) => {
   const multiPolyBefore = JSON.parse(JSON.stringify(multiPoly));
   cleanCoords(multiPoly);
   t.deepEqual(multiPolyBefore, multiPoly, "multiPolygon should NOT be mutated");
+  t.end();
+});
+
+test("turf-clean-coords - north south lines - issue 2305", (t) => {
+  // From https://github.com/Turfjs/turf/issues/2305#issue-1287442870
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 1],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 1],
+      [0, 0],
+    ]),
+    "northern turnaround point is kept"
+  );
+
+  // From https://github.com/Turfjs/turf/issues/2305#issue-1287442870
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 0],
+        [0, 2],
+        [0, 2],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 2],
+      [0, 0],
+    ]),
+    "northern turnaround point is kept"
+  );
+
+  t.end();
+});
+
+test("turf-clean-coords - overly aggressive removal - issue 2740", (t) => {
+  // Issue 2740 is cleanCoords was too aggresive at removing points.
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 2],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 2],
+      [0, 0],
+    ]),
+    "north-south retraced line turnaround point kept"
+  );
+
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 3],
+      [0, 0],
+    ]),
+    "north-south retraced line properly cleaned"
+  );
+
+  t.deepEqual(
+    cleanCoords(
+      lineString([
+        [0, 0],
+        [0, 1],
+        [0, 2],
+        [0, -2],
+        [0, -1],
+        [0, 0],
+      ])
+    ),
+    lineString([
+      [0, 0],
+      [0, 2],
+      [0, -2],
+      [0, 0],
+    ]),
+    "north-south retraced past origin and back to start line properly cleaned"
+  );
+
+  t.end();
+});
+
+test("turf-clean-coords - start point protected - issue 2406", (t) => {
+  t.true(
+    geojsonEquality(
+      cleanCoords(
+        polygon([
+          [
+            [1, 3], // a
+            [3, 3], // b
+            [3, 1], // c
+            [3, -3], // d
+            [-3, -3], // e
+            [-3, 3], // f
+            [1, 3], // a
+          ],
+        ])
+      ),
+      polygon([
+        [
+          [-3, 3], // f
+          [3, 3], // b
+          [3, -3], // d
+          [-3, -3], // e
+          [-3, 3], // f
+        ],
+      ])
+    ),
+    "polygon start point (a) was also removed"
+  );
+
+  t.end();
+});
+
+test("turf-clean-coords - multipolygon - issue #918", (t) => {
+  // Copied from turf-simplify as (at heart) it's cleanCoords that's being
+  // tested here.
+  // simplify hangs on this input #918
+  t.throws(
+    () =>
+      cleanCoords(
+        multiPolygon([
+          [
+            [
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+              [0, 90],
+            ],
+          ],
+        ])
+      ),
+    /invalid polygon/,
+    "invalid polygon"
+  );
+
   t.end();
 });
