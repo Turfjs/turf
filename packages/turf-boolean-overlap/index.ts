@@ -1,9 +1,9 @@
 import { Feature, Geometry, MultiPoint } from "geojson";
 import { segmentEach } from "@turf/meta";
 import { getGeom } from "@turf/invariant";
-import lineOverlap from "@turf/line-overlap";
-import lineIntersect from "@turf/line-intersect";
-import GeojsonEquality from "geojson-equality";
+import { lineOverlap } from "@turf/line-overlap";
+import { lineIntersect } from "@turf/line-intersect";
+import { geojsonEquality } from "geojson-equality-ts";
 
 /**
  * Compares two geometries of the same dimension and returns true if their intersection set results in a geometry
@@ -12,7 +12,7 @@ import GeojsonEquality from "geojson-equality";
  *
  * In other words, it returns true if the two geometries overlap, provided that neither completely contains the other.
  *
- * @name booleanOverlap
+ * @function
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature1 input
  * @param  {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature2 input
  * @returns {boolean} true/false
@@ -26,7 +26,7 @@ import GeojsonEquality from "geojson-equality";
  * turf.booleanOverlap(poly2, poly3)
  * //=false
  */
-export default function booleanOverlap(
+function booleanOverlap(
   feature1: Feature<any> | Geometry,
   feature2: Feature<any> | Geometry
 ): boolean {
@@ -49,8 +49,8 @@ export default function booleanOverlap(
   if (type1 === "Point") throw new Error("Point geometry not supported");
 
   // features must be not equal
-  const equality = new GeojsonEquality({ precision: 6 });
-  if (equality.compare(feature1 as any, feature2 as any)) return false;
+  if (geojsonEquality(feature1 as any, feature2 as any, { precision: 6 }))
+    return false;
 
   let overlap = 0;
 
@@ -88,3 +88,6 @@ export default function booleanOverlap(
 
   return overlap > 0;
 }
+
+export { booleanOverlap };
+export default booleanOverlap;

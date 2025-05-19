@@ -1,5 +1,5 @@
 import { BBox } from "geojson";
-import triangleGrid from "./dist/js/index";
+import { triangleGrid } from "./index.js";
 
 // prettier-ignore
 const bbox: BBox = [

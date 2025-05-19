@@ -1,7 +1,7 @@
-import bbox from "@turf/bbox";
-import area from "@turf/area";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import explode from "@turf/explode";
+import { bbox } from "@turf/bbox";
+import { area } from "@turf/area";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import { explode } from "@turf/explode";
 import { collectionOf } from "@turf/invariant";
 import {
   polygon,
@@ -20,8 +20,8 @@ import {
   Feature,
 } from "geojson";
 
-import gridToMatrix from "./lib/grid-to-matrix";
-const { isoBands } = require("marchingsquares");
+import { gridToMatrix } from "./lib/grid-to-matrix.js";
+import { isoBands } from "marchingsquares";
 
 type GroupRingProps = { [prop: string]: string };
 type GroupedRings =
@@ -34,7 +34,7 @@ type GroupedRings =
  * Takes a square or rectangular grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
  * value breaks and generates filled contour isobands.
  *
- * @name isobands
+ * @function
  * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular
  * @param {Array<number>} breaks where to draw contours
  * @param {Object} [options={}] options on output
@@ -281,4 +281,5 @@ function allGrouped(
   return true;
 }
 
+export { isobands };
 export default isobands;

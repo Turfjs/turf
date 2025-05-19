@@ -1,6 +1,6 @@
 {
   "name": "@turf/geojson-rbush",
-  "version": "7.0.0-alpha.2",
+  "version": "7.2.0",
   "description": "GeoJSON implementation of RBush",
   "author": "Turf Authors",
   "contributors": [
@@ -28,47 +28,54 @@
     "spatial",
     "rbush"
   ],
-  "main": "dist/js/index.js",
-  "module": "dist/es/index.js",
+  "type": "module",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./index.d.ts",
-      "import": "./dist/es/index.js",
-      "require": "./dist/js/index.js"
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
     }
   },
-  "types": "index.d.ts",
   "sideEffects": false,
   "files": [
-    "dist",
-    "index.d.ts"
+    "dist"
   ],
   "scripts": {
-    "bench": "tsx bench.js",
-    "build": "rollup -c ../../rollup.config.js && echo '{\"type\":\"module\"}' > dist/es/package.json",
+    "bench": "tsx bench.ts",
+    "build": "tsup --config ../../tsup.config.ts",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "npm-run-all --npm-path npm test:*",
-    "test:tape": "tsx test.js",
-    "test:types": "tsc --esModuleInterop --noEmit --strict types.ts"
+    "test:tape": "tsx test.ts",
+    "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/bbox-polygon": "^7.0.0-alpha.2",
-    "@turf/random": "^7.0.0-alpha.2",
+    "@turf/bbox-polygon": "workspace:*",
+    "@turf/random": "workspace:*",
+    "@types/benchmark": "^2.1.5",
+    "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
-    "rollup": "^2.79.1",
-    "tape": "^5.7.2",
-    "tsx": "^3.14.0",
-    "typescript": "^5.2.2",
-    "write-json-file": "^5.0.0"
+    "tape": "^5.9.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/bbox": "^7.0.0-alpha.2",
-    "@turf/helpers": "^7.0.0-alpha.2",
-    "@turf/meta": "^7.0.0-alpha.2",
-    "@types/geojson": "7946.0.8",
+    "@turf/bbox": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/meta": "workspace:*",
+    "@types/geojson": "^7946.0.10",
     "rbush": "^3.0.1"
   }
 }

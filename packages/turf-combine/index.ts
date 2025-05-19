@@ -15,7 +15,7 @@ import { featureEach } from "@turf/meta";
  * Combines a {@link FeatureCollection} of {@link Point}, {@link LineString}, or {@link Polygon} features
  * into {@link MultiPoint}, {@link MultiLineString}, or {@link MultiPolygon} features.
  *
- * @name combine
+ * @function
  * @param {FeatureCollection<Point|LineString|Polygon>} fc a FeatureCollection of any type
  * @returns {FeatureCollection<MultiPoint|MultiLineString|MultiPolygon>} a FeatureCollection of corresponding type to input
  * @example
@@ -99,4 +99,5 @@ function combine(
   );
 }
 
+export { combine };
 export default combine;

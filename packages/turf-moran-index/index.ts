@@ -1,6 +1,20 @@
 import { FeatureCollection } from "geojson";
-import spatialWeight from "@turf/distance-weight";
+import { distanceWeight as spatialWeight } from "@turf/distance-weight";
 import { featureEach } from "@turf/meta";
+
+/**
+ * @typedef {object} MoranIndex
+ * @property {number} moranIndex the moran's Index of the observed feature set
+ * @property {number} expectedMoranIndex the moran's Index of the random distribution
+ * @property {number} stdNorm the standard devitaion of the random distribution
+ * @property {number} zNorm the z-score of the observe samples with regard to the random distribution
+ */
+type MoranIndex = {
+  moranIndex: number;
+  expectedMoranIndex: number;
+  stdNorm: number;
+  zNorm: number;
+};
 
 /**
  * Moran's I measures patterns of attribute values associated with features.
@@ -25,7 +39,7 @@ import { featureEach } from "@turf/meta";
  *
  * 3. Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
  *
- * @name moranIndex
+ * @function
  * @param {FeatureCollection<any>} fc
  * @param {Object} options
  * @param {string} options.inputField the property name, must contain numeric values
@@ -45,7 +59,7 @@ import { featureEach } from "@turf/meta";
  * });
  */
 
-export default function (
+function moranIndex(
   fc: FeatureCollection<any>,
   options: {
     inputField: string;
@@ -55,18 +69,13 @@ export default function (
     alpha?: number;
     standardization?: boolean;
   }
-): {
-  moranIndex: number;
-  expectedMoranIndex: number;
-  stdNorm: number;
-  zNorm: number;
-} {
+): MoranIndex {
   const inputField = options.inputField;
   const threshold = options.threshold || 100000;
   const p = options.p || 2;
-  const binary = options.binary || false;
+  const binary = options.binary ?? false;
   const alpha = options.alpha || -1;
-  const standardization = options.standardization || true;
+  const standardization = options.standardization ?? true;
 
   const weight = spatialWeight(fc, {
     alpha,
@@ -121,6 +130,8 @@ export default function (
 
 /**
  * get mean of a list
+ *
+ * @private
  * @param {number[]} y
  * @returns {number}
  *
@@ -134,6 +145,8 @@ function mean(y: number[]): number {
 }
 /**
  * get variance of a list
+ *
+ * @private
  * @param {number[]} y
  * @returns {number}
  *
@@ -147,10 +160,5 @@ function variance(y: number[]): number {
   return sum / y.length;
 }
 
-/**
- * @typedef {Object} MoranIndex
- * @property {number} moranIndex the moran's Index of the observed feature set
- * @property {number} expectedMoranIndex the moran's Index of the random distribution
- * @property {number} stdNorm the standard devitaion of the random distribution
- * @property {number} zNorm the z-score of the observe samples with regard to the random distribution
- */
+export { moranIndex, MoranIndex };
+export default moranIndex;

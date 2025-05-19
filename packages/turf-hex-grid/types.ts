@@ -1,5 +1,5 @@
 import { BBox } from "geojson";
-import hexGrid from "./index";
+import { hexGrid } from "./index.js";
 
 // prettier-ignore
 const bbox: BBox = [

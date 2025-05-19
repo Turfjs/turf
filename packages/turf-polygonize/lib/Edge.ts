@@ -1,12 +1,12 @@
 import { lineString } from "@turf/helpers";
-import { orientationIndex } from "./util";
-import Node from "./Node";
-import EdgeRing from "./EdgeRing";
+import { orientationIndex } from "./util.js";
+import { Node } from "./Node.js";
+import { EdgeRing } from "./EdgeRing.js";
 
 /**
  * This class is inspired by GEOS's geos::operation::polygonize::PolygonizeDirectedEdge
  */
-export default class Edge {
+class Edge {
   public label?: number;
   public symetric?: Edge;
   public from: Node;
@@ -96,3 +96,6 @@ export default class Edge {
     );
   }
 }
+
+export { Edge };
+export default Edge;

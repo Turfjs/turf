@@ -1,9 +1,10 @@
-import bbox from "@turf/bbox";
+import { bbox } from "@turf/bbox";
 import { coordEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
 import { multiLineString, featureCollection, isObject } from "@turf/helpers";
-const { isoContours } = require("marchingsquares");
-import gridToMatrix from "./lib/grid-to-matrix";
+// @ts-expect-error Legacy JS library with no types defined
+import { isoContours } from "marchingsquares";
+import { gridToMatrix } from "./lib/grid-to-matrix.js";
 import {
   FeatureCollection,
   Point,
@@ -16,7 +17,7 @@ import {
  * Takes a grid {@link FeatureCollection} of {@link Point} features with z-values and an array of
  * value breaks and generates [isolines](https://en.wikipedia.org/wiki/Contour_line).
  *
- * @name isolines
+ * @function
  * @param {FeatureCollection<Point>} pointGrid input points
  * @param {Array<number>} breaks values of `zProperty` where to draw isolines
  * @param {Object} [options={}] Optional parameters
@@ -163,4 +164,5 @@ function rescaleIsolines(
   return createdIsoLines;
 }
 
+export { isolines };
 export default isolines;

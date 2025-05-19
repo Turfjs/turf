@@ -1,16 +1,25 @@
-import { Feature, Geometry, LineString, Point, Polygon } from "geojson";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import lineIntersect from "@turf/line-intersect";
+import {
+  Feature,
+  Geometry,
+  LineString,
+  Point,
+  Polygon,
+  Position,
+} from "geojson";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import { lineIntersect } from "@turf/line-intersect";
 import { flattenEach } from "@turf/meta";
-import polygonToLine from "@turf/polygon-to-line";
+import { polygonToLine } from "@turf/polygon-to-line";
 
 /**
  * Boolean-disjoint returns (TRUE) if the intersection of the two geometries is an empty set.
  *
- * @name booleanDisjoint
+ * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
- * @returns {boolean} true/false
+ * @param {Object} [options={}] Optional parameters
+ * @param {boolean} [options.ignoreSelfIntersections=true] ignore self-intersections on input features
+ * @returns {boolean} true if the intersection is an empty set, false otherwise
  * @example
  * var point = turf.point([2, 2]);
  * var line = turf.lineString([[1, 1], [1, 2], [1, 3], [1, 4]]);
@@ -20,7 +29,12 @@ import polygonToLine from "@turf/polygon-to-line";
  */
 function booleanDisjoint(
   feature1: Feature<any> | Geometry,
-  feature2: Feature<any> | Geometry
+  feature2: Feature<any> | Geometry,
+  {
+    ignoreSelfIntersections = true,
+  }: {
+    ignoreSelfIntersections?: boolean;
+  } = { ignoreSelfIntersections: true }
 ): boolean {
   let bool = true;
   flattenEach(feature1, (flatten1) => {
@@ -28,7 +42,11 @@ function booleanDisjoint(
       if (bool === false) {
         return false;
       }
-      bool = disjoint(flatten1.geometry, flatten2.geometry);
+      bool = disjoint(
+        flatten1.geometry,
+        flatten2.geometry,
+        ignoreSelfIntersections
+      );
     });
   });
   return bool;
@@ -40,9 +58,10 @@ function booleanDisjoint(
  * @private
  * @param {Geometry<any>} geom1 GeoJSON Geometry
  * @param {Geometry<any>} geom2 GeoJSON Geometry
- * @returns {boolean} true/false
+ * @param {boolean} ignoreSelfIntersections ignore self-intersections on input features
+ * @returns {boolean} true if disjoint, false otherwise
  */
-function disjoint(geom1: any, geom2: any) {
+function disjoint(geom1: any, geom2: any, ignoreSelfIntersections: boolean) {
   switch (geom1.type) {
     case "Point":
       switch (geom2.type) {
@@ -60,9 +79,9 @@ function disjoint(geom1: any, geom2: any) {
         case "Point":
           return !isPointOnLine(geom1, geom2);
         case "LineString":
-          return !isLineOnLine(geom1, geom2);
+          return !isLineOnLine(geom1, geom2, ignoreSelfIntersections);
         case "Polygon":
-          return !isLineInPoly(geom2, geom1);
+          return !isLineInPoly(geom2, geom1, ignoreSelfIntersections);
       }
       /* istanbul ignore next */
       break;
@@ -71,9 +90,9 @@ function disjoint(geom1: any, geom2: any) {
         case "Point":
           return !booleanPointInPolygon(geom2, geom1);
         case "LineString":
-          return !isLineInPoly(geom1, geom2);
+          return !isLineInPoly(geom1, geom2, ignoreSelfIntersections);
         case "Polygon":
-          return !isPolyInPoly(geom2, geom1);
+          return !isPolyInPoly(geom2, geom1, ignoreSelfIntersections);
       }
   }
   return false;
@@ -95,21 +114,33 @@ function isPointOnLine(lineString: LineString, pt: Point) {
   return false;
 }
 
-function isLineOnLine(lineString1: LineString, lineString2: LineString) {
-  const doLinesIntersect = lineIntersect(lineString1, lineString2);
+function isLineOnLine(
+  lineString1: LineString,
+  lineString2: LineString,
+  ignoreSelfIntersections: boolean
+) {
+  const doLinesIntersect = lineIntersect(lineString1, lineString2, {
+    ignoreSelfIntersections,
+  });
   if (doLinesIntersect.features.length > 0) {
     return true;
   }
   return false;
 }
 
-function isLineInPoly(polygon: Polygon, lineString: LineString) {
+function isLineInPoly(
+  polygon: Polygon,
+  lineString: LineString,
+  ignoreSelfIntersections: boolean
+) {
   for (const coord of lineString.coordinates) {
     if (booleanPointInPolygon(coord, polygon)) {
       return true;
     }
   }
-  const doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon));
+  const doLinesIntersect = lineIntersect(lineString, polygonToLine(polygon), {
+    ignoreSelfIntersections,
+  });
   if (doLinesIntersect.features.length > 0) {
     return true;
   }
@@ -124,9 +155,14 @@ function isLineInPoly(polygon: Polygon, lineString: LineString) {
  * @private
  * @param {Geometry|Feature<Polygon>} feature1 Polygon1
  * @param {Geometry|Feature<Polygon>} feature2 Polygon2
- * @returns {boolean} true/false
+ * @param {boolean} ignoreSelfIntersections ignore self-intersections on input features
+ * @returns {boolean} true if geom1 is in geom2, false otherwise
  */
-function isPolyInPoly(feature1: Polygon, feature2: Polygon) {
+function isPolyInPoly(
+  feature1: Polygon,
+  feature2: Polygon,
+  ignoreSelfIntersections: boolean
+) {
   for (const coord1 of feature1.coordinates[0]) {
     if (booleanPointInPolygon(coord1, feature2)) {
       return true;
@@ -139,7 +175,8 @@ function isPolyInPoly(feature1: Polygon, feature2: Polygon) {
   }
   const doLinesIntersect = lineIntersect(
     polygonToLine(feature1),
-    polygonToLine(feature2)
+    polygonToLine(feature2),
+    { ignoreSelfIntersections }
   );
   if (doLinesIntersect.features.length > 0) {
     return true;
@@ -148,9 +185,9 @@ function isPolyInPoly(feature1: Polygon, feature2: Polygon) {
 }
 
 function isPointOnLineSegment(
-  lineSegmentStart: number[],
-  lineSegmentEnd: number[],
-  pt: number[]
+  lineSegmentStart: Position,
+  lineSegmentEnd: Position,
+  pt: Position
 ) {
   const dxc = pt[0] - lineSegmentStart[0];
   const dyc = pt[1] - lineSegmentStart[1];
@@ -179,10 +216,11 @@ function isPointOnLineSegment(
  * @private
  * @param {Position} pair1 point [x,y]
  * @param {Position} pair2 point [x,y]
- * @returns {boolean} true/false if coord pairs match
+ * @returns {boolean} true if coord pairs match, false otherwise
  */
-function compareCoords(pair1: number[], pair2: number[]) {
+function compareCoords(pair1: Position, pair2: Position) {
   return pair1[0] === pair2[0] && pair1[1] === pair2[1];
 }
 
+export { booleanDisjoint };
 export default booleanDisjoint;

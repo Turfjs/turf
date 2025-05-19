@@ -1,15 +1,17 @@
 import { Feature, FeatureCollection, Point } from "geojson";
-import centroid from "@turf/centroid";
+import { centroid } from "@turf/centroid";
 import { getCoord } from "@turf/invariant";
 import { featureEach } from "@turf/meta";
 
 /**
  * calcualte the Minkowski p-norm distance between two features.
+ *
+ * @function
  * @param feature1 point feature
  * @param feature2 point feature
  * @param p p-norm 1=<p<=infinity 1: Manhattan distance 2: Euclidean distance
  */
-export function pNormDistance(
+function pNormDistance(
   feature1: Feature<Point>,
   feature2: Feature<Point>,
   p = 2
@@ -27,7 +29,7 @@ export function pNormDistance(
 /**
  *
  *
- * @name distanceWeight
+ * @function
  * @param {FeatureCollection<any>} fc FeatureCollection.
  * @param {Object} [options] option object.
  * @param {number} [options.threshold=10000] If the distance between neighbor and
@@ -46,7 +48,7 @@ export function pNormDistance(
  * var dataset = turf.randomPoint(100, { bbox: bbox });
  * var result = turf.distanceWeight(dataset);
  */
-export default function distanceWeight(
+function distanceWeight(
   fc: FeatureCollection<any>,
   options?: {
     threshold?: number;
@@ -59,9 +61,9 @@ export default function distanceWeight(
   options = options || {};
   const threshold = options.threshold || 10000;
   const p = options.p || 2;
-  const binary = options.binary || false;
+  const binary = options.binary ?? false;
   const alpha = options.alpha || -1;
-  const rowTransform = options.standardization || false;
+  const rowTransform = options.standardization ?? false;
 
   const features: Array<Feature<Point>> = [];
   featureEach(fc, (feature) => {
@@ -121,3 +123,6 @@ export default function distanceWeight(
 
   return weights;
 }
+
+export { pNormDistance, distanceWeight };
+export default distanceWeight;

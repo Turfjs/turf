@@ -1,20 +1,20 @@
 import { Feature, LineString } from "geojson";
-import circle from "@turf/circle";
-import destination from "@turf/destination";
+import { circle } from "@turf/circle";
+import { destination } from "@turf/destination";
 import { Coord, lineString, Units } from "@turf/helpers";
 
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
  * 0 bearing is North of center point, positive clockwise.
  *
- * @name lineArc
+ * @function
  * @param {Coord} center center point
  * @param {number} radius radius of the circle
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the arc
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps (straight segments) that will constitute the arc
- * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {Feature<LineString>} line arc
  * @example
  * var center = turf.point([-75, 40]);
@@ -27,7 +27,7 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * //addToMap
  * var addToMap = [center, arc]
  */
-export default function lineArc(
+function lineArc(
   center: Coord,
   radius: number,
   bearing1: number,
@@ -89,3 +89,6 @@ function convertAngleTo360(alpha: number) {
   }
   return beta;
 }
+
+export { lineArc };
+export default lineArc;

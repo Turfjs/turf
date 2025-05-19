@@ -4,7 +4,7 @@ import {
   LineString,
   MultiLineString,
 } from "geojson";
-import clone from "@turf/clone";
+import { clone } from "@turf/clone";
 import { isObject, lineString, multiLineString } from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { lineReduce } from "@turf/meta";
@@ -120,4 +120,5 @@ function mergeLineStrings(a: Feature<LineString>, b: Feature<LineString>) {
   return lineString(coords);
 }
 
+export { lineDissolve };
 export default lineDissolve;

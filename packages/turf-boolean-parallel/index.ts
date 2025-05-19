@@ -1,13 +1,13 @@
 import { Feature, Geometry, LineString, Position } from "geojson";
-import cleanCoords from "@turf/clean-coords";
-import lineSegment from "@turf/line-segment";
-import rhumbBearing from "@turf/rhumb-bearing";
+import { cleanCoords } from "@turf/clean-coords";
+import { lineSegment } from "@turf/line-segment";
+import { rhumbBearing } from "@turf/rhumb-bearing";
 import { bearingToAzimuth } from "@turf/helpers";
 
 /**
  * Boolean-Parallel returns True if each segment of `line1` is parallel to the correspondent segment of `line2`
  *
- * @name booleanParallel
+ * @function
  * @param {Geometry|Feature<LineString>} line1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<LineString>} line2 GeoJSON Feature or Geometry
  * @returns {boolean} true/false if the lines are parallel
@@ -71,4 +71,5 @@ function getType(geojson: Geometry | Feature<any>, name: string) {
   throw new Error("Invalid GeoJSON object for " + name);
 }
 
+export { booleanParallel };
 export default booleanParallel;

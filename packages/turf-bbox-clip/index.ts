@@ -15,14 +15,14 @@ import {
   polygon,
 } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
-import { lineclip, polygonclip } from "./lib/lineclip";
+import { lineclip, polygonclip } from "./lib/lineclip.js";
 
 /**
  * Takes a {@link Feature} and a bbox and clips the feature to the bbox using
  * [lineclip](https://github.com/mapbox/lineclip).
  * May result in degenerate edges when clipping Polygons.
  *
- * @name bboxClip
+ * @function
  * @param {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} feature feature to clip to the bbox
  * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @returns {Feature<LineString|MultiLineString|Polygon|MultiPolygon>} clipped Feature
@@ -35,7 +35,7 @@ import { lineclip, polygonclip } from "./lib/lineclip";
  * //addToMap
  * var addToMap = [bbox, poly, clipped]
  */
-export default function bboxClip<
+function bboxClip<
   G extends Polygon | MultiPolygon | LineString | MultiLineString,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(feature: Feature<G, P> | G, bbox: BBox) {
@@ -91,3 +91,6 @@ function clipPolygon(rings: number[][][], bbox: BBox) {
   }
   return outRings;
 }
+
+export { bboxClip };
+export default bboxClip;

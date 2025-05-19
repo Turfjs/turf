@@ -1,72 +1,67 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "funding": "https://opencollective.com/turf",
   "scripts": {
+    "docs": "tsx ./scripts/generate-readmes.ts",
     "lint": "npm-run-all lint:*",
+    "lint:docs": "documentation lint packages/turf-*/index.js",
+    "lint:escheck-cjs": "es-check es8 packages/*/dist/cjs/index.cjs packages/turf/turf.min.js",
+    "lint:escheck-esm": "es-check --module es8 packages/*/dist/esm/index.js",
+    "lint:escheck-web": "es-check es5 packages/turf/turf.min.js",
     "lint:eslint": "eslint packages",
-    "lint:prettier": "prettier --check .",
     "lint:mrl": "mrl check",
-    "lint:escheck-require": "es-check es8 packages/*/dist/js/index.js packages/turf/turf.min.js",
-    "lint:escheck-esm": "es-check --module es8 packages/*/dist/es/index.js",
-    "lint:escheck-es5": "es-check es5 packages/turf/turf.min.js",
-    "postlint": "documentation lint packages/turf-*/index.js",
-    "prepare": "lerna run build && node ./scripts/add-import-extensions.js",
-    "pretest": "npm run lint",
-    "test": "lerna run test",
-    "posttest": "lerna run --scope @turf/turf last-checks",
-    "docs": "tsx ./scripts/generate-readmes.ts"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "lint:prettier": "prettier --check .",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky && lerna run build",
+    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
   },
   "lint-staged": {
     "package.json": [
       "mrl check --paths"
     ],
     "**/*.{js,ts}": [
-      "eslint --fix",
-      "prettier --write"
+      "eslint --fix"
     ],
     "packages/*/index.{js,ts}": [
-      "./scripts/generate-readmes"
+      "pnpm tsx ./scripts/generate-readmes"
     ],
-    "**/*": "prettier --write --ignore-unknown"
+    "*": "prettier --write --ignore-unknown"
   },
+  "packageManager": "pnpm@10.10.0+sha256.fa0f513aa8191764d2b6b432420788c270f07b4f999099b65bb2010eec702a30",
   "devDependencies": {
-    "@types/geojson": "7946.0.8",
-    "@types/node": "18.11.9",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
-    "acorn": "^7.4.1",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.25.1",
+    "@monorepolint/cli": "0.5.0",
+    "@monorepolint/config": "0.5.0",
+    "@monorepolint/core": "0.5.0",
+    "@monorepolint/rules": "0.5.0",
+    "@types/node": "22.15.3",
+    "acorn": "^8.14.1",
     "camelcase": "^8.0.0",
     "d3-queue": "*",
     "decamelize": "^6.0.0",
-    "dependency-tree": "^8.1.2",
-    "documentation": "^13.2.5",
-    "es-check": "^7.1.1",
-    "eslint": "^8.53.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.1",
+    "dependency-tree": "^11.1.1",
+    "documentation": "^14.0.3",
+    "es-check": "^9.0.0",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
     "esm": "^3.2.25",
-    "fs-extra": "^11.1.1",
-    "husky": "^4.3.8",
-    "lerna": "^7.4.2",
-    "lint-staged": "^10.5.4",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.2",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lerna": "^8.2.2",
+    "lint-staged": "^15.5.1",
     "load-json-file": "^7.0.1",
-    "meow": "^12.1.1",
-    "monorepolint": "^0.5.0-alpha.20",
+    "meow": "^13.2.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.0.3",
+    "prettier": "^3.5.3",
     "progress": "^2.0.3",
-    "rollup": "^2.79.1",
-    "ts-node": "^9.0.0",
-    "tsx": "^3.14.0",
-    "typescript": "^5.2.2",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.31.1",
     "yamljs": "^0.3.0"
   }
 }

@@ -1,10 +1,14 @@
-name: Turf.js CI
+name: CI build
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
+      - support/6.x
   pull_request:
-    branches: [master]
+    branches:
+      - master
+      - support/6.x
 
 permissions:
   contents: read
@@ -15,16 +19,23 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
 
-      - run: yarn --frozen-lockfile
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # 4.1.0
+        with:
+          run_install: false
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # 4.3.0
+        with:
+          cache: "pnpm"
+          node-version: ${{ matrix.node-version }}
+
+      - run: pnpm install --frozen-lockfile
       - run: git diff --exit-code
-      - run: yarn test
+      - run: pnpm test

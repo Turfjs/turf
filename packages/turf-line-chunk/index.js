@@ -1,5 +1,5 @@
-import length from "@turf/length";
-import lineSliceAlong from "@turf/line-slice-along";
+import { length } from "@turf/length";
+import { lineSliceAlong } from "@turf/line-slice-along";
 import { flattenEach } from "@turf/meta";
 import { featureCollection, isObject } from "@turf/helpers";
 
@@ -7,11 +7,11 @@ import { featureCollection, isObject } from "@turf/helpers";
  * Divides a {@link LineString} into chunks of a specified length.
  * If the line is shorter than the segment length then the original line is returned.
  *
- * @name lineChunk
+ * @function
  * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson the lines to split
  * @param {number} segmentLength how long to make each segment
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] units can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {boolean} [options.reverse=false] reverses coordinates to start the first chunked segment at the end
  * @returns {FeatureCollection<LineString>} collection of line segments
  * @example
@@ -56,7 +56,7 @@ function lineChunk(geojson, segmentLength, options) {
  * @private
  * @param {Feature<LineString>} line GeoJSON LineString
  * @param {number} segmentLength how long to make each segment
- * @param {string}[units='kilometers'] units can be degrees, radians, miles, or kilometers
+ * @param {Units}[units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {Function} callback iterate over sliced line segments
  * @returns {void}
  */
@@ -84,4 +84,5 @@ function sliceLineSegments(line, segmentLength, units, callback) {
   }
 }
 
+export { lineChunk };
 export default lineChunk;

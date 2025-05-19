@@ -1,6 +1,6 @@
 import { Feature, GeoJsonProperties, Point, Position } from "geojson";
-import convex from "@turf/convex";
-import centroid from "@turf/centroid";
+import { convex } from "@turf/convex";
+import { centroid } from "@turf/centroid";
 import { point } from "@turf/helpers";
 import { getType, getCoord } from "@turf/invariant";
 import { coordEach } from "@turf/meta";
@@ -8,7 +8,7 @@ import { coordEach } from "@turf/meta";
 /**
  * Takes any {@link Feature} or a {@link FeatureCollection} and returns its [center of mass](https://en.wikipedia.org/wiki/Center_of_mass) using this formula: [Centroid of Polygon](https://en.wikipedia.org/wiki/Centroid#Centroid_of_polygon).
  *
- * @name centerOfMass
+ * @function
  * @param {GeoJSON} geojson GeoJSON to be centered
  * @param {Object} [options={}] Optional Parameters
  * @param {Object} [options.properties={}] Translate Properties to Feature
@@ -95,4 +95,5 @@ function centerOfMass<P extends GeoJsonProperties = GeoJsonProperties>(
   }
 }
 
+export { centerOfMass };
 export default centerOfMass;

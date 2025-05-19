@@ -6,8 +6,8 @@ import {
   Polygon,
 } from "geojson";
 import { featureCollection } from "@turf/helpers";
-import Graph from "./lib/Graph";
-import EdgeRing from "./lib/EdgeRing";
+import { Graph } from "./lib/Graph.js";
+import { EdgeRing } from "./lib/EdgeRing.js";
 
 /**
  * Polygonizes {@link LineString|(Multi)LineString(s)} into {@link Polygons}.
@@ -22,12 +22,12 @@ import EdgeRing from "./lib/EdgeRing";
  * - Dangles: edges which have one or both ends which are not incident on another edge endpoint.
  * - Cut Edges (bridges): edges that are connected at both ends but which do not form part of a polygon.
  *
- * @name polygonize
+ * @function
  * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geoJson Lines in order to polygonize
  * @returns {FeatureCollection<Polygon>} Polygons created
  * @throws {Error} if geoJson is invalid.
  */
-export default function polygonize<T extends LineString | MultiLineString>(
+function polygonize<T extends LineString | MultiLineString>(
   geoJson: Feature<T> | FeatureCollection<T> | T
 ): FeatureCollection<Polygon> {
   const graph = Graph.fromGeoJson(geoJson);
@@ -58,3 +58,6 @@ export default function polygonize<T extends LineString | MultiLineString>(
   // 5. EdgeRings to Polygons
   return featureCollection(shells.map((shell) => shell.toPolygon()));
 }
+
+export { polygonize };
+export default polygonize;

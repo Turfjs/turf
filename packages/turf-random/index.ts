@@ -17,17 +17,17 @@ import {
 } from "@turf/helpers";
 
 /**
- * Returns a random position within a {@link bounding box}.
+ * Returns a random position within a {@link BBox|bounding box}.
  *
- * @name randomPosition
- * @param {Array<number>} [bbox=[-180, -90, 180, 90]] a bounding box inside of which positions are placed.
- * @returns {Array<number>} Position [longitude, latitude]
+ * @function
+ * @param {BBox} [bbox=[-180, -90, 180, 90]] a bounding box inside of which positions are placed.
+ * @returns {Position} Position [longitude, latitude]
  * @throws {Error} if bbox is invalid
  * @example
  * var position = turf.randomPosition([-180, -90, 180, 90])
  * // => position
  */
-export function randomPosition(bbox?: BBox | { bbox: BBox }): Position {
+function randomPosition(bbox?: BBox | { bbox: BBox }): Position {
   checkBBox(bbox);
   return randomPositionUnchecked(bbox);
 }
@@ -56,17 +56,17 @@ function checkBBox(bbox?: BBox | { bbox: BBox }) {
 /**
  * Returns a random {@link point}.
  *
- * @name randomPoint
+ * @function
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
- * @param {Array<number>} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
+ * @param {BBox} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
  * @returns {FeatureCollection<Point>} GeoJSON FeatureCollection of points
  * @throws {Error} if bbox is invalid
  * @example
  * var points = turf.randomPoint(25, {bbox: [-180, -90, 180, 90]})
  * // => points
  */
-export function randomPoint(
+function randomPoint(
   count?: number,
   options: {
     bbox?: BBox;
@@ -86,10 +86,10 @@ export function randomPoint(
 /**
  * Returns a random {@link polygon}.
  *
- * @name randomPolygon
+ * @function
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
- * @param {Array<number>} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
+ * @param {BBox} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
  * @param {number} [options.num_vertices=10] is how many coordinates each LineString will contain.
  * @param {number} [options.max_radial_length=10] is the maximum number of decimal degrees latitude or longitude that a
  * vertex can reach out of the center of the Polygon.
@@ -99,7 +99,7 @@ export function randomPoint(
  * var polygons = turf.randomPolygon(25, {bbox: [-180, -90, 180, 90]})
  * // => polygons
  */
-export function randomPolygon(
+function randomPolygon(
   count?: number,
   options: {
     bbox?: BBox;
@@ -108,9 +108,13 @@ export function randomPolygon(
   } = {}
 ): FeatureCollection<Polygon, any> {
   checkBBox(options.bbox);
+
   // Default param
   if (count === undefined || count === null) {
     count = 1;
+  }
+  if (options.bbox === undefined || options.bbox === null) {
+    options.bbox = [-180, -90, 180, 90];
   }
   if (!isNumber(options.num_vertices) || options.num_vertices === undefined) {
     options.num_vertices = 10;
@@ -122,18 +126,35 @@ export function randomPolygon(
     options.max_radial_length = 10;
   }
 
+  const bboxWidth = Math.abs(options.bbox[0] - options.bbox[2]);
+  const bboxHeight = Math.abs(options.bbox[1] - options.bbox[3]);
+
+  const maxRadius = Math.min(bboxWidth / 2, bboxHeight / 2);
+
+  if (options.max_radial_length > maxRadius) {
+    throw new Error("max_radial_length is greater than the radius of the bbox");
+  }
+
+  // Create a padded bbox to avoid the polygons to be too close to the border
+  const paddedBbox = [
+    options.bbox[0] + options.max_radial_length,
+    options.bbox[1] + options.max_radial_length,
+    options.bbox[2] - options.max_radial_length,
+    options.bbox[3] - options.max_radial_length,
+  ] as BBox;
+
   const features = [];
   for (let i = 0; i < count; i++) {
-    let vertices: any[] = [];
+    let vertices: number[][] = [];
     const circleOffsets = [...Array(options.num_vertices + 1)].map(Math.random);
 
     // Sum Offsets
-    circleOffsets.forEach((cur: any, index: number, arr: any[]) => {
+    circleOffsets.forEach((cur, index, arr) => {
       arr[index] = index > 0 ? cur + arr[index - 1] : cur;
     });
 
     // scaleOffsets
-    circleOffsets.forEach((cur: any) => {
+    circleOffsets.forEach((cur) => {
       cur = (cur * 2 * Math.PI) / circleOffsets[circleOffsets.length - 1];
       const radialScaler = Math.random();
       vertices.push([
@@ -144,21 +165,21 @@ export function randomPolygon(
     vertices[vertices.length - 1] = vertices[0]; // close the ring
 
     // center the polygon around something
-    vertices = vertices.map(
-      vertexToCoordinate(randomPositionUnchecked(options.bbox))
-    );
+    vertices = vertices
+      .reverse() // Make counter-clockwise to adhere to right hand rule.
+      .map(vertexToCoordinate(randomPositionUnchecked(paddedBbox)));
     features.push(polygon([vertices]));
   }
   return featureCollection(features);
 }
 
 /**
- * Returns a random {@link linestring}.
+ * Returns a random {@link LineString}.
  *
- * @name randomLineString
+ * @function
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
- * @param {Array<number>} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
+ * @param {BBox} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
  * @param {number} [options.num_vertices=10] is how many coordinates each LineString will contain.
  * @param {number} [options.max_length=0.0001] is the maximum number of decimal degrees that a
  * vertex can be from its predecessor
@@ -170,7 +191,7 @@ export function randomPolygon(
  * var lineStrings = turf.randomLineString(25, {bbox: [-180, -90, 180, 90]})
  * // => lineStrings
  */
-export function randomLineString(
+function randomLineString(
   count?: number,
   options: {
     bbox?: BBox;
@@ -255,3 +276,5 @@ function coordInBBox(bbox: BBox) {
     Math.random() * (bbox[3] - bbox[1]) + bbox[1],
   ];
 }
+
+export { randomPosition, randomPoint, randomPolygon, randomLineString };

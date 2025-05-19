@@ -15,7 +15,7 @@ is geodesic.
 *   `points` **[FeatureCollection][3]<[Point][1]>** against input point set
 *   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][5]** the units of the numeric result (optional, default `'kilometers'`)
+    *   `options.units` **Units** the units of the numeric result. Supports all valid Turf [Units][5]. (optional, default `'kilometers'`)
 
 ### Examples
 
@@ -44,7 +44,7 @@ Returns **[Feature][6]<[Point][1]>** the closest point in the set to the referen
 
 [4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[5]: https://turfjs.org/docs/api/types/Units
 
 [6]: https://tools.ietf.org/html/rfc7946#section-3.2
 

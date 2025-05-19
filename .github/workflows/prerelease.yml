@@ -1,0 +1,47 @@
+name: prerelease
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: true
+      matrix:
+        node:
+          - 18
+        platform:
+          - ubuntu-latest
+    name: "${{matrix.platform}} / Node.js ${{ matrix.node }}"
+    runs-on: ${{matrix.platform}}
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # 4.1.0
+        with:
+          run_install: false
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # 4.3.0
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
+
+      - run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm test
+
+      - name: run publish
+        run: lerna publish minor --canary --include-merged-tags --force-publish  --dist-tag prerelease --ignore-scripts true --yes
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

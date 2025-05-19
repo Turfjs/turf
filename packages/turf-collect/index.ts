@@ -1,7 +1,7 @@
 import { FeatureCollection, Polygon, Point } from "geojson";
-import turfbbox from "@turf/bbox";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import rbush from "rbush";
+import { bbox as turfbbox } from "@turf/bbox";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
+import { rbush } from "./lib/rbush-export.js";
 
 interface Entry {
   minX: number;
@@ -18,7 +18,7 @@ interface Entry {
  * `inProperty` values from those points, and adds them as an array to `outProperty`
  * on the polygon.
  *
- * @name collect
+ * @function
  * @param {FeatureCollection<Polygon>} polygons polygons with values on which to aggregate
  * @param {FeatureCollection<Point>} points points to be aggregated
  * @param {string} inProperty property to be nested from
@@ -84,4 +84,5 @@ function collect(
   return polygons;
 }
 
+export { collect };
 export default collect;

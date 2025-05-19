@@ -1,5 +1,5 @@
 import { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
-import clone from "@turf/clone";
+import { clone } from "@turf/clone";
 import { geometryCollection } from "@turf/helpers";
 import { getType } from "@turf/invariant";
 import { flattenEach } from "@turf/meta";
@@ -14,7 +14,7 @@ import { topology } from "topojson-server";
  * @param {boolean} [options.mutate=false] Prevent input mutation
  * @returns {Feature<Polygon|MultiPolygon>} Dissolved Polygons
  */
-export default function polygonDissolve(
+function polygonDissolve(
   geojson: FeatureCollection<Polygon | MultiPolygon>,
   options: { mutate?: boolean } = {}
 ): Feature<Polygon | MultiPolygon> | null {
@@ -40,3 +40,6 @@ export default function polygonDissolve(
   const merged: any = merge(topo, topo.objects.geoms.geometries);
   return merged;
 }
+
+export { polygonDissolve };
+export default polygonDissolve;

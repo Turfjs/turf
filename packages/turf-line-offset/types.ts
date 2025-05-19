@@ -1,4 +1,4 @@
-import lineOffset from "./";
+import { lineOffset } from "./index.js";
 import { lineString, multiLineString } from "@turf/helpers";
 
 const line = lineString([

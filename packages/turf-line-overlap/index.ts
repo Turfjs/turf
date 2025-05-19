@@ -1,7 +1,7 @@
-import rbush from "@turf/geojson-rbush";
-import lineSegment from "@turf/line-segment";
-import nearestPointOnLine from "@turf/nearest-point-on-line";
-import booleanPointOnLine from "@turf/boolean-point-on-line";
+import { geojsonRbush as rbush } from "@turf/geojson-rbush";
+import { lineSegment } from "@turf/line-segment";
+import { nearestPointOnLine } from "@turf/nearest-point-on-line";
+import { booleanPointOnLine } from "@turf/boolean-point-on-line";
 import { getCoords } from "@turf/invariant";
 import { featureEach, segmentEach } from "@turf/meta";
 import {
@@ -14,12 +14,12 @@ import {
   GeoJsonProperties,
 } from "geojson";
 import { featureCollection, isObject } from "@turf/helpers";
-import equal from "deep-equal";
+import equal from "fast-deep-equal";
 
 /**
  * Takes any LineString or Polygon and returns the overlapping lines between both features.
  *
- * @name lineOverlap
+ * @function
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line1 any LineString or Polygon
  * @param {Geometry|Feature<LineString|MultiLineString|Polygon|MultiPolygon>} line2 any LineString or Polygon
  * @param {Object} [options={}] Optional parameters
@@ -165,4 +165,5 @@ function concatSegment(
   return line;
 }
 
+export { lineOverlap };
 export default lineOverlap;

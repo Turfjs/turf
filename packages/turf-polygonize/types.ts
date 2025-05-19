@@ -1,5 +1,5 @@
 import { lineString } from "@turf/helpers";
-import polygonize from "./";
+import { polygonize } from "./index.js";
 
 const line = lineString([
   [10, 10],

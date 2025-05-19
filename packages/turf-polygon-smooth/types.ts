@@ -1,5 +1,5 @@
 import { polygon } from "@turf/helpers";
-import polygonSmooth from ".";
+import { polygonSmooth } from "./index.js";
 
 const poly = polygon([
   [

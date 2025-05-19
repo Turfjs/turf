@@ -1,10 +1,10 @@
-import { Point, Polygon, FeatureCollection } from "geojson";
+import { Point, Polygon, FeatureCollection, BBox } from "geojson";
 import { Units, Grid } from "@turf/helpers";
 
 /**
  * http://turfjs.org/docs/#interpolate
  */
-export default function interpolate(
+declare function interpolate(
   points: FeatureCollection<Point>,
   cellSize: number,
   options?: {
@@ -12,9 +12,10 @@ export default function interpolate(
     property?: string;
     units?: Units;
     weight?: number;
+    bbox?: BBox;
   }
 ): FeatureCollection<Point>;
-export default function interpolate(
+declare function interpolate(
   points: FeatureCollection<Point>,
   cellSize: number,
   options?: {
@@ -22,5 +23,9 @@ export default function interpolate(
     property?: string;
     units?: Units;
     weight?: number;
+    bbox?: BBox;
   }
 ): FeatureCollection<Polygon>;
+
+export { interpolate };
+export default interpolate;

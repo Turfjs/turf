@@ -3780,7 +3780,7 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [-111.927576, 48.931885],
+          [-111.927805, 48.932435],
           [-112.181396, 48.886392]
         ]
       }
@@ -3796,14 +3796,15 @@
     {
       "type": "Feature",
       "properties": {
-        "dist": 19.22748,
-        "location": 303.703041,
+        "dist": 19.22738,
+        "multiFeatureIndex": 0,
+        "location": 303.639629,
         "index": 1185,
         "marker-color": "#F0F"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [-111.927576, 48.931885]
+        "coordinates": [-111.927805, 48.932435]
       }
     }
   ]

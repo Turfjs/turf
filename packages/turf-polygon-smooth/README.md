@@ -9,7 +9,7 @@ Warning: may create degenerate polygons.
 
 ### Parameters
 
-*   `inputPolys` **([FeatureCollection][4] | [Feature][5]<([Polygon][1] | [MultiPolygon][2])>)** (Multi)Polygon(s) to smooth
+*   `inputPolys` **([FeatureCollection][4]<([Polygon][1] | [MultiPolygon][2])> | [Feature][5]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** (Multi)Polygon(s) to smooth
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
     *   `options.iterations` **[string][7]** The number of times to smooth the polygon. A higher value means a smoother polygon. (optional, default `1`)
@@ -25,13 +25,13 @@ var smoothed = turf.polygonSmooth(polygon, {iterations: 3})
 var addToMap = [smoothed, polygon];
 ```
 
-Returns **[FeatureCollection][4]<[Polygon][1]>** FeatureCollection containing the smoothed polygon/poylgons
+Returns **[FeatureCollection][4]<([Polygon][1] | [MultiPolygon][2])>** FeatureCollection containing the smoothed polygon/multipoylgons
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 
 [2]: https://tools.ietf.org/html/rfc7946#section-3.1.7
 
-[3]: http://graphics.cs.ucdavis.edu/education/CAGDNotes/Chaikins-Algorithm/Chaikins-Algorithm.html
+[3]: https://www.cs.unc.edu/~dm/UNC/COMP258/LECTURES/Chaikins-Algorithm.pdf
 
 [4]: https://tools.ietf.org/html/rfc7946#section-3.3
 

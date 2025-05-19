@@ -16,7 +16,7 @@ import {
   point,
   polygon,
   radiansToLength,
-} from "./";
+} from "./index.js";
 
 // Fixtures
 const bbox: BBox = [-180, -90, 180, 90];

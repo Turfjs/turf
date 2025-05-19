@@ -1,12 +1,12 @@
 import { Position } from "geojson";
 import { coordEach } from "@turf/meta";
 import { AllGeoJSON, isNumber } from "@turf/helpers";
-import clone from "@turf/clone";
+import { clone } from "@turf/clone";
 
 /**
  * Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
  *
- * @name toMercator
+ * @function
  * @param {GeoJSON|Position} geojson WGS84 GeoJSON object
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
@@ -18,7 +18,7 @@ import clone from "@turf/clone";
  * //addToMap
  * var addToMap = [pt, converted];
  */
-export function toMercator<G = AllGeoJSON | Position>(
+function toMercator<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
@@ -28,7 +28,7 @@ export function toMercator<G = AllGeoJSON | Position>(
 /**
  * Converts a Mercator (EPSG:900913) GeoJSON object into WGS84 projection
  *
- * @name toWgs84
+ * @function
  * @param {GeoJSON|Position} geojson Mercator GeoJSON object
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
@@ -40,7 +40,7 @@ export function toMercator<G = AllGeoJSON | Position>(
  * //addToMap
  * var addToMap = [pt, converted];
  */
-export function toWgs84<G = AllGeoJSON | Position>(
+function toWgs84<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
@@ -153,3 +153,5 @@ function convertToWgs84(xy: number[]) {
 function sign(x: number) {
   return x < 0 ? -1 : x > 0 ? 1 : 0;
 }
+
+export { toMercator, toWgs84 };

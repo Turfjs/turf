@@ -1,10 +1,10 @@
-import rbush from "@turf/geojson-rbush";
-import square from "@turf/square";
-import bbox from "@turf/bbox";
-import truncate from "@turf/truncate";
-import lineSegment from "@turf/line-segment";
-import lineIntersect from "@turf/line-intersect";
-import nearestPointOnLine from "@turf/nearest-point-on-line";
+import { geojsonRbush as rbush } from "@turf/geojson-rbush";
+import { square } from "@turf/square";
+import { bbox } from "@turf/bbox";
+import { truncate } from "@turf/truncate";
+import { lineSegment } from "@turf/line-segment";
+import { lineIntersect } from "@turf/line-intersect";
+import { nearestPointOnLine } from "@turf/nearest-point-on-line";
 import { getCoords, getCoord, getType } from "@turf/invariant";
 import { featureEach, featureReduce, flattenEach } from "@turf/meta";
 import { lineString, featureCollection } from "@turf/helpers";
@@ -12,7 +12,7 @@ import { lineString, featureCollection } from "@turf/helpers";
 /**
  * Split a LineString by another GeoJSON Feature.
  *
- * @name lineSplit
+ * @function
  * @param {Feature<LineString>} line LineString Feature to split
  * @param {Feature<any>} splitter Feature used to split line
  * @returns {FeatureCollection<LineString>} Split LineStrings
@@ -217,4 +217,5 @@ function pointsEquals(pt1, pt2) {
   return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
 
+export { lineSplit };
 export default lineSplit;

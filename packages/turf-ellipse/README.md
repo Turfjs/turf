@@ -14,9 +14,9 @@ Takes a [Point][1] and calculates the ellipse polygon given two semi-axes expres
 *   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
     *   `options.angle` **[number][3]** angle of rotation in decimal degrees, positive clockwise (optional, default `0`)
-    *   `options.pivot` **[Coord][2]** point around which the rotation will be performed (optional, default `'origin'`)
+    *   `options.pivot` **[Coord][2]** point around which any rotation will be performed (optional, default `center`)
     *   `options.steps` **[number][3]** number of steps (optional, default `64`)
-    *   `options.units` **[string][5]** unit of measurement for axes (optional, default `'kilometers'`)
+    *   `options.units` **Units** unit of measurement for axes. Supports all valid Turf [Units][5] (optional, default `'kilometers'`)
     *   `options.properties` **[Object][4]** properties (optional, default `{}`)
 
 ### Examples
@@ -41,7 +41,7 @@ Returns **[Feature][6]<[Polygon][7]>** ellipse polygon
 
 [4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[5]: https://turfjs.org/docs/api/types/Units
 
 [6]: https://tools.ietf.org/html/rfc7946#section-3.2
 

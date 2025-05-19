@@ -1,7 +1,7 @@
 import rbush from "rbush";
 import { featureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
-import turfBBox from "@turf/bbox";
+import { bbox as turfBBox } from "@turf/bbox";
 
 /**
  * @module rbush
@@ -10,7 +10,7 @@ import turfBBox from "@turf/bbox";
 /**
  * GeoJSON implementation of [RBush](https://github.com/mourner/rbush#rbush) spatial index.
  *
- * @name rbush
+ * @function rbush
  * @param {number} [maxEntries=9] defines the maximum number of entries in a tree node. 9 (used by default) is a
  * reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa.
  * @returns {RBush} GeoJSON RBush
@@ -216,4 +216,5 @@ function geojsonRbush(maxEntries) {
   return tree;
 }
 
+export { geojsonRbush };
 export default geojsonRbush;

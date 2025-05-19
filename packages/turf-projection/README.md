@@ -9,7 +9,7 @@ Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
 ### Parameters
 
 *   `geojson` **([GeoJSON][1] | [Position][2])** WGS84 GeoJSON object
-*   `options` **[Object][3]?** Optional parameters
+*   `options` **[Object][3]?** Optional parameters (optional, default `{}`)
 
     *   `options.mutate` **[boolean][4]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 
@@ -32,7 +32,7 @@ Converts a Mercator (EPSG:900913) GeoJSON object into WGS84 projection
 ### Parameters
 
 *   `geojson` **([GeoJSON][1] | [Position][2])** Mercator GeoJSON object
-*   `options` **[Object][3]?** Optional parameters
+*   `options` **[Object][3]?** Optional parameters (optional, default `{}`)
 
     *   `options.mutate` **[boolean][4]** allows GeoJSON input to be mutated (significant performance increase if true) (optional, default `false`)
 

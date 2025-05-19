@@ -1,163 +1,167 @@
 toc:
-  - name: Measurement
-  - along
-  - area
-  - bbox
-  - bboxPolygon
-  - bearing
-  - center
-  - centerOfMass
-  - centroid
-  - destination
-  - distance
-  - envelope
-  - length
-  - midpoint
-  - pointOnFeature
-  - polygonTangents
-  - pointToLineDistance
-  - rhumbBearing
-  - rhumbDestination
-  - rhumbDistance
-  - square
-  - greatCircle
-  - name: Coordinate Mutation
-  - cleanCoords
-  - flip
-  - rewind
-  - round
-  - truncate
-  - name: Transformation
-  - bboxClip
-  - bezierSpline
-  - buffer
-  - circle
-  - clone
-  - concave
-  - convex
-  - difference
-  - dissolve
-  - intersect
-  - lineOffset
-  - polygonSmooth
-  - simplify
-  - tesselate
-  - transformRotate
-  - transformTranslate
-  - transformScale
-  - union
-  - voronoi
-  - name: Feature Conversion
-  - combine
-  - explode
-  - flatten
-  - lineToPolygon
-  - polygonize
-  - polygonToLine
-  - name: Misc
-  - kinks
-  - lineArc
-  - lineChunk
-  - lineIntersect
-  - lineOverlap
-  - lineSegment
-  - lineSlice
-  - lineSliceAlong
-  - lineSplit
-  - mask
-  - nearestPointOnLine
-  - sector
-  - shortestPath
-  - unkinkPolygon
-  - name: Helper
-  - featureCollection
-  - feature
-  - geometryCollection
-  - lineString
-  - multiLineString
-  - multiPoint
-  - multiPolygon
-  - point
-  - polygon
-  - name: Random
-  - randomPosition
-  - randomPoint
-  - randomLineString
-  - randomPolygon
-  - name: Data
-  - sample
-  - name: Interpolation
-  - interpolate
-  - isobands
-  - isolines
-  - planepoint
-  - tin
-  - name: Joins
-  - pointsWithinPolygon
-  - tag
-  - name: Grids
-  - hexGrid
-  - pointGrid
-  - squareGrid
-  - triangleGrid
-  - name: Classification
-  - nearestPoint
-  - name: Aggregation
-  - collect
-  - clustersDbscan
-  - clustersKmeans
-  - name: Meta
-  - coordAll
-  - coordEach
-  - coordReduce
-  - featureEach
-  - featureReduce
-  - flattenEach
-  - flattenReduce
-  - getCoord
-  - getCoords
-  - getGeom
-  - getType
-  - geomEach
-  - geomReduce
-  - propEach
-  - propReduce
-  - segmentEach
-  - segmentReduce
-  - getCluster
-  - clusterEach
-  - clusterReduce
-  - name: Assertions
-  - collectionOf
-  - containsNumber
-  - geojsonType
-  - featureOf
-  - name: Booleans
-  - booleanClockwise
-  - booleanConcave
-  - booleanContains
-  - booleanCrosses
-  - booleanDisjoint
-  - booleanEqual
-  - booleanOverlap
-  - booleanParallel
-  - booleanPointInPolygon
-  - booleanPointOnLine
-  - booleanTouches
-  - booleanWithin
-  - name: Unit Conversion
-  - bearingToAzimuth
-  - convertArea
-  - convertLength
-  - degreesToRadians
-  - lengthToRadians
-  - lengthToDegrees
-  - radiansToLength
-  - radiansToDegrees
-  - toMercator
-  - toWgs84
+  Measurement:
+    - along
+    - area
+    - bbox
+    - bboxPolygon
+    - bearing
+    - center
+    - centerOfMass
+    - centroid
+    - destination
+    - distance
+    - envelope
+    - length
+    - midpoint
+    - pointOnFeature
+    - polygonTangents
+    - pointToLineDistance
+    - pointToPolygonDistance
+    - rhumbBearing
+    - rhumbDestination
+    - rhumbDistance
+    - square
+    - greatCircle
+  Coordinate Mutation:
+    - cleanCoords
+    - flip
+    - rewind
+    - round
+    - truncate
+  Transformation:
+    - bboxClip
+    - bezierSpline
+    - buffer
+    - circle
+    - clone
+    - concave
+    - convex
+    - difference
+    - dissolve
+    - intersect
+    - lineOffset
+    - polygonSmooth
+    - simplify
+    - tesselate
+    - transformRotate
+    - transformTranslate
+    - transformScale
+    - union
+    - voronoi
+  Feature Conversion:
+    - combine
+    - explode
+    - flatten
+    - lineToPolygon
+    - polygonize
+    - polygonToLine
+  Misc:
+    - kinks
+    - lineArc
+    - lineChunk
+    - lineIntersect
+    - lineOverlap
+    - lineSegment
+    - lineSlice
+    - lineSliceAlong
+    - lineSplit
+    - mask
+    - nearestPointOnLine
+    - sector
+    - shortestPath
+    - unkinkPolygon
+  Helper:
+    - featureCollection
+    - feature
+    - geometryCollection
+    - lineString
+    - multiLineString
+    - multiPoint
+    - multiPolygon
+    - point
+    - polygon
+  Random:
+    - randomPosition
+    - randomPoint
+    - randomLineString
+    - randomPolygon
+  Data:
+    - sample
+  Interpolation:
+    - interpolate
+    - isobands
+    - isolines
+    - planepoint
+    - tin
+  Joins:
+    - pointsWithinPolygon
+    - tag
+  Grids:
+    - hexGrid
+    - pointGrid
+    - squareGrid
+    - triangleGrid
+  Classification:
+    - nearestPoint
+  Aggregation:
+    - collect
+    - clustersDbscan
+    - clustersKmeans
+  Meta:
+    - coordAll
+    - coordEach
+    - coordReduce
+    - featureEach
+    - featureReduce
+    - flattenEach
+    - flattenReduce
+    - getCoord
+    - getCoords
+    - getGeom
+    - getType
+    - geomEach
+    - geomReduce
+    - propEach
+    - propReduce
+    - segmentEach
+    - segmentReduce
+    - getCluster
+    - clusterEach
+    - clusterReduce
+  Assertions:
+    - collectionOf
+    - containsNumber
+    - geojsonType
+    - featureOf
+  Booleans:
+    - booleanClockwise
+    - booleanConcave
+    - booleanContains
+    - booleanCrosses
+    - booleanDisjoint
+    - booleanEqual
+    - booleanIntersects
+    - booleanOverlap
+    - booleanParallel
+    - booleanPointInPolygon
+    - booleanPointOnLine
+    - booleanTouches
+    - booleanWithin
+  Unit Conversion:
+    - bearingToAzimuth
+    - azimuthToBearing
+    - convertArea
+    - convertLength
+    - degreesToRadians
+    - lengthToRadians
+    - lengthToDegrees
+    - radiansToLength
+    - radiansToDegrees
+    - toMercator
+    - toWgs84
 paths:
   GeoJSON: "https://tools.ietf.org/html/rfc7946#section-3"
+  GeoJsonProperties: "https://tools.ietf.org/html/rfc7946#section-3.2"
   GeometryCollection: "https://tools.ietf.org/html/rfc7946#section-3.1.8"
   Point: "https://tools.ietf.org/html/rfc7946#section-3.1.2"
   Points: "https://tools.ietf.org/html/rfc7946#section-3.1.2"

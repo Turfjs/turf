@@ -4,11 +4,11 @@
 
 ## randomPosition
 
-Returns a random position within a [box][1].
+Returns a random position within a [bounding box][1].
 
 ### Parameters
 
-*   `bbox` **[Array][2]<[number][3]>** a bounding box inside of which positions are placed. (optional, default `[-180,-90,180,90]`)
+*   `bbox` **[BBox][1]** a bounding box inside of which positions are placed. (optional, default `[-180,-90,180,90]`)
 
 ### Examples
 
@@ -17,20 +17,20 @@ var position = turf.randomPosition([-180, -90, 180, 90])
 // => position
 ```
 
-*   Throws **[Error][4]** if bbox is invalid
+*   Throws **[Error][2]** if bbox is invalid
 
-Returns **[Array][2]<[number][3]>** Position \[longitude, latitude]
+Returns **[Position][3]** Position \[longitude, latitude]
 
 ## randomPoint
 
-Returns a random [point][5].
+Returns a random [point][4].
 
 ### Parameters
 
-*   `count` **[number][3]** how many geometries will be generated (optional, default `1`)
+*   `count` **[number][5]** how many geometries will be generated (optional, default `1`)
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][2]<[number][3]>** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
+    *   `options.bbox` **[BBox][1]** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
 
 ### Examples
 
@@ -39,7 +39,7 @@ var points = turf.randomPoint(25, {bbox: [-180, -90, 180, 90]})
 // => points
 ```
 
-*   Throws **[Error][4]** if bbox is invalid
+*   Throws **[Error][2]** if bbox is invalid
 
 Returns **[FeatureCollection][7]<[Point][8]>** GeoJSON FeatureCollection of points
 
@@ -49,12 +49,12 @@ Returns a random [polygon][9].
 
 ### Parameters
 
-*   `count` **[number][3]** how many geometries will be generated (optional, default `1`)
+*   `count` **[number][5]** how many geometries will be generated (optional, default `1`)
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][2]<[number][3]>** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
-    *   `options.num_vertices` **[number][3]** is how many coordinates each LineString will contain. (optional, default `10`)
-    *   `options.max_radial_length` **[number][3]** is the maximum number of decimal degrees latitude or longitude that a
+    *   `options.bbox` **[BBox][1]** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
+    *   `options.num_vertices` **[number][5]** is how many coordinates each LineString will contain. (optional, default `10`)
+    *   `options.max_radial_length` **[number][5]** is the maximum number of decimal degrees latitude or longitude that a
         vertex can reach out of the center of the Polygon. (optional, default `10`)
 
 ### Examples
@@ -64,24 +64,24 @@ var polygons = turf.randomPolygon(25, {bbox: [-180, -90, 180, 90]})
 // => polygons
 ```
 
-*   Throws **[Error][4]** if bbox is invalid
+*   Throws **[Error][2]** if bbox is invalid
 
 Returns **[FeatureCollection][7]<[Polygon][10]>** GeoJSON FeatureCollection of polygons
 
 ## randomLineString
 
-Returns a random [linestring][11].
+Returns a random [LineString][11].
 
 ### Parameters
 
-*   `count` **[number][3]** how many geometries will be generated (optional, default `1`)
+*   `count` **[number][5]** how many geometries will be generated (optional, default `1`)
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-    *   `options.bbox` **[Array][2]<[number][3]>** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
-    *   `options.num_vertices` **[number][3]** is how many coordinates each LineString will contain. (optional, default `10`)
-    *   `options.max_length` **[number][3]** is the maximum number of decimal degrees that a
+    *   `options.bbox` **[BBox][1]** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
+    *   `options.num_vertices` **[number][5]** is how many coordinates each LineString will contain. (optional, default `10`)
+    *   `options.max_length` **[number][5]** is the maximum number of decimal degrees that a
         vertex can be from its predecessor (optional, default `0.0001`)
-    *   `options.max_rotation` **[number][3]** is the maximum number of radians that a
+    *   `options.max_rotation` **[number][5]** is the maximum number of radians that a
         line segment can turn from the previous segment. (optional, default `Math.PI/8`)
 
 ### Examples
@@ -91,19 +91,19 @@ var lineStrings = turf.randomLineString(25, {bbox: [-180, -90, 180, 90]})
 // => lineStrings
 ```
 
-*   Throws **[Error][4]** if bbox is invalid
+*   Throws **[Error][2]** if bbox is invalid
 
-Returns **[FeatureCollection][7]<[LineString][12]>** GeoJSON FeatureCollection of linestrings
+Returns **[FeatureCollection][7]<[LineString][11]>** GeoJSON FeatureCollection of linestrings
 
-[1]: bounding
+[1]: https://tools.ietf.org/html/rfc7946#section-5
 
-[2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[2]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[3]: https://developer.mozilla.org/docs/Web/API/Position
 
-[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+[4]: point
 
-[5]: point
+[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
 [6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
@@ -115,9 +115,7 @@ Returns **[FeatureCollection][7]<[LineString][12]>** GeoJSON FeatureCollection o
 
 [10]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 
-[11]: linestring
-
-[12]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+[11]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 
 <!-- This file is automatically generated. Please don't edit it directly. If you find an error, edit the source file of the module in question (likely index.js or index.ts), and re-run "yarn docs" from the root of the turf project. -->
 

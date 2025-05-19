@@ -8,9 +8,9 @@ import {
   Point,
   Polygon,
 } from "geojson";
-import calcBbox from "@turf/bbox";
-import booleanPointOnLine from "@turf/boolean-point-on-line";
-import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
+import { bbox as calcBbox } from "@turf/bbox";
+import { booleanPointOnLine } from "@turf/boolean-point-on-line";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
 
 /**
@@ -19,7 +19,7 @@ import { getGeom } from "@turf/invariant";
  * must not intersect the exterior of the secondary (geometry b).
  * Boolean-within returns the exact opposite result of the `@turf/boolean-contains`.
  *
- * @name booleanWithin
+ * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
  * @param {Geometry|Feature<any>} feature2 GeoJSON Feature or Geometry
  * @returns {boolean} true/false
@@ -173,7 +173,7 @@ function isLineInPoly(linestring: LineString, polygon: Polygon) {
   }
   var foundInsidePoint = false;
 
-  for (var i = 0; i < linestring.coordinates.length - 1; i++) {
+  for (var i = 0; i < linestring.coordinates.length; i++) {
     if (!booleanPointInPolygon(linestring.coordinates[i], polygon)) {
       return false;
     }
@@ -184,7 +184,7 @@ function isLineInPoly(linestring: LineString, polygon: Polygon) {
         { ignoreBoundary: true }
       );
     }
-    if (!foundInsidePoint) {
+    if (!foundInsidePoint && i < linestring.coordinates.length - 1) {
       var midpoint = getMidpoint(
         linestring.coordinates[i],
         linestring.coordinates[i + 1]
@@ -252,4 +252,5 @@ function getMidpoint(pair1: number[], pair2: number[]) {
   return [(pair1[0] + pair2[0]) / 2, (pair1[1] + pair2[1]) / 2];
 }
 
+export { booleanWithin };
 export default booleanWithin;

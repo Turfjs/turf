@@ -18,12 +18,12 @@ Rotates any geojson Feature or Geometry of a specified angle, around its `centro
 ### Examples
 
 ```javascript
-var poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
-var options = {pivot: [0, 25]};
-var rotatedPoly = turf.transformRotate(poly, 10, options);
+const poly = turf.polygon([[[0,29],[3.5,29],[2.5,32],[0,29]]]);
+const options = {pivot: [0, 25]};
+const rotatedPoly = turf.transformRotate(poly, 10, options);
 
 //addToMap
-var addToMap = [poly, rotatedPoly];
+const addToMap = [poly, rotatedPoly];
 rotatedPoly.properties = {stroke: '#F00', 'stroke-width': 4};
 ```
 

@@ -4,28 +4,28 @@
 
 ## standardDeviationalEllipse
 
-Takes a [FeatureCollection][1] and returns a standard deviational ellipse,
+Takes a collection of features and returns a standard deviational ellipse,
 also known as a “directional distribution.” The standard deviational ellipse
 aims to show the direction and the distribution of a dataset by drawing
-an ellipse that contains about one standard deviation’s worth (~ 70%) of the
+an ellipse that contains about one standard deviation’s worth (\~ 70%) of the
 data.
 
-This module mirrors the functionality of [Directional Distribution][2]
-in ArcGIS and the [QGIS Standard Deviational Ellipse Plugin][3]
+This module mirrors the functionality of [Directional Distribution][1]
+in ArcGIS and the [QGIS Standard Deviational Ellipse Plugin][2]
 
 **Bibliography**
 
 • Robert S. Yuill, “The Standard Deviational Ellipse; An Updated Tool for
 Spatial Description,” *Geografiska Annaler* 53, no. 1 (1971): 28–39,
-doi:{@link [https://doi.org/10.2307/490885|10.2307/490885}][4].
+doi:{@link [https://doi.org/10.2307/490885|10.2307/490885}][3].
 
 • Paul Hanly Furfey, “A Note on Lefever’s “Standard Deviational Ellipse,”
 *American Journal of Sociology* 33, no. 1 (1927): 94—98,
-doi:{@link [https://doi.org/10.1086/214336|10.1086/214336}][5].
+doi:{@link [https://doi.org/10.1086/214336|10.1086/214336}][4].
 
 ### Parameters
 
-*   `points` **[FeatureCollection][1]<[Point][6]>** GeoJSON points
+*   `points` **[FeatureCollection][5]<[Point][6]>** GeoJSON points
 *   `options` **[Object][7]** Optional parameters (optional, default `{}`)
 
     *   `options.weight` **[string][8]?** the property name used to weight the center
@@ -35,25 +35,25 @@ doi:{@link [https://doi.org/10.1086/214336|10.1086/214336}][5].
 ### Examples
 
 ```javascript
-var bbox = [-74, 40.72, -73.98, 40.74];
-var points = turf.randomPoint(400, {bbox: bbox});
-var sdEllipse = turf.standardDeviationalEllipse(points);
+const bbox = [-74, 40.72, -73.98, 40.74];
+const points = turf.randomPoint(400, {bbox: bbox});
+const sdEllipse = turf.standardDeviationalEllipse(points);
 
 //addToMap
-var addToMap = [points, sdEllipse];
+const addToMap = [points, sdEllipse];
 ```
 
 Returns **[Feature][10]<[Polygon][11]>** an elliptical Polygon that includes approximately 1 SD of the dataset within it.
 
-[1]: https://tools.ietf.org/html/rfc7946#section-3.3
+[1]: http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm
 
-[2]: http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-statistics-toolbox/directional-distribution.htm
+[2]: http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/
 
-[3]: http://arken.nmbu.no/~havatv/gis/qgisplugins/SDEllipse/
+[3]: https://doi.org/10.2307/490885|10.2307/490885}
 
-[4]: https://doi.org/10.2307/490885|10.2307/490885}
+[4]: https://doi.org/10.1086/214336|10.1086/214336}
 
-[5]: https://doi.org/10.1086/214336|10.1086/214336}
+[5]: https://tools.ietf.org/html/rfc7946#section-3.3
 
 [6]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

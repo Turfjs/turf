@@ -1,11 +1,12 @@
-import distance from "@turf/distance";
-import intersect from "@turf/intersect";
+import { distance } from "@turf/distance";
+import { intersect } from "@turf/intersect";
 import {
   Feature,
   FeatureCollection,
   GeoJsonProperties,
   Polygon,
   BBox,
+  MultiPolygon,
 } from "geojson";
 import { polygon, featureCollection, Units } from "@turf/helpers";
 
@@ -14,14 +15,14 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
  * hexagons or triangles ({@link Polygon} features) aligned in an "odd-q" vertical grid as
  * described in [Hexagonal Grids](http://www.redblobgames.com/grids/hexagons/).
  *
- * @name hexGrid
+ * @function
  * @param {BBox} bbox extent in [minX, minY, maxX, maxY] order
  * @param {number} cellSide length of the side of the the hexagons or triangles, in units. It will also coincide with the
  * radius of the circumcircle of the hexagons.
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] used in calculating cell size, can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] used in calculating cell size. Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @param {Object} [options.properties={}] passed to each hexagon or triangle of the grid
- * @param {Feature<Polygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
+ * @param {Feature<Polygon | MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {boolean} [options.triangles=false] whether to return as triangles instead of hexagons
  * @returns {FeatureCollection<Polygon>} a hexagonal grid
  * @example
@@ -41,7 +42,7 @@ function hexGrid<P extends GeoJsonProperties = GeoJsonProperties>(
     units?: Units;
     triangles?: boolean;
     properties?: P;
-    mask?: Feature<Polygon>;
+    mask?: Feature<Polygon | MultiPolygon>;
   } = {}
 ): FeatureCollection<Polygon, P> {
   // Issue => https://github.com/Turfjs/turf/issues/1284
@@ -215,4 +216,5 @@ function hexTriangles(
   return triangles;
 }
 
+export { hexGrid };
 export default hexGrid;
