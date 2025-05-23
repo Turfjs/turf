@@ -17,7 +17,7 @@ import { getCoord, getCoords } from "@turf/invariant";
  * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
  * @param {Geometry|Feature<Point>|number[]} pt point to snap from
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
  * @example
  * var line = turf.lineString([
@@ -89,10 +89,12 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         let wasEnd: boolean;
 
         // Short circuit if snap point is start or end position of the line
-        // segment.
+        // segment or if start is equal to stop position.
         if (startPos[0] === ptPos[0] && startPos[1] === ptPos[1]) {
           [intersectPos, , wasEnd] = [startPos, undefined, false];
         } else if (stopPos[0] === ptPos[0] && stopPos[1] === ptPos[1]) {
+          [intersectPos, , wasEnd] = [stopPos, undefined, true];
+        } else if (startPos[0] === stopPos[0] && startPos[1] === stopPos[1]) {
           [intersectPos, , wasEnd] = [stopPos, undefined, true];
         } else {
           // Otherwise, find the nearest point the hard way.
