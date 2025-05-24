@@ -23,7 +23,10 @@ import { lineString, featureCollection } from "@turf/helpers";
  * var split = turf.lineSplit(line, splitter);
  *
  * //addToMap
- * var addToMap = [line, splitter]
+ * var addToMap = [line, splitter, split]
+ *
+ * split.features[0].properties.stroke = "red";
+ * split.features[1].properties.stroke = "blue";
  */
 function lineSplit(line, splitter) {
   if (!line) throw new Error("line is required");
