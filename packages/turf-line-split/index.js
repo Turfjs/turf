@@ -1,5 +1,4 @@
 import { geojsonRbush as rbush } from "@turf/geojson-rbush";
-import { square } from "@turf/square";
 import { truncate } from "@turf/truncate";
 import { lineSegment } from "@turf/line-segment";
 import { lineIntersect } from "@turf/line-intersect";
