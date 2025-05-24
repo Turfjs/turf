@@ -34,7 +34,7 @@ import { Graph, GridNode, astar } from "./lib/javascript-astar.js";
  * @param {Coord} end point
  * @param {Object} [options={}] optional parameters
  * @param {Polygon|Feature<Polygon>|FeatureCollection<Polygon>} [options.obstacles] areas which path cannot travel
- * @param {Units} [options.units='kilometers'] unit in which resolution & minimum distance will be expressed in; it can be degrees, radians, miles, kilometers, ...
+ * @param {Units} [options.units='kilometers'] unit in which resolution & minimum distance will be expressed in; Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @param {number} [options.resolution=100] distance between matrix points on which the path will be calculated
  * @returns {Feature<LineString>} shortest path between start and end
  * @example

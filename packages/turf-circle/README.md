@@ -4,17 +4,17 @@
 
 ## circle
 
-Takes a [Point][1] and calculates the circle polygon given a radius in degrees, radians, miles, or kilometers; and steps for precision.
+Takes a [Point][1] and calculates the circle polygon given a radius in [Units][2]; and steps for precision.
 
 ### Parameters
 
-*   `center` **([Feature][2]<[Point][1]> | [Array][3]<[number][4]>)** center point
-*   `radius` **[number][4]** radius of the circle
-*   `options` **[Object][5]** Optional parameters (optional, default `{}`)
+*   `center` **([Feature][3]<[Point][1]> | [Array][4]<[number][5]>)** center point
+*   `radius` **[number][5]** radius of the circle
+*   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-    *   `options.steps` **[number][4]** number of steps (optional, default `64`)
-    *   `options.units` **[string][6]** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
-    *   `options.properties` **[Object][5]** properties (optional, default `{}`)
+    *   `options.steps` **[number][5]** number of steps (optional, default `64`)
+    *   `options.units` **Units** Supports all valid Turf [Units][2] (optional, default `'kilometers'`)
+    *   `options.properties` **[Object][6]** properties (optional, default `{}`)
 
 ### Examples
 
@@ -28,19 +28,19 @@ var circle = turf.circle(center, radius, options);
 var addToMap = [turf.point(center), circle]
 ```
 
-Returns **[Feature][2]<[Polygon][7]>** circle polygon
+Returns **[Feature][3]<[Polygon][7]>** circle polygon
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[2]: https://tools.ietf.org/html/rfc7946#section-3.2
+[2]: https://turfjs.org/docs/api/types/Units
 
-[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[3]: https://tools.ietf.org/html/rfc7946#section-3.2
 
-[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
 [7]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

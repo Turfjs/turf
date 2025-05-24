@@ -5,17 +5,17 @@
       "{workspaceRoot}/tsconfig.shared.json",
       "{projectRoot}/package.json",
       "{projectRoot}/tsconfig.json"
-    ]
+    ],
+    "sources": ["{projectRoot}/index.{js,ts}", "{projectRoot}/lib/**"]
   },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": [
         "default",
+        "sources",
         "{workspaceRoot}/tsup.config.ts",
-        "{projectRoot}/index.{js,ts}",
         "{projectRoot}/index.d.ts",
-        "{projectRoot}/lib/**",
         "{projectRoot}/rollup.config.cjs"
       ],
       "outputs": ["{projectRoot}/dist"],
@@ -24,6 +24,7 @@
     "test": {
       "inputs": [
         "default",
+        "sources",
         "{projectRoot}/test.ts",
         "{projectRoot}/test/**",
         "{projectRoot}/types.ts"
