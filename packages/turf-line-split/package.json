@@ -74,7 +74,6 @@
     "@turf/line-segment": "workspace:*",
     "@turf/meta": "workspace:*",
     "@turf/nearest-point-on-line": "workspace:*",
-    "@turf/square": "workspace:*",
     "@turf/truncate": "workspace:*",
     "@types/geojson": "^7946.0.10"
   }
