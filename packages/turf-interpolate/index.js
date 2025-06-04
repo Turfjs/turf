@@ -19,7 +19,7 @@ import { collectionOf } from "@turf/invariant";
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.gridType='square'] defines the output format based on a Grid Type (options: 'square' | 'point' | 'hex' | 'triangle')
  * @param {string} [options.property='elevation'] the property name in `points` from which z-values will be pulled, zValue fallbacks to 3rd coordinate if no property exists.
- * @param {string} [options.units='kilometers'] used in calculating cellSize, can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] used in calculating cellSize. Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @param {number} [options.weight=1] exponent regulating the distance-decay weighting
  * @param {BBox}   [options.bbox=bbox(points)] Bounding Box Array [west, south, east, north] associated with the FeatureCollection.
  * @returns {FeatureCollection<Point|Polygon>} grid of points or polygons with interpolated 'property'

@@ -11,7 +11,7 @@ import { featureCollection, isObject } from "@turf/helpers";
  * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson the lines to split
  * @param {number} segmentLength how long to make each segment
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] units can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {boolean} [options.reverse=false] reverses coordinates to start the first chunked segment at the end
  * @returns {FeatureCollection<LineString>} collection of line segments
  * @example
@@ -56,7 +56,7 @@ function lineChunk(geojson, segmentLength, options) {
  * @private
  * @param {Feature<LineString>} line GeoJSON LineString
  * @param {number} segmentLength how long to make each segment
- * @param {string}[units='kilometers'] units can be degrees, radians, miles, or kilometers
+ * @param {Units}[units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {Function} callback iterate over sliced line segments
  * @returns {void}
  */

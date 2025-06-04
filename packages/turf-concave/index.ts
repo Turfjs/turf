@@ -21,7 +21,7 @@ import { dissolve } from "./lib/turf-dissolve.js";
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.maxEdge=Infinity] the length (in 'units') of an edge necessary for part of the
  * hull to become concave.
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {Feature<(Polygon|MultiPolygon)>|null} a concave hull (null value is returned if unable to compute hull)
  * @example
  * var points = turf.featureCollection([

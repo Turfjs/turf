@@ -6,19 +6,18 @@ import { AllGeoJSON, isObject } from "@turf/helpers";
 import { simplify as simplifyJS } from "./lib/simplify.js";
 
 /**
- * Takes a {@link GeoJSON} object and returns a simplified version. Internally uses the 2d version of
- * [simplify-js](http://mourner.github.io/simplify-js/) to perform simplification using the Ramer-Douglas-Peucker algorithm.
- *
+ * Simplifies the geometries in a GeoJSON object. Uses the 2d version of
+ * [simplify-js](https://mourner.github.io/simplify-js/).
  *
  * @function
- * @param {GeoJSON} geojson object to be simplified
+ * @param {GeoJSON} geojson GeoJSON object to be simplified
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.tolerance=1] simplification tolerance
- * @param {boolean} [options.highQuality=false] whether or not to spend more time to create a higher-quality simplification with a different algorithm
- * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {GeoJSON} a simplified GeoJSON
+ * @param {number} [options.tolerance=1] Simplification tolerance
+ * @param {boolean} [options.highQuality=false] Produce a higher-quality simplification using a slower algorithm
+ * @param {boolean} [options.mutate=false] Allow GeoJSON input to be mutated (significant performance improvement if true)
+ * @returns {GeoJSON} Simplified GeoJSON
  * @example
- * var geojson = turf.polygon([[
+ * const geojson = turf.polygon([[
  *   [-70.603637, -33.399918],
  *   [-70.614624, -33.395332],
  *   [-70.639343, -33.392466],
@@ -40,11 +39,11 @@ import { simplify as simplifyJS } from "./lib/simplify.js";
  *   [-70.594711, -33.406224],
  *   [-70.603637, -33.399918]
  * ]]);
- * var options = {tolerance: 0.01, highQuality: false};
- * var simplified = turf.simplify(geojson, options);
+ * const result0_01 = turf.simplify(geojson, {tolerance: 0.01 });
+ * const result0_005 = turf.simplify(geojson, {tolerance: 0.005 });
  *
  * //addToMap
- * var addToMap = [geojson, simplified]
+ * const addToMap = [geojson, result0_01, result0_005]
  */
 function simplify<T extends AllGeoJSON>(
   geojson: T,
@@ -147,11 +146,20 @@ function simplifyPolygon(
     }
     let ringTolerance = tolerance;
     let simpleRing = simplifyJS(ring, ringTolerance, highQuality);
-    // remove 1 percent of tolerance until enough points to make a triangle
-    while (!checkValidity(simpleRing)) {
+
+    // If simplified ring isn't valid (has been over simplified) reduce the
+    // tolerance by 1% and try again.
+    while (!checkValidity(simpleRing) && ringTolerance >= Number.EPSILON) {
       ringTolerance -= ringTolerance * 0.01;
       simpleRing = simplifyJS(ring, ringTolerance, highQuality);
     }
+
+    // If ring wasn't able to be simplified in a valid way, return it unchanged.
+    if (!checkValidity(simpleRing)) {
+      return ring;
+    }
+
+    // Close the ring if it wasn't already.
     if (
       simpleRing[simpleRing.length - 1][0] !== simpleRing[0][0] ||
       simpleRing[simpleRing.length - 1][1] !== simpleRing[0][1]

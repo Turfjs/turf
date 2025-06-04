@@ -135,9 +135,9 @@ var GreatCircle = function (start, end, properties) {
   if (this.g === Math.PI) {
     throw new Error(
       "it appears " +
-        start.view() +
+        this.start.view() +
         " and " +
-        end.view() +
+        this.end.view() +
         " are 'antipodal', e.g diametrically opposite, thus there is no single route but rather infinite"
     );
   } else if (isNaN(this.g)) {

@@ -15,7 +15,7 @@ import { intersection } from "./lib/intersection.js";
  * @param {Geometry|Feature<LineString|MultiLineString>} geojson input GeoJSON
  * @param {number} distance distance to offset the line (can be of negative value)
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, kilometers, inches, yards, meters
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {Feature<LineString|MultiLineString>} Line offset from the input line
  * @example
  * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]], { "stroke": "#F00" });

@@ -15,7 +15,7 @@ This uses the [Haversine formula][2] to account for global curvature.
 *   `bearing` **[number][4]** ranging from -180 to 180
 *   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][6]** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
+    *   `options.units` **Units** Supports all valid Turf [Units][6] (optional, default `'kilometers'`)
     *   `options.properties` **[Object][5]** Translate properties to Point (optional, default `{}`)
 
 ### Examples
@@ -46,7 +46,7 @@ Returns **[Feature][7]<[Point][1]>** destination point
 
 [5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[6]: https://turfjs.org/docs/api/types/Units
 
 [7]: https://tools.ietf.org/html/rfc7946#section-3.2
 

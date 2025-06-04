@@ -4,16 +4,15 @@
 
 ## rhumbDistance
 
-Calculates the distance along a rhumb line between two [points][1] in degrees, radians,
-miles, or kilometers.
+Calculates the distance along a rhumb line between two [points][1] in [Units][2]
 
 ### Parameters
 
-*   `from` **[Coord][2]** origin point
-*   `to` **[Coord][2]** destination point
-*   `options` **[Object][3]?** Optional parameters (optional, default `{}`)
+*   `from` **[Coord][3]** origin point
+*   `to` **[Coord][3]** destination point
+*   `options` **[Object][4]?** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][4]** can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+    *   `options.units` **Units** Supports all valid Turf [Units][2] (optional, default `'kilometers'`)
 
 ### Examples
 
@@ -34,11 +33,11 @@ Returns **[number][5]** distance between the two points
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[2]: https://tools.ietf.org/html/rfc7946#section-3.1.1
+[2]: https://turfjs.org/docs/api/types/Units
 
-[3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[3]: https://tools.ietf.org/html/rfc7946#section-3.1.1
 
-[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
 [5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 

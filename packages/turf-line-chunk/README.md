@@ -13,7 +13,7 @@ If the line is shorter than the segment length then the original line is returne
 *   `segmentLength` **[number][6]** how long to make each segment
 *   `options` **[Object][7]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][8]** units can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.units` **Units** Supports all valid Turf [Units][8] (optional, default `'kilometers'`)
     *   `options.reverse` **[boolean][9]** reverses coordinates to start the first chunked segment at the end (optional, default `false`)
 
 ### Examples
@@ -43,7 +43,7 @@ Returns **[FeatureCollection][2]<[LineString][1]>** collection of line segments
 
 [7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[8]: https://turfjs.org/docs/api/types/Units
 
 [9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 

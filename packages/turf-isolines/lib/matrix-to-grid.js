@@ -12,7 +12,7 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  * @param {Object} [options={}] optional parameters
  * @param {string} [options.zProperty='elevation'] the grid points property name associated with the matrix value
  * @param {Object} [options.properties={}] GeoJSON properties passed to all the points
- * @param {string} [options.units='kilometers'] used in calculating cellSize, can be miles, or kilometers
+ * @param {Units} [options.units='kilometers'] used in calculating cellSize. Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @returns {FeatureCollection<Point>} grid of points
  *
  * @example

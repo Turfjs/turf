@@ -12,7 +12,7 @@ import { radiansToLength, degreesToRadians, Coord, Units } from "@turf/helpers";
  * @param {Coord} from origin coordinate
  * @param {Coord} to destination coordinate
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {number} distance between the two coordinates
  * @example
  * var from = turf.point([-75.343, 39.984]);

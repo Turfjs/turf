@@ -21,8 +21,7 @@ import { rhumbDistance } from "@turf/rhumb-distance";
  * @param {Feature<Point>|Array<number>} pt Feature or Geometry
  * @param {Feature<LineString>} line GeoJSON Feature or Geometry
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units="kilometers"] can be anything supported by turf/convertLength
- * (ex: degrees, radians, miles, or kilometers)
+ * @param {Units} [options.units="kilometers"] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {string} [options.method="geodesic"] whether to calculate the distance based on geodesic (spheroid) or
  * planar (flat) method. Valid options are 'geodesic' or 'planar'.
  * @returns {number} distance between point and line

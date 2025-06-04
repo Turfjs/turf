@@ -14,7 +14,7 @@ origin Point with the (varant) given bearing.
 *   `bearing` **[number][3]** varant bearing angle ranging from -180 to 180 degrees from north
 *   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][5]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.units` **Units** Supports all valid Turf [Units][5] (optional, default `'kilometers'`)
     *   `options.properties` **[Object][4]** translate properties to destination point (optional, default `{}`)
 
 ### Examples
@@ -42,7 +42,7 @@ Returns **[Feature][6]<[Point][1]>** Destination point.
 
 [4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[5]: https://turfjs.org/docs/api/types/Units
 
 [6]: https://tools.ietf.org/html/rfc7946#section-3.2
 

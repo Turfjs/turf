@@ -14,7 +14,7 @@ Internally, this uses [turf-tin][2] to generate geometries.
 
     *   `options.maxEdge` **[number][5]** the length (in 'units') of an edge necessary for part of the
         hull to become concave. (optional, default `Infinity`)
-    *   `options.units` **[string][6]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.units` **Units** Supports all valid Turf [Units][6]. (optional, default `'kilometers'`)
 
 ### Examples
 
@@ -47,7 +47,7 @@ Returns **([Feature][7]<([Polygon][8] | [MultiPolygon][9])> | null)** a concave 
 
 [5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[6]: https://turfjs.org/docs/api/types/Units
 
 [7]: https://tools.ietf.org/html/rfc7946#section-3.2
 
