@@ -1,4 +1,6 @@
 import test from "tape";
+import distance from "@turf/distance";
+import bearing from "@turf/bearing";
 import {
   randomPoint,
   randomPolygon,
@@ -30,7 +32,7 @@ test("random(polygons, 10)", (t) => {
   t.end();
 });
 
-test("random(polygons, 1, {num_vertices})", (t) => {
+test("random(polygons, 10, {num_vertices})", (t) => {
   var points = randomPolygon(10, { num_vertices: 23 });
   t.equal(points.type, "FeatureCollection", "is a featurecollection");
   t.equal(points.features.length, 10, "right number of features");
@@ -75,5 +77,108 @@ test("bbox input gets validated", (t) => {
   t.throws(() => {
     randomPosition(bbox);
   }, "randomPosition checks bbox validity");
+  t.end();
+});
+
+test("random(lines)", (t) => {
+  var lines = randomLineString();
+  t.equal(lines.type, "FeatureCollection", "is a featurecollection");
+  t.equal(lines.features.length, 1, "right number of features");
+  t.equal(
+    lines.features[0].geometry.type,
+    "LineString",
+    "feature type correct"
+  );
+  t.end();
+});
+
+test("random(lines, 10)", (t) => {
+  var lines = randomLineString(10);
+  t.equal(lines.type, "FeatureCollection", "is a featurecollection");
+  t.equal(lines.features.length, 10, "right number of features");
+  t.equal(
+    lines.features[0].geometry.type,
+    "LineString",
+    "feature type correct"
+  );
+  t.end();
+});
+
+test("random(lines, 10, {num_vertices})", (t) => {
+  var lines = randomLineString(10, { num_vertices: 10 });
+  t.equal(lines.type, "FeatureCollection", "is a featurecollection");
+  t.equal(lines.features.length, 10, "right number of features");
+  t.equal(lines.features[0].geometry.coordinates.length, 10, "num vertices");
+  t.end();
+});
+
+test("random(lines, 10, {bbox})", (t) => {
+  var lines = randomLineString(10, { bbox: [0, 0, 0, 0] });
+  t.equal(lines.type, "FeatureCollection", "is a featurecollection");
+  t.equal(lines.features.length, 10, "right number of features");
+  t.equal(
+    lines.features[0].geometry.type,
+    "LineString",
+    "feature type correct"
+  );
+  t.deepEqual(
+    lines.features[0].geometry.coordinates[0],
+    [0, 0],
+    "feature type correct"
+  );
+  t.end();
+});
+
+test("random(lines, 10, {max_length})", (t) => {
+  var lines = randomLineString(10, { max_length: 0.1 });
+  t.equal(lines.type, "FeatureCollection", "is a featurecollection");
+  t.equal(lines.features.length, 10, "right number of features");
+  t.equal(
+    lines.features[0].geometry.type,
+    "LineString",
+    "feature type correct"
+  );
+  let ok = true;
+  for (let i = 1; i < lines.features[0].geometry.coordinates.length; i++) {
+    const length = distance(
+      lines.features[0].geometry.coordinates[i - 1],
+      lines.features[0].geometry.coordinates[i],
+      { units: "degrees" }
+    );
+    if (length > 0.1) ok = false;
+  }
+  t.ok(ok, "randomLineString ensures max_length");
+  t.end();
+});
+
+test("random(lines, 10, {max_rotation})", (t) => {
+  var lines = randomLineString(10, { max_rotation: Math.PI / 10 });
+  t.equal(lines.type, "FeatureCollection", "is a featurecollection");
+  t.equal(lines.features.length, 10, "right number of features");
+  t.equal(
+    lines.features[0].geometry.type,
+    "LineString",
+    "feature type correct"
+  );
+  let ok = true;
+  for (let i = 2; i < lines.features[0].geometry.coordinates.length; i++) {
+    // Compute the differential angle with the previous segment
+    let bearing1 = bearing(
+      lines.features[0].geometry.coordinates[i - 2],
+      lines.features[0].geometry.coordinates[i - 1]
+    );
+    //if (bearing1 < 0) bearing1 += 360;
+    let bearing2 = bearing(
+      lines.features[0].geometry.coordinates[i - 1],
+      lines.features[0].geometry.coordinates[i]
+    );
+    //if (bearing2 < 0) bearing2 += 360;
+    const difference =
+      bearing1 * bearing2 < 0
+        ? bearing2 + bearing1
+        : Math.abs(bearing2 - bearing1);
+    if (difference > 18) ok = false;
+  }
+  t.ok(ok, "randomLineString ensures max_rotation");
   t.end();
 });

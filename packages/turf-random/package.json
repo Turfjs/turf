@@ -49,6 +49,8 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
+    "@turf/bearing": "workspace:*",
+    "@turf/distance": "workspace:*",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
@@ -60,6 +62,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@turf/destination": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
