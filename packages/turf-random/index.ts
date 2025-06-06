@@ -15,6 +15,7 @@ import {
   polygon,
   validateBBox,
 } from "@turf/helpers";
+import destination from "@turf/destination";
 
 /**
  * Returns a random position within a {@link BBox|bounding box}.
@@ -233,20 +234,18 @@ function randomLineString(
   for (let i = 0; i < count; i++) {
     const startingPoint = randomPositionUnchecked(bbox);
     const vertices = [startingPoint];
-    for (let j = 0; j < num_vertices - 1; j++) {
-      const priorAngle =
-        j === 0
-          ? Math.random() * 2 * Math.PI
-          : Math.tan(
-              (vertices[j][1] - vertices[j - 1][1]) /
-                (vertices[j][0] - vertices[j - 1][0])
-            );
-      const angle = priorAngle + (Math.random() - 0.5) * max_rotation * 2;
-      const distance = Math.random() * max_length;
-      vertices.push([
-        vertices[j][0] + distance * Math.cos(angle),
-        vertices[j][1] + distance * Math.sin(angle),
-      ]);
+    var priorBearing = Math.random() * 360;
+    for (var j = 0; j < num_vertices - 1; j++) {
+      var newBearing =
+        priorBearing +
+        ((Math.random() - 0.5) * max_rotation * 2 * 180) / Math.PI;
+      if (newBearing > 180) newBearing -= 360;
+      var distance = Math.random() * max_length;
+      const vertex = destination(vertices[j], distance, newBearing, {
+        units: "degrees",
+      });
+      priorBearing = newBearing;
+      vertices.push(vertex.geometry.coordinates);
     }
     features.push(lineString(vertices));
   }
