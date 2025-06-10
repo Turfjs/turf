@@ -86,6 +86,7 @@ export * from "@turf/nearest-neighbor-analysis";
 export { nearestPoint } from "@turf/nearest-point";
 export { nearestPointOnLine } from "@turf/nearest-point-on-line";
 export { nearestPointToLine } from "@turf/nearest-point-to-line";
+export { orientedEnvelope } from "@turf/oriented-envelope";
 export { planepoint } from "@turf/planepoint";
 export { pointGrid } from "@turf/point-grid";
 export { pointOnFeature } from "@turf/point-on-feature";

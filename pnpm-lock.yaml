@@ -4660,6 +4660,70 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
 
+  packages/turf-oriented-envelope:
+    dependencies:
+      '@turf/area':
+        specifier: workspace:*
+        version: link:../turf-area
+      '@turf/bearing':
+        specifier: workspace:*
+        version: link:../turf-bearing
+      '@turf/centroid':
+        specifier: workspace:*
+        version: link:../turf-centroid
+      '@turf/convex':
+        specifier: workspace:*
+        version: link:../turf-convex
+      '@turf/distance':
+        specifier: workspace:*
+        version: link:../turf-distance
+      '@turf/envelope':
+        specifier: workspace:*
+        version: link:../turf-envelope
+      '@turf/helpers':
+        specifier: workspace:*
+        version: link:../turf-helpers
+      '@turf/meta':
+        specifier: workspace:*
+        version: link:../turf-meta
+      '@turf/transform-rotate':
+        specifier: workspace:*
+        version: link:../turf-transform-rotate
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
+    devDependencies:
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
+      '@types/tape':
+        specifier: ^5.8.1
+        version: 5.8.1
+      benchmark:
+        specifier: ^2.1.4
+        version: 2.1.4
+      load-json-file:
+        specifier: ^7.0.1
+        version: 7.0.1
+      npm-run-all:
+        specifier: ^4.1.5
+        version: 4.1.5
+      tape:
+        specifier: ^5.9.0
+        version: 5.9.0
+      tsup:
+        specifier: ^8.4.0
+        version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1)
+      tsx:
+        specifier: ^4.19.4
+        version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
   packages/turf-planepoint:
     dependencies:
       '@turf/helpers':
