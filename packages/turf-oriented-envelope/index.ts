@@ -12,6 +12,9 @@ import type { Feature, Polygon } from "geojson";
 /**
  * Takes any number of features and returns a rotated rectangular {@link Polygon} that encompasses all vertices.
  *
+ * Based on the [geojson-minimum-bounding-rectangle](https://www.npmjs.com/package/geojson-minimum-bounding-rectangle)
+ * package by Matthias Feist.
+ *
  * @function
  * @param {GeoJSON} geojson input features
  * @param {boolean} [options.minimizeWidth=false] return the oriented envelope with minimal width not minimal area
