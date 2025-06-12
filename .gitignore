@@ -1,5 +1,6 @@
 .rpt2_cache
 packages/*/dist
+!packages/turf/dist
 main.js
 main.es.js
 main.mjs
