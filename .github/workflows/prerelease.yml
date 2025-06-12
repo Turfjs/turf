@@ -10,7 +10,7 @@ jobs:
       fail-fast: true
       matrix:
         node:
-          - 18
+          - 20
         platform:
           - ubuntu-latest
     name: "${{matrix.platform}} / Node.js ${{ matrix.node }}"

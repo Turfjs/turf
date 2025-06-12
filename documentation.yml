@@ -13,6 +13,7 @@ toc:
     - envelope
     - length
     - midpoint
+    - orientedEnvelope
     - pointOnFeature
     - polygonTangents
     - pointToLineDistance
