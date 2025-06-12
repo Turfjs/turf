@@ -517,3 +517,17 @@ test("turf-nearest-point-on-line -- issue 2808 redundant point support", (t) => 
 
   t.end();
 });
+
+test("turf-nearest-point-on-line -- duplicate points on line string shouldn't break the function.", (t) => {
+  // @jonmiles
+  const line = lineString([
+    [-80.191793, 25.885611],
+    [-80.191793, 25.885611],
+    [-80.191543, 25.885874],
+  ]);
+  const userPoint = point([-80.191762, 25.885587]);
+  const nearest = nearestPointOnLine(line, userPoint, { units: "meters" });
+  t.equal(nearest.properties.dist > 4, true, "dist should be greater than 4");
+  t.equal(nearest.properties.location, 0, "location should be 0");
+  t.end();
+});
