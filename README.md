@@ -67,3 +67,9 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/turf/sponsor/7/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/7/avatar.svg"></a>
 <a href="https://opencollective.com/turf/sponsor/8/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/turf/sponsor/9/website" target="_blank"><img src="https://opencollective.com/turf/sponsor/9/avatar.svg"></a>
+
+## License
+
+Turf is distributed under the [MIT license](LICENSE).
+
+Turf uses an unmodified version of MarchingSquaresJS.  MarchingSquaresJS's license has an exception to the GNU Affero General Public License for unmodified versions.  This exception allows distribution of unmodified versions of MarchSquaresJS under any license as long as [its license notice](https://github.com/RaumZeit/MarchingSquares.js/blob/master/LICENSE.md) is included.
