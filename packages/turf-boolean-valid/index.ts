@@ -83,6 +83,25 @@ function booleanValid(feature: Feature<any> | Geometry) {
         }
       }
       return true;
+    case "GeometryCollection":
+      if (!geom.geometries) {
+        return false;
+      }
+
+      // To avoid situations where Geometry Collections nested within one another
+      // could lead to a situation where there is an infinite validation loop,
+      // we enforce the GeoJSON RFC recommendations
+      // (https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.8)
+      // which states that we should not have Nested Geometry Collections
+      return (
+        Array.isArray(geom.geometries) &&
+        geom.geometries.every(
+          (geometry: any): geometry is Geometry =>
+            geometry.type &&
+            geometry.type !== "GeometryCollection" &&
+            booleanValid(geometry)
+        )
+      );
     default:
       return false;
   }
