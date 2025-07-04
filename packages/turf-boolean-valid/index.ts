@@ -95,11 +95,17 @@ function booleanValid(feature: Feature<any> | Geometry) {
       // which states that we should not have Nested Geometry Collections
       return (
         Array.isArray(geom.geometries) &&
+        geom.geometries.length > 0 &&
         geom.geometries.every(
-          (geometry: any): geometry is Geometry =>
-            geometry.type &&
-            geometry.type !== "GeometryCollection" &&
-            booleanValid(geometry)
+          (geometry: Geometry) =>
+            [
+              "Point",
+              "LineString",
+              "MultiLineString",
+              "MultiPoint",
+              "Polygon",
+              "MultiPolygon",
+            ].includes(geometry.type) && booleanValid(geometry)
         )
       );
     default:
