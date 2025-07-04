@@ -1,6 +1,4 @@
 import { geojsonRbush as rbush } from "@turf/geojson-rbush";
-import { square } from "@turf/square";
-import { bbox } from "@turf/bbox";
 import { truncate } from "@turf/truncate";
 import { lineSegment } from "@turf/line-segment";
 import { lineIntersect } from "@turf/line-intersect";
@@ -23,7 +21,10 @@ import { lineString, featureCollection } from "@turf/helpers";
  * var split = turf.lineSplit(line, splitter);
  *
  * //addToMap
- * var addToMap = [line, splitter]
+ * var addToMap = [line, splitter, split]
+ *
+ * split.features[0].properties.stroke = "red";
+ * split.features[1].properties.stroke = "blue";
  */
 function lineSplit(line, splitter) {
   if (!line) throw new Error("line is required");
@@ -80,11 +81,6 @@ function splitLineWithPoints(line, splitter) {
     // First Point - doesn't need to handle any previous line results
     if (!results.length) {
       results = splitLineWithPoint(line, point).features;
-
-      // Add Square BBox to each feature for GeoJSON-RBush
-      results.forEach(function (feature) {
-        if (!feature.bbox) feature.bbox = square(bbox(feature));
-      });
       tree.load(featureCollection(results));
       // Split with remaining points - lines might needed to be split multiple times
     } else {

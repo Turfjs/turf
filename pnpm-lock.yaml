@@ -4154,9 +4154,6 @@ importers:
       '@turf/nearest-point-on-line':
         specifier: workspace:*
         version: link:../turf-nearest-point-on-line
-      '@turf/square':
-        specifier: workspace:*
-        version: link:../turf-square
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
@@ -4184,7 +4181,7 @@ importers:
         version: 5.9.0
       tsup:
         specifier: ^8.4.0
-        version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)
+        version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1)
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
