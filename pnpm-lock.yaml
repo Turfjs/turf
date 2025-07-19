@@ -2224,7 +2224,7 @@ importers:
         specifier: ^2.1.5
         version: 2.1.5
       '@types/rbush':
-        specifier: ^3.0.2
+        specifier: ^3.0.4
         version: 3.0.4
       '@types/tape':
         specifier: ^5.8.1
@@ -2358,7 +2358,7 @@ importers:
         specifier: ^2.1.5
         version: 2.1.5
       '@types/rbush':
-        specifier: ^3.0.2
+        specifier: ^3.0.4
         version: 3.0.4
       '@types/tape':
         specifier: ^5.8.1
