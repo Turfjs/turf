@@ -2,7 +2,7 @@ import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import { clone } from "@turf/clone";
 import { distance } from "@turf/distance";
 import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
-import { rbush as RBush } from "./lib/rbush-export.js";
+import RBush from "rbush";
 
 /**
  * Point classification within the cluster.
