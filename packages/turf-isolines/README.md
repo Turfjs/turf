@@ -9,7 +9,7 @@ value breaks and generates [isolines][3].
 
 ### Parameters
 
-*   `pointGrid` **[FeatureCollection][1]<[Point][2]>** input points
+*   `pointGrid` **[FeatureCollection][1]<[Point][2]>** input points - must be square or rectangular and already gridded
 *   `breaks` **[Array][4]<[number][5]>** values of `zProperty` where to draw isolines
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
