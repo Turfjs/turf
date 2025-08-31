@@ -30,7 +30,7 @@
   "packageManager": "pnpm@10.10.0+sha256.fa0f513aa8191764d2b6b432420788c270f07b4f999099b65bb2010eec702a30",
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.25.1",
+    "@eslint/js": "^9.31.0",
     "@monorepolint/cli": "0.5.0",
     "@monorepolint/config": "0.5.0",
     "@monorepolint/core": "0.5.0",
@@ -43,9 +43,9 @@
     "dependency-tree": "^11.1.1",
     "documentation": "^14.0.3",
     "es-check": "^9.0.0",
-    "eslint": "^9.25.1",
-    "eslint-config-prettier": "^10.1.2",
-    "eslint-plugin-prettier": "^5.2.6",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
     "esm": "^3.2.25",
     "fs-extra": "^11.3.0",
     "glob": "^11.0.2",
@@ -61,7 +61,7 @@
     "tsup": "^8.4.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.31.1",
+    "typescript-eslint": "^8.38.0",
     "yamljs": "^0.3.0"
   }
 }
