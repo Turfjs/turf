@@ -229,10 +229,16 @@ function groupNestedRings(orderedLinearRings: Position[][]): Position[][][] {
         lrList[i].grouped = true;
         const outerMostPoly = polygon([lrList[i].lrCoordinates]);
         // group all the rings contained by the outermost ring
-        for (let j = i + 1; j < lrList.length; j++) {
+        OUTER: for (let j = i + 1; j < lrList.length; j++) {
           if (!lrList[j].grouped) {
             const lrPoly = polygon([lrList[j].lrCoordinates]);
             if (isInside(lrPoly, outerMostPoly)) {
+              // we cannot group any linear rings that are contained in hole rings for this group
+              for (let k = 1; k < group.length; k++) {
+                if (isInside(lrPoly, polygon([group[k]]))) {
+                  continue OUTER;
+                }
+              }
               group.push(lrList[j].lrCoordinates);
               lrList[j].grouped = true;
             }
