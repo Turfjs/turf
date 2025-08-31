@@ -18,7 +18,7 @@ import {
  * value breaks and generates [isolines](https://en.wikipedia.org/wiki/Contour_line).
  *
  * @function
- * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular and already gridded
+ * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular and already gridded. That is, to have consistent x and y dimensions and be at least 2x2 in size.
  * @param {Array<number>} breaks values of `zProperty` where to draw isolines
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled

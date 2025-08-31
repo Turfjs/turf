@@ -35,7 +35,7 @@ type GroupedRings =
  * value breaks and generates filled contour isobands.
  *
  * @function
- * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular and already gridded
+ * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular and already gridded. That is, to have consistent x and y dimensions and be at least 2x2 in size.
  * @param {Array<number>} breaks where to draw contours
  * @param {Object} [options={}] options on output
  * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
