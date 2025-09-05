@@ -1,7 +1,13 @@
 import { Feature, LineString } from "geojson";
 import { circle } from "@turf/circle";
 import { destination } from "@turf/destination";
-import { Coord, lineString, Units } from "@turf/helpers";
+import {
+  calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle,
+  calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle,
+  Coord,
+  lineString,
+  Units,
+} from "@turf/helpers";
 
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
@@ -14,6 +20,7 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps (straight segments) that will constitute the arc
+ * @param {number} [options.maximumRimDeviation] if provided, will ignore steps and use a number of steps such that the rim of returned approximate regular polygon is at most this far away from the true arc
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {Feature<LineString>} line arc
  * @example
@@ -34,11 +41,19 @@ function lineArc(
   bearing2: number,
   options: {
     steps?: number;
+    maximumRimDeviation?: number;
     units?: Units;
   } = {}
 ): Feature<LineString> {
   // default params
-  const steps = options.steps || 64;
+  let steps = options.steps || 64;
+  if (options.maximumRimDeviation && options.maximumRimDeviation > 0) {
+    steps =
+      calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle(
+        radius,
+        options.maximumRimDeviation
+      );
+  }
 
   const angle1 = convertAngleTo360(bearing1);
   const angle2 = convertAngleTo360(bearing2);
@@ -47,10 +62,13 @@ function lineArc(
       ? center.properties
       : {};
 
+  const circumRadius =
+    calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle(radius, steps);
+
   // handle angle parameters
   if (angle1 === angle2) {
     return lineString(
-      circle(center, radius, options).geometry.coordinates[0],
+      circle(center, circumRadius, options).geometry.coordinates[0],
       properties
     );
   }
@@ -66,7 +84,7 @@ function lineArc(
   // (alpha) by arcStep degrees until we reach the end bearing.
   while (alpha <= arcEndDegree) {
     coordinates.push(
-      destination(center, radius, alpha, options).geometry.coordinates
+      destination(center, circumRadius, alpha, options).geometry.coordinates
     );
     i++;
     alpha = arcStartDegree + i * arcStep;

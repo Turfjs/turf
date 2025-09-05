@@ -3,6 +3,9 @@
   "version": "7.2.0",
   "description": "Creates a circular arc, of a circle of the given radius and center point, between two bearings.",
   "author": "Turf Authors",
+  "contributors": [
+    "Scott Wiedemann <@lemmingapex>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
