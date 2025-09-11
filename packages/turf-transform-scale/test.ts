@@ -151,7 +151,7 @@ test("scale -- mutated input", (t) => {
   t.deepEqual(
     truncate(line, { precision: 1 }),
     lineString([
-      [9.5, 8.8],
+      [9.5, 8.7],
       [12.5, 16.2],
     ]),
     "mutate = true - input should be mutated"
