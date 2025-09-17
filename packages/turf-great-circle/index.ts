@@ -8,7 +8,7 @@ import type {
 } from "geojson";
 import { lineString } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
-import { GreatCircle } from "./lib/arc.js";
+import { GreatCircle } from "arc";
 
 /**
  * Calculate great circles routes as {@link LineString} or {@link MultiLineString}.
@@ -58,12 +58,15 @@ function greatCircle(
   const generator = new GreatCircle(
     { x: startCoord[0], y: startCoord[1] },
     { x: endCoord[0], y: endCoord[1] },
-    properties
+    properties || {}
   );
 
   const line = generator.Arc(npoints, { offset: offset });
 
-  return line.json();
+  return line.json() as Feature<
+    LineString | MultiLineString,
+    GeoJsonProperties
+  >;
 }
 
 export { greatCircle };

@@ -75,6 +75,7 @@
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
     "@types/geojson": "^7946.0.10",
+    "arc": "^0.2.0",
     "tslib": "^2.8.1"
   }
 }
