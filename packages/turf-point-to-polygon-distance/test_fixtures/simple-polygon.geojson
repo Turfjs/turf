@@ -1,0 +1,45 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "outer",
+        "expected_distance": 0.0020673867731590976,
+        "units": "kilometers"
+      },
+      "geometry": {
+        "coordinates": [13.40811681056141, 52.52027359015821],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "inner",
+        "expected_distance": -7.980019325365333,
+        "units": "meters"
+      },
+      "geometry": {
+        "coordinates": [13.408017009112001, 52.52035996357455],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "coordinates": [
+          [
+            [13.407833971095158, 52.52015934998451],
+            [13.40823074294758, 52.52035304587994],
+            [13.40819208895536, 52.52053359735595],
+            [13.407789632692584, 52.520343361105404],
+            [13.407833971095158, 52.52015934998451]
+          ]
+        ],
+        "type": "Polygon"
+      }
+    }
+  ]
+}

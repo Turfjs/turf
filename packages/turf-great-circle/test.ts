@@ -137,3 +137,16 @@ test("turf-great-circle respects offset and npoints options", (t) => {
   );
   t.end();
 });
+
+test("turf-great-circle with antipodal start and end", (t) => {
+  const start = point([0, 90]);
+  const end = point([0, -90]);
+
+  t.throws(() => {
+    greatCircle(start, end, {
+      npoints: 4,
+    });
+  }, "it appears 0,90 and 0,-90 are 'antipodal', e.g diametrically opposite, thus there is no single route but rather infinite");
+
+  t.end();
+});

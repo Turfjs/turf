@@ -122,62 +122,62 @@ test("turf-boolean-intersects with ignoreSelfIntersections option", (t) => {
     selfIntersectingLineString,
     nonIntersectingLineString
   );
-  t.true(
+  t.false(
     result,
-    "[true] " +
-      "selfIntersectingLineString-LineString (ignoreSelfIntersections=false)"
+    "[false] " +
+      "selfIntersectingLineString-LineString (ignoreSelfIntersections=true)"
   );
   result = intersects(selfIntersectingLineString, intersectingLineString);
   t.true(
     result,
     "[true] " +
-      "selfIntersectingLineString-LineString (ignoreSelfIntersections=false)"
+      "selfIntersectingLineString-LineString (ignoreSelfIntersections=true)"
   );
   result = intersects(selfIntersectingLineString, intersectingPolygon);
   t.true(
     result,
     "[true] " +
-      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=false)"
+      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=true)"
   );
   result = intersects(selfIntersectingLineString, nonIntersectingPolygon);
-  t.true(
+  t.false(
     result,
-    "[true] " +
-      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=false)"
+    "[false] " +
+      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=true)"
   );
 
   // Test with ignoringSelfIntersections option
   result = intersects(selfIntersectingLineString, nonIntersectingLineString, {
-    ignoreSelfIntersections: true,
+    ignoreSelfIntersections: false,
   });
-  t.false(
+  t.true(
     result,
-    "[false] " +
-      "selfIntersectingLineString-LineString (ignoreSelfIntersections=true)"
+    "[true] " +
+      "selfIntersectingLineString-LineString (ignoreSelfIntersections=false)"
   );
   result = intersects(selfIntersectingLineString, intersectingLineString, {
-    ignoreSelfIntersections: true,
+    ignoreSelfIntersections: false,
   });
   t.true(
     result,
     "[true] " +
-      "selfIntersectingLineString-LineString (ignoreSelfIntersections=true)"
+      "selfIntersectingLineString-LineString (ignoreSelfIntersections=false)"
   );
   result = intersects(selfIntersectingLineString, intersectingPolygon, {
-    ignoreSelfIntersections: true,
+    ignoreSelfIntersections: false,
   });
   t.true(
     result,
     "[true] " +
-      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=true)"
+      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=false)"
   );
   result = intersects(selfIntersectingLineString, nonIntersectingPolygon, {
-    ignoreSelfIntersections: true,
+    ignoreSelfIntersections: false,
   });
-  t.false(
+  t.true(
     result,
-    "[false] " +
-      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=true)"
+    "[true] " +
+      "selfIntersectingLineString-Polygon (ignoreSelfIntersections=false)"
   );
 
   t.end();

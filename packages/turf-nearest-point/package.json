@@ -1,7 +1,7 @@
 {
   "name": "@turf/nearest-point",
-  "version": "7.1.0",
-  "description": "turf nearest-point module",
+  "version": "7.2.0",
+  "description": "Finds the nearest point from a FeatureCollection of Features with Point geometries to a given point.",
   "author": "Turf Authors",
   "license": "MIT",
   "bugs": {
@@ -55,22 +55,22 @@
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",
-    "@types/tape": "^4.2.32",
+    "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "npm-run-all": "^4.1.5",
-    "tape": "^5.7.2",
-    "tsup": "^8.0.1",
-    "tsx": "^4.6.2",
-    "typescript": "^5.5.4",
-    "write-json-file": "^5.0.0"
+    "tape": "^5.9.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "write-json-file": "^6.0.0"
   },
   "dependencies": {
-    "@turf/clone": "workspace:^",
-    "@turf/distance": "workspace:^",
-    "@turf/helpers": "workspace:^",
-    "@turf/meta": "workspace:^",
+    "@turf/clone": "workspace:*",
+    "@turf/distance": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/meta": "workspace:*",
     "@types/geojson": "^7946.0.10",
-    "tslib": "^2.6.2"
+    "tslib": "^2.8.1"
   }
 }
