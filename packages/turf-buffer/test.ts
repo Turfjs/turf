@@ -238,15 +238,14 @@ test("turf-buffer - endcap styles", (t) => {
     [-97, 49.8],
   ]);
 
-  const lineFc = featureCollection([ln]);
-  const lineDefault = buffer(lineFc, 10, { units: "miles" });
-  const lineRound = buffer(lineFc, 10, {
+  const lineDefault = buffer(ln, 10, { units: "miles" });
+  const lineRound = buffer(ln, 10, {
     units: "miles",
     endCapStyle: "round",
   });
-  const lineFlat = buffer(lineFc, 10, { units: "miles", endCapStyle: "flat" });
-  const lineButt = buffer(lineFc, 10, { units: "miles", endCapStyle: "butt" });
-  const lineSquare = buffer(lineFc, 10, {
+  const lineFlat = buffer(ln, 10, { units: "miles", endCapStyle: "flat" });
+  const lineButt = buffer(ln, 10, { units: "miles", endCapStyle: "butt" });
+  const lineSquare = buffer(ln, 10, {
     units: "miles",
     endCapStyle: "square",
   });

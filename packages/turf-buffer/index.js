@@ -84,7 +84,7 @@ function buffer(geojson, radius, options) {
       });
       return featureCollection(results);
   }
-  return bufferFeature(geojson, radius, units, steps);
+  return bufferFeature(geojson, radius, units, steps, endCapStyle);
 }
 
 /**
