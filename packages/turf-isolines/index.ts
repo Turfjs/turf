@@ -17,7 +17,7 @@ import {
  * value breaks and generates [isolines](https://en.wikipedia.org/wiki/Contour_line).
  *
  * @function
- * @param {FeatureCollection<Point>} pointGrid input points
+ * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular and already gridded. That is, to have consistent x and y dimensions and be at least 2x2 in size.
  * @param {Array<number>} breaks values of `zProperty` where to draw isolines
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
@@ -72,6 +72,18 @@ function isolines(
   // A quick note on what 'top' and 'bottom' mean in coordinate system of `matrix`:
   // Remember that the southern hemisphere is represented by negative numbers,
   // so a matrix Y of 0 is actually the *bottom*, and a Y of dy - 1 is the *top*.
+
+  // check that the resulting matrix has consistent x and y dimensions and
+  // has at least a 2x2 size so that we can actually build grid squares
+  const dx = matrix[0].length;
+  if (matrix.length < 2 || dx < 2) {
+    throw new Error("Matrix of points must be at least 2x2");
+  }
+  for (let i = 1; i < matrix.length; i++) {
+    if (matrix[i].length !== dx) {
+      throw new Error("Matrix of points is not uniform in the x dimension");
+    }
+  }
 
   const createdIsoLines = createIsoLines(
     matrix,
