@@ -71,17 +71,5 @@ export default tsEslint.config(
       },
     },
   },
-  {
-    files: [
-      "packages/turf-isobands/lib/marchingsquares-isobands.js",
-      "packages/turf-isolines/lib/marchingsquares-isocontours.js",
-    ],
-
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-      },
-    },
-  },
   prettierRecommended
 );
