@@ -33,7 +33,7 @@ type GroupedRings =
  * value breaks and generates filled contour isobands.
  *
  * @function
- * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular
+ * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular and already gridded. That is, to have consistent x and y dimensions and be at least 2x2 in size.
  * @param {Array<number>} breaks where to draw contours
  * @param {Object} [options={}] options on output
  * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
@@ -72,6 +72,18 @@ function isobands(
   // A quick note on what 'top' and 'bottom' mean in coordinate system of `matrix`:
   // Remember that the southern hemisphere is represented by negative numbers,
   // so a matrix Y of 0 is actually the *bottom*, and a Y of dy - 1 is the *top*.
+
+  // check that the resulting matrix has consistent x and y dimensions and
+  // has at least a 2x2 size so that we can actually build grid squares
+  const dx = matrix[0].length;
+  if (matrix.length < 2 || dx < 2) {
+    throw new Error("Matrix of points must be at least 2x2");
+  }
+  for (let i = 1; i < matrix.length; i++) {
+    if (matrix[i].length !== dx) {
+      throw new Error("Matrix of points is not uniform in the x dimension");
+    }
+  }
 
   let contours = createContourLines(matrix, breaks, zProperty);
   contours = rescaleContours(contours, matrix, pointGrid);
@@ -607,10 +619,16 @@ function groupNestedRings(orderedLinearRings: Position[][]): Position[][][] {
         lrList[i].grouped = true;
         const outerMostPoly = polygon([lrList[i].lrCoordinates]);
         // group all the rings contained by the outermost ring
-        for (let j = i + 1; j < lrList.length; j++) {
+        OUTER: for (let j = i + 1; j < lrList.length; j++) {
           if (!lrList[j].grouped) {
             const lrPoly = polygon([lrList[j].lrCoordinates]);
             if (isInside(lrPoly, outerMostPoly)) {
+              // we cannot group any linear rings that are contained in hole rings for this group
+              for (let k = 1; k < group.length; k++) {
+                if (isInside(lrPoly, polygon([group[k]]))) {
+                  continue OUTER;
+                }
+              }
               group.push(lrList[j].lrCoordinates);
               lrList[j].grouped = true;
             }
