@@ -3,6 +3,9 @@
   "version": "7.2.0",
   "description": "Creates a circular sector of a circle.",
   "author": "Turf Authors",
+  "contributors": [
+    "Scott Wiedemann <@lemmingapex>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
