@@ -4,6 +4,8 @@ Turf has been ported to several other languages, listed below.
 
 - [Java](https://github.com/mapbox/mapbox-java/tree/master/services-turf/src/main/java/com/mapbox/turf) (Android, Java SE)
   - > [The current to-do list for porting to Java](https://github.com/mapbox/mapbox-java/blob/master/docs/turf-port.md)
+- [Kotlin Multiplatform](https://maplibre.org/spatial-k/) (JVM, Android, Native, JS, WASM)
+  - > [The current to-do list for porting to Kotlin](https://github.com/maplibre/spatial-k/issues?q=sort%3Aupdated-desc%20is%3Aissue%20is%3Aopen%20label%3A%22turf%20port%22) 
 - [Swift](https://github.com/mapbox/turf-swift/) (iOS, macOS, tvOS, watchOS, Linux)
   - > Turf for Swift is **experimental** and its public API is subject to change. Please use with care.
 - [Dart/Flutter](https://github.com/dartclub/turf_dart) (Dart Web, Dart Native; Flutter for iOS, Android, macOS, Windows, Linux, Web)
