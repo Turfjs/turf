@@ -14,6 +14,7 @@ import {
   point,
   featureCollection,
   round,
+  degreesToRadians,
 } from "@turf/helpers";
 import { nearestPointOnLine } from "./index.js";
 
@@ -514,6 +515,71 @@ test("turf-nearest-point-on-line -- issue 2808 redundant point support", (t) => 
 
   const nearest = nearestPointOnLine(line1, thePoint); // should not throw
   t.equal(nearest.properties.dist, 0, "redundant point should not throw");
+
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 2934 correct endpoint chosen when in opposite hemisphere", (t) => {
+  // create a long line where the southern end point should be chosen, but the
+  // northern endpoint is closer to the projected great circles
+  const line = lineString([
+    [25, 88],
+    [25, -70],
+  ]);
+  const pt = point([-45, -88]);
+  const nearest = nearestPointOnLine(line, pt);
+
+  t.deepEqual(
+    truncate(nearest, { precision: 8 }).geometry.coordinates,
+    [25, -70],
+    "nearest point is in the Southern Hemisphere"
+  );
+
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 2939 nearestPointOnSegment handles tiny segments", (t) => {
+  // create a test case where the line segment passed is small enough such that
+  // a cross product used to generate its normal in nearestPointOnSegment ends
+  // up as [0, 0, 0] but large enough so that the two points are not ===
+  //
+  // In v7.2.0 this test case was failing in browser (Chrome 141.0) but
+  // succeeding on Node (v22.20.0) due to a bit difference in the cosine
+  // implementation. To reproduce the same effect in Node, we monkey patch
+  // Math.cos to temporarily return the browser value as it was too difficult to
+  // find a repro case in node. This monkey patch version fails on v7.2.0 but
+  // passes with degenerate point fixes.
+
+  const lngA = 35.000102519989014;
+  const lngB = 35.00010251998902;
+  const line = lineString([
+    [lngA, 32.00010141921075],
+    [lngB, 32.00010141921075],
+  ]);
+
+  // WARN: Override cos function to give specific results for this test
+  const originalCos = Math.cos;
+  Math.cos = (x) => {
+    // The cosine of lngA gives a different result in the tested browsers than
+    // it does in node, therefore capturing here for this test run only.
+    if (x === degreesToRadians(lngA)) {
+      return originalCos(degreesToRadians(lngB));
+    } else {
+      return originalCos(x);
+    }
+  };
+
+  const pt = point([35.0005, 32.0005]);
+  const nearest = nearestPointOnLine(line, pt);
+
+  // WARN: Reset cos function
+  Math.cos = originalCos;
+
+  t.deepEqual(
+    nearest.geometry.coordinates,
+    [35.00010251998902, 32.00010141921075],
+    "nearest point should be the end point of the line string"
+  );
 
   t.end();
 });
