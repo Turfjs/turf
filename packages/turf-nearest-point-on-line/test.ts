@@ -538,6 +538,27 @@ test("turf-nearest-point-on-line -- issue 2934 correct endpoint chosen when in o
   t.end();
 });
 
+test("turf-nearest-point-on-line -- correctly reports external intersection for large arcs", (t) => {
+  // create a test case where the arc is > 2Pi and the closest intersection
+  // point is far from the arc - this case was failing due to an angular
+  // comparison only working for small arcs; this test case checks this
+  // regression
+  const line = lineString([
+    [25, 80],
+    [25, -70],
+  ]);
+  const pt = point([-88, 13]);
+  const nearest = nearestPointOnLine(line, pt);
+
+  t.deepEqual(
+    nearest.geometry.coordinates,
+    [25, 80],
+    "nearest point is at the northern end"
+  );
+
+  t.end();
+});
+
 test("turf-nearest-point-on-line -- issue 2939 nearestPointOnSegment handles tiny segments", (t) => {
   // create a test case where the line segment passed is small enough such that
   // a cross product used to generate its normal in nearestPointOnSegment ends

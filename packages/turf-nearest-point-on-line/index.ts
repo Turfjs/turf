@@ -13,6 +13,10 @@ import { getCoord, getCoords } from "@turf/invariant";
 /**
  * Returns the nearest point on a line to a given point.
  *
+ * If any of the segments in the input line string are antipodal and therefore
+ * have an undefined arc, this function will instead return that the point lies
+ * on the line.
+ *
  * @function
  * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
  * @param {Geometry|Feature<Point>|number[]} pt point to snap from
@@ -129,12 +133,7 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
   return closestPt;
 }
 
-/*
- * Plan is to externalise these vector functions to a simple third party
- * library.
- * Possible candidate is @amandaghassaei/vector-math though having some import
- * issues.
- */
+// A simple Vector3 type for cartesian operations.
 type Vector = [number, number, number];
 
 function dot(v1: Vector, v2: Vector): number {
@@ -157,11 +156,6 @@ function magnitude(v: Vector): number {
 function normalize(v: Vector): Vector {
   const mag = magnitude(v);
   return [v[0] / mag, v[1] / mag, v[2] / mag];
-}
-
-function angle(v1: Vector, v2: Vector): number {
-  const theta = dot(v1, v2) / (magnitude(v1) * magnitude(v2));
-  return Math.acos(Math.min(Math.max(theta, -1), 1));
 }
 
 function lngLatToVector(a: Position): Vector {
@@ -211,16 +205,15 @@ function nearestPointOnSegment(
   // - The aligned case indicates coincidence of A and B. therefore this can be
   //   an early return assuming the closest point is the end (for consistency).
   // - The antipodal case is truly degenerate - an infinte number of great
-  //   circles are possible and one will always pass through C. We assume this
-  //   is undefined behavior and therefore throw. Callers can catch this and
-  //   return 0 if they wish.
+  //   circles are possible and one will always pass through C. However, given
+  //   that this case is both highly unlikely to occur in practice and that is
+  //   will usually be logically sound to return that the point is on the
+  //   segment, we choose to return the provided point.
   if (segmentAxis[0] === 0 && segmentAxis[1] === 0 && segmentAxis[2] === 0) {
     if (dot(A, B) > 0) {
       return [[...posB], true];
     } else {
-      throw new Error(
-        `Undefined arc segment, line segment endpoints [[${posA}], [${posB}]] are antipodes`
-      );
+      return [[...posC], false];
     }
   }
 
@@ -251,29 +244,28 @@ function nearestPointOnSegment(
   const I = dot(C, I1) > dot(C, I2) ? I1 : I2;
 
   // I is the closest intersection to the segment, though might not actually be
-  // ON the segment.
+  // ON the segment. To test whether the closest intersection lies on the arc or
+  // not, we do a cross product comparison to check rotation around the unit
+  // circle defined by the great circle plane.
+  const segmentAxisNorm = normalize(segmentAxis);
+  const cmpAI = dot(cross(A, I), segmentAxisNorm);
+  const cmpIB = dot(cross(I, B), segmentAxisNorm);
 
-  // If angle AI or BI is greater than angleAB, I lies on the circle *beyond* A
-  // and B so use the closest of A or B as the intersection
-  const angleAB = angle(A, B);
-  const lngLatI = vectorToLngLat(I);
-
-  if (angle(A, I) > angleAB || angle(B, I) > angleAB) {
-    // Similar to the usage above, we use the larger dot product to determine
-    // which endpoint is closer to the test coordinates
-    // Note that the > means we defer to the endpoint when equidistant,
-    // following the segment tracking logic in the caller
-    if (dot(A, C) > dot(B, C)) {
-      // Clone position when returning as it is reasonable to not expect structural
-      // sharing on the returned Position in all return cases
-      return [[...posA], false];
-    } else {
-      return [[...posB], true];
-    }
+  // When both comparisons are positive, the rotation from A to I to B is in the
+  // same direction, implying that I lies between A and B
+  if (cmpAI >= 0 && cmpIB >= 0) {
+    return [vectorToLngLat(I), false];
   }
 
-  // As angleAI nor angleBI don't exceed angleAB, I is on the segment
-  return [lngLatI, false];
+  // Finally process the case where the intersection is not on the segment,
+  // using the dot product with the original point to find the closest endpoint
+  if (dot(A, C) > dot(B, C)) {
+    // Clone position when returning as it is reasonable to not expect structural
+    // sharing on the returned Position in all return cases
+    return [[...posA], false];
+  } else {
+    return [[...posB], true];
+  }
 }
 
 export { nearestPointOnLine };

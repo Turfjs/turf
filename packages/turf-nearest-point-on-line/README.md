@@ -6,6 +6,10 @@
 
 Returns the nearest point on a line to a given point.
 
+If any of the segments in the input line string are antipodal and therefore
+have an undefined arc, this function will instead return that the point lies
+on the line.
+
 ### Parameters
 
 *   `lines` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4])>)** lines to snap to
