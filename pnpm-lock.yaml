@@ -2224,8 +2224,8 @@ importers:
         specifier: ^2.1.5
         version: 2.1.5
       '@types/rbush':
-        specifier: ^3.0.2
-        version: 3.0.3
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/tape':
         specifier: ^5.8.1
         version: 5.8.1
@@ -2358,8 +2358,8 @@ importers:
         specifier: ^2.1.5
         version: 2.1.5
       '@types/rbush':
-        specifier: ^3.0.2
-        version: 3.0.3
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/tape':
         specifier: ^5.8.1
         version: 5.8.1
@@ -7908,8 +7908,8 @@ packages:
   '@types/parse5@6.0.3':
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
 
-  '@types/rbush@3.0.3':
-    resolution: {integrity: sha512-lX55lR0iYCgapxD3IrgujpQA1zDxwZI5qMRelKvmKAsSMplFVr7wmMpG7/6+Op2tjrgEex8o3vjg8CRDrRNYxg==}
+  '@types/rbush@3.0.4':
+    resolution: {integrity: sha512-knSt9cCW8jj1ZSFcFeBZaX++OucmfPxxHiRwTahZfJlnQsek7O0bazTJHWD2RVj9LEoejUYF2de3/stf+QXcXw==}
 
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -13514,7 +13514,7 @@ snapshots:
 
   '@types/parse5@6.0.3': {}
 
-  '@types/rbush@3.0.3': {}
+  '@types/rbush@3.0.4': {}
 
   '@types/resolve@1.20.2': {}
 

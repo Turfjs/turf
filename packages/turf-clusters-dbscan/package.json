@@ -63,7 +63,7 @@
     "@turf/centroid": "workspace:*",
     "@turf/clusters": "workspace:*",
     "@types/benchmark": "^2.1.5",
-    "@types/rbush": "^3.0.2",
+    "@types/rbush": "^3.0.4",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "chromatism": "^3.0.0",
