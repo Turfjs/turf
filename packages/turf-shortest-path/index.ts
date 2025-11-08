@@ -81,6 +81,11 @@ function shortestPath(
     if (obstacles.features.length === 0) {
       return lineString([startCoord, endCoord]);
     }
+  } else if (
+    obstacles.type === "Feature" &&
+    obstacles.geometry.type === "Polygon"
+  ) {
+    obstacles = featureCollection([obstacles]);
   } else if (obstacles.type === "Polygon") {
     obstacles = featureCollection([feature(getGeom(obstacles))]);
   } else {
