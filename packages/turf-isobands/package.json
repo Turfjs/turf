@@ -4,7 +4,8 @@
   "description": "Takes a grid of values (GeoJSON format) and a set of threshold ranges. It outputs polygons that group areas within those ranges, effectively creating filled contour isobands.",
   "author": "Turf Authors",
   "contributors": [
-    "Stefano Borghi <@stebogit>"
+    "Stefano Borghi <@stebogit>",
+    "Matt Fedderly <@mfedderly>"
   ],
   "license": "MIT",
   "bugs": {
