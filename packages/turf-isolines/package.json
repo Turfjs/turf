@@ -4,7 +4,8 @@
   "description": "Generate contour lines from a grid of data.",
   "author": "Turf Authors",
   "contributors": [
-    "Stefano Borghi <@stebogit>"
+    "Stefano Borghi <@stebogit>",
+    "Matt Fedderly <@mfedderly>"
   ],
   "license": "MIT",
   "bugs": {
