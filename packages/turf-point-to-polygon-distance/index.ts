@@ -72,7 +72,7 @@ export function pointToPolygonDistance(
     // at this stage, exteriorDistance is negative and smallestInteriorDistance is positive
     // but smallestInteriorDistance should be returned as negative
     // and min of positive values <=> max of negative values
-    return Math.max(smallestInteriorDistance*-1, exteriorDistance);
+    return Math.max(smallestInteriorDistance * -1, exteriorDistance);
   }
   // The actual distance operation - on a normal, hole-less polygon in meters
   const lines = polygonToLine(geom);
