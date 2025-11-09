@@ -9,7 +9,7 @@ import { segmentReduce } from "@turf/meta";
  * @function
  * @param {Feature<LineString|MultiLineString>} geojson GeoJSON to measure
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units=kilometers] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units=kilometers] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {number} length of GeoJSON
  * @example
  * var line = turf.lineString([[115, -32], [131, -22], [143, -25], [150, -34]]);

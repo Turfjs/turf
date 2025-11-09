@@ -20,7 +20,7 @@ import { polygon, featureCollection, Units } from "@turf/helpers";
  * @param {number} cellSide length of the side of the the hexagons or triangles, in units. It will also coincide with the
  * radius of the circumcircle of the hexagons.
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] used in calculating cell size, can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] used in calculating cell size. Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @param {Object} [options.properties={}] passed to each hexagon or triangle of the grid
  * @param {Feature<Polygon | MultiPolygon>} [options.mask] if passed a Polygon or MultiPolygon, the grid Points will be created only inside it
  * @param {boolean} [options.triangles=false] whether to return as triangles instead of hexagons
