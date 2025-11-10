@@ -171,7 +171,8 @@ function lngLatToVector(a: Position): Vector {
 function vectorToLngLat(v: Vector): Position {
   const [x, y, z] = v;
   // Clamp the z-value to ensure that is inside the [-1, 1] domain as required
-  // by asin. Note that
+  // by asin. Note therefore that this function should only be applied to unit
+  // vectors so z > 1 should not exist
   const zClamp = Math.min(Math.max(z, -1), 1);
   const lat = radiansToDegrees(Math.asin(zClamp));
   const lng = radiansToDegrees(Math.atan2(y, x));
