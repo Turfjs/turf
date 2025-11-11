@@ -1,0 +1,102 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "resolution": 10,
+    "units": "centimeters"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "start"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.158503, 51.50751]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "end"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.156938, 51.50724]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "obstacle 1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-0.158656, 51.507437],
+            [-0.157762, 51.506957],
+            [-0.157403, 51.507497],
+            [-0.158402, 51.507721],
+            [-0.158385, 51.507443],
+            [-0.158656, 51.507437]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "obstacle 2"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-0.157216, 51.507531],
+            [-0.157216, 51.507311],
+            [-0.156869, 51.507311],
+            [-0.156869, 51.507531],
+            [-0.157216, 51.507531]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "obstacle 3"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-0.157414, 51.507373],
+            [-0.157527, 51.507013],
+            [-0.157171, 51.506986],
+            [-0.156902, 51.507049],
+            [-0.157192, 51.507232],
+            [-0.157414, 51.507373]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "obstacle 4"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-0.15781, 51.507865],
+            [-0.157319, 51.507501],
+            [-0.157231, 51.507728],
+            [-0.15781, 51.507865]
+          ]
+        ]
+      }
+    }
+  ]
+}
