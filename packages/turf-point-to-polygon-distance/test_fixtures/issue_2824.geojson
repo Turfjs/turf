@@ -392,7 +392,7 @@
       "type": "Feature",
       "properties": {
         "name": "point1",
-        "expected_distance": -282.4713222746312,
+        "expected_distance": -282.47132227384475,
         "units": "meters"
       },
       "geometry": {
