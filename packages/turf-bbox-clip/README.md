@@ -4,13 +4,14 @@
 
 ## bboxClip
 
-Takes a [Feature][1] and a bbox and clips the feature to the bbox using
-[lineclip][2].
-May result in degenerate edges when clipping Polygons.
+Takes a [Feature][1], [Geometry][2] or [FeatureCollection][3] and a bbox and returns the part of the object within the bbox.
+Lines and polygons are clipped using [lineclip][4].
+If a Point or LineString geometry is entirely outside the bbox, a [MultiPoint][5] or [MultiLineString][6] with empty `coordinates` array is returned.
+LineString geometries may also become MultiLineString if the clipping process cuts them into several pieces.
 
 ### Parameters
 
-*   `feature` **[Feature][1]<([LineString][3] | [MultiLineString][4] | [Polygon][5] | [MultiPolygon][6])>** feature to clip to the bbox
+*   `feature` **([Geometry][2] | [Feature][1] | [FeatureCollection][3])** GeoJSON object to clip to the bbox
 *   `bbox` **[BBox][7]** extent in \[minX, minY, maxX, maxY] order
 
 ### Examples
@@ -25,19 +26,19 @@ var clipped = turf.bboxClip(poly, bbox);
 var addToMap = [bbox, poly, clipped]
 ```
 
-Returns **[Feature][1]<([LineString][3] | [MultiLineString][4] | [Polygon][5] | [MultiPolygon][6])>** clipped Feature
+Returns **([Feature][1] | [FeatureCollection][3])** clipped GeoJSON object.
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.2
 
-[2]: https://github.com/mapbox/lineclip
+[2]: https://tools.ietf.org/html/rfc7946#section-3.1
 
-[3]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+[3]: https://tools.ietf.org/html/rfc7946#section-3.3
 
-[4]: https://tools.ietf.org/html/rfc7946#section-3.1.5
+[4]: https://github.com/mapbox/lineclip
 
-[5]: https://tools.ietf.org/html/rfc7946#section-3.1.6
+[5]: https://tools.ietf.org/html/rfc7946#section-3.1.3
 
-[6]: https://tools.ietf.org/html/rfc7946#section-3.1.7
+[6]: https://tools.ietf.org/html/rfc7946#section-3.1.5
 
 [7]: https://tools.ietf.org/html/rfc7946#section-5
 
