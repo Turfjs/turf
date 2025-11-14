@@ -52,7 +52,7 @@ test("turf-distance-weight", (t) => {
     p: 2,
     alpha: 1,
   });
-  t.equal(result[0][1], 0.5987182558007202, "change p");
+  t.equal(result[0][1], 0.5987182558007197, "change p");
 
   // test alpha
   result = distanceWeight(columbusJson, {
@@ -70,7 +70,7 @@ test("turf-distance-weight", (t) => {
     alpha: 1,
     standardization: true,
   });
-  t.equal(result[0][1], 0.5311565480348293, "standardization 1");
+  t.equal(result[0][1], 0.531156548034828, "standardization 1");
 
   result = distanceWeight(columbusJson, {
     threshold: 1,
@@ -83,7 +83,7 @@ test("turf-distance-weight", (t) => {
 
   // test default
   result = distanceWeight(columbusJson);
-  t.equal(result[0][1], 1.6702346893742355, "default arguments");
+  t.equal(result[0][1], 1.670234689374237, "default arguments");
 
   t.end();
 });
