@@ -66,6 +66,7 @@ test("turf-shortest-path -- with polygon feature as obstacle", (t) => {
 
   const path = truncate(
     shortestPath(start, end, {
+      ...geojson.properties,
       obstacles: obstacle,
     })
   );
