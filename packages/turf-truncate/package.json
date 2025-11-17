@@ -1,6 +1,6 @@
 {
   "name": "@turf/truncate",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Truncates precision of GeoJSON coordinates.",
   "author": "Turf Authors",
   "contributors": [

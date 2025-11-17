@@ -1,6 +1,6 @@
 {
   "name": "@turf/standard-deviational-ellipse",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Takes a collection of features and returns a standard deviational ellipse.",
   "author": "Turf Authors",
   "contributors": [

@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Provides tools for iterating over and manipulating GeoJSON objects.",
   "author": "Turf Authors",
   "contributors": [
