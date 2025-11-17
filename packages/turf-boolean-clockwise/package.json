@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-clockwise",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Takes a ring and return true or false whether or not the ring is clockwise or counter-clockwise.",
   "author": "Turf Authors",
   "contributors": [
