@@ -68,7 +68,7 @@
   ],
   "scripts": {
     "build": "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
-    "last-checks": "npm-run-all last-checks:testjs last-checks:example",
+    "last-checks": "frunk [last-checks:*]",
     "last-checks:example": "tsx test.example.js",
     "last-checks:testjs": "tsx test.ts",
     "test": "echo '@turf/turf tests run in the last-checks step'"
@@ -83,6 +83,7 @@
     "@types/tape": "^5.8.1",
     "camelcase": "^8.0.0",
     "documentation": "^14.0.3",
+    "frunk": "^0.0.4",
     "glob": "^11.1.0",
     "rollup": "^4.40.1",
     "rollup-plugin-polyfill-node": "^0.13.0",

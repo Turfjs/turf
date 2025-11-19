@@ -48,16 +48,16 @@
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
     "docs": "tsx ../../scripts/generate-readmes.ts",
-    "test": "npm-run-all --npm-path npm test:*",
+    "test": "frunk [test:*]",
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
+    "frunk": "^0.0.4",
     "glob": "^11.1.0",
     "load-json-file": "^7.0.1",
-    "npm-run-all": "^4.1.5",
     "tape": "^5.9.0",
     "tsup": "^8.4.0",
     "tsx": "^4.19.4",
