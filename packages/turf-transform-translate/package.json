@@ -1,6 +1,6 @@
 {
   "name": "@turf/transform-translate",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Moves a shape or location in a specific direction.",
   "author": "Turf Authors",
   "contributors": [

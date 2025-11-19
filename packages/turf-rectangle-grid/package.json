@@ -1,6 +1,6 @@
 {
   "name": "@turf/rectangle-grid",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Creates a grid of rectangular polygons with width and height consistent in degrees.",
   "author": "Turf Authors",
   "contributors": [

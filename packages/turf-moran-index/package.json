@@ -1,6 +1,6 @@
 {
   "name": "@turf/moran-index",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Measures patterns of attribute values associated with features. Reveals whether similar values tend to occur near each other, or whether high or low values are interspersed",
   "author": "Turf Authors",
   "contributors": [

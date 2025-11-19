@@ -1,6 +1,6 @@
 {
   "name": "@turf/collect",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Merges a specified property from a FeatureCollection of points into a FeatureCollection of polygons.",
   "author": "Turf Authors",
   "contributors": [
@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",
-    "@types/rbush": "^3.0.2",
+    "@types/rbush": "^3.0.4",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "npm-run-all": "^4.1.5",

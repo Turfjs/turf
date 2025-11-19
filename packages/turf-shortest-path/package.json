@@ -1,11 +1,12 @@
 {
   "name": "@turf/shortest-path",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Returns the shortest path from start to end without colliding with any Feature in obstacles.",
   "author": "Turf Authors",
   "contributors": [
     "Stefano Borghi <@stebogit>",
-    "Denis Carriere <@DenisCarriere>"
+    "Denis Carriere <@DenisCarriere>",
+    "Daniel Ziegler <@ziegler-daniel>"
   ],
   "license": "MIT",
   "bugs": {
