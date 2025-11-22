@@ -160,10 +160,14 @@ function createContourLines(
     const orderedRings = orderByArea(rings);
     const polygons = groupNestedRings(orderedRings);
 
-    // If we got no polygons, we can infer that the values are either all above or all below the threshold.
-    // If everything is below, we shold add the entire bounding box as a polygon.
-    // see https://github.com/Turfjs/turf/issues/1797
-    if (polygons.length === 0 && matrix[0][0] < upperBand) {
+    // If we got no polygons, we can infer that the values are either all above, below, or between the thresholds.
+    // If everything is between, we need a polygon that covers the entire grid
+    // see https://github.com/Turfjs/turf/issues/1797, https://github.com/Turfjs/turf/issues/2956
+    if (
+      polygons.length === 0 &&
+      matrix[0][0] < upperBand &&
+      matrix[0][0] >= lowerBand
+    ) {
       const dx = matrix[0].length;
       const dy = matrix.length;
       polygons.push([
@@ -177,6 +181,7 @@ function createContourLines(
       ]);
     }
 
+    // this can add an entry where groupedRings is exactly an empty array
     contours.push({
       groupedRings: polygons,
       [property]: lowerBand + "-" + upperBand,
