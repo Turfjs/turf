@@ -68,7 +68,7 @@
   ],
   "scripts": {
     "build": "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
-    "last-checks": "npm-run-all last-checks:testjs last-checks:example",
+    "last-checks": "pnpm run last-checks:testjs && pnpm run last-checks:example",
     "last-checks:example": "tsx test.example.js",
     "last-checks:testjs": "tsx test.ts",
     "test": "echo '@turf/turf tests run in the last-checks step'"
