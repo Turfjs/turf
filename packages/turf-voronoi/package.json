@@ -61,7 +61,7 @@
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
-    "glob": "^11.0.2",
+    "glob": "^11.1.0",
     "load-json-file": "^7.0.1",
     "tape": "^5.9.0",
     "tsup": "^8.4.0",

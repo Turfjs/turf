@@ -60,7 +60,7 @@
     "benchmark": "^2.1.4",
     "boolean-jsts": "*",
     "boolean-shapely": "*",
-    "glob": "^11.0.2",
+    "glob": "^11.1.0",
     "load-json-file": "^7.0.1",
     "tape": "^5.9.0",
     "tsup": "^8.4.0",
