@@ -1,6 +1,6 @@
 {
   "name": "@turf/meta",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Provides tools for iterating over and manipulating GeoJSON objects.",
   "author": "Turf Authors",
   "contributors": [
@@ -68,21 +68,20 @@
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
     "docs": "tsx ../../scripts/generate-readmes.ts",
-    "test": "npm-run-all --npm-path npm test:*",
+    "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@turf/random": "workspace:^",
+    "@turf/random": "workspace:*",
     "@types/benchmark": "^2.1.5",
     "benchmark": "^2.1.4",
-    "npm-run-all": "^4.1.5",
     "tape": "^5.9.0",
-    "tsup": "^8.3.5",
-    "tsx": "^4.19.2"
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.4"
   },
   "dependencies": {
-    "@turf/helpers": "workspace:^",
+    "@turf/helpers": "workspace:*",
     "@types/geojson": "^7946.0.10"
   }
 }

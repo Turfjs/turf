@@ -171,7 +171,7 @@ export default {
       options: {
         scripts: {
           docs: "tsx ../../scripts/generate-readmes.ts",
-          test: "npm-run-all --npm-path npm test:*",
+          test: "pnpm run /test:.*/",
         },
       },
       excludePackages: [MAIN_PACKAGE],
@@ -220,10 +220,9 @@ export default {
       options: {
         devDependencies: {
           benchmark: "^2.1.4",
-          "npm-run-all": "^4.1.5",
           tape: "^5.9.0",
-          tsup: "^8.3.5",
-          tsx: "^4.19.2",
+          tsup: "^8.4.0",
+          tsx: "^4.19.4",
         },
       },
       includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
@@ -236,8 +235,8 @@ export default {
         },
         devDependencies: {
           "@types/benchmark": "^2.1.5",
-          "@types/tape": "^4.13.4",
-          typescript: "^5.5.4",
+          "@types/tape": "^5.8.1",
+          typescript: "^5.8.3",
         },
       },
       includePackages: TS_PACKAGES,
