@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-grid",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Creates a grid of points within a bounding box.",
   "author": "Turf Authors",
   "contributors": [

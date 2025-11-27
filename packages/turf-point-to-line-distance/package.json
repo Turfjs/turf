@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-to-line-distance",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Calculates the distance between a given point and the nearest point on a line.",
   "author": "Turf Authors",
   "contributors": [

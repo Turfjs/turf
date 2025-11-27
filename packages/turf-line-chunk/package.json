@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-chunk",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Divides a LineString into chunks of a specified length.",
   "author": "Turf Authors",
   "contributors": [

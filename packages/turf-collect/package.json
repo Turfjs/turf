@@ -1,6 +1,6 @@
 {
   "name": "@turf/collect",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Merges a specified property from a FeatureCollection of points into a FeatureCollection of polygons.",
   "author": "Turf Authors",
   "contributors": [
