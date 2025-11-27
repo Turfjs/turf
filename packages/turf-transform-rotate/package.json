@@ -1,6 +1,6 @@
 {
   "name": "@turf/transform-rotate",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Rotates a geometry around its center or a given point.",
   "author": "Turf Authors",
   "contributors": [

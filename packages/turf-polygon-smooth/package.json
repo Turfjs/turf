@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-smooth",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Smooths a Polygon or MultiPolygon, based on Chaikin's algorithm.",
   "author": "Turf Authors",
   "contributors": [
