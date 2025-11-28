@@ -179,14 +179,26 @@ function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   return haveFoundInteriorPoint;
 }
 
-function splitLineIntoSegments(linestring: LineString) {
+function splitLineIntoSegmentsOnPolygon(
+  linestring: LineString,
+  polygon: Polygon
+) {
   const coords = linestring.coordinates;
 
-  const segments = coords
-    .slice(1)
-    .map((coord, i) => lineString([coords[i], coord]));
+  const outputSegments: Feature<LineString>[] = [];
 
-  return featureCollection(segments);
+  for (let i = 0; i < coords.length - 1; i++) {
+    const seg = lineString([coords[i], coords[i + 1]]);
+    const split = lineSplit(seg, feature(polygon));
+
+    if (split.features.length === 0) {
+      outputSegments.push(seg);
+    } else {
+      outputSegments.push(...split.features);
+    }
+  }
+
+  return featureCollection(outputSegments);
 }
 
 function isLineInPoly(polygon: Polygon, linestring: LineString) {
@@ -203,11 +215,8 @@ function isLineInPoly(polygon: Polygon, linestring: LineString) {
     }
   }
 
-  let lineSegments = lineSplit(feature(linestring), feature(polygon));
-
-  if (!lineSegments.features.length) {
-    lineSegments = splitLineIntoSegments(linestring);
-  }
+  let isContainedByPolygonBoundary = false;
+  const lineSegments = splitLineIntoSegmentsOnPolygon(linestring, polygon);
 
   for (const lineSegment of lineSegments.features) {
     const midpoint = getMidpoint(
@@ -215,12 +224,19 @@ function isLineInPoly(polygon: Polygon, linestring: LineString) {
       lineSegment.geometry.coordinates[1]
     );
 
-    if (!booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })) {
+    if (!booleanPointInPolygon(midpoint, polygon)) {
       return false;
+    }
+
+    if (
+      !isContainedByPolygonBoundary &&
+      booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })
+    ) {
+      isContainedByPolygonBoundary = true;
     }
   }
 
-  return true;
+  return isContainedByPolygonBoundary;
 }
 
 /**
