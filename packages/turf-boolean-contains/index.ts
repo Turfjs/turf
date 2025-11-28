@@ -12,7 +12,7 @@ import { bbox as calcBbox } from "@turf/bbox";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { booleanPointOnLine as isPointOnLine } from "@turf/boolean-point-on-line";
 import { getGeom } from "@turf/invariant";
-import { feature } from "@turf/helpers";
+import { feature, featureCollection, lineString } from "@turf/helpers";
 import { lineSplit } from "@turf/line-split";
 
 /**
@@ -179,6 +179,16 @@ function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   return haveFoundInteriorPoint;
 }
 
+function splitLineIntoSegments(linestring: LineString) {
+  const coords = linestring.coordinates;
+
+  const segments = coords
+    .slice(1)
+    .map((coord, i) => lineString([coords[i], coord]));
+
+  return featureCollection(segments);
+}
+
 function isLineInPoly(polygon: Polygon, linestring: LineString) {
   const polyBbox = calcBbox(polygon);
   const lineBbox = calcBbox(linestring);
@@ -193,8 +203,11 @@ function isLineInPoly(polygon: Polygon, linestring: LineString) {
     }
   }
 
-  let isContainedByPolygonBoundary = false;
-  const lineSegments = lineSplit(feature(linestring), feature(polygon));
+  let lineSegments = lineSplit(feature(linestring), feature(polygon));
+
+  if (!lineSegments.features.length) {
+    lineSegments = splitLineIntoSegments(linestring);
+  }
 
   for (const lineSegment of lineSegments.features) {
     const midpoint = getMidpoint(
@@ -202,19 +215,12 @@ function isLineInPoly(polygon: Polygon, linestring: LineString) {
       lineSegment.geometry.coordinates[1]
     );
 
-    if (!booleanPointInPolygon(midpoint, polygon)) {
+    if (!booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })) {
       return false;
-    }
-
-    if (
-      !isContainedByPolygonBoundary &&
-      booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })
-    ) {
-      isContainedByPolygonBoundary = true;
     }
   }
 
-  return isContainedByPolygonBoundary;
+  return true;
 }
 
 /**
