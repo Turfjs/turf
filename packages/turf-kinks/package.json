@@ -1,6 +1,6 @@
 {
   "name": "@turf/kinks",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Takes a GeoJSON feature and returns points at all self-intersections.",
   "author": "Turf Authors",
   "license": "MIT",

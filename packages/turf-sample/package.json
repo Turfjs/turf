@@ -1,6 +1,6 @@
 {
   "name": "@turf/sample",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Takes a FeatureCollection and returns a FeatureCollection with given number of features at random.",
   "author": "Turf Authors",
   "license": "MIT",

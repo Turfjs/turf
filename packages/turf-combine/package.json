@@ -1,6 +1,6 @@
 {
   "name": "@turf/combine",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "description": "Combines a FeatureCollection of Point, LineString, or Polygon features into MultiPoint, MultiLineString, or MultiPolygon features.",
   "author": "Turf Authors",
   "license": "MIT",
