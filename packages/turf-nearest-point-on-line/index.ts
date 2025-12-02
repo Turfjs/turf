@@ -71,16 +71,16 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     pointDistance: Infinity,
   });
 
-  let length = 0.0;
-  let multiFeatureLength = 0.0;
-  let currentMultiFeatureIndex = -1;
+  let totalDistance = 0.0;
+  let lineDistance = 0.0;
+  let currentLineStringIndex = -1;
   flattenEach(
     lines,
-    function (line: any, _featureIndex: number, multiFeatureIndex: number) {
-      //reset multiFeatureLength at each changed multiFeatureIndex
-      if (currentMultiFeatureIndex !== multiFeatureIndex) {
-        currentMultiFeatureIndex = multiFeatureIndex;
-        multiFeatureLength = 0.0;
+    function (line: any, _featureIndex: number, lineStringIndex: number) {
+      //reset lineDistance at each changed lineStringIndex
+      if (currentLineStringIndex !== lineStringIndex) {
+        currentLineStringIndex = lineStringIndex;
+        lineDistance = 0.0;
       }
 
       const coords: any = getCoords(line);
@@ -94,8 +94,8 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         const stop: Feature<Point, { dist: number }> = point(coords[i + 1]);
         const stopPos = getCoord(stop);
 
-        // sectionLength
-        const sectionLength = distance(start, stop, options);
+        // segmentLength
+        const segmentLength = distance(start, stop, options);
         let intersectPos: Position;
         let wasEnd: boolean;
 
@@ -118,22 +118,22 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         const pointDistance = distance(inputPoint, intersectPos, options);
 
         if (pointDistance < closestPt.properties.pointDistance) {
-          const lineLocationDist = distance(start, intersectPos, options);
+          const segmentDistance = distance(start, intersectPos, options);
           closestPt = point(intersectPos, {
-            lineStringIndex: multiFeatureIndex,
+            lineStringIndex: lineStringIndex,
             // Legacy behaviour where index progresses to next segment
             // if we went with the end point this iteration.
             segmentIndex: wasEnd ? i + 1 : i,
-            totalDistance: length + lineLocationDist,
-            lineDistance: multiFeatureLength + lineLocationDist,
-            segmentDistance: lineLocationDist,
+            totalDistance: totalDistance + segmentDistance,
+            lineDistance: lineDistance + segmentDistance,
+            segmentDistance: segmentDistance,
             pointDistance: pointDistance,
           });
         }
 
-        // update length and multiFeatureLength
-        length += sectionLength;
-        multiFeatureLength += sectionLength;
+        // update totalDistance and lineDistance
+        totalDistance += segmentLength;
+        lineDistance += segmentLength;
       }
     }
   );
