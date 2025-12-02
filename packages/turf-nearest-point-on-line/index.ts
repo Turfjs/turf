@@ -53,6 +53,12 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     lineDistance: number;
     segmentDistance: number;
     pointDistance: number;
+    // deprecated properties START
+    multiFeatureIndex: number; // replaced by lineStringIndex
+    index: number; // replaced by segmentIndex
+    location: number; // replaced by totalDistance
+    dist: number; // replaced by pointDistance
+    // deprecated properties END
     [key: string]: any;
   }
 > {
@@ -69,6 +75,12 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     lineDistance: -1,
     segmentDistance: -1,
     pointDistance: Infinity,
+    // deprecated properties START
+    multiFeatureIndex: -1,
+    index: -1,
+    location: -1,
+    dist: Infinity,
+    // deprecated properties END
   });
 
   let totalDistance = 0.0;
@@ -128,7 +140,20 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
             lineDistance: lineDistance + segmentDistance,
             segmentDistance: segmentDistance,
             pointDistance: pointDistance,
+            // deprecated properties START
+            multiFeatureIndex: -1,
+            index: -1,
+            location: -1,
+            dist: Infinity,
           });
+          closestPt.properties = {
+            ...closestPt.properties,
+            multiFeatureIndex: closestPt.properties.lineStringIndex,
+            index: closestPt.properties.segmentIndex,
+            location: closestPt.properties.totalDistance,
+            dist: closestPt.properties.pointDistance,
+            // deprecated properties END
+          };
         }
 
         // update totalDistance and lineDistance

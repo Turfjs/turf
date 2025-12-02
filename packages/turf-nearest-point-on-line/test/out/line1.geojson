@@ -45,6 +45,10 @@
         "lineDistance": 22.137494,
         "segmentDistance": 3.445915,
         "pointDistance": 2.556271,
+        "dist": 2.556271,
+        "multiFeatureIndex": 0,
+        "location": 22.137494,
+        "index": 1,
         "marker-color": "#F0F"
       },
       "geometry": {
