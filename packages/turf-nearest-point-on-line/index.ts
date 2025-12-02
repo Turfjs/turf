@@ -22,7 +22,7 @@ import { getCoord, getCoords } from "@turf/invariant";
  * @param {Geometry|Feature<Point>|number[]} inputPoint Point to snap from
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
- * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point, `multiFeatureLocation`: distance along the line between start of the `MultiLineString` where closest point was found and the closest point.
+ * @returns {Feature<Point>} closest point on the `lines` to the `inputPoint`. The point will have the following properties: `lineStringIndex`: closest point was found on the nth LineString (only relevant if input is MultiLineString), `segmentIndex`: closest point was found on nth line segment of the LineString, `totalDistance`: distance along the line from the absolute start of the MultiLineString, `lineDistance`: distance along the line from the start of the LineString where the closest point was found, `segmentDistance`: distance along the line from the start of the line segment where the closest point was found, `pointDistance`: distance to the input point.
  * @example
  * var line = turf.lineString([
  *     [-77.031669, 38.878605],
@@ -47,11 +47,12 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
 ): Feature<
   Point,
   {
-    dist: number;
-    index: number;
-    multiFeatureIndex: number;
-    location: number;
-    multiFeatureLocation: number;
+    lineStringIndex: number;
+    segmentIndex: number;
+    totalDistance: number;
+    lineDistance: number;
+    segmentDistance: number;
+    pointDistance: number;
     [key: string]: any;
   }
 > {
@@ -61,21 +62,13 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
 
   const inputPos = getCoord(inputPoint);
 
-  let closestPt: Feature<
-    Point,
-    {
-      dist: number;
-      index: number;
-      multiFeatureIndex: number;
-      location: number;
-      multiFeatureLocation: number;
-    }
-  > = point([Infinity, Infinity], {
-    dist: Infinity,
-    index: -1,
-    multiFeatureIndex: -1,
-    location: -1,
-    multiFeatureLocation: -1,
+  let closestPt = point([Infinity, Infinity], {
+    lineStringIndex: -1,
+    segmentIndex: -1,
+    totalDistance: -1,
+    lineDistance: -1,
+    segmentDistance: -1,
+    pointDistance: Infinity,
   });
 
   let length = 0.0;
@@ -122,24 +115,20 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
           );
         }
 
-        const lineLocationDist = distance(start, intersectPos, options);
-        const intersectPt = point(intersectPos, {
-          dist: distance(inputPoint, intersectPos, options),
-          multiFeatureIndex: multiFeatureIndex,
-          location: length + lineLocationDist,
-          multiFeatureLocation: multiFeatureLength + lineLocationDist,
-        });
+        const pointDistance = distance(inputPoint, intersectPos, options);
 
-        if (intersectPt.properties.dist < closestPt.properties.dist) {
-          closestPt = {
-            ...intersectPt,
-            properties: {
-              ...intersectPt.properties,
-              // Legacy behaviour where index progresses to next segment # if we
-              // went with the end point this iteration.
-              index: wasEnd ? i + 1 : i,
-            },
-          };
+        if (pointDistance < closestPt.properties.pointDistance) {
+          const lineLocationDist = distance(start, intersectPos, options);
+          closestPt = point(intersectPos, {
+            lineStringIndex: multiFeatureIndex,
+            // Legacy behaviour where index progresses to next segment
+            // if we went with the end point this iteration.
+            segmentIndex: wasEnd ? i + 1 : i,
+            totalDistance: length + lineLocationDist,
+            lineDistance: multiFeatureLength + lineLocationDist,
+            segmentDistance: lineLocationDist,
+            pointDistance: pointDistance,
+          });
         }
 
         // update length and multiFeatureLength

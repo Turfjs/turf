@@ -37,13 +37,16 @@ test("turf-nearest-point-on-line", (t) => {
   for (const { name, filename, geojson } of fixtures) {
     const [line, point] = geojson.features;
     const onLine = nearestPointOnLine(line, point);
-    onLine.properties["marker-color"] = "#F0F";
-    onLine.properties.dist = round(onLine.properties.dist, 6);
-    onLine.properties.location = round(onLine.properties.location, 6);
-    onLine.properties.multiFeatureLocation = round(
-      onLine.properties.multiFeatureLocation,
+    onLine.geometry.coordinates[0] = round(onLine.geometry.coordinates[0], 6);
+    onLine.geometry.coordinates[1] = round(onLine.geometry.coordinates[1], 6);
+    onLine.properties.totalDistance = round(onLine.properties.totalDistance, 6);
+    onLine.properties.lineDistance = round(onLine.properties.lineDistance, 6);
+    onLine.properties.segmentDistance = round(
+      onLine.properties.segmentDistance,
       6
     );
+    onLine.properties.pointDistance = round(onLine.properties.pointDistance, 6);
+    onLine.properties["marker-color"] = "#F0F";
     const between = lineString(
       [onLine.geometry.coordinates, point.geometry.coordinates],
       { stroke: "#F00", "stroke-width": 6 }
@@ -79,9 +82,9 @@ test("turf-nearest-point-on-line - first point", (t) => {
     "pt on start does not move"
   );
   t.equal(
-    Number(snapped.properties.location.toFixed(6)),
+    Number(snapped.properties.totalDistance.toFixed(6)),
     0,
-    "properties.location"
+    "properties.totalDistance"
   );
 
   t.end();
@@ -108,7 +111,7 @@ test("turf-nearest-point-on-line - points behind first point", (t) => {
       first.geometry.coordinates,
       "pt behind start moves to first vertex"
     );
-    expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
+    expectedLocation.push(Number(snapped.properties.totalDistance.toFixed(6)));
   });
 
   const filepath =
@@ -117,7 +120,7 @@ test("turf-nearest-point-on-line - points behind first point", (t) => {
   t.deepEqual(
     loadJsonFileSync(filepath),
     expectedLocation,
-    "properties.location"
+    "properties.totalDistance"
   );
   t.end();
 });
@@ -146,7 +149,7 @@ test("turf-nearest-point-on-line - points in front of last point", (t) => {
       last.geometry.coordinates,
       "pt behind start moves to last vertex"
     );
-    expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
+    expectedLocation.push(Number(snapped.properties.totalDistance.toFixed(6)));
   });
 
   const filepath =
@@ -155,7 +158,7 @@ test("turf-nearest-point-on-line - points in front of last point", (t) => {
   t.deepEqual(
     loadJsonFileSync(filepath),
     expectedLocation,
-    "properties.location"
+    "properties.totalDistance"
   );
   t.end();
 });
@@ -209,7 +212,9 @@ test("turf-nearest-point-on-line - points on joints", (t) => {
           "pt on joint stayed in place"
         );
         if (!expectedLocation[i]) expectedLocation[i] = [];
-        expectedLocation[i][j] = Number(snapped.properties.location.toFixed(6));
+        expectedLocation[i][j] = Number(
+          snapped.properties.totalDistance.toFixed(6)
+        );
       });
   });
 
@@ -218,7 +223,7 @@ test("turf-nearest-point-on-line - points on joints", (t) => {
   t.deepEqual(
     expectedLocation,
     loadJsonFileSync(filepath),
-    "properties.location"
+    "properties.totalDistance"
   );
   t.end();
 });
@@ -249,7 +254,7 @@ test("turf-nearest-point-on-line - points on top of line", (t) => {
     const snapped = nearestPointOnLine(line, pt, { units: "miles" });
     const shift = distance(pt, snapped, { units: "miles" });
     t.true(shift < 0.000001, "pt did not shift far");
-    expectedLocation.push(Number(snapped.properties.location.toFixed(6)));
+    expectedLocation.push(Number(snapped.properties.totalDistance.toFixed(6)));
   }
 
   const filepath =
@@ -258,7 +263,7 @@ test("turf-nearest-point-on-line - points on top of line", (t) => {
   t.deepEqual(
     expectedLocation,
     loadJsonFileSync(filepath),
-    "properties.location"
+    "properties.totalDistance"
   );
   t.end();
 });
@@ -324,11 +329,11 @@ test("turf-nearest-point-on-line - check dist and index", (t) => {
   const pt = point([-92.110576, 41.040649]);
   const snapped = truncate(nearestPointOnLine(line, pt));
 
-  t.equal(snapped.properties.index, 8, "properties.index");
+  t.equal(snapped.properties.segmentIndex, 8, "properties.segmentIndex");
   t.equal(
-    Number(snapped.properties.dist.toFixed(6)),
+    Number(snapped.properties.pointDistance.toFixed(6)),
     0.823802,
-    "properties.dist"
+    "properties.pointDistance"
   );
   t.deepEqual(
     snapped.geometry.coordinates,
@@ -346,9 +351,9 @@ test("turf-nearest-point-on-line -- Issue #691", (t) => {
     [9, 50],
   ]);
   const pointAlong = along(line1, 10);
-  const { location } = nearestPointOnLine(line1, pointAlong).properties;
+  const { totalDistance } = nearestPointOnLine(line1, pointAlong).properties;
 
-  t.false(isNaN(location));
+  t.false(isNaN(totalDistance));
   t.end();
 });
 
@@ -396,9 +401,9 @@ test("turf-nearest-point-on-line -- multifeature index", (t) => {
     ],
   ]);
   t.equal(
-    nearestPointOnLine(multiLine.geometry, pt).properties.multiFeatureIndex,
+    nearestPointOnLine(multiLine.geometry, pt).properties.lineStringIndex,
     1,
-    "multiFeatureIndex"
+    "properties.lineStringIndex"
   );
   t.end();
 });
@@ -422,14 +427,14 @@ test("turf-nearest-point-on-line -- issue 2753 multifeature location", (t) => {
   const nearestToB = nearestPointOnLine(multiLine, ptB, { units: "meters" });
 
   t.equal(
-    Number(nearestToA.properties.multiFeatureLocation.toFixed(6)),
+    Number(nearestToA.properties.lineDistance.toFixed(6)),
     150.296465,
-    "nearestToA multiFeatureLocation"
+    "nearestToA lineDistance"
   );
   t.equal(
-    Number(nearestToB.properties.multiFeatureLocation.toFixed(6)),
+    Number(nearestToB.properties.lineDistance.toFixed(6)),
     157.738215,
-    "nearestToB multiFeatureLocation"
+    "nearestToB lineDistance"
   );
   t.end();
 });
@@ -549,7 +554,7 @@ test("turf-nearest-point-on-line -- issue 2808 redundant point support", (t) => 
   const thePoint = point([10.57846, 49.8468386]);
 
   const nearest = nearestPointOnLine(line1, thePoint); // should not throw
-  t.equal(nearest.properties.dist, 0, "redundant point should not throw");
+  t.equal(nearest.properties.pointDistance, 0, "redundant point support");
 
   t.end();
 });
@@ -563,8 +568,8 @@ test("turf-nearest-point-on-line -- duplicate points on line string shouldn't br
   ]);
   const userPoint = point([-80.191762, 25.885587]);
   const nearest = nearestPointOnLine(line, userPoint, { units: "meters" });
-  t.equal(nearest.properties.dist > 4, true, "dist should be greater than 4");
-  t.equal(nearest.properties.location, 0, "location should be 0");
+  t.equal(nearest.properties.pointDistance > 4, true, "pointDistance be > 4");
+  t.equal(nearest.properties.totalDistance, 0, "totalDistance be 0");
   t.end();
 });
 

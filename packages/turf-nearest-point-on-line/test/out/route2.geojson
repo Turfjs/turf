@@ -3796,11 +3796,12 @@
     {
       "type": "Feature",
       "properties": {
-        "dist": 19.22738,
-        "multiFeatureIndex": 0,
-        "location": 303.639629,
-        "multiFeatureLocation": 303.639629,
-        "index": 1185,
+        "lineStringIndex": 0,
+        "segmentIndex": 1185,
+        "totalDistance": 303.639629,
+        "lineDistance": 303.639629,
+        "segmentDistance": 0.867249,
+        "pointDistance": 19.22738,
         "marker-color": "#F0F"
       },
       "geometry": {

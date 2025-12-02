@@ -67,11 +67,12 @@
     {
       "type": "Feature",
       "properties": {
-        "dist": 114.725451,
-        "index": 21,
-        "multiFeatureIndex": 1,
-        "location": 9479.011715,
-        "multiFeatureLocation": 4800.716022,
+        "lineStringIndex": 1,
+        "segmentIndex": 21,
+        "totalDistance": 9479.011715,
+        "lineDistance": 4800.716022,
+        "segmentDistance": 173.221741,
+        "pointDistance": 114.725451,
         "marker-color": "#F0F"
       },
       "geometry": {
