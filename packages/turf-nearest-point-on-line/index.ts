@@ -18,8 +18,8 @@ import { getCoord, getCoords } from "@turf/invariant";
  * on the line.
  *
  * @function
- * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
- * @param {Geometry|Feature<Point>|number[]} pt point to snap from
+ * @param {Geometry|Feature<LineString|MultiLineString>} lines Lines to snap to
+ * @param {Geometry|Feature<Point>|number[]} inputPoint Point to snap from
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point, `multiFeatureLocation`: distance along the line between start of the `MultiLineString` where closest point was found and the closest point.
@@ -32,17 +32,17 @@ import { getCoord, getCoords } from "@turf/invariant";
  *     [-77.021884, 38.889563],
  *     [-77.019824, 38.892368]
  * ]);
- * var pt = turf.point([-77.037076, 38.884017]);
+ * var inputPoint = turf.point([-77.037076, 38.884017]);
  *
- * var snapped = turf.nearestPointOnLine(line, pt, {units: 'miles'});
+ * var snapped = turf.nearestPointOnLine(line, inputPoint, {units: 'miles'});
  *
  * //addToMap
- * var addToMap = [line, pt, snapped];
+ * var addToMap = [line, inputPoint, snapped];
  * snapped.properties['marker-color'] = '#00f';
  */
 function nearestPointOnLine<G extends LineString | MultiLineString>(
   lines: Feature<G> | G,
-  pt: Coord,
+  inputPoint: Coord,
   options: { units?: Units } = {}
 ): Feature<
   Point,
@@ -55,11 +55,11 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     [key: string]: any;
   }
 > {
-  if (!lines || !pt) {
-    throw new Error("lines and pt are required arguments");
+  if (!lines || !inputPoint) {
+    throw new Error("lines and inputPoint are required arguments");
   }
 
-  const ptPos = getCoord(pt);
+  const inputPos = getCoord(inputPoint);
 
   let closestPt: Feature<
     Point,
@@ -109,22 +109,22 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         // Short circuit if snap point is start or end position of the line
         // Test the end position first for consistency in case they are
         // coincident
-        if (stopPos[0] === ptPos[0] && stopPos[1] === ptPos[1]) {
+        if (stopPos[0] === inputPos[0] && stopPos[1] === inputPos[1]) {
           [intersectPos, wasEnd] = [stopPos, true];
-        } else if (startPos[0] === ptPos[0] && startPos[1] === ptPos[1]) {
+        } else if (startPos[0] === inputPos[0] && startPos[1] === inputPos[1]) {
           [intersectPos, wasEnd] = [startPos, false];
         } else {
           // Otherwise, find the nearest point the hard way.
           [intersectPos, wasEnd] = nearestPointOnSegment(
             startPos,
             stopPos,
-            ptPos
+            inputPos
           );
         }
 
         const lineLocationDist = distance(start, intersectPos, options);
         const intersectPt = point(intersectPos, {
-          dist: distance(pt, intersectPos, options),
+          dist: distance(inputPoint, intersectPos, options),
           multiFeatureIndex: multiFeatureIndex,
           location: length + lineLocationDist,
           multiFeatureLocation: multiFeatureLength + lineLocationDist,
