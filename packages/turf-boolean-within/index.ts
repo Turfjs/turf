@@ -16,10 +16,9 @@ import { feature, featureCollection, lineString } from "@turf/helpers";
 import { lineSplit } from "@turf/line-split";
 
 /**
- * Boolean-within returns true if the first geometry is completely within the second geometry.
- * The interiors of both geometries must intersect and, the interior and boundary of the primary (geometry a)
- * must not intersect the exterior of the secondary (geometry b).
- * Boolean-within returns the exact opposite result of the `@turf/boolean-contains`.
+ * Tests whether geometry a is contained by geometry b.
+ * The interiors of both geometries must intersect, and the interior and boundary of geometry a must not intersect the exterior of geometry b.
+ * booleanWithin(a, b) is equivalent to booleanContains(b, a)
  *
  * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
@@ -204,6 +203,7 @@ function isLineInPoly(linestring: LineString, polygon: Polygon) {
   }
 
   let isContainedByPolygonBoundary = false;
+  // split intersecting segments and verify their inclusion
   const lineSegments = splitLineIntoSegmentsOnPolygon(linestring, polygon);
 
   for (const lineSegment of lineSegments.features) {
@@ -212,10 +212,12 @@ function isLineInPoly(linestring: LineString, polygon: Polygon) {
       lineSegment.geometry.coordinates[1]
     );
 
+    // make sure all segments do not intersect with polygon exterior
     if (!booleanPointInPolygon(midpoint, polygon)) {
       return false;
     }
 
+    // make sure at least 1 segment intersects with the polygon's interior
     if (
       !isContainedByPolygonBoundary &&
       booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })
