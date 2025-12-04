@@ -47,8 +47,8 @@ test("turf-nearest-point-on-line", (t) => {
     );
     onLine.properties.pointDistance = round(onLine.properties.pointDistance, 6);
     // deprecated properties START
-    onLine.properties.location = round(onLine.properties.location, 6);
     onLine.properties.dist = round(onLine.properties.dist, 6);
+    onLine.properties.location = round(onLine.properties.location, 6);
     // deprecated properties END
     onLine.properties["marker-color"] = "#F0F";
     const between = lineString(
@@ -318,7 +318,7 @@ test("turf-nearest-point-on-line - points on sides of lines", (t) => {
   t.end();
 });
 
-test("turf-nearest-point-on-line - check dist and index", (t) => {
+test("turf-nearest-point-on-line - segmentIndex and pointDistance", (t) => {
   const line = lineString([
     [-92.090492, 41.102897],
     [-92.191085, 41.079868],
@@ -390,7 +390,7 @@ test("turf-nearest-point-on-line -- Geometry Support", (t) => {
   t.end();
 });
 
-test("turf-nearest-point-on-line -- multifeature index", (t) => {
+test("turf-nearest-point-on-line -- lineStringIndex", (t) => {
   const pt = point([4, 30]);
   const multiLine = multiLineString([
     [
@@ -412,7 +412,7 @@ test("turf-nearest-point-on-line -- multifeature index", (t) => {
   t.end();
 });
 
-test("turf-nearest-point-on-line -- issue 2753 multifeature location", (t) => {
+test("turf-nearest-point-on-line -- issue 2753", (t) => {
   const multiLine = multiLineString([
     [
       [-122.3125, 47.6632],
