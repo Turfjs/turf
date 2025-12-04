@@ -54,10 +54,14 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     segmentDistance: number;
     pointDistance: number;
     // deprecated properties START
-    multiFeatureIndex: number; // replaced by lineStringIndex
-    index: number; // replaced by segmentIndex
-    location: number; // replaced by totalDistance
-    dist: number; // replaced by pointDistance
+    /** @deprecated use `lineStringIndex` instead */
+    multiFeatureIndex: number;
+    /** @deprecated use `segmentIndex` instead */
+    index: number;
+    /** @deprecated use `totalDistance` instead */
+    location: number;
+    /** @deprecated use `pointDistance` instead */
+    dist: number;
     // deprecated properties END
     [key: string]: any;
   }
