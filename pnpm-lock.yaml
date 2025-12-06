@@ -964,6 +964,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:*
         version: link:../turf-invariant
+      '@turf/line-split':
+        specifier: workspace:*
+        version: link:../turf-line-split
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
@@ -1548,6 +1551,9 @@ importers:
       '@turf/invariant':
         specifier: workspace:*
         version: link:../turf-invariant
+      '@turf/line-split':
+        specifier: workspace:*
+        version: link:../turf-line-split
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
