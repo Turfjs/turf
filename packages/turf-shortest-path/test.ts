@@ -55,3 +55,30 @@ test("turf-shortest-path", (t) => {
   }
   t.end();
 });
+
+test("turf-shortest-path -- with polygon feature as obstacle", (t) => {
+  const filename = "simple.json";
+  const geojson = loadJsonFileSync(directories.in + filename);
+
+  const start = geojson.features.shift();
+  const end = geojson.features.shift();
+  const obstacle = geojson.features.shift();
+
+  const path = truncate(
+    shortestPath(start, end, {
+      ...geojson.properties,
+      obstacles: obstacle,
+    })
+  );
+  path.properties["stroke"] = "#F00";
+  path.properties["stroke-width"] = 5;
+
+  const results = featureCollection([]);
+  results.features.push(obstacle);
+  results.features.push(point(getCoord(start), start.properties));
+  results.features.push(point(getCoord(end), end.properties));
+  results.features.push(path);
+
+  t.deepEqual(results, loadJsonFileSync(directories.out + filename), "simple");
+  t.end();
+});

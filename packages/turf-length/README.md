@@ -11,7 +11,7 @@ Takes a [GeoJSON][1] and measures its length in the specified units, [(Multi)Poi
 *   `geojson` **[Feature][3]<([LineString][4] | [MultiLineString][5])>** GeoJSON to measure
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][7]** can be degrees, radians, miles, or kilometers (optional, default `kilometers`)
+    *   `options.units` **Units** Supports all valid Turf [Units][7]. (optional, default `kilometers`)
 
 ### Examples
 
@@ -38,7 +38,7 @@ Returns **[number][8]** length of GeoJSON
 
 [6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[7]: https://turfjs.org/docs/api/types/Units
 
 [8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 

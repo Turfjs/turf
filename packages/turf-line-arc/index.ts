@@ -14,7 +14,7 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps (straight segments) that will constitute the arc
- * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {Feature<LineString>} line arc
  * @example
  * var center = turf.point([-75, 40]);

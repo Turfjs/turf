@@ -1,0 +1,47 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "description": "Result index should be 2 as there is a third segment and matches to an endpoint bump to the start of the next segment"
+      },
+      "geometry": {
+        "coordinates": [
+          [151.12342, -29.776038],
+          [151.112785, -29.783069],
+          [151.119935, -29.764135],
+          [151.107173, -29.768495]
+        ],
+        "type": "LineString"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "stroke": "#F00", "stroke-width": 6 },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [151.119935, -29.764135],
+          [151.12207, -29.761332]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "marker-color": "green" },
+      "geometry": { "coordinates": [151.12207, -29.761332], "type": "Point" }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "dist": 0.373652,
+        "multiFeatureIndex": 0,
+        "location": 3.505821,
+        "index": 2,
+        "marker-color": "#F0F"
+      },
+      "geometry": { "type": "Point", "coordinates": [151.119935, -29.764135] }
+    }
+  ]
+}

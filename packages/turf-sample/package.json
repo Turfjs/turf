@@ -1,6 +1,6 @@
 {
   "name": "@turf/sample",
-  "version": "7.2.0",
+  "version": "7.3.1",
   "description": "Takes a FeatureCollection and returns a FeatureCollection with given number of features at random.",
   "author": "Turf Authors",
   "license": "MIT",
@@ -47,21 +47,20 @@
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
     "docs": "tsx ../../scripts/generate-readmes.ts",
-    "test": "npm-run-all --npm-path npm test:*",
+    "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",
-    "@types/tape": "^4.13.4",
+    "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
-    "npm-run-all": "^4.1.5",
     "tape": "^5.9.0",
-    "tsup": "^8.3.5",
-    "tsx": "^4.19.2",
-    "typescript": "^5.5.4"
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@turf/helpers": "workspace:^",
+    "@turf/helpers": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }
