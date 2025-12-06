@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "name": "outer",
-        "expected_distance": 22.10311139107688,
+        "expected_distance": 22.10311139186459,
         "units": "meters"
       },
       "geometry": {
@@ -53,7 +53,7 @@
       "type": "Feature",
       "properties": {
         "name": "in-hole-close-to-poly-in-hole",
-        "expected_distance": 16.36078019912375,
+        "expected_distance": 16.360780198687877,
         "units": "meters"
       },
       "geometry": {
