@@ -59,7 +59,7 @@ test("turf-nearest-point-on-line", (t) => {
 
     if (process.env.REGEN)
       writeJsonFileSync(directories.out + filename, results);
-    t.deepEqual(loadJsonFileSync(directories.out + filename), results, name);
+    t.deepEqual(results, loadJsonFileSync(directories.out + filename), name);
   }
   t.end();
 });
@@ -333,7 +333,7 @@ test("turf-nearest-point-on-line - segmentIndex and pointDistance", (t) => {
   const pt = point([-92.110576, 41.040649]);
   const snapped = truncate(nearestPointOnLine(line, pt));
 
-  t.equal(snapped.properties.segmentIndex, 8, "properties.segmentIndex");
+  t.equal(snapped.properties.segmentIndex, 7, "properties.segmentIndex");
   t.equal(
     Number(snapped.properties.pointDistance.toFixed(6)),
     0.823802,

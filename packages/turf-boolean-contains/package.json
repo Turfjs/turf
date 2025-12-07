@@ -5,7 +5,8 @@
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",
-    "Denis Carriere <@DenisCarriere>"
+    "Denis Carriere <@DenisCarriere>",
+    "Samuel Arbibe <@samuelarbibe>"
   ],
   "license": "MIT",
   "bugs": {
@@ -73,6 +74,7 @@
     "@turf/boolean-point-on-line": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
+    "@turf/line-split": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }

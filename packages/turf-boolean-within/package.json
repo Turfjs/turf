@@ -4,7 +4,8 @@
   "description": "Determines whether the first geometry is completely within the second geometry.",
   "author": "Turf Authors",
   "contributors": [
-    "Rowan Winsemius <@rowanwins>"
+    "Rowan Winsemius <@rowanwins>",
+    "Samuel Arbibe <@samuelarbibe>"
   ],
   "license": "MIT",
   "bugs": {
@@ -75,6 +76,7 @@
     "@turf/boolean-point-on-line": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
+    "@turf/line-split": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }
