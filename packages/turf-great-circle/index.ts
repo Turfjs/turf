@@ -1,6 +1,12 @@
-import { lineString } from "@turf/helpers";
+import { type Coord, lineString } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 import { GreatCircle } from "./lib/arc.js";
+import {
+  Feature,
+  GeoJsonProperties,
+  LineString,
+  MultiLineString,
+} from "geojson";
 
 /**
  * Calculate great circles routes as {@link LineString} or {@link MultiLineString}.
@@ -26,7 +32,15 @@ import { GreatCircle } from "./lib/arc.js";
  * //addToMap
  * var addToMap = [start, end, greatCircle]
  */
-function greatCircle(start, end, options) {
+function greatCircle(
+  start: Coord,
+  end: Coord,
+  options?: {
+    properties?: GeoJsonProperties;
+    npoints?: number;
+    offset?: number;
+  }
+): Feature<LineString | MultiLineString> {
   // Optional parameters
   options = options || {};
   if (typeof options !== "object") throw new Error("options is invalid");
@@ -56,7 +70,9 @@ function greatCircle(start, end, options) {
 
   var line = generator.Arc(npoints, { offset: offset });
 
-  return line.json();
+  // We narrow the type of the library's .json call based on what it actually returns from Arc.json()
+  // A MultiLineString is expected if the arc crosses the antimeridian
+  return line.json() as Feature<LineString | MultiLineString>;
 }
 
 export { greatCircle };
