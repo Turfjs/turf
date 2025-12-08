@@ -3047,6 +3047,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      arc:
+        specifier: ^0.2.0
+        version: 0.2.0
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -7967,6 +7970,10 @@ packages:
 
   aproba@2.0.0:
     resolution: {integrity: sha512-lYe4Gx7QT+MKGbDsA+Z+he/Wtef0BiwDOlK/XkBrdfsh9J/jPPXbX0tE9x9cl27Tmu5gg3QUbUrQYa/y+KOHPQ==}
+
+  arc@0.2.0:
+    resolution: {integrity: sha512-8NFOo126uYKQJyXNSLY/jSklgfLQL+XWAcPXGo876JwEQ8nSOPXWNI3TV2jLZMN8QEw8uksJ1ZwS4npjBca8MA==}
+    engines: {node: '>=0.4.0'}
 
   argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
@@ -13783,6 +13790,8 @@ snapshots:
   app-module-path@2.2.0: {}
 
   aproba@2.0.0: {}
+
+  arc@0.2.0: {}
 
   argparse@1.0.10:
     dependencies:
