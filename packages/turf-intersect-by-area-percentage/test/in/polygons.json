@@ -1,0 +1,48 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "poly1" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-10, -10], [10, -10], [10, 10], [-10, 10], [-10, -10]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "poly2" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [20, 0], [20, 20], [0, 20], [0, 0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "poly3" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[-5, -5], [5, -5], [5, 5], [-5, 5], [-5, -5]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "polyNoOverlap" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[50, 50], [60, 50], [60, 60], [50, 60], [50, 50]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "multiPoly1" },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [[[5, 5], [15, 5], [15, 15], [5, 15], [5, 5]]],
+          [[[-15, -15], [-5, -15], [-5, -5], [-15, -5], [-15, -15]]]
+        ]
+      }
+    }
+  ]
+} 
