@@ -35,9 +35,15 @@
       "type": "Feature",
       "properties": {
         "dist": 0.373652,
-        "multiFeatureIndex": 0,
         "location": 3.505821,
         "index": 1,
+        "multiFeatureIndex": 0,
+        "lineStringIndex": 0,
+        "segmentIndex": 1,
+        "totalDistance": 3.505821,
+        "lineDistance": 3.505821,
+        "segmentDistance": 2.215582,
+        "pointDistance": 0.373652,
         "marker-color": "#F0F"
       },
       "geometry": { "type": "Point", "coordinates": [151.119935, -29.764135] }
