@@ -20,7 +20,8 @@ this function. The new properties we recommend using as of v7.4 are:
 *   segmentDistance - distance from the start of the relevant segment
 *   pointDistance - distance between found point is from input reference point. Previously `dist`
 
-multiFeatureIndex, location, and dist continue to work as previously until at least the next major release.
+multiFeatureIndex, index, location, and dist continue to work as previously
+until at least the next major release.
 
 ### Parameters
 

@@ -26,7 +26,8 @@ import { getCoord, getCoords } from "@turf/invariant";
  * - segmentDistance - distance from the start of the relevant segment
  * - pointDistance - distance between found point is from input reference point. Previously `dist`
  *
- * multiFeatureIndex, location, and dist continue to work as previously until at least the next major release.
+ * multiFeatureIndex, index, location, and dist continue to work as previously
+ * until at least the next major release.
  *
  * @function
  * @param {Geometry|Feature<LineString|MultiLineString>} lines Lines to snap to
@@ -157,6 +158,7 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
             index: -1,
             location: -1,
             dist: Infinity,
+            // deprecated properties END
           });
           closestPt.properties = {
             ...closestPt.properties,
