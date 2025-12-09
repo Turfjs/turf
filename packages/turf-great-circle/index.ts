@@ -1,6 +1,14 @@
+import type {
+  Feature,
+  GeoJsonProperties,
+  LineString,
+  MultiLineString,
+  Point,
+  Position,
+} from "geojson";
 import { lineString } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
-import { GreatCircle } from "./lib/arc.js";
+import { GreatCircle } from "arc";
 
 /**
  * Calculate great circles routes as {@link LineString} or {@link MultiLineString}.
@@ -8,7 +16,7 @@ import { GreatCircle } from "./lib/arc.js";
  * be split into a `MultiLineString`. If the `start` and `end` positions are the same
  * then a `LineString` will be returned with duplicate coordinates the length of the `npoints` option.
  *
- * @function
+ * @name greatCircle
  * @param {Coord} start source point feature
  * @param {Coord} end destination point feature
  * @param {Object} [options={}] Optional parameters
@@ -26,37 +34,39 @@ import { GreatCircle } from "./lib/arc.js";
  * //addToMap
  * var addToMap = [start, end, greatCircle]
  */
-function greatCircle(start, end, options) {
+function greatCircle(
+  start: Feature<Point, GeoJsonProperties> | Point | Position,
+  end: Feature<Point, GeoJsonProperties> | Point | Position,
+  options: {
+    properties?: GeoJsonProperties;
+    npoints?: number;
+    offset?: number;
+  } = {}
+): Feature<LineString | MultiLineString> {
   // Optional parameters
-  options = options || {};
   if (typeof options !== "object") throw new Error("options is invalid");
-  var properties = options.properties;
-  var npoints = options.npoints;
-  var offset = options.offset;
+  const { properties = {}, npoints = 100, offset = 10 } = options;
 
-  start = getCoord(start);
-  end = getCoord(end);
+  const startCoord = getCoord(start);
+  const endCoord = getCoord(end);
 
-  properties = properties || {};
-  npoints = npoints || 100;
-
-  if (start[0] === end[0] && start[1] === end[1]) {
-    const arr = Array(npoints);
-    arr.fill([start[0], start[1]]);
+  if (startCoord[0] === endCoord[0] && startCoord[1] === endCoord[1]) {
+    const arr = Array(npoints).fill([startCoord[0], startCoord[1]]);
     return lineString(arr, properties);
   }
 
-  offset = offset || 10;
-
-  var generator = new GreatCircle(
-    { x: start[0], y: start[1] },
-    { x: end[0], y: end[1] },
-    properties
+  const generator = new GreatCircle(
+    { x: startCoord[0], y: startCoord[1] },
+    { x: endCoord[0], y: endCoord[1] },
+    properties || {}
   );
 
-  var line = generator.Arc(npoints, { offset: offset });
+  const line = generator.Arc(npoints, { offset: offset });
 
-  return line.json();
+  return line.json() as Feature<
+    LineString | MultiLineString,
+    GeoJsonProperties
+  >;
 }
 
 export { greatCircle };
