@@ -59,3 +59,31 @@ test("turf-nearest-point-on-line -- issue 2023", (t) => {
   );
   t.end();
 });
+
+test("issue 2946 - lineSlice didn't introduce duplicate points", (t) => {
+  // Test case copied from https://github.com/Turfjs/turf/issues/2946
+  // Values rounded to lower precision for realism. Same behaviour as
+  // originally reported though.
+  const startPt = point([2, 0]);
+  const endPt = point([2, 2]);
+  const line = lineString([
+    [2.999848, 0.000152],
+    [2, -1],
+    [2, 2],
+  ]);
+
+  const r1 = lineSlice(startPt, endPt, line);
+  t.equal(
+    r1.geometry.coordinates.length,
+    2,
+    "Two points only in the linestring"
+  );
+
+  // This part of the issue report should have already been fixed by the
+  // recent PR #2940.
+  t.doesNotThrow(() => {
+    const r2 = lineSlice(startPt, endPt, r1);
+  }, "Does not throw when called again on first result");
+
+  t.end();
+});

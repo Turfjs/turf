@@ -17,12 +17,24 @@ import { getCoord, getCoords } from "@turf/invariant";
  * have an undefined arc, this function will instead return that the point lies
  * on the line.
  *
+ * ⚠️ We have begun the process of migrating to different return properties for
+ * this function. The new properties we recommend using as of v7.4 are:
+ * - lineStringIndex - point was found on the nth LineString of an input MultiLineString. Previously `multiFeatureIndex`
+ * - segmentIndex - point was found on the nth segment of the above LineString. Previously `index`
+ * - totalDistance - distance from the start of the overall MultiLineString. Previously `location`
+ * - lineDistance - distance from the start of the relevant LineString
+ * - segmentDistance - distance from the start of the relevant segment
+ * - pointDistance - distance between found point is from input reference point. Previously `dist`
+ *
+ * multiFeatureIndex, index, location, and dist continue to work as previously
+ * until at least the next major release.
+ *
  * @function
- * @param {Geometry|Feature<LineString|MultiLineString>} lines lines to snap to
- * @param {Geometry|Feature<Point>|number[]} pt point to snap from
+ * @param {Geometry|Feature<LineString|MultiLineString>} lines Lines to snap to
+ * @param {Geometry|Feature<Point>|number[]} inputPoint Point to snap from
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
- * @returns {Feature<Point>} closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
+ * @returns {Feature<Point>} closest point on the `lines` to the `inputPoint`. The point will have the following properties: `lineStringIndex`: closest point was found on the nth LineString (only relevant if input is MultiLineString), `segmentIndex`: closest point was found on nth line segment of the LineString, `totalDistance`: distance along the line from the absolute start of the MultiLineString, `lineDistance`: distance along the line from the start of the LineString where the closest point was found, `segmentDistance`: distance along the line from the start of the line segment where the closest point was found, `pointDistance`: distance to the input point.
  * @example
  * var line = turf.lineString([
  *     [-77.031669, 38.878605],
@@ -32,49 +44,69 @@ import { getCoord, getCoords } from "@turf/invariant";
  *     [-77.021884, 38.889563],
  *     [-77.019824, 38.892368]
  * ]);
- * var pt = turf.point([-77.037076, 38.884017]);
+ * var inputPoint = turf.point([-77.037076, 38.884017]);
  *
- * var snapped = turf.nearestPointOnLine(line, pt, {units: 'miles'});
+ * var snapped = turf.nearestPointOnLine(line, inputPoint, {units: 'miles'});
  *
  * //addToMap
- * var addToMap = [line, pt, snapped];
+ * var addToMap = [line, inputPoint, snapped];
  * snapped.properties['marker-color'] = '#00f';
  */
 function nearestPointOnLine<G extends LineString | MultiLineString>(
   lines: Feature<G> | G,
-  pt: Coord,
+  inputPoint: Coord,
   options: { units?: Units } = {}
 ): Feature<
   Point,
   {
-    dist: number;
-    index: number;
+    lineStringIndex: number;
+    segmentIndex: number;
+    totalDistance: number;
+    lineDistance: number;
+    segmentDistance: number;
+    pointDistance: number;
     multiFeatureIndex: number;
+    index: number;
     location: number;
+    dist: number;
     [key: string]: any;
   }
 > {
-  if (!lines || !pt) {
-    throw new Error("lines and pt are required arguments");
+  if (!lines || !inputPoint) {
+    throw new Error("lines and inputPoint are required arguments");
   }
 
-  const ptPos = getCoord(pt);
+  const inputPos = getCoord(inputPoint);
 
-  let closestPt: Feature<
-    Point,
-    { dist: number; index: number; multiFeatureIndex: number; location: number }
-  > = point([Infinity, Infinity], {
-    dist: Infinity,
-    index: -1,
+  let closestPt = point([Infinity, Infinity], {
+    lineStringIndex: -1,
+    segmentIndex: -1,
+    totalDistance: -1,
+    lineDistance: -1,
+    segmentDistance: -1,
+    pointDistance: Infinity,
+    // deprecated properties START
     multiFeatureIndex: -1,
+    index: -1,
     location: -1,
+    dist: Infinity,
+    // deprecated properties END
   });
 
-  let length = 0.0;
+  let totalDistance = 0.0;
+  let lineDistance = 0.0;
+  let currentLineStringIndex = -1;
   flattenEach(
     lines,
-    function (line: any, _featureIndex: number, multiFeatureIndex: number) {
+    function (line: any, _featureIndex: number, lineStringIndex: number) {
+      //reset lineDistance at each changed lineStringIndex
+      if (currentLineStringIndex !== lineStringIndex) {
+        currentLineStringIndex = lineStringIndex;
+        lineDistance = 0.0;
+      }
+
       const coords: any = getCoords(line);
+      const maxSegmentIndex = coords.length - 2;
 
       for (let i = 0; i < coords.length - 1; i++) {
         //start - start of current line section
@@ -85,47 +117,62 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         const stop: Feature<Point, { dist: number }> = point(coords[i + 1]);
         const stopPos = getCoord(stop);
 
-        // sectionLength
-        const sectionLength = distance(start, stop, options);
+        // segmentLength
+        const segmentLength = distance(start, stop, options);
         let intersectPos: Position;
         let wasEnd: boolean;
 
         // Short circuit if snap point is start or end position of the line
         // Test the end position first for consistency in case they are
         // coincident
-        if (stopPos[0] === ptPos[0] && stopPos[1] === ptPos[1]) {
+        if (stopPos[0] === inputPos[0] && stopPos[1] === inputPos[1]) {
           [intersectPos, wasEnd] = [stopPos, true];
-        } else if (startPos[0] === ptPos[0] && startPos[1] === ptPos[1]) {
+        } else if (startPos[0] === inputPos[0] && startPos[1] === inputPos[1]) {
           [intersectPos, wasEnd] = [startPos, false];
         } else {
           // Otherwise, find the nearest point the hard way.
           [intersectPos, wasEnd] = nearestPointOnSegment(
             startPos,
             stopPos,
-            ptPos
+            inputPos
           );
         }
 
-        const intersectPt = point(intersectPos, {
-          dist: distance(pt, intersectPos, options),
-          multiFeatureIndex: multiFeatureIndex,
-          location: length + distance(start, intersectPos, options),
-        });
+        const pointDistance = distance(inputPoint, intersectPos, options);
 
-        if (intersectPt.properties.dist < closestPt.properties.dist) {
-          closestPt = {
-            ...intersectPt,
-            properties: {
-              ...intersectPt.properties,
-              // Legacy behaviour where index progresses to next segment # if we
-              // went with the end point this iteration.
-              index: wasEnd ? i + 1 : i,
-            },
+        if (pointDistance < closestPt.properties.pointDistance) {
+          const segmentDistance = distance(start, intersectPos, options);
+          closestPt = point(intersectPos, {
+            lineStringIndex: lineStringIndex,
+            // Legacy behaviour where index progresses to next segment if we
+            // went with the end point this iteration. Though make sure we
+            // only progress to the beginning of the next segment if one
+            // actually exists.
+            segmentIndex: wasEnd && i + 1 <= maxSegmentIndex ? i + 1 : i,
+            totalDistance: totalDistance + segmentDistance,
+            lineDistance: lineDistance + segmentDistance,
+            segmentDistance: segmentDistance,
+            pointDistance: pointDistance,
+            // deprecated properties START
+            multiFeatureIndex: -1,
+            index: -1,
+            location: -1,
+            dist: Infinity,
+            // deprecated properties END
+          });
+          closestPt.properties = {
+            ...closestPt.properties,
+            multiFeatureIndex: closestPt.properties.lineStringIndex,
+            index: closestPt.properties.segmentIndex,
+            location: closestPt.properties.totalDistance,
+            dist: closestPt.properties.pointDistance,
+            // deprecated properties END
           };
         }
 
-        // update length
-        length += sectionLength;
+        // update totalDistance and lineDistance
+        totalDistance += segmentLength;
+        lineDistance += segmentLength;
       }
     }
   );
