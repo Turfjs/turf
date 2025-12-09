@@ -17,6 +17,17 @@ import { getCoord, getCoords } from "@turf/invariant";
  * have an undefined arc, this function will instead return that the point lies
  * on the line.
  *
+ * ⚠️ We have begun the process of migrating to different return properties for
+ * this function. The new properties we recommend using as of v7.4 are:
+ * - lineStringIndex - point was found on the nth LineString of an input MultiLineString. Previously `multiFeatureIndex`
+ * - segmentIndex - point was found on the nth segment of the above LineString. Previously `index`
+ * - totalDistance - distance from the start of the overall MultiLineString. Previously `location`
+ * - lineDistance - distance from the start of the relevant LineString
+ * - segmentDistance - distance from the start of the relevant segment
+ * - pointDistance - distance between found point is from input reference point. Previously `dist`
+ *
+ * multiFeatureIndex, location, and dist continue to work as previously until at least the next major release.
+ *
  * @function
  * @param {Geometry|Feature<LineString|MultiLineString>} lines Lines to snap to
  * @param {Geometry|Feature<Point>|number[]} inputPoint Point to snap from
@@ -53,16 +64,10 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     lineDistance: number;
     segmentDistance: number;
     pointDistance: number;
-    // deprecated properties START
-    /** @deprecated use `lineStringIndex` instead */
     multiFeatureIndex: number;
-    /** @deprecated use `segmentIndex` instead */
     index: number;
-    /** @deprecated use `totalDistance` instead */
     location: number;
-    /** @deprecated use `pointDistance` instead */
     dist: number;
-    // deprecated properties END
     [key: string]: any;
   }
 > {
