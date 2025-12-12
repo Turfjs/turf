@@ -37,7 +37,7 @@ import { BBox, Feature, FeatureCollection, Point, Polygon } from "geojson";
  * //addToMap
  * var addToMap = [grid];
  */
-function interpolate<T extends "point" | Grid>(
+function interpolate<T extends Grid = "square">(
   points: FeatureCollection<Point>,
   cellSize: number,
   options?: {
