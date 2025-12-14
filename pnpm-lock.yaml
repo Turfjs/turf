@@ -1010,6 +1010,9 @@ importers:
 
   packages/turf-boolean-crosses:
     dependencies:
+      '@turf/boolean-equal':
+        specifier: workspace:*
+        version: link:../turf-boolean-equal
       '@turf/boolean-point-in-polygon':
         specifier: workspace:*
         version: link:../turf-boolean-point-in-polygon

@@ -67,6 +67,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@turf/boolean-equal": "workspace:*",
     "@turf/boolean-point-in-polygon": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
