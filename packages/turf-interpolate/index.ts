@@ -6,9 +6,10 @@ import { centroid } from "@turf/centroid";
 import { squareGrid } from "@turf/square-grid";
 import { triangleGrid } from "@turf/triangle-grid";
 import { clone } from "@turf/clone";
-import { featureCollection, validateBBox } from "@turf/helpers";
+import { featureCollection, Grid, Units, validateBBox } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
+import { BBox, Feature, FeatureCollection, Point, Polygon } from "geojson";
 
 /**
  * Takes a set of points and estimates their 'property' values on a grid using the [Inverse Distance Weighting (IDW) method](https://en.wikipedia.org/wiki/Inverse_distance_weighting).
@@ -36,29 +37,44 @@ import { collectionOf } from "@turf/invariant";
  * //addToMap
  * var addToMap = [grid];
  */
-function interpolate(points, cellSize, options) {
+function interpolate<T extends Grid = "square">(
+  points: FeatureCollection<Point>,
+  cellSize: number,
+  options?: {
+    gridType?: T;
+    property?: string;
+    units?: Units;
+    weight?: number;
+    bbox?: BBox;
+  }
+): FeatureCollection<T extends "point" ? Point : Polygon> {
   // Optional parameters
   options = options || {};
-  if (typeof options !== "object") throw new Error("options is invalid");
-  var gridType = options.gridType;
-  var property = options.property;
-  var weight = options.weight;
-  var box = options.bbox;
 
-  // validation
-  if (!points) throw new Error("points is required");
+  // Validation pre-options parsing
+  if (typeof options !== "object") {
+    throw new Error("options is invalid");
+  }
+  if (!points) {
+    throw new Error("points is required");
+  }
   collectionOf(points, "Point", "input must contain Points");
-  if (!cellSize) throw new Error("cellSize is required");
-  if (weight !== undefined && typeof weight !== "number")
+  if (!cellSize) {
+    throw new Error("cellSize is required");
+  }
+
+  var gridType = options.gridType ?? "square";
+  var property = options.property ?? "elevation";
+  var weight = options.weight ?? 1;
+  var box = options.bbox ?? bbox(points);
+
+  // validation post options-parsing
+  if (weight !== undefined && typeof weight !== "number") {
     throw new Error("weight must be a number");
+  }
 
-  // default values
-  property = property || "elevation";
-  gridType = gridType || "square";
-  weight = weight || 1;
-
-  box = box ?? bbox(points);
   validateBBox(box);
+
   var grid;
   switch (gridType) {
     case "point":
@@ -80,31 +96,44 @@ function interpolate(points, cellSize, options) {
     default:
       throw new Error("invalid gridType");
   }
-  var results = [];
-  featureEach(grid, function (gridFeature) {
+  var results: Feature<Point | Polygon>[] = [];
+  featureEach<Point | Polygon>(grid, function (gridFeature) {
     var zw = 0;
     var sw = 0;
     // calculate the distance from each input point to the grid points
     featureEach(points, function (point) {
       var gridPoint =
-        gridType === "point" ? gridFeature : centroid(gridFeature);
+        gridType === "point"
+          ? (gridFeature as Feature<Point>)
+          : centroid(gridFeature);
       var d = distance(gridPoint, point, options);
       var zValue;
       // property has priority for zValue, fallbacks to 3rd coordinate from geometry
-      if (property !== undefined) zValue = point.properties[property];
-      if (zValue === undefined) zValue = point.geometry.coordinates[2];
-      if (zValue === undefined) throw new Error("zValue is missing");
-      if (d === 0) zw = zValue;
+      if (property !== undefined) {
+        zValue = point.properties?.[property];
+      }
+      if (zValue === undefined) {
+        zValue = point.geometry.coordinates[2];
+      }
+      if (zValue === undefined) {
+        throw new Error("zValue is missing");
+      }
+      if (d === 0) {
+        zw = zValue;
+      }
       var w = 1.0 / Math.pow(d, weight);
       sw += w;
       zw += w * zValue;
     });
     // write interpolated value for each grid point
     var newFeature = clone(gridFeature);
+    newFeature.properties ??= {};
     newFeature.properties[property] = zw / sw;
     results.push(newFeature);
   });
-  return featureCollection(results);
+  return featureCollection(results) as FeatureCollection<
+    T extends "point" ? Point : Polygon
+  >;
 }
 
 export { interpolate };
