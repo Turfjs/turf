@@ -15,7 +15,7 @@ import {
  * If the line is shorter than the segment length then the original line is returned.
  *
  * @function
- * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson the lines to split
+ * @param {FeatureCollection|Geometry|Feature<LineString|MultiLineString>} geojson the LineString or MultiLineStrings to split
  * @param {number} segmentLength how long to make each segment
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
@@ -34,8 +34,8 @@ function lineChunk<T extends LineString | MultiLineString>(
     | Feature<T>
     | FeatureCollection<T>
     | T
-    | GeometryCollection
-    | Feature<GeometryCollection>,
+    | GeometryCollection<T>
+    | Feature<GeometryCollection<T>>,
   segmentLength: number,
   options: {
     units?: Units;
@@ -57,6 +57,12 @@ function lineChunk<T extends LineString | MultiLineString>(
 
   // Flatten each feature to simple LineString
   flattenEach(geojson, (feature: Feature<T>) => {
+    if (feature.geometry.type !== "LineString") {
+      throw new Error(
+        "Only LineString and MultiLineString geometry types are supported"
+      );
+    }
+
     // reverses coordinates to start the first chunked segment at the end
     if (reverse) {
       feature.geometry.coordinates = feature.geometry.coordinates.reverse();
