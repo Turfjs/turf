@@ -1,7 +1,14 @@
 import { length } from "@turf/length";
 import { lineSliceAlong } from "@turf/line-slice-along";
 import { flattenEach } from "@turf/meta";
-import { featureCollection, isObject } from "@turf/helpers";
+import { featureCollection, isObject, Units } from "@turf/helpers";
+import {
+  Feature,
+  FeatureCollection,
+  GeometryCollection,
+  LineString,
+  MultiLineString,
+} from "geojson";
 
 /**
  * Divides a {@link LineString} into chunks of a specified length.
@@ -22,30 +29,47 @@ import { featureCollection, isObject } from "@turf/helpers";
  * //addToMap
  * var addToMap = [chunk];
  */
-function lineChunk(geojson, segmentLength, options) {
+function lineChunk<T extends LineString | MultiLineString>(
+  geojson:
+    | Feature<T>
+    | FeatureCollection<T>
+    | T
+    | GeometryCollection
+    | Feature<GeometryCollection>,
+  segmentLength: number,
+  options: {
+    units?: Units;
+    reverse?: boolean;
+  } = {}
+): FeatureCollection<LineString> {
   // Optional parameters
-  options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  var units = options.units;
-  var reverse = options.reverse;
+  const { units = "kilometers", reverse = false } = options;
 
   // Validation
   if (!geojson) throw new Error("geojson is required");
-  if (segmentLength <= 0)
+  if (segmentLength <= 0) {
     throw new Error("segmentLength must be greater than 0");
+  }
 
   // Container
-  var results = [];
+  const results: Feature<LineString>[] = [];
 
   // Flatten each feature to simple LineString
-  flattenEach(geojson, function (feature) {
+  flattenEach(geojson, (feature: Feature<T>) => {
     // reverses coordinates to start the first chunked segment at the end
-    if (reverse)
+    if (reverse) {
       feature.geometry.coordinates = feature.geometry.coordinates.reverse();
+    }
 
-    sliceLineSegments(feature, segmentLength, units, function (segment) {
-      results.push(segment);
-    });
+    sliceLineSegments(
+      feature as Feature<LineString>,
+      segmentLength,
+      units,
+      (segment) => {
+        results.push(segment);
+      }
+    );
   });
   return featureCollection(results);
 }
@@ -60,11 +84,18 @@ function lineChunk(geojson, segmentLength, options) {
  * @param {Function} callback iterate over sliced line segments
  * @returns {void}
  */
-function sliceLineSegments(line, segmentLength, units, callback) {
+function sliceLineSegments(
+  line: Feature<LineString>,
+  segmentLength: number,
+  units: Units,
+  callback: (feature: Feature<LineString>) => void
+): void {
   var lineLength = length(line, { units: units });
 
   // If the line is shorter than the segment length then the orginal line is returned.
-  if (lineLength <= segmentLength) return callback(line);
+  if (lineLength <= segmentLength) {
+    return callback(line);
+  }
 
   var numberOfSegments = lineLength / segmentLength;
 
@@ -80,7 +111,7 @@ function sliceLineSegments(line, segmentLength, units, callback) {
       segmentLength * (i + 1),
       { units: units }
     );
-    callback(outline, i);
+    callback(outline);
   }
 }
 
