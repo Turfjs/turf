@@ -598,15 +598,20 @@ export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
  * // => collection
  */
 export function geometryCollection<
+  T extends
+    | Point
+    | LineString
+    | Polygon
+    | MultiPoint
+    | MultiLineString
+    | MultiPolygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
-  geometries: Array<
-    Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
-  >,
+  geometries: Array<T>,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<GeometryCollection, P> {
-  const geom: GeometryCollection = {
+): Feature<GeometryCollection<T>, P> {
+  const geom: GeometryCollection<T> = {
     type: "GeometryCollection",
     geometries,
   };

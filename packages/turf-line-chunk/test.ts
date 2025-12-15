@@ -106,6 +106,57 @@ test("turf-line-chunk: Prevent input mutation", (t) => {
   t.end();
 });
 
+test("turf-line-chunk: Validate behavior on unsupported geometry types", (t) => {
+  // Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon | GeometryCollection;
+
+  // each of these `as any` casts are required to bypass the TypeScript rejection and actually test the validation underneath
+  t.throws(() => {
+    lineChunk({ type: "Point", geometry: [0, 0] } as any, 10);
+  }, "Point geometries are rejected");
+
+  t.throws(() => {
+    lineChunk({ type: "MultiPoint", geometry: [[0, 0]] } as any, 10);
+  }, "MultiPoint geometries are rejected");
+
+  t.throws(() => {
+    lineChunk(
+      {
+        type: "Polygon",
+        geometry: [
+          [
+            [0, 0],
+            [1, 0],
+            [1, 1],
+            [0, 0],
+          ],
+        ],
+      } as any,
+      10
+    );
+  }, "Polygon geometries are rejected");
+
+  t.throws(() => {
+    lineChunk(
+      {
+        type: "MultiPolygon",
+        geometry: [
+          [
+            [
+              [0, 0],
+              [1, 0],
+              [1, 1],
+              [0, 0],
+            ],
+          ],
+        ],
+      } as any,
+      10
+    );
+  }, "MultiPolygons geometries are rejected");
+
+  t.end();
+});
+
 /**
  * Colorize FeatureCollection
  *
