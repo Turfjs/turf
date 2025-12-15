@@ -5,7 +5,8 @@
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",
-    "Denis Carriere <@DenisCarriere>"
+    "Denis Carriere <@DenisCarriere>",
+    "James Beard <@smallsaucepan>"
   ],
   "license": "MIT",
   "bugs": {
@@ -67,6 +68,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@turf/boolean-equal": "workspace:*",
     "@turf/boolean-point-in-polygon": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
