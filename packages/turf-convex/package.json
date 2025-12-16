@@ -3,6 +3,10 @@
   "version": "7.3.1",
   "description": "Creates a convex hull around points",
   "author": "Turf Authors",
+  "contributors": [
+    "Brock Chelle <@blchelle>",
+    "Kareem Jeiroudi <@kareemjeiroudi>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
