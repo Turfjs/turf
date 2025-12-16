@@ -231,7 +231,7 @@ export function geometry<
     case "Point":
       return point(coordinates).geometry as any;
     case "LineString":
-      return lineString(coordinates).geometry satisfies LineString as any;
+      return lineString(coordinates).geometry as any;
     case "Polygon":
       return polygon(coordinates).geometry as any;
     case "MultiPoint":
