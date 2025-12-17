@@ -219,27 +219,26 @@ export function geometry<
   type: T,
   coordinates: any[],
   _options: Record<string, never> = {}
-): {
-  Point: Point;
-  LineString: LineString;
-  Polygon: Polygon;
-  MultiPoint: MultiPoint;
-  MultiLineString: MultiLineString;
-  MultiPolygon: MultiPolygon;
-}[T] {
+): Extract<Geometry, { type: T }> {
   switch (type) {
     case "Point":
-      return point(coordinates).geometry as any;
+      return point(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "LineString":
-      return lineString(coordinates).geometry as any;
+      return lineString(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "Polygon":
-      return polygon(coordinates).geometry as any;
+      return polygon(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "MultiPoint":
-      return multiPoint(coordinates).geometry as any;
+      return multiPoint(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "MultiLineString":
-      return multiLineString(coordinates).geometry as any;
+      return multiLineString(coordinates).geometry as Extract<
+        Geometry,
+        { type: T }
+      >;
     case "MultiPolygon":
-      return multiPolygon(coordinates).geometry as any;
+      return multiPolygon(coordinates).geometry as Extract<
+        Geometry,
+        { type: T }
+      >;
     default:
       throw new Error(type + " is invalid");
   }
