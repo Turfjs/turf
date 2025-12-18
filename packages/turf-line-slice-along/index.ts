@@ -1,7 +1,8 @@
 import { bearing } from "@turf/bearing";
 import { distance } from "@turf/distance";
 import { destination } from "@turf/destination";
-import { lineString, isObject } from "@turf/helpers";
+import { lineString, isObject, Units } from "@turf/helpers";
+import { Feature, LineString, Point, Position } from "geojson";
 
 /**
  * Takes a {@link LineString|line}, a specified distance along the line to a start {@link Point},
@@ -26,31 +27,36 @@ import { lineString, isObject } from "@turf/helpers";
  * //addToMap
  * var addToMap = [line, start, stop, sliced]
  */
-function lineSliceAlong(line, startDist, stopDist, options) {
+function lineSliceAlong(
+  line: Feature<LineString> | LineString,
+  startDist: number,
+  stopDist: number,
+  options: { units?: Units } = {}
+): Feature<LineString> {
   // Optional parameters
-  options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
+  const { units = "kilometers" } = options;
 
-  var coords;
-  var slice = [];
+  var coords: Position[];
+  var slice: Position[] = [];
 
   // Validation
   if (line.type === "Feature") coords = line.geometry.coordinates;
   else if (line.type === "LineString") coords = line.coordinates;
   else throw new Error("input must be a LineString Feature or Geometry");
-  var origCoordsLength = coords.length;
-  var travelled = 0;
-  var overshot, direction, interpolated;
-  for (var i = 0; i < coords.length; i++) {
+  const origCoordsLength = coords.length;
+  let travelled = 0;
+  let overshot: number, direction: number, interpolated: Feature<Point>;
+  for (let i = 0; i < coords.length; i++) {
     if (startDist >= travelled && i === coords.length - 1) break;
     else if (travelled > startDist && slice.length === 0) {
-      overshot = startDist - travelled;
+      let overshot = startDist - travelled;
       if (!overshot) {
         slice.push(coords[i]);
         return lineString(slice);
       }
       direction = bearing(coords[i], coords[i - 1]) - 180;
-      interpolated = destination(coords[i], overshot, direction, options);
+      interpolated = destination(coords[i], overshot, direction, { units });
       slice.push(interpolated.geometry.coordinates);
     }
 
@@ -61,7 +67,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
         return lineString(slice);
       }
       direction = bearing(coords[i], coords[i - 1]) - 180;
-      interpolated = destination(coords[i], overshot, direction, options);
+      interpolated = destination(coords[i], overshot, direction, { units });
       slice.push(interpolated.geometry.coordinates);
       return lineString(slice);
     }
@@ -74,7 +80,7 @@ function lineSliceAlong(line, startDist, stopDist, options) {
       return lineString(slice);
     }
 
-    travelled += distance(coords[i], coords[i + 1], options);
+    travelled += distance(coords[i], coords[i + 1], { units });
   }
 
   if (travelled < startDist && coords.length === origCoordsLength)
