@@ -10,8 +10,22 @@ import {
   geometryCollection,
   featureCollection,
   lineStrings,
+  Lines,
 } from "@turf/helpers";
 import * as meta from "./index.js";
+import {
+  BBox,
+  Feature,
+  FeatureCollection,
+  Geometry,
+  LineString,
+  MultiLineString,
+  MultiPoint,
+  MultiPolygon,
+  Point,
+  Polygon,
+  Position,
+} from "geojson";
 
 const pt = point([0, 0], { a: 1 });
 const pt2 = point([1, 1]);
@@ -80,7 +94,7 @@ const geomCollection = geometryCollection(
   { a: 0 }
 );
 const fcNull = featureCollection([feature(null), feature(null)]);
-const fcMixed = featureCollection([
+const fcMixed = featureCollection<Point | LineString | MultiLineString>([
   point([0, 0]),
   lineString([
     [1, 1],
@@ -98,8 +112,10 @@ const fcMixed = featureCollection([
   ]),
 ]);
 
-function collection(feature) {
-  const featureCollection = {
+function collection<G extends Geometry>(
+  feature: Feature<G>
+): [Feature<G>, FeatureCollection<G>] {
+  const featureCollection: FeatureCollection<G> = {
     type: "FeatureCollection",
     features: [feature],
   };
@@ -107,14 +123,16 @@ function collection(feature) {
   return [feature, featureCollection];
 }
 
-function featureAndCollection(geometry) {
-  const feature = {
+function featureAndCollection<G extends Geometry>(
+  geometry: G
+): [G, Feature<G>, FeatureCollection<G>] {
+  const feature: Feature<G> = {
     type: "Feature",
     geometry: geometry,
     properties: { a: 1 },
   };
 
-  const featureCollection = {
+  const featureCollection: FeatureCollection<G> = {
     type: "FeatureCollection",
     features: [feature],
   };
@@ -144,7 +162,7 @@ test("coordEach -- Point", (t) => {
 
 test("coordEach -- LineString", (t) => {
   featureAndCollection(line.geometry).forEach((input) => {
-    const output = [];
+    const output: Position[] = [];
     let lastIndex;
     meta.coordEach(input, (coord, index) => {
       output.push(coord);
@@ -161,7 +179,7 @@ test("coordEach -- LineString", (t) => {
 
 test("coordEach -- Polygon", (t) => {
   featureAndCollection(poly.geometry).forEach((input) => {
-    const output = [];
+    const output: Position[] = [];
     let lastIndex;
     meta.coordEach(input, (coord, index) => {
       output.push(coord);
@@ -197,9 +215,9 @@ test("coordEach -- Polygon excludeWrapCoord", (t) => {
 
 test("coordEach -- MultiPolygon", (t) => {
   const coords = [];
-  const coordIndexes = [];
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
+  const coordIndexes: number[] = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
   meta.coordEach(
     multiPoly,
     (coord, coordIndex, featureIndex, multiFeatureIndex) => {
@@ -218,9 +236,9 @@ test("coordEach -- MultiPolygon", (t) => {
 
 test("coordEach -- FeatureCollection", (t) => {
   const coords = [];
-  const coordIndexes = [];
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
+  const coordIndexes: number[] = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
   meta.coordEach(
     fcMixed,
     (coord, coordIndex, featureIndex, multiFeatureIndex) => {
@@ -333,7 +351,7 @@ test("Array.reduce() -- previous-coordinates+initialValue", (t) => {
     lastIndex = index;
     coords.push(currentCoords);
     return currentCoords;
-  }, line[0]);
+  }, undefined as any);
   t.equal(lastIndex, 1);
   t.equal(coords.length, 2);
   t.end();
@@ -341,14 +359,14 @@ test("Array.reduce() -- previous-coordinates+initialValue", (t) => {
 
 test("unknown", (t) => {
   t.throws(function () {
-    meta.coordEach({});
+    meta.coordEach({} as any, () => undefined);
   });
   t.end();
 });
 
 test("geomEach -- GeometryCollection", (t) => {
   featureAndCollection(geomCollection.geometry).forEach((input) => {
-    const output = [];
+    const output: Geometry[] = [];
     meta.geomEach(input, (geom) => {
       output.push(geom);
     });
@@ -358,7 +376,7 @@ test("geomEach -- GeometryCollection", (t) => {
 });
 
 test("geomEach -- bare-GeometryCollection", (t) => {
-  const output = [];
+  const output: Geometry[] = [];
   meta.geomEach(geomCollection, (geom) => {
     output.push(geom);
   });
@@ -367,7 +385,7 @@ test("geomEach -- bare-GeometryCollection", (t) => {
 });
 
 test("geomEach -- bare-pointGeometry", (t) => {
-  const output = [];
+  const output: Point[] = [];
   meta.geomEach(pt.geometry, (geom) => {
     output.push(geom);
   });
@@ -376,7 +394,7 @@ test("geomEach -- bare-pointGeometry", (t) => {
 });
 
 test("geomEach -- bare-pointFeature", (t) => {
-  const output = [];
+  const output: Point[] = [];
   meta.geomEach(pt, (geom) => {
     output.push(geom);
   });
@@ -395,7 +413,7 @@ test("geomEach -- multiGeometryFeature-properties", (t) => {
 
 test("flattenEach -- MultiPoint", (t) => {
   featureAndCollection(multiPt.geometry).forEach((input) => {
-    const output = [];
+    const output: MultiPoint[] = []; // this is actually Point[] but flattenEach's types are bad
     meta.flattenEach(input, (feature) => {
       output.push(feature.geometry);
     });
@@ -406,8 +424,8 @@ test("flattenEach -- MultiPoint", (t) => {
 
 test("flattenEach -- Mixed FeatureCollection", (t) => {
   const features = [];
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
   meta.flattenEach(fcMixed, (feature, featureIndex, multiFeatureIndex) => {
     features.push(feature);
     featureIndexes.push(featureIndex);
@@ -449,7 +467,10 @@ test("flattenReduce -- initialValue", (t) => {
     (previous, current, index, subIndex) => {
       lastIndex = index;
       lastSubIndex = subIndex;
-      return previous + current.geometry.coordinates[0];
+      return (
+        previous +
+        (current as unknown as Feature<Point>).geometry.coordinates[0] // Manual cast to Point required here because flattenReduce types don't correctly go from MultiFoo to Foo.
+      );
     },
     0
   );
@@ -461,8 +482,8 @@ test("flattenReduce -- initialValue", (t) => {
 
 test("flattenReduce -- previous-feature", (t) => {
   const features = [];
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
   meta.flattenReduce(
     multiLine,
     (previous, current, featureIndex, multiFeatureIndex) => {
@@ -479,9 +500,9 @@ test("flattenReduce -- previous-feature", (t) => {
 });
 
 test("flattenReduce -- previous-feature+initialValue", (t) => {
-  const features = [];
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
+  const features: Feature<MultiPoint>[] = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
   const sum = meta.flattenReduce(
     multiPt.geometry,
     (previous, current, featureIndex, multiFeatureIndex) => {
@@ -490,7 +511,7 @@ test("flattenReduce -- previous-feature+initialValue", (t) => {
       features.push(current);
       return current;
     },
-    null
+    null as any
   );
   t.deepEqual(featureIndexes, [0, 0]);
   t.deepEqual(multiFeatureIndexes, [0, 1]);
@@ -505,7 +526,7 @@ test("null geometries", (t) => {
   meta.featureEach(fcNull, (feature) =>
     t.equal(feature.geometry, null, "featureEach")
   );
-  meta.geomEach(fcNull, (geometry) => t.equal(geometry, null), "geomEach");
+  meta.geomEach(fcNull, (geometry) => t.equal(geometry, null, "geomEach"));
   meta.flattenEach(fcNull, (feature) =>
     t.equal(feature.geometry, null, "flattenEach")
   );
@@ -550,7 +571,7 @@ test("null geometries -- index", (t) => {
     meta.coordReduce(
       fc,
       (prev, coords, coordIndex) => prev.concat(coordIndex),
-      []
+      [] as number[]
     ),
     [0, 1, 2],
     "coordReduce"
@@ -559,7 +580,7 @@ test("null geometries -- index", (t) => {
     meta.geomReduce(
       fc,
       (prev, geom, featureIndex) => prev.concat(featureIndex),
-      []
+      [] as number[]
     ),
     [0, 1, 2, 3],
     "geomReduce"
@@ -568,7 +589,7 @@ test("null geometries -- index", (t) => {
     meta.flattenReduce(
       fc,
       (prev, feature, featureIndex) => prev.concat(featureIndex),
-      []
+      [] as number[]
     ),
     [0, 1, 2, 3],
     "flattenReduce"
@@ -577,7 +598,7 @@ test("null geometries -- index", (t) => {
 });
 
 test("segmentEach", (t) => {
-  const segments = [];
+  const segments: Feature<LineString>[] = [];
   let total = 0;
   meta.segmentEach(poly.geometry, (currentSegment) => {
     segments.push(currentSegment);
@@ -600,7 +621,7 @@ test("segmentEach -- MultiPoint", (t) => {
 });
 
 test("segmentReduce", (t) => {
-  const segments = [];
+  const segments: Feature<LineString>[] = [];
   const total = meta.segmentReduce(
     poly.geometry,
     (previousValue, currentSegment) => {
@@ -616,7 +637,7 @@ test("segmentReduce", (t) => {
 });
 
 test("segmentReduce -- no initialValue", (t) => {
-  const segments = [];
+  const segments: Feature<LineString>[] = [];
   var total = 0;
   meta.segmentReduce(poly.geometry, (previousValue, currentSegment) => {
     segments.push(currentSegment);
@@ -627,7 +648,9 @@ test("segmentReduce -- no initialValue", (t) => {
   t.end();
 });
 
-const geojsonSegments = featureCollection([
+const geojsonSegments = featureCollection<
+  Point | LineString | Polygon | MultiLineString
+>([
   point([0, 1]), // ignored
   lineString([
     [0, 0],
@@ -659,10 +682,10 @@ const geojsonSegments = featureCollection([
 ]);
 
 test("segmentEach -- index & subIndex", (t) => {
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const geometryIndexes = [];
-  const segmentIndexes = [];
+  const featureIndexes: (number | undefined)[] = [];
+  const multiFeatureIndexes: (number | undefined)[] = [];
+  const geometryIndexes: (number | undefined)[] = [];
+  const segmentIndexes: (number | undefined)[] = [];
   let total = 0;
 
   meta.segmentEach(
@@ -700,14 +723,14 @@ test("segmentEach -- index & subIndex", (t) => {
 });
 
 test("segmentReduce -- index & subIndex", (t) => {
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const geometryIndexes = [];
-  const segmentIndexes = [];
+  const featureIndexes: (number | undefined)[] = [];
+  const multiFeatureIndexes: (number | undefined)[] = [];
+  const geometryIndexes: (number | undefined)[] = [];
+  const segmentIndexes: (number | undefined)[] = [];
   let total = 0;
 
   meta.segmentReduce(
-    geojsonSegments,
+    geojsonSegments as FeatureCollection<Lines>, // geojsonSegments contain Points, but they must be ignored at runtime
     (
       previousValue,
       segment,
@@ -753,9 +776,9 @@ test("lineEach -- lineString", (t) => {
     [2, 2],
     [4, 4],
   ]);
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const lineIndexes = [];
+  const featureIndexes: (number | undefined)[] = [];
+  const multiFeatureIndexes: (number | undefined)[] = [];
+  const lineIndexes: (number | undefined)[] = [];
   let total = 0;
 
   meta.lineEach(
@@ -787,9 +810,9 @@ test("lineEach -- multiLineString", (t) => {
       [5, 5],
     ],
   ]);
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const lineIndexes = [];
+  const featureIndexes: (number | undefined)[] = [];
+  const multiFeatureIndexes: (number | undefined)[] = [];
+  const lineIndexes: (number | undefined)[] = [];
   let total = 0;
 
   meta.lineEach(
@@ -834,9 +857,9 @@ test("lineEach -- multiPolygon", (t) => {
       ], // outer
     ],
   ]);
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const lineIndexes = [];
+  const featureIndexes: (number | undefined)[] = [];
+  const multiFeatureIndexes: (number | undefined)[] = [];
+  const lineIndexes: (number | undefined)[] = [];
   let total = 0;
 
   meta.lineEach(
@@ -898,13 +921,17 @@ test("lineEach -- featureCollection", (t) => {
       ], // outer
     ],
   ]);
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const lineIndexes = [];
+  const featureIndexes: (number | undefined)[] = [];
+  const multiFeatureIndexes: (number | undefined)[] = [];
+  const lineIndexes: (number | undefined)[] = [];
   let total = 0;
 
   meta.lineEach(
-    featureCollection([line, multiLine, multiPoly]),
+    featureCollection<LineString | MultiLineString | MultiPolygon>([
+      line,
+      multiLine,
+      multiPoly,
+    ]),
     (currentLine, featureIndex, multiFeatureIndex, lineIndex) => {
       featureIndexes.push(featureIndex);
       multiFeatureIndexes.push(multiFeatureIndex);
@@ -936,10 +963,10 @@ test("lineReduce -- multiLineString", (t) => {
   const total = meta.lineReduce(
     multiLine,
     (previousValue) => {
-      previousValue++;
-      return previousValue;
+      previousValue!++;
+      return previousValue!;
     },
-    0
+    0 as number
   );
 
   t.equal(total, 2, "total");
@@ -976,8 +1003,8 @@ test("lineReduce -- multiPolygon", (t) => {
   const total = meta.lineReduce(
     multiPoly,
     (previousValue) => {
-      previousValue++;
-      return previousValue;
+      previousValue!++;
+      return previousValue!;
     },
     0
   );
@@ -995,10 +1022,10 @@ test("lineEach & lineReduce -- assert", (t) => {
   const noop = () => {
     /* no-op */
   };
-  meta.lineEach(pt, noop); // Point geometry is supported
-  meta.lineEach(multiPt, noop); // MultiPoint geometry is supported
-  meta.lineReduce(pt, noop); // Point geometry is supported
-  meta.lineReduce(multiPt, noop); // MultiPoint geometry is supported
+  meta.lineEach(pt as any, noop); // Point geometry is supported
+  meta.lineEach(multiPt as any, noop); // MultiPoint geometry is supported
+  meta.lineReduce(pt as any, noop); // Point geometry is supported
+  meta.lineReduce(multiPt as any, noop); // MultiPoint geometry is supported
   meta.lineReduce(geomCollection, noop); // GeometryCollection is is supported
   meta.lineReduce(
     featureCollection([
@@ -1009,13 +1036,13 @@ test("lineEach & lineReduce -- assert", (t) => {
     ]),
     noop
   ); // FeatureCollection is is supported
-  meta.lineReduce(feature(null), noop); // Feature with null geometry is supported
+  meta.lineReduce(feature(null) as any, noop); // Feature with null geometry is supported
   t.end();
 });
 
 test("geomEach -- callback BBox & Id", (t) => {
   const properties = { foo: "bar" };
-  const bbox = [0, 0, 0, 0];
+  const bbox: BBox = [0, 0, 0, 0];
   const id = "foo";
   const pt = point([0, 0], properties, { bbox, id });
 
@@ -1039,7 +1066,7 @@ test("geomEach -- callback BBox & Id", (t) => {
 
 test("lineEach -- callback BBox & Id", (t) => {
   const properties = { foo: "bar" };
-  const bbox = [0, 0, 10, 10];
+  const bbox: BBox = [0, 0, 10, 10];
   const id = "foo";
   const line = lineString(
     [
@@ -1061,7 +1088,7 @@ test("lineEach -- callback BBox & Id", (t) => {
 
 test("lineEach -- return lineString", (t) => {
   const properties = { foo: "bar" };
-  const bbox = [0, 0, 10, 10];
+  const bbox: BBox = [0, 0, 10, 10];
   const id = "foo";
   const line = lineString(
     [
@@ -1079,10 +1106,10 @@ test("lineEach -- return lineString", (t) => {
 });
 
 test("meta.coordEach -- indexes -- PolygonWithHole", (t) => {
-  const coordIndexes = [];
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const geometryIndexes = [];
+  const coordIndexes: number[] = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
+  const geometryIndexes: number[] = [];
 
   meta.coordEach(
     polyWithHole,
@@ -1101,9 +1128,9 @@ test("meta.coordEach -- indexes -- PolygonWithHole", (t) => {
 });
 
 test("meta.lineEach -- indexes -- PolygonWithHole", (t) => {
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const geometryIndexes = [];
+  const featureIndexes: (number | undefined)[] = [];
+  const multiFeatureIndexes: (number | undefined)[] = [];
+  const geometryIndexes: (number | undefined)[] = [];
 
   meta.lineEach(
     polyWithHole,
@@ -1120,10 +1147,10 @@ test("meta.lineEach -- indexes -- PolygonWithHole", (t) => {
 });
 
 test("meta.segmentEach -- indexes -- PolygonWithHole", (t) => {
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const geometryIndexes = [];
-  const segmentIndexes = [];
+  const featureIndexes: (number | undefined)[] = [];
+  const multiFeatureIndexes: (number | undefined)[] = [];
+  const geometryIndexes: (number | undefined)[] = [];
+  const segmentIndexes: (number | undefined)[] = [];
 
   meta.segmentEach(
     polyWithHole,
@@ -1143,10 +1170,10 @@ test("meta.segmentEach -- indexes -- PolygonWithHole", (t) => {
 });
 
 test("meta.coordEach -- indexes -- Multi-Polygon with hole", (t) => {
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const geometryIndexes = [];
-  const coordIndexes = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
+  const geometryIndexes: number[] = [];
+  const coordIndexes: number[] = [];
 
   // MultiPolygon with hole
   // ======================
@@ -1221,10 +1248,10 @@ test("meta.coordEach -- indexes -- Multi-Polygon with hole", (t) => {
 });
 
 test("meta.coordEach -- indexes -- Polygon with hole", (t) => {
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const geometryIndexes = [];
-  const coordIndexes = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
+  const geometryIndexes: number[] = [];
+  const coordIndexes: number[] = [];
 
   // Polygon with Hole
   // =================
@@ -1275,10 +1302,10 @@ test("meta.coordEach -- indexes -- Polygon with hole", (t) => {
 });
 
 test("meta.coordEach -- indexes -- FeatureCollection of LineString", (t) => {
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
-  const geometryIndexes = [];
-  const coordIndexes = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
+  const geometryIndexes: number[] = [];
+  const coordIndexes: number[] = [];
 
   // FeatureCollection of LineStrings
   const line = lineStrings([
@@ -1367,7 +1394,7 @@ test("meta -- breaking of iterations", (t) => {
 
     // FeatureCollection
     let count = 0;
-    func(lines, () => {
+    (func as any)(lines, () => {
       count += 1;
       return false;
     });
@@ -1375,7 +1402,7 @@ test("meta -- breaking of iterations", (t) => {
 
     // Multi Geometry
     let multiCount = 0;
-    func(multiLine, () => {
+    (func as any)(multiLine, () => {
       multiCount += 1;
       return false;
     });
@@ -1434,11 +1461,11 @@ test("meta -- findSegment", (t) => {
   ]);
   // firstSegment
   t.deepEqual(
-    meta.findSegment(nullFeature),
+    meta.findSegment(nullFeature as any),
     null,
     "findSegment (default) -- nullFeature"
   );
-  t.deepEqual(meta.findSegment(pt), null, "findSegment (default) -- pt");
+  t.deepEqual(meta.findSegment(pt as any), null, "findSegment (default) -- pt");
   t.deepEqual(
     meta.findSegment(line),
     lineString([
@@ -1474,11 +1501,11 @@ test("meta -- findSegment", (t) => {
 
   // lastSegment
   t.deepEqual(
-    meta.findSegment(nullFeature),
+    meta.findSegment(nullFeature as any),
     null,
     "findSegment (last) -- nullFeature"
   );
-  t.deepEqual(meta.findSegment(pt), null, "findSegment (last) -- pt");
+  t.deepEqual(meta.findSegment(pt as any), null, "findSegment (last) -- pt");
   t.deepEqual(
     meta.findSegment(line, { segmentIndex: -1 }),
     lineString([
@@ -1642,8 +1669,8 @@ test("meta -- segmentEach -- Issue #1273", (t) => {
       [-10, -10],
     ],
   ]);
-  const segmentIndexes = [];
-  const geometryIndexes = [];
+  const segmentIndexes: (number | undefined)[] = [];
+  const geometryIndexes: (number | undefined)[] = [];
   meta.segmentEach(
     poly,
     (line, featureIndex, multiFeatureIndex, segmentIndex, geometryIndex) => {

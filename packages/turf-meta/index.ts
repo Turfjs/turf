@@ -1133,7 +1133,7 @@ function flattenReduce<
 function segmentEach<P extends GeoJsonProperties = GeoJsonProperties>(
   geojson: AllGeoJSON,
   callback: (
-    currentSegment?: Feature<LineString, P>,
+    currentSegment: Feature<LineString, P>,
     featureIndex?: number,
     multiFeatureIndex?: number,
     segmentIndex?: number,
@@ -1266,8 +1266,8 @@ function segmentReduce<
     | Feature<GeometryCollection, P>
     | GeometryCollection,
   callback: (
-    previousValue?: Reducer,
-    currentSegment?: Feature<LineString, P>,
+    previousValue: Reducer,
+    currentSegment: Feature<LineString, P>,
     featureIndex?: number,
     multiFeatureIndex?: number,
     segmentIndex?: number,
@@ -1290,7 +1290,7 @@ function segmentReduce<
         previousValue = currentSegment as Reducer;
       else
         previousValue = callback(
-          previousValue,
+          previousValue as Reducer,
           currentSegment as Feature<LineString, P>,
           featureIndex,
           multiFeatureIndex,
