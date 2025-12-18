@@ -5,8 +5,10 @@ import {
   lineString,
   multiLineString,
   lengthToDegrees,
+  Units,
 } from "@turf/helpers";
 import { intersection } from "./lib/intersection.js";
+import { Feature, LineString, MultiLineString, Position } from "geojson";
 
 /**
  * Takes a {@link LineString|line} and returns a {@link LineString|line} at offset by the specified distance.
@@ -26,11 +28,15 @@ import { intersection } from "./lib/intersection.js";
  * var addToMap = [offsetLine, line]
  * offsetLine.properties.stroke = "#00F"
  */
-function lineOffset(geojson, distance, options) {
+function lineOffset<T extends LineString | MultiLineString>(
+  geojson: Feature<T> | T,
+  distance: number,
+  options: { units?: Units } = {}
+) {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  var units = options.units;
+  const { units = "kilometers" } = options;
 
   // Valdiation
   if (!geojson) throw new Error("geojson is required");
@@ -38,13 +44,13 @@ function lineOffset(geojson, distance, options) {
     throw new Error("distance is required");
 
   var type = getType(geojson);
-  var properties = geojson.properties;
+  var properties = geojson.type === "Feature" ? geojson.properties : {};
 
   switch (type) {
     case "LineString":
       return lineOffsetFeature(geojson, distance, units);
     case "MultiLineString":
-      var coords = [];
+      var coords: Position[][] = [];
       flattenEach(geojson, function (feature) {
         coords.push(
           lineOffsetFeature(feature, distance, units).geometry.coordinates
@@ -65,11 +71,15 @@ function lineOffset(geojson, distance, options) {
  * @param {string} [units=kilometers] units
  * @returns {Feature<LineString>} Line offset from the input line
  */
-function lineOffsetFeature(line, distance, units) {
-  var segments = [];
+function lineOffsetFeature(
+  line: Feature<LineString | MultiLineString> | LineString | MultiLineString,
+  distance: number,
+  units: Units
+) {
+  var segments: [[number, number], [number, number]][] = [];
   var offsetDegrees = lengthToDegrees(distance, units);
   var coords = getCoords(line);
-  var finalCoords = [];
+  var finalCoords: [number, number][] = [];
   coords.forEach(function (currentCoords, index) {
     if (index !== coords.length - 1) {
       var segment = processSegment(
@@ -101,7 +111,10 @@ function lineOffsetFeature(line, distance, units) {
       }
     }
   });
-  return lineString(finalCoords, line.properties);
+  return lineString(
+    finalCoords,
+    line.type === "Feature" ? line.properties : {}
+  );
 }
 
 /**
@@ -114,7 +127,11 @@ function lineOffsetFeature(line, distance, units) {
  * @param {number} offset Offset
  * @returns {Array<Array<number>>} offset points
  */
-function processSegment(point1, point2, offset) {
+function processSegment(
+  point1: [number, number],
+  point2: [number, number],
+  offset: number
+): [[number, number], [number, number]] {
   var L = Math.sqrt(
     (point1[0] - point2[0]) * (point1[0] - point2[0]) +
       (point1[1] - point2[1]) * (point1[1] - point2[1])
