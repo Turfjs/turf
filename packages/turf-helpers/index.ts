@@ -18,6 +18,23 @@ import {
 import { Id } from "./lib/geojson.js";
 export * from "./lib/geojson.js";
 
+// I'd normally put this in @turf/meta but it isn't full-TypeScript yet
+export function* iterFeatures<
+  G extends GeometryObject,
+  P extends GeoJsonProperties,
+>(
+  geojson: Feature<G, P> | FeatureCollection<G, P>
+): Generator<{ feature: Feature<G, P>; featureIndex: number }, void, unknown> {
+  if (geojson.type === "Feature") {
+    yield { feature: geojson, featureIndex: 0 };
+  } else {
+    const features = geojson.features;
+    for (let i = 0; i < features.length; i++) {
+      yield { feature: features[i], featureIndex: i };
+    }
+  }
+}
+
 /**
  * @module helpers
  */

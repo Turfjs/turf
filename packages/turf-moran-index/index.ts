@@ -1,6 +1,6 @@
 import { FeatureCollection } from "geojson";
 import { distanceWeight as spatialWeight } from "@turf/distance-weight";
-import { featureEach } from "@turf/meta";
+import { iterFeatures } from "@turf/helpers";
 
 /**
  * @typedef {object} MoranIndex
@@ -86,11 +86,11 @@ function moranIndex(
   });
 
   const y: number[] = [];
-  featureEach(fc, (feature) => {
+  for (const { feature } of iterFeatures(fc)) {
     const feaProperties = feature.properties || {};
     // validate inputField exists
     y.push(feaProperties[inputField]);
-  });
+  }
 
   const yMean = mean(y);
   const yVar = variance(y);
