@@ -1358,7 +1358,14 @@ function lineEach<P extends GeoJsonProperties = GeoJsonProperties>(
     var coords = feature.geometry.coordinates;
     switch (type) {
       case "LineString":
-        if (callback(feature, featureIndex, multiFeatureIndex, 0, 0) === false)
+        if (
+          callback(
+            feature as Feature<LineString, P>,
+            featureIndex,
+            multiFeatureIndex,
+            0
+          ) === false
+        )
           return false;
         break;
       case "Polygon":
