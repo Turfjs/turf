@@ -347,10 +347,10 @@ function coordReduce<Reducer>(
       geometryIndex
     ) {
       if (coordIndex === 0 && initialValue === undefined)
-        previousValue = currentCoord;
+        previousValue = currentCoord as Reducer;
       else
         previousValue = callback(
-          previousValue,
+          previousValue as Reducer,
           currentCoord,
           coordIndex,
           featureIndex,
@@ -360,7 +360,7 @@ function coordReduce<Reducer>(
     },
     excludeWrapCoord
   );
-  return previousValue;
+  return previousValue as Reducer;
 }
 
 /**
@@ -472,16 +472,16 @@ function propReduce<Reducer, P extends GeoJsonProperties = GeoJsonProperties>(
     geojson as Feature<any, P> | FeatureCollection<any, P>,
     function (currentProperties, featureIndex) {
       if (featureIndex === 0 && initialValue === undefined)
-        previousValue = currentProperties;
+        previousValue = currentProperties as Reducer;
       else
         previousValue = callback(
-          previousValue,
-          currentProperties,
+          previousValue as Reducer,
+          currentProperties as P,
           featureIndex
         );
     }
   );
-  return previousValue;
+  return previousValue as Reducer;
 }
 
 /**
@@ -599,10 +599,15 @@ function featureReduce<
   var previousValue = initialValue;
   featureEach(geojson, function (currentFeature, featureIndex) {
     if (featureIndex === 0 && initialValue === undefined)
-      previousValue = currentFeature;
-    else previousValue = callback(previousValue, currentFeature, featureIndex);
+      previousValue = currentFeature as Reducer;
+    else
+      previousValue = callback(
+        previousValue as Reducer,
+        currentFeature,
+        featureIndex
+      );
   });
-  return previousValue;
+  return previousValue as Reducer;
 }
 
 /**
@@ -863,8 +868,8 @@ function geomReduce<
     currentGeometry: G,
     featureIndex: number,
     featureProperties: P,
-    featureBBox: BBox,
-    featureId: Id
+    featureBBox: BBox | undefined,
+    featureId: Id | undefined
   ) => Reducer,
   initialValue?: Reducer
 ): Reducer {
@@ -879,10 +884,10 @@ function geomReduce<
       featureId
     ) {
       if (featureIndex === 0 && initialValue === undefined)
-        previousValue = currentGeometry;
+        previousValue = currentGeometry as unknown as Reducer;
       else
         previousValue = callback(
-          previousValue,
+          previousValue as Reducer,
           currentGeometry,
           featureIndex,
           featureProperties,
@@ -891,7 +896,7 @@ function geomReduce<
         );
     }
   );
-  return previousValue;
+  return previousValue as Reducer;
 }
 
 /**
@@ -1075,17 +1080,17 @@ function flattenReduce<
         multiFeatureIndex === 0 &&
         initialValue === undefined
       )
-        previousValue = currentFeature;
+        previousValue = currentFeature as Reducer;
       else
         previousValue = callback(
-          previousValue,
+          previousValue as Reducer,
           currentFeature,
           featureIndex,
           multiFeatureIndex
         );
     }
   );
-  return previousValue;
+  return previousValue as Reducer;
 }
 
 /**
@@ -1282,11 +1287,11 @@ function segmentReduce<
       segmentIndex
     ) {
       if (started === false && initialValue === undefined)
-        previousValue = currentSegment;
+        previousValue = currentSegment as Reducer;
       else
         previousValue = callback(
           previousValue,
-          currentSegment,
+          currentSegment as Feature<LineString, P>,
           featureIndex,
           multiFeatureIndex,
           geometryIndex,
@@ -1295,7 +1300,7 @@ function segmentReduce<
       started = true;
     }
   );
-  return previousValue;
+  return previousValue as Reducer;
 }
 
 /**
@@ -1448,7 +1453,7 @@ function lineReduce<Reducer, P extends GeoJsonProperties = GeoJsonProperties>(
     geojson,
     function (currentLine, featureIndex, multiFeatureIndex, geometryIndex) {
       if (featureIndex === 0 && initialValue === undefined)
-        previousValue = currentLine;
+        previousValue = currentLine as Reducer;
       else
         previousValue = callback(
           previousValue,
@@ -1459,7 +1464,7 @@ function lineReduce<Reducer, P extends GeoJsonProperties = GeoJsonProperties>(
         );
     }
   );
-  return previousValue;
+  return previousValue as Reducer;
 }
 
 /**
