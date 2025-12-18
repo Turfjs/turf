@@ -1546,9 +1546,9 @@ function findSegment<
       properties = properties || geojson.properties;
       geometry = geojson.geometry;
       break;
-    case "Point":
-    case "MultiPoint":
-      return null;
+    case "Point" as any:
+    case "MultiPoint" as any:
+      return null as any;
     case "LineString":
     case "Polygon":
     case "MultiLineString":
@@ -1560,12 +1560,12 @@ function findSegment<
   }
 
   // Find SegmentIndex
-  if (geometry === null) return null;
+  if (geometry === null) return null as any;
   var coords = geometry.coordinates;
   switch (geometry.type) {
-    case "Point":
-    case "MultiPoint":
-      return null;
+    case "Point" as any:
+    case "MultiPoint" as any:
+      return null as any;
     case "LineString":
       if (segmentIndex < 0) segmentIndex = coords.length + segmentIndex - 1;
       return lineString(
@@ -1706,7 +1706,7 @@ function findPoint<
       break;
     case "Point":
     case "MultiPoint":
-      return null;
+      return null as any;
     case "LineString":
     case "Polygon":
     case "MultiLineString":
@@ -1718,39 +1718,74 @@ function findPoint<
   }
 
   // Find Coord Index
-  if (geometry === null) return null;
-  var coords = geometry.coordinates;
+  if (geometry === null) return null as any;
+  var coords = (
+    geometry as
+      | Point
+      | LineString
+      | Polygon
+      | MultiPoint
+      | MultiLineString
+      | MultiPolygon
+  ).coordinates;
   switch (geometry.type) {
     case "Point":
-      return point(coords, properties, options);
+      return point(coords as Point["coordinates"], properties, options);
     case "MultiPoint":
       if (multiFeatureIndex < 0)
         multiFeatureIndex = coords.length + multiFeatureIndex;
-      return point(coords[multiFeatureIndex], properties, options);
+      return point(
+        (coords as MultiPoint["coordinates"])[multiFeatureIndex],
+        properties,
+        options
+      );
     case "LineString":
       if (coordIndex < 0) coordIndex = coords.length + coordIndex;
-      return point(coords[coordIndex], properties, options);
+      return point(
+        (coords as LineString["coordinates"])[coordIndex],
+        properties,
+        options
+      );
     case "Polygon":
       if (geometryIndex < 0) geometryIndex = coords.length + geometryIndex;
       if (coordIndex < 0)
-        coordIndex = coords[geometryIndex].length + coordIndex;
-      return point(coords[geometryIndex][coordIndex], properties, options);
+        coordIndex =
+          (coords as Polygon["coordinates"])[geometryIndex].length + coordIndex;
+      return point(
+        (coords as Polygon["coordinates"])[geometryIndex][coordIndex],
+        properties,
+        options
+      );
     case "MultiLineString":
       if (multiFeatureIndex < 0)
         multiFeatureIndex = coords.length + multiFeatureIndex;
       if (coordIndex < 0)
-        coordIndex = coords[multiFeatureIndex].length + coordIndex;
-      return point(coords[multiFeatureIndex][coordIndex], properties, options);
+        coordIndex =
+          (coords as MultiLineString["coordinates"])[multiFeatureIndex].length +
+          coordIndex;
+      return point(
+        (coords as MultiLineString["coordinates"])[multiFeatureIndex][
+          coordIndex
+        ],
+        properties,
+        options
+      );
     case "MultiPolygon":
       if (multiFeatureIndex < 0)
         multiFeatureIndex = coords.length + multiFeatureIndex;
       if (geometryIndex < 0)
-        geometryIndex = coords[multiFeatureIndex].length + geometryIndex;
+        geometryIndex =
+          (coords as MultiPolygon["coordinates"])[multiFeatureIndex].length +
+          geometryIndex;
       if (coordIndex < 0)
         coordIndex =
-          coords[multiFeatureIndex][geometryIndex].length - coordIndex;
+          (coords as MultiPolygon["coordinates"])[multiFeatureIndex][
+            geometryIndex
+          ].length - coordIndex;
       return point(
-        coords[multiFeatureIndex][geometryIndex][coordIndex],
+        (coords as MultiPolygon["coordinates"])[multiFeatureIndex][
+          geometryIndex
+        ][coordIndex],
         properties,
         options
       );
