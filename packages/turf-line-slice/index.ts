@@ -1,6 +1,7 @@
 import { getCoords, getType } from "@turf/invariant";
-import { lineString as linestring } from "@turf/helpers";
+import { Coord, lineString as linestring } from "@turf/helpers";
 import { nearestPointOnLine } from "@turf/nearest-point-on-line";
+import { Feature, LineString } from "geojson";
 
 /**
  * Takes a {@link LineString|line}, a start {@link Point}, and a stop point
@@ -31,30 +32,32 @@ import { nearestPointOnLine } from "@turf/nearest-point-on-line";
  * //addToMap
  * var addToMap = [start, stop, line]
  */
-function lineSlice(startPt, stopPt, line) {
+function lineSlice(
+  startPt: Coord,
+  stopPt: Coord,
+  line: Feature<LineString> | LineString
+): Feature<LineString> {
   // Validation
-  var coords = getCoords(line);
+  const coords = getCoords(line);
   if (getType(line) !== "LineString")
     throw new Error("line must be a LineString");
 
-  var startVertex = nearestPointOnLine(line, startPt);
-  var stopVertex = nearestPointOnLine(line, stopPt);
-  var ends;
-  if (startVertex.properties.index <= stopVertex.properties.index) {
-    ends = [startVertex, stopVertex];
-  } else {
-    ends = [stopVertex, startVertex];
-  }
-  var clipCoords = [ends[0].geometry.coordinates];
+  const startVertex = nearestPointOnLine(line, startPt);
+  const stopVertex = nearestPointOnLine(line, stopPt);
+  const ends =
+    startVertex.properties.index <= stopVertex.properties.index
+      ? [startVertex, stopVertex]
+      : [stopVertex, startVertex];
+  const clipCoords = [ends[0].geometry.coordinates];
   for (
-    var i = ends[0].properties.index + 1;
+    let i = ends[0].properties.index + 1;
     i < ends[1].properties.index + 1;
     i++
   ) {
     clipCoords.push(coords[i]);
   }
   clipCoords.push(ends[1].geometry.coordinates);
-  return linestring(clipCoords, line.properties);
+  return linestring(clipCoords, line.type === "Feature" ? line.properties : {});
 }
 
 export { lineSlice };
