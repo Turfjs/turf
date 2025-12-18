@@ -16,7 +16,7 @@ Type: [Function][1]
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed.
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
 
-Returns **void**&#x20;
+Returns **(void | `false`)** Return false to stop iterating
 
 ## coordEach
 
@@ -122,7 +122,7 @@ Type: [Function][1]
 *   `currentProperties` **[GeoJsonProperties][7]** The current Properties being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
 
-Returns **void**&#x20;
+Returns **(void | `false`)** Returning false to stop iterating
 
 ## propEach
 
@@ -218,7 +218,7 @@ Type: [Function][1]
 *   `currentFeature` **[Feature][7]\<any>** The current Feature being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
 
-Returns **void**&#x20;
+Returns **(void | `false`)** Return false to stop iterating
 
 ## featureEach
 
@@ -543,7 +543,7 @@ Type: [Function][1]
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed.
 *   `segmentIndex` **[number][3]** The current index of the Segment being processed.
 
-Returns **void**&#x20;
+Returns **(void | `false`)** Return false to stop iterating
 
 ## segmentEach
 
@@ -659,7 +659,7 @@ Type: [Function][1]
 *   `multiFeatureIndex` **[number][3]** The current index of the Multi-Feature being processed
 *   `geometryIndex` **[number][3]** The current index of the Geometry being processed
 
-Returns **void**&#x20;
+Returns **(void | `false`)** Return false to stop iterating
 
 ## lineEach
 

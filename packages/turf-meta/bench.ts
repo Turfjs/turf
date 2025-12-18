@@ -73,7 +73,7 @@ const suite = new Benchmark.Suite("turf-meta");
  * findPoint     - polygons x 2,160,583 ops/sec ±1.06% (87 runs sampled)
  */
 Object.keys(fixtures).forEach((name) => {
-  const geojson = fixtures[name];
+  const geojson = (fixtures as any)[name];
   const noop = () => {
     /* no-op */
   };
@@ -95,4 +95,4 @@ Object.keys(fixtures).forEach((name) => {
     .add("findPoint     - " + name, () => meta.findPoint(geojson));
 });
 
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+suite.on("cycle", (e: any) => console.log(String(e.target))).run();

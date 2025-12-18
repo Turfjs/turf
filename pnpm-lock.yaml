@@ -4127,6 +4127,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/random':
         specifier: workspace:*
@@ -4134,6 +4137,9 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
+      '@types/tape':
+        specifier: ^5.8.1
+        version: 5.8.1
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -4146,6 +4152,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/turf-midpoint:
     dependencies:

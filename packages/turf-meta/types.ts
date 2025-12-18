@@ -73,9 +73,15 @@ const customLineStrings = featureCollection([customLineString]);
 /**
  * meta.coordEach
  */
-const coordEachValue: void = meta.coordEach(pt, (coords) => coords);
-coordEach(pt, (coords, index) => coords);
-meta.coordEach(pt, (coords, index) => coords);
+const coordEachValue = meta.coordEach(pt, (coords) => {
+  coords;
+});
+coordEach(pt, (coords, index) => {
+  coords;
+});
+meta.coordEach(pt, (coords, index) => {
+  coords;
+});
 meta.coordEach(pt.geometry, (coords) => {
   const equal: number[] = coords;
 });
@@ -88,7 +94,9 @@ meta.coordEach(poly, (coords) => {
 meta.coordEach(multiPoly, (coords) => {
   const equal: number[] = coords;
 });
-meta.coordEach(geomCollection, (coords) => coords);
+meta.coordEach(geomCollection, (coords) => {
+  coords;
+});
 
 /**
  * meta.coordReduce
@@ -120,12 +128,24 @@ meta.propReduce(geomCollection, (previous, prop) => prop);
 /**
  * meta.propEach
  */
-const propEachValue: void = meta.propEach(poly, (prop) => prop);
-propEach(features, (prop) => prop);
-meta.propEach(features, (prop) => prop);
-meta.propEach(poly, (prop, index) => prop);
-meta.propEach<{ bar: string }>(poly, (prop) => prop.bar);
-meta.propEach(geomCollection, (prop) => prop);
+const propEachValue: void = meta.propEach(poly, (prop) => {
+  prop;
+});
+propEach(features, (prop) => {
+  prop;
+});
+meta.propEach(features, (prop) => {
+  prop;
+});
+meta.propEach(poly, (prop, index) => {
+  prop;
+});
+meta.propEach<{ bar: string }>(poly, (prop) => {
+  prop.bar;
+});
+meta.propEach(geomCollection, (prop) => {
+  prop;
+});
 
 /**
  * meta.coordAll
@@ -149,11 +169,21 @@ meta.featureReduce(geomCollection, (previous, feature, index) => feature);
 /**
  * meta.featureEach
  */
-const featureEachValue: void = meta.featureEach(poly, (feature) => feature);
-featureEach(features, (feature) => feature);
-meta.featureEach(features, (feature) => feature);
-meta.featureEach(poly, (feature, index) => feature);
-meta.featureEach(geomCollection, (feature, index) => feature);
+const featureEachValue: void = meta.featureEach(poly, (feature) => {
+  feature;
+});
+featureEach(features, (feature) => {
+  feature;
+});
+meta.featureEach(features, (feature) => {
+  feature;
+});
+meta.featureEach(poly, (feature, index) => {
+  feature;
+});
+meta.featureEach(geomCollection, (feature, index) => {
+  feature;
+});
 
 // Access custom properties
 featureEach(customPoints, (pt) => {
@@ -177,11 +207,21 @@ meta.geomReduce(geomCollection, (previous, geom, index, props) => geom);
 /**
  * meta.geomEach
  */
-const geomEachValue: void = meta.geomEach(poly, (geom) => geom);
-geomEach(features, (geom) => geom);
-meta.geomEach(features, (geom) => geom);
-meta.geomEach(poly, (geom, index, props) => geom);
-meta.geomEach(geomCollection, (geom, index, props) => geom);
+const geomEachValue = meta.geomEach(poly, (geom) => {
+  geom;
+});
+geomEach(features, (geom) => {
+  geom;
+});
+meta.geomEach(features, (geom) => {
+  geom;
+});
+meta.geomEach(poly, (geom, index, props) => {
+  geom;
+});
+meta.geomEach(geomCollection, (geom, index, props) => {
+  geom;
+});
 
 /**
  * meta.flattenReduce
@@ -202,11 +242,21 @@ meta.flattenReduce(
 /**
  * meta.flattenEach
  */
-const flattenEachValue: void = meta.flattenEach(poly, (feature) => feature);
-flattenEach(features, (feature) => feature);
-meta.flattenEach(features, (feature) => feature);
-meta.flattenEach(poly.geometry, (feature, index, props) => feature);
-meta.flattenEach(geomCollection, (feature, index, props) => feature);
+const flattenEachValue: void = meta.flattenEach(poly, (feature) => {
+  feature;
+});
+flattenEach(features, (feature) => {
+  feature;
+});
+meta.flattenEach(features, (feature) => {
+  feature;
+});
+meta.flattenEach(poly.geometry, (feature, index, props) => {
+  feature;
+});
+meta.flattenEach(geomCollection, (feature, index, props) => {
+  feature;
+});
 
 /**
  * meta.segmentReduce
@@ -238,20 +288,26 @@ meta.segmentReduce(
 const segmentEachValue: void = meta.segmentEach(poly, () => {
   /* no-op */
 });
-segmentEach(poly, (currentSegment) => currentSegment);
-meta.segmentEach(poly, (currentSegment) => currentSegment);
-meta.segmentEach(features, (currentSegment) => currentSegment);
-meta.segmentEach(
-  poly.geometry,
-  (currentSegment, currentIndex) => currentSegment
-);
+segmentEach(poly, (currentSegment) => {
+  currentSegment;
+});
+meta.segmentEach(poly, (currentSegment) => {
+  currentSegment;
+});
+meta.segmentEach(features, (currentSegment) => {
+  currentSegment;
+});
+meta.segmentEach(poly.geometry, (currentSegment, currentIndex) => {
+  currentSegment;
+});
+meta.segmentEach(geomCollection, (currentSegment, currentIndex) => {
+  currentSegment;
+});
 meta.segmentEach(
   geomCollection,
-  (currentSegment, currentIndex) => currentSegment
-);
-meta.segmentEach(
-  geomCollection,
-  (currentSegment, currentIndex, currentSubIndex) => currentSegment
+  (currentSegment, currentIndex, currentSubIndex) => {
+    currentSegment;
+  }
 );
 
 /**
@@ -261,20 +317,26 @@ meta.segmentEach(
 const lineEachValue: void = meta.lineEach(line, () => {
   /* no-op */
 });
-lineEach(line, (currentLine) => currentLine);
-meta.lineEach(line, (currentLine) => currentLine);
-meta.lineEach(
-  multiLine,
-  (currentLine, featureIndex, featureSubIndex) => currentLine
-);
-meta.lineEach(poly, (currentLine) => currentLine);
-meta.lineEach(
-  poly,
-  (currentLine, featureIndex, featureSubIndex, lineIndex) => currentLine
-);
+lineEach(line, (currentLine) => {
+  currentLine;
+});
+meta.lineEach(line, (currentLine) => {
+  currentLine;
+});
+meta.lineEach(multiLine, (currentLine, featureIndex, featureSubIndex) => {
+  currentLine;
+});
+meta.lineEach(poly, (currentLine) => {
+  currentLine;
+});
+meta.lineEach(poly, (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+  currentLine;
+});
 meta.lineEach(
   multiPoly,
-  (currentLine, featureIndex, featureSubIndex, lineIndex) => currentLine
+  (currentLine, featureIndex, featureSubIndex, lineIndex) => {
+    currentLine;
+  }
 );
 
 // Able to load custom LineStrings
