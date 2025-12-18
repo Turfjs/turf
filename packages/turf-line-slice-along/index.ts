@@ -35,6 +35,7 @@ function lineSliceAlong(
 ): Feature<LineString> {
   // Optional parameters
   if (!isObject(options)) throw new Error("options is invalid");
+  const { units = "kilometers" } = options;
 
   var coords: Position[];
   var slice: Position[] = [];
@@ -55,7 +56,7 @@ function lineSliceAlong(
         return lineString(slice);
       }
       direction = bearing(coords[i], coords[i - 1]) - 180;
-      interpolated = destination(coords[i], overshot, direction, options);
+      interpolated = destination(coords[i], overshot, direction, { units });
       slice.push(interpolated.geometry.coordinates);
     }
 
@@ -66,7 +67,7 @@ function lineSliceAlong(
         return lineString(slice);
       }
       direction = bearing(coords[i], coords[i - 1]) - 180;
-      interpolated = destination(coords[i], overshot, direction, options);
+      interpolated = destination(coords[i], overshot, direction, { units });
       slice.push(interpolated.geometry.coordinates);
       return lineString(slice);
     }
@@ -79,7 +80,7 @@ function lineSliceAlong(
       return lineString(slice);
     }
 
-    travelled += distance(coords[i], coords[i + 1], options);
+    travelled += distance(coords[i], coords[i + 1], { units });
   }
 
   if (travelled < startDist && coords.length === origCoordsLength)
