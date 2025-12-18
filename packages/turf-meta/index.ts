@@ -1,4 +1,26 @@
-import { feature, point, lineString, isObject } from "@turf/helpers";
+import {
+  feature,
+  point,
+  lineString,
+  isObject,
+  AllGeoJSON,
+  Id,
+  Lines,
+} from "@turf/helpers";
+import {
+  BBox,
+  Feature,
+  FeatureCollection,
+  GeoJsonProperties,
+  Geometry,
+  GeometryCollection,
+  GeometryObject,
+  LineString,
+  MultiLineString,
+  MultiPolygon,
+  Point,
+  Polygon,
+} from "geojson";
 
 /**
  * Callback for coordEach
@@ -34,7 +56,17 @@ import { feature, point, lineString, isObject } from "@turf/helpers";
  *   //=geometryIndex
  * });
  */
-function coordEach(geojson, callback, excludeWrapCoord) {
+function coordEach(
+  geojson: AllGeoJSON,
+  callback: (
+    currentCoord: number[],
+    coordIndex: number,
+    featureIndex: number,
+    multiFeatureIndex: number,
+    geometryIndex: number
+  ) => void,
+  excludeWrapCoord?: boolean
+): void {
   // Handles null Geometry -- Skips this GeoJSON
   if (geojson === null) return;
   var j,
@@ -239,7 +271,19 @@ function coordEach(geojson, callback, excludeWrapCoord) {
  *   return currentCoord;
  * });
  */
-function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
+function coordReduce<Reducer>(
+  geojson: AllGeoJSON,
+  callback: (
+    previousValue: Reducer,
+    currentCoord: number[],
+    coordIndex: number,
+    featureIndex: number,
+    multiFeatureIndex: number,
+    geometryIndex: number
+  ) => Reducer,
+  initialValue?: Reducer,
+  excludeWrapCoord?: boolean
+): Reducer {
   var previousValue = initialValue;
   coordEach(
     geojson,
@@ -294,7 +338,10 @@ function coordReduce(geojson, callback, initialValue, excludeWrapCoord) {
  *   //=featureIndex
  * });
  */
-function propEach(geojson, callback) {
+function propEach<Props extends GeoJsonProperties>(
+  geojson: Feature<any> | FeatureCollection<any> | Feature<GeometryCollection>,
+  callback: (currentProperties: Props, featureIndex: number) => void
+): void {
   var i;
   switch (geojson.type) {
     case "FeatureCollection":
@@ -353,7 +400,15 @@ function propEach(geojson, callback) {
  *   return currentProperties
  * });
  */
-function propReduce(geojson, callback, initialValue) {
+function propReduce<Reducer, P extends GeoJsonProperties = GeoJsonProperties>(
+  geojson: Feature<any, P> | FeatureCollection<any, P> | Geometry,
+  callback: (
+    previousValue: Reducer,
+    currentProperties: P,
+    featureIndex: number
+  ) => Reducer,
+  initialValue?: Reducer
+): Reducer {
   var previousValue = initialValue;
   propEach(geojson, function (currentProperties, featureIndex) {
     if (featureIndex === 0 && initialValue === undefined)
@@ -392,7 +447,16 @@ function propReduce(geojson, callback, initialValue) {
  *   //=featureIndex
  * });
  */
-function featureEach(geojson, callback) {
+function featureEach<
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson:
+    | Feature<G, P>
+    | FeatureCollection<G, P>
+    | Feature<GeometryCollection, P>,
+  callback: (currentFeature: Feature<G, P>, featureIndex: number) => void
+): void {
   if (geojson.type === "Feature") {
     callback(geojson, 0);
   } else if (geojson.type === "FeatureCollection") {
@@ -445,7 +509,22 @@ function featureEach(geojson, callback) {
  *   return currentFeature
  * });
  */
-function featureReduce(geojson, callback, initialValue) {
+function featureReduce<
+  Reducer,
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson:
+    | Feature<G, P>
+    | FeatureCollection<G, P>
+    | Feature<GeometryCollection, P>,
+  callback: (
+    previousValue: Reducer,
+    currentFeature: Feature<G, P>,
+    featureIndex: number
+  ) => Reducer,
+  initialValue?: Reducer
+): Reducer {
   var previousValue = initialValue;
   featureEach(geojson, function (currentFeature, featureIndex) {
     if (featureIndex === 0 && initialValue === undefined)
@@ -470,7 +549,7 @@ function featureReduce(geojson, callback, initialValue) {
  * var coords = turf.coordAll(features);
  * //= [[26, 37], [36, 53]]
  */
-function coordAll(geojson) {
+function coordAll(geojson: AllGeoJSON): number[][] {
   var coords = [];
   coordEach(geojson, function (coord) {
     coords.push(coord);
@@ -511,7 +590,24 @@ function coordAll(geojson) {
  *   //=featureId
  * });
  */
-function geomEach(geojson, callback) {
+function geomEach<
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson:
+    | Feature<G, P>
+    | FeatureCollection<G, P>
+    | G
+    | GeometryCollection
+    | Feature<GeometryCollection, P>,
+  callback: (
+    currentGeometry: G,
+    featureIndex: number,
+    featureProperties: P,
+    featureBBox: BBox,
+    featureId: Id
+  ) => void
+): void {
   var i,
     j,
     g,
@@ -678,7 +774,27 @@ function geomEach(geojson, callback) {
  *   return currentGeometry
  * });
  */
-function geomReduce(geojson, callback, initialValue) {
+function geomReduce<
+  Reducer,
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson:
+    | Feature<G, P>
+    | FeatureCollection<G, P>
+    | G
+    | GeometryCollection
+    | Feature<GeometryCollection, P>,
+  callback: (
+    previousValue: Reducer,
+    currentGeometry: G,
+    featureIndex: number,
+    featureProperties: P,
+    featureBBox: BBox,
+    featureId: Id
+  ) => Reducer,
+  initialValue?: Reducer
+): Reducer {
   var previousValue = initialValue;
   geomEach(
     geojson,
@@ -735,7 +851,22 @@ function geomReduce(geojson, callback, initialValue) {
  *   //=multiFeatureIndex
  * });
  */
-function flattenEach(geojson, callback) {
+function flattenEach<
+  G extends GeometryObject = GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson:
+    | Feature<G, P>
+    | FeatureCollection<G, P>
+    | G
+    | GeometryCollection
+    | Feature<GeometryCollection, P>,
+  callback: (
+    currentFeature: Feature<G, P>,
+    featureIndex: number,
+    multiFeatureIndex: number
+  ) => void
+): void {
   geomEach(geojson, function (geometry, featureIndex, properties, bbox, id) {
     // Callback for single geometry
     var type = geometry === null ? null : geometry.type;
@@ -834,7 +965,25 @@ function flattenEach(geojson, callback) {
  *   return currentFeature
  * });
  */
-function flattenReduce(geojson, callback, initialValue) {
+function flattenReduce<
+  Reducer,
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson:
+    | Feature<G, P>
+    | FeatureCollection<G, P>
+    | G
+    | GeometryCollection
+    | Feature<GeometryCollection, P>,
+  callback: (
+    previousValue: Reducer,
+    currentFeature: Feature<G, P>,
+    featureIndex: number,
+    multiFeatureIndex: number
+  ) => Reducer,
+  initialValue?: Reducer
+): Reducer {
   var previousValue = initialValue;
   flattenEach(
     geojson,
@@ -894,7 +1043,16 @@ function flattenReduce(geojson, callback, initialValue) {
  *     total++;
  * });
  */
-function segmentEach(geojson, callback) {
+function segmentEach<P extends GeoJsonProperties = GeoJsonProperties>(
+  geojson: AllGeoJSON,
+  callback: (
+    currentSegment?: Feature<LineString, P>,
+    featureIndex?: number,
+    multiFeatureIndex?: number,
+    segmentIndex?: number,
+    geometryIndex?: number
+  ) => void
+): void {
   flattenEach(geojson, function (feature, featureIndex, multiFeatureIndex) {
     var segmentIndex = 0;
 
@@ -1010,7 +1168,26 @@ function segmentEach(geojson, callback) {
  *     return previousValue;
  * }, initialValue);
  */
-function segmentReduce(geojson, callback, initialValue) {
+function segmentReduce<
+  Reducer,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson:
+    | FeatureCollection<Lines, P>
+    | Feature<Lines, P>
+    | Lines
+    | Feature<GeometryCollection, P>
+    | GeometryCollection,
+  callback: (
+    previousValue?: Reducer,
+    currentSegment?: Feature<LineString, P>,
+    featureIndex?: number,
+    multiFeatureIndex?: number,
+    segmentIndex?: number,
+    geometryIndex?: number
+  ) => Reducer,
+  initialValue?: Reducer
+): Reducer {
   var previousValue = initialValue;
   var started = false;
   segmentEach(
@@ -1071,7 +1248,20 @@ function segmentReduce(geojson, callback, initialValue) {
  *   //=geometryIndex
  * });
  */
-function lineEach(geojson, callback) {
+function lineEach<P extends GeoJsonProperties = GeoJsonProperties>(
+  geojson:
+    | FeatureCollection<Lines, P>
+    | Feature<Lines, P>
+    | Lines
+    | Feature<GeometryCollection, P>
+    | GeometryCollection,
+  callback: (
+    currentLine: Feature<LineString, P>,
+    featureIndex?: number,
+    multiFeatureIndex?: number,
+    geometryIndex?: number
+  ) => void
+): void {
   // validation
   if (!geojson) throw new Error("geojson is required");
 
@@ -1152,7 +1342,22 @@ function lineEach(geojson, callback) {
  *   return currentLine
  * });
  */
-function lineReduce(geojson, callback, initialValue) {
+function lineReduce<Reducer, P extends GeoJsonProperties = GeoJsonProperties>(
+  geojson:
+    | FeatureCollection<Lines, P>
+    | Feature<Lines, P>
+    | Lines
+    | Feature<GeometryCollection, P>
+    | GeometryCollection,
+  callback: (
+    previousValue?: Reducer,
+    currentLine?: Feature<LineString, P>,
+    featureIndex?: number,
+    multiFeatureIndex?: number,
+    geometryIndex?: number
+  ) => Reducer,
+  initialValue?: Reducer
+): Reducer {
   var previousValue = initialValue;
   lineEach(
     geojson,
@@ -1206,7 +1411,21 @@ function lineReduce(geojson, callback, initialValue) {
  * turf.findSegment(multiLine, {multiFeatureIndex: -1, segmentIndex: -1});
  * // => Feature<LineString<[[-50, -30], [-30, -40]]>>
  */
-function findSegment(geojson, options) {
+function findSegment<
+  G extends LineString | MultiLineString | Polygon | MultiPolygon,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson: Feature<G, P> | FeatureCollection<G, P> | G,
+  options?: {
+    featureIndex?: number;
+    multiFeatureIndex?: number;
+    geometryIndex?: number;
+    segmentIndex?: number;
+    properties?: P;
+    bbox?: BBox;
+    id?: Id;
+  }
+): Feature<LineString, P> {
   // Optional Parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
@@ -1335,7 +1554,21 @@ function findSegment(geojson, options) {
  * turf.findPoint(multiLine, {multiFeatureIndex: -1, coordIndex: -1});
  * // => Feature<Point<[-30, -40]>>
  */
-function findPoint(geojson, options) {
+function findPoint<
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson: Feature<G, P> | FeatureCollection<G, P> | G,
+  options?: {
+    featureIndex?: number;
+    multiFeatureIndex?: number;
+    geometryIndex?: number;
+    coordIndex?: number;
+    properties?: P;
+    bbox?: BBox;
+    id?: Id;
+  }
+): Feature<Point, P> {
   // Optional Parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
