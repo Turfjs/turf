@@ -46,9 +46,9 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
 const suite = new Benchmark.Suite("turf-buffer");
 for (const { name, geojson } of fixtures) {
   console.time(name);
-  buffer(geojson, 50, { units: "miles" });
+  buffer(geojson as any, 50, { units: "miles" });
   console.timeEnd(name);
-  suite.add(name, () => buffer(geojson, 50, { units: "miles" }));
+  suite.add(name, () => buffer(geojson as any, 50, { units: "miles" }));
 }
 
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+suite.on("cycle", (e: any) => console.log(String(e.target))).run();

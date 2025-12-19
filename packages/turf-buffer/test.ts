@@ -13,6 +13,7 @@ import {
   geometryCollection,
 } from "@turf/helpers";
 import { buffer } from "./index.js";
+import { Feature, Point, Polygon } from "geojson";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -34,14 +35,14 @@ test("turf-buffer", (t) => {
   fixtures.forEach((fixture) => {
     const filename = fixture.filename;
     const name = fixture.name;
-    const geojson = fixture.geojson;
-    const properties = geojson.properties || {};
+    const geojson = fixture.geojson as any;
+    const properties = (geojson as Feature).properties || {};
     const radius = properties.radius || 50;
     const units = properties.units || "miles";
     const steps = properties.steps;
 
     const buffered = truncate(
-      buffer(geojson, radius, { units: units, steps: steps })
+      buffer(geojson, radius, { units: units, steps: steps })!
     );
 
     // Add Results to FeatureCollection
@@ -112,7 +113,7 @@ test("turf-buffer - Prevent Input Mutation", (t) => {
       [11, 0],
     ],
   ]);
-  const collection = featureCollection([pt, poly]);
+  const collection = featureCollection<Point | Polygon>([pt, poly]);
 
   const beforePt = JSON.parse(JSON.stringify(pt));
   const beforePoly = JSON.parse(JSON.stringify(poly));
@@ -182,7 +183,7 @@ test("turf-buffer - undefined return", (t) => {
   t.end();
 });
 
-function colorize(feature, color) {
+function colorize(feature: Feature, color: string) {
   color = color || "#F00";
   if (feature.properties) {
     feature.properties.stroke = color;
