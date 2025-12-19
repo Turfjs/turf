@@ -1,6 +1,39 @@
-import { Feature, FeatureCollection, Geometry } from "geojson";
+import {
+  Feature,
+  FeatureCollection,
+  GeoJsonProperties,
+  Geometry,
+  GeometryCollection,
+  GeometryObject,
+} from "geojson";
 import { earthRadius } from "@turf/helpers";
-import { geomReduce } from "@turf/meta";
+import { geomReduce, featureEach } from "@turf/meta";
+
+// would be in @turf/meta
+export function featureReduce<
+  Reducer,
+  G extends GeometryObject,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(
+  geojson:
+    | Feature<G, P>
+    | FeatureCollection<G, P>
+    | Feature<GeometryCollection, P>,
+  callback: (
+    previousValue: Reducer,
+    currentFeature: Feature<G, P>,
+    featureIndex: number
+  ) => Reducer,
+  initialValue?: Reducer
+) {
+  var previousValue = initialValue;
+  featureEach(geojson, function (currentFeature, featureIndex) {
+    if (featureIndex === 0 && initialValue === undefined)
+      previousValue = currentFeature;
+    else previousValue = callback(previousValue, currentFeature, featureIndex);
+  });
+  return previousValue;
+}
 
 /**
  * Calculates the geodesic area in square meters of one or more polygons.
