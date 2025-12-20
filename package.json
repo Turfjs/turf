@@ -23,7 +23,8 @@
       "eslint --fix"
     ],
     "packages/*/index.{js,ts}": [
-      "pnpm tsx ./scripts/generate-readmes"
+      "pnpm tsx ./scripts/generate-readmes",
+      "git add ./packages/*/README.md"
     ],
     "*": "prettier --write --ignore-unknown"
   },
