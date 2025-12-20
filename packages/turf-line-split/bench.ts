@@ -33,11 +33,13 @@ const fixtures = fs.readdirSync(directory).map((filename) => {
  */
 const suite = new Benchmark.Suite("turf-line-split");
 for (const { name, geojson } of fixtures) {
-  suite.add(name, () => lineSplit(geojson.features[0], geojson.features[1]));
+  suite.add(name, () =>
+    lineSplit((geojson as any).features[0], (geojson as any).features[1])
+  );
 }
 
 suite
-  .on("cycle", (e) => {
+  .on("cycle", (e: any) => {
     console.log(String(e.target));
   })
   .run();

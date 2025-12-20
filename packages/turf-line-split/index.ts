@@ -5,7 +5,22 @@ import { lineIntersect } from "@turf/line-intersect";
 import { nearestPointOnLine } from "@turf/nearest-point-on-line";
 import { getCoords, getCoord, getType } from "@turf/invariant";
 import { featureEach, featureReduce, flattenEach } from "@turf/meta";
-import { lineString, featureCollection } from "@turf/helpers";
+import { lineString, featureCollection, feature } from "@turf/helpers";
+import {
+  Feature,
+  FeatureCollection,
+  GeoJsonTypes,
+  LineString,
+  MultiLineString,
+  MultiPoint,
+  MultiPolygon,
+  Point,
+  Polygon,
+} from "geojson";
+
+type Splitter = Feature<
+  Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon
+>;
 
 /**
  * Split a LineString by another GeoJSON Feature.
@@ -26,12 +41,15 @@ import { lineString, featureCollection } from "@turf/helpers";
  * split.features[0].properties.stroke = "red";
  * split.features[1].properties.stroke = "blue";
  */
-function lineSplit(line, splitter) {
+function lineSplit<T extends LineString>(
+  line: Feature<T> | T,
+  splitter: Splitter
+): FeatureCollection<T> {
   if (!line) throw new Error("line is required");
   if (!splitter) throw new Error("splitter is required");
 
-  var lineType = getType(line);
-  var splitterType = getType(splitter);
+  const lineType = getType(line) as Exclude<GeoJsonTypes, "Feature">;
+  const splitterType = getType(splitter) as Exclude<GeoJsonTypes, "Feature">;
 
   if (lineType !== "LineString") throw new Error("line must be LineString");
   if (splitterType === "FeatureCollection")
@@ -43,21 +61,38 @@ function lineSplit(line, splitter) {
   // to avoid possible approximation issues in rbush
   var truncatedSplitter = truncate(splitter, { precision: 7 });
 
+  // Ensure we're consistently sending Feature<LineString> into the splitLine methods.
+  if (line.type !== "Feature") {
+    line = feature(line);
+  }
+
   switch (splitterType) {
     case "Point":
-      return splitLineWithPoint(line, truncatedSplitter);
+      return splitLineWithPoint(
+        line as Feature<LineString>,
+        truncatedSplitter as Feature<Point>
+      ) as FeatureCollection<T>;
     case "MultiPoint":
-      return splitLineWithPoints(line, truncatedSplitter);
+      return splitLineWithPoints(
+        line as Feature<LineString>,
+        truncatedSplitter as Feature<MultiPoint>
+      ) as FeatureCollection<T>;
     case "LineString":
     case "MultiLineString":
     case "Polygon":
     case "MultiPolygon":
       return splitLineWithPoints(
-        line,
-        lineIntersect(line, truncatedSplitter, {
-          ignoreSelfIntersections: true,
-        })
-      );
+        line as Feature<LineString>,
+        lineIntersect(
+          line,
+          truncatedSplitter as Feature<
+            LineString | MultiLineString | Polygon | MultiPolygon
+          >,
+          {
+            ignoreSelfIntersections: true,
+          }
+        )
+      ) as FeatureCollection<T>;
   }
 }
 
@@ -69,43 +104,49 @@ function lineSplit(line, splitter) {
  * @param {FeatureCollection<Point>} splitter Point
  * @returns {FeatureCollection<LineString>} split LineStrings
  */
-function splitLineWithPoints(line, splitter) {
-  var results = [];
-  var tree = rbush();
+function splitLineWithPoints(
+  line: Feature<LineString>,
+  splitter: FeatureCollection<Point> | Feature<MultiPoint>
+) {
+  var results: Feature<LineString>[] = [];
+  var tree = rbush<LineString>();
 
-  flattenEach(splitter, function (point) {
-    // Add index/id to features (needed for filter)
-    results.forEach(function (feature, index) {
-      feature.id = index;
-    });
-    // First Point - doesn't need to handle any previous line results
-    if (!results.length) {
-      results = splitLineWithPoint(line, point).features;
-      tree.load(featureCollection(results));
-      // Split with remaining points - lines might needed to be split multiple times
-    } else {
-      // Find all lines that are within the splitter's bbox
-      var search = tree.search(point);
+  flattenEach(
+    splitter as FeatureCollection<Point>, // this cast should be unnecessary (and is wrong, it could contain MultiPoints), but is a workaround for bad flattenEach typings
+    function (point: Feature<Point>) {
+      // Add index/id to features (needed for filter)
+      results.forEach(function (feature, index) {
+        feature.id = index;
+      });
+      // First Point - doesn't need to handle any previous line results
+      if (!results.length) {
+        results = splitLineWithPoint(line, point).features;
+        tree.load(featureCollection(results));
+        // Split with remaining points - lines might needed to be split multiple times
+      } else {
+        // Find all lines that are within the splitter's bbox
+        var search = tree.search(point);
 
-      if (search.features.length) {
-        // RBush might return multiple lines - only process the closest line to splitter
-        var closestLine = findClosestFeature(point, search);
+        if (search.features.length) {
+          // RBush might return multiple lines - only process the closest line to splitter
+          var closestLine = findClosestFeature(point, search);
 
-        // Remove closest line from results since this will be split into two lines
-        // This removes any duplicates inside the results & index
-        results = results.filter(function (feature) {
-          return feature.id !== closestLine.id;
-        });
-        tree.remove(closestLine);
+          // Remove closest line from results since this will be split into two lines
+          // This removes any duplicates inside the results & index
+          results = results.filter(function (feature) {
+            return feature.id !== closestLine.id;
+          });
+          tree.remove(closestLine);
 
-        // Append the two newly split lines into the results
-        featureEach(splitLineWithPoint(closestLine, point), function (line) {
-          results.push(line);
-          tree.insert(line);
-        });
+          // Append the two newly split lines into the results
+          featureEach(splitLineWithPoint(closestLine, point), function (line) {
+            results.push(line);
+            tree.insert(line);
+          });
+        }
       }
     }
-  });
+  );
   return featureCollection(results);
 }
 
@@ -117,7 +158,10 @@ function splitLineWithPoints(line, splitter) {
  * @param {Feature<Point>} splitter Point
  * @returns {FeatureCollection<LineString>} split LineStrings
  */
-function splitLineWithPoint(line, splitter) {
+function splitLineWithPoint(
+  line: Feature<LineString>,
+  splitter: Feature<Point>
+) {
   var results = [];
 
   // handle endpoints
@@ -130,7 +174,7 @@ function splitLineWithPoint(line, splitter) {
     return featureCollection([line]);
 
   // Create spatial index
-  var tree = rbush();
+  var tree = rbush<LineString>();
   var segments = lineSegment(line);
   tree.load(segments);
 
@@ -183,7 +227,10 @@ function splitLineWithPoint(line, splitter) {
  * @param {FeatureCollection<LineString>} lines Collection of Features
  * @returns {Feature<LineString>} closest LineString
  */
-function findClosestFeature(point, lines) {
+function findClosestFeature(
+  point: Feature<Point>,
+  lines: FeatureCollection<LineString>
+): Feature<LineString> {
   if (!lines.features.length) throw new Error("lines must contain features");
   // Filter to one segment that is the closest to the line
   if (lines.features.length === 1) return lines.features[0];
@@ -198,7 +245,7 @@ function findClosestFeature(point, lines) {
       closestDistance = dist;
     }
   });
-  return closestFeature;
+  return closestFeature!;
 }
 
 /**
@@ -209,9 +256,9 @@ function findClosestFeature(point, lines) {
  * @param {Array<number>} pt2 point
  * @returns {boolean} true if they are equals
  */
-function pointsEquals(pt1, pt2) {
+function pointsEquals(pt1: number[], pt2: number[]) {
   return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
 
-export { lineSplit };
+export { Splitter, lineSplit };
 export default lineSplit;
