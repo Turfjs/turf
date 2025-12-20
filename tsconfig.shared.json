@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "node16",
+    "module": "esnext",
     "declaration": true,
     "esModuleInterop": true,
     "strict": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "skipLibCheck": true,
     "erasableSyntaxOnly": true

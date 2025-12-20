@@ -74,7 +74,7 @@ function lineIntersect<
   let results: Intersection[] = [];
   if (removeDuplicates) {
     const unique: Record<string, boolean> = {};
-    intersections.forEach((intersection) => {
+    intersections.forEach((intersection: Intersection) => {
       const key = intersection.join(",");
       if (!unique[key]) {
         unique[key] = true;
