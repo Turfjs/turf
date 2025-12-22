@@ -55,7 +55,7 @@
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
-    "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
+    "test:types": "tsc --project tsconfig.types.json"
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",
