@@ -1,4 +1,4 @@
-import { defineConfig, type Options } from "tsup";
+import { type Options } from "tsup";
 
 const baseOptions: Options = {
   tsconfig: "./tsconfig.build.json",
@@ -7,22 +7,11 @@ const baseOptions: Options = {
   sourcemap: true,
   // treeshake: true, causes "chunk.default" warning, breaks CJS exports?
   minify: false,
-  skipNodeModulesBundle: true,
   cjsInterop: true,
   splitting: true,
+  external: [
+    /^@turf\//, // Externalize all @turf workspace packages
+  ],
 };
-
-export default [
-  defineConfig({
-    ...baseOptions,
-    outDir: "dist/cjs",
-    format: "cjs",
-  }),
-  defineConfig({
-    ...baseOptions,
-    outDir: "dist/esm",
-    format: "esm",
-  }),
-];
 
 export { baseOptions };
