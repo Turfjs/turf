@@ -53,13 +53,14 @@
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsup",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.5",
+    "@types/earcut": "^3.0.0",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "tape": "^5.9.0",

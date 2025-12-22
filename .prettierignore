@@ -11,3 +11,7 @@ pnpm-lock.yaml
 /.nx/cache
 
 /.nx/workspace-data
+
+tsconfig.json
+tsconfig.build.json
+tsconfig.shared.json

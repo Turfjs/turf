@@ -9,6 +9,8 @@ import {
   packageEntry,
   packageScript,
   requireDependency,
+  standardTsconfig,
+  fileContents,
 } from "@monorepolint/rules";
 
 const TS_PACKAGES = []; // projects that use typescript to build
@@ -86,6 +88,35 @@ export default {
     }),
     alphabeticalDependencies({ includeWorkspaceRoot: true }),
     alphabeticalScripts({ includeWorkspaceRoot: true }),
+    standardTsconfig({
+      options: { templateFile: "./templates/package/tsconfig.json" },
+      includePackages: [...TS_PACKAGES, MAIN_PACKAGE],
+    }),
+    standardTsconfig({
+      options: { templateFile: "./templates/package-js/tsconfig.json" },
+      includePackages: JS_PACKAGES,
+    }),
+    fileContents({
+      options: {
+        file: "tsconfig.build.json",
+        templateFile: "./templates/package/tsconfig.build.json",
+      },
+      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+    }),
+    fileContents({
+      options: {
+        file: "tsup.config.ts",
+        templateFile: "./templates/package/tsup.config.ts",
+      },
+      includePackages: TS_PACKAGES,
+    }),
+    fileContents({
+      options: {
+        file: "tsup.config.ts",
+        templateFile: "./templates/package-js/tsup.config.ts",
+      },
+      includePackages: JS_PACKAGES,
+    }),
     packageEntry({
       options: {
         entries: {
@@ -180,7 +211,7 @@ export default {
     packageScript({
       options: {
         scripts: {
-          build: "tsup --config ../../tsup.config.ts",
+          build: "tsup",
         },
       },
       includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
