@@ -57,8 +57,7 @@ test("intersect", (t) => {
         fc.features.push(result);
       }
 
-      if (process.env.REGEN)
-        writeJsonFileSync(directories.out + filename, result);
+      if (process.env.REGEN) writeJsonFileSync(directories.out + filename, fc);
       t.deepEqual(fc, loadJsonFileSync(directories.out + filename), name);
     }
   }
