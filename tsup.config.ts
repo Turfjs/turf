@@ -1,28 +1,17 @@
-import { defineConfig, type Options } from "tsup";
+import { type Options } from "tsup";
 
 const baseOptions: Options = {
+  tsconfig: "./tsconfig.build.json",
   clean: true,
   dts: true,
-  entry: ["index.?s"], // while we have a mix of TS and JS packages
-  minify: false,
-  skipNodeModulesBundle: true,
   sourcemap: true,
-  target: "es2017",
-  tsconfig: "./tsconfig.json",
   // treeshake: true, causes "chunk.default" warning, breaks CJS exports?
+  minify: false,
   cjsInterop: true,
   splitting: true,
+  external: [
+    /^@turf\//, // Externalize all @turf workspace packages
+  ],
 };
 
-export default [
-  defineConfig({
-    ...baseOptions,
-    outDir: "dist/cjs",
-    format: "cjs",
-  }),
-  defineConfig({
-    ...baseOptions,
-    outDir: "dist/esm",
-    format: "esm",
-  }),
-];
+export { baseOptions };

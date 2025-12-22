@@ -1,3 +1,36 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-center-mean"
+    },
+    {
+      "path": "../turf-centroid"
+    },
+    {
+      "path": "../turf-distance"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-meta"
+    },
+    {
+      "path": "../turf-center"
+    },
+    {
+      "path": "../turf-center-of-mass"
+    },
+    {
+      "path": "../turf-random"
+    },
+    {
+      "path": "../turf-truncate"
+    }
+  ]
 }

@@ -1,3 +1,24 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-invariant"
+    },
+    {
+      "path": "../turf-line-intersect"
+    },
+    {
+      "path": "../turf-line-overlap"
+    },
+    {
+      "path": "../turf-meta"
+    }
+  ]
 }
