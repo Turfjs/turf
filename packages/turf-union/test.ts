@@ -44,7 +44,7 @@ test("union", function (t) {
   t.end();
 });
 
-test.skip("union - unable to complete output ring ex 1 - issue 1983", function (t) {
+test("union - unable to complete output ring ex 1 - issue 1983", function (t) {
   const polys = loadJsonFileSync(
     directories.in + "unable-to-complete-output-ring-1983-1.geojson"
   ) as FeatureCollection<Polygon>;
@@ -55,7 +55,7 @@ test.skip("union - unable to complete output ring ex 1 - issue 1983", function (
   t.end();
 });
 
-test.skip("union - unable to complete output ring ex 2 - issue 1983", function (t) {
+test("union - unable to complete output ring ex 2 - issue 1983", function (t) {
   const polys = loadJsonFileSync(
     directories.in + "unable-to-complete-output-ring-1983-2.geojson"
   ) as FeatureCollection<Polygon>;
