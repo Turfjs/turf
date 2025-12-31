@@ -2,24 +2,54 @@ import rbush from "rbush";
 import { featureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 import { bbox as turfBBox } from "@turf/bbox";
+import {
+  BBox,
+  Feature,
+  FeatureCollection,
+  GeoJsonProperties,
+  Geometry,
+} from "geojson";
 
 /**
  * @module rbush
  */
 
 /**
- * GeoJSON implementation of [RBush](https://github.com/mourner/rbush#rbush) spatial index.
+ * Converts GeoJSON to {minX, minY, maxX, maxY} schema
  *
- * @function rbush
- * @param {number} [maxEntries=9] defines the maximum number of entries in a tree node. 9 (used by default) is a
- * reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa.
- * @returns {RBush} GeoJSON RBush
- * @example
- * var geojsonRbush = require('geojson-rbush').default;
- * var tree = geojsonRbush();
+ * @memberof rbush
+ * @private
+ * @param {BBox|FeatureCollection|Feature} geojson feature(s) to retrieve BBox from
+ * @returns {Object} converted to {minX, minY, maxX, maxY}
  */
-function geojsonRbush(maxEntries) {
-  var tree = new rbush(maxEntries);
+function toBBox(geojson: BBox | FeatureCollection | Feature) {
+  var bbox;
+  if ((geojson as any).bbox) bbox = (geojson as any).bbox;
+  else if (Array.isArray(geojson) && geojson.length === 4) bbox = geojson;
+  else if (Array.isArray(geojson) && geojson.length === 6)
+    bbox = [geojson[0], geojson[1], geojson[3], geojson[4]];
+  else if (geojson.type === "Feature") bbox = turfBBox(geojson);
+  else if (geojson.type === "FeatureCollection") bbox = turfBBox(geojson);
+  else throw new Error("invalid geojson");
+
+  return {
+    minX: bbox[0],
+    minY: bbox[1],
+    maxX: bbox[2],
+    maxY: bbox[3],
+  };
+}
+
+class RBush<G extends Geometry, P extends GeoJsonProperties> {
+  private tree: rbush<Feature<G, P>>;
+
+  constructor(maxEntries = 9) {
+    this.tree = new rbush<Feature<G, P>>(maxEntries);
+    // When we load features into the underlying rbush instance, it has to be able to correctly
+    // handle GeoJSON bbox values while inserting into the data structure. The rest of the API
+    // can just be a passthrough wrapping class.
+    this.tree.toBBox = toBBox;
+  }
 
   /**
    * [insert](https://github.com/mourner/rbush#data-format)
@@ -31,11 +61,12 @@ function geojsonRbush(maxEntries) {
    * var poly = turf.polygon([[[-78, 41], [-67, 41], [-67, 48], [-78, 48], [-78, 41]]]);
    * tree.insert(poly)
    */
-  tree.insert = function (feature) {
+  insert(feature: Feature<G, P>): RBush<G, P> {
     if (feature.type !== "Feature") throw new Error("invalid feature");
     feature.bbox = feature.bbox ? feature.bbox : turfBBox(feature);
-    return rbush.prototype.insert.call(this, feature);
-  };
+    this.tree.insert(feature);
+    return this;
+  }
 
   /**
    * [load](https://github.com/mourner/rbush#bulk-inserting-data)
@@ -50,8 +81,8 @@ function geojsonRbush(maxEntries) {
    * ]);
    * tree.load(polys);
    */
-  tree.load = function (features) {
-    var load = [];
+  load(features: FeatureCollection<G, P> | Feature<G, P>[]): RBush<G, P> {
+    var load: Feature<G, P>[] = [];
     // Load an Array of Features
     if (Array.isArray(features)) {
       features.forEach(function (feature) {
@@ -67,8 +98,9 @@ function geojsonRbush(maxEntries) {
         load.push(feature);
       });
     }
-    return rbush.prototype.load.call(this, load);
-  };
+    this.tree.load(load);
+    return this;
+  }
 
   /**
    * [remove](https://github.com/mourner/rbush#removing-data)
@@ -82,11 +114,15 @@ function geojsonRbush(maxEntries) {
    *
    * tree.remove(poly);
    */
-  tree.remove = function (feature, equals) {
+  remove(
+    feature: Feature<G, P>,
+    equals?: (a: Feature<G, P>, b: Feature<G, P>) => boolean
+  ) {
     if (feature.type !== "Feature") throw new Error("invalid feature");
     feature.bbox = feature.bbox ? feature.bbox : turfBBox(feature);
-    return rbush.prototype.remove.call(this, feature, equals);
-  };
+    this.tree.remove(feature, equals);
+    return this;
+  }
 
   /**
    * [clear](https://github.com/mourner/rbush#removing-data)
@@ -96,9 +132,10 @@ function geojsonRbush(maxEntries) {
    * @example
    * tree.clear()
    */
-  tree.clear = function () {
-    return rbush.prototype.clear.call(this);
-  };
+  clear() {
+    this.tree.clear();
+    return this;
+  }
 
   /**
    * [search](https://github.com/mourner/rbush#search)
@@ -111,10 +148,10 @@ function geojsonRbush(maxEntries) {
    *
    * tree.search(poly);
    */
-  tree.search = function (geojson) {
-    var features = rbush.prototype.search.call(this, this.toBBox(geojson));
+  search(geojson: Feature | FeatureCollection | BBox): FeatureCollection<G, P> {
+    var features = this.tree.search(toBBox(geojson));
     return featureCollection(features);
-  };
+  }
 
   /**
    * [collides](https://github.com/mourner/rbush#collisions)
@@ -127,9 +164,9 @@ function geojsonRbush(maxEntries) {
    *
    * tree.collides(poly);
    */
-  tree.collides = function (geojson) {
-    return rbush.prototype.collides.call(this, this.toBBox(geojson));
-  };
+  collides(geojson: Feature | FeatureCollection | BBox): boolean {
+    return this.tree.collides(toBBox(geojson));
+  }
 
   /**
    * [all](https://github.com/mourner/rbush#search)
@@ -139,10 +176,10 @@ function geojsonRbush(maxEntries) {
    * @example
    * tree.all()
    */
-  tree.all = function () {
-    var features = rbush.prototype.all.call(this);
+  all() {
+    const features = this.tree.all();
     return featureCollection(features);
-  };
+  }
 
   /**
    * [toJSON](https://github.com/mourner/rbush#export-and-import)
@@ -152,9 +189,9 @@ function geojsonRbush(maxEntries) {
    * @example
    * var exported = tree.toJSON()
    */
-  tree.toJSON = function () {
-    return rbush.prototype.toJSON.call(this);
-  };
+  toJSON() {
+    return this.tree.toJSON();
+  }
 
   /**
    * [fromJSON](https://github.com/mourner/rbush#export-and-import)
@@ -184,36 +221,28 @@ function geojsonRbush(maxEntries) {
    * }
    * tree.fromJSON(exported)
    */
-  tree.fromJSON = function (json) {
-    return rbush.prototype.fromJSON.call(this, json);
-  };
+  fromJSON(json: any): RBush<G, P> {
+    this.tree.fromJSON(json);
+    return this;
+  }
+}
 
-  /**
-   * Converts GeoJSON to {minX, minY, maxX, maxY} schema
-   *
-   * @memberof rbush
-   * @private
-   * @param {BBox|FeatureCollection|Feature} geojson feature(s) to retrieve BBox from
-   * @returns {Object} converted to {minX, minY, maxX, maxY}
-   */
-  tree.toBBox = function (geojson) {
-    var bbox;
-    if (geojson.bbox) bbox = geojson.bbox;
-    else if (Array.isArray(geojson) && geojson.length === 4) bbox = geojson;
-    else if (Array.isArray(geojson) && geojson.length === 6)
-      bbox = [geojson[0], geojson[1], geojson[3], geojson[4]];
-    else if (geojson.type === "Feature") bbox = turfBBox(geojson);
-    else if (geojson.type === "FeatureCollection") bbox = turfBBox(geojson);
-    else throw new Error("invalid geojson");
-
-    return {
-      minX: bbox[0],
-      minY: bbox[1],
-      maxX: bbox[2],
-      maxY: bbox[3],
-    };
-  };
-  return tree;
+/**
+ * GeoJSON implementation of [RBush](https://github.com/mourner/rbush#rbush) spatial index.
+ *
+ * @function rbush
+ * @param {number} [maxEntries=9] defines the maximum number of entries in a tree node. 9 (used by default) is a
+ * reasonable choice for most applications. Higher value means faster insertion and slower search, and vice versa.
+ * @returns {RBush} GeoJSON RBush
+ * @example
+ * var geojsonRbush = require('geojson-rbush').default;
+ * var tree = geojsonRbush();
+ */
+function geojsonRbush<
+  G extends Geometry,
+  P extends GeoJsonProperties = GeoJsonProperties,
+>(maxEntries?: number) {
+  return new RBush<G, P>(maxEntries);
 }
 
 export { geojsonRbush };
