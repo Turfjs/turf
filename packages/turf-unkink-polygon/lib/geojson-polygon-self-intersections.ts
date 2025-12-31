@@ -1,56 +1,68 @@
 // Find self-intersections in geojson polygon (possibly with interior rings)
+import { Feature, Polygon, Position } from "geojson";
 import rbush from "rbush";
 
-function geojsonPolygonSelfIntersections(feature, filterFn, useSpatialIndex) {
+export function geojsonPolygonSelfIntersections<T>(
+  feature: Feature<Polygon>,
+  filterFn: (
+    isect: number[],
+    ring0: number,
+    edge0: number,
+    start0: Position,
+    end0: Position,
+    frac0: number,
+    ring1: number,
+    edge1: number,
+    start1: Position,
+    end1: Position,
+    frac1: number,
+    unique: boolean
+  ) => T
+): T[] {
   if (feature.geometry.type !== "Polygon")
     throw new Error("The input feature must be a Polygon");
-  if (useSpatialIndex === undefined) useSpatialIndex = 1;
 
   var coord = feature.geometry.coordinates;
 
-  var output = [];
-  var seen = {};
+  var output: T[] = [];
+  var seen: Record<string, boolean> = {};
 
-  if (useSpatialIndex) {
-    var allEdgesAsRbushTreeItems = [];
-    for (var ring0 = 0; ring0 < coord.length; ring0++) {
-      for (var edge0 = 0; edge0 < coord[ring0].length - 1; edge0++) {
-        allEdgesAsRbushTreeItems.push(rbushTreeItem(ring0, edge0));
-      }
+  var allEdgesAsRbushTreeItems = [];
+  for (var ring0 = 0; ring0 < coord.length; ring0++) {
+    for (var edge0 = 0; edge0 < coord[ring0].length - 1; edge0++) {
+      allEdgesAsRbushTreeItems.push(rbushTreeItem(ring0, edge0));
     }
-    var tree = new rbush();
-    tree.load(allEdgesAsRbushTreeItems);
   }
+  var tree = new rbush<{
+    minX: number;
+    minY: number;
+    maxX: number;
+    maxY: number;
+    ring: number;
+    edge: number;
+  }>();
+  tree.load(allEdgesAsRbushTreeItems);
 
   for (var ringA = 0; ringA < coord.length; ringA++) {
     for (var edgeA = 0; edgeA < coord[ringA].length - 1; edgeA++) {
-      if (useSpatialIndex) {
-        var bboxOverlaps = tree.search(rbushTreeItem(ringA, edgeA));
-        bboxOverlaps.forEach(function (bboxIsect) {
-          var ring1 = bboxIsect.ring;
-          var edge1 = bboxIsect.edge;
-          ifIsectAddToOutput(ringA, edgeA, ring1, edge1);
-        });
-      } else {
-        for (var ring1 = 0; ring1 < coord.length; ring1++) {
-          for (var edge1 = 0; edge1 < coord[ring1].length - 1; edge1++) {
-            // TODO: speedup possible if only interested in unique: start last two loops at ringA and edgeA+1
-            ifIsectAddToOutput(ringA, edgeA, ring1, edge1);
-          }
-        }
-      }
+      var bboxOverlaps = tree.search(rbushTreeItem(ringA, edgeA));
+      bboxOverlaps.forEach(function (bboxIsect) {
+        var ring1 = bboxIsect.ring;
+        var edge1 = bboxIsect.edge;
+        ifIsectAddToOutput(ringA, edgeA, ring1, edge1);
+      });
     }
   }
 
-  if (!filterFn)
-    output = {
-      type: "Feature",
-      geometry: { type: "MultiPoint", coordinates: output },
-    };
   return output;
 
   // Function to check if two edges intersect and add the intersection to the output
-  function ifIsectAddToOutput(ring0, edge0, ring1, edge1) {
+  function ifIsectAddToOutput(
+    ring0: number,
+    edge0: number,
+    ring1: number,
+    edge1: number
+  ) {
     var start0 = coord[ring0][edge0];
     var end0 = coord[ring0][edge0 + 1];
     var start1 = coord[ring1][edge1];
@@ -74,9 +86,9 @@ function geojsonPolygonSelfIntersections(feature, filterFn, useSpatialIndex) {
     if (frac0 >= 1 || frac0 <= 0 || frac1 >= 1 || frac1 <= 0) return; // require segment intersection
 
     var key = isect;
-    var unique = !seen[key];
+    var unique = !seen[key.toString()];
     if (unique) {
-      seen[key] = true;
+      seen[key.toString()] = true;
     }
 
     if (filterFn) {
@@ -96,13 +108,11 @@ function geojsonPolygonSelfIntersections(feature, filterFn, useSpatialIndex) {
           unique
         )
       );
-    } else {
-      output.push(isect);
     }
   }
 
   // Function to return a rbush tree item given an ring and edge number
-  function rbushTreeItem(ring, edge) {
+  function rbushTreeItem(ring: number, edge: number) {
     var start = coord[ring][edge];
     var end = coord[ring][edge + 1];
     var minX;
@@ -135,7 +145,12 @@ function geojsonPolygonSelfIntersections(feature, filterFn, useSpatialIndex) {
 }
 
 // Function to compute where two lines (not segments) intersect. From https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
-function intersect(start0, end0, start1, end1) {
+function intersect(
+  start0: number[],
+  end0: number[],
+  start1: number[],
+  end1: number[]
+) {
   if (
     equalArrays(start0, start1) ||
     equalArrays(start0, end1) ||
@@ -161,7 +176,7 @@ function intersect(start0, end0, start1, end1) {
 }
 
 // Function to compare Arrays of numbers. From http://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
-function equalArrays(array1, array2) {
+function equalArrays(array1: any[], array2: any[]) {
   // if the other array is a falsy value, return
   if (!array1 || !array2) return false;
 
@@ -180,6 +195,3 @@ function equalArrays(array1, array2) {
   }
   return true;
 }
-
-export { geojsonPolygonSelfIntersections };
-export default geojsonPolygonSelfIntersections;

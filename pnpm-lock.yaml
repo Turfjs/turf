@@ -6215,6 +6215,9 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
+      '@types/rbush':
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/tape':
         specifier: ^5.8.1
         version: 5.8.1
