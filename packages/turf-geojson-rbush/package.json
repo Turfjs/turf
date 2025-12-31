@@ -61,6 +61,7 @@
     "@turf/bbox-polygon": "workspace:*",
     "@turf/random": "workspace:*",
     "@types/benchmark": "^2.1.5",
+    "@types/rbush": "^3.0.4",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
@@ -75,6 +76,7 @@
     "@turf/helpers": "workspace:*",
     "@turf/meta": "workspace:*",
     "@types/geojson": "^7946.0.10",
-    "rbush": "^3.0.1"
+    "rbush": "^3.0.1",
+    "tslib": "^2.8.1"
   }
 }
