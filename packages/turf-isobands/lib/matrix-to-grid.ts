@@ -1,5 +1,6 @@
-import { isObject, featureCollection, point } from "@turf/helpers";
+import { isObject, featureCollection, point, Units } from "@turf/helpers";
 import { rhumbDestination } from "@turf/rhumb-destination";
+import { Feature, Point } from "geojson";
 
 /**
  * Takes a {@link Point} grid and returns a correspondent matrix {Array<Array<number>>}
@@ -12,7 +13,7 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  * @param {Object} [options={}] optional parameters
  * @param {string} [options.zProperty='elevation'] the grid points property name associated with the matrix value
  * @param {Object} [options.properties={}] GeoJSON properties passed to all the points
- * @param {Units} [options.units='kilometers'] used in calculating cellSize. Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
+ * @param {Units} [options.units='kilometers'] used in calculating cellSize. Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {FeatureCollection<Point>} grid of points
  *
  * @example
@@ -31,7 +32,16 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  *    matrixToGrid(matrix, origin, 10);
  *    //= pointGrid
  */
-function matrixToGrid(matrix, origin, cellSize, options) {
+export function matrixToGrid(
+  matrix: number[][],
+  origin: Feature<Point> | number[],
+  cellSize: number,
+  options: {
+    zProperty?: string;
+    properties?: Record<any, any>;
+    units?: Units;
+  } = {}
+) {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
@@ -57,6 +67,9 @@ function matrixToGrid(matrix, origin, cellSize, options) {
   for (var r = 0; r < matrixRows; r++) {
     // create first point in the row
     var first = rhumbDestination(origin, cellSize * r, 0, { units: units });
+    if (first.properties == null) {
+      first.properties = {};
+    }
     first.properties[zProperty] = matrix[matrixRows - 1 - r][0];
     for (var prop in properties) {
       first.properties[prop] = properties[prop];
@@ -65,6 +78,9 @@ function matrixToGrid(matrix, origin, cellSize, options) {
     for (var c = 1; c < matrixCols; c++) {
       // create the other points in the same row
       var pt = rhumbDestination(first, cellSize * c, 90, { units: units });
+      if (pt.properties == null) {
+        pt.properties = {};
+      }
       for (var prop2 in properties) {
         pt.properties[prop2] = properties[prop2];
       }
@@ -77,6 +93,3 @@ function matrixToGrid(matrix, origin, cellSize, options) {
   var grid = featureCollection(points);
   return grid;
 }
-
-export { matrixToGrid };
-export default matrixToGrid;
