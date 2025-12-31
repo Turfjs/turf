@@ -5,7 +5,7 @@
 // Includes Binary Heap (with modifications) from Marijn Haverbeke.
 // http://eloquentjavascript.net/appendix2.html
 
-function pathTo(node) {
+function pathTo(node: GridNode) {
   var curr = node,
     path = [];
   while (curr.parent) {
@@ -16,7 +16,7 @@ function pathTo(node) {
 }
 
 function getHeap() {
-  return new BinaryHeap(function (node) {
+  return new BinaryHeap<GridNode>(function (node) {
     return node.f;
   });
 }
@@ -39,7 +39,12 @@ export var astar = {
    * @param {Function} [options.heuristic] Heuristic function (see astar.heuristics).
    * @returns {Object} Search
    */
-  search: function (graph, start, end, options) {
+  search: function (
+    graph: Graph,
+    start: GridNode,
+    end: GridNode,
+    options: { closest?: boolean; heuristic?: Heuristic } = {}
+  ) {
     graph.cleanDirty();
     options = options || {};
     var heuristic = options.heuristic || astar.heuristics.manhattan,
@@ -119,12 +124,18 @@ export var astar = {
   },
   // See list of heuristics: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
   heuristics: {
-    manhattan: function (pos0, pos1) {
+    manhattan: function (
+      pos0: { x: number; y: number },
+      pos1: { x: number; y: number }
+    ) {
       var d1 = Math.abs(pos1.x - pos0.x);
       var d2 = Math.abs(pos1.y - pos0.y);
       return d1 + d2;
     },
-    diagonal: function (pos0, pos1) {
+    diagonal: function (
+      pos0: { x: number; y: number },
+      pos1: { x: number; y: number }
+    ) {
       var D = 1;
       var D2 = Math.sqrt(2);
       var d1 = Math.abs(pos1.x - pos0.x);
@@ -132,13 +143,13 @@ export var astar = {
       return D * (d1 + d2) + (D2 - 2 * D) * Math.min(d1, d2);
     },
   },
-  cleanNode: function (node) {
+  cleanNode: function (node: GridNode) {
     node.f = 0;
     node.g = 0;
     node.h = 0;
     node.visited = false;
     node.closed = false;
-    node.parent = null;
+    node.parent = undefined;
   },
 };
 
@@ -151,146 +162,169 @@ export var astar = {
  * @param {boolean} [options.diagonal] Specifies whether diagonal moves are allowed
  * @returns {void} Graph
  */
-export function Graph(gridIn, options) {
-  options = options || {};
-  this.nodes = [];
-  this.diagonal = !!options.diagonal;
-  this.grid = [];
-  for (var x = 0; x < gridIn.length; x++) {
-    this.grid[x] = [];
+export class Graph {
+  nodes: GridNode[] = [];
+  diagonal: boolean;
+  grid: GridNode[][] = [];
+  dirtyNodes: GridNode[] = [];
 
-    for (var y = 0, row = gridIn[x]; y < row.length; y++) {
-      var node = new GridNode(x, y, row[y]);
-      this.grid[x][y] = node;
-      this.nodes.push(node);
+  constructor(gridIn: number[][], options: { diagonal?: boolean } = {}) {
+    this.diagonal = !!options.diagonal;
+    for (var x = 0; x < gridIn.length; x++) {
+      this.grid[x] = [];
+
+      for (var y = 0, row = gridIn[x]; y < row.length; y++) {
+        var node = new GridNode(x, y, row[y]);
+        this.grid[x][y] = node;
+        this.nodes.push(node);
+      }
+    }
+    this.init();
+  }
+
+  init() {
+    this.dirtyNodes = [];
+    for (var i = 0; i < this.nodes.length; i++) {
+      astar.cleanNode(this.nodes[i]);
     }
   }
-  this.init();
+
+  cleanDirty() {
+    for (var i = 0; i < this.dirtyNodes.length; i++) {
+      astar.cleanNode(this.dirtyNodes[i]);
+    }
+    this.dirtyNodes = [];
+  }
+
+  markDirty(node: GridNode) {
+    this.dirtyNodes.push(node);
+  }
+
+  neighbors(node: GridNode) {
+    var ret = [],
+      x = node.x,
+      y = node.y,
+      grid = this.grid;
+
+    // West
+    if (grid[x - 1] && grid[x - 1][y]) {
+      ret.push(grid[x - 1][y]);
+    }
+
+    // East
+    if (grid[x + 1] && grid[x + 1][y]) {
+      ret.push(grid[x + 1][y]);
+    }
+
+    // South
+    if (grid[x] && grid[x][y - 1]) {
+      ret.push(grid[x][y - 1]);
+    }
+
+    // North
+    if (grid[x] && grid[x][y + 1]) {
+      ret.push(grid[x][y + 1]);
+    }
+
+    if (this.diagonal) {
+      // Southwest
+      if (grid[x - 1] && grid[x - 1][y - 1]) {
+        ret.push(grid[x - 1][y - 1]);
+      }
+
+      // Southeast
+      if (grid[x + 1] && grid[x + 1][y - 1]) {
+        ret.push(grid[x + 1][y - 1]);
+      }
+
+      // Northwest
+      if (grid[x - 1] && grid[x - 1][y + 1]) {
+        ret.push(grid[x - 1][y + 1]);
+      }
+
+      // Northeast
+      if (grid[x + 1] && grid[x + 1][y + 1]) {
+        ret.push(grid[x + 1][y + 1]);
+      }
+    }
+
+    return ret;
+  }
+
+  toString() {
+    var graphString = [],
+      nodes = this.grid, // when using grid
+      rowDebug,
+      row,
+      y,
+      l;
+    for (var x = 0, len = nodes.length; x < len; x++) {
+      rowDebug = [];
+      row = nodes[x];
+      for (y = 0, l = row.length; y < l; y++) {
+        rowDebug.push(row[y].weight);
+      }
+      graphString.push(rowDebug.join(" "));
+    }
+    return graphString.join("\n");
+  }
 }
 
-Graph.prototype.init = function () {
-  this.dirtyNodes = [];
-  for (var i = 0; i < this.nodes.length; i++) {
-    astar.cleanNode(this.nodes[i]);
+export class GridNode {
+  x: number;
+  y: number;
+  weight: number;
+
+  visited: boolean = false;
+  parent?: GridNode;
+  h: number = 0;
+  g: number = 0;
+  f: number = 0;
+  closed: boolean = false;
+
+  constructor(x: number, y: number, weight: number) {
+    this.x = x;
+    this.y = y;
+    this.weight = weight;
   }
-};
-
-Graph.prototype.cleanDirty = function () {
-  for (var i = 0; i < this.dirtyNodes.length; i++) {
-    astar.cleanNode(this.dirtyNodes[i]);
-  }
-  this.dirtyNodes = [];
-};
-
-Graph.prototype.markDirty = function (node) {
-  this.dirtyNodes.push(node);
-};
-
-Graph.prototype.neighbors = function (node) {
-  var ret = [],
-    x = node.x,
-    y = node.y,
-    grid = this.grid;
-
-  // West
-  if (grid[x - 1] && grid[x - 1][y]) {
-    ret.push(grid[x - 1][y]);
+  toString() {
+    return "[" + this.x + " " + this.y + "]";
   }
 
-  // East
-  if (grid[x + 1] && grid[x + 1][y]) {
-    ret.push(grid[x + 1][y]);
-  }
-
-  // South
-  if (grid[x] && grid[x][y - 1]) {
-    ret.push(grid[x][y - 1]);
-  }
-
-  // North
-  if (grid[x] && grid[x][y + 1]) {
-    ret.push(grid[x][y + 1]);
-  }
-
-  if (this.diagonal) {
-    // Southwest
-    if (grid[x - 1] && grid[x - 1][y - 1]) {
-      ret.push(grid[x - 1][y - 1]);
+  getCost(fromNeighbor: GridNode) {
+    // Take diagonal weight into consideration.
+    if (
+      fromNeighbor &&
+      fromNeighbor.x !== this.x &&
+      fromNeighbor.y !== this.y
+    ) {
+      return this.weight * 1.41421;
     }
-
-    // Southeast
-    if (grid[x + 1] && grid[x + 1][y - 1]) {
-      ret.push(grid[x + 1][y - 1]);
-    }
-
-    // Northwest
-    if (grid[x - 1] && grid[x - 1][y + 1]) {
-      ret.push(grid[x - 1][y + 1]);
-    }
-
-    // Northeast
-    if (grid[x + 1] && grid[x + 1][y + 1]) {
-      ret.push(grid[x + 1][y + 1]);
-    }
+    return this.weight;
   }
 
-  return ret;
-};
-
-Graph.prototype.toString = function () {
-  var graphString = [],
-    nodes = this.grid, // when using grid
-    rowDebug,
-    row,
-    y,
-    l;
-  for (var x = 0, len = nodes.length; x < len; x++) {
-    rowDebug = [];
-    row = nodes[x];
-    for (y = 0, l = row.length; y < l; y++) {
-      rowDebug.push(row[y].weight);
-    }
-    graphString.push(rowDebug.join(" "));
+  isWall() {
+    return this.weight === 0;
   }
-  return graphString.join("\n");
-};
-
-function GridNode(x, y, weight) {
-  this.x = x;
-  this.y = y;
-  this.weight = weight;
 }
 
-GridNode.prototype.toString = function () {
-  return "[" + this.x + " " + this.y + "]";
-};
+class BinaryHeap<T> {
+  content: T[] = [];
+  scoreFunction: (o: T) => number;
 
-GridNode.prototype.getCost = function (fromNeighbor) {
-  // Take diagonal weight into consideration.
-  if (fromNeighbor && fromNeighbor.x !== this.x && fromNeighbor.y !== this.y) {
-    return this.weight * 1.41421;
+  constructor(scoreFunction: (o: T) => number) {
+    this.scoreFunction = scoreFunction;
   }
-  return this.weight;
-};
 
-GridNode.prototype.isWall = function () {
-  return this.weight === 0;
-};
-
-function BinaryHeap(scoreFunction) {
-  this.content = [];
-  this.scoreFunction = scoreFunction;
-}
-
-BinaryHeap.prototype = {
-  push: function (element) {
+  push(element: T) {
     // Add the new element to the end of the array.
     this.content.push(element);
 
     // Allow it to sink down.
     this.sinkDown(this.content.length - 1);
-  },
-  pop: function () {
+  }
+
+  pop() {
     // Store the first element so we can return it later.
     var result = this.content[0];
     // Get the element at the end of the array.
@@ -298,17 +332,18 @@ BinaryHeap.prototype = {
     // If there are any elements left, put the end element at the
     // start, and let it bubble up.
     if (this.content.length > 0) {
-      this.content[0] = end;
+      this.content[0] = end!;
       this.bubbleUp(0);
     }
     return result;
-  },
-  remove: function (node) {
+  }
+
+  remove(node: T) {
     var i = this.content.indexOf(node);
 
     // When it is found, the process seen in 'pop' is repeated
     // to fill up the hole.
-    var end = this.content.pop();
+    var end = this.content.pop()!;
 
     if (i !== this.content.length - 1) {
       this.content[i] = end;
@@ -319,14 +354,17 @@ BinaryHeap.prototype = {
         this.bubbleUp(i);
       }
     }
-  },
-  size: function () {
+  }
+
+  size() {
     return this.content.length;
-  },
-  rescoreElement: function (node) {
+  }
+
+  rescoreElement(node: T) {
     this.sinkDown(this.content.indexOf(node));
-  },
-  sinkDown: function (n) {
+  }
+
+  sinkDown(n: number) {
     // Fetch the element that has to be sunk.
     var element = this.content[n];
 
@@ -346,8 +384,9 @@ BinaryHeap.prototype = {
         break;
       }
     }
-  },
-  bubbleUp: function (n) {
+  }
+
+  bubbleUp(n: number) {
     // Look up the target element and its score.
     var length = this.content.length,
       element = this.content[n],
@@ -376,7 +415,7 @@ BinaryHeap.prototype = {
       if (child2N < length) {
         var child2 = this.content[child2N],
           child2Score = this.scoreFunction(child2);
-        if (child2Score < (swap === null ? elemScore : child1Score)) {
+        if (child2Score < (swap === null ? elemScore : child1Score)!) {
           swap = child2N;
         }
       }
@@ -391,5 +430,5 @@ BinaryHeap.prototype = {
         break;
       }
     }
-  },
-};
+  }
+}
