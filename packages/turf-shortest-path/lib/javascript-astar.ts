@@ -43,11 +43,13 @@ export var astar = {
     graph: Graph,
     start: GridNode,
     end: GridNode,
-    options: { closest?: boolean; heuristic?: Heuristic } = {}
+    options: {
+      closest?: boolean;
+    } = {}
   ) {
     graph.cleanDirty();
     options = options || {};
-    var heuristic = options.heuristic || astar.heuristics.manhattan,
+    var heuristic = astar.heuristics.manhattan,
       closest = options.closest ?? false;
 
     var openHeap = getHeap(),
