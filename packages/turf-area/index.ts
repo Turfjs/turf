@@ -1,6 +1,116 @@
-import { Feature, FeatureCollection, Geometry } from "geojson";
+import {
+  Feature,
+  FeatureCollection,
+  GeoJsonProperties,
+  Geometry,
+  Point,
+} from "geojson";
 import { earthRadius } from "@turf/helpers";
-import { geomReduce } from "@turf/meta";
+import { geomReduce, featureEach } from "@turf/meta";
+
+// would be in @turf/meta
+
+// with initial value specified, things are relatively straightforward
+export function featureReduce<R, T extends Feature | FeatureCollection>(
+  geojson: T,
+  callback: (
+    previousValue: R,
+    currentFeature: T extends FeatureCollection<infer G, infer P>
+      ? Feature<G, P>
+      : T,
+    featureIndex: number
+  ) => R,
+  initialValue: R
+): R;
+
+// with no initial value specified, previousValue can sometimes be Feature<G,P>
+// the return value may also be undefined if we get a FeatureCollection without a guaranteed first element
+export function featureReduce<T extends Feature | FeatureCollection>(
+  geojson: T,
+  callback: (
+    previousValue: T extends FeatureCollection<infer G, infer P>
+      ? Feature<G, P>
+      : T,
+    currentFeature: T extends FeatureCollection<infer G, infer P>
+      ? Feature<G, P>
+      : T,
+    featureIndex: number
+  ) => T extends FeatureCollection<infer G, infer P> ? Feature<G, P> : T
+): T extends Feature
+  ? T
+  : T extends { features: [Feature<infer G, infer P>] }
+    ? Feature<G, P>
+    : T extends FeatureCollection<infer G, infer P>
+      ? Feature<G, P> | undefined
+      : never;
+
+export function featureReduce<R, T extends Feature | FeatureCollection>(
+  geojson: T,
+  callback: (
+    previousValue: R | T extends FeatureCollection<infer G, infer P>
+      ? Feature<G, P>
+      : T,
+    currentFeature: T extends FeatureCollection<infer G, infer P>
+      ? Feature<G, P>
+      : T,
+    featureIndex: number
+  ) => R,
+  initialValue?: R
+): T extends Feature ? R : R | undefined {
+  var previousValue: R | T extends FeatureCollection<infer G, infer P>
+    ? Feature<G, P>
+    : T = initialValue as any;
+  featureEach(geojson, function (currentFeature, featureIndex) {
+    if (featureIndex === 0 && initialValue === undefined)
+      previousValue = currentFeature as any;
+    else
+      previousValue = callback(
+        previousValue,
+        currentFeature as any,
+        featureIndex
+      ) as any;
+  });
+  return previousValue as any;
+}
+
+const feature: Feature<Point> = {
+  type: "Feature",
+  geometry: { type: "Point", coordinates: [0, 0] },
+  properties: {},
+};
+
+const featureCollection: FeatureCollection<Point> = {
+  type: "FeatureCollection",
+  features: [feature],
+};
+
+const emptyFeatureCollection: FeatureCollection<Point> & { features: never[] } =
+  {
+    type: "FeatureCollection",
+    features: [],
+  };
+
+// a FeatureCollection where we know that there is at least one feature (somehow)
+const populatedFeatureCollection: {
+  type: "FeatureCollection";
+  features: [Feature<Point, GeoJsonProperties>];
+} = {
+  type: "FeatureCollection",
+  features: [feature],
+};
+
+const r1 = featureReduce(feature, (_acc, f, _i) => f);
+const r2 = featureReduce(feature, (acc, _f, _i) => acc + 1, 0);
+const r3 = featureReduce(featureCollection, (acc, f, _i) => f);
+const r4 = featureReduce(featureCollection, (acc, _f, _i) => acc + 1, 0);
+const r5 = featureReduce(emptyFeatureCollection, (acc, f, _i) => f);
+const r6 = featureReduce(emptyFeatureCollection, (acc, _f, _i) => acc + 1, 0);
+const r7 = featureReduce(populatedFeatureCollection, (acc, f, _i) => f);
+const r8 = featureReduce(
+  populatedFeatureCollection,
+  (acc, _f, _i) => acc + 1,
+  0
+);
 
 /**
  * Calculates the geodesic area in square meters of one or more polygons.
