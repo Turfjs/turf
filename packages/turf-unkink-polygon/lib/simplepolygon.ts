@@ -1,8 +1,9 @@
-import { geojsonPolygonSelfIntersections as isects } from "./geojson-polygon-self-intersections";
+import { geojsonPolygonSelfIntersections as isects } from "./geojson-polygon-self-intersections.js";
 import { area } from "@turf/area";
 import { featureCollection, polygon } from "@turf/helpers";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import rbush from "rbush";
+import { Feature, FeatureCollection, Polygon, Position } from "geojson";
 
 /**
  * Takes a complex (i.e. self-intersecting) geojson polygon, and breaks it down into its composite simple, non-self-intersecting one-ring polygons.
@@ -25,7 +26,9 @@ import rbush from "rbush";
  * // =result
  * // which will be a featureCollection of two polygons, one with coordinates [[[0,0],[2,0],[1,1],[0,0]]], parent -1, winding 1 and net winding 1, and one with coordinates [[[1,1],[0,2],[2,2],[1,1]]], parent -1, winding -1 and net winding -1
  */
-function simplepolygon(feature) {
+export function simplepolygon(
+  feature: Feature<Polygon>
+): FeatureCollection<Polygon> {
   // Check input
   if (feature.type != "Feature")
     throw new Error("The input must a geojson object of type Feature");
@@ -84,7 +87,7 @@ function simplepolygon(feature) {
         end1,
         frac1,
         unique,
-      ];
+      ] as const;
     }
   );
   var numSelfIsect = selfIsectsData.length;
@@ -100,9 +103,17 @@ function simplepolygon(feature) {
         })
       );
     }
-    var output = featureCollection(outputFeatureArray);
-    determineParents();
-    setNetWinding();
+    let output = featureCollection(outputFeatureArray) as FeatureCollection<
+      Polygon,
+      {
+        index: number;
+        parent: number;
+        winding: number;
+        netWinding: number | undefined;
+      }
+    >;
+    determineParents(output);
+    setNetWinding(output);
 
     return output;
   }
@@ -110,9 +121,9 @@ function simplepolygon(feature) {
   // If self-intersections are found, we will compute the output rings with the help of two intermediate variables
   // First, we build the pseudo vertex list and intersection list
   // The Pseudo vertex list is an array with for each ring an array with for each edge an array containing the pseudo-vertices (as made by their constructor) that have this ring and edge as ringAndEdgeIn, sorted for each edge by their fractional distance on this edge. It's length hence equals numRings.
-  var pseudoVtxListByRingAndEdge = [];
+  var pseudoVtxListByRingAndEdge: PseudoVtx[][][] = [];
   // The intersection list is an array containing intersections (as made by their constructor). First all numvertices ring-vertex-intersections, then all self-intersections (intra- and inter-ring). The order of the latter is not important but is permanent once given.
-  var isectList = [];
+  var isectList: Isect[] = [];
   // Adding ring-pseudo-vertices to pseudoVtxListByRingAndEdge and ring-vertex-intersections to isectList
   for (var i = 0; i < numRings; i++) {
     pseudoVtxListByRingAndEdge.push([]);
@@ -190,7 +201,13 @@ function simplepolygon(feature) {
       index: i,
     }); // could pass isect: isectList[i], but not necessary
   }
-  var isectRbushTree = new rbush();
+  var isectRbushTree = new rbush<{
+    minX: number;
+    minY: number;
+    maxX: number;
+    maxY: number;
+    index: number;
+  }>();
   isectRbushTree.load(allIsectsAsIsectRbushTreeItem);
 
   // Now we will teach each intersection in isectList which is the next intersection along both it's [ring, edge]'s, in two steps.
@@ -199,7 +216,7 @@ function simplepolygon(feature) {
   for (var i = 0; i < pseudoVtxListByRingAndEdge.length; i++) {
     for (var j = 0; j < pseudoVtxListByRingAndEdge[i].length; j++) {
       for (var k = 0; k < pseudoVtxListByRingAndEdge[i][j].length; k++) {
-        var coordToFind;
+        let coordToFind;
         if (k == pseudoVtxListByRingAndEdge[i][j].length - 1) {
           // If it's the last pseudoVertex on that edge, then the next pseudoVertex is the first one on the next edge of that ring.
           coordToFind =
@@ -225,7 +242,7 @@ function simplepolygon(feature) {
   for (var i = 0; i < pseudoVtxListByRingAndEdge.length; i++) {
     for (var j = 0; j < pseudoVtxListByRingAndEdge[i].length; j++) {
       for (var k = 0; k < pseudoVtxListByRingAndEdge[i][j].length; k++) {
-        var coordToFind = pseudoVtxListByRingAndEdge[i][j][k].coord;
+        let coordToFind = pseudoVtxListByRingAndEdge[i][j][k].coord;
         var IsectRbushTreeItemFound = isectRbushTree.search({
           minX: coordToFind[0],
           minY: coordToFind[1],
@@ -259,7 +276,7 @@ function simplepolygon(feature) {
 
   // Before we start walking over the intersections to build the output rings, we prepare a queue that stores information on intersections we still have to deal with, and put at least one intersection in it.
   // This queue will contain information on intersections where we can start walking from once the current walk is finished, and its parent output ring (the smallest output ring it lies within, -1 if no parent or parent unknown yet) and its winding number (which we can already determine).
-  var queue = [];
+  var queue: { isect: number; parent: number; winding: number }[] = [];
   // For each output ring, add the ring-vertex-intersection with the smalles x-value (i.e. the left-most) as a start intersection. By choosing such an extremal intersections, we are sure to start at an intersection that is a convex vertex of its output ring. By adding them all to the queue, we are sure that no rings will be forgotten. If due to ring-intersections such an intersection will be encountered while walking, it will be removed from the queue.
   var i = 0;
   for (var j = 0; j < numRings; j++) {
@@ -284,9 +301,9 @@ function simplepolygon(feature) {
     }
     var windingAtIsect = isConvex(
       [
-        isectList[isectBeforeLeftIsect].coord,
+        isectList[isectBeforeLeftIsect!].coord,
         isectList[leftIsect].coord,
-        isectList[isectAfterLeftIsect].coord,
+        isectList[isectAfterLeftIsect!].coord,
       ],
       true
     )
@@ -306,21 +323,21 @@ function simplepolygon(feature) {
   // While the queue is not empty, take the last object (i.e. its intersection) out and start making an output ring by walking in the direction that has not been walked away over yet.
   while (queue.length > 0) {
     // Get the last object out of the queue
-    var popped = queue.pop();
+    var popped = queue.pop()!;
     var startIsect = popped.isect;
     var currentOutputRingParent = popped.parent;
     var currentOutputRingWinding = popped.winding;
     // Make new output ring and add vertex from starting intersection
-    var currentOutputRing = outputFeatureArray.length;
+    var currentOutputRing: number = outputFeatureArray.length;
     var currentOutputRingCoords = [isectList[startIsect].coord];
     // Set up the variables used while walking over intersections: 'currentIsect', 'nxtIsect' and 'walkingRingAndEdge'
     var currentIsect = startIsect;
     if (isectList[startIsect].ringAndEdge1Walkable) {
       var walkingRingAndEdge = isectList[startIsect].ringAndEdge1;
-      var nxtIsect = isectList[startIsect].nxtIsectAlongRingAndEdge1;
+      var nxtIsect = isectList[startIsect].nxtIsectAlongRingAndEdge1!;
     } else {
       var walkingRingAndEdge = isectList[startIsect].ringAndEdge2;
-      var nxtIsect = isectList[startIsect].nxtIsectAlongRingAndEdge2;
+      var nxtIsect = isectList[startIsect].nxtIsectAlongRingAndEdge2!;
     }
     // While we have not arrived back at the same intersection, keep walking
     while (
@@ -347,13 +364,15 @@ function simplepolygon(feature) {
         walkingRingAndEdge = isectList[nxtIsect].ringAndEdge2;
         isectList[nxtIsect].ringAndEdge2Walkable = false;
         if (isectList[nxtIsect].ringAndEdge1Walkable) {
-          var pushing = { isect: nxtIsect };
+          var pushing: { isect: number; parent: number; winding: number } = {
+            isect: nxtIsect,
+          } as any; // as any because parent and winding are filled in below
           if (
             isConvex(
               [
                 isectList[currentIsect].coord,
                 isectList[nxtIsect].coord,
-                isectList[isectList[nxtIsect].nxtIsectAlongRingAndEdge2].coord,
+                isectList[isectList[nxtIsect].nxtIsectAlongRingAndEdge2!].coord,
               ],
               currentOutputRingWinding == 1
             )
@@ -367,18 +386,20 @@ function simplepolygon(feature) {
           queue.push(pushing);
         }
         currentIsect = nxtIsect;
-        nxtIsect = isectList[nxtIsect].nxtIsectAlongRingAndEdge2;
+        nxtIsect = isectList[nxtIsect].nxtIsectAlongRingAndEdge2!;
       } else {
         walkingRingAndEdge = isectList[nxtIsect].ringAndEdge1;
         isectList[nxtIsect].ringAndEdge1Walkable = false;
         if (isectList[nxtIsect].ringAndEdge2Walkable) {
-          var pushing = { isect: nxtIsect };
+          var pushing: { isect: number; parent: number; winding: number } = {
+            isect: nxtIsect,
+          } as any; // another instance of parent/winding being filled in below
           if (
             isConvex(
               [
                 isectList[currentIsect].coord,
                 isectList[nxtIsect].coord,
-                isectList[isectList[nxtIsect].nxtIsectAlongRingAndEdge1].coord,
+                isectList[isectList[nxtIsect].nxtIsectAlongRingAndEdge1!].coord,
               ],
               currentOutputRingWinding == 1
             )
@@ -392,7 +413,7 @@ function simplepolygon(feature) {
           queue.push(pushing);
         }
         currentIsect = nxtIsect;
-        nxtIsect = isectList[nxtIsect].nxtIsectAlongRingAndEdge1;
+        nxtIsect = isectList[nxtIsect].nxtIsectAlongRingAndEdge1!;
       }
     }
     // Close output ring
@@ -403,19 +424,29 @@ function simplepolygon(feature) {
         index: currentOutputRing,
         parent: currentOutputRingParent,
         winding: currentOutputRingWinding,
-        netWinding: undefined,
+        netWinding: undefined as number | undefined,
       })
     );
   }
 
-  var output = featureCollection(outputFeatureArray);
+  let output = featureCollection(outputFeatureArray);
 
-  determineParents();
+  determineParents(output);
 
-  setNetWinding();
+  setNetWinding(output);
 
   // These functions are also used if no intersections are found
-  function determineParents() {
+  function determineParents(
+    output: FeatureCollection<
+      Polygon,
+      {
+        index: number;
+        parent: number;
+        winding: number;
+        netWinding: number | undefined;
+      }
+    >
+  ) {
     var featuresWithoutParent = [];
     for (var i = 0; i < output.features.length; i++) {
       if (output.features[i].properties.parent == -1)
@@ -445,23 +476,45 @@ function simplepolygon(feature) {
     }
   }
 
-  function setNetWinding() {
+  function setNetWinding(
+    output: FeatureCollection<
+      Polygon,
+      {
+        index: number;
+        parent: number;
+        winding: number;
+        netWinding: number | undefined;
+      }
+    >
+  ) {
     for (var i = 0; i < output.features.length; i++) {
       if (output.features[i].properties.parent == -1) {
         var netWinding = output.features[i].properties.winding;
         output.features[i].properties.netWinding = netWinding;
-        setNetWindingOfChildren(i, netWinding);
+        setNetWindingOfChildren(output, i, netWinding);
       }
     }
   }
 
-  function setNetWindingOfChildren(parent, ParentNetWinding) {
+  function setNetWindingOfChildren(
+    output: FeatureCollection<
+      Polygon,
+      {
+        index: number;
+        parent: number;
+        winding: number;
+        netWinding: number | undefined;
+      }
+    >,
+    parent: number,
+    ParentNetWinding: number
+  ) {
     for (var i = 0; i < output.features.length; i++) {
       if (output.features[i].properties.parent == parent) {
         var netWinding =
           ParentNetWinding + output.features[i].properties.winding;
         output.features[i].properties.netWinding = netWinding;
-        setNetWindingOfChildren(i, netWinding);
+        setNetWindingOfChildren(output, i, netWinding);
       }
     }
   }
@@ -469,42 +522,60 @@ function simplepolygon(feature) {
   return output;
 }
 
-// Constructor for (ring- or intersection-) pseudo-vertices.
-var PseudoVtx = function (
-  coord,
-  param,
-  ringAndEdgeIn,
-  ringAndEdgeOut,
-  nxtIsectAlongEdgeIn
-) {
-  this.coord = coord; // [x,y] of this pseudo-vertex
-  this.param = param; // fractional distance of this intersection on incomming edge
-  this.ringAndEdgeIn = ringAndEdgeIn; // [ring index, edge index] of incomming edge
-  this.ringAndEdgeOut = ringAndEdgeOut; // [ring index, edge index] of outgoing edge
-  this.nxtIsectAlongEdgeIn = nxtIsectAlongEdgeIn; // The next intersection when following the incomming edge (so not when following ringAndEdgeOut!)
-};
+class PseudoVtx {
+  coord: number[]; // [x,y] of this pseudo-vertex
+  param: number; // fractional distance of this intersection on incomming edge
+  ringAndEdgeIn: [number, number]; // [ring index, edge index] of incomming edge
+  ringAndEdgeOut: [number, number]; // [ring index, edge index] of outgoing edge
+  nxtIsectAlongEdgeIn: number | undefined; // The next intersection when following the incomming edge (so not when following ringAndEdgeOut!)
 
-// Constructor for an intersection. There are two intersection-pseudo-vertices per self-intersection and one ring-pseudo-vertex per ring-vertex-intersection. Their labels 1 and 2 are not assigned a particular meaning but are permanent once given.
-var Isect = function (
-  coord,
-  ringAndEdge1,
-  ringAndEdge2,
-  nxtIsectAlongRingAndEdge1,
-  nxtIsectAlongRingAndEdge2,
-  ringAndEdge1Walkable,
-  ringAndEdge2Walkable
-) {
-  this.coord = coord; // [x,y] of this intersection
-  this.ringAndEdge1 = ringAndEdge1; // first edge of this intersection
-  this.ringAndEdge2 = ringAndEdge2; // second edge of this intersection
-  this.nxtIsectAlongRingAndEdge1 = nxtIsectAlongRingAndEdge1; // the next intersection when following ringAndEdge1
-  this.nxtIsectAlongRingAndEdge2 = nxtIsectAlongRingAndEdge2; // the next intersection when following ringAndEdge2
-  this.ringAndEdge1Walkable = ringAndEdge1Walkable; // May we (still) walk away from this intersection over ringAndEdge1?
-  this.ringAndEdge2Walkable = ringAndEdge2Walkable; // May we (still) walk away from this intersection over ringAndEdge2?
-};
+  // Constructor for (ring- or intersection-) pseudo-vertices.
+  constructor(
+    coord: number[],
+    param: number,
+    ringAndEdgeIn: [number, number],
+    ringAndEdgeOut: [number, number],
+    nxtIsectAlongEdgeIn?: number
+  ) {
+    this.coord = coord;
+    this.param = param;
+    this.ringAndEdgeIn = ringAndEdgeIn;
+    this.ringAndEdgeOut = ringAndEdgeOut;
+    this.nxtIsectAlongEdgeIn = nxtIsectAlongEdgeIn;
+  }
+}
+
+class Isect {
+  coord: number[];
+  ringAndEdge1: [number, number];
+  ringAndEdge2: [number, number];
+  nxtIsectAlongRingAndEdge1?: number;
+  nxtIsectAlongRingAndEdge2?: number;
+  ringAndEdge1Walkable: boolean;
+  ringAndEdge2Walkable: boolean;
+
+  // Constructor for an intersection. There are two intersection-pseudo-vertices per self-intersection and one ring-pseudo-vertex per ring-vertex-intersection. Their labels 1 and 2 are not assigned a particular meaning but are permanent once given.
+  constructor(
+    coord: number[],
+    ringAndEdge1: [number, number],
+    ringAndEdge2: [number, number],
+    nxtIsectAlongRingAndEdge1: number | undefined,
+    nxtIsectAlongRingAndEdge2: number | undefined,
+    ringAndEdge1Walkable: boolean,
+    ringAndEdge2Walkable: boolean
+  ) {
+    this.coord = coord; // [x,y] of this intersection
+    this.ringAndEdge1 = ringAndEdge1; // first edge of this intersection
+    this.ringAndEdge2 = ringAndEdge2; // second edge of this intersection
+    this.nxtIsectAlongRingAndEdge1 = nxtIsectAlongRingAndEdge1; // the next intersection when following ringAndEdge1
+    this.nxtIsectAlongRingAndEdge2 = nxtIsectAlongRingAndEdge2; // the next intersection when following ringAndEdge2
+    this.ringAndEdge1Walkable = ringAndEdge1Walkable; // May we (still) walk away from this intersection over ringAndEdge1?
+    this.ringAndEdge2Walkable = ringAndEdge2Walkable; // May we (still) walk away from this intersection over ringAndEdge2?
+  }
+}
 
 // Function to determine if three consecutive points of a simple, non-self-intersecting ring make up a convex vertex, assuming the ring is right- or lefthanded
-function isConvex(pts, righthanded) {
+function isConvex(pts: number[][], righthanded?: boolean) {
   // 'pts' is an [x,y] pair
   // 'righthanded' is a boolean
   if (typeof righthanded === "undefined") righthanded = true;
@@ -517,7 +588,7 @@ function isConvex(pts, righthanded) {
 }
 
 // Function to compute winding of simple, non-self-intersecting ring
-function windingOfRing(ring) {
+function windingOfRing(ring: number[][]) {
   // 'ring' is an array of [x,y] pairs with the last equal to the first
   // Compute the winding number based on the vertex with the smallest x-value, it precessor and successor. An extremal vertex of a simple, non-self-intersecting ring is always convex, so the only reason it is not is because the winding number we use to compute it is wrong
   var leftVtx = 0;
@@ -542,7 +613,7 @@ function windingOfRing(ring) {
 }
 
 // Function to compare Arrays of numbers. From http://stackoverflow.com/questions/7837456/how-to-compare-arrays-in-javascript
-function equalArrays(array1, array2) {
+function equalArrays(array1: any[], array2: any[]) {
   // if the other array is a falsy value, return
   if (!array1 || !array2) return false;
 
@@ -563,23 +634,20 @@ function equalArrays(array1, array2) {
 }
 
 // Fix Javascript modulo for negative number. From http://stackoverflow.com/questions/4467539/javascript-modulo-not-behaving
-function modulo(n, m) {
+function modulo(n: number, m: number) {
   return ((n % m) + m) % m;
 }
 
 // Function to check if array is unique (i.e. all unique elements, i.e. no duplicate elements)
-function isUnique(array) {
-  var u = {};
+function isUnique(array: Position[]) {
+  var u: Record<string, number> = {};
   var isUnique = 1;
   for (var i = 0, l = array.length; i < l; ++i) {
-    if (Object.prototype.hasOwnProperty.call(u, array[i])) {
+    if (Object.prototype.hasOwnProperty.call(u, array[i].toString())) {
       isUnique = 0;
       break;
     }
-    u[array[i]] = 1;
+    u[array[i].toString()] = 1;
   }
   return isUnique;
 }
-
-export { simplepolygon };
-export default simplepolygon;
