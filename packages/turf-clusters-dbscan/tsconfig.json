@@ -1,3 +1,27 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-clone"
+    },
+    {
+      "path": "../turf-distance"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-meta"
+    },
+    {
+      "path": "../turf-centroid"
+    },
+    {
+      "path": "../turf-clusters"
+    }
+  ]
 }
