@@ -1,0 +1,17 @@
+{
+  "name": "@turf/internal",
+  "version": "7.3.1",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "types": "index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./clipper2": "./clipper2/index.ts"
+  },
+  "dependencies": {
+    "@types/geojson": "^7946.0.10",
+    "clipper2-ts": "^2.0.1",
+    "tslib": "^2.8.1"
+  }
+}

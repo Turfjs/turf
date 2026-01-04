@@ -1,5 +1,4 @@
-import * as polyclip from "polyclip-ts";
-import { multiPolygon, polygon } from "@turf/helpers";
+import { feature } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
 import {
   FeatureCollection,
@@ -8,6 +7,12 @@ import {
   MultiPolygon,
   GeoJsonProperties,
 } from "geojson";
+import { Clipper, FillRule, ClipType, PolyTree64, Paths64 } from "clipper2-ts";
+import {
+  multiPolygonToPaths,
+  polygonToPaths,
+  polyTreeToGeoJSON,
+} from "@turf/internal/clipper2";
 
 /**
  * Takes a collection of input polygons and returns a combined polygon. If the
@@ -61,19 +66,47 @@ function union<P extends GeoJsonProperties = GeoJsonProperties>(
   features: FeatureCollection<Polygon | MultiPolygon>,
   options: { properties?: P } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {
-  const geoms: polyclip.Geom[] = [];
-  geomEach(features, (geom) => {
-    geoms.push(geom.coordinates as polyclip.Geom);
-  });
+  let subject: Paths64;
+  let clippers: Paths64[] = [];
 
-  if (geoms.length < 2) {
-    throw new Error("Must have at least 2 geometries");
+  if (features.features.length < 2) {
+    throw new Error("Must have at least 2 features");
   }
 
-  const unioned = polyclip.union(geoms[0], ...geoms.slice(1));
-  if (unioned.length === 0) return null;
-  if (unioned.length === 1) return polygon(unioned[0], options.properties);
-  else return multiPolygon(unioned, options.properties);
+  geomEach(features, (geom, idx) => {
+    if (geom.type === "MultiPolygon") {
+      if (idx === 0) {
+        subject = multiPolygonToPaths(geom.coordinates);
+      } else {
+        clippers.push(multiPolygonToPaths(geom.coordinates));
+      }
+    } else {
+      if (idx === 0) {
+        subject = polygonToPaths(geom.coordinates);
+      } else {
+        clippers.push(polygonToPaths(geom.coordinates));
+      }
+    }
+  });
+
+  subject = subject!;
+
+  for (const clipper of clippers) {
+    subject = Clipper.union(subject, clipper, FillRule.EvenOdd);
+  }
+
+  // Do one final conversion to PolyTree to better allow handing of holes when
+  // constructing return Geojson.
+  let tree: PolyTree64 = new PolyTree64();
+  Clipper.booleanOpWithPolyTree(
+    ClipType.Union,
+    subject,
+    [],
+    tree,
+    FillRule.EvenOdd
+  );
+
+  return feature(polyTreeToGeoJSON(tree), options.properties);
 }
 
 export { union };

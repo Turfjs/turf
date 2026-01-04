@@ -3180,6 +3180,18 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
 
+  packages/turf-internal:
+    dependencies:
+      '@types/geojson':
+        specifier: ^7946.0.10
+        version: 7946.0.14
+      clipper2-ts:
+        specifier: ^2.0.1
+        version: 2.0.1
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
+
   packages/turf-interpolate:
     dependencies:
       '@turf/bbox':
@@ -6141,15 +6153,18 @@ importers:
       '@turf/helpers':
         specifier: workspace:*
         version: link:../turf-helpers
+      '@turf/internal':
+        specifier: workspace:*
+        version: link:../turf-internal
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      polyclip-ts:
-        specifier: ^0.16.8
-        version: 0.16.8
+      clipper2-ts:
+        specifier: ^2.0.1
+        version: 2.0.1
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -8286,6 +8301,10 @@ packages:
   cli-width@4.1.0:
     resolution: {integrity: sha512-ouuZd4/dm2Sw5Gmqy6bGyNNNe1qt9RpmxveLSO7KcgsTnU7RXfsw+/bukWGo1abgBiMAic068rclZsO4IWmmxQ==}
     engines: {node: '>= 12'}
+
+  clipper2-ts@2.0.1:
+    resolution: {integrity: sha512-raIgNMpYN/PFYk/T9iRzaG99rf5nlXBWL1FyAdR3wjEYSzJy+pPfolLH5bCdRqCFQqn/eYUsF1jb3cQEMxmWGw==}
+    engines: {node: '>=14.0.0'}
 
   cliui@7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
@@ -14131,6 +14150,8 @@ snapshots:
       string-width: 7.2.0
 
   cli-width@4.1.0: {}
+
+  clipper2-ts@2.0.1: {}
 
   cliui@7.0.4:
     dependencies:
