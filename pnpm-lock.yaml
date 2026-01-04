@@ -3273,15 +3273,18 @@ importers:
       '@turf/helpers':
         specifier: workspace:*
         version: link:../turf-helpers
+      '@turf/internal':
+        specifier: workspace:*
+        version: link:../turf-internal
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      polyclip-ts:
-        specifier: ^0.16.8
-        version: 0.16.8
+      clipper2-ts:
+        specifier: ^2.0.1
+        version: 2.0.1
       tslib:
         specifier: ^2.8.1
         version: 2.8.1

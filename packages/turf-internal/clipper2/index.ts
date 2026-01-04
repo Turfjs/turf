@@ -44,7 +44,9 @@ function ringToPath(ring: Position[]): Path64 {
 /**
  * Construct the output Geojson based on a clipper2 tree. The tree is useful for propertly handing holes.
  */
-function polyTreeToGeoJSON(polyTree: PolyTree64): Polygon | MultiPolygon {
+function polyTreeToGeoJSON(
+  polyTree: PolyTree64
+): Polygon | MultiPolygon | null {
   const polygons: Position[][][] = [];
 
   // Process each top-level polygon (outer contours)
@@ -58,6 +60,10 @@ function polyTreeToGeoJSON(polyTree: PolyTree64): Polygon | MultiPolygon {
     }
   }
 
+  if (polygons.length === 0) {
+    return null;
+  }
+
   // If exactly 1 polygon return as Geojson Polygon
   if (polygons.length === 1) {
     return {
@@ -66,7 +72,7 @@ function polyTreeToGeoJSON(polyTree: PolyTree64): Polygon | MultiPolygon {
     };
   }
 
-  // If anything else (including 0) return as MultiPolygon
+  // If anything else return as MultiPolygon
   return {
     type: "MultiPolygon",
     coordinates: polygons,
