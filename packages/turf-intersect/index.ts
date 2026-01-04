@@ -77,7 +77,7 @@ function intersect<P extends GeoJsonProperties = GeoJsonProperties>(
     }
   });
 
-  let tree: PolyTree64 = new PolyTree64();
+  const tree: PolyTree64 = new PolyTree64();
   clipper.execute(ClipType.Intersection, FillRule.EvenOdd, tree);
 
   // Return the result as Polygon, MultiPolygon, or null as appropriate

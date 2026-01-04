@@ -7,7 +7,7 @@ import {
   MultiPolygon,
   GeoJsonProperties,
 } from "geojson";
-import { Clipper, FillRule, ClipType, PolyTree64, Paths64 } from "clipper2-ts";
+import { FillRule, ClipType, PolyTree64, Clipper64 } from "clipper2-ts";
 import {
   multiPolygonToPaths,
   polygonToPaths,
@@ -66,47 +66,35 @@ function union<P extends GeoJsonProperties = GeoJsonProperties>(
   features: FeatureCollection<Polygon | MultiPolygon>,
   options: { properties?: P } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {
-  let subject: Paths64;
-  let clippers: Paths64[] = [];
-
   if (features.features.length < 2) {
     throw new Error("Must have at least 2 features");
   }
 
+  const clipper = new Clipper64();
+
   geomEach(features, (geom, idx) => {
     if (geom.type === "MultiPolygon") {
       if (idx === 0) {
-        subject = multiPolygonToPaths(geom.coordinates);
+        clipper.addSubject(multiPolygonToPaths(geom.coordinates));
       } else {
-        clippers.push(multiPolygonToPaths(geom.coordinates));
+        clipper.addClip(multiPolygonToPaths(geom.coordinates));
       }
     } else {
       if (idx === 0) {
-        subject = polygonToPaths(geom.coordinates);
+        clipper.addSubject(polygonToPaths(geom.coordinates));
       } else {
-        clippers.push(polygonToPaths(geom.coordinates));
+        clipper.addClip(polygonToPaths(geom.coordinates));
       }
     }
   });
 
-  subject = subject!;
+  const tree: PolyTree64 = new PolyTree64();
+  clipper.execute(ClipType.Union, FillRule.NonZero, tree);
 
-  for (const clipper of clippers) {
-    subject = Clipper.union(subject, clipper, FillRule.EvenOdd);
-  }
-
-  // Do one final conversion to PolyTree to better allow handing of holes when
-  // constructing return Geojson.
-  let tree: PolyTree64 = new PolyTree64();
-  Clipper.booleanOpWithPolyTree(
-    ClipType.Union,
-    subject,
-    [],
-    tree,
-    FillRule.EvenOdd
-  );
-
-  return feature(polyTreeToGeoJSON(tree), options.properties);
+  // Return the result as Polygon, MultiPolygon, or null as appropriate
+  const geom = polyTreeToGeoJSON(tree);
+  if (geom === null) return null;
+  return feature(geom, options.properties);
 }
 
 export { union };
