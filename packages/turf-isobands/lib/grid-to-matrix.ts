@@ -1,6 +1,7 @@
 import { getCoords, collectionOf } from "@turf/invariant";
 import { featureEach } from "@turf/meta";
 import { isObject } from "@turf/helpers";
+import { Feature, FeatureCollection, Point } from "geojson";
 
 /**
  * Takes a {@link Point} grid and returns a correspondent matrix {Array<Array<number>>}
@@ -34,13 +35,13 @@ import { isObject } from "@turf/helpers";
  *     [18, 13, 10,  9, 78, 13, 18]
  *   ]
  */
-function gridToMatrix(grid, options) {
+export function gridToMatrix(
+  grid: FeatureCollection<Point>,
+  options: { zProperty?: string; flip?: boolean; flags?: boolean } = {}
+): any {
   // Optional parameters
-  options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
-  var zProperty = options.zProperty || "elevation";
-  var flip = options.flip;
-  var flags = options.flags;
+  const { zProperty = "elevation", flip = false, flags = false } = options;
 
   // validation
   collectionOf(grid, "Point", "input must contain Points");
@@ -55,6 +56,9 @@ function gridToMatrix(grid, options) {
     var row = [];
     for (var c = 0; c < pointRow.length; c++) {
       var point = pointRow[c];
+      if (point.properties == null) {
+        point.properties = {};
+      }
       // Check if zProperty exist
       if (point.properties[zProperty]) row.push(point.properties[zProperty]);
       else row.push(0);
@@ -75,33 +79,28 @@ function gridToMatrix(grid, options) {
  * @param {boolean} [flip=false] returns the matrix upside-down
  * @returns {Array<Array<Point>>} points ordered by latitude and longitude
  */
-function sortPointsByLatLng(points, flip) {
-  var pointsByLatitude = {};
+function sortPointsByLatLng(points: FeatureCollection<Point>, flip: boolean) {
+  var pointsByLatitude: Record<number | string, Feature<Point>[]> = {};
 
   // divide points by rows with the same latitude
-  featureEach(points, function (point) {
-    var lat = getCoords(point)[1];
+  featureEach(points, (point) => {
+    var lat = getCoords(point)[1] as number;
     if (!pointsByLatitude[lat]) pointsByLatitude[lat] = [];
     pointsByLatitude[lat].push(point);
   });
 
   // sort points (with the same latitude) by longitude
-  var orderedRowsByLatitude = Object.keys(pointsByLatitude).map(function (lat) {
-    var row = pointsByLatitude[lat];
-    var rowOrderedByLongitude = row.sort(function (a, b) {
-      return getCoords(a)[0] - getCoords(b)[0];
-    });
-    return rowOrderedByLongitude;
-  });
+  const pointMatrix: Feature<Point>[][] = [];
+  for (const row of Object.values(pointsByLatitude)) {
+    pointMatrix.push(row.sort((a, b) => getCoords(a)[0] - getCoords(b)[0]));
+  }
 
   // sort rows (of points with the same latitude) by latitude
-  var pointMatrix = orderedRowsByLatitude.sort(function (a, b) {
-    if (flip) return getCoords(a[0])[1] - getCoords(b[0])[1];
-    else return getCoords(b[0])[1] - getCoords(a[0])[1];
-  });
+  pointMatrix.sort(
+    flip
+      ? (a, b) => getCoords(a[0])[1] - getCoords(b[0])[1]
+      : (a, b) => getCoords(b[0])[1] - getCoords(a[0])[1]
+  );
 
   return pointMatrix;
 }
-
-export { gridToMatrix };
-export default gridToMatrix;
