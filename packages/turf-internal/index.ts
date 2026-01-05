@@ -1,1 +1,1 @@
-export * from "./clipper2";
+export * from "./clipper2/index.js";

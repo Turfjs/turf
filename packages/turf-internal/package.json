@@ -2,12 +2,47 @@
   "name": "@turf/internal",
   "version": "7.3.1",
   "private": true,
+  "description": "Common functionality used across multiple Turf packages.",
+  "author": "Turf Authors",
+  "contributors": [
+    "James Beard <@smallsaucepan>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "funding": "https://opencollective.com/turf",
   "type": "module",
-  "main": "index.ts",
-  "types": "index.ts",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "exports": {
-    ".": "./index.ts",
-    "./clipper2": "./clipper2/index.ts"
+    "./package.json": "./package.json",
+    "./clipper2": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup --config ../../tsup.config.ts"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0"
   },
   "dependencies": {
     "@types/geojson": "^7946.0.10",
