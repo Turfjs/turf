@@ -1,8 +1,9 @@
 import { Polygon, MultiPolygon, Feature, FeatureCollection } from "geojson";
 import { feature } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
-import { Clipper64, ClipType, FillRule, PolyTree64 } from "clipper2-ts";
+import { ClipperD, ClipType, FillRule, PolyTreeD } from "clipper2-ts";
 import {
+  DEFAULT_PRECISION,
   multiPolygonToPaths,
   polygonToPaths,
   polyTreeToGeoJSON,
@@ -48,25 +49,25 @@ function difference(
     throw new Error("Must have at least 2 features");
   }
 
-  const clipper = new Clipper64();
+  const clipper = new ClipperD(DEFAULT_PRECISION);
 
   geomEach(features, (geom, idx) => {
     if (geom.type === "MultiPolygon") {
       if (idx === 0) {
-        clipper.addSubject(multiPolygonToPaths(geom.coordinates));
+        clipper.addSubjectPaths(multiPolygonToPaths(geom.coordinates));
       } else {
-        clipper.addClip(multiPolygonToPaths(geom.coordinates));
+        clipper.addClipPaths(multiPolygonToPaths(geom.coordinates));
       }
     } else {
       if (idx === 0) {
-        clipper.addSubject(polygonToPaths(geom.coordinates));
+        clipper.addSubjectPaths(polygonToPaths(geom.coordinates));
       } else {
-        clipper.addClip(polygonToPaths(geom.coordinates));
+        clipper.addClipPaths(polygonToPaths(geom.coordinates));
       }
     }
   });
 
-  const tree: PolyTree64 = new PolyTree64();
+  const tree = new PolyTreeD();
   clipper.execute(ClipType.Difference, FillRule.EvenOdd, tree);
 
   // Return the result as Polygon, MultiPolygon, or null as appropriate

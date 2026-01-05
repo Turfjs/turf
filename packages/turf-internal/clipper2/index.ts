@@ -1,15 +1,13 @@
-import { PolyTree64, Path64, Paths64, PolyPath64 } from "clipper2-ts";
+import { PolyPathD, PathD, PathsD, PolyTreeD, areaD } from "clipper2-ts";
 import { Polygon, MultiPolygon, Position } from "geojson";
 
-// Multiplier applied to lat lng before passing to clipper2. Implies
-// calculations are limited to 6 decimal places.
-const INT_MULT = 1_000_000;
+const DEFAULT_PRECISION = 8;
 
 /**
  * Converts a multipolygon to a flattened array of clipper2 paths.
  */
-function multiPolygonToPaths(coords: Position[][][]): Paths64 {
-  const paths: Paths64 = [];
+function multiPolygonToPaths(coords: Position[][][]): PathsD {
+  const paths: PathsD = [];
 
   for (const polygon of coords) {
     paths.push(...polygonToPaths(polygon));
@@ -21,32 +19,59 @@ function multiPolygonToPaths(coords: Position[][][]): Paths64 {
 /**
  * Converts a polygon to a flattened array of clipper2 paths.
  */
-function polygonToPaths(coords: Position[][]): Paths64 {
-  const paths: Paths64 = [];
+function polygonToPaths(coords: Position[][]): PathsD {
+  const paths: PathsD = [];
 
-  for (const ring of coords) {
-    paths.push(ringToPath(ring));
+  for (const [idx, ring] of coords.entries()) {
+    // Defensive checking against incorrectly wound Geojson polygons.
+    const checkedRing =
+      idx === 0
+        ? enforceOuterRing(ringToPath(ring))
+        : enforceInnerRing(ringToPath(ring));
+
+    paths.push(checkedRing);
   }
 
   return paths;
 }
 
 /**
- * Converts a ring to a clipper2 paths.
+ * Make sure this ring is wound as an outer ring, according to clipper2
+ * expectations. That is, clockwise.
  */
-function ringToPath(ring: Position[]): Path64 {
-  return ring.map(([x, y]) => ({
-    x: Math.trunc(x * INT_MULT),
-    y: Math.trunc(y * INT_MULT),
-  }));
+function enforceOuterRing(path: PathD): PathD {
+  if (areaD(path) < 0) {
+    // Leave original array untouched.
+    return [...path].reverse();
+  }
+
+  return path;
+}
+
+/**
+ * Make sure this ring is wound as an inner ring, according to clipper2
+ * expectations. That is, counter clockwise.
+ */
+function enforceInnerRing(path: PathD): PathD {
+  if (areaD(path) > 0) {
+    // Leave original array untouched.
+    return [...path].reverse();
+  }
+
+  return path;
+}
+
+/**
+ * Converts a ring to a clipper2 path.
+ */
+function ringToPath(ring: Position[]): PathD {
+  return ring.map(([x, y]) => ({ x, y }));
 }
 
 /**
  * Construct the output Geojson based on a clipper2 tree. The tree is useful for propertly handing holes.
  */
-function polyTreeToGeoJSON(
-  polyTree: PolyTree64
-): Polygon | MultiPolygon | null {
+function polyTreeToGeoJSON(polyTree: PolyTreeD): Polygon | MultiPolygon | null {
   const polygons: Position[][][] = [];
 
   // Process each top-level polygon (outer contours)
@@ -79,11 +104,11 @@ function polyTreeToGeoJSON(
   };
 }
 
-function processPolyPath(polyPath: PolyPath64): Position[][] {
+function processPolyPath(polyPath: PolyPathD): Position[][] {
   const rings: Position[][] = [];
 
   // Add the outer ring (contour)
-  const outerRing = pathToCoordinates(polyPath.polygon);
+  const outerRing = pathToCoordinates(polyPath.poly);
   if (outerRing.length > 0) {
     rings.push(outerRing);
   }
@@ -92,7 +117,7 @@ function processPolyPath(polyPath: PolyPath64): Position[][] {
   for (let i = 0; i < polyPath.count; i++) {
     const child = polyPath.child(i);
     if (child && child.isHole) {
-      const holeRing = pathToCoordinates(child.polygon);
+      const holeRing = pathToCoordinates(child.poly);
       if (holeRing.length > 0) {
         rings.push(holeRing);
       }
@@ -108,7 +133,7 @@ function processPolyPath(polyPath: PolyPath64): Position[][] {
 /**
  * Converts a clipper2 integer path to an array of Geojson Positions.
  */
-function pathToCoordinates(path: Path64 | null): Position[] {
+function pathToCoordinates(path: PathD | null): Position[] {
   const coords: Position[] = [];
 
   if (!path || typeof path.length !== "number") {
@@ -117,7 +142,7 @@ function pathToCoordinates(path: Path64 | null): Position[] {
 
   for (let i = 0; i < path.length; i++) {
     const pt = path[i];
-    coords.push([Number(pt.x) / INT_MULT, Number(pt.y) / INT_MULT]);
+    coords.push([pt.x, pt.y]);
   }
 
   // GeoJSON requires the first and last coordinates to be identical (closed ring)
@@ -132,4 +157,9 @@ function pathToCoordinates(path: Path64 | null): Position[] {
   return coords;
 }
 
-export { multiPolygonToPaths, polygonToPaths, polyTreeToGeoJSON };
+export {
+  multiPolygonToPaths,
+  polygonToPaths,
+  polyTreeToGeoJSON,
+  DEFAULT_PRECISION,
+};

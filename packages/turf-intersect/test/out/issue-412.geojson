@@ -14,10 +14,7 @@
           ]
         ]
       },
-      "properties": {
-        "fill-opacity": 0.5,
-        "fill": "#F00"
-      }
+      "properties": { "fill-opacity": 0.5, "fill": "#F00" }
     },
     {
       "type": "Feature",
@@ -32,26 +29,20 @@
           ]
         ]
       },
-      "properties": {
-        "fill-opacity": 0.5,
-        "fill": "#00F"
-      }
+      "properties": { "fill-opacity": 0.5, "fill": "#00F" }
     },
     {
       "type": "Feature",
-      "properties": {
-        "fill-opacity": 1,
-        "fill": "#0F0"
-      },
+      "properties": { "fill-opacity": 1, "fill": "#0F0" },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
-            [11.167526, 9.853863],
-            [11.168736, 9.855072],
-            [11.076144, 9.856268],
-            [11.102596, 9.853863],
-            [11.167526, 9.853863]
+            [11.168736110000001, 9.85507303],
+            [11.07613686, 9.85626976],
+            [11.10259984, 9.85386306],
+            [11.1675253, 9.85386306],
+            [11.168736110000001, 9.85507303]
           ]
         ]
       }
