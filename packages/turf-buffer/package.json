@@ -62,12 +62,14 @@
   "devDependencies": {
     "@turf/truncate": "workspace:*",
     "@types/benchmark": "^2.1.5",
+    "@types/d3-geo": "^3.1.0",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "tape": "^5.9.0",
     "tsup": "^8.4.0",
     "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
@@ -78,6 +80,7 @@
     "@turf/meta": "workspace:*",
     "@turf/projection": "workspace:*",
     "@types/geojson": "^7946.0.10",
-    "d3-geo": "1.7.1"
+    "d3-geo": "^3.1.1",
+    "tslib": "^2.8.1"
   }
 }
