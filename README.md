@@ -34,10 +34,10 @@ Other runtimes, such as Deno or Bun, are not officially supported. We would be v
 
 ## Precision
 
-Although we make a reasonable effort for accuracy in our implementations, we are ultimately limited by the fact that we are handling GeoJSON data.
+Although we make a reasonable effort for precision in our implementations, we are ultimately limited by the fact that we are handling GeoJSON data.
 For lots of consumer devices, GPS accuracy is within a few meters of the actual point. When using latitude and longitude, 6 digits after the decimal
 works out to an [error around 10cm](https://datatracker.ietf.org/doc/html/rfc7946#section-11.2). Although libraries exist to provide arbitrary
-precision math, we try to use JavaScript's built in numeric type (64 bit floating point) for performance reasons.
+precision math, we try to use JavaScript's built in types for performance reasons.
 
 Although it is possible to specify GeoJSON positions with more than 6 digits of precision, Turf cannot guarantee correctness at these scales.
 Certain operations may run into issues when the distances involved are very small, at the limit of what our Number type can represent.
@@ -46,6 +46,9 @@ We may close bugs that cannot be reproduced after the GeoJSON has been run throu
 
 We may return results with additional precision to avoid having to perform truncation, but that
 [should not be interpreted](https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.10) as the level of real precision in the result.
+
+If you have stricter precision needs or aren't using latitude/longitude, you may want to use Turf as a reference for your own implementation,
+carefully controlling the projection and library call steps.
 
 ## Browser support
 
@@ -57,6 +60,8 @@ We may roll forward and drop support for older browsers within a given major rel
 
 All of the individual @turf/* packages are written in TypeScript and are compiled to target ESNext. That means that we may use new syntax features without changing the major version.
 If you have specific browser support requirements please apply Babel, SWC, or another tool in your own bundling step in order to control the amount of supporting code.
+
+Some of the packages are implemented using other NPM libraries, which may also need to be transformed.
 
 Note: Our ability to adopt the latest syntax will still be restricted by the supported Node versions for a given major version of Turf.
 
