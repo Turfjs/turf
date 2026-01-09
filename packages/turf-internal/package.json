@@ -18,19 +18,26 @@
   },
   "funding": "https://opencollective.com/turf",
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     "./clipper2": {
       "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
+        "types": "./dist/esm/clipper2.d.ts",
+        "default": "./dist/esm/clipper2.js"
       },
       "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
+        "types": "./dist/cjs/clipper2.d.cts",
+        "default": "./dist/cjs/clipper2.cjs"
+      }
+    },
+    "./babel-plugin-bigint-patch": {
+      "import": {
+        "types": "./dist/esm/babel-plugin-bigint-patch.d.ts",
+        "default": "./dist/esm/babel-plugin-bigint-patch.js"
+      },
+      "require": {
+        "types": "./dist/cjs/babel-plugin-bigint-patch.d.cts",
+        "default": "./dist/cjs/babel-plugin-bigint-patch.cjs"
       }
     }
   },
@@ -39,9 +46,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --config ../../tsup.config.ts"
+    "build": "tsup"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/types": "^7.26.10",
+    "@types/babel__core": "^7.20.5",
     "tsup": "^8.4.0"
   },
   "dependencies": {
