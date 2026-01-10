@@ -34,7 +34,7 @@ import { Graph, GridNode, astar } from "./lib/javascript-astar.js";
  * @param {Coord} end point
  * @param {Object} [options={}] optional parameters
  * @param {Polygon|Feature<Polygon>|FeatureCollection<Polygon>} [options.obstacles] areas which path cannot travel
- * @param {Units} [options.units='kilometers'] unit in which resolution & minimum distance will be expressed in; it can be degrees, radians, miles, kilometers, ...
+ * @param {Units} [options.units='kilometers'] unit in which resolution & minimum distance will be expressed in; Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @param {number} [options.resolution=100] distance between matrix points on which the path will be calculated
  * @returns {Feature<LineString>} shortest path between start and end
  * @example
@@ -81,6 +81,11 @@ function shortestPath(
     if (obstacles.features.length === 0) {
       return lineString([startCoord, endCoord]);
     }
+  } else if (
+    obstacles.type === "Feature" &&
+    obstacles.geometry.type === "Polygon"
+  ) {
+    obstacles = featureCollection([obstacles]);
   } else if (obstacles.type === "Polygon") {
     obstacles = featureCollection([feature(getGeom(obstacles))]);
   } else {
@@ -94,32 +99,28 @@ function shortestPath(
   const box = bbox(scale(bboxPolygon(bbox(collection)), 1.15)); // extend 15%
   const [west, south, east, north] = box;
 
-  const width = distance([west, south], [east, south], options);
-  const division = width / resolution;
-
   collection.features.pop();
   collection.features.pop();
 
-  const xFraction = division / distance([west, south], [east, south], options);
-  const cellWidth = xFraction * (east - west);
-  const yFraction = division / distance([west, south], [west, north], options);
-  const cellHeight = yFraction * (north - south);
+  const columnsWithFraction =
+    distance([west, south], [east, south], options) / resolution;
+  const cellWidth = (east - west) / columnsWithFraction;
 
-  const bboxHorizontalSide = east - west;
-  const bboxVerticalSide = north - south;
-  const columns = Math.floor(bboxHorizontalSide / cellWidth);
-  const rows = Math.floor(bboxVerticalSide / cellHeight);
+  const rowsWithFraction =
+    distance([west, south], [west, north], options) / resolution;
+  const cellHeight = (north - south) / rowsWithFraction;
+
   // adjust origin of the grid
-  const deltaX = (bboxHorizontalSide - columns * cellWidth) / 2;
-  const deltaY = (bboxVerticalSide - rows * cellHeight) / 2;
+  const deltaX = ((columnsWithFraction % 1) * cellWidth) / 2;
+  const deltaY = ((rowsWithFraction % 1) * cellHeight) / 2;
 
   // loop through points only once to speed up process
   // define matrix grid for A-star algorithm
   const pointMatrix: string[][] = [];
   const matrix: number[][] = [];
 
-  let closestToStart: GridNode;
-  let closestToEnd: GridNode;
+  let closestToStart: { x: number; y: number };
+  let closestToEnd: { x: number; y: number };
   let minDistStart = Infinity;
   let minDistEnd = Infinity;
   let currentY = north - deltaY;

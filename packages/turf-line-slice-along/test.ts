@@ -5,23 +5,24 @@ import { loadJsonFileSync } from "load-json-file";
 import { along } from "@turf/along";
 import { length } from "@turf/length";
 import { lineSliceAlong } from "./index.js";
+import { Feature, LineString } from "geojson";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-var line1 = loadJsonFileSync(
+var line1: Feature<LineString> = loadJsonFileSync(
   path.join(__dirname, "test", "fixtures", "line1.geojson")
 );
-var route1 = loadJsonFileSync(
+var route1: Feature<LineString> = loadJsonFileSync(
   path.join(__dirname, "test", "fixtures", "route1.geojson")
 );
-var route2 = loadJsonFileSync(
+var route2: Feature<LineString> = loadJsonFileSync(
   path.join(__dirname, "test", "fixtures", "route2.geojson")
 );
 
 test("turf-line-slice-along -- line1", function (t) {
   var start = 500;
   var stop = 750;
-  var options = { units: "miles" };
+  var options = { units: "miles" } as const;
 
   var start_point = along(line1, start, options);
   var end_point = along(line1, stop, options);
@@ -39,7 +40,7 @@ test("turf-line-slice-along -- line1", function (t) {
 test("turf-line-slice-along -- line1 overshoot", function (t) {
   var start = 500;
   var stop = 1500;
-  var options = { units: "miles" };
+  var options = { units: "miles" } as const;
 
   var start_point = along(line1, start, options);
   var end_point = along(line1, stop, options);
@@ -57,7 +58,7 @@ test("turf-line-slice-along -- line1 overshoot", function (t) {
 test("turf-line-slice-along -- route1", function (t) {
   var start = 500;
   var stop = 750;
-  var options = { units: "miles" };
+  var options = { units: "miles" } as const;
 
   var start_point = along(route1, start, options);
   var end_point = along(route1, stop, options);
@@ -75,7 +76,7 @@ test("turf-line-slice-along -- route1", function (t) {
 test("turf-line-slice-along -- route2", function (t) {
   var start = 25;
   var stop = 50;
-  var options = { units: "miles" };
+  var options = { units: "miles" } as const;
 
   var start_point = along(route2, start, options);
   var end_point = along(route2, stop, options);
@@ -93,7 +94,7 @@ test("turf-line-slice-along -- route2", function (t) {
 test("turf-line-slice-along -- start longer than line length", function (t) {
   var start = 500000;
   var stop = 800000;
-  var options = { units: "miles" };
+  var options = { units: "miles" } as const;
 
   t.throws(
     () => lineSliceAlong(line1, start, stop, options),
@@ -103,7 +104,7 @@ test("turf-line-slice-along -- start longer than line length", function (t) {
 });
 
 test("turf-line-slice-along -- start equal to line length", function (t) {
-  var options = { units: "miles" };
+  var options = { units: "miles" } as const;
   var start = length(line1, options);
   var stop = start + 100;
 

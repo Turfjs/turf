@@ -207,30 +207,38 @@ export function feature<
  * var geometry = turf.geometry(type, coordinates);
  * // => geometry
  */
-export function geometry(
-  type:
+export function geometry<
+  T extends
     | "Point"
     | "LineString"
     | "Polygon"
     | "MultiPoint"
     | "MultiLineString"
     | "MultiPolygon",
+>(
+  type: T,
   coordinates: any[],
   _options: Record<string, never> = {}
-) {
+): Extract<Geometry, { type: T }> {
   switch (type) {
     case "Point":
-      return point(coordinates).geometry;
+      return point(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "LineString":
-      return lineString(coordinates).geometry;
+      return lineString(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "Polygon":
-      return polygon(coordinates).geometry;
+      return polygon(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "MultiPoint":
-      return multiPoint(coordinates).geometry;
+      return multiPoint(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "MultiLineString":
-      return multiLineString(coordinates).geometry;
+      return multiLineString(coordinates).geometry as Extract<
+        Geometry,
+        { type: T }
+      >;
     case "MultiPolygon":
-      return multiPolygon(coordinates).geometry;
+      return multiPolygon(coordinates).geometry as Extract<
+        Geometry,
+        { type: T }
+      >;
     default:
       throw new Error(type + " is invalid");
   }
@@ -598,15 +606,20 @@ export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
  * // => collection
  */
 export function geometryCollection<
+  G extends
+    | Point
+    | LineString
+    | Polygon
+    | MultiPoint
+    | MultiLineString
+    | MultiPolygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
-  geometries: Array<
-    Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
-  >,
+  geometries: Array<G>,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<GeometryCollection, P> {
-  const geom: GeometryCollection = {
+): Feature<GeometryCollection<G>, P> {
+  const geom: GeometryCollection<G> = {
     type: "GeometryCollection",
     geometries,
   };
