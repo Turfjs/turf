@@ -1010,6 +1010,9 @@ importers:
 
   packages/turf-boolean-crosses:
     dependencies:
+      '@turf/boolean-equal':
+        specifier: workspace:*
+        version: link:../turf-boolean-equal
       '@turf/boolean-point-in-polygon':
         specifier: workspace:*
         version: link:../turf-boolean-point-in-polygon
@@ -3001,6 +3004,9 @@ importers:
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:*
@@ -3011,6 +3017,9 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
+      '@types/rbush':
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/tape':
         specifier: ^5.8.1
         version: 5.8.1
@@ -3209,6 +3218,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3237,6 +3249,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3616,6 +3631,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3641,6 +3659,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3705,6 +3726,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3730,6 +3754,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3855,6 +3882,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3880,6 +3910,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3901,6 +3934,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/along':
         specifier: workspace:*
@@ -3929,6 +3965,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/turf-line-split:
     dependencies:
@@ -3962,6 +4001,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: ^2.1.5
@@ -3984,6 +4026,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4094,6 +4139,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/random':
         specifier: workspace:*
@@ -4101,6 +4149,9 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
+      '@types/tape':
+        specifier: ^5.8.1
+        version: 5.8.1
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -4113,6 +4164,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/turf-midpoint:
     dependencies:
@@ -6170,6 +6224,9 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
+      '@types/rbush':
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/tape':
         specifier: ^5.8.1
         version: 5.8.1

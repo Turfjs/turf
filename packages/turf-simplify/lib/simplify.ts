@@ -8,7 +8,7 @@
 // for 3D version, see 3d branch (configurability would draw significant performance overhead)
 
 // square distance between 2 points
-function getSqDist(p1, p2) {
+function getSqDist(p1: number[], p2: number[]) {
   var dx = p1[0] - p2[0],
     dy = p1[1] - p2[1];
 
@@ -16,7 +16,7 @@ function getSqDist(p1, p2) {
 }
 
 // square distance from a point to a segment
-function getSqSegDist(p, p1, p2) {
+function getSqSegDist(p: number[], p1: number[], p2: number[]) {
   var x = p1[0],
     y = p1[1],
     dx = p2[0] - x,
@@ -42,7 +42,7 @@ function getSqSegDist(p, p1, p2) {
 // rest of the code doesn't care about point format
 
 // basic distance-based simplification
-function simplifyRadialDist(points, sqTolerance) {
+function simplifyRadialDist(points: number[][], sqTolerance: number) {
   var prevPoint = points[0],
     newPoints = [prevPoint],
     point;
@@ -56,12 +56,18 @@ function simplifyRadialDist(points, sqTolerance) {
     }
   }
 
-  if (prevPoint !== point) newPoints.push(point);
+  if (prevPoint !== point) newPoints.push(point!);
 
   return newPoints;
 }
 
-function simplifyDPStep(points, first, last, sqTolerance, simplified) {
+function simplifyDPStep(
+  points: number[][],
+  first: number,
+  last: number,
+  sqTolerance: number,
+  simplified: number[][]
+) {
   var maxSqDist = sqTolerance,
     index;
 
@@ -75,16 +81,16 @@ function simplifyDPStep(points, first, last, sqTolerance, simplified) {
   }
 
   if (maxSqDist > sqTolerance) {
-    if (index - first > 1)
-      simplifyDPStep(points, first, index, sqTolerance, simplified);
-    simplified.push(points[index]);
-    if (last - index > 1)
-      simplifyDPStep(points, index, last, sqTolerance, simplified);
+    if (index! - first > 1)
+      simplifyDPStep(points, first, index!, sqTolerance, simplified);
+    simplified.push(points[index!]);
+    if (last - index! > 1)
+      simplifyDPStep(points, index!, last, sqTolerance, simplified);
   }
 }
 
 // simplification using Ramer-Douglas-Peucker algorithm
-function simplifyDouglasPeucker(points, sqTolerance) {
+function simplifyDouglasPeucker(points: number[][], sqTolerance: number) {
   var last = points.length - 1;
 
   var simplified = [points[0]];
@@ -95,7 +101,11 @@ function simplifyDouglasPeucker(points, sqTolerance) {
 }
 
 // both algorithms combined for awesome performance
-function simplify(points, tolerance, highestQuality) {
+export function simplify(
+  points: number[][],
+  tolerance: number,
+  highestQuality: boolean
+) {
   if (points.length <= 2) return points;
 
   var sqTolerance = tolerance !== undefined ? tolerance * tolerance : 1;
@@ -105,6 +115,3 @@ function simplify(points, tolerance, highestQuality) {
 
   return points;
 }
-
-export { simplify };
-export default simplify;
