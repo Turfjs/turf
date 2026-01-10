@@ -182,6 +182,22 @@ test("turf-buffer - undefined return", (t) => {
   t.end();
 });
 
+test("turf-buffer - #2991 error", (t) => {
+  const pt: GeoJSON.Feature<GeoJSON.Point> = {
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "Point",
+      coordinates: [179.9066198987503, -89.99999999999936],
+    },
+  };
+
+  t.doesNotThrow(() => {
+    buffer(pt, 10);
+  }, "Should not throw on point at pole");
+  t.end();
+});
+
 function colorize(feature, color) {
   color = color || "#F00";
   if (feature.properties) {
