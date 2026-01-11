@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-overlap",
-  "version": "7.2.0",
+  "version": "7.3.1",
   "description": "Checks if two geometries have an area of overlap without one being completely contained inside the other.",
   "author": "Turf Authors",
   "contributors": [
@@ -53,7 +53,7 @@
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
     "docs": "tsx ../../scripts/generate-readmes.ts",
-    "test": "npm-run-all --npm-path npm test:*",
+    "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
@@ -61,9 +61,8 @@
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "boolean-shapely": "*",
-    "glob": "^11.0.2",
+    "glob": "^11.1.0",
     "load-json-file": "^7.0.1",
-    "npm-run-all": "^4.1.5",
     "tape": "^5.9.0",
     "tsup": "^8.4.0",
     "tsx": "^4.19.4",

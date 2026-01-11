@@ -107,7 +107,7 @@ function clustersDbscan(
 
     return (
       geokdbush
-        // @ts-expect-error - until https://github.com/mourner/geokdbush/issues/20 is resolved
+        // @ts-expect-error 2345 until https://github.com/mourner/geokdbush/issues/20 is resolved
         .around<number>(kdIndex, x, y, undefined, maxDistance)
         .map((id) => ({
           minX: points.features[id].geometry.coordinates[0],

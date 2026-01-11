@@ -1,6 +1,6 @@
 {
   "name": "@turf/points-within-polygon",
-  "version": "7.2.0",
+  "version": "7.3.1",
   "description": "Finds points that fall within polygon(s).",
   "author": "Turf Authors",
   "license": "MIT",
@@ -48,7 +48,7 @@
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
     "docs": "tsx ../../scripts/generate-readmes.ts",
-    "test": "npm-run-all --npm-path npm test:*",
+    "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
@@ -56,7 +56,6 @@
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
-    "npm-run-all": "^4.1.5",
     "tape": "^5.9.0",
     "tsup": "^8.4.0",
     "tsx": "^4.19.4",

@@ -11,5 +11,5 @@ suite
   .add("greatCircle", () => {
     greatCircle(point1, point2);
   })
-  .on("cycle", (e) => console.log(String(e.target)))
+  .on("cycle", (e: any) => console.log(String(e.target)))
   .run();

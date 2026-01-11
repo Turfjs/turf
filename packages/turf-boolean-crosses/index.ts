@@ -1,6 +1,7 @@
 import { Feature, Geometry, Polygon, LineString, MultiPoint } from "geojson";
 import { lineIntersect } from "@turf/line-intersect";
 import { polygonToLine } from "@turf/polygon-to-line";
+import { booleanEqual } from "@turf/boolean-equal";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
 import { point } from "@turf/helpers";
@@ -101,27 +102,37 @@ function doMultiPointAndLineStringCross(
 }
 
 function doLineStringsCross(lineString1: LineString, lineString2: LineString) {
-  var doLinesIntersect = lineIntersect(lineString1, lineString2);
-  if (doLinesIntersect.features.length > 0) {
-    for (var i = 0; i < lineString1.coordinates.length - 1; i++) {
-      for (var i2 = 0; i2 < lineString2.coordinates.length - 1; i2++) {
-        var incEndVertices = true;
-        if (i2 === 0 || i2 === lineString2.coordinates.length - 2) {
-          incEndVertices = false;
-        }
-        if (
-          isPointOnLineSegment(
-            lineString1.coordinates[i],
-            lineString1.coordinates[i + 1],
-            lineString2.coordinates[i2],
-            incEndVertices
-          )
-        ) {
-          return true;
-        }
-      }
+  // See if there are any intersection points between these two lines.
+  const doLinesIntersect = lineIntersect(lineString1, lineString2);
+  if (doLinesIntersect.features.length === 0) return false;
+
+  // As soon as we find any intersect point that doesn't lie on the start or
+  // end point of either input lineString, that's considered a crossing.
+  for (const intersectPoint of doLinesIntersect.features) {
+    if (
+      !booleanEqual(
+        intersectPoint.geometry,
+        point(lineString1.coordinates[0])
+      ) &&
+      !booleanEqual(
+        intersectPoint.geometry,
+        point(lineString1.coordinates[lineString1.coordinates.length - 1])
+      ) &&
+      !booleanEqual(
+        intersectPoint.geometry,
+        point(lineString2.coordinates[0])
+      ) &&
+      !booleanEqual(
+        intersectPoint.geometry,
+        point(lineString2.coordinates[lineString2.coordinates.length - 1])
+      )
+    ) {
+      return true;
     }
   }
+
+  // Every intersection point we tried fell on an end point (considered the
+  // boundary) of one of the input lines. Not considered a crossing.
   return false;
 }
 

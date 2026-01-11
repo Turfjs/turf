@@ -12,6 +12,7 @@ import { lineString } from "@turf/helpers";
 import { randomPolygon } from "@turf/random";
 import { matrixToGrid } from "./lib/matrix-to-grid.js";
 import { isobands } from "./index.js";
+import { FeatureCollection, Point } from "geojson";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -90,5 +91,49 @@ test("isobands -- throws", (t) => {
     "invalid options"
   );
 
+  t.end();
+});
+
+test("isobands -- checks for usable grid", (t) => {
+  const input: FeatureCollection<Point> = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: { z: 0 },
+        geometry: {
+          type: "Point",
+          coordinates: [0, 0],
+        },
+      },
+      {
+        type: "Feature",
+        properties: { z: 0 },
+        geometry: {
+          type: "Point",
+          coordinates: [0, 1],
+        },
+      },
+      {
+        type: "Feature",
+        properties: { z: 0 },
+        geometry: {
+          type: "Point",
+          coordinates: [1, 1],
+        },
+      },
+      {
+        type: "Feature",
+        properties: { z: 0 },
+        geometry: {
+          type: "Point",
+          coordinates: [1e-10, 1], // almost the same lng as the first feature, but different enough to break everything
+        },
+      },
+    ],
+  };
+  t.throws(() => {
+    isobands(input, [0, 1], { zProperty: "z" });
+  });
   t.end();
 });

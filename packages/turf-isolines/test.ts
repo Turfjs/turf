@@ -12,6 +12,7 @@ import { randomPolygon } from "@turf/random";
 import { lineString } from "@turf/helpers";
 import { matrixToGrid } from "./lib/matrix-to-grid.js";
 import { isolines } from "./index.js";
+import { FeatureCollection, Point } from "geojson";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -134,5 +135,49 @@ test("isolines -- handling properties", (t) => {
   });
   t.equal(lines.features[0].properties.name, "break1");
   t.equal(lines.features[0].properties.source, "foobar");
+  t.end();
+});
+
+test("isolines -- checks for usable grid", (t) => {
+  const input: FeatureCollection<Point> = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: { z: 0 },
+        geometry: {
+          type: "Point",
+          coordinates: [0, 0],
+        },
+      },
+      {
+        type: "Feature",
+        properties: { z: 0 },
+        geometry: {
+          type: "Point",
+          coordinates: [0, 1],
+        },
+      },
+      {
+        type: "Feature",
+        properties: { z: 0 },
+        geometry: {
+          type: "Point",
+          coordinates: [1, 1],
+        },
+      },
+      {
+        type: "Feature",
+        properties: { z: 0 },
+        geometry: {
+          type: "Point",
+          coordinates: [1e-10, 1],
+        },
+      },
+    ],
+  };
+  t.throws(() => {
+    isolines(input, [0, 1], { zProperty: "z" });
+  });
   t.end();
 });
