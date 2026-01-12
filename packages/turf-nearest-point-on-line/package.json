@@ -45,11 +45,11 @@
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsup",
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
-    "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
+    "test:types": "tsc --project tsconfig.types.json"
   },
   "devDependencies": {
     "@turf/along": "workspace:*",

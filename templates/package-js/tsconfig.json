@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.shared.json",
+  "include": ["index.js"],
+  "compilerOptions": {
+    "composite": false,
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true
+  }
+}

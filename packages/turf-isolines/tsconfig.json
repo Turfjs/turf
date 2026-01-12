@@ -1,3 +1,36 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-bbox"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-invariant"
+    },
+    {
+      "path": "../turf-meta"
+    },
+    {
+      "path": "../turf-envelope"
+    },
+    {
+      "path": "../turf-point-grid"
+    },
+    {
+      "path": "../turf-random"
+    },
+    {
+      "path": "../turf-rhumb-destination"
+    },
+    {
+      "path": "../turf-truncate"
+    }
+  ]
 }

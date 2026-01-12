@@ -2,18 +2,24 @@
   "private": true,
   "funding": "https://opencollective.com/turf",
   "scripts": {
+    "build": "pnpx lerna run build",
     "docs": "tsx ./scripts/generate-readmes.ts",
+    "escheck": "pnpm run /escheck:.*/",
+    "escheck:cjs": "es-check es8 packages/*/dist/cjs/index.cjs packages/turf/turf.min.js",
+    "escheck:esm": "es-check --module es8 packages/*/dist/esm/index.js",
+    "escheck:web": "es-check es5 packages/turf/turf.min.js",
     "lint": "pnpm run /lint:.*/",
     "lint:docs": "documentation lint packages/turf-*/index.js",
-    "lint:escheck-cjs": "es-check es8 packages/*/dist/cjs/index.cjs packages/turf/turf.min.js",
-    "lint:escheck-esm": "es-check --module es8 packages/*/dist/esm/index.js",
-    "lint:escheck-web": "es-check es5 packages/turf/turf.min.js",
     "lint:eslint": "eslint packages",
     "lint:mrl": "mrl check",
     "lint:prettier": "prettier --check .",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "husky && lerna run build",
-    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
+    "prepare": "husky",
+    "prerelease": "pnpm run build && pnpm run rollup",
+    "release": "pnpm run test:release && pnpm publish -r",
+    "rollup": "lerna run --scope @turf/turf rollup",
+    "test": "pnpx lerna run test",
+    "test:release": "pnpm run lint && pnpm run escheck && lerna run --scope @turf/turf last-checks"
   },
   "lint-staged": {
     "package.json": [

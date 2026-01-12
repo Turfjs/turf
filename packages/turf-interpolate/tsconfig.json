@@ -1,3 +1,45 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-bbox"
+    },
+    {
+      "path": "../turf-centroid"
+    },
+    {
+      "path": "../turf-clone"
+    },
+    {
+      "path": "../turf-distance"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-hex-grid"
+    },
+    {
+      "path": "../turf-invariant"
+    },
+    {
+      "path": "../turf-meta"
+    },
+    {
+      "path": "../turf-point-grid"
+    },
+    {
+      "path": "../turf-square-grid"
+    },
+    {
+      "path": "../turf-triangle-grid"
+    },
+    {
+      "path": "../turf-truncate"
+    }
+  ]
 }
