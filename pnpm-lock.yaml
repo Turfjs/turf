@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  clipper2-ts:
+    hash: 1af054130643530b0a82b74bb3326ac0aed9d1d28afb5a51f89262ad4e61a522
+    path: patches/clipper2-ts.patch
+
 importers:
 
   .:
@@ -452,6 +457,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      jsbi:
+        specifier: ^4.3.2
+        version: 4.3.2
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -1620,7 +1628,7 @@ importers:
         version: 7946.0.14
       clipper2-ts:
         specifier: ^2.0.1
-        version: 2.0.1
+        version: 2.0.1(patch_hash=1af054130643530b0a82b74bb3326ac0aed9d1d28afb5a51f89262ad4e61a522)
       d3-geo:
         specifier: ^3.1.1
         version: 3.1.1
@@ -9719,6 +9727,9 @@ packages:
     resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
 
+  jsbi@4.3.2:
+    resolution: {integrity: sha512-9fqMSQbhJykSeii05nxKl4m6Eqn2P6rOlYiS+C5Dr/HPIU/7yZxu5qzbs40tgaFORiw2Amd0mirjxatXYMkIew==}
+
   jsesc@3.0.2:
     resolution: {integrity: sha512-xKqzzWXDttJuOcawBt4KnKHHIf5oQ/Cxax+0PWFG+DFDgHNAdi+TXECADI+RYiFUMmx8792xsMbbgXj4CwnP4g==}
     engines: {node: '>=6'}
@@ -14147,7 +14158,7 @@ snapshots:
 
   cli-width@4.1.0: {}
 
-  clipper2-ts@2.0.1: {}
+  clipper2-ts@2.0.1(patch_hash=1af054130643530b0a82b74bb3326ac0aed9d1d28afb5a51f89262ad4e61a522): {}
 
   cliui@7.0.4:
     dependencies:
@@ -15742,6 +15753,8 @@ snapshots:
   js-yaml@4.1.1:
     dependencies:
       argparse: 2.0.1
+
+  jsbi@4.3.2: {}
 
   jsesc@3.0.2: {}
 
