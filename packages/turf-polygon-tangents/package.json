@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-tangents",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Finds the tangents of a polygon from a point.",
   "author": "Turf Authors",
   "contributors": [

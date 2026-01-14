@@ -1,6 +1,6 @@
 {
   "name": "@turf/center-of-mass",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Finds the “balance point” of irregular shapes, like a country outline.",
   "author": "Turf Authors",
   "license": "MIT",

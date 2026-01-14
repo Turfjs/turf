@@ -1,6 +1,6 @@
 {
   "name": "@turf/tin",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Takes a set of points and creates a Triangulated Irregular Network.",
   "author": "Turf Authors",
   "license": "MIT",

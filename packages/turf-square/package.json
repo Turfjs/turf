@@ -1,6 +1,6 @@
 {
   "name": "@turf/square",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Takes a bounding box and calculates the minimum square bounding box that would contain the input.",
   "author": "Turf Authors",
   "license": "MIT",

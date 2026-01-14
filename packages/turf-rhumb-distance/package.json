@@ -1,6 +1,6 @@
 {
   "name": "@turf/rhumb-distance",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Calculates the distance along a rhumb line between two points.",
   "author": "Turf Authors",
   "contributors": [

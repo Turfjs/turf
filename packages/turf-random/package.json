@@ -1,6 +1,6 @@
 {
   "name": "@turf/random",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Generates random points, lines, or polygons for testing.",
   "author": "Turf Authors",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "@turf/length",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": " Calculates the length of a line, perfect for paths or routes.",
   "author": "Turf Authors",
   "contributors": [
