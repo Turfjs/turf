@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "radius": 500,
+    "units": "meters"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [11.9864449, 52.9652597],
+          [12.0243343, 52.9740445],
+          [12.0622777, 52.9652798],
+          [11.9864449, 52.9652597]
+        ]
+      }
+    }
+  ]
+}
