@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-parallel",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Determine whether each segment of a line is parallel to the correspondent segment of another line.",
   "author": "Turf Authors",
   "contributors": [

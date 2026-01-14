@@ -1,6 +1,6 @@
 {
   "name": "@turf/directional-mean",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Calculates the average angle of a set of lines, measuring the trend of it.",
   "author": "Turf Authors",
   "contributors": [

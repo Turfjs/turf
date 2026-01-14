@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-touches",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Determine whether none of the points common to both geometries intersect the interiors of both geometries.",
   "author": "Turf Authors",
   "contributors": [

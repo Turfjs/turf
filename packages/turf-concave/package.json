@@ -1,6 +1,6 @@
 {
   "name": "@turf/concave",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Creates a concave hull around points.",
   "author": "Turf Authors",
   "contributors": [
