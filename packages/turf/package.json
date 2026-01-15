@@ -132,6 +132,7 @@
     "@turf/convex": "workspace:*",
     "@turf/destination": "workspace:*",
     "@turf/difference": "workspace:*",
+    "@turf/directional-mean": "workspace:*",
     "@turf/dissolve": "workspace:*",
     "@turf/distance": "workspace:*",
     "@turf/distance-weight": "workspace:*",

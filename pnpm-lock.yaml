@@ -230,6 +230,9 @@ importers:
       '@turf/difference':
         specifier: workspace:*
         version: link:../turf-difference
+      '@turf/directional-mean':
+        specifier: workspace:*
+        version: link:../turf-directional-mean
       '@turf/dissolve':
         specifier: workspace:*
         version: link:../turf-dissolve
