@@ -45,13 +45,13 @@ function lineSlice(
   const startVertex = nearestPointOnLine(line, startPt);
   const stopVertex = nearestPointOnLine(line, stopPt);
   const ends =
-    startVertex.properties.index <= stopVertex.properties.index
+    startVertex.properties.segmentIndex <= stopVertex.properties.segmentIndex
       ? [startVertex, stopVertex]
       : [stopVertex, startVertex];
   const clipCoords = [ends[0].geometry.coordinates];
   for (
-    let i = ends[0].properties.index + 1;
-    i < ends[1].properties.index + 1;
+    let i = ends[0].properties.segmentIndex + 1;
+    i < ends[1].properties.segmentIndex + 1;
     i++
   ) {
     clipCoords.push(coords[i]);

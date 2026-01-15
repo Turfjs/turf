@@ -34,10 +34,6 @@
     {
       "type": "Feature",
       "properties": {
-        "dist": 0.373652,
-        "location": 3.505821,
-        "index": 1,
-        "multiFeatureIndex": 0,
         "lineStringIndex": 0,
         "segmentIndex": 1,
         "totalDistance": 3.505821,

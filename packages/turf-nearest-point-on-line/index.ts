@@ -17,18 +17,6 @@ import { getCoord, getCoords } from "@turf/invariant";
  * have an undefined arc, this function will instead return that the point lies
  * on the line.
  *
- * ⚠️ We have begun the process of migrating to different return properties for
- * this function. The new properties we recommend using as of v7.4 are:
- * - lineStringIndex - point was found on the nth LineString of an input MultiLineString. Previously `multiFeatureIndex`
- * - segmentIndex - point was found on the nth segment of the above LineString. Previously `index`
- * - totalDistance - distance from the start of the overall MultiLineString. Previously `location`
- * - lineDistance - distance from the start of the relevant LineString
- * - segmentDistance - distance from the start of the relevant segment
- * - pointDistance - distance between found point is from input reference point. Previously `dist`
- *
- * multiFeatureIndex, index, location, and dist continue to work as previously
- * until at least the next major release.
- *
  * @function
  * @param {Geometry|Feature<LineString|MultiLineString>} lines Lines to snap to
  * @param {Geometry|Feature<Point>|number[]} inputPoint Point to snap from
@@ -65,10 +53,6 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     lineDistance: number;
     segmentDistance: number;
     pointDistance: number;
-    multiFeatureIndex: number;
-    index: number;
-    location: number;
-    dist: number;
     [key: string]: any;
   }
 > {
@@ -85,12 +69,6 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     lineDistance: -1,
     segmentDistance: -1,
     pointDistance: Infinity,
-    // deprecated properties START
-    multiFeatureIndex: -1,
-    index: -1,
-    location: -1,
-    dist: Infinity,
-    // deprecated properties END
   });
 
   let totalDistance = 0.0;
@@ -153,21 +131,7 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
             lineDistance: lineDistance + segmentDistance,
             segmentDistance: segmentDistance,
             pointDistance: pointDistance,
-            // deprecated properties START
-            multiFeatureIndex: -1,
-            index: -1,
-            location: -1,
-            dist: Infinity,
-            // deprecated properties END
           });
-          closestPt.properties = {
-            ...closestPt.properties,
-            multiFeatureIndex: closestPt.properties.lineStringIndex,
-            index: closestPt.properties.segmentIndex,
-            location: closestPt.properties.totalDistance,
-            dist: closestPt.properties.pointDistance,
-            // deprecated properties END
-          };
         }
 
         // update totalDistance and lineDistance
