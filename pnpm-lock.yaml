@@ -2147,9 +2147,6 @@ importers:
       '@turf/clone':
         specifier: workspace:*
         version: link:../turf-clone
-      '@turf/distance':
-        specifier: workspace:*
-        version: link:../turf-distance
       '@turf/helpers':
         specifier: workspace:*
         version: link:../turf-helpers
@@ -2159,9 +2156,15 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      rbush:
-        specifier: ^3.0.1
-        version: 3.0.1
+      '@types/geokdbush':
+        specifier: ^1.1.5
+        version: 1.1.5
+      geokdbush:
+        specifier: ^2.0.1
+        version: 2.0.1
+      kdbush:
+        specifier: ^4.0.2
+        version: 4.0.2
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -2175,9 +2178,6 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
-      '@types/rbush':
-        specifier: ^3.0.4
-        version: 3.0.4
       '@types/tape':
         specifier: ^5.8.1
         version: 5.8.1
@@ -4187,6 +4187,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/random':
         specifier: workspace:*
@@ -4194,6 +4197,9 @@ importers:
       '@types/benchmark':
         specifier: ^2.1.5
         version: 2.1.5
+      '@types/tape':
+        specifier: ^5.8.1
+        version: 5.8.1
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
@@ -4206,6 +4212,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/turf-midpoint:
     dependencies:
@@ -7853,11 +7862,17 @@ packages:
   '@types/geojson@7946.0.14':
     resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
 
+  '@types/geokdbush@1.1.5':
+    resolution: {integrity: sha512-jIsYnXY+RQ/YCyBqeEHxYN9mh+7PqKJUJUp84wLfZ7T2kqyVPNaXwZuvf1A2uQUkrvVqEbsG94ff8jH32AlLvA==}
+
   '@types/hast@2.3.10':
     resolution: {integrity: sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
+
+  '@types/kdbush@1.0.7':
+    resolution: {integrity: sha512-QM5iB8m/0mnGOjUKshErIZQ0LseyTieRSYc3yaOpmrRM0xbWiOuJUWlduJx+TPNK7/VFMWphUGwx3nus7eT1Wg==}
 
   '@types/mdast@3.0.15':
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
@@ -9134,6 +9149,9 @@ packages:
   geojson-polygon-self-intersections@1.2.1:
     resolution: {integrity: sha512-/QM1b5u2d172qQVO//9CGRa49jEmclKEsYOQmWP9ooEjj63tBM51m2805xsbxkzlEELQ2REgTf700gUhhlegxA==}
 
+  geokdbush@2.0.1:
+    resolution: {integrity: sha512-0M8so1Qx6+jJ1xpirpCNrgUsWAzIcQ3LrLmh0KJPBYI3gH7vy70nY5zEEjSp9Tn0nBt6Q2Fh922oL08lfib4Zg==}
+
   get-amd-module-type@6.0.1:
     resolution: {integrity: sha512-MtjsmYiCXcYDDrGqtNbeIYdAl85n+5mSv2r3FbzER/YV3ZILw4HNNIw34HuV5pyl0jzs6GFYU1VHVEefhgcNHQ==}
     engines: {node: '>=18'}
@@ -9849,6 +9867,9 @@ packages:
 
   just-diff@6.0.2:
     resolution: {integrity: sha512-S59eriX5u3/QhMNq3v/gm8Kd0w8OS6Tz2FS1NG4blv+z0MuQcBRJyFWjdovM0Rad4/P4aUPFtnkNjMjyMlMSYA==}
+
+  kdbush@4.0.2:
+    resolution: {integrity: sha512-WbCVYJ27Sz8zi9Q7Q0xHC+05iwkm3Znipc2XTlrnJbsHMYktW4hPhXUE8Ys1engBrvffoSCqbil1JQAa7clRpA==}
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -13665,11 +13686,17 @@ snapshots:
 
   '@types/geojson@7946.0.14': {}
 
+  '@types/geokdbush@1.1.5':
+    dependencies:
+      '@types/kdbush': 1.0.7
+
   '@types/hast@2.3.10':
     dependencies:
       '@types/unist': 2.0.10
 
   '@types/json-schema@7.0.15': {}
+
+  '@types/kdbush@1.0.7': {}
 
   '@types/mdast@3.0.15':
     dependencies:
@@ -15176,6 +15203,10 @@ snapshots:
     dependencies:
       rbush: 2.0.2
 
+  geokdbush@2.0.1:
+    dependencies:
+      tinyqueue: 2.0.3
+
   get-amd-module-type@6.0.1:
     dependencies:
       ast-module-types: 6.0.1
@@ -15880,6 +15911,8 @@ snapshots:
   just-diff-apply@5.5.0: {}
 
   just-diff@6.0.2: {}
+
+  kdbush@4.0.2: {}
 
   keyv@4.5.4:
     dependencies:
