@@ -16,7 +16,9 @@ function multiPolygonToPaths(coords: Position[][][]): PathsD {
   const paths: PathsD = [];
 
   for (const polygon of coords) {
-    paths.push(...polygonToPaths(polygon));
+    for (const ring of polygonToPaths(polygon)) {
+      paths.push(ring);
+    }
   }
 
   return paths;
@@ -47,8 +49,7 @@ function polygonToPaths(coords: Position[][]): PathsD {
  */
 function enforceOuterRing(path: PathD): PathD {
   if (areaD(path) < 0) {
-    // Leave original array untouched.
-    return [...path].reverse();
+    return path.reverse();
   }
 
   return path;
