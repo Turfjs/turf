@@ -3,7 +3,7 @@ import { feature } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
 import { ClipperD, ClipType, FillRule, PolyTreeD } from "clipper2-ts";
 import {
-  DEFAULT_PRECISION,
+  TURF_CLIPPER2_SCALE_FACTOR,
   multiPolygonToPaths,
   polygonToPaths,
   polyTreeToGeoJSON,
@@ -49,7 +49,7 @@ function difference(
     throw new Error("Must have at least 2 features");
   }
 
-  const clipper = new ClipperD(DEFAULT_PRECISION);
+  const clipper = new ClipperD(TURF_CLIPPER2_SCALE_FACTOR);
 
   geomEach(features, (geom, idx) => {
     if (geom.type === "MultiPolygon") {
