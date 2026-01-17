@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  clipper2-ts:
+    hash: 997913062feeb1de5fd5261beeb64bd3c36ed793014e98af5d790ee1eed2e846
+    path: patches/clipper2-ts.patch
+
 importers:
 
   .:
@@ -115,7 +120,10 @@ importers:
         version: 7946.0.14
       clipper2-ts:
         specifier: ^2.0.1
-        version: 2.0.1
+        version: 2.0.1(patch_hash=997913062feeb1de5fd5261beeb64bd3c36ed793014e98af5d790ee1eed2e846)
+      jsbi:
+        specifier: ^4.3.2
+        version: 4.3.2
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -129,6 +137,12 @@ importers:
       '@types/babel__core':
         specifier: ^7.20.5
         version: 7.20.5
+      '@types/tape':
+        specifier: ^5.8.1
+        version: 5.8.1
+      tape:
+        specifier: ^5.9.0
+        version: 5.9.0
       tsup:
         specifier: ^8.4.0
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1)
@@ -487,9 +501,6 @@ importers:
       '@babel/preset-env':
         specifier: ^7.26.9
         version: 7.26.9(@babel/core@7.26.10)
-      '@rollup/plugin-alias':
-        specifier: ^6.0.0
-        version: 6.0.0(rollup@4.40.1)
       '@rollup/plugin-babel':
         specifier: ^6.0.4
         version: 6.0.4(@babel/core@7.26.10)(@types/babel__core@7.20.5)(rollup@4.40.1)
@@ -508,9 +519,6 @@ importers:
       '@types/tape':
         specifier: ^5.8.1
         version: 5.8.1
-      babel-plugin-transform-bigint-to-jsbi:
-        specifier: ^1.0.3
-        version: 1.0.3(@babel/core@7.26.10)(@babel/plugin-syntax-bigint@7.8.3(@babel/core@7.26.10))
       camelcase:
         specifier: ^8.0.0
         version: 8.0.0
@@ -520,9 +528,6 @@ importers:
       glob:
         specifier: ^11.1.0
         version: 11.1.0
-      jsbi:
-        specifier: ^4.3.2
-        version: 4.3.2
       rollup:
         specifier: ^4.40.1
         version: 4.40.1
@@ -2541,7 +2546,7 @@ importers:
         version: 7946.0.14
       clipper2-ts:
         specifier: ^2.0.1
-        version: 2.0.1
+        version: 2.0.1(patch_hash=997913062feeb1de5fd5261beeb64bd3c36ed793014e98af5d790ee1eed2e846)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -3312,7 +3317,7 @@ importers:
         version: 7946.0.14
       clipper2-ts:
         specifier: ^2.0.1
-        version: 2.0.1
+        version: 2.0.1(patch_hash=997913062feeb1de5fd5261beeb64bd3c36ed793014e98af5d790ee1eed2e846)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -6195,7 +6200,7 @@ importers:
         version: 7946.0.14
       clipper2-ts:
         specifier: ^2.0.1
-        version: 2.0.1
+        version: 2.0.1(patch_hash=997913062feeb1de5fd5261beeb64bd3c36ed793014e98af5d790ee1eed2e846)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -6508,11 +6513,6 @@ packages:
   '@babel/plugin-proposal-private-property-in-object@7.21.0-placeholder-for-preset-env.2':
     resolution: {integrity: sha512-SOSkfJDddaM7mak6cPEpswyTRnuRltl429hMraQEglW+OkovnCzsiszTmsrlY//qLFjCpQDFRvjdm2wA5pPm9w==}
     engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-
-  '@babel/plugin-syntax-bigint@7.8.3':
-    resolution: {integrity: sha512-wnTnFlG+YxQm3vDxpGE57Pj0srRU4sHE/mDkt1qv2YJJSeUAec2ma4WLUnUPeKjyrfntVwe/N6dCXpU+zL3Npg==}
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
@@ -7602,15 +7602,6 @@ packages:
     resolution: {integrity: sha512-nRqvPYO8xUVdgy/KhJuaCrWlVT/4uZr97Mpbuizsa6CmvtCQf3NuYnVvOOrpYiKUJcZYtEvm84OooJ8+lJytMQ==}
     engines: {node: '>=14.6'}
 
-  '@rollup/plugin-alias@6.0.0':
-    resolution: {integrity: sha512-tPCzJOtS7uuVZd+xPhoy5W4vThe6KWXNmsFCNktaAh5RTqcLiSfT4huPQIXkgJ6YCOjJHvecOAzQxLFhPxKr+g==}
-    engines: {node: '>=20.19.0'}
-    peerDependencies:
-      rollup: '>=4.0.0'
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-
   '@rollup/plugin-babel@6.0.4':
     resolution: {integrity: sha512-YF7Y52kFdFT/xVSuVdjkV5ZdX/3YtmX0QulG+x0taQOtJdHYzVU61aSSkAgVJ7NOv6qPkIYiJSgSWWN/DM5sGw==}
     engines: {node: '>=14.0.0'}
@@ -8175,12 +8166,6 @@ packages:
     resolution: {integrity: sha512-7gD3pRadPrbjhjLyxebmx/WrFYcuSjZ0XbdUujQMZ/fcE9oeewk2U/7PCvez84UeuK3oSjmPZ0Ch0dlupQvGzw==}
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
-
-  babel-plugin-transform-bigint-to-jsbi@1.0.3:
-    resolution: {integrity: sha512-6O9dFuJSJYUziMd4OE4o/11kW2HBCC5qmF/liddDs/+pmm6iEB5BIlNQgiowjGokOR5ne7ynSi9MZt6uGPmusg==}
-    peerDependencies:
-      '@babel/core': ^7.17.2
-      '@babel/plugin-syntax-bigint': ^7.8.3
 
   bail@2.0.2:
     resolution: {integrity: sha512-0xO6mYd7JB2YesxDKplafRpsiOzPt9V02ddPCLbY1xYGPOX24NTyN50qnUxgCPcSoYMhKpAuBTjQoRZCAkUDRw==}
@@ -12179,11 +12164,6 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.10
 
-  '@babel/plugin-syntax-bigint@7.8.3(@babel/core@7.26.10)':
-    dependencies:
-      '@babel/core': 7.26.10
-      '@babel/helper-plugin-utils': 7.26.5
-
   '@babel/plugin-syntax-import-assertions@7.26.0(@babel/core@7.26.10)':
     dependencies:
       '@babel/core': 7.26.10
@@ -13468,10 +13448,6 @@ snapshots:
       write-file-atomic: 5.0.1
       write-yaml-file: 4.2.0
 
-  '@rollup/plugin-alias@6.0.0(rollup@4.40.1)':
-    optionalDependencies:
-      rollup: 4.40.1
-
   '@rollup/plugin-babel@6.0.4(@babel/core@7.26.10)(@types/babel__core@7.20.5)(rollup@4.40.1)':
     dependencies:
       '@babel/core': 7.26.10
@@ -14060,11 +14036,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-transform-bigint-to-jsbi@1.0.3(@babel/core@7.26.10)(@babel/plugin-syntax-bigint@7.8.3(@babel/core@7.26.10)):
-    dependencies:
-      '@babel/core': 7.26.10
-      '@babel/plugin-syntax-bigint': 7.8.3(@babel/core@7.26.10)
-
   bail@2.0.2: {}
 
   balanced-match@1.0.2: {}
@@ -14274,7 +14245,7 @@ snapshots:
 
   cli-width@4.1.0: {}
 
-  clipper2-ts@2.0.1: {}
+  clipper2-ts@2.0.1(patch_hash=997913062feeb1de5fd5261beeb64bd3c36ed793014e98af5d790ee1eed2e846): {}
 
   cliui@7.0.4:
     dependencies:

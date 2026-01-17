@@ -5,7 +5,6 @@ const baseOptions: Options = {
   dts: true,
   entry: {
     clipper2: "clipper2/index.ts",
-    "babel-plugin-bigint-patch": "babel-plugin-bigint-patch/index.ts",
   },
   minify: false,
   skipNodeModulesBundle: true,
