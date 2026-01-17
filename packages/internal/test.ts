@@ -5,7 +5,7 @@ import {
   multiPolygonToPaths,
   polygonToPaths,
   polyTreeToGeoJSON,
-} from "./clipper2/index.js";
+} from "./src/clipper2/index.js";
 
 test("clipper2", (t) => {
   const clipper = new ClipperD(TURF_CLIPPER2_SCALE_FACTOR);

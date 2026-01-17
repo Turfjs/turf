@@ -4,7 +4,7 @@ const baseOptions: Options = {
   clean: true,
   dts: true,
   entry: {
-    clipper2: "clipper2/index.ts",
+    clipper2: "src/clipper2/index.ts",
   },
   minify: false,
   skipNodeModulesBundle: true,
