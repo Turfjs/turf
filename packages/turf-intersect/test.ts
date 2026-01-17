@@ -51,7 +51,12 @@ test("intersect", (t) => {
 
       const fc = featureCollection([polygon1, polygon2]);
       const result = intersect(fc);
-      if (result) {
+      if (
+        result &&
+        (result.geometry.type === "Polygon" ||
+          (result.geometry.type === "MultiPolygon" &&
+            result.geometry.coordinates.length > 0))
+      ) {
         // Green Polygon
         result.properties = { "fill-opacity": 1, fill: "#0F0" };
         fc.features.push(result);
