@@ -52,6 +52,7 @@
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
+    "@turf/circle": "workspace:^",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",

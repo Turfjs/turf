@@ -1213,11 +1213,11 @@
         "nearestNeighborAnalysis": {
           "units": "kilometers",
           "arealUnits": "kilometers²",
-          "observedMeanDistance": 1.6516270145942438,
+          "observedMeanDistance": 1.6516270145942225,
           "expectedMeanDistance": 1.5869473002516816,
-          "nearestNeighborIndex": 1.0407573171032865,
+          "nearestNeighborIndex": 1.0407573171032731,
           "numberOfPoints": 150,
-          "zScore": 0.9549532272331418
+          "zScore": 0.9549532272328272
         }
       },
       "geometry": {
