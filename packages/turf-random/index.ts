@@ -96,6 +96,7 @@ function randomPoint(
  * @param {number} [options.numVertices=10] is how many coordinates each LineString will contain.
  * @param {number} [options.maxDistance=10] is the maximum distance that a
  * vertex can reach out of the center of the Polygon.
+ * @param {Units} [options.distanceUnits='degrees'] Supports all valid distance Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {FeatureCollection<Polygon>} GeoJSON FeatureCollection of polygons
  * @throws {Error} if bbox is invalid
  * @example
@@ -192,8 +193,10 @@ function randomPolygon(
  * @param {number} [options.numVertices=10] is how many coordinates each LineString will contain.
  * @param {number} [options.maxDistance=0.0001] is the maximum distance that a
  * vertex can be from its predecessor
+ * @param {Units} [options.distanceUnits='degrees'] Supports all valid distance Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @param {number} [options.maxAngle=Math.PI / 8] is the maximum angle that a
  * line segment can turn from the previous segment.
+ * @param {Units} [options.angleUnits='radians'] Supports all valid angular Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {FeatureCollection<LineString>} GeoJSON FeatureCollection of linestrings
  * @throws {Error} if bbox is invalid
  * @example
