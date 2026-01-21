@@ -53,8 +53,8 @@ Returns a random [polygon][9].
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
     *   `options.bbox` **[BBox][1]** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
-    *   `options.num_vertices` **[number][5]** is how many coordinates each LineString will contain. (optional, default `10`)
-    *   `options.max_radial_length` **[number][5]** is the maximum number of decimal degrees latitude or longitude that a
+    *   `options.numVertices` **[number][5]** is how many coordinates each LineString will contain. (optional, default `10`)
+    *   `options.maxDistance` **[number][5]** is the maximum distance that a
         vertex can reach out of the center of the Polygon. (optional, default `10`)
 
 ### Examples
@@ -78,10 +78,10 @@ Returns a random [LineString][11].
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
     *   `options.bbox` **[BBox][1]** a bounding box inside of which geometries are placed. (optional, default `[-180,-90,180,90]`)
-    *   `options.num_vertices` **[number][5]** is how many coordinates each LineString will contain. (optional, default `10`)
-    *   `options.max_length` **[number][5]** is the maximum number of decimal degrees that a
+    *   `options.numVertices` **[number][5]** is how many coordinates each LineString will contain. (optional, default `10`)
+    *   `options.maxDistance` **[number][5]** is the maximum distance that a
         vertex can be from its predecessor (optional, default `0.0001`)
-    *   `options.max_rotation` **[number][5]** is the maximum number of radians that a
+    *   `options.maxAngle` **[number][5]** is the maximum angle that a
         line segment can turn from the previous segment. (optional, default `Math.PI/8`)
 
 ### Examples
