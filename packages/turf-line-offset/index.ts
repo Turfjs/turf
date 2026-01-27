@@ -32,7 +32,7 @@ function lineOffset<T extends LineString | MultiLineString>(
   geojson: Feature<T> | T,
   distance: number,
   options: { units?: Units } = {}
-) {
+): Feature<T> {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
@@ -48,7 +48,7 @@ function lineOffset<T extends LineString | MultiLineString>(
 
   switch (type) {
     case "LineString":
-      return lineOffsetFeature(geojson, distance, units);
+      return lineOffsetFeature(geojson, distance, units) as Feature<T>;
     case "MultiLineString":
       var coords: Position[][] = [];
       flattenEach(geojson, function (feature) {
@@ -56,7 +56,7 @@ function lineOffset<T extends LineString | MultiLineString>(
           lineOffsetFeature(feature, distance, units).geometry.coordinates
         );
       });
-      return multiLineString(coords, properties);
+      return multiLineString(coords, properties) as Feature<T>;
     default:
       throw new Error("geometry " + type + " is not supported");
   }
