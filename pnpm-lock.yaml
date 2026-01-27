@@ -1627,7 +1627,7 @@ importers:
         specifier: ^7946.0.10
         version: 7946.0.14
       clipper2-ts:
-        specifier: ^2.0.1
+        specifier: ^2.0.1-5
         version: 2.0.1(patch_hash=1af054130643530b0a82b74bb3326ac0aed9d1d28afb5a51f89262ad4e61a522)
       d3-geo:
         specifier: ^3.1.1

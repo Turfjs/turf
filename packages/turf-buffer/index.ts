@@ -17,19 +17,19 @@ import {
   Polygon,
 } from "geojson";
 import {
-  inflatePathsD,
+  inflatePaths,
   JoinType,
   EndType,
-  PathsD,
-  PathD,
-  pointInPolygonD,
+  pointInPolygon,
   PointInPolygonResult,
-  areaD,
+  area,
+  Paths64,
+  Path64,
 } from "clipper2-ts";
 
 const DEFAULT_MITER_LIMIT = 2.0;
-const DEFAULT_PRECISION = 8;
 const DEFAULT_ARC_TOLERANCE = 0.0;
+const EARTH_RADIUS_CM = earthRadius * 100;
 
 /**
  * Calculates a buffer for input features for a given radius.
@@ -144,22 +144,24 @@ function bufferGeometryWrapper(
   // define our coordinate projection
   const coords = center(geojson).geometry.coordinates;
   const rotation: [number, number] = [-coords[0], -coords[1]];
-  const proj = geoAzimuthalEquidistant().rotate(rotation).scale(earthRadius);
+  const proj = geoAzimuthalEquidistant()
+    .rotate(rotation)
+    .scale(EARTH_RADIUS_CM);
 
-  function project(poly: number[][][], checkWinding = false): PathsD {
+  function project(poly: number[][][], checkWinding = false): Paths64 {
     return poly.map((ring, i) => {
-      const result: PathD = [];
+      const result: Path64 = [];
       // geojson should follow right hand rule (outer ring counter-clockwise, inner rings clockwise)
       // clipper2 expects the same, but in cartesian coordinates where the Y is flipped from latitude.
       for (let i = ring.length - 1; i >= 0; i--) {
         const [x, y] = proj(ring[i] as [number, number])!;
-        result.push({ x, y });
+        result.push({ x: Math.round(x), y: Math.round(y) });
       }
 
       // For backwards compatibility, we must check polygon rings for wind order and correct where necessary.
       // No correction is required in the unproject method, as we should then be outputting the correct windings.
       if (checkWinding) {
-        const needsRewind = areaD(result) > 0 ? i !== 0 : i === 0; // area should be positive for outer rings only
+        const needsRewind = area(result) > 0 ? i !== 0 : i === 0; // area should be positive for outer rings only
         if (needsRewind) {
           result.reverse();
         }
@@ -168,7 +170,7 @@ function bufferGeometryWrapper(
     });
   }
 
-  function unproject(poly: PathsD): [number, number][][] {
+  function unproject(poly: Paths64): [number, number][][] {
     return poly.map((ring) => {
       const result: [number, number][] = [];
       // similar to project(), we need to reverse ring orders
@@ -182,7 +184,10 @@ function bufferGeometryWrapper(
     });
   }
 
-  const distance = radiansToLength(lengthToRadians(radius, units), "meters");
+  const distance = radiansToLength(
+    lengthToRadians(radius, units),
+    "centimeters"
+  );
 
   return bufferGeometry(geojson, { distance, project, unproject });
 }
@@ -191,8 +196,8 @@ function bufferGeometry(
   geojson: Geometry,
   options: {
     distance: number;
-    project: (poly: number[][][], checkWinding?: boolean) => PathsD;
-    unproject: (poly: PathsD) => [number, number][][];
+    project: (poly: number[][][], checkWinding?: boolean) => Paths64;
+    unproject: (poly: Paths64) => [number, number][][];
   }
 ): Polygon | MultiPolygon {
   switch (geojson.type) {
@@ -216,13 +221,12 @@ function bufferGeometry(
     }
 
     case "Point": {
-      const inflated = inflatePathsD(
+      const inflated = inflatePaths(
         options.project([[geojson.coordinates]]),
         options.distance,
         JoinType.Round,
         EndType.Round,
         DEFAULT_MITER_LIMIT,
-        DEFAULT_PRECISION,
         DEFAULT_ARC_TOLERANCE
       );
 
@@ -232,13 +236,12 @@ function bufferGeometry(
       };
     }
     case "LineString": {
-      const inflated = inflatePathsD(
+      const inflated = inflatePaths(
         options.project([geojson.coordinates]),
         options.distance,
         JoinType.Round,
         EndType.Round,
         DEFAULT_MITER_LIMIT,
-        DEFAULT_PRECISION,
         DEFAULT_ARC_TOLERANCE
       );
       return {
@@ -247,13 +250,12 @@ function bufferGeometry(
       };
     }
     case "Polygon": {
-      const inflated = inflatePathsD(
+      const inflated = inflatePaths(
         options.project(geojson.coordinates, true),
         options.distance,
         JoinType.Round,
         EndType.Polygon,
         DEFAULT_MITER_LIMIT,
-        DEFAULT_PRECISION,
         DEFAULT_ARC_TOLERANCE
       );
       return {
@@ -263,13 +265,12 @@ function bufferGeometry(
     }
 
     case "MultiPoint": {
-      const inflated = inflatePathsD(
+      const inflated = inflatePaths(
         options.project(geojson.coordinates.map((p) => [p])),
         options.distance,
         JoinType.Round,
         EndType.Round,
         DEFAULT_MITER_LIMIT,
-        DEFAULT_PRECISION,
         DEFAULT_ARC_TOLERANCE
       );
 
@@ -291,22 +292,21 @@ function bufferGeometry(
     }
 
     case "MultiLineString": {
-      const inflated = inflatePathsD(
+      const inflated = inflatePaths(
         options.project(geojson.coordinates),
         options.distance,
         JoinType.Round,
         EndType.Round,
         DEFAULT_MITER_LIMIT,
-        DEFAULT_PRECISION,
         DEFAULT_ARC_TOLERANCE
       );
 
       // inflated now contains inner and outer rings for any number of polygons.
       // We need to work out what the groupings are before turning it back into geojson.
-      const polygons: PathsD[] = [];
-      const holes: PathD[] = [];
+      const polygons: Paths64[] = [];
+      const holes: Path64[] = [];
       for (const ring of inflated) {
-        if (areaD(ring) > 0) {
+        if (area(ring) > 0) {
           // outer ring, add it to the output
           polygons.push([ring]);
         } else {
@@ -317,7 +317,7 @@ function bufferGeometry(
       HOLES: for (const hole of holes) {
         for (const poly of polygons) {
           if (
-            PointInPolygonResult.IsInside === pointInPolygonD(hole[0], poly[0])
+            PointInPolygonResult.IsInside === pointInPolygon(hole[0], poly[0])
           ) {
             poly.push(hole);
             continue HOLES;
@@ -333,22 +333,21 @@ function bufferGeometry(
     }
 
     case "MultiPolygon": {
-      const inflated = inflatePathsD(
+      const inflated = inflatePaths(
         geojson.coordinates.flatMap((poly) => options.project(poly, true)),
         options.distance,
         JoinType.Round,
         EndType.Polygon,
         DEFAULT_MITER_LIMIT,
-        DEFAULT_PRECISION,
         DEFAULT_ARC_TOLERANCE
       );
 
       // inflated now contains inner and outer rings for any number of polygons.
       // We need to work out what the groupings are before turning it back into geojson.
-      const polygons: PathsD[] = [];
-      const holes: PathD[] = [];
+      const polygons: Paths64[] = [];
+      const holes: Path64[] = [];
       for (const ring of inflated) {
-        if (areaD(ring) > 0) {
+        if (area(ring) > 0) {
           // outer ring, add it to the output
           polygons.push([ring]);
         } else {
@@ -359,7 +358,7 @@ function bufferGeometry(
       HOLES: for (const hole of holes) {
         for (const poly of polygons) {
           if (
-            PointInPolygonResult.IsInside === pointInPolygonD(hole[0], poly[0])
+            PointInPolygonResult.IsInside === pointInPolygon(hole[0], poly[0])
           ) {
             poly.push(hole);
             continue HOLES;
