@@ -108,7 +108,7 @@ function distanceToSegment(
     const nearest = nearestPointOnLine(lineString([a, b]).geometry, p, {
       units: "degrees",
     });
-    return nearest.properties.dist;
+    return nearest.properties.pointDistance;
   }
 
   // Perform scalar calculations instead using rhumb lines.
