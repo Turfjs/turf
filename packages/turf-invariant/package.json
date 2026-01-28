@@ -1,6 +1,6 @@
 {
   "name": "@turf/invariant",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Lightweight utility for input validation and data extraction in Turf.js. Ensures GeoJSON inputs are in the correct format and extracts specific components like coordinates or geometries.",
   "author": "Turf Authors",
   "contributors": [

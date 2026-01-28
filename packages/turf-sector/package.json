@@ -1,6 +1,6 @@
 {
   "name": "@turf/sector",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Creates a circular sector of a circle.",
   "author": "Turf Authors",
   "license": "MIT",

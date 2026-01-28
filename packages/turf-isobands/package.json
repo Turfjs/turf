@@ -1,6 +1,6 @@
 {
   "name": "@turf/isobands",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Takes a grid of values (GeoJSON format) and a set of threshold ranges. It outputs polygons that group areas within those ranges, effectively creating filled contour isobands.",
   "author": "Turf Authors",
   "contributors": [

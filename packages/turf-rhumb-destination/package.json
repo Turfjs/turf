@@ -1,6 +1,6 @@
 {
   "name": "@turf/rhumb-destination",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Calculates the destination point having travelled the given distance along a Rhumb line.",
   "author": "Turf Authors",
   "contributors": [

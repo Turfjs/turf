@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox-polygon",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Converts a bounding box to a GeoJSON polygon.",
   "author": "Turf Authors",
   "license": "MIT",

@@ -1,6 +1,6 @@
 {
   "name": "@turf/bbox",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Generates a bounding box around a GeoJSON feature.",
   "author": "Turf Authors",
   "license": "MIT",
