@@ -140,25 +140,33 @@ function isPointInMultiPolygon(multiPolygon: MultiPolygon, point: Point) {
  * @private
  * @param {MultiPolygon} multiPolygon MultiPolygon geometry
  * @param {MultiPoint} multiPoint MultiPoint geometry
- * @returns {boolean} true if every point is inside the interior of some polygon in the MultiPolygon
+ * @returns {boolean} true if every point is inside some polygon in the MultiPolygon (boundary OK) and at least one is strictly interior
  */
 function isMultiPointInMultiPolygon(
   multiPolygon: MultiPolygon,
   multiPoint: MultiPoint
 ) {
+  let oneInside = false;
   for (const coord of multiPoint.coordinates) {
+    // Check if point is inside any polygon (boundary OK)
     const pointInside = multiPolygon.coordinates.some((polyCoords) =>
-      booleanPointInPolygon(
-        coord,
-        { type: "Polygon", coordinates: polyCoords },
-        { ignoreBoundary: true }
-      )
+      booleanPointInPolygon(coord, { type: "Polygon", coordinates: polyCoords })
     );
     if (!pointInside) {
       return false;
     }
+    // Track if at least one point is strictly in the interior
+    if (!oneInside) {
+      oneInside = multiPolygon.coordinates.some((polyCoords) =>
+        booleanPointInPolygon(
+          coord,
+          { type: "Polygon", coordinates: polyCoords },
+          { ignoreBoundary: true }
+        )
+      );
+    }
   }
-  return true;
+  return oneInside;
 }
 
 /**
@@ -284,12 +292,21 @@ function isMultiPointOnLine(lineString: LineString, multiPoint: MultiPoint) {
 }
 
 function isMultiPointInPoly(polygon: Polygon, multiPoint: MultiPoint) {
+  let oneInside = false;
   for (const coord of multiPoint.coordinates) {
-    if (!booleanPointInPolygon(coord, polygon, { ignoreBoundary: true })) {
+    // All points must be inside polygon (boundary OK)
+    if (!booleanPointInPolygon(coord, polygon)) {
       return false;
     }
+    // Track if at least one point is strictly in the interior
+    if (!oneInside) {
+      oneInside = booleanPointInPolygon(coord, polygon, {
+        ignoreBoundary: true,
+      });
+    }
   }
-  return true;
+  // At least one point must be in the interior (not just on boundary)
+  return oneInside;
 }
 
 function isLineOnLine(lineString1: LineString, lineString2: LineString) {
