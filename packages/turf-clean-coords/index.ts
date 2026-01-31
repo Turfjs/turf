@@ -295,7 +295,7 @@ function cleanRings(
  * @param {Position} pt2 point
  * @returns {boolean} true if they are equals
  */
-function equals(pt1: Position, pt2: Position) {
+function equals(pt1: Position, pt2: Position): boolean {
   return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
 
