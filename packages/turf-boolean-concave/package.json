@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-concave",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Takes a polygon and return true or false as to whether it is concave or not.",
   "author": "Turf Authors",
   "contributors": [

@@ -1,6 +1,6 @@
 {
   "name": "@turf/clusters-kmeans",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Takes a set of points and partition them into clusters using the k-means algorithm.",
   "author": "Turf Authors",
   "contributors": [

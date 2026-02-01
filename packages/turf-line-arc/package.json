@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-arc",
-  "version": "7.3.2",
+  "version": "7.3.3",
   "description": "Creates a circular arc, of a circle of the given radius and center point, between two bearings.",
   "author": "Turf Authors",
   "license": "MIT",
