@@ -54,7 +54,7 @@
     "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
-    "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
+    "test:types": "tsd"
   },
   "devDependencies": {
     "@turf/truncate": "workspace:*",
@@ -63,6 +63,7 @@
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "tape": "^5.9.0",
+    "tsd": "^0.33.0",
     "tsup": "^8.4.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
