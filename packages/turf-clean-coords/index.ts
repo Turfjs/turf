@@ -12,6 +12,14 @@ import { feature, featureCollection } from "@turf/helpers";
 import { booleanPointOnLine } from "@turf/boolean-point-on-line";
 import { lineString } from "@turf/helpers";
 
+/** Generic response type for cleanCoords */
+type CleanCoordsResult<T extends GeoJSON> =
+  T extends Feature<infer G extends Geometry, infer P extends GeoJsonProperties>
+    ? Feature<G, P>
+    : T extends Geometry
+      ? T
+      : GeoJSON;
+
 function cleanCoords<G extends Geometry, P extends GeoJsonProperties>(
   geojson: FeatureCollection<G, P>,
   options?: { mutate?: boolean; epsilon?: number }
@@ -28,10 +36,19 @@ function cleanCoords<G extends Geometry>(
   geojson: G,
   options?: { mutate?: boolean; epsilon?: number }
 ): G;
+function cleanCoords<T extends GeoJSON>(
+  geojson: T,
+  options?: { mutate?: boolean; epsilon?: number }
+): CleanCoordsResult<T>;
 function cleanCoords(
   geojson: GeoJSON,
   options?: { mutate?: boolean; epsilon?: number }
 ): GeoJSON;
+/** @deprecated loosely typed version deprecated. Will be removed in next major version */
+function cleanCoords(
+  geojson: any,
+  options?: { mutate?: boolean; epsilon?: number }
+): any;
 /**
  * Removes redundant coordinates from any GeoJSON Type.
  *
@@ -318,5 +335,5 @@ function multipointDeduplicate(geom: MultiPoint): Position[] {
   }
 }
 
-export { cleanCoords };
+export { cleanCoords, CleanCoordsResult };
 export default cleanCoords;
