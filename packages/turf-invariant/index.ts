@@ -250,7 +250,6 @@ function getGeom<G extends Geometry>(geojson: Feature<G> | G): G {
  * Get GeoJSON object's type, Geometry type is prioritize.
  *
  * @param {GeoJSON} geojson GeoJSON object
- * @param {string} [name="geojson"] name of the variable to display in error message (unused)
  * @returns {string} GeoJSON type
  * @example
  * var point = {
@@ -264,20 +263,19 @@ function getGeom<G extends Geometry>(geojson: Feature<G> | G): G {
  * var geom = turf.getType(point)
  * //="Point"
  */
-function getType(
-  geojson: Feature<any> | FeatureCollection<any> | Geometry,
-  _name?: string
-): string {
-  if (geojson.type === "FeatureCollection") {
-    return "FeatureCollection";
-  }
-  if (geojson.type === "GeometryCollection") {
-    return "GeometryCollection";
-  }
+function getType<
+  T extends Geometry | Feature<Geometry | null> | FeatureCollection,
+>(
+  geojson: T
+): T extends Feature<infer G>
+  ? G extends Geometry
+    ? G["type"]
+    : "Feature"
+  : T["type"] {
   if (geojson.type === "Feature" && geojson.geometry !== null) {
-    return geojson.geometry.type;
+    return geojson.geometry.type as any;
   }
-  return geojson.type;
+  return geojson.type as any;
 }
 
 export {
