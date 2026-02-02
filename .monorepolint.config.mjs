@@ -258,6 +258,15 @@ export default {
 
     requireDependency({
       options: {
+        devDependencies: {
+          tsd: "^0.33.0",
+        },
+      },
+      includePackages: TSD_PACKAGES,
+    }),
+
+    requireDependency({
+      options: {
         dependencies: {
           "@types/geojson": "^7946.0.10",
         },
