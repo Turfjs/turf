@@ -56,7 +56,7 @@ function convex<P extends GeoJsonProperties = GeoJsonProperties>(
 
   // Convex hull should have at least 3 different vertices in order to create a valid polygon
   if (convexHull.length > 3) {
-    return polygon<P>([convexHull], options.properties);
+    return polygon([convexHull], options.properties);
   }
   return null;
 }

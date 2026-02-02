@@ -43,7 +43,7 @@ test("turf-convex -- properties are transferred to result polygon", (t) => {
   t.deepEqual(
     actualPolygon?.properties,
     expectedProperties,
-    "properties do not match"
+    "properties should match"
   );
   t.end();
 });
