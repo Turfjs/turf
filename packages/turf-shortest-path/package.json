@@ -1,6 +1,6 @@
 {
   "name": "@turf/shortest-path",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Returns the shortest path from start to end without colliding with any Feature in obstacles.",
   "author": "Turf Authors",
   "contributors": [

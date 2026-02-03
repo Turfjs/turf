@@ -1,6 +1,6 @@
 {
   "name": "@turf/explode",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Takes a feature or set of features and returns all positions as points.",
   "author": "Turf Authors",
   "license": "MIT",

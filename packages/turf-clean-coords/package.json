@@ -1,6 +1,6 @@
 {
   "name": "@turf/clean-coords",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Removes redundant coordinates from a GeoJSON Geometry.",
   "author": "Turf Authors",
   "contributors": [

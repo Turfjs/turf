@@ -1,6 +1,6 @@
 {
   "name": "@turf/simplify",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Reduces the number of points in a shape while keeping its overall look.",
   "author": "Turf Authors",
   "contributors": [

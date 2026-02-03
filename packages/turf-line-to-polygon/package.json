@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-to-polygon",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Converts line(s) to polygon(s).",
   "author": "Turf Authors",
   "contributors": [

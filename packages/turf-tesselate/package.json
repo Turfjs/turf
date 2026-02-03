@@ -1,6 +1,6 @@
 {
   "name": "@turf/tesselate",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Tesselates a polygon or multipolygon into a collection of triangle polygons using earcut.",
   "author": "Turf Authors",
   "contributors": [

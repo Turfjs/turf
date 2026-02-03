@@ -1,6 +1,6 @@
 {
   "name": "@turf/unkink-polygon",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Takes a kinked polygon and returns a feature collection of polygons that have no kinks.",
   "author": "Turf Authors",
   "license": "MIT",

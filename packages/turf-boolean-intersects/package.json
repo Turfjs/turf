@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-intersects",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Checks if two geometries overlap in any way.",
   "author": "Turf Authors",
   "contributors": [

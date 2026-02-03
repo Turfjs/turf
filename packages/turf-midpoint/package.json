@@ -1,6 +1,6 @@
 {
   "name": "@turf/midpoint",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Takes two points and calculates a point midway between them geodesically.",
   "author": "Turf Authors",
   "license": "MIT",

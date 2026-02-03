@@ -1,6 +1,6 @@
 {
   "name": "@turf/planepoint",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Takes a triangular plane as a polygon and a point within that triangle, and returns the z-value at that point.",
   "author": "Turf Authors",
   "license": "MIT",

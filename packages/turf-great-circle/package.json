@@ -1,6 +1,6 @@
 {
   "name": "@turf/great-circle",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Calculate great circles routes as LineString or MultiLineString.",
   "author": "Turf Authors",
   "contributors": [

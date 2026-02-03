@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-offset",
-  "version": "7.3.1",
+  "version": "7.3.3",
   "description": "Takes a line and returns a line at offset by the specified distance.",
   "author": "Turf Authors",
   "contributors": [
