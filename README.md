@@ -1,6 +1,6 @@
 ![turf](https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png)
 ======
-[![GitHub Actions Status](https://github.com/Turfjs/turf/actions/workflows/turf.yml/badge.svg)](https://github.com/Turfjs/turf/actions/workflows/ci.yml/badge.svg)
+[![GitHub Actions Status](https://github.com/Turfjs/turf/actions/workflows/ci.yml/badge.svg)](https://github.com/Turfjs/turf/actions/workflows/ci.yml/badge.svg)
 [![Version Badge][npm-img]][npm-url]
 [![Gitter chat][gitter-img]][gitter-url]
 [![Backers on Open Collective][oc-backer-badge]](#backers)
