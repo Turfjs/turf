@@ -1,3 +1,30 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-boolean-point-in-polygon"
+    },
+    {
+      "path": "../turf-center"
+    },
+    {
+      "path": "../turf-explode"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-nearest-point"
+    },
+    {
+      "path": "../turf-meta"
+    },
+    {
+      "path": "../turf-truncate"
+    }
+  ]
 }

@@ -1,3 +1,20 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.js"
+  ],
+  "compilerOptions": {
+    "composite": false,
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true
+  },
+  "references": [
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-random"
+    }
+  ]
 }

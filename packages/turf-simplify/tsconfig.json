@@ -1,3 +1,24 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-clean-coords"
+    },
+    {
+      "path": "../turf-clone"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-meta"
+    },
+    {
+      "path": "../turf-truncate"
+    }
+  ]
 }

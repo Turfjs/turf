@@ -1,3 +1,36 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-centroid"
+    },
+    {
+      "path": "../turf-clone"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-invariant"
+    },
+    {
+      "path": "../turf-meta"
+    },
+    {
+      "path": "../turf-rhumb-bearing"
+    },
+    {
+      "path": "../turf-rhumb-destination"
+    },
+    {
+      "path": "../turf-rhumb-distance"
+    },
+    {
+      "path": "../turf-truncate"
+    }
+  ]
 }

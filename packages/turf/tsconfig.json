@@ -1,3 +1,348 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-along"
+    },
+    {
+      "path": "../turf-angle"
+    },
+    {
+      "path": "../turf-area"
+    },
+    {
+      "path": "../turf-bbox"
+    },
+    {
+      "path": "../turf-bbox-clip"
+    },
+    {
+      "path": "../turf-bbox-polygon"
+    },
+    {
+      "path": "../turf-bearing"
+    },
+    {
+      "path": "../turf-bezier-spline"
+    },
+    {
+      "path": "../turf-boolean-clockwise"
+    },
+    {
+      "path": "../turf-boolean-concave"
+    },
+    {
+      "path": "../turf-boolean-contains"
+    },
+    {
+      "path": "../turf-boolean-crosses"
+    },
+    {
+      "path": "../turf-boolean-disjoint"
+    },
+    {
+      "path": "../turf-boolean-equal"
+    },
+    {
+      "path": "../turf-boolean-intersects"
+    },
+    {
+      "path": "../turf-boolean-overlap"
+    },
+    {
+      "path": "../turf-boolean-parallel"
+    },
+    {
+      "path": "../turf-boolean-point-in-polygon"
+    },
+    {
+      "path": "../turf-boolean-point-on-line"
+    },
+    {
+      "path": "../turf-boolean-touches"
+    },
+    {
+      "path": "../turf-boolean-valid"
+    },
+    {
+      "path": "../turf-boolean-within"
+    },
+    {
+      "path": "../turf-buffer"
+    },
+    {
+      "path": "../turf-center"
+    },
+    {
+      "path": "../turf-center-mean"
+    },
+    {
+      "path": "../turf-center-median"
+    },
+    {
+      "path": "../turf-center-of-mass"
+    },
+    {
+      "path": "../turf-centroid"
+    },
+    {
+      "path": "../turf-circle"
+    },
+    {
+      "path": "../turf-clean-coords"
+    },
+    {
+      "path": "../turf-clone"
+    },
+    {
+      "path": "../turf-clusters"
+    },
+    {
+      "path": "../turf-clusters-dbscan"
+    },
+    {
+      "path": "../turf-clusters-kmeans"
+    },
+    {
+      "path": "../turf-collect"
+    },
+    {
+      "path": "../turf-combine"
+    },
+    {
+      "path": "../turf-concave"
+    },
+    {
+      "path": "../turf-convex"
+    },
+    {
+      "path": "../turf-destination"
+    },
+    {
+      "path": "../turf-difference"
+    },
+    {
+      "path": "../turf-dissolve"
+    },
+    {
+      "path": "../turf-distance"
+    },
+    {
+      "path": "../turf-distance-weight"
+    },
+    {
+      "path": "../turf-ellipse"
+    },
+    {
+      "path": "../turf-envelope"
+    },
+    {
+      "path": "../turf-explode"
+    },
+    {
+      "path": "../turf-flatten"
+    },
+    {
+      "path": "../turf-flip"
+    },
+    {
+      "path": "../turf-geojson-rbush"
+    },
+    {
+      "path": "../turf-great-circle"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-hex-grid"
+    },
+    {
+      "path": "../turf-interpolate"
+    },
+    {
+      "path": "../turf-intersect"
+    },
+    {
+      "path": "../turf-invariant"
+    },
+    {
+      "path": "../turf-isobands"
+    },
+    {
+      "path": "../turf-isolines"
+    },
+    {
+      "path": "../turf-kinks"
+    },
+    {
+      "path": "../turf-length"
+    },
+    {
+      "path": "../turf-line-arc"
+    },
+    {
+      "path": "../turf-line-chunk"
+    },
+    {
+      "path": "../turf-line-intersect"
+    },
+    {
+      "path": "../turf-line-offset"
+    },
+    {
+      "path": "../turf-line-overlap"
+    },
+    {
+      "path": "../turf-line-segment"
+    },
+    {
+      "path": "../turf-line-slice"
+    },
+    {
+      "path": "../turf-line-slice-along"
+    },
+    {
+      "path": "../turf-line-split"
+    },
+    {
+      "path": "../turf-line-to-polygon"
+    },
+    {
+      "path": "../turf-mask"
+    },
+    {
+      "path": "../turf-meta"
+    },
+    {
+      "path": "../turf-midpoint"
+    },
+    {
+      "path": "../turf-moran-index"
+    },
+    {
+      "path": "../turf-nearest-neighbor-analysis"
+    },
+    {
+      "path": "../turf-nearest-point"
+    },
+    {
+      "path": "../turf-nearest-point-on-line"
+    },
+    {
+      "path": "../turf-nearest-point-to-line"
+    },
+    {
+      "path": "../turf-planepoint"
+    },
+    {
+      "path": "../turf-point-grid"
+    },
+    {
+      "path": "../turf-point-on-feature"
+    },
+    {
+      "path": "../turf-point-to-line-distance"
+    },
+    {
+      "path": "../turf-point-to-polygon-distance"
+    },
+    {
+      "path": "../turf-points-within-polygon"
+    },
+    {
+      "path": "../turf-polygon-smooth"
+    },
+    {
+      "path": "../turf-polygon-tangents"
+    },
+    {
+      "path": "../turf-polygon-to-line"
+    },
+    {
+      "path": "../turf-polygonize"
+    },
+    {
+      "path": "../turf-projection"
+    },
+    {
+      "path": "../turf-quadrat-analysis"
+    },
+    {
+      "path": "../turf-random"
+    },
+    {
+      "path": "../turf-rectangle-grid"
+    },
+    {
+      "path": "../turf-rewind"
+    },
+    {
+      "path": "../turf-rhumb-bearing"
+    },
+    {
+      "path": "../turf-rhumb-destination"
+    },
+    {
+      "path": "../turf-rhumb-distance"
+    },
+    {
+      "path": "../turf-sample"
+    },
+    {
+      "path": "../turf-sector"
+    },
+    {
+      "path": "../turf-shortest-path"
+    },
+    {
+      "path": "../turf-simplify"
+    },
+    {
+      "path": "../turf-square"
+    },
+    {
+      "path": "../turf-square-grid"
+    },
+    {
+      "path": "../turf-standard-deviational-ellipse"
+    },
+    {
+      "path": "../turf-tag"
+    },
+    {
+      "path": "../turf-tesselate"
+    },
+    {
+      "path": "../turf-tin"
+    },
+    {
+      "path": "../turf-transform-rotate"
+    },
+    {
+      "path": "../turf-transform-scale"
+    },
+    {
+      "path": "../turf-transform-translate"
+    },
+    {
+      "path": "../turf-triangle-grid"
+    },
+    {
+      "path": "../turf-truncate"
+    },
+    {
+      "path": "../turf-union"
+    },
+    {
+      "path": "../turf-unkink-polygon"
+    },
+    {
+      "path": "../turf-voronoi"
+    }
+  ]
 }
