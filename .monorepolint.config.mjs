@@ -17,6 +17,7 @@ const MAIN_PACKAGE = "@turf/turf";
 
 const TAPE_PACKAGES = []; // projects that have tape tests
 const TYPES_PACKAGES = []; // projects that have types tests
+const TSTYCHE_PACKAGES = []; // projects that use tstyche for type tests.
 const BENCH_PACKAGES = []; // projects that have benchmarks
 
 // iterate all the packages and figure out what buckets everything falls into
@@ -38,6 +39,10 @@ glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
 
   if (fs.existsSync(path.join(pk, "types.ts"))) {
     TYPES_PACKAGES.push(name);
+  }
+
+  if (fs.existsSync(path.join(pk, "test/types.tst.ts"))) {
+    TSTYCHE_PACKAGES.push(name);
   }
 });
 
@@ -216,6 +221,15 @@ export default {
       includePackages: TYPES_PACKAGES,
     }),
 
+    packageScript({
+      options: {
+        scripts: {
+          "test:types": "tstyche",
+        },
+      },
+      includePackages: TSTYCHE_PACKAGES,
+    }),
+
     requireDependency({
       options: {
         devDependencies: {
@@ -240,6 +254,15 @@ export default {
         },
       },
       includePackages: TS_PACKAGES,
+    }),
+
+    requireDependency({
+      options: {
+        devDependencies: {
+          tstyche: "^6.2.0",
+        },
+      },
+      includePackages: TSTYCHE_PACKAGES,
     }),
 
     requireDependency({
