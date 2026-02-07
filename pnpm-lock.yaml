@@ -452,6 +452,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      '@types/kdbush':
+        specifier: ^3.0.5
+        version: 3.0.5
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -7799,6 +7802,9 @@ packages:
   '@types/kdbush@1.0.7':
     resolution: {integrity: sha512-QM5iB8m/0mnGOjUKshErIZQ0LseyTieRSYc3yaOpmrRM0xbWiOuJUWlduJx+TPNK7/VFMWphUGwx3nus7eT1Wg==}
 
+  '@types/kdbush@3.0.5':
+    resolution: {integrity: sha512-tdJz7jaWFu4nR+8b2B+CdPZ6811ighYylWsu2hpsivapzW058yP0KdfZuNY89IiRe5jbKvBGXN3LQdN2KPXVdQ==}
+
   '@types/mdast@3.0.15':
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
 
@@ -13584,6 +13590,8 @@ snapshots:
   '@types/json-schema@7.0.15': {}
 
   '@types/kdbush@1.0.7': {}
+
+  '@types/kdbush@3.0.5': {}
 
   '@types/mdast@3.0.15':
     dependencies:
