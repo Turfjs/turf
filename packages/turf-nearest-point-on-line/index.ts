@@ -106,7 +106,6 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
       }
 
       const coords: any = getCoords(line);
-      const maxSegmentIndex = coords.length - 2;
 
       for (let i = 0; i < coords.length - 1; i++) {
         //start - start of current line section
@@ -144,11 +143,9 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
           const segmentDistance = distance(start, intersectPos, options);
           closestPt = point(intersectPos, {
             lineStringIndex: lineStringIndex,
-            // Legacy behaviour where index progresses to next segment if we
-            // went with the end point this iteration. Though make sure we
-            // only progress to the beginning of the next segment if one
-            // actually exists.
-            segmentIndex: wasEnd && i + 1 <= maxSegmentIndex ? i + 1 : i,
+            // Legacy behaviour where index progresses to next segment # if we
+            // went with the end point this iteration.
+            segmentIndex: wasEnd ? i + 1 : i,
             totalDistance: totalDistance + segmentDistance,
             lineDistance: lineDistance + segmentDistance,
             segmentDistance: segmentDistance,
