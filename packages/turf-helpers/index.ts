@@ -851,6 +851,84 @@ export function isObject(input: any): boolean {
 }
 
 /**
+ * Calculates the length of the circum radius of a regular polygon that best approximates a circle
+ * with an equal area.  The degree of the polygon is determined by steps.
+ *
+ * @function
+ * @param {number} circleRadius The radius of the target circle.
+ * @param {number} steps The degree of the regular polygon.
+ * @returns {number} The length of the circum radius in the same units as circleRadius.
+ */
+export function calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle(
+  circleRadius: number,
+  steps: number = 64
+): number {
+  if (circleRadius <= 0) {
+    throw new Error("circleRadius must be positive");
+  }
+  steps = Math.max(3, Math.ceil(steps)); // ensure at least a triangle
+  // METHOD: construct a polygon with the same area as the circle, this minimizes the overall distance from the circle to the perimeter of the polygon, and is a better estimate of the circle than say an inscribed polygon
+  const circleArea = Math.PI * circleRadius * circleRadius;
+  const phi = Math.PI / steps; // angle between apothem and radius
+  // 1. calculate the polygonArea:
+  //   polygonArea = circumRadius * sin(phi) * circumRadius * cos(phi) * steps
+  //   polygonArea = circumRadius * circumRadius * 1/2 * sin(2 * phi) * steps // via double angle identity
+  // 2. set circleArea equal to  polygonArea:
+  //   circleArea = polygonArea
+  //   circleArea = circumRadius * circumRadius * 1/2 * sin(2 * phi) * steps
+  // 3. solve for the circumRadius
+  //   circleArea * 2.0 / (sin(2 * phi) * steps) = circumRadiusInMeters * circumRadiusInMeters
+  const circumRadiusInMeters = Math.sqrt(
+    (circleArea * 2.0) / (Math.sin(2.0 * phi) * steps)
+  );
+
+  return circumRadiusInMeters;
+}
+
+/**
+ * Calculates the number of sides of a regular polygon that best approximates a circle
+ * with an equal area, while not exceeding an allowable rim deviation in meters.
+ *
+ * This function determines the optimal number of sides for a regular polygon that
+ * closely matches the area of a given circle while not exceeding an acceptable error
+ * tolerance in the polygon's circumradius.
+ *
+ * @function
+ * @param {number} circleRadius The radius of the target circle.
+ * @param {number} [maximumRimDeviation] The maximum allowable error for the polygon's circumradius when approximating the circle.
+ * @returns {number} The number of sides of the best-fit regular polygon.
+ */
+export function calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle(
+  circleRadius: number,
+  maximumRimDeviation: number
+): number {
+  if (circleRadius <= 0) {
+    throw new Error("circleRadius must be positive");
+  }
+  if (maximumRimDeviation <= 0) {
+    throw new Error("maximumRimDeviation must be positive");
+  }
+  // step 1: assume highest allowable error
+  const circumRadius = circleRadius + maximumRimDeviation;
+
+  // step 2: equate the area of the circle to the area of the polygon and solve for the number of sides
+  //   Math.PI * circleRadius * circleRadius = circumRadius * circumRadius * 1/2 * sin(2 * Math.PI / numberOfSides) * numberOfSides
+  //   2 * Math.PI * circleRadius * circleRadius / circumRadius * circumRadius = sin(2 * Math.PI / numberOfSides) * numberOfSides
+  //   let x = 2 * pi/numberOfSides
+  //   sin(x)* 2pi/x = 2 * pi * circleRadius * circleRadius / circumRadius * circumRadius
+  //   use taylor series to approximate sin(x) * x ≈ 1 - x*x/6
+  //   1 - x*x/6 ≈ (circleRadius * circleRadius) / (circumRadius * circumRadius)
+  //   re-sub and solve for numberOfSides
+  const approximateNumberOfSides =
+    (2 * Math.PI) /
+    Math.sqrt(
+      6 * (1 - (circleRadius * circleRadius) / (circumRadius * circumRadius))
+    );
+
+  return Math.max(3, Math.ceil(approximateNumberOfSides));
+}
+
+/**
  * Validate BBox
  *
  * @private
