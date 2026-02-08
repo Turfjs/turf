@@ -1,6 +1,6 @@
 {
   "name": "@turf/projection",
-  "version": "7.3.3",
+  "version": "7.3.4",
   "description": "Provides tools for conversion between geographic coordinates and projected coordinates.",
   "author": "Turf Authors",
   "contributors": [

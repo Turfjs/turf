@@ -1,6 +1,6 @@
 {
   "name": "@turf/envelope",
-  "version": "7.3.3",
+  "version": "7.3.4",
   "description": "Takes any number of features and returns a rectangular Polygon that encompasses all vertices.",
   "author": "Turf Authors",
   "license": "MIT",

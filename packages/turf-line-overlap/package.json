@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-overlap",
-  "version": "7.3.3",
+  "version": "7.3.4",
   "description": "Takes any LineString or Polygon and returns the overlapping lines between both features.",
   "author": "Turf Authors",
   "contributors": [

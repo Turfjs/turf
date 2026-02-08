@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygon-to-line",
-  "version": "7.3.3",
+  "version": "7.3.4",
   "description": "Converts a polygon to a line string.",
   "author": "Turf Authors",
   "license": "MIT",
