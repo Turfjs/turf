@@ -1,6 +1,6 @@
 {
   "name": "@turf/circle",
-  "version": "7.3.3",
+  "version": "7.3.4",
   "description": "Takes a point and calculates the circle polygon given a radius.",
   "author": "Turf Authors",
   "license": "MIT",

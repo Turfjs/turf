@@ -1,6 +1,6 @@
 {
   "name": "@turf/polygonize",
-  "version": "7.3.3",
+  "version": "7.3.4",
   "description": "Polygonizes a set of lines that represents edges in a planar graph.",
   "author": "Turf Authors",
   "contributors": [
