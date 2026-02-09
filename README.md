@@ -26,18 +26,44 @@ Or explore the Turf API and examples at [turfjs.org](https://turfjs.org/).
 
 ## Runtime support
 
-Turf is currently published to work with any reasonably modern Javascript runtime.
+Turf is currently published to work with any reasonably modern JavaScript runtime.
 
 Node is a first class citizen, and we recommend using an [Active or Maintenance LTS](https://nodejs.org/en/about/previous-releases) release.
 
 Other runtimes, such as Deno or Bun, are not officially supported. We would be very interested to hear your experiences though.
 
+## Precision
+
+Although we make a reasonable effort for precision in our implementations, we are ultimately limited by the fact that we are handling GeoJSON data.
+For lots of consumer devices, GPS accuracy is within a few meters of the actual point. When using latitude and longitude, 6 digits after the decimal
+works out to an [error around 10cm](https://datatracker.ietf.org/doc/html/rfc7946#section-11.2). Although libraries exist to provide arbitrary
+precision math, we try to use JavaScript's built in types for performance reasons.
+
+Although it is possible to specify GeoJSON positions with more than 6 digits of precision, Turf cannot guarantee correctness at these scales.
+Certain operations may run into issues when the distances involved are very small, at the limit of what our Number type can represent.
+
+We may close bugs that cannot be reproduced after the GeoJSON has been run through @turf/truncate to 6 digits.
+
+We may return results with additional precision to avoid having to perform truncation, but that
+[should not be interpreted](https://datatracker.ietf.org/doc/html/rfc7946#section-3.1.10) as the level of real precision in the result.
+
+If you have stricter precision needs or aren't using latitude/longitude, you may want to use Turf as a reference for your own implementation,
+carefully controlling the projection and library call steps.
+
 ## Browser support
 
-Turf uses Babel to transpile to a JavaScript version usable by most
-modern browsers. Any browser that matches the following criteria as defined by [Browserslist](https://github.com/browserslist/browserslist):
+@turf/turf includes a `browser` target which can be useful to load from a CDN. This uses Babel to transpile to a JavaScript version usable by most modern browsers.
+This will include any browser that matches the `default` criteria as defined by [Browserslist](https://browsersl.ist/#q=defaults).
+We may roll forward and drop support for older browsers within a given major release, please pin an exact version if you need to preserve specific browser compatibility.
 
-[> 0.25%, last 2 versions, fully supports es5, not dead](https://browsersl.ist/#q=%3E+0.25%25%2C+last+2+versions%2C+fully+supports+es5%2C+not+dead)
+## NPM package syntax
+
+All of the individual @turf/* packages are written in TypeScript and are compiled to target ESNext. That means that we may use new syntax features without changing the major version.
+If you have specific browser support requirements please apply Babel, SWC, or another tool in your own bundling step in order to control the amount of supporting code.
+
+Some of the packages are implemented using other NPM libraries, which may also need to be transformed.
+
+Note: Our ability to adopt the latest syntax will still be restricted by the supported Node versions for a given major version of Turf.
 
 ## Contributors
 
