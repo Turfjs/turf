@@ -3,6 +3,7 @@ import {
   Feature,
   Geometry,
   LineString,
+  MultiLineString,
   MultiPoint,
   MultiPolygon,
   Point,
@@ -87,8 +88,18 @@ function booleanContains(
       }
     case "MultiPolygon":
       switch (type2) {
+        case "Point":
+          return isPointInMultiPolygon(geom1, geom2);
+        case "MultiPoint":
+          return isMultiPointInMultiPolygon(geom1, geom2);
+        case "LineString":
+          return isLineInMultiPolygon(geom1, geom2);
+        case "MultiLineString":
+          return isMultiLineStringInMultiPolygon(geom1, geom2);
         case "Polygon":
           return isPolygonInMultiPolygon(geom1, geom2);
+        case "MultiPolygon":
+          return isMultiPolygonInMultiPolygon(geom1, geom2);
         default:
           throw new Error("feature2 " + type2 + " geometry not supported");
       }
@@ -101,6 +112,130 @@ function isPolygonInMultiPolygon(multiPolygon: MultiPolygon, polygon: Polygon) {
   return multiPolygon.coordinates.some((coords) =>
     isPolyInPoly({ type: "Polygon", coordinates: coords }, polygon)
   );
+}
+
+/**
+ * Is Point inside MultiPolygon
+ *
+ * @private
+ * @param {MultiPolygon} multiPolygon MultiPolygon geometry
+ * @param {Point} point Point geometry
+ * @returns {boolean} true if point is inside the interior of any polygon in the MultiPolygon
+ */
+function isPointInMultiPolygon(multiPolygon: MultiPolygon, point: Point) {
+  return multiPolygon.coordinates.some((coords) =>
+    booleanPointInPolygon(
+      point,
+      { type: "Polygon", coordinates: coords },
+      {
+        ignoreBoundary: true,
+      }
+    )
+  );
+}
+
+/**
+ * Is MultiPoint inside MultiPolygon
+ *
+ * @private
+ * @param {MultiPolygon} multiPolygon MultiPolygon geometry
+ * @param {MultiPoint} multiPoint MultiPoint geometry
+ * @returns {boolean} true if every point is inside some polygon in the MultiPolygon (boundary OK) and at least one is strictly interior
+ */
+function isMultiPointInMultiPolygon(
+  multiPolygon: MultiPolygon,
+  multiPoint: MultiPoint
+) {
+  let oneInside = false;
+  for (const coord of multiPoint.coordinates) {
+    // Check if point is inside any polygon (boundary OK)
+    const pointInside = multiPolygon.coordinates.some((polyCoords) =>
+      booleanPointInPolygon(coord, { type: "Polygon", coordinates: polyCoords })
+    );
+    if (!pointInside) {
+      return false;
+    }
+    // Track if at least one point is strictly in the interior
+    if (!oneInside) {
+      oneInside = multiPolygon.coordinates.some((polyCoords) =>
+        booleanPointInPolygon(
+          coord,
+          { type: "Polygon", coordinates: polyCoords },
+          { ignoreBoundary: true }
+        )
+      );
+    }
+  }
+  return oneInside;
+}
+
+/**
+ * Is LineString inside MultiPolygon
+ *
+ * @private
+ * @param {MultiPolygon} multiPolygon MultiPolygon geometry
+ * @param {LineString} lineString LineString geometry
+ * @returns {boolean} true if the LineString is fully contained within a single polygon of the MultiPolygon
+ */
+function isLineInMultiPolygon(
+  multiPolygon: MultiPolygon,
+  lineString: LineString
+) {
+  return multiPolygon.coordinates.some((coords) =>
+    isLineInPoly({ type: "Polygon", coordinates: coords }, lineString)
+  );
+}
+
+/**
+ * Is MultiLineString inside MultiPolygon
+ *
+ * @private
+ * @param {MultiPolygon} multiPolygon MultiPolygon geometry
+ * @param {MultiLineString} multiLineString MultiLineString geometry
+ * @returns {boolean} true if every LineString is fully contained within some single polygon of the MultiPolygon
+ */
+function isMultiLineStringInMultiPolygon(
+  multiPolygon: MultiPolygon,
+  multiLineString: MultiLineString
+) {
+  for (const lineCoords of multiLineString.coordinates) {
+    const lineInside = multiPolygon.coordinates.some((polyCoords) =>
+      isLineInPoly(
+        { type: "Polygon", coordinates: polyCoords },
+        { type: "LineString", coordinates: lineCoords }
+      )
+    );
+    if (!lineInside) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/**
+ * Is MultiPolygon inside MultiPolygon
+ *
+ * @private
+ * @param {MultiPolygon} multiPolygon1 MultiPolygon geometry (container)
+ * @param {MultiPolygon} multiPolygon2 MultiPolygon geometry (contained)
+ * @returns {boolean} true if every polygon of multiPolygon2 is fully contained within some single polygon of multiPolygon1
+ */
+function isMultiPolygonInMultiPolygon(
+  multiPolygon1: MultiPolygon,
+  multiPolygon2: MultiPolygon
+) {
+  for (const poly2Coords of multiPolygon2.coordinates) {
+    const polyInside = multiPolygon1.coordinates.some((poly1Coords) =>
+      isPolyInPoly(
+        { type: "Polygon", coordinates: poly1Coords },
+        { type: "Polygon", coordinates: poly2Coords }
+      )
+    );
+    if (!polyInside) {
+      return false;
+    }
+  }
+  return true;
 }
 
 function isMultiPolyInPoly(polygon: Polygon, multiPolygon: MultiPolygon) {
@@ -157,12 +292,21 @@ function isMultiPointOnLine(lineString: LineString, multiPoint: MultiPoint) {
 }
 
 function isMultiPointInPoly(polygon: Polygon, multiPoint: MultiPoint) {
+  let oneInside = false;
   for (const coord of multiPoint.coordinates) {
-    if (!booleanPointInPolygon(coord, polygon, { ignoreBoundary: true })) {
+    // All points must be inside polygon (boundary OK)
+    if (!booleanPointInPolygon(coord, polygon)) {
       return false;
     }
+    // Track if at least one point is strictly in the interior
+    if (!oneInside) {
+      oneInside = booleanPointInPolygon(coord, polygon, {
+        ignoreBoundary: true,
+      });
+    }
   }
-  return true;
+  // At least one point must be in the interior (not just on boundary)
+  return oneInside;
 }
 
 function isLineOnLine(lineString1: LineString, lineString2: LineString) {

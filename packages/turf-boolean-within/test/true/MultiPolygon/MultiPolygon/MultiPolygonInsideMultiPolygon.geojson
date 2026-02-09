@@ -1,0 +1,59 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [2, 2],
+              [8, 2],
+              [8, 8],
+              [2, 8],
+              [2, 2]
+            ]
+          ],
+          [
+            [
+              [22, 2],
+              [28, 2],
+              [28, 8],
+              [22, 8],
+              [22, 2]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [0, 0],
+              [10, 0],
+              [10, 10],
+              [0, 10],
+              [0, 0]
+            ]
+          ],
+          [
+            [
+              [20, 0],
+              [30, 0],
+              [30, 10],
+              [20, 10],
+              [20, 0]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
