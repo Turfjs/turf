@@ -1,7 +1,13 @@
 import { Polygon, MultiPolygon, Feature, FeatureCollection } from "geojson";
-import * as polyclip from "polyclip-ts";
-import { polygon, multiPolygon } from "@turf/helpers";
+import { feature } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
+import { ClipperD, ClipType, FillRule, PolyTreeD } from "clipper2-ts";
+import {
+  TURF_CLIPPER2_SCALE_FACTOR,
+  multiPolygonToPaths,
+  polygonToPaths,
+  polyTreeToGeoJSON,
+} from "@turf/internal/clipper2";
 
 /**
  * Finds the difference between multiple {@link Polygon|polygons} by clipping the subsequent polygon from the first.
@@ -39,22 +45,35 @@ import { geomEach } from "@turf/meta";
 function difference(
   features: FeatureCollection<Polygon | MultiPolygon>
 ): Feature<Polygon | MultiPolygon> | null {
-  const geoms: Array<polyclip.Geom> = [];
-
-  geomEach(features, (geom) => {
-    geoms.push(geom.coordinates as polyclip.Geom);
-  });
-
-  if (geoms.length < 2) {
-    throw new Error("Must have at least two features");
+  if (features.features.length < 2) {
+    throw new Error("Must have at least 2 features");
   }
 
-  const properties = features.features[0].properties || {};
+  const clipper = new ClipperD(TURF_CLIPPER2_SCALE_FACTOR);
 
-  const differenced = polyclip.difference(geoms[0], ...geoms.slice(1));
-  if (differenced.length === 0) return null;
-  if (differenced.length === 1) return polygon(differenced[0], properties);
-  return multiPolygon(differenced, properties);
+  geomEach(features, (geom, idx) => {
+    if (geom.type === "MultiPolygon") {
+      if (idx === 0) {
+        clipper.addSubjectPaths(multiPolygonToPaths(geom.coordinates));
+      } else {
+        clipper.addClipPaths(multiPolygonToPaths(geom.coordinates));
+      }
+    } else {
+      if (idx === 0) {
+        clipper.addSubjectPaths(polygonToPaths(geom.coordinates));
+      } else {
+        clipper.addClipPaths(polygonToPaths(geom.coordinates));
+      }
+    }
+  });
+
+  const tree = new PolyTreeD();
+  clipper.execute(ClipType.Difference, FillRule.EvenOdd, tree);
+
+  // Return the result as Polygon, MultiPolygon, or null as appropriate
+  const geom = polyTreeToGeoJSON(tree);
+  if (geom === null) return null;
+  return feature(geom);
 }
 
 export { difference };

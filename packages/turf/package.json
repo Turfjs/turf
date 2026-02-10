@@ -80,6 +80,7 @@
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
+    "@turf/internal": "workspace:*",
     "@types/tape": "^5.8.1",
     "camelcase": "^8.0.0",
     "documentation": "^14.0.3",

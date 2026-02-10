@@ -6,7 +6,11 @@
       "{projectRoot}/package.json",
       "{projectRoot}/tsconfig.json"
     ],
-    "sources": ["{projectRoot}/index.{js,ts}", "{projectRoot}/lib/**"]
+    "sources": [
+      "{projectRoot}/index.{js,ts}",
+      "{projectRoot}/lib/**",
+      "{projectRoot}/src/**"
+    ]
   },
   "targetDefaults": {
     "build": {

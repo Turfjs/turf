@@ -153,6 +153,7 @@ export default {
         },
       },
       includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      excludePackages: ["@turf/internal"],
     }),
 
     packageEntry({
@@ -162,6 +163,7 @@ export default {
         },
       },
       includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      excludePackages: ["@turf/internal"],
     }),
 
     packageEntry({
@@ -170,6 +172,7 @@ export default {
           funding: "https://opencollective.com/turf",
         },
       },
+      excludePackages: ["@turf/internal"],
     }),
 
     packageScript({
@@ -179,7 +182,7 @@ export default {
           test: "pnpm run /test:.*/",
         },
       },
-      excludePackages: [MAIN_PACKAGE],
+      excludePackages: [MAIN_PACKAGE, "@turf/internal"],
     }),
 
     packageScript({
@@ -189,6 +192,7 @@ export default {
         },
       },
       includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      excludePackages: ["@turf/internal"],
     }),
 
     packageScript({
@@ -240,6 +244,7 @@ export default {
         },
       },
       includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      excludePackages: ["@turf/internal"],
     }),
 
     requireDependency({
@@ -254,6 +259,7 @@ export default {
         },
       },
       includePackages: TS_PACKAGES,
+      excludePackages: ["@turf/internal"],
     }),
 
     requireDependency({

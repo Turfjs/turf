@@ -3,10 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "fill-opacity": 0.5,
-        "fill": "#F00"
-      },
+      "properties": { "fill-opacity": 0.5, "fill": "#F00" },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -22,10 +19,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "fill-opacity": 0.5,
-        "fill": "#00F"
-      },
+      "properties": { "fill-opacity": 0.5, "fill": "#00F" },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -124,20 +118,17 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "fill-opacity": 1,
-        "fill": "#0F0"
-      },
+      "properties": { "fill-opacity": 1, "fill": "#0F0" },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
-            [-114.757217, 32.619867791666664],
-            [-114.757213, 32.619753375],
-            [-114.757213, 32.619926],
+            [-114.75721300000001, 32.619926],
             [-114.757215, 32.619925],
             [-114.757217, 32.619925],
-            [-114.757217, 32.619867791666664]
+            [-114.757217, 32.61986779],
+            [-114.75721300000001, 32.61975337],
+            [-114.75721300000001, 32.619926]
           ]
         ]
       }

@@ -1,2 +1,4 @@
 packages:
-  - "packages/*"
+  - packages/*
+patchedDependencies:
+  clipper2-ts: patches/clipper2-ts.patch

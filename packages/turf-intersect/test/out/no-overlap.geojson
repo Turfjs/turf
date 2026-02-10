@@ -3,10 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "fill-opacity": 0.5,
-        "fill": "#F00"
-      },
+      "properties": { "fill-opacity": 0.5, "fill": "#F00" },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -22,10 +19,7 @@
     },
     {
       "type": "Feature",
-      "properties": {
-        "fill-opacity": 0.5,
-        "fill": "#00F"
-      },
+      "properties": { "fill-opacity": 0.5, "fill": "#00F" },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
