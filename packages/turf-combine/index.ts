@@ -12,11 +12,12 @@ import { feature, featureCollection } from "@turf/helpers";
 import { featureEach } from "@turf/meta";
 
 /**
- * Combines a {@link FeatureCollection} of {@link Point}, {@link LineString}, or {@link Polygon} features
+ * Combines a {@link FeatureCollection} of {@link Point}, {@link MultiPoint}, {@link LineString},
+ * {@link MultiLineString}, {@link Polygon}, or {@link MultiPolygon} features
  * into {@link MultiPoint}, {@link MultiLineString}, or {@link MultiPolygon} features.
  *
  * @function
- * @param {FeatureCollection<Point|LineString|Polygon>} fc a FeatureCollection of any type
+ * @param {FeatureCollection<Point|MultiPoint|LineString|MultiLineString|Polygon|MultiPolygon>} fc a FeatureCollection of Points, MultiPoints, LineStrings, MultiLineStrings, Polygons, or MultiPolygons
  * @returns {FeatureCollection<MultiPoint|MultiLineString|MultiPolygon>} a FeatureCollection of corresponding type to input
  * @example
  * var fc = turf.featureCollection([
