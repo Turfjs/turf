@@ -42,6 +42,7 @@ function buffer(geojson, radius, options) {
   // use user supplied options or default values
   var units = options.units || "kilometers";
   var steps = options.steps || 8;
+  var endCapStyle = options.endCapStyle || "round";
 
   // validation
   if (!geojson) throw new Error("geojson is required");
@@ -56,13 +57,25 @@ function buffer(geojson, radius, options) {
   switch (geojson.type) {
     case "GeometryCollection":
       geomEach(geojson, function (geometry) {
-        var buffered = bufferFeature(geometry, radius, units, steps);
+        var buffered = bufferFeature(
+          geometry,
+          radius,
+          units,
+          steps,
+          endCapStyle
+        );
         if (buffered) results.push(buffered);
       });
       return featureCollection(results);
     case "FeatureCollection":
       featureEach(geojson, function (feature) {
-        var multiBuffered = bufferFeature(feature, radius, units, steps);
+        var multiBuffered = bufferFeature(
+          feature,
+          radius,
+          units,
+          steps,
+          endCapStyle
+        );
         if (multiBuffered) {
           featureEach(multiBuffered, function (buffered) {
             if (buffered) results.push(buffered);
@@ -71,7 +84,7 @@ function buffer(geojson, radius, options) {
       });
       return featureCollection(results);
   }
-  return bufferFeature(geojson, radius, units, steps);
+  return bufferFeature(geojson, radius, units, steps, endCapStyle);
 }
 
 /**
@@ -82,9 +95,10 @@ function buffer(geojson, radius, options) {
  * @param {number} radius distance to draw the buffer
  * @param {Units} [units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @param {number} [steps=8] number of steps
+ * @param {'round'|'flat'|'butt'|'square'} [endCapStyle='round'] end cap style
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
-function bufferFeature(geojson, radius, units, steps) {
+function bufferFeature(geojson, radius, units, steps, endCapStyle) {
   var properties = geojson.properties || {};
   var geometry = geojson.type === "Feature" ? geojson.geometry : geojson;
 
@@ -92,10 +106,15 @@ function bufferFeature(geojson, radius, units, steps) {
   if (geometry.type === "GeometryCollection") {
     var results = [];
     geomEach(geojson, function (geometry) {
-      var buffered = bufferFeature(geometry, radius, units, steps);
+      var buffered = bufferFeature(geometry, radius, units, steps, endCapStyle);
       if (buffered) results.push(buffered);
     });
     return featureCollection(results);
+  }
+
+  // For point-type geometries, set the endCapStyle to undefined since they should not be affected by end cap styles
+  if (geometry.type === "Point" || geometry.type === "MultiPoint") {
+    endCapStyle = undefined;
   }
 
   // Project GeoJSON to Azimuthal Equidistant projection (convert to Meters)
@@ -109,7 +128,32 @@ function bufferFeature(geojson, radius, units, steps) {
   var reader = new GeoJSONReader();
   var geom = reader.read(projected);
   var distance = radiansToLength(lengthToRadians(radius, units), "meters");
-  var buffered = BufferOp.bufferOp(geom, distance, steps);
+
+  var buffered;
+
+  // Apply endCapStyle if valid - points are always round and polygons ignore endCapStyle
+  if (endCapStyle) {
+    var CAP_STYLE_MAP = {
+      round: BufferOp.CAP_ROUND,
+      flat: BufferOp.CAP_FLAT,
+      butt: BufferOp.CAP_BUTT,
+      square: BufferOp.CAP_SQUARE,
+    };
+
+    var capStyle = CAP_STYLE_MAP[endCapStyle];
+    if (capStyle === undefined) {
+      throw new Error(
+        "Invalid endCapStyle: " +
+          endCapStyle +
+          " (expected one of 'round','flat','butt','square')"
+      );
+    }
+    // Use the 4-arg overload when endCapStyle is specified
+    buffered = BufferOp.bufferOp(geom, distance, steps, capStyle);
+  } else {
+    // Otherwise use the 3-arg overload (like originally implemented)
+    buffered = BufferOp.bufferOp(geom, distance, steps);
+  }
   var writer = new GeoJSONWriter();
   buffered = writer.write(buffered);
 
