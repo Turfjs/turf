@@ -1,6 +1,6 @@
 {
   "name": "@turf/mask",
-  "version": "7.3.1",
+  "version": "7.3.4",
   "description": "Takes polygons or multipolygons and an optional mask, and returns an exterior ring polygon with holes.",
   "author": "Turf Authors",
   "license": "MIT",

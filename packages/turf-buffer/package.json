@@ -1,6 +1,6 @@
 {
   "name": "@turf/buffer",
-  "version": "7.3.1",
+  "version": "7.3.4",
   "description": "Creates a buffer around a GeoJSON feature.",
   "author": "Turf Authors",
   "contributors": [

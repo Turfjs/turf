@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-contains",
-  "version": "7.3.1",
+  "version": "7.3.4",
   "description": "Determines whether the second geometry is completely within the first geometry.",
   "author": "Turf Authors",
   "contributors": [

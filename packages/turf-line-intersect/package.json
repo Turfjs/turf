@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-intersect",
-  "version": "7.3.1",
+  "version": "7.3.4",
   "description": "Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).",
   "author": "Turf Authors",
   "contributors": [

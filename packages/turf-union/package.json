@@ -1,6 +1,6 @@
 {
   "name": "@turf/union",
-  "version": "7.3.1",
+  "version": "7.3.4",
   "description": "Combines two or more polygons into a single polygon.",
   "author": "Turf Authors",
   "license": "MIT",

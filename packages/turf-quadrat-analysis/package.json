@@ -1,6 +1,6 @@
 {
   "name": "@turf/quadrat-analysis",
-  "version": "7.3.1",
+  "version": "7.3.4",
   "description": "Quadrat analysis lays a set of equal-size areas(quadrat) over the study area and counts the number of features in each quadrat and creates a frequency table.",
   "author": "Turf Authors",
   "contributors": [

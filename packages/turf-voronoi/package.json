@@ -1,6 +1,6 @@
 {
   "name": "@turf/voronoi",
-  "version": "7.3.1",
+  "version": "7.3.4",
   "description": "Takes a collection of points and a bounding box, and returns a collection of Voronoi polygons.",
   "author": "Turf Authors",
   "contributors": [

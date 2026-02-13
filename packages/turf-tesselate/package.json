@@ -1,13 +1,14 @@
 {
   "name": "@turf/tesselate",
-  "version": "7.3.1",
+  "version": "7.3.4",
   "description": "Tesselates a polygon or multipolygon into a collection of triangle polygons using earcut.",
   "author": "Turf Authors",
   "contributors": [
     "Abel Vázquez <@AbelVM>",
     "Morgan Herlocker <@morganherlocker>",
     "Tom MacWright <@tmcw>",
-    "Vladimir Agafonkin <@mourner>"
+    "Vladimir Agafonkin <@mourner>",
+    "Pavel Rozvora <@prozvora>"
   ],
   "license": "MIT",
   "bugs": {
