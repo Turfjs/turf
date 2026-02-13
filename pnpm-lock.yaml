@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  clipper2-ts:
-    hash: 1af054130643530b0a82b74bb3326ac0aed9d1d28afb5a51f89262ad4e61a522
-    path: patches/clipper2-ts.patch
-
 importers:
 
   .:
@@ -8304,10 +8299,6 @@ packages:
     resolution: {integrity: sha512-ouuZd4/dm2Sw5Gmqy6bGyNNNe1qt9RpmxveLSO7KcgsTnU7RXfsw+/bukWGo1abgBiMAic068rclZsO4IWmmxQ==}
     engines: {node: '>= 12'}
 
-  clipper2-ts@2.0.1:
-    resolution: {integrity: sha512-raIgNMpYN/PFYk/T9iRzaG99rf5nlXBWL1FyAdR3wjEYSzJy+pPfolLH5bCdRqCFQqn/eYUsF1jb3cQEMxmWGw==}
-    engines: {node: '>=14.0.0'}
-
   cliui@7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
 
@@ -14157,8 +14148,6 @@ snapshots:
       string-width: 7.2.0
 
   cli-width@4.1.0: {}
-
-  clipper2-ts@2.0.1(patch_hash=1af054130643530b0a82b74bb3326ac0aed9d1d28afb5a51f89262ad4e61a522): {}
 
   cliui@7.0.4:
     dependencies:

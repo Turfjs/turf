@@ -25,7 +25,8 @@ import {
   area,
   Paths64,
   Path64,
-} from "clipper2-ts";
+  Point64,
+} from "geoclipper2";
 
 const DEFAULT_MITER_LIMIT = 2.0;
 const DEFAULT_ARC_TOLERANCE = 0.0;
@@ -155,7 +156,8 @@ function bufferGeometryWrapper(
       // clipper2 expects the same, but in cartesian coordinates where the Y is flipped from latitude.
       for (let i = ring.length - 1; i >= 0; i--) {
         const [x, y] = proj(ring[i] as [number, number])!;
-        result.push({ x: Math.round(x), y: Math.round(y) });
+        // TODO trunc instead of round to match pointDToPoint64?
+        result.push([Math.round(x), Math.round(y)] as Point64);
       }
 
       // For backwards compatibility, we must check polygon rings for wind order and correct where necessary.
@@ -175,8 +177,7 @@ function bufferGeometryWrapper(
       const result: [number, number][] = [];
       // similar to project(), we need to reverse ring orders
       for (let i = ring.length - 1; i >= 0; i--) {
-        const { x, y } = ring[i];
-        result.push(proj.invert!([x, y])!);
+        result.push(proj.invert!(ring[i])!);
       }
       // we also need to close the rings coming out of clipper2
       result.push(result[0].slice() as [number, number]);
