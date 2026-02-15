@@ -18,12 +18,11 @@ import {
   inflatePaths,
   JoinType,
   EndType,
-  pointInPolygon,
-  PointInPolygonResult,
   area,
   Paths64,
   Path64,
   createAzimuthalEquidistantProjection,
+  groupPolygonPaths,
 } from "geoclipper2";
 
 const DEFAULT_MITER_LIMIT = 2.0;
@@ -296,29 +295,7 @@ function bufferGeometry(
 
       // inflated now contains inner and outer rings for any number of polygons.
       // We need to work out what the groupings are before turning it back into geojson.
-      const polygons: Paths64[] = [];
-      const holes: Path64[] = [];
-      for (const ring of inflated) {
-        if (area(ring) > 0) {
-          // outer ring, add it to the output
-          polygons.push([ring]);
-        } else {
-          holes.push(ring);
-        }
-      }
-
-      HOLES: for (const hole of holes) {
-        for (const poly of polygons) {
-          if (
-            PointInPolygonResult.IsInside === pointInPolygon(hole[0], poly[0])
-          ) {
-            poly.push(hole);
-            continue HOLES;
-          }
-        }
-        throw new Error("Unable to find parent for hole: " + hole);
-      }
-
+      const polygons = groupPolygonPaths(inflated);
       return {
         type: "MultiPolygon",
         coordinates: polygons.map((poly) => options.unproject(poly)),
@@ -337,29 +314,7 @@ function bufferGeometry(
 
       // inflated now contains inner and outer rings for any number of polygons.
       // We need to work out what the groupings are before turning it back into geojson.
-      const polygons: Paths64[] = [];
-      const holes: Path64[] = [];
-      for (const ring of inflated) {
-        if (area(ring) > 0) {
-          // outer ring, add it to the output
-          polygons.push([ring]);
-        } else {
-          holes.push(ring);
-        }
-      }
-
-      HOLES: for (const hole of holes) {
-        for (const poly of polygons) {
-          if (
-            PointInPolygonResult.IsInside === pointInPolygon(hole[0], poly[0])
-          ) {
-            poly.push(hole);
-            continue HOLES;
-          }
-        }
-        throw new Error("Unable to find parent for hole: " + hole);
-      }
-
+      const polygons = groupPolygonPaths(inflated);
       return {
         type: "MultiPolygon",
         coordinates: polygons.map((poly) => options.unproject(poly)),
