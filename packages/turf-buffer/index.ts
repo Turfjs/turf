@@ -1,11 +1,9 @@
 import { center } from "@turf/center";
-import { geoAzimuthalEquidistant } from "d3-geo";
 import {
   feature,
   featureCollection,
   radiansToLength,
   lengthToRadians,
-  earthRadius,
   Units,
 } from "@turf/helpers";
 import {
@@ -25,12 +23,11 @@ import {
   area,
   Paths64,
   Path64,
-  Point64,
+  createAzimuthalEquidistantProjection,
 } from "geoclipper2";
 
 const DEFAULT_MITER_LIMIT = 2.0;
 const DEFAULT_ARC_TOLERANCE = 0.0;
-const EARTH_RADIUS_CM = earthRadius * 100;
 
 /**
  * Calculates a buffer for input features for a given radius.
@@ -144,10 +141,7 @@ function bufferGeometryWrapper(
 ) {
   // define our coordinate projection
   const coords = center(geojson).geometry.coordinates;
-  const rotation: [number, number] = [-coords[0], -coords[1]];
-  const proj = geoAzimuthalEquidistant()
-    .rotate(rotation)
-    .scale(EARTH_RADIUS_CM);
+  const proj = createAzimuthalEquidistantProjection(coords as [number, number]);
 
   function project(poly: number[][][], checkWinding = false): Paths64 {
     return poly.map((ring, i) => {
@@ -155,9 +149,7 @@ function bufferGeometryWrapper(
       // geojson should follow right hand rule (outer ring counter-clockwise, inner rings clockwise)
       // clipper2 expects the same, but in cartesian coordinates where the Y is flipped from latitude.
       for (let i = ring.length - 1; i >= 0; i--) {
-        const [x, y] = proj(ring[i] as [number, number])!;
-        // TODO trunc instead of round to match pointDToPoint64?
-        result.push([Math.round(x), Math.round(y)] as Point64);
+        result.push(proj.project(ring[i] as [number, number])!);
       }
 
       // For backwards compatibility, we must check polygon rings for wind order and correct where necessary.
@@ -177,7 +169,7 @@ function bufferGeometryWrapper(
       const result: [number, number][] = [];
       // similar to project(), we need to reverse ring orders
       for (let i = ring.length - 1; i >= 0; i--) {
-        result.push(proj.invert!(ring[i])!);
+        result.push(proj.unproject(ring[i])!);
       }
       // we also need to close the rings coming out of clipper2
       result.push(result[0].slice() as [number, number]);

@@ -62,7 +62,6 @@
   "devDependencies": {
     "@turf/truncate": "workspace:*",
     "@types/benchmark": "^2.1.5",
-    "@types/d3-geo": "^3.1.0",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
@@ -79,8 +78,6 @@
     "@turf/meta": "workspace:*",
     "@turf/projection": "workspace:*",
     "@types/geojson": "^7946.0.10",
-    "clipper2-ts": "^2.0.1-5",
-    "d3-geo": "^3.1.1",
     "tslib": "^2.8.1"
   }
 }
