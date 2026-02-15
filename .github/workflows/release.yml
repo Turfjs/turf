@@ -6,15 +6,17 @@ on:
       - "v*.*.*"
 
 permissions:
+  id-token: write
   contents: write
 
 jobs:
   build:
+    environment: release
     strategy:
       fail-fast: true
       matrix:
         node:
-          - 18
+          - 20
         platform:
           - ubuntu-latest
     name: "${{matrix.platform}} / Node.js ${{ matrix.node }}"

@@ -119,8 +119,8 @@ function shortestPath(
   const pointMatrix: string[][] = [];
   const matrix: number[][] = [];
 
-  let closestToStart: GridNode;
-  let closestToEnd: GridNode;
+  let closestToStart: { x: number; y: number };
+  let closestToEnd: { x: number; y: number };
   let minDistStart = Infinity;
   let minDistEnd = Infinity;
   let currentY = north - deltaY;

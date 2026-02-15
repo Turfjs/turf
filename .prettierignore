@@ -9,3 +9,5 @@ packages/turf/test.example.js
 pnpm-lock.yaml
 
 /.nx/cache
+
+/.nx/workspace-data
