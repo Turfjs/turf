@@ -3,6 +3,7 @@ import { clone } from "@turf/clone";
 import { Units } from "@turf/helpers";
 import KDBush from "kdbush";
 import * as geokdbush from "geokdbush";
+import { convertLength } from "@turf/helpers";
 
 /**
  * Point classification within the cluster.
@@ -88,6 +89,12 @@ function clustersDbscan(
   }
   kdIndex.finish();
 
+  const maxDistanceKm = convertLength(
+    maxDistance,
+    options.units || "kilometers",
+    "kilometers"
+  );
+
   // Keeps track of whether a point has been visited or not.
   var visited = points.features.map((_) => false);
 
@@ -108,7 +115,7 @@ function clustersDbscan(
     return (
       geokdbush
         // @ts-expect-error 2345 until https://github.com/mourner/geokdbush/issues/20 is resolved
-        .around<number>(kdIndex, x, y, undefined, maxDistance)
+        .around<number>(kdIndex, x, y, undefined, maxDistanceKm)
         .map((id) => ({
           minX: points.features[id].geometry.coordinates[0],
           minY: points.features[id].geometry.coordinates[1],
