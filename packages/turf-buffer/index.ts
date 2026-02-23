@@ -168,7 +168,12 @@ function bufferGeometryWrapper(
       const result: [number, number][] = [];
       // similar to project(), we need to reverse ring orders
       for (let i = ring.length - 1; i >= 0; i--) {
-        result.push(proj.unproject(ring[i])!);
+        const pt = proj.unproject(ring[i])!;
+
+        // normalize longitude to [-180, 180]
+        pt[0] = ((((pt[0] + 180) % 360) + 360) % 360) - 180;
+
+        result.push(pt);
       }
       // we also need to close the rings coming out of clipper2
       result.push(result[0].slice() as [number, number]);
