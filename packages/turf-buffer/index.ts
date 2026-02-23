@@ -37,6 +37,8 @@ const DEFAULT_ARC_TOLERANCE = 0.0;
  * FeatureCollection - i.e., the output collection may have fewer members than
  * the input, or even be empty.
  *
+ * Buffering near the poles may result in unexpected or incorrect polygons.
+ *
  * @function
  * @param {FeatureCollection|Geometry|Feature<any>} geojson input to be buffered
  * @param {number} radius distance to draw the buffer (negative values are allowed)
