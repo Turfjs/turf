@@ -1,2 +1,4 @@
 packages:
   - packages/*
+patchedDependencies:
+  geoclipper2: patches/geoclipper2.patch

@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  geoclipper2:
+    hash: bf6dcd028b430398c52993a48040063d9289997954bfc76b4489ebe8c615ae21
+    path: patches/geoclipper2.patch
+
 importers:
 
   .:
@@ -1624,6 +1629,9 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
+      geoclipper2:
+        specifier: ^0.1.1
+        version: 0.1.1(patch_hash=bf6dcd028b430398c52993a48040063d9289997954bfc76b4489ebe8c615ae21)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -9067,6 +9075,9 @@ packages:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
 
+  geoclipper2@0.1.1:
+    resolution: {integrity: sha512-PFDvwxSDGoc4lIcgBHTxfivn7BiMmacpcWrzgvQk6M9+4xLPKwVE6LKKtbmSTC/HsTDZrx2m5Jcm84GZ7HtBeA==}
+
   geojson-equality-ts@1.0.2:
     resolution: {integrity: sha512-h3Ryq+0mCSN/7yLs0eDgrZhvc9af23o/QuC4aTiuuzP/MRCtd6mf5rLsLRY44jX0RPUfM8c4GqERQmlUxPGPoQ==}
 
@@ -15083,6 +15094,8 @@ snapshots:
   functions-have-names@1.2.3: {}
 
   gensync@1.0.0-beta.2: {}
+
+  geoclipper2@0.1.1(patch_hash=bf6dcd028b430398c52993a48040063d9289997954bfc76b4489ebe8c615ae21): {}
 
   geojson-equality-ts@1.0.2:
     dependencies:

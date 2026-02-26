@@ -65,7 +65,7 @@ function buffer<T extends GeoJSON.GeoJSON>(
     throw new Error("options must be an object");
   }
 
-  // TODO steps is unused
+  // NOTE steps is unused, clipper2 uses arcTolerance for the same effect
   const { units = "kilometers", steps = 8 } = options ?? {};
 
   // validation
@@ -144,18 +144,29 @@ function bufferGeometryWrapper(
   const coords = center(geojson).geometry.coordinates;
   const proj = createAzimuthalEquidistantProjection(coords as [number, number]);
 
-  function project(poly: number[][][], checkWinding = false): Paths64 {
+  function project(poly: number[][][], isPolygon = false): Paths64 {
     return poly.map((ring, i) => {
       const result: Path64 = [];
       // geojson should follow right hand rule (outer ring counter-clockwise, inner rings clockwise)
       // clipper2 expects the same, but in cartesian coordinates where the Y is flipped from latitude.
       for (let i = ring.length - 1; i >= 0; i--) {
-        result.push(proj.project(ring[i] as [number, number])!);
+        const pt = ring[i];
+
+        // skip the last coordinate if we're projecting a polygon and the ring is correctly closed
+        if (
+          isPolygon &&
+          i === 0 &&
+          pt[0] === ring[ring.length - 1][0] &&
+          pt[1] === ring[ring.length - 1][1]
+        ) {
+          break;
+        }
+        result.push(proj.project(pt as [number, number])!);
       }
 
       // For backwards compatibility, we must check polygon rings for wind order and correct where necessary.
       // No correction is required in the unproject method, as we should then be outputting the correct windings.
-      if (checkWinding) {
+      if (isPolygon) {
         const needsRewind = area(result) > 0 ? i !== 0 : i === 0; // area should be positive for outer rings only
         if (needsRewind) {
           result.reverse();
@@ -173,7 +184,7 @@ function bufferGeometryWrapper(
         const pt = proj.unproject(ring[i])!;
 
         // normalize longitude to [-180, 180]
-        pt[0] = ((((pt[0] + 180) % 360) + 360) % 360) - 180;
+        pt[0] = (((pt[0] % 360) + 540) % 360) - 180;
 
         result.push(pt);
       }
@@ -195,7 +206,7 @@ function bufferGeometry(
   geojson: Geometry,
   options: {
     distance: number;
-    project: (poly: number[][][], checkWinding?: boolean) => Paths64;
+    project: (poly: number[][][], isPolygon?: boolean) => Paths64;
     unproject: (poly: Paths64) => [number, number][][];
   }
 ): Polygon | MultiPolygon {
@@ -276,13 +287,11 @@ function bufferGeometry(
       // inflated can contain many rings, but they should all be outer rings
       const multiCoords = inflated.map((path) => options.unproject([path]));
       if (multiCoords.length === 1) {
-        // TODO just return MultiPolygon always?
         return {
           type: "Polygon",
           coordinates: multiCoords[0],
         };
       } else {
-        // TODO this is wrong I think
         return {
           type: "MultiPolygon",
           coordinates: multiCoords,
@@ -299,9 +308,6 @@ function bufferGeometry(
         DEFAULT_MITER_LIMIT,
         DEFAULT_ARC_TOLERANCE
       );
-
-      // inflated now contains inner and outer rings for any number of polygons.
-      // We need to work out what the groupings are before turning it back into geojson.
       const polygons = groupPolygonPaths(inflated);
       return {
         type: "MultiPolygon",
@@ -318,9 +324,6 @@ function bufferGeometry(
         DEFAULT_MITER_LIMIT,
         DEFAULT_ARC_TOLERANCE
       );
-
-      // inflated now contains inner and outer rings for any number of polygons.
-      // We need to work out what the groupings are before turning it back into geojson.
       const polygons = groupPolygonPaths(inflated);
       return {
         type: "MultiPolygon",
