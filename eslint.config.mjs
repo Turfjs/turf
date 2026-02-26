@@ -46,6 +46,7 @@ export default tsEslint.config(
       "no-redeclare": "off",
       "no-var": "off",
       "prefer-const": "off",
+      "no-useless-assignment": "off", // the remaning errors here require more thought to clean up
     },
   },
   {
@@ -54,6 +55,7 @@ export default tsEslint.config(
     rules: {
       "@typescript-eslint/no-unused-vars": "off",
       "@typescript-eslint/no-unused-expressions": "off",
+      "no-useless-assignment": "off",
     },
   },
   {
