@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   geoclipper2:
-    hash: bf6dcd028b430398c52993a48040063d9289997954bfc76b4489ebe8c615ae21
+    hash: 080ad974f4fff830907b1ab93e66a75d492d49ff76793450147b9e491afbe20a
     path: patches/geoclipper2.patch
 
 importers:
@@ -1631,7 +1631,7 @@ importers:
         version: 7946.0.14
       geoclipper2:
         specifier: ^0.1.1
-        version: 0.1.1(patch_hash=bf6dcd028b430398c52993a48040063d9289997954bfc76b4489ebe8c615ae21)
+        version: 0.1.1(patch_hash=080ad974f4fff830907b1ab93e66a75d492d49ff76793450147b9e491afbe20a)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -15095,7 +15095,7 @@ snapshots:
 
   gensync@1.0.0-beta.2: {}
 
-  geoclipper2@0.1.1(patch_hash=bf6dcd028b430398c52993a48040063d9289997954bfc76b4489ebe8c615ae21): {}
+  geoclipper2@0.1.1(patch_hash=080ad974f4fff830907b1ab93e66a75d492d49ff76793450147b9e491afbe20a): {}
 
   geojson-equality-ts@1.0.2:
     dependencies:
