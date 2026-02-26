@@ -61,14 +61,14 @@
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
-    "boolean-jsts": "*",
-    "boolean-shapely": "*",
-    "glob": "^11.1.0",
+    "boolean-jsts": "^0.0.1",
+    "boolean-shapely": "^0.1.2",
+    "glob": "^13.0.6",
     "load-json-file": "^7.0.1",
     "tape": "^5.9.0",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@turf/bbox": "workspace:*",
@@ -77,7 +77,7 @@
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
     "@turf/line-split": "workspace:*",
-    "@types/geojson": "^7946.0.10",
+    "@types/geojson": "^7946.0.16",
     "tslib": "^2.8.1"
   }
 }
