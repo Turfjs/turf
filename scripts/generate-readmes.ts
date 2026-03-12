@@ -51,6 +51,12 @@ const yaml = require("yamljs");
         if (res === undefined) return console.warn(packagePath);
         console.log("Building Docs: " + name);
 
+        // Workaround to exclude @deprecated tags from docs
+        // See https://github.com/documentationjs/documentation/issues/1596
+        res = res.filter((item) =>
+          item.tags.every((tag) => tag.title !== "deprecated")
+        );
+
         // Format Markdown
         documentation.formats
           .md(res, { paths })
