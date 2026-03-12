@@ -1,7 +1,7 @@
 // @ts-check
 import * as path from "node:path";
-import { glob } from "glob";
-import * as fs from "node:fs";
+import { existsSync } from "node:fs";
+import * as fs from "node:fs/promises";
 import {
   alphabeticalDependencies,
   alphabeticalScripts,
@@ -9,6 +9,7 @@ import {
   packageEntry,
   packageScript,
   requireDependency,
+  REMOVE,
 } from "@monorepolint/rules";
 
 const TS_PACKAGES = []; // projects that use typescript to build
@@ -21,30 +22,34 @@ const TSTYCHE_PACKAGES = []; // projects that use tstyche for type tests.
 const BENCH_PACKAGES = []; // projects that have benchmarks
 
 // iterate all the packages and figure out what buckets everything falls into
-const __dirname = new URL(".", import.meta.url).pathname;
-glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
+const packagesPath = path.join(process.cwd(), "packages");
+for (const pk of await fs.readdir(packagesPath)) {
+  if (pk === "turf") {
+    continue;
+  }
+
   const name = JSON.parse(
-    fs.readFileSync(path.join(pk, "package.json"), "utf8")
+    await fs.readFile(path.join(packagesPath, pk, "package.json"), "utf8")
   ).name;
 
-  if (fs.existsSync(path.join(pk, "index.ts"))) {
+  if (existsSync(path.join(packagesPath, pk, "index.ts"))) {
     TS_PACKAGES.push(name);
   } else {
     JS_PACKAGES.push(name);
   }
 
-  if (fs.existsSync(path.join(pk, "test.js"))) {
+  if (existsSync(path.join(pk, "test.js"))) {
     TAPE_PACKAGES.push(name);
   }
 
-  if (fs.existsSync(path.join(pk, "types.ts"))) {
+  if (existsSync(path.join(packagesPath, pk, "types.ts"))) {
     TYPES_PACKAGES.push(name);
   }
 
-  if (fs.existsSync(path.join(pk, "test/types.tst.ts"))) {
+  if (existsSync(path.join(packagesPath, pk, "test/types.tst.ts"))) {
     TSTYCHE_PACKAGES.push(name);
   }
-});
+}
 
 const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
   (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
@@ -175,7 +180,7 @@ export default {
     packageScript({
       options: {
         scripts: {
-          docs: "tsx ../../scripts/generate-readmes.ts",
+          docs: REMOVE,
           test: "pnpm run /test:.*/",
         },
       },
