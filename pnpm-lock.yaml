@@ -1096,6 +1096,9 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
+      glob:
+        specifier: ^11.1.0
+        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1194,6 +1197,9 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
+      glob:
+        specifier: ^11.1.0
+        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
