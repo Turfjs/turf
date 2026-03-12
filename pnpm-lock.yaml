@@ -62,6 +62,9 @@ importers:
       esm:
         specifier: ^3.2.25
         version: 3.2.25
+      glob:
+        specifier: ^11.1.0
+        version: 11.1.0
       globals:
         specifier: ^16.0.0
         version: 16.0.0
@@ -587,9 +590,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -879,9 +879,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -922,9 +919,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -983,9 +977,6 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1041,9 +1032,6 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1096,9 +1084,6 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1148,9 +1133,6 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1197,9 +1179,6 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1255,9 +1234,6 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1304,9 +1280,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1390,9 +1363,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1448,9 +1418,6 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1521,9 +1488,6 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1582,9 +1546,6 @@ importers:
       boolean-shapely:
         specifier: '*'
         version: 0.1.2
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1686,9 +1647,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1741,9 +1699,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1860,9 +1815,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -1906,9 +1858,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -2420,9 +2369,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -2469,9 +2415,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -2518,9 +2461,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -2793,9 +2733,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -3286,9 +3223,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -4825,9 +4759,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -5137,9 +5068,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       tape:
         specifier: ^5.9.0
         version: 5.9.0
@@ -5725,9 +5653,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -6181,9 +6106,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
@@ -6294,9 +6216,6 @@ importers:
       benchmark:
         specifier: ^2.1.4
         version: 2.1.4
-      glob:
-        specifier: ^11.1.0
-        version: 11.1.0
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1

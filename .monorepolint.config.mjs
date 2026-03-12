@@ -239,6 +239,7 @@ export default {
       options: {
         devDependencies: {
           benchmark: "^2.1.4",
+          glob: REMOVE,
           tape: "^5.9.0",
           tsup: "^8.4.0",
           tsx: "^4.19.4",
