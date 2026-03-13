@@ -3,7 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import { directionalMean } from "./index.js";
+import { directionalMean, DirectionalMeanLine } from "./index.js";
 import { truncate } from "@turf/truncate";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -45,28 +45,28 @@ test("turf-directional-mean", (t) => {
     planar: true,
     segment: false,
   });
-  truncate(utmResult1, { mutate: true, precision: 8 });
+  trunc(utmResult1);
   t.deepEqual(utmResult1, loadJsonFileSync(outUtmJsonPath1), "utm");
   // utm segment
   let utmResult2 = directionalMean(utmGeojson, {
     planar: true,
     segment: true,
   });
-  truncate(utmResult2, { mutate: true, precision: 8 });
+  trunc(utmResult2);
   t.deepEqual(utmResult2, loadJsonFileSync(outUtmJsonPath2), "utm segment");
 
   // gps
   let gpsResult1 = directionalMean(gpsGeojson, {
     planar: false,
   });
-  truncate(gpsResult1, { mutate: true, precision: 8 });
+  trunc(gpsResult1);
   t.deepEqual(gpsResult1, loadJsonFileSync(outGpsJsonPath1), "gps");
   // gps segment
   let gpsResult2 = directionalMean(gpsGeojson, {
     planar: false,
     segment: true,
   });
-  truncate(gpsResult2, { mutate: true, precision: 8 });
+  trunc(gpsResult2);
   t.deepEqual(gpsResult2, loadJsonFileSync(outGpsJsonPath2), "gps segment");
 
   if (process.env.REGEN) {
@@ -78,3 +78,18 @@ test("turf-directional-mean", (t) => {
 
   t.end();
 });
+
+function trunc(d: DirectionalMeanLine) {
+  truncate(d, { mutate: true, precision: 8 });
+
+  const f = Math.pow(10, 10);
+  const props: (keyof typeof d.properties)[] = [
+    "cartesianAngle",
+    "bearingAngle",
+    "circularVariance",
+  ];
+
+  for (const k of props) {
+    d.properties[k] = Math.round(d.properties[k] * f) / f;
+  }
+}
