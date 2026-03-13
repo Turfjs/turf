@@ -7,6 +7,7 @@ import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureEach } from "@turf/meta";
 import {
+  lineString,
   featureCollection,
   point,
   polygon,
@@ -179,6 +180,102 @@ test("turf-buffer - undefined return", (t) => {
     undefined,
     "empty geometry should be undefined if the resulting geometry is invalid"
   );
+  t.end();
+});
+
+test("turf-buffer - endcap styles", (t) => {
+  const pt = point([-97, 49.8]);
+
+  const pointFc = featureCollection([pt]);
+
+  const pointDefault = buffer(pointFc, 10, { units: "miles" });
+  const pointRound = buffer(pointFc, 10, {
+    units: "miles",
+    endCapStyle: "round",
+  });
+  const pointButt = buffer(pointFc, 10, {
+    units: "miles",
+    endCapStyle: "butt",
+  });
+
+  t.deepEqual(
+    pointDefault,
+    pointRound,
+    "point - default and round produce the same result"
+  );
+  t.deepEqual(
+    pointDefault,
+    pointButt,
+    "point - buffers are not affected by end cap style"
+  );
+
+  const poly = polygon([
+    [
+      [11, 0],
+      [22, 4],
+      [31, 0],
+      [31, 11],
+      [21, 15],
+      [11, 11],
+      [11, 0],
+    ],
+  ]);
+
+  const polyDefault = buffer(poly, 10, { units: "miles" });
+  const polyFlat = buffer(poly, 10, {
+    units: "miles",
+    endCapStyle: "flat",
+  });
+  t.deepEqual(
+    polyDefault,
+    polyFlat,
+    "polygon - buffers are not affected by end cap style"
+  );
+
+  const ln = lineString([
+    [-113.5, 53.5],
+    [-114, 51.1],
+    [-97, 49.8],
+  ]);
+
+  const lineDefault = buffer(ln, 10, { units: "miles" });
+  const lineRound = buffer(ln, 10, {
+    units: "miles",
+    endCapStyle: "round",
+  });
+  const lineFlat = buffer(ln, 10, { units: "miles", endCapStyle: "flat" });
+  const lineButt = buffer(ln, 10, { units: "miles", endCapStyle: "butt" });
+  const lineSquare = buffer(ln, 10, {
+    units: "miles",
+    endCapStyle: "square",
+  });
+
+  t.deepEqual(
+    lineDefault,
+    lineRound,
+    "line - default and round produce the same result"
+  );
+  t.deepEqual(
+    lineFlat,
+    lineButt,
+    "line - flat and butt produce the same result"
+  );
+  t.isNotDeepEqual(
+    lineRound,
+    lineFlat,
+    "line - round and flat produce different results"
+  );
+  t.isNotDeepEqual(
+    lineRound,
+    lineSquare,
+    "line - round and square produce different results"
+  );
+  t.isNotDeepEqual(
+    lineSquare,
+    lineFlat,
+    "line - square and flat produce different results"
+  );
+
   t.end();
 });
 
