@@ -52,6 +52,7 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
+    "@turf/truncate": "workspace:*",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
