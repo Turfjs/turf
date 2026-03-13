@@ -5,7 +5,9 @@
   "author": "Turf Authors",
   "contributors": [
     "Rowan Winsemius <@rowanwins>",
-    "Samuel Arbibe <@samuelarbibe>"
+    "Denis Carriere <@DenisCarriere>",
+    "Samuel Arbibe <@samuelarbibe>",
+    "Espen Hovlandsdal <@rexxars>"
   ],
   "license": "MIT",
   "bugs": {
@@ -58,6 +60,7 @@
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
+    "@turf/helpers": "workspace:*",
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
@@ -71,12 +74,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@turf/bbox": "workspace:*",
-    "@turf/boolean-point-in-polygon": "workspace:*",
-    "@turf/boolean-point-on-line": "workspace:*",
-    "@turf/helpers": "workspace:*",
-    "@turf/invariant": "workspace:*",
-    "@turf/line-split": "workspace:*",
+    "@turf/boolean-contains": "workspace:*",
     "@types/geojson": "^7946.0.10",
     "tslib": "^2.8.1"
   }
