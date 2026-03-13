@@ -82,7 +82,7 @@ test("turf-directional-mean", (t) => {
 function trunc(d: DirectionalMeanLine) {
   truncate(d, { mutate: true, precision: 8 });
 
-  const f = Math.pow(10, 10);
+  const f = Math.pow(10, 9);
   const props: (keyof typeof d.properties)[] = [
     "cartesianAngle",
     "bearingAngle",

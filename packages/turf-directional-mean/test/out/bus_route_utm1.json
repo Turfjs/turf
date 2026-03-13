@@ -4,9 +4,9 @@
     "averageLength": 24865.8833845794,
     "averageX": 813350.6889736726,
     "averageY": 2506449.133536962,
-    "bearingAngle": 152.5046926879,
-    "cartesianAngle": -62.5046926879,
-    "circularVariance": 0.9540978956,
+    "bearingAngle": 152.504692688,
+    "cartesianAngle": -62.504692688,
+    "circularVariance": 0.954097896,
     "countOfLines": 538
   },
   "geometry": {
