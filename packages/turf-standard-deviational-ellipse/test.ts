@@ -7,6 +7,7 @@ import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { featureCollection } from "@turf/helpers";
 import { standardDeviationalEllipse } from "./index.js";
+import { truncate } from "@turf/truncate";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -28,6 +29,10 @@ test("turf-standard-deviational-ellipse", (t) => {
       const results = featureCollection([
         colorize(standardDeviationalEllipse(geojson, options)),
       ]);
+
+      // MacOS and CI (Ubuntu) seem to disagree on the result
+      truncate(results, { mutate: true, precision: 8 });
+
       if (esriEllipse)
         results.features.unshift(colorize(esriEllipse, "#A00", "#A00", 0.5));
 

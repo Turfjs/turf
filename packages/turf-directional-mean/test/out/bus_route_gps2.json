@@ -4,16 +4,16 @@
     "averageLength": 48.42971829319359,
     "averageX": 114.06007706366387,
     "averageY": 22.632852642469093,
-    "bearingAngle": 126.93706469097845,
-    "cartesianAngle": -36.937064690978445,
-    "circularVariance": 0.9946441590238705,
+    "bearingAngle": 126.937064691,
+    "cartesianAngle": -36.937064691,
+    "circularVariance": 0.994644159,
     "countOfLines": 276462
   },
   "geometry": {
     "type": "LineString",
     "coordinates": [
-      [114.05988847846298, 22.632983507994844],
-      [114.06026564850558, 22.632721776722867]
+      [114.05988848, 22.63298351],
+      [114.06026565, 22.63272178]
     ]
   }
 }
