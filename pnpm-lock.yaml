@@ -15,8 +15,8 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.0.2)
       '@monorepolint/cli':
-        specifier: 0.6.0-alpha.6
-        version: 0.6.0-alpha.6
+        specifier: 0.6.0-alpha.5
+        version: 0.6.0-alpha.5
       '@monorepolint/config':
         specifier: 0.6.0-alpha.6
         version: 0.6.0-alpha.6
@@ -7242,8 +7242,8 @@ packages:
     resolution: {integrity: sha512-ajBvlKpWucBB17FuQYUShqpqy8GRgYEpJW0vWJbUu1CV9lWyrDCapy0lScU8T8Z6qn49sSwJB3+M+evYIdGg+A==}
     engines: {node: '>= 0.4'}
 
-  '@monorepolint/cli@0.6.0-alpha.6':
-    resolution: {integrity: sha512-T+Dao26chBKK/K4QcpXIps3+QSFEcx5og+zxogg1tNN3yG6CZFNvHLbM2WGXVac6PrrZDJhr7uGec+cLJo0kVg==}
+  '@monorepolint/cli@0.6.0-alpha.5':
+    resolution: {integrity: sha512-HdKoMhSIEQ+rrwE/7+EFJGsu3/T0U9pYOiLlLa1llMtrCiyTFi6fe/2CXvfoch/IdITspRD4Ix2QifYVwUQfIQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -8270,10 +8270,6 @@ packages:
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
-
-  cliui@9.0.1:
-    resolution: {integrity: sha512-k7ndgKhwoQveBL+/1tqGJYNz097I7WOvwbmmU2AR5+magtbjPWQTS1C5vzGkBC8Ym8UWRzfKUzUUqFLypY4Q+w==}
-    engines: {node: '>=20'}
 
   clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
@@ -11611,10 +11607,6 @@ packages:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
 
-  yargs-parser@22.0.0:
-    resolution: {integrity: sha512-rwu/ClNdSMpkSrUb+d6BRsSkLUq1fmfsY6TOpYzTwvwkg1/NRG85KBy3kq++A8LKQwX6lsu+aWad+2khvuXrqw==}
-    engines: {node: ^20.19.0 || ^22.12.0 || >=23}
-
   yargs@16.2.0:
     resolution: {integrity: sha512-D1mvvtDG0L5ft/jGWkLpG1+m0eQxOfaBvTNELraWj22wSVUMWxZUvYgJYcKh6jGGIkJFhH4IZPQhR4TKpc8mBw==}
     engines: {node: '>=10'}
@@ -11622,10 +11614,6 @@ packages:
   yargs@17.7.2:
     resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
     engines: {node: '>=12'}
-
-  yargs@18.0.0:
-    resolution: {integrity: sha512-4UEqdc2RYGHZc7Doyqkrqiln3p9X2DZVxaGbwhn2pi7MrRagKaOcIKe8L3OxYcbhXLgLFUS3zAYuQjKBQgmuNg==}
-    engines: {node: ^20.19.0 || ^22.12.0 || >=23}
 
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -12720,14 +12708,14 @@ snapshots:
     dependencies:
       call-bind: 1.0.8
 
-  '@monorepolint/cli@0.6.0-alpha.6':
+  '@monorepolint/cli@0.6.0-alpha.5':
     dependencies:
       '@monorepolint/config': 0.6.0-alpha.6
       '@monorepolint/core': 0.6.0-alpha.6
       '@monorepolint/utils': 0.6.0-alpha.6
       chalk: 5.6.2
       tslib: 2.8.1
-      yargs: 18.0.0
+      yargs: 17.7.2
 
   '@monorepolint/config@0.6.0-alpha.6':
     dependencies:
@@ -13836,12 +13824,6 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
-
-  cliui@9.0.1:
-    dependencies:
-      string-width: 7.2.0
-      strip-ansi: 7.2.0
-      wrap-ansi: 9.0.2
 
   clone@1.0.4: {}
 
@@ -17886,8 +17868,6 @@ snapshots:
 
   yargs-parser@21.1.1: {}
 
-  yargs-parser@22.0.0: {}
-
   yargs@16.2.0:
     dependencies:
       cliui: 7.0.4
@@ -17907,15 +17887,6 @@ snapshots:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.1.1
-
-  yargs@18.0.0:
-    dependencies:
-      cliui: 9.0.1
-      escalade: 3.2.0
-      get-caller-file: 2.0.5
-      string-width: 7.2.0
-      y18n: 5.0.8
-      yargs-parser: 22.0.0
 
   yocto-queue@0.1.0: {}
 
