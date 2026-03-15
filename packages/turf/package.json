@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "7.3.2",
+  "version": "7.3.4",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "author": "Turf Authors",
   "license": "MIT",
@@ -207,6 +207,7 @@
     "@turf/unkink-polygon": "workspace:*",
     "@turf/voronoi": "workspace:*",
     "@types/geojson": "^7946.0.10",
+    "@types/kdbush": "^3.0.5",
     "tslib": "^2.8.1"
   }
 }
