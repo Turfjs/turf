@@ -27,7 +27,7 @@ export { booleanPointOnLine } from "@turf/boolean-point-on-line";
 export { booleanTouches } from "@turf/boolean-touches";
 export { booleanValid } from "@turf/boolean-valid";
 export { booleanWithin } from "@turf/boolean-within";
-export { buffer } from "@turf/buffer"; // JSTS Module
+export { buffer } from "@turf/buffer";
 export { center } from "@turf/center";
 export { centerMean } from "@turf/center-mean";
 export { centerMedian } from "@turf/center-median";

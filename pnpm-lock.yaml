@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  geoclipper2:
+    hash: 080ad974f4fff830907b1ab93e66a75d492d49ff76793450147b9e491afbe20a
+    path: patches/geoclipper2.patch
+
 importers:
 
   .:
@@ -452,6 +457,9 @@ importers:
       '@types/kdbush':
         specifier: ^3.0.5
         version: 3.0.5
+      jsbi:
+        specifier: ^4.3.2
+        version: 4.3.2
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -1576,9 +1584,6 @@ importers:
       '@turf/helpers':
         specifier: workspace:*
         version: link:../turf-helpers
-      '@turf/jsts':
-        specifier: ^2.7.1
-        version: 2.7.1
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
@@ -1588,9 +1593,12 @@ importers:
       '@types/geojson':
         specifier: ^7946.0.10
         version: 7946.0.14
-      d3-geo:
-        specifier: 1.7.1
-        version: 1.7.1
+      geoclipper2:
+        specifier: ^0.1.1
+        version: 0.1.1(patch_hash=080ad974f4fff830907b1ab93e66a75d492d49ff76793450147b9e491afbe20a)
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -1616,6 +1624,9 @@ importers:
       tsx:
         specifier: ^4.19.4
         version: 4.19.4
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -7681,9 +7692,6 @@ packages:
     resolution: {integrity: sha512-h5x5ga/hh82COe+GoD4+gKUeV4T3iaYOxqLt41GRKApinPI7DMidhCmNVTjKfhCWFJIGXaFJee07XczdT4jdZQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  '@turf/jsts@2.7.1':
-    resolution: {integrity: sha512-+nwOKme/aUprsxnLSfr2LylV6eL6T1Tuln+4Hl92uwZ8FrmjDRCH5Bi1LJNVfWCiYgk8+5K+t2zDphWNTsIFDA==}
-
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
 
@@ -8391,12 +8399,6 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  d3-array@1.2.4:
-    resolution: {integrity: sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==}
-
-  d3-geo@1.7.1:
-    resolution: {integrity: sha512-O4AempWAr+P5qbk2bC2FuN/sDW4z+dN2wDf9QV3bxQt4M5HfOEeXLgJ/UKQW0+o1Dj8BE+L5kiDbdWUMjsmQpw==}
-
   d3-queue@3.0.7:
     resolution: {integrity: sha512-2rs+6pNFKkrJhqe1rg5znw7dKJ7KZr62j9aLZfhondkrnz6U7VRmJj1UGcbD8MRc46c7H8m4SWhab8EalBQrkw==}
 
@@ -8986,6 +8988,9 @@ packages:
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
+
+  geoclipper2@0.1.1:
+    resolution: {integrity: sha512-PFDvwxSDGoc4lIcgBHTxfivn7BiMmacpcWrzgvQk6M9+4xLPKwVE6LKKtbmSTC/HsTDZrx2m5Jcm84GZ7HtBeA==}
 
   geojson-equality-ts@1.0.2:
     resolution: {integrity: sha512-h3Ryq+0mCSN/7yLs0eDgrZhvc9af23o/QuC4aTiuuzP/MRCtd6mf5rLsLRY44jX0RPUfM8c4GqERQmlUxPGPoQ==}
@@ -9636,6 +9641,9 @@ packages:
     resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
 
+  jsbi@4.3.2:
+    resolution: {integrity: sha512-9fqMSQbhJykSeii05nxKl4m6Eqn2P6rOlYiS+C5Dr/HPIU/7yZxu5qzbs40tgaFORiw2Amd0mirjxatXYMkIew==}
+
   jsesc@3.0.2:
     resolution: {integrity: sha512-xKqzzWXDttJuOcawBt4KnKHHIf5oQ/Cxax+0PWFG+DFDgHNAdi+TXECADI+RYiFUMmx8792xsMbbgXj4CwnP4g==}
     engines: {node: '>=6'}
@@ -9693,10 +9701,6 @@ packages:
   jsts@1.6.2:
     resolution: {integrity: sha512-JNfDQk/fo5MeXx4xefvCyHZD22/DHowHr5K07FdgCJ81MEqn02HsDV5FQvYTz60ZIOv/+hhGbsVzXX5cuDWWlA==}
     engines: {node: '>= 6'}
-
-  jsts@2.7.1:
-    resolution: {integrity: sha512-x2wSZHEBK20CY+Wy+BPE7MrFQHW6sIsdaGUMEqmGAio+3gFzQaBYPwLRonUfQf9Ak8pBieqj9tUofX1+WtAEIg==}
-    engines: {node: '>= 12'}
 
   just-diff-apply@5.5.0:
     resolution: {integrity: sha512-OYTthRfSh55WOItVqwpefPtNt2VdKsq5AnAK6apdtR6yCH8pr0CmSr710J0Mf+WdQy7K/OzMy7K2MgAfdQURDw==}
@@ -13463,10 +13467,6 @@ snapshots:
       '@tufjs/canonical-json': 2.0.0
       minimatch: 9.0.5
 
-  '@turf/jsts@2.7.1':
-    dependencies:
-      jsts: 2.7.1
-
   '@tybys/wasm-util@0.9.0':
     dependencies:
       tslib: 2.8.1
@@ -14249,12 +14249,6 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  d3-array@1.2.4: {}
-
-  d3-geo@1.7.1:
-    dependencies:
-      d3-array: 1.2.4
-
   d3-queue@3.0.7: {}
 
   d3-voronoi@1.1.2: {}
@@ -14986,6 +14980,8 @@ snapshots:
 
   gensync@1.0.0-beta.2: {}
 
+  geoclipper2@0.1.1(patch_hash=080ad974f4fff830907b1ab93e66a75d492d49ff76793450147b9e491afbe20a): {}
+
   geojson-equality-ts@1.0.2:
     dependencies:
       '@types/geojson': 7946.0.14
@@ -15650,6 +15646,8 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+  jsbi@4.3.2: {}
+
   jsesc@3.0.2: {}
 
   jsesc@3.1.0: {}
@@ -15685,8 +15683,6 @@ snapshots:
   jsonparse@1.3.1: {}
 
   jsts@1.6.2: {}
-
-  jsts@2.7.1: {}
 
   just-diff-apply@5.5.0: {}
 

@@ -1,0 +1,96 @@
+diff --git a/dist/crossProductSign64.js b/dist/crossProductSign64.js
+index 087910e54b415a356e3ee6fbaa326d9dcbd556d5..d41bdba5cba4d621e95305b6e92df50d855ef177 100644
+--- a/dist/crossProductSign64.js
++++ b/dist/crossProductSign64.js
+@@ -1,26 +1,28 @@
++import jsbi from "jsbi";
++
+ export function crossProductSign64(pt1, pt2, pt3) {
+     // NOTE: we can overflow SAFE_INTEGER_RANGE on any of the calculations for a,b,c,d if we have a large positive
+     // first coordinate, and a correspondingly large negative coordinate that gets subtracted.
+     // a,b,c,d are longs in the original implementation
+-    const a = BigInt(pt2[0]) - BigInt(pt1[0]);
+-    const b = BigInt(pt3[1]) - BigInt(pt2[1]);
+-    const c = BigInt(pt2[1]) - BigInt(pt1[1]);
+-    const d = BigInt(pt3[0]) - BigInt(pt2[0]);
++    const a = jsbi.subtract(jsbi.BigInt(pt2[0]), jsbi.BigInt(pt1[0]));
++    const b = jsbi.subtract(jsbi.BigInt(pt3[1]), jsbi.BigInt(pt2[1]));
++    const c = jsbi.subtract(jsbi.BigInt(pt2[1]), jsbi.BigInt(pt1[1]));
++    const d = jsbi.subtract(jsbi.BigInt(pt3[0]), jsbi.BigInt(pt2[0]));
+     const signAB = triSign(a) * triSign(b);
+     const signCD = triSign(c) * triSign(d);
+     if (signAB === signCD) {
+         // ab,cd are UInt128Struct originally
+-        const ab = abs(a) * abs(b);
+-        const cd = abs(c) * abs(d);
+-        const result = ab > cd ? 1 : ab < cd ? -1 : 0;
+-        return signAB > 0 ? result : -result;
++        const ab = jsbi.multiply(abs(a), abs(b));
++        const cd = jsbi.multiply(abs(c), abs(d));
++        const result = jsbi.greaterThan(ab, cd) ? 1 : jsbi.lessThan(ab, cd) ? -1 : 0;
++        return jsbi.greaterThan(signAB, 0) ? result : -result;
+     }
+-    return signAB > signCD ? 1 : -1;
++    return jsbi.greaterThan(signAB, signCD) ? 1 : -1;
+ }
+ function triSign(x) {
+-    return x < 0 ? -1 : x > 0 ? 1 : 0;
++    return jsbi.lessThan(x, 0) ? -1 : jsbi.greaterThan(x, 0) ? 1 : 0;
+ }
+ function abs(x) {
+-    return x < 0 ? -x : x;
++    return jsbi.lessThan(x, 0) ? jsbi.unaryMinus(x) : x;
+ }
+ //# sourceMappingURL=crossProductSign64.js.map
+\ No newline at end of file
+diff --git a/dist/isCollinear.js b/dist/isCollinear.js
+index d86ab7b49f089586cd3c757554c4daa6237b4371..2c55a58cb9a5fe68aa14fde3009b888d570bf792 100644
+--- a/dist/isCollinear.js
++++ b/dist/isCollinear.js
+@@ -1,17 +1,33 @@
++import jsbi from "jsbi";
++
++const MUL_LIMIT = 94906265; // Math.floor(Math.sqrt(Number.MAX_SAFE_INTEGER));
++
+ export function isCollinear(pt1, sharedPt, pt2) {
+-    // NOTE a,b,c,d can overflow the SAFE_INTEGER range here if the first value is a very large positive number,
+-    // and the second value is a large negative number.
+-    // a,b,c,d were longs in the original implementation
+-    const a = BigInt(sharedPt[0]) - BigInt(pt1[0]);
+-    const b = BigInt(pt2[1]) - BigInt(sharedPt[1]);
+-    const c = BigInt(sharedPt[1]) - BigInt(pt1[1]);
+-    const d = BigInt(pt2[0]) - BigInt(sharedPt[0]);
+-    // When checking for collinearity with very large coordinate values
+-    // then ProductsAreEqual is more accurate than using CrossProduct.
+-    // NOTE this was originally much more complicated utilizing abs, UInt128Struct, and triSign
+-    // We bypass that complexity in our implementation by using bigint for the calculation.
+-    // The method is also inlined to constrain bigint propagation throughout the codebase
+-    const productsAreEqual = a * b === c * d;
++    const a = sharedPt[0] - pt1[0];
++    const b = pt2[1] - sharedPt[1];
++    const c = sharedPt[1] - pt1[1];
++    const d = pt2[0] - sharedPt[0];
++
++    // if a,b,c,d are below the stricter MUL_LIMIT, they also did not overflow when subtracting
++    // the subtraction limit would be ~2^52-1 for each of the x and y values
++    if (Math.abs(a) >= MUL_LIMIT || Math.abs(b) >= MUL_LIMIT || Math.abs(c) >= MUL_LIMIT || Math.abs(d) >= MUL_LIMIT) {
++        return isCollinearSlow(pt1, sharedPt, pt2);
++    }
++
++    const ab = a*b;
++    const cd = c*d;
++
++    const productsAreEqual = ab === cd;
+     return productsAreEqual;
+ }
++
++function isCollinearSlow(pt1, sharedPt, pt2) {
++    const a = jsbi.subtract(jsbi.BigInt(sharedPt[0]), jsbi.BigInt(pt1[0]));
++    const b = jsbi.subtract(jsbi.BigInt(pt2[1]), jsbi.BigInt(sharedPt[1]));
++    const c = jsbi.subtract(jsbi.BigInt(sharedPt[1]), jsbi.BigInt(pt1[1]));
++    const d = jsbi.subtract(jsbi.BigInt(pt2[0]), jsbi.BigInt(sharedPt[0]));
++    const productsAreEqual = jsbi.equal(jsbi.multiply(a, b), jsbi.multiply(c, d));
++    return productsAreEqual;
++}
++
+ //# sourceMappingURL=isCollinear.js.map

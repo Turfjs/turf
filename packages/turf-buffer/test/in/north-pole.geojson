@@ -1,0 +1,19 @@
+{
+  "type": "Feature",
+  "properties": {
+    "radius": 100,
+    "units": "centimeters"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-5, 89.999999],
+        [5, 89.999999],
+        [5, 89],
+        [-5, 89],
+        [-5, 89.999999]
+      ]
+    ]
+  }
+}
