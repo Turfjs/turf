@@ -4,12 +4,13 @@
 
 ## combine
 
-Combines a [FeatureCollection][1] of [Point][2], [LineString][3], or [Polygon][4] features
-into [MultiPoint][5], [MultiLineString][6], or [MultiPolygon][7] features.
+Combines a [FeatureCollection][1] of [Point][2], [MultiPoint][3], [LineString][4],
+[MultiLineString][5], [Polygon][6], or [MultiPolygon][7] features
+into [MultiPoint][3], [MultiLineString][5], or [MultiPolygon][7] features.
 
 ### Parameters
 
-*   `fc` **[FeatureCollection][1]<([Point][2] | [LineString][3] | [Polygon][4])>** a FeatureCollection of any type
+*   `fc` **[FeatureCollection][1]<([Point][2] | [MultiPoint][3] | [LineString][4] | [MultiLineString][5] | [Polygon][6] | [MultiPolygon][7])>** a FeatureCollection of Points, MultiPoints, LineStrings, MultiLineStrings, Polygons, or MultiPolygons
 
 ### Examples
 
@@ -25,19 +26,19 @@ var combined = turf.combine(fc);
 var addToMap = [combined]
 ```
 
-Returns **[FeatureCollection][1]<([MultiPoint][5] | [MultiLineString][6] | [MultiPolygon][7])>** a FeatureCollection of corresponding type to input
+Returns **[FeatureCollection][1]<([MultiPoint][3] | [MultiLineString][5] | [MultiPolygon][7])>** a FeatureCollection of corresponding type to input
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.3
 
 [2]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[3]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+[3]: https://tools.ietf.org/html/rfc7946#section-3.1.3
 
-[4]: https://tools.ietf.org/html/rfc7946#section-3.1.6
+[4]: https://tools.ietf.org/html/rfc7946#section-3.1.4
 
-[5]: https://tools.ietf.org/html/rfc7946#section-3.1.3
+[5]: https://tools.ietf.org/html/rfc7946#section-3.1.5
 
-[6]: https://tools.ietf.org/html/rfc7946#section-3.1.5
+[6]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 
 [7]: https://tools.ietf.org/html/rfc7946#section-3.1.7
 
