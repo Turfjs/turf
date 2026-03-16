@@ -181,6 +181,7 @@ export default {
     packageScript({
       options: {
         scripts: {
+          docs: REMOVE,
           test: "pnpm run /test:.*/",
         },
       },
@@ -250,6 +251,9 @@ export default {
     requireDependency({
       options: {
         devDependencies: {
+          benchmark: "^2.1.4",
+          glob: REMOVE,
+          tape: "^5.9.0",
           tsup: "^8.4.0",
           tsx: "^4.19.4",
         },
