@@ -26,12 +26,18 @@ importers:
       '@monorepolint/rules':
         specifier: 0.6.0-alpha.6
         version: 0.6.0-alpha.6
+      '@types/benchmark':
+        specifier: ^2.1.5
+        version: 2.1.5
       '@types/node':
         specifier: 22.15.3
         version: 22.15.3
       acorn:
         specifier: ^8.14.1
         version: 8.15.0
+      benchmark:
+        specifier: ^2.1.4
+        version: 2.1.4
       camelcase:
         specifier: ^8.0.0
         version: 8.0.0
@@ -1641,33 +1647,12 @@ importers:
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
-      '@types/benchmark':
-        specifier: ^2.1.5
-        version: 2.1.5
-      '@types/tape':
-        specifier: ^5.8.1
-        version: 5.8.1
-      benchmark:
-        specifier: ^2.1.4
-        version: 2.1.4
-      load-json-file:
-        specifier: ^7.0.1
-        version: 7.0.1
-      tape:
-        specifier: ^5.9.0
-        version: 5.9.0
       tsup:
         specifier: ^8.4.0
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
-      tsx:
-        specifier: ^4.19.4
-        version: 4.19.4
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
-      write-json-file:
-        specifier: ^6.0.0
-        version: 6.0.0
 
   packages/turf-center-mean:
     dependencies:

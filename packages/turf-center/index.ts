@@ -1,6 +1,6 @@
-import { BBox, Feature, GeoJsonProperties, Point } from "geojson";
+import type { BBox, Feature, GeoJsonProperties, Point } from "geojson";
 import { bbox } from "@turf/bbox";
-import { point, Id, AllGeoJSON } from "@turf/helpers";
+import { point, type Id, type AllGeoJSON } from "@turf/helpers";
 
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.

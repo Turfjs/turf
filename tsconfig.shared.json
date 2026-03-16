@@ -8,6 +8,7 @@
     "moduleResolution": "node16",
     "importHelpers": true,
     "skipLibCheck": true,
-    "erasableSyntaxOnly": true
+    "erasableSyntaxOnly": true,
+    "rewriteRelativeImportExtensions": true
   }
 }

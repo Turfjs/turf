@@ -1,48 +1,12 @@
-import path from "path";
-import { fileURLToPath } from "url";
-import { glob } from "glob";
-import { loadJsonFileSync } from "load-json-file";
-import Benchmark from "benchmark";
-import { center } from "./index.js";
+import { center } from "./index.ts";
+import { benchFixtures } from "../../support/benchFixtures.mts";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const fixtures = glob
-  .sync(path.join(__dirname, "test", "in", "*.geojson"))
-  .map((input) => {
-    return {
-      name: path.parse(input).name,
-      geojson: loadJsonFileSync(input),
-    };
-  });
-
-/**
- * Single Process Benchmark
- *
- * feature-collection: 0.445ms
- * imbalanced-polygon: 0.051ms
- * linestring: 0.027ms
- * point: 0.011ms
- * polygon: 0.013ms
- */
-for (const { name, geojson } of fixtures) {
-  console.time(name);
-  center(geojson);
-  console.timeEnd(name);
-}
-
-/**
- * Benchmark Results
- *
- * feature-collection x 2,786,700 ops/sec ±1.50% (83 runs sampled)
- * imbalanced-polygon x 1,364,145 ops/sec ±3.33% (76 runs sampled)
- * linestring x 4,104,106 ops/sec ±4.16% (81 runs sampled)
- * point x 4,901,692 ops/sec ±5.23% (81 runs sampled)
- * polygon x 2,862,759 ops/sec ±1.14% (86 runs sampled)
- */
-const suite = new Benchmark.Suite("turf-center");
-for (const { name, geojson } of fixtures) {
-  suite.add(name, () => center(geojson));
-}
-
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+// Benchmark Results
+// feature-collection.geojson x 27,241,658 ops/sec ±0.34% (99 runs sampled)
+// imbalanced-polygon.geojson x 14,679,583 ops/sec ±0.27% (98 runs sampled)
+// linestring.geojson x 34,199,495 ops/sec ±0.52% (95 runs sampled)
+// point.geojson x 52,230,993 ops/sec ±0.70% (96 runs sampled)
+// points-with-weights.geojson x 24,802,237 ops/sec ±0.33% (100 runs sampled)
+// polygon-without-weights.geojson x 18,423,881 ops/sec ±0.28% (100 runs sampled)
+// polygon.geojson x 24,990,920 ops/sec ±0.45% (99 runs sampled)
+await benchFixtures("turf-center", (input) => center(input));
