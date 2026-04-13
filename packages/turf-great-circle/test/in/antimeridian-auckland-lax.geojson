@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Auckland" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.79, -36.85]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Los Angeles" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.41, 33.94]
+      }
+    }
+  ]
+}
