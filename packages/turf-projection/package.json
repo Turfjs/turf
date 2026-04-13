@@ -4,7 +4,8 @@
   "description": "Provides tools for conversion between geographic coordinates and projected coordinates.",
   "author": "Turf Authors",
   "contributors": [
-    "Stefano Borghi <@stebogit>"
+    "Stefano Borghi <@stebogit>",
+    "Benjamin W. Portner"
   ],
   "license": "MIT",
   "bugs": {
