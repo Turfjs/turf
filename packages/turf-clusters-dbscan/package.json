@@ -62,6 +62,7 @@
     "@turf/centroid": "workspace:*",
     "@turf/clusters": "workspace:*",
     "@types/benchmark": "^2.1.5",
+    "@types/rbush": "^3.0.4",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
     "chromatism": "^3.0.0",
@@ -75,12 +76,11 @@
   },
   "dependencies": {
     "@turf/clone": "workspace:*",
+    "@turf/distance": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@turf/meta": "workspace:*",
     "@types/geojson": "^7946.0.10",
-    "@types/geokdbush": "^1.1.5",
-    "geokdbush": "^2.0.1",
-    "kdbush": "^4.0.2",
+    "rbush": "^3.0.1",
     "tslib": "^2.8.1"
   }
 }
