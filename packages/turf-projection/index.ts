@@ -2,9 +2,35 @@ import { Position } from "geojson";
 import { coordEach } from "@turf/meta";
 import { AllGeoJSON, isNumber } from "@turf/helpers";
 import { clone } from "@turf/clone";
+import proj4 from "proj4";
 
 /**
- * Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
+ * Converts from any Proj4 projection to any Proj4 projection.
+ *  * @function
+ * @param {GeoJSON|Position} geojson GeoJSON object with coordinates in inProjection
+ * @param {string} inProjection defines the proj4 projection of the input coordinates, e.g. "WGS84"
+ * @param {string} outProjection defines the proj4 projection of the output coordinates, e.g. "EPSG:900913"
+ * @param {Object} [options] Optional parameters
+ * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
+ * @returns {GeoJSON} Projected GeoJSON
+ * @example
+ * var pt = turf.point([-71,41]);
+ * var converted = turf.toProj4(pt, "EPSG:3857");
+ *
+ * //addToMap
+ * var addToMap = [pt, converted];
+ */
+function proj4ToProj4<G = AllGeoJSON | Position>(
+  geojson: G,
+  inProjection: string,
+  outProjection: string,
+  options: { mutate?: boolean } = {}
+): G {
+  return convert(geojson, inProjection, outProjection, options);
+}
+
+/**
+ * Converts a GeoJSON object into Mercator (EPSG:900913) projection
  *
  * @function
  * @param {GeoJSON|Position} geojson WGS84 GeoJSON object
@@ -22,7 +48,7 @@ function toMercator<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
-  return convert(geojson, "mercator", options);
+  return convert(geojson, "wgs84", "mercator", options);
 }
 
 /**
@@ -44,7 +70,7 @@ function toWgs84<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
-  return convert(geojson, "wgs84", options);
+  return convert(geojson, "mercator", "wgs84", options);
 }
 
 /**
@@ -52,14 +78,16 @@ function toWgs84<G = AllGeoJSON | Position>(
  *
  * @private
  * @param {GeoJSON} geojson GeoJSON Feature or Geometry
- * @param {string} projection defines the projection system to convert the coordinates to
+ * @param {string} inProjection defines the projection of the input coordinates, e.g. "WGS84"
+ * @param {string} outProjection defines the projection of the output coordinates, e.g. "EPSG:3857"
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} Converted GeoJSON
  */
 function convert(
   geojson: any,
-  projection: string,
+  inProjection: string,
+  outProjection: string,
   options: { mutate?: boolean } = {}
 ): any {
   // Optional parameters
@@ -68,23 +96,34 @@ function convert(
 
   // Validation
   if (!geojson) throw new Error("geojson is required");
+  if (inProjection == undefined) throw new Error("inProjection is required");
+  if (outProjection == undefined) throw new Error("outProjection is required");
 
   // Handle Position
-  if (Array.isArray(geojson) && isNumber(geojson[0]))
-    geojson =
-      projection === "mercator"
-        ? convertToMercator(geojson)
-        : convertToWgs84(geojson);
+  const isPosition = Array.isArray(geojson) && isNumber(geojson[0]);
+  if (isPosition) {
+    if (inProjection === "wgs84" && outProjection === "mercator") {
+      geojson = convertToMercator(geojson);
+    } else if (inProjection === "mercator" && outProjection === "wgs84") {
+      geojson = convertToWgs84(geojson);
+    } else {
+      geojson = convertToProj4(geojson, inProjection, outProjection);
+    }
+  }
   // Handle GeoJSON
   else {
     // Handle possible data mutation
     if (mutate !== true) geojson = clone(geojson);
 
     coordEach(geojson, function (coord) {
-      var newCoord =
-        projection === "mercator"
-          ? convertToMercator(coord)
-          : convertToWgs84(coord);
+      let newCoord = [];
+      if (inProjection === "wgs84" && outProjection === "mercator") {
+        newCoord = convertToMercator(coord);
+      } else if (inProjection === "mercator" && outProjection === "wgs84") {
+        newCoord = convertToWgs84(coord);
+      } else {
+        newCoord = convertToProj4(coord, inProjection, outProjection);
+      }
       coord[0] = newCoord[0];
       coord[1] = newCoord[1];
     });
@@ -144,6 +183,19 @@ function convertToWgs84(xy: number[]) {
 }
 
 /**
+ * Convert lon/lat values to any Proj4 projection.
+ *
+ * @private
+ * @param {Array<number>} lonLat WGS84 point
+ * @param {string} inProjection defines the proj4 projection of the input coordinates, e.g. "WGS84"
+ * @param {string} outProjection defines the proj4 projection to convert the coordinates to, e.g. "EPSG:3857"
+ * @returns {Array<number>} Projected [x, y] point
+ */
+function convertToProj4(lonLat: number[], inProjection: string, outProjection: string) {
+  return proj4(inProjection, outProjection, lonLat);
+}
+
+/**
  * Returns the sign of the input, or zero
  *
  * @private
@@ -154,4 +206,4 @@ function sign(x: number) {
   return x < 0 ? -1 : x > 0 ? 1 : 0;
 }
 
-export { toMercator, toWgs84 };
+export { toMercator, toWgs84, proj4ToProj4 };
