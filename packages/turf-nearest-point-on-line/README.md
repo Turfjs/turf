@@ -10,19 +10,6 @@ If any of the segments in the input line string are antipodal and therefore
 have an undefined arc, this function will instead return that the point lies
 on the line.
 
-⚠️ We have begun the process of migrating to different return properties for
-this function. The new properties we recommend using as of v7.4 are:
-
-*   lineStringIndex - point was found on the nth LineString of an input MultiLineString. Previously `multiFeatureIndex`
-*   segmentIndex - point was found on the nth segment of the above LineString. Previously `index`
-*   totalDistance - distance from the start of the overall MultiLineString. Previously `location`
-*   lineDistance - distance from the start of the relevant LineString
-*   segmentDistance - distance from the start of the relevant segment
-*   pointDistance - distance between found point is from input reference point. Previously `dist`
-
-multiFeatureIndex, index, location, and dist continue to work as previously
-until at least the next major release.
-
 ### Parameters
 
 *   `lines` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4])>)** Lines to snap to
