@@ -12,6 +12,8 @@ FeatureCollection, only valid members will be returned in the output
 FeatureCollection - i.e., the output collection may have fewer members than
 the input, or even be empty.
 
+Buffering near the poles may result in unexpected or incorrect polygons.
+
 ### Parameters
 
 *   `geojson` **([FeatureCollection][1] | [Geometry][2] | [Feature][3]\<any>)** input to be buffered
