@@ -241,8 +241,8 @@ export default {
           benchmark: "^2.1.4",
           glob: REMOVE,
           tape: "^5.9.0",
-          tsup: "^8.4.0",
-          tsx: "^4.19.4",
+          tsup: "^8.5.1",
+          tsx: "^4.21.0",
         },
       },
       includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
@@ -256,7 +256,7 @@ export default {
         devDependencies: {
           "@types/benchmark": "^2.1.5",
           "@types/tape": "^5.8.1",
-          typescript: "^5.8.3",
+          typescript: "^5.9.3",
         },
       },
       includePackages: TS_PACKAGES,
@@ -265,7 +265,7 @@ export default {
     requireDependency({
       options: {
         devDependencies: {
-          tstyche: "^6.2.0",
+          tstyche: "^7.0.0",
         },
       },
       includePackages: TSTYCHE_PACKAGES,
@@ -274,7 +274,7 @@ export default {
     requireDependency({
       options: {
         dependencies: {
-          "@types/geojson": "^7946.0.10",
+          "@types/geojson": "^7946.0.16",
         },
       },
       includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],

@@ -68,10 +68,10 @@
     "benchmark": "^2.1.4",
     "load-json-file": "^7.0.1",
     "tape": "^5.9.0",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
-    "write-json-file": "^6.0.0"
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "write-json-file": "^7.0.0"
   },
   "dependencies": {
     "@turf/clone": "workspace:*",
@@ -80,7 +80,7 @@
     "@turf/invariant": "workspace:*",
     "@turf/meta": "workspace:*",
     "@turf/tin": "workspace:*",
-    "@types/geojson": "^7946.0.10",
+    "@types/geojson": "^7946.0.16",
     "topojson-client": "3.x",
     "topojson-server": "3.x",
     "tslib": "^2.8.1"

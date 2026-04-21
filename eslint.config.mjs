@@ -46,6 +46,7 @@ export default tsEslint.config(
       "no-redeclare": "off",
       "no-var": "off",
       "prefer-const": "off",
+      "no-useless-assignment": "off",
     },
   },
   {
