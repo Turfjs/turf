@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "7.3.4",
+  "version": "7.3.5",
   "description": "Dissolves a FeatureCollection of Polygon features.",
   "author": "Turf Authors",
   "license": "MIT",
