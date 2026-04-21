@@ -44,6 +44,7 @@ function validateGeoJson(geoJson: AllGeoJSON) {
 class Graph {
   private nodes: { [id: string]: Node };
   private edges: Edge[];
+  private edgeIds: { [id: string]: true };
 
   /**
    * Creates a graph from a GeoJSON.
@@ -102,15 +103,21 @@ class Graph {
    * @param {Node} to - Node which ends the Edge
    */
   addEdge(from: Node, to: Node) {
-    const edge = new Edge(from, to),
-      symetricEdge = edge.getSymetric();
+    const edgeId = `${from.id}->${to.id}`;
+    if (this.edgeIds[edgeId]) return;
 
+    const edge = new Edge(from, to);
+    const symetricEdge = edge.getSymetric();
+
+    this.edgeIds[`${edge.from.id}->${edge.to.id}`] = true;
+    this.edgeIds[`${symetricEdge.from.id}->${symetricEdge.to.id}`] = true;
     this.edges.push(edge);
     this.edges.push(symetricEdge);
   }
 
   constructor() {
     this.edges = []; //< {Edge[]} dirEdges
+    this.edgeIds = {};
 
     // The key is the `id` of the Node (ie: coordinates.join(','))
     this.nodes = {};
@@ -348,6 +355,7 @@ class Graph {
   removeEdge(edge: Edge) {
     this.edges = this.edges.filter((e) => !e.isEqual(edge));
     edge.deleteEdge();
+    delete this.edgeIds[`${edge.from.id}->${edge.to.id}`];
   }
 }
 
