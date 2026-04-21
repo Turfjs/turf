@@ -1,0 +1,59 @@
+{
+  "name": "@turf/internal",
+  "version": "7.3.1",
+  "description": "Common functionality used across multiple Turf packages.",
+  "author": "Turf Authors",
+  "contributors": [
+    "James Beard <@smallsaucepan>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "funding": "https://opencollective.com/turf",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    "./clipper2": {
+      "import": {
+        "types": "./dist/esm/clipper2.d.ts",
+        "default": "./dist/esm/clipper2.js"
+      },
+      "require": {
+        "types": "./dist/cjs/clipper2.d.cts",
+        "default": "./dist/cjs/clipper2.cjs"
+      }
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "pnpm run /test:.*/",
+    "test:tape": "tsx test.ts"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/types": "^7.26.10",
+    "@types/babel__core": "^7.20.5",
+    "@types/tape": "^5.8.1",
+    "tape": "^5.9.0",
+    "tsup": "^8.4.0"
+  },
+  "dependencies": {
+    "@types/geojson": "^7946.0.10",
+    "clipper2-ts": "^2.0.1",
+    "jsbi": "^4.3.2",
+    "tslib": "^2.8.1"
+  }
+}

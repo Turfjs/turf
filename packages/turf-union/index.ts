@@ -1,5 +1,4 @@
-import * as polyclip from "polyclip-ts";
-import { multiPolygon, polygon } from "@turf/helpers";
+import { feature } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
 import {
   FeatureCollection,
@@ -8,6 +7,13 @@ import {
   MultiPolygon,
   GeoJsonProperties,
 } from "geojson";
+import { FillRule, ClipType, PolyTreeD, ClipperD } from "clipper2-ts";
+import {
+  TURF_CLIPPER2_SCALE_FACTOR,
+  multiPolygonToPaths,
+  polygonToPaths,
+  polyTreeToGeoJSON,
+} from "@turf/internal/clipper2";
 
 /**
  * Takes a collection of input polygons and returns a combined polygon. If the
@@ -61,19 +67,35 @@ function union<P extends GeoJsonProperties = GeoJsonProperties>(
   features: FeatureCollection<Polygon | MultiPolygon>,
   options: { properties?: P } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {
-  const geoms: polyclip.Geom[] = [];
-  geomEach(features, (geom) => {
-    geoms.push(geom.coordinates as polyclip.Geom);
-  });
-
-  if (geoms.length < 2) {
-    throw new Error("Must have at least 2 geometries");
+  if (features.features.length < 2) {
+    throw new Error("Must have at least 2 features");
   }
 
-  const unioned = polyclip.union(geoms[0], ...geoms.slice(1));
-  if (unioned.length === 0) return null;
-  if (unioned.length === 1) return polygon(unioned[0], options.properties);
-  else return multiPolygon(unioned, options.properties);
+  const clipper = new ClipperD(TURF_CLIPPER2_SCALE_FACTOR);
+
+  geomEach(features, (geom, idx) => {
+    if (geom.type === "MultiPolygon") {
+      if (idx === 0) {
+        clipper.addSubjectPaths(multiPolygonToPaths(geom.coordinates));
+      } else {
+        clipper.addClipPaths(multiPolygonToPaths(geom.coordinates));
+      }
+    } else {
+      if (idx === 0) {
+        clipper.addSubjectPaths(polygonToPaths(geom.coordinates));
+      } else {
+        clipper.addClipPaths(polygonToPaths(geom.coordinates));
+      }
+    }
+  });
+
+  const tree = new PolyTreeD();
+  clipper.execute(ClipType.Union, FillRule.NonZero, tree);
+
+  // Return the result as Polygon, MultiPolygon, or null as appropriate
+  const geom = polyTreeToGeoJSON(tree);
+  if (geom === null) return null;
+  return feature(geom, options.properties);
 }
 
 export { union };

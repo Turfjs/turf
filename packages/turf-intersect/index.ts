@@ -5,9 +5,15 @@ import {
   Polygon,
   FeatureCollection,
 } from "geojson";
-import { multiPolygon, polygon } from "@turf/helpers";
+import { feature } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
-import * as polyclip from "polyclip-ts";
+import { FillRule, ClipType, PolyTreeD, ClipperD } from "clipper2-ts";
+import {
+  TURF_CLIPPER2_SCALE_FACTOR,
+  multiPolygonToPaths,
+  polygonToPaths,
+  polyTreeToGeoJSON,
+} from "@turf/internal/clipper2";
 
 /**
  * Takes {@link Polygon|polygon} or {@link MultiPolygon|multi-polygon} geometries and
@@ -50,20 +56,35 @@ function intersect<P extends GeoJsonProperties = GeoJsonProperties>(
     properties?: P;
   } = {}
 ): Feature<Polygon | MultiPolygon, P> | null {
-  const geoms: polyclip.Geom[] = [];
+  if (features.features.length < 2) {
+    throw new Error("Must have at least 2 features");
+  }
 
-  geomEach(features, (geom) => {
-    geoms.push(geom.coordinates as polyclip.Geom);
+  const clipper = new ClipperD(TURF_CLIPPER2_SCALE_FACTOR);
+
+  geomEach(features, (geom, idx) => {
+    if (geom.type === "MultiPolygon") {
+      if (idx === 0) {
+        clipper.addSubjectPaths(multiPolygonToPaths(geom.coordinates));
+      } else {
+        clipper.addClipPaths(multiPolygonToPaths(geom.coordinates));
+      }
+    } else {
+      if (idx === 0) {
+        clipper.addSubjectPaths(polygonToPaths(geom.coordinates));
+      } else {
+        clipper.addClipPaths(polygonToPaths(geom.coordinates));
+      }
+    }
   });
 
-  if (geoms.length < 2) {
-    throw new Error("Must specify at least 2 geometries");
-  }
-  const intersection = polyclip.intersection(geoms[0], ...geoms.slice(1));
-  if (intersection.length === 0) return null;
-  if (intersection.length === 1)
-    return polygon(intersection[0], options.properties);
-  return multiPolygon(intersection, options.properties);
+  const tree = new PolyTreeD();
+  clipper.execute(ClipType.Intersection, FillRule.EvenOdd, tree);
+
+  // Return the result as Polygon, MultiPolygon, or null as appropriate
+  const geom = polyTreeToGeoJSON(tree);
+  if (geom === null) return null;
+  return feature(geom, options.properties);
 }
 
 export { intersect };

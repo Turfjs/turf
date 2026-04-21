@@ -17,7 +17,8 @@ const directories = {
 test("turf-difference", (t) => {
   glob.sync(directories.in + "*.geojson").forEach((filepath) => {
     const { name, base } = path.parse(filepath);
-    const [polygon1, polygon2] = loadJsonFileSync(filepath).features;
+    const [polygon1, polygon2, ...polygon3] =
+      loadJsonFileSync(filepath).features;
 
     if (name.includes("skip")) return t.skip(name);
 
@@ -32,7 +33,7 @@ test("turf-difference", (t) => {
       fill: "#00F",
     });
 
-    const results = featureCollection([polygon1, polygon2]);
+    const results = featureCollection([polygon1, polygon2, ...polygon3]);
 
     const result = difference(results);
     if (result) {
