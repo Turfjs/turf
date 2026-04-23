@@ -13,8 +13,7 @@
     "lint:prettier": "prettier --check .",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky && pnpm -r run build",
-    "test": "pnpm run lint && pnpm -r run test && pnpm -r --filter '@turf/turf' last-checks",
-    "version": "node ./scripts/version.mts"
+    "test": "pnpm run lint && pnpm -r run test && pnpm -r --filter '@turf/turf' last-checks"
   },
   "lint-staged": {
     "package.json": [
