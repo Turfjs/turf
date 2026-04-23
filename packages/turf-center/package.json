@@ -46,24 +46,17 @@
     "dist"
   ],
   "scripts": {
-    "bench": "tsx bench.ts",
+    "bench": "node bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
     "test": "pnpm run /test:.*/",
-    "test:tape": "tsx test.ts",
+    "test:node": "node --test",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
     "@turf/bbox-polygon": "workspace:*",
     "@turf/meta": "workspace:*",
-    "@types/benchmark": "^2.1.5",
-    "@types/tape": "^5.8.1",
-    "benchmark": "^2.1.4",
-    "load-json-file": "^7.0.1",
-    "tape": "^5.9.0",
     "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
-    "write-json-file": "^6.0.0"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@turf/bbox": "workspace:*",

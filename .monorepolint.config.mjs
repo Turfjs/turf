@@ -17,9 +17,9 @@ const JS_PACKAGES = []; // projects that use javascript/rollup to build
 const MAIN_PACKAGE = "@turf/turf";
 
 const TAPE_PACKAGES = []; // projects that have tape tests
+const NODE_TEST_PACKAGES = []; // projects that use node's native test runner
 const TYPES_PACKAGES = []; // projects that have types tests
-const TSTYCHE_PACKAGES = []; // projects that use tstyche for type tests.
-const BENCH_PACKAGES = []; // projects that have benchmarks
+const TSTYCHE_PACKAGES = []; // projects that use tstyche for type tests
 
 // iterate all the packages and figure out what buckets everything falls into
 const packagesPath = path.join(process.cwd(), "packages");
@@ -38,8 +38,16 @@ for (const pk of await fs.readdir(packagesPath)) {
     JS_PACKAGES.push(name);
   }
 
-  if (existsSync(path.join(pk, "test.js"))) {
-    TAPE_PACKAGES.push(name);
+  if (existsSync(path.join(packagesPath, pk, "test.ts"))) {
+    const testFileContents = await fs.readFile(
+      path.join(packagesPath, pk, "test.ts"),
+      "utf-8"
+    );
+    if (testFileContents.includes(`from "tape"`)) {
+      TAPE_PACKAGES.push(name);
+    } else {
+      NODE_TEST_PACKAGES.push(name);
+    }
   }
 
   if (existsSync(path.join(packagesPath, pk, "types.ts"))) {
@@ -50,13 +58,6 @@ for (const pk of await fs.readdir(packagesPath)) {
     TSTYCHE_PACKAGES.push(name);
   }
 }
-
-const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
-);
-const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
-);
 
 export default {
   rules: [
@@ -211,9 +212,21 @@ export default {
         scripts: {
           bench: "tsx bench.ts",
           "test:tape": "tsx test.ts",
+          "test:node": REMOVE,
         },
       },
-      includePackages: [...TS_TAPE_PACKAGES, ...JS_TAPE_PACKAGES],
+      includePackages: TAPE_PACKAGES,
+    }),
+
+    packageScript({
+      options: {
+        scripts: {
+          bench: "node bench.ts",
+          "test:node": "node --test",
+          "test:tape": REMOVE,
+        },
+      },
+      includePackages: NODE_TEST_PACKAGES,
     }),
 
     packageScript({
@@ -246,6 +259,43 @@ export default {
         },
       },
       includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      excludePackages: NODE_TEST_PACKAGES,
+    }),
+
+    requireDependency({
+      options: {
+        devDependencies: {
+          tape: "^5.9.0",
+          "@types/tape": "^5.8.1",
+        },
+      },
+      includePackages: TAPE_PACKAGES,
+    }),
+
+    requireDependency({
+      options: {
+        devDependencies: {
+          "@types/benchmark": REMOVE,
+          "@types/tape": REMOVE,
+          benchmark: REMOVE,
+          "load-json-file": REMOVE,
+          tape: REMOVE,
+          tsx: REMOVE,
+          "write-json-file": REMOVE,
+        },
+      },
+      includePackages: NODE_TEST_PACKAGES,
+    }),
+
+    requireDependency({
+      options: {
+        devDependencies: {
+          "@types/benchmark": "^2.1.5",
+          benchmark: "^2.1.4",
+        },
+      },
+      includePackages: TS_PACKAGES,
+      excludePackages: NODE_TEST_PACKAGES,
     }),
 
     requireDependency({
@@ -254,8 +304,6 @@ export default {
           tslib: "^2.8.1",
         },
         devDependencies: {
-          "@types/benchmark": "^2.1.5",
-          "@types/tape": "^5.8.1",
           typescript: "^5.8.3",
         },
       },
