@@ -167,8 +167,7 @@ The [turfjs.org](https://turfjs.org/) website is managed in a [separate repo](ht
 
 ## Other Dependencies
 
-  - Turf uses [pnpm](https://pnpm.io/) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
-  - Lerna will be automatically installed when you run `pnpm install` in the root directory.
+  - Turf uses [pnpm](https://pnpm.io/) during the testing, packaging and publishing process.
   - Pnpm will need to be installed on your computer, installers are available via the pnpm website. When using [corepack](https://nodejs.org/api/corepack.html), this is automatically installed when running `pnpm`.
 
 ## Financial contributions

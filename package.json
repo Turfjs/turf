@@ -12,8 +12,8 @@
     "lint:mrl": "mrl check",
     "lint:prettier": "prettier --check .",
     "preinstall": "npx only-allow pnpm",
-    "prepare": "husky && lerna run build",
-    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
+    "prepare": "husky && pnpm -r run build",
+    "test": "pnpm run lint && pnpm -r run test && pnpm -r --filter '@turf/turf' last-checks"
   },
   "lint-staged": {
     "package.json": [
@@ -51,7 +51,6 @@
     "glob": "^11.1.0",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
-    "lerna": "^9.0.3",
     "lint-staged": "^15.5.1",
     "load-json-file": "^7.0.1",
     "meow": "^13.2.0",
