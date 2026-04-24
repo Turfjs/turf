@@ -1,14 +1,23 @@
 import { center } from "@turf/center";
+// @ts-expect-error We're hopefully dropping @turf/jsts entirely soon, so lets just go without types for now
 import jsts from "@turf/jsts";
 import { geomEach, featureEach } from "@turf/meta";
-import { geoAzimuthalEquidistant } from "d3-geo";
+import { geoAzimuthalEquidistant, GeoProjection } from "d3-geo";
 import {
   feature,
   featureCollection,
   radiansToLength,
   lengthToRadians,
   earthRadius,
+  Units,
 } from "@turf/helpers";
+import {
+  Feature,
+  FeatureCollection,
+  GeometryCollection,
+  MultiPolygon,
+  Polygon,
+} from "geojson";
 
 const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
 
@@ -35,7 +44,13 @@ const { BufferOp, GeoJSONReader, GeoJSONWriter } = jsts;
  * //addToMap
  * var addToMap = [point, buffered]
  */
-function buffer(geojson, radius, options) {
+function buffer<T extends GeoJSON.GeoJSON>(
+  geojson: T,
+  radius?: number,
+  options?: { units?: Units; steps?: number }
+): T extends FeatureCollection | GeometryCollection
+  ? FeatureCollection<Polygon | MultiPolygon> | undefined
+  : Feature<Polygon | MultiPolygon> | undefined {
   // Optional params
   options = options || {};
 
@@ -52,26 +67,26 @@ function buffer(geojson, radius, options) {
   if (radius === undefined) throw new Error("radius is required");
   if (steps <= 0) throw new Error("steps must be greater than 0");
 
-  var results = [];
+  var results: any[] = [];
   switch (geojson.type) {
     case "GeometryCollection":
       geomEach(geojson, function (geometry) {
         var buffered = bufferFeature(geometry, radius, units, steps);
         if (buffered) results.push(buffered);
       });
-      return featureCollection(results);
+      return featureCollection(results) as any;
     case "FeatureCollection":
       featureEach(geojson, function (feature) {
         var multiBuffered = bufferFeature(feature, radius, units, steps);
         if (multiBuffered) {
-          featureEach(multiBuffered, function (buffered) {
+          featureEach(multiBuffered as Feature, function (buffered) {
             if (buffered) results.push(buffered);
           });
         }
       });
-      return featureCollection(results);
+      return featureCollection(results) as any;
   }
-  return bufferFeature(geojson, radius, units, steps);
+  return bufferFeature(geojson, radius, units, steps) as any;
 }
 
 /**
@@ -84,13 +99,18 @@ function buffer(geojson, radius, options) {
  * @param {number} [steps=8] number of steps
  * @returns {Feature<Polygon|MultiPolygon>} buffered feature
  */
-function bufferFeature(geojson, radius, units, steps) {
+function bufferFeature(
+  geojson: any,
+  radius: number,
+  units: Units,
+  steps: number
+) {
   var properties = geojson.properties || {};
   var geometry = geojson.type === "Feature" ? geojson.geometry : geojson;
 
   // Geometry Types faster than jsts
   if (geometry.type === "GeometryCollection") {
-    var results = [];
+    var results: any[] = [];
     geomEach(geojson, function (geometry) {
       var buffered = bufferFeature(geometry, radius, units, steps);
       if (buffered) results.push(buffered);
@@ -132,7 +152,7 @@ function bufferFeature(geojson, radius, units, steps) {
  * @param {Array<any>} coords GeoJSON Coordinates
  * @returns {boolean} if NaN exists
  */
-function coordsIsNaN(coords) {
+function coordsIsNaN(coords: any[]) {
   if (Array.isArray(coords[0])) return coordsIsNaN(coords[0]);
   return isNaN(coords[0]);
 }
@@ -145,8 +165,10 @@ function coordsIsNaN(coords) {
  * @param {GeoProjection} proj D3 Geo Projection
  * @returns {Array<any>} projected coordinates
  */
-function projectCoords(coords, proj) {
-  if (typeof coords[0] !== "object") return proj(coords);
+function projectCoords(coords: any[], proj: GeoProjection): any[] {
+  if (typeof coords[0] !== "object") {
+    return proj(coords as [number, number])!;
+  }
   return coords.map(function (coord) {
     return projectCoords(coord, proj);
   });
@@ -160,8 +182,10 @@ function projectCoords(coords, proj) {
  * @param {GeoProjection} proj D3 Geo Projection
  * @returns {Array<any>} un-projected coordinates
  */
-function unprojectCoords(coords, proj) {
-  if (typeof coords[0] !== "object") return proj.invert(coords);
+function unprojectCoords(coords: any[], proj: GeoProjection): any[] {
+  if (typeof coords[0] !== "object") {
+    return proj.invert!(coords as [number, number])!;
+  }
   return coords.map(function (coord) {
     return unprojectCoords(coord, proj);
   });
@@ -174,9 +198,9 @@ function unprojectCoords(coords, proj) {
  * @param {Geometry|Feature<any>} geojson Base projection on center of GeoJSON
  * @returns {GeoProjection} D3 Geo Azimuthal Equidistant Projection
  */
-function defineProjection(geojson) {
+function defineProjection(geojson: GeoJSON.GeoJSON) {
   var coords = center(geojson).geometry.coordinates;
-  var rotation = [-coords[0], -coords[1]];
+  var rotation: [number, number] = [-coords[0], -coords[1]];
   return geoAzimuthalEquidistant().rotate(rotation).scale(earthRadius);
 }
 
