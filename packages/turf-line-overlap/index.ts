@@ -88,10 +88,10 @@ function lineOverlap<
           tolerance === 0
             ? booleanPointOnLine(coordsSegment[0], match) &&
               booleanPointOnLine(coordsSegment[1], match)
-            : nearestPointOnLine(match, coordsSegment[0]).properties.dist! <=
-                tolerance &&
-              nearestPointOnLine(match, coordsSegment[1]).properties.dist! <=
-                tolerance
+            : nearestPointOnLine(match, coordsSegment[0]).properties
+                .pointDistance! <= tolerance &&
+              nearestPointOnLine(match, coordsSegment[1]).properties
+                .pointDistance! <= tolerance
         ) {
           doesOverlaps = true;
           if (overlapSegment) {
@@ -102,10 +102,10 @@ function lineOverlap<
           tolerance === 0
             ? booleanPointOnLine(coordsMatch[0], segment) &&
               booleanPointOnLine(coordsMatch[1], segment)
-            : nearestPointOnLine(segment, coordsMatch[0]).properties.dist! <=
-                tolerance &&
-              nearestPointOnLine(segment, coordsMatch[1]).properties.dist! <=
-                tolerance
+            : nearestPointOnLine(segment, coordsMatch[0]).properties
+                .pointDistance! <= tolerance &&
+              nearestPointOnLine(segment, coordsMatch[1]).properties
+                .pointDistance! <= tolerance
         ) {
           // Do not define (doesOverlap = true) since more matches can occur within the same segment
           // doesOverlaps = true;

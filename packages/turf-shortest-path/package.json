@@ -1,6 +1,6 @@
 {
   "name": "@turf/shortest-path",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Returns the shortest path from start to end without colliding with any Feature in obstacles.",
   "author": "Turf Authors",
   "contributors": [
@@ -50,7 +50,6 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"

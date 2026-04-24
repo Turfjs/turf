@@ -1,6 +1,6 @@
 {
   "name": "@turf/kinks",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Takes a GeoJSON feature and returns points at all self-intersections.",
   "author": "Turf Authors",
   "license": "MIT",
@@ -45,7 +45,6 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"

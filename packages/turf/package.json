@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "author": "Turf Authors",
   "license": "MIT",
@@ -132,6 +132,7 @@
     "@turf/convex": "workspace:*",
     "@turf/destination": "workspace:*",
     "@turf/difference": "workspace:*",
+    "@turf/directional-mean": "workspace:*",
     "@turf/dissolve": "workspace:*",
     "@turf/distance": "workspace:*",
     "@turf/distance-weight": "workspace:*",
@@ -206,6 +207,7 @@
     "@turf/unkink-polygon": "workspace:*",
     "@turf/voronoi": "workspace:*",
     "@types/geojson": "^7946.0.10",
+    "@types/kdbush": "^3.0.5",
     "tslib": "^2.8.1"
   }
 }

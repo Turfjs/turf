@@ -1,6 +1,6 @@
 {
   "name": "@turf/distance",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Measures the straight-line distance between two points, like cities or landmarks.",
   "author": "Turf Authors",
   "license": "MIT",
@@ -46,7 +46,6 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },

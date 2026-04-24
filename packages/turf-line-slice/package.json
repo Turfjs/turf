@@ -1,6 +1,6 @@
 {
   "name": "@turf/line-slice",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Useful for extracting only the part of a route between waypoints.",
   "author": "Turf Authors",
   "license": "MIT",
@@ -49,7 +49,6 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },

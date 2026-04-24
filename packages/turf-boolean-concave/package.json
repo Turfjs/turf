@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-concave",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Takes a polygon and return true or false as to whether it is concave or not.",
   "author": "Turf Authors",
   "contributors": [
@@ -50,7 +50,6 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
@@ -58,7 +57,6 @@
     "@types/benchmark": "^2.1.5",
     "@types/tape": "^5.8.1",
     "benchmark": "^2.1.4",
-    "glob": "^11.1.0",
     "load-json-file": "^7.0.1",
     "tape": "^5.9.0",
     "tsup": "^8.4.0",

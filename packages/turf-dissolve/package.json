@@ -1,6 +1,6 @@
 {
   "name": "@turf/dissolve",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Dissolves a FeatureCollection of Polygon features.",
   "author": "Turf Authors",
   "license": "MIT",
@@ -47,7 +47,6 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },

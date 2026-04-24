@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-contains",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Determines whether the second geometry is completely within the first geometry.",
   "author": "Turf Authors",
   "contributors": [
@@ -51,7 +51,6 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
@@ -61,7 +60,6 @@
     "benchmark": "^2.1.4",
     "boolean-jsts": "*",
     "boolean-shapely": "*",
-    "glob": "^11.1.0",
     "load-json-file": "^7.0.1",
     "tape": "^5.9.0",
     "tsup": "^8.4.0",

@@ -1,6 +1,6 @@
 {
   "name": "@turf/boolean-disjoint",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Checks if two geometries have no overlapping areas.",
   "author": "Turf Authors",
   "contributors": [
@@ -50,7 +50,6 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },

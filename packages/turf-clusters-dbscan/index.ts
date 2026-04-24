@@ -66,6 +66,9 @@ function clustersDbscan(
   } = {}
 ): FeatureCollection<Point, DbscanProps> {
   // Input validation being handled by Typescript
+  // TODO oops! No it isn't. Typescript doesn't do runtime checking. We should
+  // re-enable these checks, though will have to wait for a major version bump
+  // as more restrictive checks could break currently working code.
   // collectionOf(points, 'Point', 'points must consist of a FeatureCollection of only Points');
   // if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
   // if (!(Math.sign(maxDistance) > 0)) throw new Error('maxDistance is invalid');
