@@ -569,6 +569,34 @@ turf.isObject('foo')
 
 Returns **[boolean][23]** true/false, including false for Arrays and Functions
 
+## calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle
+
+Calculates the length of the circum radius of a regular polygon that best approximates a circle
+with an equal area.  The degree of the polygon is determined by steps.
+
+### Parameters
+
+*   `circleRadius` **[number][13]** The radius of the target circle.
+*   `steps` **[number][13]** The degree of the regular polygon. (optional, default `64`)
+
+Returns **[number][13]** The length of the circum radius in the same units as circleRadius.
+
+## calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle
+
+Calculates the number of sides of a regular polygon that best approximates a circle
+with an equal area, while not exceeding an allowable rim deviation in meters.
+
+This function determines the optimal number of sides for a regular polygon that
+closely matches the area of a given circle while not exceeding an acceptable error
+tolerance in the polygon's circumradius.
+
+### Parameters
+
+*   `circleRadius` **[number][13]** The radius of the target circle.
+*   `maximumRimDeviation` **[number][13]?** The maximum allowable error for the polygon's circumradius when approximating the circle.
+
+Returns **[number][13]** The number of sides of the best-fit regular polygon.
+
 [1]: https://www.thoughtco.com/degree-of-latitude-and-longitude-distance-4070616
 
 [2]: #units
