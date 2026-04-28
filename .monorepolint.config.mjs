@@ -12,14 +12,12 @@ import {
   REMOVE,
 } from "@monorepolint/rules";
 
-const TS_PACKAGES = []; // projects that use typescript to build
-const JS_PACKAGES = []; // projects that use javascript/rollup to build
+const PACKAGES = []; // packages that aren't @turf/turf
 const MAIN_PACKAGE = "@turf/turf";
 
-const TAPE_PACKAGES = []; // projects that have tape tests
-const TYPES_PACKAGES = []; // projects that have types tests
-const TSTYCHE_PACKAGES = []; // projects that use tstyche for type tests.
-const BENCH_PACKAGES = []; // projects that have benchmarks
+const TAPE_PACKAGES = []; // packages that have tape tests
+const TYPES_PACKAGES = []; // packages that have types tests
+const TSTYCHE_PACKAGES = []; // packages that use tstyche for type tests.
 
 // iterate all the packages and figure out what buckets everything falls into
 const packagesPath = path.join(process.cwd(), "packages");
@@ -32,11 +30,7 @@ for (const pk of await fs.readdir(packagesPath)) {
     await fs.readFile(path.join(packagesPath, pk, "package.json"), "utf8")
   ).name;
 
-  if (existsSync(path.join(packagesPath, pk, "index.ts"))) {
-    TS_PACKAGES.push(name);
-  } else {
-    JS_PACKAGES.push(name);
-  }
+  PACKAGES.push(name);
 
   if (existsSync(path.join(pk, "test.js"))) {
     TAPE_PACKAGES.push(name);
@@ -50,13 +44,6 @@ for (const pk of await fs.readdir(packagesPath)) {
     TSTYCHE_PACKAGES.push(name);
   }
 }
-
-const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
-);
-const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
-);
 
 export default {
   rules: [
@@ -157,7 +144,7 @@ export default {
           },
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     packageEntry({
@@ -166,7 +153,7 @@ export default {
           files: ["dist"],
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     packageEntry({
@@ -193,7 +180,7 @@ export default {
           build: "tsup --config ../../tsup.config.ts",
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     packageScript({
@@ -213,7 +200,7 @@ export default {
           "test:tape": "tsx test.ts",
         },
       },
-      includePackages: [...TS_TAPE_PACKAGES, ...JS_TAPE_PACKAGES],
+      includePackages: TAPE_PACKAGES,
     }),
 
     packageScript({
@@ -245,7 +232,7 @@ export default {
           tsx: "^4.19.4",
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     requireDependency({
@@ -259,7 +246,7 @@ export default {
           typescript: "^5.8.3",
         },
       },
-      includePackages: TS_PACKAGES,
+      includePackages: PACKAGES,
     }),
 
     requireDependency({
@@ -277,7 +264,7 @@ export default {
           "@types/geojson": "^7946.0.10",
         },
       },
-      includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: [MAIN_PACKAGE, ...PACKAGES],
     }),
   ],
 };
