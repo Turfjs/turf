@@ -50,17 +50,17 @@
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@types/benchmark": "^2.1.5",
-    "@types/tape": "^5.8.1",
-    "benchmark": "^2.1.4",
-    "tape": "^5.9.0",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "@types/benchmark": "catalog:",
+    "@types/tape": "catalog:",
+    "benchmark": "catalog:",
+    "tape": "catalog:",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
   },
   "dependencies": {
     "@turf/helpers": "workspace:*",
-    "@types/geojson": "^7946.0.10",
-    "tslib": "^2.8.1"
+    "@types/geojson": "catalog:",
+    "tslib": "catalog:"
   }
 }

@@ -54,15 +54,15 @@
   },
   "devDependencies": {
     "@turf/truncate": "workspace:*",
-    "@types/benchmark": "^2.1.5",
-    "@types/tape": "^5.8.1",
-    "benchmark": "^2.1.4",
+    "@types/benchmark": "catalog:",
+    "@types/tape": "catalog:",
+    "benchmark": "catalog:",
     "chromatism": "^3.0.0",
     "load-json-file": "^7.0.1",
-    "tape": "^5.9.0",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
+    "tape": "catalog:",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
@@ -77,7 +77,7 @@
     "@turf/point-grid": "workspace:*",
     "@turf/square-grid": "workspace:*",
     "@turf/triangle-grid": "workspace:*",
-    "@types/geojson": "^7946.0.10",
-    "tslib": "^2.8.1"
+    "@types/geojson": "catalog:",
+    "tslib": "catalog:"
   }
 }
