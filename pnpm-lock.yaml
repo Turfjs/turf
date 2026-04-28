@@ -1616,6 +1616,9 @@ importers:
       tape:
         specifier: ^5.9.0
         version: 5.9.0
+      tstyche:
+        specifier: ^6.2.0
+        version: 6.2.0(typescript@5.8.3)
       tsup:
         specifier: ^8.4.0
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
