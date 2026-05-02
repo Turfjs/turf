@@ -217,7 +217,7 @@ export default {
       options: {
         scripts: {
           bench: "node bench.ts",
-          "test:node": "node --test",
+          "test:node": "node --test test.ts",
           "test:tape": REMOVE,
         },
       },

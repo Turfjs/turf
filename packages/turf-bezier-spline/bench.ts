@@ -1,30 +1,13 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { loadJsonFileSync } from "load-json-file";
-import Benchmark from "benchmark";
-import { bezierSpline } from "./index.js";
+import { bezierSpline } from "./index.ts";
+import { benchFixtures } from "../../support/benchFixtures.mts";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const directory = path.join(__dirname, "test", "in") + path.sep;
-const fixtures = fs.readdirSync(directory).map((filename) => {
-  return {
-    filename,
-    name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directory + filename),
-  };
-});
-
-/**
- * Benchmark Results
- *
- * bezierIn x 771 ops/sec ±1.31% (88 runs sampled)
- * simple x 768 ops/sec ±1.20% (89 runs sampled)
- */
-const suite = new Benchmark.Suite("turf-bezier-spline");
-for (const { name, geojson } of fixtures) {
-  suite.add(name, () => bezierSpline(geojson));
-}
-
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+// Benchmark Results
+// linestring-single-line.geojson x 15,443,284 ops/sec ±0.31% (101 runs sampled)
+// linestring.geojson x 264,982 ops/sec ±0.37% (98 runs sampled)
+// multi-linestring.geojson x 7,798,170 ops/sec ±0.46% (100 runs sampled)
+// multi-polygon.geojson x 135,112 ops/sec ±0.20% (98 runs sampled)
+// polygon-crossing-hole.geojson x 152,794 ops/sec ±0.25% (99 runs sampled)
+// polygon-holes.geojson x 140,602 ops/sec ±0.21% (99 runs sampled)
+// polygon-point-intersection.geojson x 8,323,552 ops/sec ±0.61% (100 runs sampled)
+// polygon.geojson x 116,567 ops/sec ±0.20% (96 runs sampled)
+await benchFixtures("turf-bezier-spline", (input) => bezierSpline(input));

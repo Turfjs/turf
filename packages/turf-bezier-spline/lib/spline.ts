@@ -1,4 +1,4 @@
-interface Point {
+export interface Point {
   x: number;
   y: number;
   z: number;
@@ -30,7 +30,7 @@ interface Point {
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-class Spline {
+export class Spline {
   public duration: number;
   public points: Point[];
   public sharpness: number;
@@ -194,6 +194,3 @@ function B(t: number) {
     (1 - t) * (1 - t) * (1 - t),
   ];
 }
-
-export { Spline, Point };
-export default Spline;

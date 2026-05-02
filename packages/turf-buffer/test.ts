@@ -1,9 +1,3 @@
-import fs from "fs";
-import test from "tape";
-import path from "path";
-import { fileURLToPath } from "url";
-import { loadJsonFileSync } from "load-json-file";
-import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureEach } from "@turf/meta";
 import {
@@ -12,36 +6,17 @@ import {
   polygon,
   geometryCollection,
 } from "@turf/helpers";
-import { buffer } from "./index.js";
+import { buffer } from "./index.ts";
+import { testFixtures } from "../../support/testFixtures.mts";
+import test from "node:test";
+import assert from "assert";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
-};
-
-var fixtures = fs.readdirSync(directories.in).map((filename) => {
-  return {
-    filename,
-    name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directories.in + filename),
-  };
-});
-// fixtures = fixtures.filter(({name}) => name === 'feature-collection-points');
-
-test("turf-buffer", (t) => {
-  fixtures.forEach((fixture) => {
-    const filename = fixture.filename;
-    const name = fixture.name;
-    const geojson = fixture.geojson;
-    const properties = geojson.properties || {};
-    const radius = properties.radius || 50;
-    const units = properties.units || "miles";
-    const steps = properties.steps;
+await test("buffer fixtures", async (t) => {
+  await testFixtures(t, (geojson) => {
+    const { radius = 50, units = "miles", steps } = geojson.properties ?? {};
 
     const buffered = truncate(
-      buffer(geojson, radius, { units: units, steps: steps })
+      buffer(geojson, radius, { units: units, steps: steps })!
     );
 
     // Add Results to FeatureCollection
@@ -53,15 +28,12 @@ test("turf-buffer", (t) => {
       results.features.push(colorize(feature, "#00F"))
     );
 
-    if (process.env.REGEN)
-      writeJsonFileSync(directories.out + filename, results);
-    t.deepEqual(results, loadJsonFileSync(directories.out + filename), name);
+    return results;
   });
-  t.end();
 });
 
 // https://github.com/Turfjs/turf/pull/736
-test("turf-buffer - Support Negative Buffer", (t) => {
+test("turf-buffer - Support Negative Buffer", () => {
   const poly = polygon([
     [
       [11, 0],
@@ -74,8 +46,7 @@ test("turf-buffer - Support Negative Buffer", (t) => {
     ],
   ]);
 
-  t.assert(buffer(poly, -50), "allow negative buffer param");
-  t.end();
+  assert(buffer(poly, -50), "allow negative buffer param");
 });
 
 test("turf-buffer - Support Geometry Objects", (t) => {
@@ -93,13 +64,12 @@ test("turf-buffer - Support Geometry Objects", (t) => {
   ]);
   const gc = geometryCollection([pt.geometry, poly.geometry]);
 
-  t.assert(buffer(gc, 10), "support Geometry Collection");
-  t.assert(buffer(pt.geometry, 10), "support Point Geometry");
-  t.assert(buffer(poly.geometry, 10), "support Polygon Geometry");
-  t.end();
+  assert(buffer(gc, 10), "support Geometry Collection");
+  assert(buffer(pt.geometry, 10), "support Point Geometry");
+  assert(buffer(poly.geometry, 10), "support Polygon Geometry");
 });
 
-test("turf-buffer - Prevent Input Mutation", (t) => {
+test("turf-buffer - Prevent Input Mutation", () => {
   const pt = point([61, 5]);
   const poly = polygon([
     [
@@ -112,7 +82,7 @@ test("turf-buffer - Prevent Input Mutation", (t) => {
       [11, 0],
     ],
   ]);
-  const collection = featureCollection([pt, poly]);
+  const collection = featureCollection([pt as any, poly]);
 
   const beforePt = JSON.parse(JSON.stringify(pt));
   const beforePoly = JSON.parse(JSON.stringify(poly));
@@ -122,15 +92,18 @@ test("turf-buffer - Prevent Input Mutation", (t) => {
   buffer(poly, 10);
   buffer(collection, 10);
 
-  t.deepEqual(pt, beforePt, "pt should not mutate");
-  t.deepEqual(poly, beforePoly, "poly should not mutate");
-  t.deepEqual(collection, beforeCollection, "collection should not mutate");
-  t.end();
+  assert.deepEqual(pt, beforePt, "pt should not mutate");
+  assert.deepEqual(poly, beforePoly, "poly should not mutate");
+  assert.deepEqual(
+    collection,
+    beforeCollection,
+    "collection should not mutate"
+  );
 });
 
 // https://github.com/Turfjs/turf/issues/745
 // https://github.com/Turfjs/turf/pull/736#issuecomment-301937747
-test("turf-buffer - morphological closing", (t) => {
+test("turf-buffer - morphological closing", () => {
   const poly = polygon([
     [
       [11, 0],
@@ -143,20 +116,19 @@ test("turf-buffer - morphological closing", (t) => {
     ],
   ]);
 
-  t.equal(
+  assert.strictEqual(
     buffer(poly, -500, { units: "miles" }),
     undefined,
     "empty geometry should be undefined"
   );
-  t.deepEqual(
+  assert.deepEqual(
     buffer(featureCollection([poly]), -500, { units: "miles" }),
     featureCollection([]),
     "empty geometries should be an empty FeatureCollection"
   );
-  t.end();
 });
 
-test("turf-buffer - undefined return", (t) => {
+test("turf-buffer - undefined return", () => {
   const poly: GeoJSON.Feature<GeoJSON.Polygon> = {
     type: "Feature",
     properties: {},
@@ -174,16 +146,14 @@ test("turf-buffer - undefined return", (t) => {
     },
   };
 
-  t.equal(
+  assert.strictEqual(
     buffer(poly, -100000000),
     undefined,
     "empty geometry should be undefined if the resulting geometry is invalid"
   );
-  t.end();
 });
 
-function colorize(feature, color) {
-  color = color || "#F00";
+function colorize(feature: any, color = "#F00") {
   if (feature.properties) {
     feature.properties.stroke = color;
     feature.properties.fill = color;
