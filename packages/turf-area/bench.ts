@@ -1,4 +1,4 @@
-import { area } from "./index.js";
+import { area } from "./index.ts";
 import { benchFixtures } from "../../support/benchFixtures.mts";
 
 // Benchmark Results

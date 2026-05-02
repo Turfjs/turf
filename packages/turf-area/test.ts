@@ -1,7 +1,7 @@
 import test from "node:test";
-import { area } from "./index.js";
+import { area } from "./index.ts";
 import { polygon } from "@turf/helpers";
-import { Polygon } from "geojson";
+import type { Polygon } from "geojson";
 import { testFixtures } from "../../support/testFixtures.mts";
 import assert from "assert";
 
