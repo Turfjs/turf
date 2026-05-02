@@ -4,6 +4,39 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@types/benchmark':
+      specifier: ^2.1.5
+      version: 2.1.5
+    '@types/geojson':
+      specifier: ^7946.0.10
+      version: 7946.0.14
+    '@types/tape':
+      specifier: ^5.8.1
+      version: 5.8.1
+    benchmark:
+      specifier: ^2.1.4
+      version: 2.1.4
+    tape:
+      specifier: ^5.9.0
+      version: 5.9.0
+    tslib:
+      specifier: ^2.8.1
+      version: 2.8.1
+    tstyche:
+      specifier: ^6.2.0
+      version: 6.2.0
+    tsup:
+      specifier: ^8.4.0
+      version: 8.4.0
+    tsx:
+      specifier: ^4.19.4
+      version: 4.19.4
+    typescript:
+      specifier: ^5.8.3
+      version: 5.8.3
+
 importers:
 
   .:
@@ -453,7 +486,7 @@ importers:
         specifier: workspace:*
         version: link:../turf-voronoi
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       '@types/kdbush':
         specifier: ^3.0.5
@@ -529,35 +562,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-angle:
@@ -575,10 +608,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-rhumb-bearing
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/distance':
@@ -591,28 +624,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -627,35 +660,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -670,32 +703,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-bbox-clip:
@@ -707,38 +740,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/bbox':
         specifier: workspace:*
         version: link:../turf-bbox
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -750,32 +783,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-bearing:
@@ -787,35 +820,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/destination':
         specifier: workspace:*
         version: link:../turf-destination
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -830,35 +863,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -873,35 +906,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-concave:
@@ -913,35 +946,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-contains:
@@ -965,20 +998,20 @@ importers:
         specifier: workspace:*
         version: link:../turf-line-split
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       boolean-jsts:
         specifier: '*'
@@ -990,16 +1023,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-crosses:
@@ -1023,20 +1056,20 @@ importers:
         specifier: workspace:*
         version: link:../turf-polygon-to-line
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       boolean-shapely:
         specifier: '*'
@@ -1045,16 +1078,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-disjoint:
@@ -1075,20 +1108,20 @@ importers:
         specifier: workspace:*
         version: link:../turf-polygon-to-line
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       boolean-shapely:
         specifier: '*'
@@ -1097,16 +1130,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-equal:
@@ -1121,23 +1154,23 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       geojson-equality-ts:
         specifier: ^1.0.2
         version: 1.0.2
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       boolean-shapely:
         specifier: '*'
@@ -1146,16 +1179,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-intersects:
@@ -1170,20 +1203,20 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       boolean-shapely:
         specifier: '*'
@@ -1192,16 +1225,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-overlap:
@@ -1222,23 +1255,23 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       geojson-equality-ts:
         specifier: ^1.0.2
         version: 1.0.2
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       boolean-shapely:
         specifier: '*'
@@ -1247,16 +1280,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-parallel:
@@ -1274,35 +1307,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-rhumb-bearing
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -1317,35 +1350,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       point-in-polygon-hao:
         specifier: ^1.1.0
         version: 1.1.0
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-point-on-line:
@@ -1357,35 +1390,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -1406,20 +1439,20 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       boolean-jsts:
         specifier: '*'
@@ -1431,16 +1464,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-valid:
@@ -1473,23 +1506,23 @@ importers:
         specifier: workspace:*
         version: link:../turf-line-intersect
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       geojson-polygon-self-intersections:
         specifier: ^1.2.1
         version: 1.2.1
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       boolean-jsts:
         specifier: '*'
@@ -1501,16 +1534,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-boolean-within:
@@ -1534,20 +1567,20 @@ importers:
         specifier: workspace:*
         version: link:../turf-line-split
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       boolean-jsts:
         specifier: '*'
@@ -1559,16 +1592,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-buffer:
@@ -1592,36 +1625,48 @@ importers:
         specifier: workspace:*
         version: link:../turf-projection
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       d3-geo:
-        specifier: 1.7.1
-        version: 1.7.1
+        specifier: ^3.1.1
+        version: 3.1.1
+      tslib:
+        specifier: 'catalog:'
+        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
+      '@types/d3-geo':
+        specifier: ^3.1.0
+        version: 3.1.0
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
+      tstyche:
+        specifier: 'catalog:'
+        version: 6.2.0(typescript@5.8.3)
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1635,10 +1680,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
@@ -1648,10 +1693,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-center-mean:
@@ -1666,10 +1711,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/center':
@@ -1679,28 +1724,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -1724,10 +1769,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/center':
@@ -1743,28 +1788,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -1788,35 +1833,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -1831,35 +1876,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -1874,10 +1919,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@placemarkio/check-geojson':
@@ -1887,28 +1932,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -1926,23 +1971,23 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       geojson-equality-ts:
         specifier: ^1.0.2
@@ -1951,16 +1996,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -1972,35 +2017,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-clusters:
@@ -2012,32 +2057,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-clusters-dbscan:
@@ -2045,6 +2090,9 @@ importers:
       '@turf/clone':
         specifier: workspace:*
         version: link:../turf-clone
+      '@turf/distance':
+        specifier: workspace:*
+        version: link:../turf-distance
       '@turf/helpers':
         specifier: workspace:*
         version: link:../turf-helpers
@@ -2052,19 +2100,13 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
-      '@types/geokdbush':
-        specifier: ^1.1.5
-        version: 1.1.5
-      geokdbush:
-        specifier: ^2.0.1
-        version: 2.0.1
-      kdbush:
-        specifier: ^4.0.2
-        version: 4.0.2
+      rbush:
+        specifier: ^3.0.1
+        version: 3.0.1
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/centroid':
@@ -2074,13 +2116,16 @@ importers:
         specifier: workspace:*
         version: link:../turf-clusters
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
+      '@types/rbush':
+        specifier: ^3.0.4
+        version: 3.0.4
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       chromatism:
         specifier: ^3.0.0
@@ -2092,16 +2137,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2122,13 +2167,13 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       skmeans:
         specifier: 0.9.7
         version: 0.9.7
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/centroid':
@@ -2141,16 +2186,16 @@ importers:
         specifier: workspace:*
         version: link:../turf-random
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/skmeans':
         specifier: ^0.11.7
         version: 0.11.7
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       chromatism:
         specifier: ^3.0.0
@@ -2162,16 +2207,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2189,38 +2234,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/rbush':
         specifier: ^3.0.4
         version: 3.0.4
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-combine:
@@ -2232,32 +2277,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-concave:
@@ -2281,7 +2326,7 @@ importers:
         specifier: workspace:*
         version: link:../turf-tin
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       topojson-client:
         specifier: 3.x
@@ -2290,14 +2335,14 @@ importers:
         specifier: 3.x
         version: 3.0.1
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       '@types/topojson-client':
         specifier: 3.1.3
@@ -2306,22 +2351,22 @@ importers:
         specifier: 3.0.3
         version: 3.0.3
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2336,41 +2381,41 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       concaveman:
         specifier: ^1.2.1
         version: 1.2.1
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/concaveman':
         specifier: ^1.1.6
         version: 1.1.6
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2385,38 +2430,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2431,38 +2476,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2492,35 +2537,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2541,38 +2586,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2587,35 +2632,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2636,35 +2681,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2688,10 +2733,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-transform-rotate
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@placemarkio/check-geojson':
@@ -2713,28 +2758,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2752,35 +2797,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-explode:
@@ -2792,35 +2837,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2835,35 +2880,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2881,35 +2926,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2927,13 +2972,13 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
@@ -2943,31 +2988,31 @@ importers:
         specifier: workspace:*
         version: link:../turf-random
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/rbush':
         specifier: ^3.0.4
         version: 3.0.4
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -2982,41 +3027,41 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       arc:
         specifier: ^0.2.0
         version: 0.2.0
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3025,32 +3070,32 @@ importers:
   packages/turf-helpers:
     dependencies:
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-hex-grid:
@@ -3068,10 +3113,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
@@ -3081,28 +3126,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3144,23 +3189,23 @@ importers:
         specifier: workspace:*
         version: link:../turf-triangle-grid
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       chromatism:
         specifier: ^3.0.0
@@ -3169,16 +3214,16 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3193,38 +3238,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3236,32 +3281,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-isobands:
@@ -3288,10 +3333,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/envelope':
@@ -3310,28 +3355,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3352,10 +3397,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/envelope':
@@ -3374,28 +3419,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3407,38 +3452,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3456,35 +3501,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3502,38 +3547,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3554,38 +3599,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3597,41 +3642,41 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       sweepline-intersections:
         specifier: ^1.5.0
         version: 1.5.0
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3649,41 +3694,41 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tstyche:
-        specifier: ^6.2.0
+        specifier: 'catalog:'
         version: 6.2.0(typescript@5.8.3)
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3713,38 +3758,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-nearest-point-on-line
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       fast-deep-equal:
         specifier: ^3.1.3
         version: 3.1.3
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3762,35 +3807,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3808,38 +3853,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-nearest-point-on-line
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3860,10 +3905,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/along':
@@ -3873,28 +3918,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-length
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-line-split:
@@ -3927,35 +3972,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -3976,35 +4021,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4019,23 +4064,23 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
@@ -4044,16 +4089,16 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4065,35 +4110,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/random':
         specifier: workspace:*
         version: link:../turf-random
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-midpoint:
@@ -4111,32 +4156,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-moran-index:
@@ -4151,35 +4196,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4212,38 +4257,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-nearest-point
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4264,35 +4309,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4313,10 +4358,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/along':
@@ -4329,28 +4374,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4371,10 +4416,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-point-to-line-distance
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/circle':
@@ -4384,31 +4429,31 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/object-assign':
         specifier: ^4.0.33
         version: 4.0.33
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4423,32 +4468,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-point-grid:
@@ -4466,10 +4511,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
@@ -4479,28 +4524,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4524,10 +4569,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-nearest-point
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/meta':
@@ -4537,25 +4582,25 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4591,38 +4636,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-rhumb-distance
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/circle':
         specifier: workspace:*
         version: link:../turf-circle
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4649,35 +4694,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-polygon-to-line
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4695,32 +4740,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-polygon-smooth:
@@ -4732,35 +4777,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4787,35 +4832,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-nearest-point
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4830,35 +4875,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4882,35 +4927,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4928,23 +4973,23 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
@@ -4953,16 +4998,16 @@ importers:
         specifier: ^2.9.2
         version: 2.9.2
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -4998,38 +5043,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-square-grid
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/nearest-neighbor-analysis':
         specifier: workspace:*
         version: link:../turf-nearest-neighbor-analysis
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5041,32 +5086,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-rectangle-grid:
@@ -5081,10 +5126,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
@@ -5094,28 +5139,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5139,35 +5184,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5182,35 +5227,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/destination':
         specifier: workspace:*
         version: link:../turf-destination
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5225,38 +5270,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5271,38 +5316,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-invariant
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/distance':
         specifier: workspace:*
         version: link:../turf-distance
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5314,32 +5359,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-sector:
@@ -5360,38 +5405,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5427,38 +5472,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-transform-scale
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5479,38 +5524,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5525,32 +5570,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-square-grid:
@@ -5562,10 +5607,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-rectangle-grid
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
@@ -5575,25 +5620,25 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5620,10 +5665,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-points-within-polygon
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/random':
@@ -5633,28 +5678,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5675,35 +5720,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-tesselate:
@@ -5712,35 +5757,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       earcut:
         specifier: ^2.2.4
         version: 2.2.4
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-tin:
@@ -5749,32 +5794,32 @@ importers:
         specifier: workspace:*
         version: link:../turf-helpers
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
 
   packages/turf-transform-rotate:
@@ -5804,38 +5849,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-rhumb-distance
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5874,10 +5919,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-rhumb-distance
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
@@ -5890,28 +5935,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5935,38 +5980,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-rhumb-destination
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -5984,10 +6029,10 @@ importers:
         specifier: workspace:*
         version: link:../turf-intersect
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
@@ -5997,28 +6042,28 @@ importers:
         specifier: workspace:*
         version: link:../turf-truncate
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -6033,35 +6078,35 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -6076,38 +6121,38 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -6128,44 +6173,44 @@ importers:
         specifier: workspace:*
         version: link:../turf-meta
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@turf/kinks':
         specifier: workspace:*
         version: link:../turf-kinks
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/rbush':
         specifier: ^3.0.4
         version: 3.0.4
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -6186,38 +6231,38 @@ importers:
         specifier: ^1.1.12
         version: 1.1.12
       '@types/geojson':
-        specifier: ^7946.0.10
+        specifier: 'catalog:'
         version: 7946.0.14
       d3-voronoi:
         specifier: 1.1.2
         version: 1.1.2
       tslib:
-        specifier: ^2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@types/benchmark':
-        specifier: ^2.1.5
+        specifier: 'catalog:'
         version: 2.1.5
       '@types/tape':
-        specifier: ^5.8.1
+        specifier: 'catalog:'
         version: 5.8.1
       benchmark:
-        specifier: ^2.1.4
+        specifier: 'catalog:'
         version: 2.1.4
       load-json-file:
         specifier: ^7.0.1
         version: 7.0.1
       tape:
-        specifier: ^5.9.0
+        specifier: 'catalog:'
         version: 5.9.0
       tsup:
-        specifier: ^8.4.0
+        specifier: 'catalog:'
         version: 8.4.0(postcss@8.5.3)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.8.2)
       tsx:
-        specifier: ^4.19.4
+        specifier: 'catalog:'
         version: 4.19.4
       typescript:
-        specifier: ^5.8.3
+        specifier: 'catalog:'
         version: 5.8.3
       write-json-file:
         specifier: ^6.0.0
@@ -7678,6 +7723,9 @@ packages:
   '@types/concaveman@1.1.6':
     resolution: {integrity: sha512-3shTHRmSStvc+91qrFlQv2UmrOB0sZ6biDQo7YzY+9tV1mNLpdzuZal4D3hTYXYWig49K01lCvYDpnh+txToXw==}
 
+  '@types/d3-geo@3.1.0':
+    resolution: {integrity: sha512-856sckF0oP/diXtS4jNsiQw/UuK5fQG8l/a9VVLeSouf1/PPbBE1i1W852zVwKwYCBkFJJB7nCFTbk6UMEXBOQ==}
+
   '@types/d3-voronoi@1.1.12':
     resolution: {integrity: sha512-DauBl25PKZZ0WVJr42a6CNvI6efsdzofl9sajqZr2Gf5Gu733WkDdUGiPkUHXiUvYGzNNlFQde2wdZdfQPG+yw==}
 
@@ -7696,17 +7744,11 @@ packages:
   '@types/geojson@7946.0.14':
     resolution: {integrity: sha512-WCfD5Ht3ZesJUsONdhvm84dmzWOiOzOAqOncN0++w0lBw1o8OuDNJF2McvvCef/yBqb/HYRahp1BYtODFQ8bRg==}
 
-  '@types/geokdbush@1.1.5':
-    resolution: {integrity: sha512-jIsYnXY+RQ/YCyBqeEHxYN9mh+7PqKJUJUp84wLfZ7T2kqyVPNaXwZuvf1A2uQUkrvVqEbsG94ff8jH32AlLvA==}
-
   '@types/hast@2.3.10':
     resolution: {integrity: sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
-
-  '@types/kdbush@1.0.7':
-    resolution: {integrity: sha512-QM5iB8m/0mnGOjUKshErIZQ0LseyTieRSYc3yaOpmrRM0xbWiOuJUWlduJx+TPNK7/VFMWphUGwx3nus7eT1Wg==}
 
   '@types/kdbush@3.0.5':
     resolution: {integrity: sha512-tdJz7jaWFu4nR+8b2B+CdPZ6811ighYylWsu2hpsivapzW058yP0KdfZuNY89IiRe5jbKvBGXN3LQdN2KPXVdQ==}
@@ -8376,11 +8418,13 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  d3-array@1.2.4:
-    resolution: {integrity: sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==}
+  d3-array@3.2.4:
+    resolution: {integrity: sha512-tdQAmyA18i4J7wprpYq8ClcxZy3SC31QMeByyCFyRt7BVHdREQZ5lpzoe5mFEYZUWe+oq8HBvk9JjpibyEV4Jg==}
+    engines: {node: '>=12'}
 
-  d3-geo@1.7.1:
-    resolution: {integrity: sha512-O4AempWAr+P5qbk2bC2FuN/sDW4z+dN2wDf9QV3bxQt4M5HfOEeXLgJ/UKQW0+o1Dj8BE+L5kiDbdWUMjsmQpw==}
+  d3-geo@3.1.1:
+    resolution: {integrity: sha512-637ln3gXKXOwhalDzinUgY83KzNWZRKbYubaG+fGVuc/dxO64RRljtCTnf5ecMyE1RIdtqpkVcq0IbtU2S8j2Q==}
+    engines: {node: '>=12'}
 
   d3-queue@3.0.7:
     resolution: {integrity: sha512-2rs+6pNFKkrJhqe1rg5znw7dKJ7KZr62j9aLZfhondkrnz6U7VRmJj1UGcbD8MRc46c7H8m4SWhab8EalBQrkw==}
@@ -8978,9 +9022,6 @@ packages:
   geojson-polygon-self-intersections@1.2.1:
     resolution: {integrity: sha512-/QM1b5u2d172qQVO//9CGRa49jEmclKEsYOQmWP9ooEjj63tBM51m2805xsbxkzlEELQ2REgTf700gUhhlegxA==}
 
-  geokdbush@2.0.1:
-    resolution: {integrity: sha512-0M8so1Qx6+jJ1xpirpCNrgUsWAzIcQ3LrLmh0KJPBYI3gH7vy70nY5zEEjSp9Tn0nBt6Q2Fh922oL08lfib4Zg==}
-
   get-amd-module-type@6.0.1:
     resolution: {integrity: sha512-MtjsmYiCXcYDDrGqtNbeIYdAl85n+5mSv2r3FbzER/YV3ZILw4HNNIw34HuV5pyl0jzs6GFYU1VHVEefhgcNHQ==}
     engines: {node: '>=18'}
@@ -9346,6 +9387,10 @@ packages:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
     engines: {node: '>= 0.4'}
 
+  internmap@2.0.3:
+    resolution: {integrity: sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==}
+    engines: {node: '>=12'}
+
   ip@2.0.1:
     resolution: {integrity: sha512-lJUL9imLTNi1ZfXT+DU6rBBdbiKGBuay9B6xGSPVjUeQwaH1RIGqef8RZkUtHioLmSNpPR5M4HVKJGm1j8FWVQ==}
 
@@ -9688,9 +9733,6 @@ packages:
 
   just-diff@6.0.2:
     resolution: {integrity: sha512-S59eriX5u3/QhMNq3v/gm8Kd0w8OS6Tz2FS1NG4blv+z0MuQcBRJyFWjdovM0Rad4/P4aUPFtnkNjMjyMlMSYA==}
-
-  kdbush@4.0.2:
-    resolution: {integrity: sha512-WbCVYJ27Sz8zi9Q7Q0xHC+05iwkm3Znipc2XTlrnJbsHMYktW4hPhXUE8Ys1engBrvffoSCqbil1JQAa7clRpA==}
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -13460,6 +13502,10 @@ snapshots:
 
   '@types/concaveman@1.1.6': {}
 
+  '@types/d3-geo@3.1.0':
+    dependencies:
+      '@types/geojson': 7946.0.14
+
   '@types/d3-voronoi@1.1.12': {}
 
   '@types/debug@4.1.12':
@@ -13474,17 +13520,11 @@ snapshots:
 
   '@types/geojson@7946.0.14': {}
 
-  '@types/geokdbush@1.1.5':
-    dependencies:
-      '@types/kdbush': 1.0.7
-
   '@types/hast@2.3.10':
     dependencies:
       '@types/unist': 2.0.10
 
   '@types/json-schema@7.0.15': {}
-
-  '@types/kdbush@1.0.7': {}
 
   '@types/kdbush@3.0.5': {}
 
@@ -14234,11 +14274,13 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  d3-array@1.2.4: {}
-
-  d3-geo@1.7.1:
+  d3-array@3.2.4:
     dependencies:
-      d3-array: 1.2.4
+      internmap: 2.0.3
+
+  d3-geo@3.1.1:
+    dependencies:
+      d3-array: 3.2.4
 
   d3-queue@3.0.7: {}
 
@@ -14979,10 +15021,6 @@ snapshots:
     dependencies:
       rbush: 2.0.2
 
-  geokdbush@2.0.1:
-    dependencies:
-      tinyqueue: 2.0.3
-
   get-amd-module-type@6.0.1:
     dependencies:
       ast-module-types: 6.0.1
@@ -15400,6 +15438,8 @@ snapshots:
       hasown: 2.0.2
       side-channel: 1.0.6
 
+  internmap@2.0.3: {}
+
   ip@2.0.1: {}
 
   is-absolute@1.0.0:
@@ -15676,8 +15716,6 @@ snapshots:
   just-diff-apply@5.5.0: {}
 
   just-diff@6.0.2: {}
-
-  kdbush@4.0.2: {}
 
   keyv@4.5.4:
     dependencies:

@@ -1,6 +1,6 @@
 {
   "name": "@turf/center",
-  "version": "7.3.4",
+  "version": "7.3.5",
   "description": "Finds the central point of a GeoJSON feature, like a city or a park. Ideal for placing labels or markers.",
   "author": "Turf Authors",
   "license": "MIT",
@@ -55,13 +55,13 @@
   "devDependencies": {
     "@turf/bbox-polygon": "workspace:*",
     "@turf/meta": "workspace:*",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.3"
+    "tsup": "catalog:",
+    "typescript": "catalog:"
   },
   "dependencies": {
     "@turf/bbox": "workspace:*",
     "@turf/helpers": "workspace:*",
-    "@types/geojson": "^7946.0.10",
-    "tslib": "^2.8.1"
+    "@types/geojson": "catalog:",
+    "tslib": "catalog:"
   }
 }

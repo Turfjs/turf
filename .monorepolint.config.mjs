@@ -12,14 +12,13 @@ import {
   REMOVE,
 } from "@monorepolint/rules";
 
-const TS_PACKAGES = []; // projects that use typescript to build
-const JS_PACKAGES = []; // projects that use javascript/rollup to build
+const PACKAGES = []; // packages that aren't @turf/turf
 const MAIN_PACKAGE = "@turf/turf";
 
-const TAPE_PACKAGES = []; // projects that have tape tests
+const TAPE_PACKAGES = []; // packages that have tape tests
 const NODE_TEST_PACKAGES = []; // projects that use node's native test runner
-const TYPES_PACKAGES = []; // projects that have types tests
-const TSTYCHE_PACKAGES = []; // projects that use tstyche for type tests
+const TYPES_PACKAGES = []; // packages that have types tests
+const TSTYCHE_PACKAGES = []; // packages that use tstyche for type tests.
 
 // iterate all the packages and figure out what buckets everything falls into
 const packagesPath = path.join(process.cwd(), "packages");
@@ -32,11 +31,7 @@ for (const pk of await fs.readdir(packagesPath)) {
     await fs.readFile(path.join(packagesPath, pk, "package.json"), "utf8")
   ).name;
 
-  if (existsSync(path.join(packagesPath, pk, "index.ts"))) {
-    TS_PACKAGES.push(name);
-  } else {
-    JS_PACKAGES.push(name);
-  }
+  PACKAGES.push(name);
 
   if (existsSync(path.join(packagesPath, pk, "test.ts"))) {
     const testFileContents = await fs.readFile(
@@ -158,7 +153,7 @@ export default {
           },
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     packageEntry({
@@ -167,7 +162,7 @@ export default {
           files: ["dist"],
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     packageEntry({
@@ -194,7 +189,7 @@ export default {
           build: "tsup --config ../../tsup.config.ts",
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     packageScript({
@@ -251,22 +246,22 @@ export default {
     requireDependency({
       options: {
         devDependencies: {
-          benchmark: "^2.1.4",
+          benchmark: "catalog:",
           glob: REMOVE,
-          tape: "^5.9.0",
-          tsup: "^8.4.0",
-          tsx: "^4.19.4",
+          tape: "catalog:",
+          tsup: "catalog:",
+          tsx: "catalog:",
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
       excludePackages: NODE_TEST_PACKAGES,
     }),
 
     requireDependency({
       options: {
         devDependencies: {
-          tape: "^5.9.0",
-          "@types/tape": "^5.8.1",
+          tape: "catalog:",
+          "@types/tape": "catalog:",
         },
       },
       includePackages: TAPE_PACKAGES,
@@ -290,30 +285,18 @@ export default {
     requireDependency({
       options: {
         devDependencies: {
-          "@types/benchmark": "^2.1.5",
-          benchmark: "^2.1.4",
+          "@types/benchmark": "catalog:",
+          benchmark: "catalog:",
         },
       },
-      includePackages: TS_PACKAGES,
+      includePackages: PACKAGES,
       excludePackages: NODE_TEST_PACKAGES,
     }),
 
     requireDependency({
       options: {
-        dependencies: {
-          tslib: "^2.8.1",
-        },
         devDependencies: {
-          typescript: "^5.8.3",
-        },
-      },
-      includePackages: TS_PACKAGES,
-    }),
-
-    requireDependency({
-      options: {
-        devDependencies: {
-          tstyche: "^6.2.0",
+          tstyche: "catalog:",
         },
       },
       includePackages: TSTYCHE_PACKAGES,
@@ -322,10 +305,10 @@ export default {
     requireDependency({
       options: {
         dependencies: {
-          "@types/geojson": "^7946.0.10",
+          "@types/geojson": "catalog:",
         },
       },
-      includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: [MAIN_PACKAGE, ...PACKAGES],
     }),
   ],
 };
