@@ -1,7 +1,7 @@
-import { Feature, LineString, GeoJsonProperties } from "geojson";
+import type { Feature, LineString, GeoJsonProperties } from "geojson";
 import { lineString } from "@turf/helpers";
 import { getGeom } from "@turf/invariant";
-import { Spline } from "./lib/spline.js";
+import { Spline } from "./lib/spline.ts";
 
 /**
  * Takes a {@link LineString|line} and returns a curved version
