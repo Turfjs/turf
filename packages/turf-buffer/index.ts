@@ -2,16 +2,16 @@ import { center } from "@turf/center";
 // @ts-expect-error We're hopefully dropping @turf/jsts entirely soon, so lets just go without types for now
 import jsts from "@turf/jsts";
 import { geomEach, featureEach } from "@turf/meta";
-import { geoAzimuthalEquidistant, GeoProjection } from "d3-geo";
+import { geoAzimuthalEquidistant, type GeoProjection } from "d3-geo";
 import {
   feature,
   featureCollection,
   radiansToLength,
   lengthToRadians,
   earthRadius,
-  Units,
+  type Units,
 } from "@turf/helpers";
-import {
+import type {
   Feature,
   FeatureCollection,
   GeometryCollection,

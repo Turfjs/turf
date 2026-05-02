@@ -49,7 +49,7 @@
     "bench": "node bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
     "test": "pnpm run /test:.*/",
-    "test:node": "node --test",
+    "test:node": "node --test test.ts",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {

@@ -1,38 +1,16 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { loadJsonFileSync } from "load-json-file";
-import Benchmark from "benchmark";
 import { bbox } from "@turf/bbox";
-import { bboxClip } from "./index.js";
+import { bboxClip } from "./index.ts";
+import { benchFixtures } from "../../support/benchFixtures.mts";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const directory = path.join(__dirname, "test", "in") + path.sep;
-const fixtures = fs.readdirSync(directory).map((filename) => {
-  return {
-    filename,
-    name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directory + filename),
-  };
-});
-
-/**
- * Benchmark Results
- *
- * linestring-single-line x 1,065,073 ops/sec ±1.11% (90 runs sampled)
- * linestring x 56,599 ops/sec ±1.17% (90 runs sampled)
- * multi-linestring x 859,048 ops/sec ±1.01% (91 runs sampled)
- * multi-polygon x 26,991 ops/sec ±0.87% (94 runs sampled)
- * polygon-crossing-hole x 25,277 ops/sec ±0.72% (92 runs sampled)
- * polygon-holes x 27,233 ops/sec ±0.89% (91 runs sampled)
- * polygon x 21,339 ops/sec ±1.19% (89 runs sampled)
- */
-const suite = new Benchmark.Suite("turf-bbox-clip");
-for (const { name, geojson } of fixtures) {
-  suite.add(name, () =>
-    bboxClip(geojson.features[0], bbox(geojson.features[1]))
-  );
-}
-
-suite.on("cycle", (e) => console.log(String(e.target))).run();
+// Benchmark Results
+// linestring-single-line.geojson x 15,871,930 ops/sec ±0.24% (98 runs sampled)
+// linestring.geojson x 264,962 ops/sec ±1.14% (96 runs sampled)
+// multi-linestring.geojson x 7,892,547 ops/sec ±0.35% (95 runs sampled)
+// multi-polygon.geojson x 138,989 ops/sec ±0.31% (98 runs sampled)
+// polygon-crossing-hole.geojson x 151,793 ops/sec ±0.35% (95 runs sampled)
+// polygon-holes.geojson x 142,335 ops/sec ±0.30% (96 runs sampled)
+// polygon-point-intersection.geojson x 8,580,181 ops/sec ±0.73% (94 runs sampled)
+// polygon.geojson x 117,120 ops/sec ±0.18% (99 runs sampled)
+await benchFixtures("turf-bbox-clip", (input) =>
+  bboxClip(input.features[0], bbox(input.features[1]))
+);

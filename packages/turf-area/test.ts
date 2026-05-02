@@ -1,40 +1,17 @@
-import fs from "fs";
-import test from "tape";
-import path from "path";
-import { fileURLToPath } from "url";
-import { loadJsonFileSync } from "load-json-file";
-import { writeJsonFileSync } from "write-json-file";
+import test from "node:test";
 import { area } from "./index.js";
 import { polygon } from "@turf/helpers";
 import { Polygon } from "geojson";
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import { testFixtures } from "../../support/testFixtures.mts";
+import assert from "assert";
 
-const directories = {
-  in: path.join(__dirname, "test", "in") + path.sep,
-  out: path.join(__dirname, "test", "out") + path.sep,
-};
-
-const fixtures = fs.readdirSync(directories.in).map((filename) => {
-  return {
-    filename,
-    name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directories.in + filename),
-  };
+await test("area fixtures", async (t) => {
+  await testFixtures(t, (geojson) => {
+    return Math.round(area(geojson));
+  });
 });
 
-test("turf-area", (t) => {
-  for (const fixture of fixtures) {
-    const name = fixture.name;
-    const geojson = fixture.geojson;
-    const results = Math.round(area(geojson));
-    if (process.env.REGEN)
-      writeJsonFileSync(directories.out + name + ".json", results);
-    t.equal(results, loadJsonFileSync(directories.out + name + ".json"), name);
-  }
-  t.end();
-});
-
-test("turf-area-length-check", (t) => {
+test("turf-area -- length-check", () => {
   const invalidPoly: Polygon = {
     type: "Polygon",
     coordinates: [
@@ -46,12 +23,10 @@ test("turf-area-length-check", (t) => {
     ],
   };
   const result = area(invalidPoly);
-  t.equal(result, 0);
-
-  t.end();
+  assert.strictEqual(result, 0);
 });
 
-test("turf-area-rotation-consistency", (t) => {
+test("turf-area rotation-consistency", () => {
   const rotatingPoly = polygon([
     [
       [28.321755510202507, 16.35627490376781],
@@ -84,7 +59,6 @@ test("turf-area-rotation-consistency", (t) => {
       rotatingPoly.geometry.coordinates[0][i];
 
     const curResult = area(changingPoly);
-    t.equal(result, curResult);
+    assert.strictEqual(result, curResult);
   }
-  t.end();
 });
