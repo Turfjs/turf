@@ -1,2 +1,14 @@
 packages:
   - "packages/*"
+
+catalog:
+  "@types/benchmark": ^2.1.5
+  "@types/geojson": ^7946.0.10
+  "@types/tape": ^5.8.1
+  benchmark: ^2.1.4
+  tape: ^5.9.0
+  tslib: ^2.8.1
+  tstyche: ^6.2.0
+  tsup: ^8.4.0
+  tsx: ^4.19.4
+  typescript: ^5.8.3
