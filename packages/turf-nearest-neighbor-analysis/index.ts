@@ -163,7 +163,7 @@ function nearestNeighborAnalysis(
 
 export {
   nearestNeighborAnalysis,
-  NearestNeighborStatistics,
-  NearestNeighborStudyArea,
+  type NearestNeighborStatistics,
+  type NearestNeighborStudyArea,
 };
 export default nearestNeighborAnalysis;

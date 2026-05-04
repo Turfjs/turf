@@ -1,4 +1,8 @@
 {
+  "analytics": false,
+  "tui": {
+    "enabled": false
+  },
   "namedInputs": {
     "default": [
       "{workspaceRoot}/pnpm-lock.yaml",
@@ -6,21 +10,9 @@
       "{projectRoot}/package.json",
       "{projectRoot}/tsconfig.json"
     ],
-    "sources": ["{projectRoot}/index.{js,ts}", "{projectRoot}/lib/**"]
+    "sources": ["{projectRoot}/index.ts", "{projectRoot}/lib/**"]
   },
   "targetDefaults": {
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": [
-        "default",
-        "sources",
-        "{workspaceRoot}/tsup.config.ts",
-        "{projectRoot}/index.d.ts",
-        "{projectRoot}/rollup.config.cjs"
-      ],
-      "outputs": ["{projectRoot}/dist"],
-      "cache": true
-    },
     "test": {
       "inputs": [
         "default",
@@ -29,12 +21,7 @@
         "{projectRoot}/test/**",
         "{projectRoot}/types.ts"
       ],
-      "dependsOn": ["build"],
-      "cache": true
-    },
-    "last-checks": {
-      "inputs": ["default", "{projectRoot}/test.ts"],
-      "dependsOn": ["build", "^last-checks"],
+      "dependsOn": [],
       "cache": true
     }
   }

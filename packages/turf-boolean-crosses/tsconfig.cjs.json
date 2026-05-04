@@ -1,0 +1,32 @@
+{
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "${configDir}/dist/cjs"
+  },
+  "references": [
+    {
+      "path": "../turf-boolean-equal"
+    },
+    {
+      "path": "../turf-boolean-point-in-polygon"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-invariant"
+    },
+    {
+      "path": "../turf-line-intersect"
+    },
+    {
+      "path": "../turf-polygon-to-line"
+    }
+  ]
+}

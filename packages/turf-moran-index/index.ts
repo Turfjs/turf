@@ -160,5 +160,5 @@ function variance(y: number[]): number {
   return sum / y.length;
 }
 
-export { moranIndex, MoranIndex };
+export { moranIndex, type MoranIndex };
 export default moranIndex;

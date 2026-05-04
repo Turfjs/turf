@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "${configDir}/dist/cjs"
+  },
+  "references": [
+    {
+      "path": "../turf-clean-coords"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-invariant"
+    }
+  ]
+}

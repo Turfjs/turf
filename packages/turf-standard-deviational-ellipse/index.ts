@@ -186,5 +186,9 @@ function getDeviations(coordinates: Position, center: Position) {
   };
 }
 
-export { standardDeviationalEllipse, SDEProps, StandardDeviationalEllipse };
+export {
+  standardDeviationalEllipse,
+  type SDEProps,
+  type StandardDeviationalEllipse,
+};
 export default standardDeviationalEllipse;

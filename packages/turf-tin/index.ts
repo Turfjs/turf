@@ -299,5 +299,5 @@ function triangulate(vertices: Vertice[]) {
   return closed;
 }
 
-export { Pt, Vertice, tin };
+export { type Pt, type Vertice, tin };
 export default tin;

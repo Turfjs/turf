@@ -224,5 +224,5 @@ function factorial(num: number) {
   return inner(num);
 }
 
-export { QuadratAnalysisResult, quadratAnalysis };
+export { type QuadratAnalysisResult, quadratAnalysis };
 export default quadratAnalysis;

@@ -291,5 +291,5 @@ function getMeanLineString(
   }
 }
 
-export { directionalMean, DirectionalMeanLine };
+export { directionalMean, type DirectionalMeanLine };
 export default directionalMean;

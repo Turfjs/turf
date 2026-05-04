@@ -30,7 +30,7 @@
     "boolean-equal"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
+  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "exports": {
@@ -41,8 +41,8 @@
         "default": "./dist/esm/index.js"
       },
       "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
       }
     }
   },
@@ -52,7 +52,8 @@
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsc -b",
+    "prepack": "tsc -b tsconfig.cjs.json",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
@@ -63,7 +64,6 @@
     "boolean-shapely": "*",
     "load-json-file": "^7.0.1",
     "tape": "catalog:",
-    "tsup": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:"
   },

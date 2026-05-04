@@ -70,5 +70,5 @@ function nearestPoint<P extends GeoJsonProperties = GeoJsonProperties>(
   };
 }
 
-export { nearestPoint, NearestPoint };
+export { nearestPoint, type NearestPoint };
 export default nearestPoint;

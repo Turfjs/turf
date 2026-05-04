@@ -76,5 +76,5 @@ function clustersKmeans(
   return points as FeatureCollection<Point, KmeansProps>;
 }
 
-export { clustersKmeans, KmeansProps };
+export { clustersKmeans, type KmeansProps };
 export default clustersKmeans;

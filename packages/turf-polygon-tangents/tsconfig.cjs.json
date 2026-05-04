@@ -1,0 +1,32 @@
+{
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "${configDir}/dist/cjs"
+  },
+  "references": [
+    {
+      "path": "../turf-bbox"
+    },
+    {
+      "path": "../turf-boolean-within"
+    },
+    {
+      "path": "../turf-explode"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-invariant"
+    },
+    {
+      "path": "../turf-nearest-point"
+    }
+  ]
+}

@@ -1,13 +1,26 @@
 {
+  "include": [
+    "${configDir}/index.ts",
+    "${configDir}/lib/**/*.ts",
+    "${configDir}/lib/**/*.js",
+  ],
   "compilerOptions": {
-    "target": "es2017",
-    "module": "node16",
-    "declaration": true,
-    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "moduleResolution": "node16",
-    "importHelpers": true,
+    "erasableSyntaxOnly": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "erasableSyntaxOnly": true
-  }
+    "forceConsistentCasingInFileNames": true,
+    "module": "node16",
+    "moduleResolution": "node16",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "target": "es2017",
+    "composite": true,
+    "outDir": "${configDir}/dist/esm",
+    "rootDir": "${configDir}",
+  },
 }

@@ -1,7 +1,9 @@
-// Get around problems with moduleResolution node16 and some older libraries.
-// Manifests as "This expression is not callable ... has no call signatures"
-// https://stackoverflow.com/a/74709714
+import * as lib from "sweepline-intersections";
 
-import lib from "sweepline-intersections";
+// In CJS builds, the default export is on .default
+// In ESM builds, it's the module itself
+const sweeplineIntersections =
+  typeof lib === "function" ? lib : (lib as any).default || lib;
 
-export const sweeplineIntersections = lib as unknown as typeof lib.default;
+export { sweeplineIntersections };
+export type { Intersection } from "sweepline-intersections";

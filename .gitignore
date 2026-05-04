@@ -35,4 +35,5 @@ node_modules
 
 .nx/
 .cursor/rules/nx-rules.mdc
+.eslintcache
 .github/instructions/nx.instructions.md

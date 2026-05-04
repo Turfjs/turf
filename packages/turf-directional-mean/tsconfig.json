@@ -1,3 +1,30 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-bearing"
+    },
+    {
+      "path": "../turf-centroid"
+    },
+    {
+      "path": "../turf-destination"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-invariant"
+    },
+    {
+      "path": "../turf-length"
+    },
+    {
+      "path": "../turf-meta"
+    }
+  ]
 }

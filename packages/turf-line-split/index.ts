@@ -260,5 +260,5 @@ function pointsEquals(pt1: number[], pt2: number[]) {
   return pt1[0] === pt2[0] && pt1[1] === pt2[1];
 }
 
-export { Splitter, lineSplit };
+export { type Splitter, lineSplit };
 export default lineSplit;

@@ -17,14 +17,11 @@ for (const name of fs.readdirSync(directory)) {
   const pckgPath = path.join(directory, name, "package.json");
 
   if (!fs.existsSync(pckgPath)) continue;
-  const pckg = JSON.parse(fs.readFileSync(pckgPath));
+  const pckg = JSON.parse(fs.readFileSync(pckgPath).toString());
 
-  let mainFile = path.join(directory, name, pckg.main);
-  if (!fs.existsSync(mainFile)) {
-    mainFile += ".js";
-  }
-
+  let mainFile = path.join(directory, name, pckg.module);
   const index = fs.readFileSync(mainFile, "utf8");
+
   // Cater for JS or TS test files.
   const test = fs.existsSync(path.join(directory, name, "test.ts"))
     ? fs.readFileSync(path.join(directory, name, "test.ts"), "utf8")
@@ -221,8 +218,8 @@ test("turf -- parsing dependencies from index.js", (t) => {
 // Test for missing modules
 test("turf -- missing modules", (t) => {
   const files = {
-    typescript: fs.readFileSync(path.join(__dirname, "dist/cjs/index.d.cts")),
-    modules: fs.readFileSync(path.join(__dirname, "dist/cjs/index.cjs")),
+    typescript: fs.readFileSync(path.join(__dirname, "dist/esm/index.d.ts")),
+    modules: fs.readFileSync(path.join(__dirname, "dist/esm/index.js")),
   };
 
   modules.forEach(({ name }) => {

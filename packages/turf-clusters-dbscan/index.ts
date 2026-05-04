@@ -201,5 +201,5 @@ function clustersDbscan(
   return points as FeatureCollection<Point, DbscanProps>;
 }
 
-export { Dbscan, DbscanProps, clustersDbscan };
+export { type Dbscan, type DbscanProps, clustersDbscan };
 export default clustersDbscan;

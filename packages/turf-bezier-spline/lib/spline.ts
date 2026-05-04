@@ -195,5 +195,5 @@ function B(t: number) {
   ];
 }
 
-export { Spline, Point };
+export { Spline, type Point };
 export default Spline;

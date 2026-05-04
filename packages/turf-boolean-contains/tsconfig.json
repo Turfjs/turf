@@ -1,3 +1,27 @@
 {
-  "extends": "../../tsconfig.shared.json"
+  "extends": "../../tsconfig.shared.json",
+  "include": [
+    "index.ts",
+    "lib/**/*.ts"
+  ],
+  "references": [
+    {
+      "path": "../turf-bbox"
+    },
+    {
+      "path": "../turf-boolean-point-in-polygon"
+    },
+    {
+      "path": "../turf-boolean-point-on-line"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-invariant"
+    },
+    {
+      "path": "../turf-line-split"
+    }
+  ]
 }
