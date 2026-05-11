@@ -44,20 +44,11 @@
     "sample"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "browser": "turf.min.js",
@@ -67,7 +58,7 @@
     "turf.min.js"
   ],
   "scripts": {
-    "build": "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
+    "build": "tsc && rollup -c rollup.config.js",
     "last-checks": "pnpm run last-checks:testjs && pnpm run last-checks:example",
     "last-checks:example": "tsx test.example.js",
     "last-checks:testjs": "tsx test.ts",
@@ -87,7 +78,6 @@
     "rollup": "^4.40.1",
     "rollup-plugin-polyfill-node": "^0.13.0",
     "tape": "^5.9.0",
-    "tsup": "^8.4.0",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   },
@@ -207,7 +197,6 @@
     "@turf/unkink-polygon": "workspace:*",
     "@turf/voronoi": "workspace:*",
     "@types/geojson": "catalog:",
-    "@types/kdbush": "^3.0.5",
-    "tslib": "^2.8.1"
+    "@types/kdbush": "^3.0.5"
   }
 }

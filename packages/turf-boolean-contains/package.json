@@ -28,20 +28,11 @@
     "de-9im"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "sideEffects": false,
@@ -50,7 +41,7 @@
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsc",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
@@ -62,7 +53,6 @@
     "boolean-shapely": "*",
     "load-json-file": "^7.0.1",
     "tape": "catalog:",
-    "tsup": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:"
   },
@@ -73,7 +63,6 @@
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
     "@turf/line-split": "workspace:*",
-    "@types/geojson": "catalog:",
-    "tslib": "catalog:"
+    "@types/geojson": "catalog:"
   }
 }

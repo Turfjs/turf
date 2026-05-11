@@ -25,20 +25,11 @@
     "turf"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "sideEffects": false,
@@ -47,7 +38,7 @@
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsc",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
@@ -60,7 +51,6 @@
     "benchmark": "catalog:",
     "load-json-file": "^7.0.1",
     "tape": "catalog:",
-    "tsup": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "write-json-file": "^6.0.0"
@@ -68,7 +58,6 @@
   "dependencies": {
     "@turf/bbox": "workspace:*",
     "@turf/helpers": "workspace:*",
-    "@types/geojson": "catalog:",
-    "tslib": "catalog:"
+    "@types/geojson": "catalog:"
   }
 }
