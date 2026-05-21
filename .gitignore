@@ -1,38 +1,16 @@
-.rpt2_cache
+# our build directories
 packages/*/dist
-main.js
-main.es.js
-main.mjs
-main.min.js
-index.mjs
-*.min.js
-*.es5.js
-.esm-cache
-package-lock.json
-env
-.nyc_output
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-.idea/*
-types.js
-.DS_Store
-types.d.ts
 
-pids
-logs
-results
-
-npm-debug.log*
-
+# pnpm-specific
 node_modules
+pnpm-debug.log*
 
+# build caches
+.nx
+
+# editor-specific
 .vscode
+.idea
 
-.nx/
-.cursor/rules/nx-rules.mdc
-.github/instructions/nx.instructions.md
+# os-specific
+.DS_Store
