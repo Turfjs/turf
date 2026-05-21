@@ -6283,6 +6283,58 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
 
+  test/node-cjs:
+    dependencies:
+      '@turf/turf':
+        specifier: workspace:*
+        version: link:../../packages/turf
+
+  test/node-esm:
+    dependencies:
+      '@turf/turf':
+        specifier: workspace:*
+        version: link:../../packages/turf
+
+  test/ts-bundler-cjs:
+    dependencies:
+      '@turf/turf':
+        specifier: workspace:*
+        version: link:../../packages/turf
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
+  test/ts-bundler-esm:
+    dependencies:
+      '@turf/turf':
+        specifier: workspace:*
+        version: link:../../packages/turf
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
+  test/ts-node-cjs:
+    dependencies:
+      '@turf/turf':
+        specifier: workspace:*
+        version: link:../../packages/turf
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
+  test/ts-node-esm:
+    dependencies:
+      '@turf/turf':
+        specifier: workspace:*
+        version: link:../../packages/turf
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
 packages:
 
   '@ampproject/remapping@2.3.0':
