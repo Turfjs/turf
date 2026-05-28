@@ -110,20 +110,14 @@ function doLineStringsCross(lineString1: LineString, lineString2: LineString) {
   // end point of either input lineString, that's considered a crossing.
   for (const intersectPoint of doLinesIntersect.features) {
     if (
+      !booleanEqual(intersectPoint, point(lineString1.coordinates[0])) &&
       !booleanEqual(
-        intersectPoint.geometry,
-        point(lineString1.coordinates[0])
-      ) &&
-      !booleanEqual(
-        intersectPoint.geometry,
+        intersectPoint,
         point(lineString1.coordinates[lineString1.coordinates.length - 1])
       ) &&
+      !booleanEqual(intersectPoint, point(lineString2.coordinates[0])) &&
       !booleanEqual(
-        intersectPoint.geometry,
-        point(lineString2.coordinates[0])
-      ) &&
-      !booleanEqual(
-        intersectPoint.geometry,
+        intersectPoint,
         point(lineString2.coordinates[lineString2.coordinates.length - 1])
       )
     ) {
