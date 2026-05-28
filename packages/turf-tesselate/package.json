@@ -69,6 +69,7 @@
   },
   "dependencies": {
     "@turf/helpers": "workspace:*",
+    "@types/earcut": "^2.1.4",
     "@types/geojson": "catalog:",
     "earcut": "^2.2.4",
     "tslib": "catalog:"

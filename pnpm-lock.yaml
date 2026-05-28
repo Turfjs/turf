@@ -5771,6 +5771,9 @@ importers:
       '@turf/helpers':
         specifier: workspace:*
         version: link:../turf-helpers
+      '@types/earcut':
+        specifier: ^2.1.4
+        version: 2.1.4
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
@@ -7798,6 +7801,9 @@ packages:
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+
+  '@types/earcut@2.1.4':
+    resolution: {integrity: sha512-qp3m9PPz4gULB9MhjGID7wpo3gJ4bTGXm7ltNDsmOvsPduTeHp8wSW9YckBj3mljeOh4F0m2z/0JKAALRKbmLQ==}
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
@@ -13575,6 +13581,8 @@ snapshots:
   '@types/debug@4.1.12':
     dependencies:
       '@types/ms': 0.7.34
+
+  '@types/earcut@2.1.4': {}
 
   '@types/estree@1.0.6': {}
 
