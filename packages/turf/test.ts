@@ -1,6 +1,6 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { glob } from "glob";
 import test from "tape";
 import camelCase from "camelcase";
@@ -19,10 +19,7 @@ for (const name of fs.readdirSync(directory)) {
   if (!fs.existsSync(pckgPath)) continue;
   const pckg = JSON.parse(fs.readFileSync(pckgPath));
 
-  let mainFile = path.join(directory, name, pckg.main);
-  if (!fs.existsSync(mainFile)) {
-    mainFile += ".js";
-  }
+  let mainFile = path.join(directory, name, pckg["exports"]["."].default);
 
   const index = fs.readFileSync(mainFile, "utf8");
   // Cater for JS or TS test files.
@@ -221,8 +218,8 @@ test("turf -- parsing dependencies from index.js", (t) => {
 // Test for missing modules
 test("turf -- missing modules", (t) => {
   const files = {
-    typescript: fs.readFileSync(path.join(__dirname, "dist/cjs/index.d.cts")),
-    modules: fs.readFileSync(path.join(__dirname, "dist/cjs/index.cjs")),
+    typescript: fs.readFileSync(path.join(__dirname, "dist/index.d.ts")),
+    modules: fs.readFileSync(path.join(__dirname, "dist/index.js")),
   };
 
   modules.forEach(({ name }) => {
@@ -331,7 +328,7 @@ const turfTypescriptPath = path.join(__dirname, "..", "turf-*", "index.d.ts");
 
 // Test Strings
 const requireString = `import test from 'tape';
-import * as turf from './dist/esm/index.js';
+import * as turf from './dist/index.js';
 `;
 
 /**
