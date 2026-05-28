@@ -8,8 +8,7 @@ import {
   Point,
   Polygon,
 } from "geojson";
-import type { Intersection } from "sweepline-intersections";
-import { sweeplineIntersections as findIntersections } from "./lib/sweepline-intersections-export.js";
+import findIntersections, { type Intersection } from "sweepline-intersections";
 
 /**
  * Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).

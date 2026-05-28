@@ -69,7 +69,7 @@
   "dependencies": {
     "@turf/helpers": "workspace:*",
     "@types/geojson": "catalog:",
-    "sweepline-intersections": "^1.5.0",
+    "sweepline-intersections": "^2.0.1",
     "tslib": "catalog:"
   }
 }
