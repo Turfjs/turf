@@ -4,6 +4,7 @@ import { nearestPointOnLine } from "@turf/nearest-point-on-line";
 import { booleanPointOnLine } from "@turf/boolean-point-on-line";
 import { getCoords } from "@turf/invariant";
 import { featureEach, segmentEach } from "@turf/meta";
+import { bbox } from "@turf/bbox";
 import {
   FeatureCollection,
   Feature,
@@ -69,6 +70,11 @@ function lineOverlap<
       return;
     }
 
+    // Expand segment bounding box by the tolerance to create overlap in horizontal/vertical segments
+    var bb = bbox(segment);
+    bb = [bb[0]-tolerance, bb[1]-tolerance, bb[2]+tolerance, bb[3]+tolerance];
+    segment.bbox = bb;
+    
     // Iterate over each segments which falls within the same bounds
     featureEach(tree.search(segment), function (match) {
       if (doesOverlaps === false) {
