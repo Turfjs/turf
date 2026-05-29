@@ -1,0 +1,48 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#00F",
+        "fill": "#00F",
+        "stroke-width": 3,
+        "stroke-opacity": 1,
+        "fill-opacity": 0.1,
+        "description": "polygon with segments parallel to the horizontal and vertical sides of the triangle, offset within overlap tolerance."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-74.22891563805884, 25.344703228173987],
+          [-75.09510282010693, 25.344703228173987]
+        ]
+      },
+      "bbox": [
+        -75.59510282010693, 24.844703228173987, -73.72891563805884, 25.844703228173987
+      ]
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#F00",
+        "fill": "#F00",
+        "stroke-width": 10,
+        "stroke-opacity": 1,
+        "fill-opacity": 0.1,
+        "description": "triangle with one horizontal and one vertical side"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-74.06346334926921, 25.347140710069592],
+          [-74.06346334926921, 26.453856979730748]
+        ]
+      },
+      "bbox": [
+        -74.06346334926921, 25.347140710069592, -74.06346334926921, 26.453856979730748
+      ],
+      "id": 1
+    }
+  ]
+}
