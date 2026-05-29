@@ -15,7 +15,7 @@
         "description": "triangle with one horizontal and one vertical side"
       },
       "geometry": {
-        "type": "LineString",
+        "type": "Polygon",
         "coordinates": [
           [
             [-75.17098005568795, 25.347140710069592],
