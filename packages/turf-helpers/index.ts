@@ -35,7 +35,6 @@ export type Coord = Feature<Point> | Point | Position;
  * See https://www.thoughtco.com/degree-of-latitude-and-longitude-distance-4070616
  * for an illustration of this behaviour.
  *
- * Added shortform of Units.
  * @typedef
  */
 export type Units =
