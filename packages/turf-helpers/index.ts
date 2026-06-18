@@ -132,7 +132,7 @@ export const factors: Record<Units, number> = {
   feet: earthRadius * 3.28084,
   ft: earthRadius * 3.28084,
   inches: earthRadius * 39.37,
-  in: earthRadius * 39.37,  
+  in: earthRadius * 39.37,
   kilometers: earthRadius / 1000,
   kilometres: earthRadius / 1000,
   km: earthRadius / 1000,
