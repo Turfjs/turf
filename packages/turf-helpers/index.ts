@@ -40,19 +40,30 @@ export type Coord = Feature<Point> | Point | Position;
 export type Units =
   | "meters"
   | "metres"
+  | "m"
   | "millimeters"
   | "millimetres"
+  | "mm"
   | "centimeters"
   | "centimetres"
+  | "cm"
   | "kilometers"
   | "kilometres"
+  | "km"
   | "miles"
+  | "mi"
   | "nauticalmiles"
+  | "nmi"
   | "inches"
+  | "in"
   | "yards"
+  | "yd"
   | "feet"
+  | "ft"
   | "radians"
-  | "degrees";
+  | "rad"
+  | "degrees"
+  | "deg";
 
 /**
  * Area measurement units.
@@ -60,9 +71,11 @@ export type Units =
  * @typedef
  */
 export type AreaUnits =
-  | Exclude<Units, "radians" | "degrees">
+  | Exclude<Units, "radians" | "rad" | "degrees" | "deg">
   | "acres"
-  | "hectares";
+  | "ac"
+  | "hectares"
+  | "ha";
 
 /**
  * Grid types.
@@ -113,19 +126,30 @@ export const earthRadius = 6371008.8;
 export const factors: Record<Units, number> = {
   centimeters: earthRadius * 100,
   centimetres: earthRadius * 100,
+  cm: earthRadius * 100,
   degrees: 360 / (2 * Math.PI),
+  deg: 360 / (2 * Math.PI),
   feet: earthRadius * 3.28084,
+  ft: earthRadius * 3.28084,
   inches: earthRadius * 39.37,
+  in: earthRadius * 39.37,
   kilometers: earthRadius / 1000,
   kilometres: earthRadius / 1000,
+  km: earthRadius / 1000,
   meters: earthRadius,
   metres: earthRadius,
+  m: earthRadius,
   miles: earthRadius / 1609.344,
+  mi: earthRadius / 1609.344,
   millimeters: earthRadius * 1000,
   millimetres: earthRadius * 1000,
+  mm: earthRadius * 1000,
   nauticalmiles: earthRadius / 1852,
+  nmi: earthRadius / 1852,
   radians: 1,
+  rad: 1,
   yards: earthRadius * 1.0936,
+  yd: earthRadius * 1.0936,
 };
 
 /**
@@ -136,20 +160,31 @@ export const factors: Record<Units, number> = {
  */
 export const areaFactors: Record<AreaUnits, number> = {
   acres: 0.000247105,
+  ac: 0.000247105,
   centimeters: 10000,
   centimetres: 10000,
+  cm: 10000,
   feet: 10.763910417,
+  ft: 10.763910417,
   hectares: 0.0001,
+  ha: 0.0001,
   inches: 1550.003100006,
+  in: 1550.003100006,
   kilometers: 0.000001,
   kilometres: 0.000001,
+  km: 0.000001,
   meters: 1,
   metres: 1,
+  m: 1,
   miles: 3.86e-7,
+  mi: 3.86e-7,
   nauticalmiles: 2.9155334959812285e-7,
+  nmi: 2.9155334959812285e-7,
   millimeters: 1000000,
   millimetres: 1000000,
+  mm: 1000000,
   yards: 1.195990046,
+  yd: 1.195990046,
 };
 
 /**
