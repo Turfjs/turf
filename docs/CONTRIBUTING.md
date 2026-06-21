@@ -124,7 +124,7 @@ JSDoc comments are found in the top-level index file for each package (for examp
 
 We have lots of tooling dedicated to ensuring consistent code. We use [Prettier](https://prettier.io/), [TypeScript](https://www.typescriptlang.org/), and [ESLint](https://eslint.org/) to help us deliver quality code. These are checked by the build system and should be enforced at commit time by [Husky](https://typicode.github.io/husky/#/).
 
-Most packages are written in TypeScript, while a few plain Javascript still linger. You can generally use modern Javascript when modifying Turf itself as all exported code is transpiled to (currently es2017).
+Packages are written in TypeScript. You can generally use modern TypeScript when modifying Turf itself as all exported code is transpiled to a more compatible subset (currently es2017).
 
 Code for consumption by browsers is transpiled by Babel as described in the README.
 
@@ -140,25 +140,13 @@ Should you want to generate new README files manually, use `pnpm run docs`:
 
 ### Documentation - Examples
 
-**Build docs for only `@turf/center`**
-
-```bash
-$ cd ./turf/packages/turf-center
-$ pnpm run docs
-
-> @turf/center@5.0.4 docs /Users/mac/Github/turf/packages/turf-center
-> node ../../scripts/generate-readmes
-
-Building Docs: @turf/center
-```
-
 **Builds docs for all packages**
 
 ```bash
 $ cd ./turf
 $ pnpm run docs
 > @ docs /Users/mac/Github/turf
-> tsx ./scripts/generate-readmes
+> node ./scripts/generate-readmes.mts
 
 Building Docs: @turf/along
 Building Docs: @turf/area
@@ -170,6 +158,8 @@ Building Docs: @turf/bezier-spline
 Building Docs: @turf/boolean-clockwise
 ....
 ```
+
+Note: This should be automatically executed with a pre-commit hook when necessary
 
 ### Public website
 

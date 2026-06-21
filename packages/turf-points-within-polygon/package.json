@@ -1,6 +1,6 @@
 {
   "name": "@turf/points-within-polygon",
-  "version": "7.3.2",
+  "version": "7.3.5",
   "description": "Finds points that fall within polygon(s).",
   "author": "Turf Authors",
   "license": "MIT",
@@ -47,25 +47,24 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
-    "@types/benchmark": "^2.1.5",
-    "@types/tape": "^5.8.1",
-    "benchmark": "^2.1.4",
-    "tape": "^5.9.0",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
+    "@types/benchmark": "catalog:",
+    "@types/tape": "catalog:",
+    "benchmark": "catalog:",
+    "tape": "catalog:",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@turf/meta": "workspace:*",
-    "@types/geojson": "^7946.0.10",
-    "tslib": "^2.8.1"
+    "@types/geojson": "catalog:",
+    "tslib": "catalog:"
   }
 }
