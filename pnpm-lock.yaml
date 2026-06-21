@@ -3663,8 +3663,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       tinyqueue:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^2.0.3
+        version: 2.0.3
       tslib:
         specifier: 'catalog:'
         version: 2.8.1
@@ -11412,9 +11412,6 @@ packages:
   tinyqueue@2.0.3:
     resolution: {integrity: sha512-ppJZNDuKGgxzkHihX8v9v9G5f+18gzaTfrukGrq6ueg0lmH4nqVnA2IPG0AEH3jKEk2GRJCUhDoqpoiw3PHLBA==}
 
-  tinyqueue@3.0.0:
-    resolution: {integrity: sha512-gRa9gwYU3ECmQYv3lslts5hxuIa90veaEcxDYuu3QGOIAEM2mOZkVHp48ANJuu1CURtRdHKUBY5Lm1tHV+sD4g==}
-
   tmp@0.2.5:
     resolution: {integrity: sha512-voyz6MApa1rQGUxT3E+BK7/ROe8itEx7vD8/HEvt4xwXucvQ5G5oeEiHkmHZJuBO21RpOf+YYm9MOivj709jow==}
     engines: {node: '>=14.14'}
@@ -17856,8 +17853,6 @@ snapshots:
       picomatch: 4.0.2
 
   tinyqueue@2.0.3: {}
-
-  tinyqueue@3.0.0: {}
 
   tmp@0.2.5: {}
 

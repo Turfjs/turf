@@ -71,7 +71,7 @@
     "@turf/helpers": "workspace:*",
     "@types/geojson": "catalog:",
     "robust-predicates": "^3.0.3",
-    "tinyqueue": "^3.0.0",
+    "tinyqueue": "^2.0.3",
     "tslib": "catalog:"
   }
 }
