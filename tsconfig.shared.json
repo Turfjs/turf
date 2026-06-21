@@ -1,13 +1,12 @@
 {
+  "include": ["${configDir}/index.ts", "${configDir}/lib/**/*.ts"],
   "compilerOptions": {
-    "target": "es2017",
-    "module": "node16",
+    "outDir": "${configDir}/dist",
+    "target": "es2022",
+    "module": "node18",
     "declaration": true,
-    "esModuleInterop": true,
     "strict": true,
-    "moduleResolution": "node16",
-    "importHelpers": true,
-    "skipLibCheck": true,
-    "erasableSyntaxOnly": true
+    "erasableSyntaxOnly": true,
+    "skipLibCheck": false
   }
 }

@@ -64,9 +64,6 @@ export default {
           "publishConfig",
           "keywords",
           "type",
-          "main",
-          "module",
-          "types",
           "exports",
           "browser",
           "sideEffects",
@@ -87,9 +84,9 @@ export default {
       options: {
         entries: {
           type: "module",
-          main: "dist/cjs/index.cjs",
-          module: "dist/esm/index.js",
-          types: "dist/esm/index.d.ts",
+          main: REMOVE,
+          module: REMOVE,
+          types: REMOVE,
           sideEffects: false,
           publishConfig: {
             access: "public",
@@ -103,14 +100,10 @@ export default {
           exports: {
             "./package.json": "./package.json",
             ".": {
-              import: {
-                types: "./dist/esm/index.d.ts",
-                default: "./dist/esm/index.js",
-              },
-              require: {
-                types: "./dist/cjs/index.d.cts",
-                default: "./dist/cjs/index.cjs",
-              },
+              types: "./dist/index.d.ts",
+              default: "./dist/index.js",
+              require: REMOVE,
+              import: REMOVE,
             },
           },
         },
@@ -122,9 +115,9 @@ export default {
       options: {
         entries: {
           type: "module",
-          main: "dist/cjs/index.cjs",
-          module: "dist/esm/index.js",
-          types: "dist/esm/index.d.ts",
+          main: REMOVE,
+          module: REMOVE,
+          types: REMOVE,
           sideEffects: false,
           publishConfig: {
             access: "public",
@@ -132,14 +125,10 @@ export default {
           exports: {
             "./package.json": "./package.json",
             ".": {
-              import: {
-                types: "./dist/esm/index.d.ts",
-                default: "./dist/esm/index.js",
-              },
-              require: {
-                types: "./dist/cjs/index.d.cts",
-                default: "./dist/cjs/index.cjs",
-              },
+              types: "./dist/index.d.ts",
+              default: "./dist/index.js",
+              require: REMOVE,
+              import: REMOVE,
             },
           },
         },
@@ -177,7 +166,7 @@ export default {
     packageScript({
       options: {
         scripts: {
-          build: "tsup --config ../../tsup.config.ts",
+          build: "tsc",
         },
       },
       includePackages: PACKAGES,
@@ -186,8 +175,7 @@ export default {
     packageScript({
       options: {
         scripts: {
-          build:
-            "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
+          build: "tsc && rollup -c rollup.config.js",
         },
       },
       includePackages: [MAIN_PACKAGE],
@@ -228,7 +216,6 @@ export default {
           benchmark: "catalog:",
           glob: REMOVE,
           tape: "catalog:",
-          tsup: "catalog:",
           tsx: "catalog:",
         },
       },
@@ -238,7 +225,7 @@ export default {
     requireDependency({
       options: {
         dependencies: {
-          tslib: "catalog:",
+          tslib: REMOVE,
         },
         devDependencies: {
           "@types/benchmark": "catalog:",

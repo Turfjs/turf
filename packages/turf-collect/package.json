@@ -28,20 +28,11 @@
     "stats"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "sideEffects": false,
@@ -50,7 +41,7 @@
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsc",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
@@ -60,7 +51,6 @@
     "@types/tape": "catalog:",
     "benchmark": "catalog:",
     "tape": "catalog:",
-    "tsup": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:"
   },
@@ -69,7 +59,6 @@
     "@turf/boolean-point-in-polygon": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@types/geojson": "catalog:",
-    "rbush": "^3.0.1",
-    "tslib": "catalog:"
+    "rbush": "^3.0.1"
   }
 }

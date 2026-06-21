@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - master
-      - support/6.x
+      - support/7.x
   pull_request:
     branches:
       - master
-      - support/6.x
+      - support/7.x
 
 permissions:
   contents: read
@@ -21,6 +21,8 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [18.x, 20.x, 22.x, 24.x, 26.x]
+        exclude:
+          - node-version: ${{ (github.base_ref || github.ref_name) == 'master' && '18.x' || 'none' }}
 
     steps:
       - name: Checkout
