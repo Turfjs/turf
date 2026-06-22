@@ -93,12 +93,12 @@ class Graph {
     if (node == null) {
       const node = new Node(this.nodeId++, coordinates);
       this.nodes.add(node);
-      let byLng = this.nodeIdx.get(coordinates[0]);
-      if (byLng == null) {
-        byLng = new Map();
-        this.nodeIdx.set(coordinates[0], byLng);
+      let byLat = this.nodeIdx.get(coordinates[0]);
+      if (byLat == null) {
+        byLat = new Map();
+        this.nodeIdx.set(coordinates[0], byLat);
       }
-      byLng.set(coordinates[1], node);
+      byLat.set(coordinates[1], node);
       return node;
     }
 
