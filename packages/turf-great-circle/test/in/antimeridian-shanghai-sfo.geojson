@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Shanghai" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [121.81, 31.14]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "San Francisco" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.38, 37.62]
+      }
+    }
+  ]
+}

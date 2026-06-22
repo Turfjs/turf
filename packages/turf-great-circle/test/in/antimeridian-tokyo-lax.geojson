@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Tokyo" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [139.7798, 35.5494]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Los Angeles" },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.4085, 33.9416]
+      }
+    }
+  ]
+}

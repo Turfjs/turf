@@ -22,8 +22,7 @@ import { GreatCircle } from "arc";
  * @param {Object} [options={}] Optional parameters
  * @param {Object} [options.properties={}] line feature properties
  * @param {number} [options.npoints=100] number of points
- * @param {number} [options.offset=10] offset controls the likelyhood that lines will
- * be split which cross the dateline. The higher the number the more likely.
+ * @param {number} [options.offset] NOTE: deprecated: Antimeridian splitting is now automatic and this option has no effect
  * @returns {Feature<LineString | MultiLineString>} great circle line feature
  * @example
  * var start = turf.point([-122, 48]);
@@ -45,7 +44,7 @@ function greatCircle(
 ): Feature<LineString | MultiLineString> {
   // Optional parameters
   if (typeof options !== "object") throw new Error("options is invalid");
-  const { properties = {}, npoints = 100, offset = 10 } = options;
+  const { properties = {}, npoints = 100 } = options;
 
   const startCoord = getCoord(start);
   const endCoord = getCoord(end);
@@ -61,7 +60,7 @@ function greatCircle(
     properties || {}
   );
 
-  const line = generator.Arc(npoints, { offset: offset });
+  const line = generator.Arc(npoints);
 
   return line.json() as Feature<
     LineString | MultiLineString,

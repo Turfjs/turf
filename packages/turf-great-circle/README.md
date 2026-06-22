@@ -17,8 +17,7 @@ then a `LineString` will be returned with duplicate coordinates the length of th
 
     *   `options.properties` **[Object][4]** line feature properties (optional, default `{}`)
     *   `options.npoints` **[number][5]** number of points (optional, default `100`)
-    *   `options.offset` **[number][5]** offset controls the likelyhood that lines will
-        be split which cross the dateline. The higher the number the more likely. (optional, default `10`)
+    *   `options.offset` **[number][5]?** NOTE: deprecated: Antimeridian splitting is now automatic and this option has no effect
 
 ### Examples
 

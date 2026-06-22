@@ -19,6 +19,7 @@ export default [
     ...baseOptions,
     outDir: "dist/cjs",
     format: "cjs",
+    noExternal: ["arc"], // arc is ESM-only; inline for CJS consumers
   }),
   defineConfig({
     ...baseOptions,
