@@ -13,6 +13,7 @@ Takes a [Point][1] and calculates the circle polygon given a radius in [Units][2
 *   `options` **[Object][6]** Optional parameters (optional, default `{}`)
 
     *   `options.steps` **[number][5]** number of steps (optional, default `64`)
+    *   `options.maximumRimDeviation` **[number][5]?** if provided, will ignore steps and use a number of steps such that the rim of returned approximate regular polygon is at most this far away from the true circle
     *   `options.units` **Units** Supports all valid Turf [Units][2] (optional, default `'kilometers'`)
     *   `options.properties` **[Object][6]** properties (optional, default `{}`)
 

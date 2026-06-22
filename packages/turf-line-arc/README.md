@@ -16,6 +16,7 @@ Creates a circular arc, of a circle of the given radius and center point, betwee
 *   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
     *   `options.steps` **[number][2]** number of steps (straight segments) that will constitute the arc (optional, default `64`)
+    *   `options.maximumRimDeviation` **[number][2]?** if provided, will ignore steps and use a number of steps such that the rim of returned approximate regular polygon is at most this far away from the true arc
     *   `options.units` **Units** Supports all valid Turf [Units][4]. (optional, default `'kilometers'`)
 
 ### Examples

@@ -2,7 +2,7 @@ import { Feature, Polygon, GeoJsonProperties } from "geojson";
 import { circle } from "@turf/circle";
 import { lineArc } from "@turf/line-arc";
 import { coordEach } from "@turf/meta";
-import { Units, Coord, isObject, polygon } from "@turf/helpers";
+import { Coord, isObject, polygon, Units } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 
 /**
@@ -17,6 +17,7 @@ import { getCoords } from "@turf/invariant";
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {number} [options.steps=64] number of steps
+ * @param {number} [options.maximumRimDeviation] if provided, will ignore steps and use a number of steps such that the rim of returned approximate regular polygon is at most this far away from the true circle
  * @param {Properties} [options.properties={}] Translate properties to Feature Polygon
  * @returns {Feature<Polygon>} sector polygon
  * @example
@@ -37,6 +38,7 @@ function sector(
   bearing2: number,
   options: {
     steps?: number;
+    maximumRimDeviation?: number;
     units?: Units;
     properties?: GeoJsonProperties;
   } = {}
