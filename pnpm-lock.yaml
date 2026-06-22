@@ -3660,8 +3660,8 @@ importers:
         specifier: 'catalog:'
         version: 7946.0.14
       robust-predicates:
-        specifier: ^3.0.3
-        version: 3.0.3
+        specifier: ^2.0.4
+        version: 2.0.4
       tinyqueue:
         specifier: ^2.0.3
         version: 2.0.3
@@ -11020,9 +11020,6 @@ packages:
   robust-predicates@2.0.4:
     resolution: {integrity: sha512-l4NwboJM74Ilm4VKfbAtFeGq7aEjWL+5kVFcmgFA2MrdnQWx9iE/tUGvxY5HyMI7o/WpSIUFLbC5fbeaHgSCYg==}
 
-  robust-predicates@3.0.3:
-    resolution: {integrity: sha512-NS3levdsRIUOmiJ8FZWCP7LG3QpJyrs/TE0Zpf1yvZu8cAJJ6QMW92H1c7kWpdIHo8RvmLxN/o2JXTKHp74lUA==}
-
   rollup-plugin-polyfill-node@0.13.0:
     resolution: {integrity: sha512-FYEvpCaD5jGtyBuBFcQImEGmTxDTPbiHjJdrYIp+mFIwgXiXabxvKUK7ZT9P31ozu2Tqm9llYQMRWsfvTMTAOw==}
     peerDependencies:
@@ -17408,8 +17405,6 @@ snapshots:
       glob: 9.3.5
 
   robust-predicates@2.0.4: {}
-
-  robust-predicates@3.0.3: {}
 
   rollup-plugin-polyfill-node@0.13.0(rollup@4.40.1):
     dependencies:
