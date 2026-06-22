@@ -3659,9 +3659,12 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      sweepline-intersections:
-        specifier: ^1.5.0
-        version: 1.5.0
+      robust-predicates:
+        specifier: ^2.0.4
+        version: 2.0.4
+      tinyqueue:
+        specifier: ^2.0.3
+        version: 2.0.3
       tslib:
         specifier: 'catalog:'
         version: 2.8.1
@@ -11339,9 +11342,6 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  sweepline-intersections@1.5.0:
-    resolution: {integrity: sha512-AoVmx72QHpKtItPu72TzFL+kcYjd67BPLDoR0LarIk+xyaRg+pDTMFXndIEvZf9xEKnJv6JdhgRMnocoG0D3AQ==}
-
   synckit@0.11.11:
     resolution: {integrity: sha512-MeQTA1r0litLUf0Rp/iisCaL8761lKAZHaimlbGK4j0HysC4PLfqygQj9srcs0m2RdtDYnF8UuYyKpbjHYp7Jw==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -17750,10 +17750,6 @@ snapshots:
   supports-color@9.4.0: {}
 
   supports-preserve-symlinks-flag@1.0.0: {}
-
-  sweepline-intersections@1.5.0:
-    dependencies:
-      tinyqueue: 2.0.3
 
   synckit@0.11.11:
     dependencies:

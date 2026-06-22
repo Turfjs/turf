@@ -5,7 +5,8 @@
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>",
-    "Daniel Pulido <@dpmcmlxxvi>"
+    "Daniel Pulido <@dpmcmlxxvi>",
+    "Rowan Winsemius <@rowanwins>"
   ],
   "license": "MIT",
   "bugs": {
@@ -69,7 +70,8 @@
   "dependencies": {
     "@turf/helpers": "workspace:*",
     "@types/geojson": "catalog:",
-    "sweepline-intersections": "^1.5.0",
+    "robust-predicates": "^2.0.4",
+    "tinyqueue": "^2.0.3",
     "tslib": "catalog:"
   }
 }
