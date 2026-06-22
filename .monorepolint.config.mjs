@@ -187,7 +187,7 @@ export default {
       options: {
         scripts: {
           build:
-            "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
+            "tsup --config ../../tsup.config.ts && esbuild index.ts --bundle --minify --target=chrome109,edge147,firefox140,ios18.5,opera127,safari26.3 --outfile=turf.min.js",
         },
       },
       includePackages: [MAIN_PACKAGE],

@@ -67,25 +67,18 @@
     "turf.min.js"
   ],
   "scripts": {
-    "build": "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
+    "build": "tsup --config ../../tsup.config.ts && esbuild index.ts --bundle --minify --target=chrome109,edge147,firefox140,ios18.5,opera127,safari26.3 --outfile=turf.min.js",
     "last-checks": "pnpm run last-checks:testjs && pnpm run last-checks:example",
     "last-checks:example": "tsx test.example.js",
     "last-checks:testjs": "tsx test.ts",
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/preset-env": "^7.26.9",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^28.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.1",
-    "@rollup/plugin-terser": "^0.4.4",
     "@types/tape": "^5.8.1",
     "camelcase": "^8.0.0",
     "documentation": "^14.0.3",
+    "esbuild": "^0.28.1",
     "glob": "^11.1.0",
-    "rollup": "^4.40.1",
-    "rollup-plugin-polyfill-node": "^0.13.0",
     "tape": "^5.9.0",
     "tsup": "^8.4.0",
     "tsx": "^4.19.4",
