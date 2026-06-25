@@ -1,11 +1,12 @@
 {
   "name": "@turf/line-intersect",
-  "version": "7.3.4",
+  "version": "7.3.5",
   "description": "Takes any LineString or Polygon GeoJSON and returns the intersecting point(s).",
   "author": "Turf Authors",
   "contributors": [
     "Denis Carriere <@DenisCarriere>",
-    "Daniel Pulido <@dpmcmlxxvi>"
+    "Daniel Pulido <@dpmcmlxxvi>",
+    "Rowan Winsemius <@rowanwins>"
   ],
   "license": "MIT",
   "bugs": {
@@ -51,26 +52,26 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
     "@turf/truncate": "workspace:*",
-    "@types/benchmark": "^2.1.5",
-    "@types/tape": "^5.8.1",
-    "benchmark": "^2.1.4",
+    "@types/benchmark": "catalog:",
+    "@types/tape": "catalog:",
+    "benchmark": "catalog:",
     "load-json-file": "^7.0.1",
-    "tape": "^5.9.0",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
+    "tape": "catalog:",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
     "@turf/helpers": "workspace:*",
-    "@types/geojson": "^7946.0.10",
-    "sweepline-intersections": "^1.5.0",
-    "tslib": "^2.8.1"
+    "@types/geojson": "catalog:",
+    "robust-predicates": "^2.0.4",
+    "tinyqueue": "^2.0.3",
+    "tslib": "catalog:"
   }
 }
