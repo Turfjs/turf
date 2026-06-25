@@ -141,10 +141,10 @@ function clustersDbscan(
       (neighbor) => {
         const neighborIndex = neighbor.index;
         const neighborPoint = points.features[neighborIndex];
-        const distanceInKm = distance(point, neighborPoint, {
-          units: "kilometers",
+        const distanceToNeighbor = distance(point, neighborPoint, {
+          units: options.units,
         });
-        return distanceInKm <= maxDistance;
+        return distanceToNeighbor <= maxDistance;
       }
     );
   };
