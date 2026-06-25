@@ -7,6 +7,7 @@ import {
   MultiPolygon,
   Point,
   Polygon,
+  Position,
 } from "geojson";
 import { bbox as calcBbox } from "@turf/bbox";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
@@ -176,7 +177,9 @@ function isMultiPointInPoly(polygon: Polygon, multiPoint: MultiPoint) {
 
 function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   let haveFoundInteriorPoint = false;
-  for (const coords of lineString2.coordinates) {
+  const coordinates = lineString2.coordinates;
+  for (let i = 0; i < coordinates.length; i++) {
+    const coords = coordinates[i];
     if (
       isPointOnLine({ type: "Point", coordinates: coords }, lineString1, {
         ignoreEndVertices: true,
@@ -190,6 +193,23 @@ function isLineOnLine(lineString1: LineString, lineString2: LineString) {
       })
     ) {
       return false;
+    }
+    // A segment whose endpoints are both on lineString1 (e.g. lineString2's
+    // vertices coincide with lineString1's boundary) still shares interior with
+    // lineString1. Probe the segment midpoint so an interior overlap is detected
+    // even when no vertex of lineString2 is strictly interior.
+    if (!haveFoundInteriorPoint && i > 0) {
+      const midpoint: Position = [
+        (coordinates[i - 1][0] + coords[0]) / 2,
+        (coordinates[i - 1][1] + coords[1]) / 2,
+      ];
+      if (
+        isPointOnLine({ type: "Point", coordinates: midpoint }, lineString1, {
+          ignoreEndVertices: true,
+        })
+      ) {
+        haveFoundInteriorPoint = true;
+      }
     }
   }
   return haveFoundInteriorPoint;
