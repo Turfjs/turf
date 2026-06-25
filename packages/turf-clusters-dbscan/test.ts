@@ -7,7 +7,12 @@ import { writeJsonFileSync } from "write-json-file";
 import { centroid } from "@turf/centroid";
 import chromatism from "chromatism";
 import concaveman from "concaveman";
-import { point, polygon, featureCollection } from "@turf/helpers";
+import {
+  point,
+  polygon,
+  featureCollection,
+  lengthToDegrees,
+} from "@turf/helpers";
 import { clusterReduce, clusterEach } from "@turf/clusters";
 import { coordAll, featureEach } from "@turf/meta";
 import { clustersDbscan } from "./index.js";
@@ -152,5 +157,19 @@ test("clusters-dbscan -- allow input mutation", (t) => {
   // Allow mutation
   clustersDbscan(oldPoints, 2, { minPoints: 1, mutate: true });
   t.equal(oldPoints.features[1].properties.cluster, 1, "cluster is 1");
+  t.end();
+});
+
+test("clusters-dbscan -- maxDistance honors non-kilometer units", (t) => {
+  // 400 m east + 400 m north of the origin is ~566 m away — outside a 400 m
+  // radius — so with a 400 m maxDistance the two points must be noise.
+  const offset = lengthToDegrees(400, "meters"); // at the equator, east == north
+  const fc = featureCollection([point([0, 0]), point([offset, offset])]);
+
+  const clustered = clustersDbscan(fc, 400, { units: "meters", minPoints: 2 });
+  t.true(
+    clustered.features.every((f) => f.properties.dbscan === "noise"),
+    "points ~566 m apart are noise when maxDistance is 400 meters"
+  );
   t.end();
 });
