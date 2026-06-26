@@ -76,8 +76,8 @@ function doMultiPointAndLineStringCross(
   var foundIntPoint = false;
   var foundExtPoint = false;
   var pointLength = multiPoint.coordinates.length;
-  var i = 0;
-  while (i < pointLength && !foundIntPoint && !foundExtPoint) {
+  for (var i = 0; i < pointLength && (!foundIntPoint || !foundExtPoint); i++) {
+    var pointOnLine = false;
     for (var i2 = 0; i2 < lineString.coordinates.length - 1; i2++) {
       var incEndVertices = true;
       if (i2 === 0 || i2 === lineString.coordinates.length - 2) {
@@ -91,12 +91,15 @@ function doMultiPointAndLineStringCross(
           incEndVertices
         )
       ) {
-        foundIntPoint = true;
-      } else {
-        foundExtPoint = true;
+        pointOnLine = true;
+        break;
       }
     }
-    i++;
+    if (pointOnLine) {
+      foundIntPoint = true;
+    } else {
+      foundExtPoint = true;
+    }
   }
   return foundIntPoint && foundExtPoint;
 }

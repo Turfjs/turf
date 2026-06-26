@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
+import { destination } from "@turf/destination";
 import { featureCollection, point } from "@turf/helpers";
 import { lineArc } from "./index.js";
 
@@ -75,6 +76,30 @@ test("turf-line-arc #2446", (t) => {
 
   t.doesNotThrow(() =>
     lineArc(center, radius * 1.852, startAngle, endAngle, options)
+  );
+
+  t.end();
+});
+
+test("turf-line-arc -- reaches bearing2 despite floating-point drift", (t) => {
+  // For some bearing/step combinations arcStartDegree + steps * arcStep
+  // overshoots arcEndDegree by a rounding epsilon (e.g. 0 + 7 * (29 / 7) ===
+  // 29.000000000000004 > 29). The old `while (alpha <= arcEndDegree)` loop then
+  // dropped the final vertex, returning `steps` points instead of `steps + 1`
+  // and ending the arc a full step short of bearing2.
+  const center = point([-75, 40]);
+  const arc = lineArc(center, 5, 0, 29, { steps: 7 });
+  const coords = arc.geometry.coordinates;
+
+  t.equals(coords.length, 7 + 1, "arc has steps + 1 vertices");
+
+  // The final vertex must sit on bearing2 (29°). destination(center, r, 29)
+  // gives the reference coordinate; the old code stopped at bearing ~24.857°.
+  const expectedLast = destination(center, 5, 29).geometry.coordinates;
+  t.deepEquals(
+    truncate(point(coords[coords.length - 1])).geometry.coordinates,
+    truncate(point(expectedLast)).geometry.coordinates,
+    "last vertex lies on bearing2"
   );
 
   t.end();
