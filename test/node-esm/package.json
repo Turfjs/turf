@@ -1,0 +1,15 @@
+{
+  "name": "node-esm",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "funding": "https://opencollective.com/turf",
+  "keywords": [],
+  "scripts": {
+    "test": "pnpm run /test:.*/",
+    "test:node": "node index.mjs"
+  },
+  "dependencies": {
+    "@turf/turf": "workspace:*"
+  }
+}

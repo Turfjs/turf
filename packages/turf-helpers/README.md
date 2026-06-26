@@ -15,13 +15,13 @@ depending on latitude.
 See [https://www.thoughtco.com/degree-of-latitude-and-longitude-distance-4070616][1]
 for an illustration of this behaviour.
 
-Type: (`"meters"` | `"metres"` | `"millimeters"` | `"millimetres"` | `"centimeters"` | `"centimetres"` | `"kilometers"` | `"kilometres"` | `"miles"` | `"nauticalmiles"` | `"inches"` | `"yards"` | `"feet"` | `"radians"` | `"degrees"`)
+Type: (`"meters"` | `"metres"` | `"m"` | `"millimeters"` | `"millimetres"` | `"mm"` | `"centimeters"` | `"centimetres"` | `"cm"` | `"kilometers"` | `"kilometres"` | `"km"` | `"miles"` | `"mi"` | `"nauticalmiles"` | `"nmi"` | `"inches"` | `"in"` | `"yards"` | `"yd"` | `"feet"` | `"ft"` | `"radians"` | `"rad"` | `"degrees"` | `"deg"`)
 
 ## AreaUnits
 
 Area measurement units.
 
-Type: (Exclude<[Units][2], (`"radians"` | `"degrees"`)> | `"acres"` | `"hectares"`)
+Type: (Exclude<[Units][2], (`"radians"` | `"rad"` | `"degrees"` | `"deg"`)> | `"acres"` | `"ac"` | `"hectares"` | `"ha"`)
 
 ## Grid
 
