@@ -112,6 +112,11 @@ class Graph {
    * @param {Node} to - Node which ends the Edge
    */
   addEdge(from: Node, to: Node) {
+    // Note: Avoid creating duplicate Edges (#3045). This is done before the Edge constructor call, which modifies the Nodes that are passed in.
+    if (this.edges.get(from)?.has(to)) {
+      return;
+    }
+
     const edge = new Edge(from, to),
       symetricEdge = edge.getSymetric();
 
