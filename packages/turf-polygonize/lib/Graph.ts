@@ -44,7 +44,7 @@ function validateGeoJson(geoJson: AllGeoJSON) {
 class Graph {
   private nodes: Map<number, Map<number, Node>> = new Map(); // Map<longitude, Map<latitude, Node>>
   private nodeId = 0; // the next node id to use
-  private edges = new Map<Node, Map<Node, Edge>>();
+  private edges = new Map<Node, Map<Node, Edge>>(); // Map<from, Map<to, Edge>>
 
   /**
    * Creates a graph from a GeoJSON.
