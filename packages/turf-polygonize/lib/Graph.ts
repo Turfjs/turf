@@ -45,7 +45,7 @@ class Graph {
   private nodes = new Set<Node>();
   private nodeIdx: Map<number, Map<number, Node>> = new Map(); // Map<longitude, Map<latitude, Node>>
   private nodeId = 0; // the next node id to use
-  private edges: Edge[] = [];
+  private edges = new Map<Node, Map<Node, Edge>>();
 
   /**
    * Creates a graph from a GeoJSON.
@@ -117,8 +117,19 @@ class Graph {
     const edge = new Edge(from, to),
       symetricEdge = edge.getSymetric();
 
-    this.edges.push(edge);
-    this.edges.push(symetricEdge);
+    let toMap = this.edges.get(from);
+    if (toMap == null) {
+      toMap = new Map();
+      this.edges.set(from, toMap);
+    }
+    toMap.set(to, edge);
+
+    let symToMap = this.edges.get(to);
+    if (symToMap == null) {
+      symToMap = new Map();
+      this.edges.set(to, symToMap);
+    }
+    symToMap.set(from, symetricEdge);
   }
 
   /**
@@ -158,7 +169,7 @@ class Graph {
     this._findLabeledEdgeRings();
 
     // Cut-edges (bridges) are edges where both edges have the same label
-    this.edges.forEach((edge) => {
+    this._forEachEdge((edge) => {
       if (edge.label === edge.symetric!.label) {
         this.removeEdge(edge.symetric!);
         this.removeEdge(edge);
@@ -242,7 +253,7 @@ class Graph {
   _findLabeledEdgeRings() {
     const edgeRingStarts: Edge[] = [];
     let label = 0;
-    this.edges.forEach((edge) => {
+    this._forEachEdge((edge) => {
       if (edge.label! >= 0) return;
 
       edgeRingStarts.push(edge);
@@ -268,7 +279,7 @@ class Graph {
     this._computeNextCWEdges();
 
     // Clear labels
-    this.edges.forEach((edge) => {
+    this._forEachEdge((edge) => {
       edge.label = undefined;
     });
 
@@ -282,7 +293,7 @@ class Graph {
     const edgeRingList: EdgeRing[] = [];
 
     // find all edgerings
-    this.edges.forEach((edge) => {
+    this._forEachEdge((edge) => {
       if (edge.ring) return;
       edgeRingList.push(this._findEdgeRing(edge));
     });
@@ -352,8 +363,16 @@ class Graph {
    * @param {Edge} edge - Edge to be removed
    */
   removeEdge(edge: Edge) {
-    this.edges = this.edges.filter((e) => !e.isEqual(edge));
+    this.edges.get(edge.from)?.delete(edge.to);
     edge.deleteEdge();
+  }
+
+  _forEachEdge(fn: (e: Edge) => void) {
+    for (const toMap of this.edges.values()) {
+      for (const edge of toMap.values()) {
+        fn(edge);
+      }
+    }
   }
 }
 
