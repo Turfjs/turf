@@ -54,10 +54,6 @@ function rhumbBearing(
  * var d = p1.rhumbBearingTo(p2); // 116.7 m
  */
 function calculateRhumbBearing(from: number[], to: number[]) {
-  // Coincident points have no defined bearing (matches Geodesy reference impl)
-  if (from[0] === to[0] && from[1] === to[1]) {
-    return NaN;
-  }
   // φ => phi
   // Δλ => deltaLambda
   // Δψ => deltaPsi
