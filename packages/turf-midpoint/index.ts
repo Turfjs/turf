@@ -3,6 +3,7 @@ import { bearing } from "@turf/bearing";
 import { destination } from "@turf/destination";
 import { distance } from "@turf/distance";
 import { Coord } from "@turf/helpers";
+import { getCoord } from "@turf/invariant";
 
 /**
  * Takes two points and returns a point midway between them. The midpoint is
@@ -27,6 +28,14 @@ function midpoint(point1: Coord, point2: Coord): Feature<Point> {
   const dist = distance(point1, point2);
   const heading = bearing(point1, point2);
   const midpoint = destination(point1, dist / 2, heading);
+
+  // Interpolate altitude (z-coordinate) when both input points carry one.
+  // destination() propagates only the origin's z unchanged; average them instead.
+  const coord1 = getCoord(point1);
+  const coord2 = getCoord(point2);
+  if (coord1[2] !== undefined && coord2[2] !== undefined) {
+    midpoint.geometry.coordinates[2] = (coord1[2] + coord2[2]) / 2;
+  }
 
   return midpoint;
 }
