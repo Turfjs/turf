@@ -68,3 +68,34 @@ test("midpoint -- long distance", function (t) {
 
   t.end();
 });
+test("midpoint -- interpolates altitude (z-coordinate) from 3D points", function (t) {
+  var pt1 = point([0, 0, 100]);
+  var pt2 = point([10, 0, 200]);
+
+  var mid = midpoint(pt1, pt2);
+  var coords = mid.geometry.coordinates;
+
+  // The midpoint of two 3D points must interpolate z as the average
+  t.equal(
+    coords[2],
+    150,
+    "z should be the average of the two input altitudes (100+200)/2 = 150"
+  );
+
+  t.end();
+});
+
+test("midpoint -- returns undefined z when inputs have no altitude", function (t) {
+  var pt1 = point([0, 0]);
+  var pt2 = point([10, 0]);
+
+  var mid = midpoint(pt1, pt2);
+
+  t.equal(
+    mid.geometry.coordinates[2],
+    undefined,
+    "z should be undefined when inputs have no altitude"
+  );
+
+  t.end();
+});

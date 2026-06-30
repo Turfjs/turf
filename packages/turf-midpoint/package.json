@@ -64,6 +64,7 @@
     "@turf/destination": "workspace:*",
     "@turf/distance": "workspace:*",
     "@turf/helpers": "workspace:*",
+    "@turf/invariant": "workspace:*",
     "@types/geojson": "catalog:",
     "tslib": "catalog:"
   }
