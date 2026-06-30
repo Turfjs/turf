@@ -16,6 +16,7 @@ const PACKAGES = []; // packages that aren't @turf/turf
 const MAIN_PACKAGE = "@turf/turf";
 
 const TAPE_PACKAGES = []; // packages that have tape tests
+const NODE_TEST_PACKAGES = []; // projects that use node's native test runner
 const TYPES_PACKAGES = []; // packages that have types tests
 const TSTYCHE_PACKAGES = []; // packages that use tstyche for type tests.
 
@@ -32,8 +33,16 @@ for (const pk of await fs.readdir(packagesPath)) {
 
   PACKAGES.push(name);
 
-  if (existsSync(path.join(pk, "test.js"))) {
-    TAPE_PACKAGES.push(name);
+  if (existsSync(path.join(packagesPath, pk, "test.ts"))) {
+    const testFileContents = await fs.readFile(
+      path.join(packagesPath, pk, "test.ts"),
+      "utf-8"
+    );
+    if (testFileContents.includes(`from "tape"`)) {
+      TAPE_PACKAGES.push(name);
+    } else {
+      NODE_TEST_PACKAGES.push(name);
+    }
   }
 
   if (existsSync(path.join(packagesPath, pk, "types.ts"))) {
@@ -198,9 +207,21 @@ export default {
         scripts: {
           bench: "tsx bench.ts",
           "test:tape": "tsx test.ts",
+          "test:node": REMOVE,
         },
       },
       includePackages: TAPE_PACKAGES,
+    }),
+
+    packageScript({
+      options: {
+        scripts: {
+          bench: "node bench.ts",
+          "test:node": "node --test",
+          "test:tape": REMOVE,
+        },
+      },
+      includePackages: NODE_TEST_PACKAGES,
     }),
 
     packageScript({
@@ -233,20 +254,43 @@ export default {
         },
       },
       includePackages: PACKAGES,
+      excludePackages: NODE_TEST_PACKAGES,
     }),
 
     requireDependency({
       options: {
-        dependencies: {
-          tslib: "catalog:",
+        devDependencies: {
+          tape: "catalog:",
+          "@types/tape": "catalog:",
         },
+      },
+      includePackages: TAPE_PACKAGES,
+    }),
+
+    requireDependency({
+      options: {
+        devDependencies: {
+          "@types/benchmark": REMOVE,
+          "@types/tape": REMOVE,
+          benchmark: REMOVE,
+          "load-json-file": REMOVE,
+          tape: REMOVE,
+          tsx: REMOVE,
+          "write-json-file": REMOVE,
+        },
+      },
+      includePackages: NODE_TEST_PACKAGES,
+    }),
+
+    requireDependency({
+      options: {
         devDependencies: {
           "@types/benchmark": "catalog:",
-          "@types/tape": "catalog:",
-          typescript: "catalog:",
+          benchmark: "catalog:",
         },
       },
       includePackages: PACKAGES,
+      excludePackages: NODE_TEST_PACKAGES,
     }),
 
     requireDependency({
