@@ -74,8 +74,8 @@
     "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/preset-env": "^7.26.9",
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
