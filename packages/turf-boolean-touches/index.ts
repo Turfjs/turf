@@ -248,7 +248,7 @@ function booleanTouches(
               )
             )
               endMatch = true;
-            for (var ii = 0; ii < geom1.coordinates[i].length; ii++) {
+            for (var ii = 0; ii < geom1.coordinates.length; ii++) {
               if (
                 booleanPointOnLine(
                   { type: "Point", coordinates: geom1.coordinates[ii] },
