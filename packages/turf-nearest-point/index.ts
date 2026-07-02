@@ -4,8 +4,9 @@ import { clone } from "@turf/clone";
 import { distance } from "@turf/distance";
 import { featureEach } from "@turf/meta";
 
-interface NearestPoint<P extends GeoJsonProperties = GeoJsonProperties>
-  extends Feature<Point> {
+interface NearestPoint<
+  P extends GeoJsonProperties = GeoJsonProperties,
+> extends Feature<Point> {
   properties: {
     featureIndex: number;
     distanceToPoint: number;
