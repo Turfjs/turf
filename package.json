@@ -30,8 +30,8 @@
   },
   "packageManager": "pnpm@10.10.0+sha256.fa0f513aa8191764d2b6b432420788c270f07b4f999099b65bb2010eec702a30",
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.31.0",
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^9.39.4",
     "@monorepolint/cli": "0.6.0-alpha.5",
     "@monorepolint/config": "0.6.0-alpha.6",
     "@monorepolint/core": "0.6.0-alpha.6",
@@ -44,9 +44,9 @@
     "dependency-tree": "^11.1.1",
     "documentation": "^14.0.3",
     "es-check": "^9.0.0",
-    "eslint": "^9.31.0",
+    "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.3",
+    "eslint-plugin-prettier": "^5.5.6",
     "esm": "^3.2.25",
     "glob": "^11.1.0",
     "globals": "^16.0.0",
@@ -59,7 +59,7 @@
     "progress": "^2.0.3",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.38.0",
+    "typescript-eslint": "^8.62.0",
     "yaml": "^2.8.2"
   }
 }
