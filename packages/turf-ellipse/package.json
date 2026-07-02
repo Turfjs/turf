@@ -52,7 +52,7 @@
     "test:tape": "tsx test.ts"
   },
   "devDependencies": {
-    "@placemarkio/check-geojson": "^0.1.12",
+    "@placemarkio/check-geojson": "^0.1.14",
     "@turf/area": "workspace:*",
     "@turf/bbox-polygon": "workspace:*",
     "@turf/circle": "workspace:*",
