@@ -58,7 +58,7 @@
     "@types/benchmark": "catalog:",
     "@types/tape": "catalog:",
     "benchmark": "catalog:",
-    "boolean-shapely": "^0.1.2",
+    "boolean-shapely": "*",
     "load-json-file": "^7.0.1",
     "tape": "catalog:",
     "tsup": "catalog:",
