@@ -90,7 +90,9 @@ function combine(
       .sort()
       .map(function (key) {
         var geometry = { type: key, coordinates: groups[key].coordinates } as
-          MultiPoint | MultiLineString | MultiPolygon;
+          | MultiPoint
+          | MultiLineString
+          | MultiPolygon;
         var properties = { collectedProperties: groups[key].properties };
         return feature(geometry, properties);
       })
