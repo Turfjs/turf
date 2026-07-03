@@ -1,0 +1,19 @@
+{
+  "name": "ts-bundler-esm",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "funding": "https://opencollective.com/turf",
+  "keywords": [],
+  "type": "module",
+  "scripts": {
+    "test": "pnpm run /test:.*/",
+    "test:ts": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@turf/turf": "workspace:*"
+  }
+}

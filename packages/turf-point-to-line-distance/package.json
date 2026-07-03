@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-to-line-distance",
-  "version": "7.3.1",
+  "version": "7.3.5",
   "description": "Calculates the distance between a given point and the nearest point on a line.",
   "author": "Turf Authors",
   "contributors": [
@@ -48,21 +48,20 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
     "@turf/circle": "workspace:*",
-    "@types/benchmark": "^2.1.5",
-    "@types/tape": "^5.8.1",
-    "benchmark": "^2.1.4",
+    "@types/benchmark": "catalog:",
+    "@types/tape": "catalog:",
+    "benchmark": "catalog:",
     "load-json-file": "^7.0.1",
-    "tape": "^5.9.0",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
+    "tape": "catalog:",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
@@ -75,7 +74,7 @@
     "@turf/projection": "workspace:*",
     "@turf/rhumb-bearing": "workspace:*",
     "@turf/rhumb-distance": "workspace:*",
-    "@types/geojson": "^7946.0.10",
-    "tslib": "^2.8.1"
+    "@types/geojson": "catalog:",
+    "tslib": "catalog:"
   }
 }

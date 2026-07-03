@@ -3499,5 +3499,98 @@ test("tesselate", function (t) {
     tesselate(featurecollection([]));
   }, /input must be a Polygon or MultiPolygon/);
 
+  var simplePolygonWithElevation = {
+    type: "Feature",
+    id: "CoordsWithElevation",
+    properties: { name: "CoordsWithElevation" },
+    geometry: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [-123.233256, 42.006186, 130],
+          [-114.634459, 35.00118, 130],
+          [-118.183517, 33.763391, 130],
+          [-124.213628, 42.000709, 130],
+          [-123.233256, 42.006186, 130],
+        ],
+      ],
+    },
+  };
+
+  var simpleTrianglesWithElevation = tesselate(simplePolygonWithElevation);
+  t.equal(
+    simpleTrianglesWithElevation.type,
+    "FeatureCollection",
+    "Polygon returns a FeatureCollection"
+  );
+  t.equal(
+    simpleTrianglesWithElevation.features[0].geometry.type,
+    "Polygon",
+    "contains at least 1 triangle"
+  );
+  t.equal(
+    simpleTrianglesWithElevation.features[0].geometry.coordinates[0].length,
+    4,
+    "triangle is valid"
+  );
+  t.equal(
+    simpleTrianglesWithElevation.features[0].geometry.coordinates[0][0][2],
+    130,
+    "triangle coordinates contain elevation"
+  );
+
+  var simpleSquareWithVariableElevation = {
+    type: "Feature",
+    id: "SquareWithVariableElevation",
+    properties: { name: "SquareWithVariableElevation" },
+    geometry: {
+      type: "Polygon",
+      coordinates: [
+        [
+          [1, 1],
+          [1, 2, 50],
+          [2, 2, 75],
+          [2, 1],
+          [1, 1],
+        ],
+      ],
+    },
+  };
+
+  var simpleVariableElevationTriangles = tesselate(
+    simpleSquareWithVariableElevation
+  );
+
+  t.equal(
+    simpleVariableElevationTriangles.type,
+    "FeatureCollection",
+    "Polygon returns a FeatureCollection"
+  );
+
+  t.deepEqual(
+    simpleVariableElevationTriangles.features[0].geometry.coordinates,
+    [
+      [
+        [1, 2, 50],
+        [1, 1],
+        [2, 1],
+        [1, 2, 50],
+      ],
+    ],
+    "first triangle coordinates contain original elevations"
+  );
+  t.deepEqual(
+    simpleVariableElevationTriangles.features[1].geometry.coordinates,
+    [
+      [
+        [2, 1],
+        [2, 2, 75],
+        [1, 2, 50],
+        [2, 1],
+      ],
+    ],
+    "second triangle coordinates contain original elevations"
+  );
+
   t.end();
 });
