@@ -62,7 +62,7 @@
     "@turf/clusters": "workspace:*",
     "@turf/random": "workspace:*",
     "@types/benchmark": "catalog:",
-    "@types/skmeans": "^0.11.7",
+    "@types/skmeans": "^0.11.8",
     "@types/tape": "catalog:",
     "benchmark": "catalog:",
     "chromatism": "^3.0.0",
