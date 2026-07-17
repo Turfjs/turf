@@ -3757,6 +3757,9 @@ importers:
 
   packages/turf-line-overlap:
     dependencies:
+      '@turf/bbox':
+        specifier: workspace:*
+        version: link:../turf-bbox
       '@turf/boolean-point-on-line':
         specifier: workspace:*
         version: link:../turf-boolean-point-on-line
