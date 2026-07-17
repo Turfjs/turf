@@ -13,8 +13,9 @@ import {
   Polygon,
   MultiPolygon,
   GeoJsonProperties,
+  BBox,
 } from "geojson";
-import { featureCollection, isObject } from "@turf/helpers";
+import { featureCollection, isObject, lengthToDegrees } from "@turf/helpers";
 import equal from "fast-deep-equal";
 
 /**
@@ -70,13 +71,21 @@ function lineOverlap<
       return;
     }
 
-    // Expand segment bounding box by the tolerance to create overlap in horizontal/vertical segments
-    var bb = bbox(segment);
-    bb = [bb[0]-tolerance, bb[1]-tolerance, bb[2]+tolerance, bb[3]+tolerance];
-    segment.bbox = bb;
-    
+    // If we have a tolerance, search with an expanded BBox instead so we don't miss features at the RBush step
+    let search: Feature<LineString, GeoJsonProperties> | BBox = segment;
+    if (tolerance !== 0) {
+      const toleranceDegrees = lengthToDegrees(tolerance, "kilometers");
+      const bb = bbox(segment);
+      search = [
+        bb[0] - toleranceDegrees,
+        bb[1] - toleranceDegrees,
+        bb[2] + toleranceDegrees,
+        bb[3] + toleranceDegrees,
+      ];
+    }
+
     // Iterate over each segments which falls within the same bounds
-    featureEach(tree.search(segment), function (match) {
+    featureEach(tree.search(search), function (match) {
       if (doesOverlaps === false) {
         var coordsSegment = getCoords(segment).sort();
         var coordsMatch: any = getCoords(match).sort();
