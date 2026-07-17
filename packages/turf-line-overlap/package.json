@@ -4,7 +4,8 @@
   "description": "Takes any LineString or Polygon and returns the overlapping lines between both features.",
   "author": "Turf Authors",
   "contributors": [
-    "Denis Carriere <@DenisCarriere>", "Johannes Novotny <@jonovotny>"
+    "Denis Carriere <@DenisCarriere>",
+    "Johannes Novotny <@jonovotny>"
   ],
   "license": "MIT",
   "bugs": {
