@@ -65,7 +65,9 @@ function calculateFinalBearing(start: Coord, end: Coord) {
   // Swap start & end
   let bear = bearing(end, start);
   bear = (bear + 180) % 360;
-  return bear;
+  // Normalize to [-180, 180]; the % 360 above yields [0, 360) which violates
+  // the documented return range when the initial reverse bearing is positive.
+  return bear > 180 ? bear - 360 : bear;
 }
 
 export { bearing };
