@@ -81,6 +81,40 @@ test("turf-polygonize -- input mutation", (t) => {
   t.end();
 });
 
+test("turf-polygonize -- duplicate segment", (t) => {
+  const lines = featureCollection([
+    lineString([
+      [0, 0],
+      [1, 0],
+    ]),
+    lineString([
+      [1, 0],
+      [1, 1],
+    ]),
+    lineString([
+      [1, 1],
+      [0, 1],
+    ]),
+    lineString([
+      [0, 1],
+      [0, 0],
+    ]),
+    // Duplicate boundary segment should not prevent polygonization.
+    lineString([
+      [0, 0],
+      [1, 0],
+    ]),
+  ]);
+
+  const polygonized = polygonize(lines);
+  t.equal(
+    polygonized.features.length,
+    1,
+    "returns one polygon for closed ring with duplicate edge"
+  );
+  t.end();
+});
+
 function colorize(feature, color = "#F00", width = 6) {
   feature.properties["fill"] = color;
   feature.properties["fill-opacity"] = 0.3;

@@ -7,6 +7,7 @@ import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureCollection, point, lineString } from "@turf/helpers";
 import { lineSlice } from "./index.js";
+import { Feature, FeatureCollection, LineString, Point } from "geojson";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -19,16 +20,20 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename) as FeatureCollection,
   };
 });
 
 test("turf-line-slice", (t) => {
   for (const { filename, geojson, name } of fixtures) {
-    const [linestring, start, stop] = geojson.features;
+    const [linestring, start, stop] = geojson.features as [
+      Feature<LineString>,
+      Feature<Point>,
+      Feature<Point>,
+    ];
     const sliced = truncate(lineSlice(start, stop, linestring));
-    sliced.properties["stroke"] = "#f0f";
-    sliced.properties["stroke-width"] = 6;
+    sliced.properties!["stroke"] = "#f0f";
+    sliced.properties!["stroke-width"] = 6;
     const results = featureCollection(geojson.features);
     results.features.push(sliced);
 

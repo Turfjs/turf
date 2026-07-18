@@ -40,19 +40,30 @@ export type Coord = Feature<Point> | Point | Position;
 export type Units =
   | "meters"
   | "metres"
+  | "m"
   | "millimeters"
   | "millimetres"
+  | "mm"
   | "centimeters"
   | "centimetres"
+  | "cm"
   | "kilometers"
   | "kilometres"
+  | "km"
   | "miles"
+  | "mi"
   | "nauticalmiles"
+  | "nmi"
   | "inches"
+  | "in"
   | "yards"
+  | "yd"
   | "feet"
+  | "ft"
   | "radians"
-  | "degrees";
+  | "rad"
+  | "degrees"
+  | "deg";
 
 /**
  * Area measurement units.
@@ -60,9 +71,11 @@ export type Units =
  * @typedef
  */
 export type AreaUnits =
-  | Exclude<Units, "radians" | "degrees">
+  | Exclude<Units, "radians" | "rad" | "degrees" | "deg">
   | "acres"
-  | "hectares";
+  | "ac"
+  | "hectares"
+  | "ha";
 
 /**
  * Grid types.
@@ -91,10 +104,7 @@ export type Lines = LineString | MultiLineString | Polygon | MultiPolygon;
  * @typedef
  */
 export type AllGeoJSON =
-  | Feature
-  | FeatureCollection
-  | Geometry
-  | GeometryCollection;
+  Feature | FeatureCollection | Geometry | GeometryCollection;
 
 /**
  * The Earth radius in meters. Used by Turf modules that model the Earth as a sphere. The {@link https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius mean radius} was selected because it is {@link https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended recommended } by the Haversine formula (used by turf/distance) to reduce error.
@@ -113,19 +123,30 @@ export const earthRadius = 6371008.8;
 export const factors: Record<Units, number> = {
   centimeters: earthRadius * 100,
   centimetres: earthRadius * 100,
+  cm: earthRadius * 100,
   degrees: 360 / (2 * Math.PI),
+  deg: 360 / (2 * Math.PI),
   feet: earthRadius * 3.28084,
+  ft: earthRadius * 3.28084,
   inches: earthRadius * 39.37,
+  in: earthRadius * 39.37,
   kilometers: earthRadius / 1000,
   kilometres: earthRadius / 1000,
+  km: earthRadius / 1000,
   meters: earthRadius,
   metres: earthRadius,
+  m: earthRadius,
   miles: earthRadius / 1609.344,
+  mi: earthRadius / 1609.344,
   millimeters: earthRadius * 1000,
   millimetres: earthRadius * 1000,
+  mm: earthRadius * 1000,
   nauticalmiles: earthRadius / 1852,
+  nmi: earthRadius / 1852,
   radians: 1,
+  rad: 1,
   yards: earthRadius * 1.0936,
+  yd: earthRadius * 1.0936,
 };
 
 /**
@@ -136,20 +157,31 @@ export const factors: Record<Units, number> = {
  */
 export const areaFactors: Record<AreaUnits, number> = {
   acres: 0.000247105,
+  ac: 0.000247105,
   centimeters: 10000,
   centimetres: 10000,
+  cm: 10000,
   feet: 10.763910417,
+  ft: 10.763910417,
   hectares: 0.0001,
+  ha: 0.0001,
   inches: 1550.003100006,
+  in: 1550.003100006,
   kilometers: 0.000001,
   kilometres: 0.000001,
+  km: 0.000001,
   meters: 1,
   metres: 1,
+  m: 1,
   miles: 3.86e-7,
+  mi: 3.86e-7,
   nauticalmiles: 2.9155334959812285e-7,
+  nmi: 2.9155334959812285e-7,
   millimeters: 1000000,
   millimetres: 1000000,
+  mm: 1000000,
   yards: 1.195990046,
+  yd: 1.195990046,
 };
 
 /**
@@ -207,30 +239,38 @@ export function feature<
  * var geometry = turf.geometry(type, coordinates);
  * // => geometry
  */
-export function geometry(
-  type:
+export function geometry<
+  T extends
     | "Point"
     | "LineString"
     | "Polygon"
     | "MultiPoint"
     | "MultiLineString"
     | "MultiPolygon",
+>(
+  type: T,
   coordinates: any[],
   _options: Record<string, never> = {}
-) {
+): Extract<Geometry, { type: T }> {
   switch (type) {
     case "Point":
-      return point(coordinates).geometry;
+      return point(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "LineString":
-      return lineString(coordinates).geometry;
+      return lineString(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "Polygon":
-      return polygon(coordinates).geometry;
+      return polygon(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "MultiPoint":
-      return multiPoint(coordinates).geometry;
+      return multiPoint(coordinates).geometry as Extract<Geometry, { type: T }>;
     case "MultiLineString":
-      return multiLineString(coordinates).geometry;
+      return multiLineString(coordinates).geometry as Extract<
+        Geometry,
+        { type: T }
+      >;
     case "MultiPolygon":
-      return multiPolygon(coordinates).geometry;
+      return multiPolygon(coordinates).geometry as Extract<
+        Geometry,
+        { type: T }
+      >;
     default:
       throw new Error(type + " is invalid");
   }
@@ -598,15 +638,15 @@ export function multiPolygon<P extends GeoJsonProperties = GeoJsonProperties>(
  * // => collection
  */
 export function geometryCollection<
+  G extends
+    Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
-  geometries: Array<
-    Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon
-  >,
+  geometries: Array<G>,
   properties?: P,
   options: { bbox?: BBox; id?: Id } = {}
-): Feature<GeometryCollection, P> {
-  const geom: GeometryCollection = {
+): Feature<GeometryCollection<G>, P> {
+  const geom: GeometryCollection<G> = {
     type: "GeometryCollection",
     geometries,
   };

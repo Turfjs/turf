@@ -1,0 +1,14 @@
+{
+  "name": "node-cjs",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "funding": "https://opencollective.com/turf",
+  "scripts": {
+    "test": "pnpm run /test:.*/",
+    "test:node": "node index.cjs"
+  },
+  "dependencies": {
+    "@turf/turf": "workspace:*"
+  }
+}

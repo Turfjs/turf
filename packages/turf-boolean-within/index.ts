@@ -139,22 +139,21 @@ function isMultiPointOnLine(multiPoint: MultiPoint, lineString: LineString) {
 }
 
 function isMultiPointInPoly(multiPoint: MultiPoint, polygon: Polygon) {
-  var output = true;
   var oneInside = false;
-  var isInside = false;
   for (var i = 0; i < multiPoint.coordinates.length; i++) {
-    isInside = booleanPointInPolygon(multiPoint.coordinates[i], polygon);
-    if (!isInside) {
-      output = false;
-      break;
+    // All points must be inside polygon (boundary OK)
+    if (!booleanPointInPolygon(multiPoint.coordinates[i], polygon)) {
+      return false;
     }
+    // Track if at least one point is strictly in the interior
     if (!oneInside) {
-      isInside = booleanPointInPolygon(multiPoint.coordinates[i], polygon, {
+      oneInside = booleanPointInPolygon(multiPoint.coordinates[i], polygon, {
         ignoreBoundary: true,
       });
     }
   }
-  return output && isInside;
+  // At least one point must be in the interior (not just on boundary)
+  return oneInside;
 }
 
 function isLineOnLine(lineString1: LineString, lineString2: LineString) {

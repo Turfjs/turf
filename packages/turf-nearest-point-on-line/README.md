@@ -10,10 +10,23 @@ If any of the segments in the input line string are antipodal and therefore
 have an undefined arc, this function will instead return that the point lies
 on the line.
 
+⚠️ We have begun the process of migrating to different return properties for
+this function. The new properties we recommend using as of v7.4 are:
+
+*   lineStringIndex - point was found on the nth LineString of an input MultiLineString. Previously `multiFeatureIndex`
+*   segmentIndex - point was found on the nth segment of the above LineString. Previously `index`
+*   totalDistance - distance from the start of the overall MultiLineString. Previously `location`
+*   lineDistance - distance from the start of the relevant LineString
+*   segmentDistance - distance from the start of the relevant segment
+*   pointDistance - distance between found point is from input reference point. Previously `dist`
+
+multiFeatureIndex, index, location, and dist continue to work as previously
+until at least the next major release.
+
 ### Parameters
 
-*   `lines` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4])>)** lines to snap to
-*   `pt` **([Geometry][1] | [Feature][2]<[Point][5]> | [Array][6]<[number][7]>)** point to snap from
+*   `lines` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4])>)** Lines to snap to
+*   `inputPoint` **([Geometry][1] | [Feature][2]<[Point][5]> | [Array][6]<[number][7]>)** Point to snap from
 *   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
     *   `options.units` **Units** Supports all valid Turf [Units][9] (optional, default `'kilometers'`)
@@ -29,16 +42,16 @@ var line = turf.lineString([
     [-77.021884, 38.889563],
     [-77.019824, 38.892368]
 ]);
-var pt = turf.point([-77.037076, 38.884017]);
+var inputPoint = turf.point([-77.037076, 38.884017]);
 
-var snapped = turf.nearestPointOnLine(line, pt, {units: 'miles'});
+var snapped = turf.nearestPointOnLine(line, inputPoint, {units: 'miles'});
 
 //addToMap
-var addToMap = [line, pt, snapped];
+var addToMap = [line, inputPoint, snapped];
 snapped.properties['marker-color'] = '#00f';
 ```
 
-Returns **[Feature][2]<[Point][5]>** closest point on the `line` to `point`. The properties object will contain four values: `index`: closest point was found on nth line part, `multiFeatureIndex`: closest point was found on the nth line of the `MultiLineString`, `dist`: distance between pt and the closest point, `location`: distance along the line between start and the closest point.
+Returns **[Feature][2]<[Point][5]>** closest point on the `lines` to the `inputPoint`. The point will have the following properties: `lineStringIndex`: closest point was found on the nth LineString (only relevant if input is MultiLineString), `segmentIndex`: closest point was found on nth line segment of the LineString, `totalDistance`: distance along the line from the absolute start of the MultiLineString, `lineDistance`: distance along the line from the start of the LineString where the closest point was found, `segmentDistance`: distance along the line from the start of the line segment where the closest point was found, `pointDistance`: distance to the input point.
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1
 

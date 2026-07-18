@@ -35,8 +35,7 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
     filename,
     name: path.parse(filename).name,
     geojson: loadJsonFileSync(directories.in + filename) as
-      | FeatureCollection
-      | Feature,
+      FeatureCollection | Feature,
   };
 });
 

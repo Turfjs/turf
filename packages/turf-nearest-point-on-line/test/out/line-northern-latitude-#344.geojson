@@ -39,6 +39,12 @@
     {
       "type": "Feature",
       "properties": {
+        "lineStringIndex": 0,
+        "segmentIndex": 1,
+        "totalDistance": 19.748879,
+        "lineDistance": 19.748879,
+        "segmentDistance": 1.771897,
+        "pointDistance": 5.959562,
         "dist": 5.959562,
         "multiFeatureIndex": 0,
         "location": 19.748879,

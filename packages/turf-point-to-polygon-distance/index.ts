@@ -30,9 +30,7 @@ import { polygon, Units } from "@turf/helpers";
 export function pointToPolygonDistance(
   point: Feature<Point> | Point | Position,
   polygonOrMultiPolygon:
-    | Feature<Polygon | MultiPolygon>
-    | Polygon
-    | MultiPolygon,
+    Feature<Polygon | MultiPolygon> | Polygon | MultiPolygon,
   options: {
     units?: Units;
     method?: "geodesic" | "planar";
