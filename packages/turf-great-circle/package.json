@@ -1,12 +1,13 @@
 {
   "name": "@turf/great-circle",
-  "version": "7.2.0",
+  "version": "7.3.5",
   "description": "Calculate great circles routes as LineString or MultiLineString.",
   "author": "Turf Authors",
   "contributors": [
     "Dane Springmeyer <@springmeyer>",
     "Stepan Kuzmin <@stepankuzmin>",
-    "Denis Carriere <@DenisCarriere>"
+    "Denis Carriere <@DenisCarriere>",
+    "Thomas Hervey <@thomas-hervey>"
   ],
   "license": "MIT",
   "bugs": {
@@ -52,26 +53,27 @@
   "scripts": {
     "bench": "tsx bench.ts",
     "build": "tsup --config ../../tsup.config.ts",
-    "docs": "tsx ../../scripts/generate-readmes.ts",
-    "test": "npm-run-all --npm-path npm test:*",
+    "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
     "@turf/truncate": "workspace:*",
-    "@types/benchmark": "^2.1.5",
-    "@types/tape": "^5.8.1",
-    "benchmark": "^2.1.4",
+    "@types/benchmark": "catalog:",
+    "@types/tape": "catalog:",
+    "benchmark": "catalog:",
     "load-json-file": "^7.0.1",
-    "npm-run-all": "^4.1.5",
-    "tape": "^5.9.0",
-    "tsup": "^8.4.0",
-    "tsx": "^4.19.4",
+    "tape": "catalog:",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
     "write-json-file": "^6.0.0"
   },
   "dependencies": {
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
-    "@types/geojson": "^7946.0.10"
+    "@types/geojson": "catalog:",
+    "arc": "^0.2.0",
+    "tslib": "catalog:"
   }
 }

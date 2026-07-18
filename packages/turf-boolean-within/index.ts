@@ -12,12 +12,13 @@ import { bbox as calcBbox } from "@turf/bbox";
 import { booleanPointOnLine } from "@turf/boolean-point-on-line";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
+import { feature, featureCollection, lineString } from "@turf/helpers";
+import { lineSplit } from "@turf/line-split";
 
 /**
- * Boolean-within returns true if the first geometry is completely within the second geometry.
- * The interiors of both geometries must intersect and, the interior and boundary of the primary (geometry a)
- * must not intersect the exterior of the secondary (geometry b).
- * Boolean-within returns the exact opposite result of the `@turf/boolean-contains`.
+ * Tests whether geometry a is contained by geometry b.
+ * The interiors of both geometries must intersect, and the interior and boundary of geometry a must not intersect the exterior of geometry b.
+ * booleanWithin(a, b) is equivalent to booleanContains(b, a)
  *
  * @function
  * @param {Geometry|Feature<any>} feature1 GeoJSON Feature or Geometry
@@ -138,22 +139,21 @@ function isMultiPointOnLine(multiPoint: MultiPoint, lineString: LineString) {
 }
 
 function isMultiPointInPoly(multiPoint: MultiPoint, polygon: Polygon) {
-  var output = true;
   var oneInside = false;
-  var isInside = false;
   for (var i = 0; i < multiPoint.coordinates.length; i++) {
-    isInside = booleanPointInPolygon(multiPoint.coordinates[i], polygon);
-    if (!isInside) {
-      output = false;
-      break;
+    // All points must be inside polygon (boundary OK)
+    if (!booleanPointInPolygon(multiPoint.coordinates[i], polygon)) {
+      return false;
     }
+    // Track if at least one point is strictly in the interior
     if (!oneInside) {
-      isInside = booleanPointInPolygon(multiPoint.coordinates[i], polygon, {
+      oneInside = booleanPointInPolygon(multiPoint.coordinates[i], polygon, {
         ignoreBoundary: true,
       });
     }
   }
-  return output && isInside;
+  // At least one point must be in the interior (not just on boundary)
+  return oneInside;
 }
 
 function isLineOnLine(lineString1: LineString, lineString2: LineString) {
@@ -165,36 +165,67 @@ function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   return true;
 }
 
+function splitLineIntoSegmentsOnPolygon(
+  linestring: LineString,
+  polygon: Polygon
+) {
+  const coords = linestring.coordinates;
+
+  const outputSegments: Feature<LineString>[] = [];
+
+  for (let i = 0; i < coords.length - 1; i++) {
+    const seg = lineString([coords[i], coords[i + 1]]);
+    const split = lineSplit(seg, feature(polygon));
+
+    if (split.features.length === 0) {
+      outputSegments.push(seg);
+    } else {
+      outputSegments.push(...split.features);
+    }
+  }
+
+  return featureCollection(outputSegments);
+}
+
 function isLineInPoly(linestring: LineString, polygon: Polygon) {
-  var polyBbox = calcBbox(polygon);
-  var lineBbox = calcBbox(linestring);
+  const polyBbox = calcBbox(polygon);
+  const lineBbox = calcBbox(linestring);
+
   if (!doBBoxOverlap(polyBbox, lineBbox)) {
     return false;
   }
-  var foundInsidePoint = false;
 
-  for (var i = 0; i < linestring.coordinates.length; i++) {
-    if (!booleanPointInPolygon(linestring.coordinates[i], polygon)) {
+  for (const coord of linestring.coordinates) {
+    if (!booleanPointInPolygon(coord, polygon)) {
       return false;
     }
-    if (!foundInsidePoint) {
-      foundInsidePoint = booleanPointInPolygon(
-        linestring.coordinates[i],
-        polygon,
-        { ignoreBoundary: true }
-      );
+  }
+
+  let isContainedByPolygonBoundary = false;
+  // split intersecting segments and verify their inclusion
+  const lineSegments = splitLineIntoSegmentsOnPolygon(linestring, polygon);
+
+  for (const lineSegment of lineSegments.features) {
+    const midpoint = getMidpoint(
+      lineSegment.geometry.coordinates[0],
+      lineSegment.geometry.coordinates[1]
+    );
+
+    // make sure all segments do not intersect with polygon exterior
+    if (!booleanPointInPolygon(midpoint, polygon)) {
+      return false;
     }
-    if (!foundInsidePoint && i < linestring.coordinates.length - 1) {
-      var midpoint = getMidpoint(
-        linestring.coordinates[i],
-        linestring.coordinates[i + 1]
-      );
-      foundInsidePoint = booleanPointInPolygon(midpoint, polygon, {
-        ignoreBoundary: true,
-      });
+
+    // make sure at least 1 segment intersects with the polygon's interior
+    if (
+      !isContainedByPolygonBoundary &&
+      booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })
+    ) {
+      isContainedByPolygonBoundary = true;
     }
   }
-  return foundInsidePoint;
+
+  return isContainedByPolygonBoundary;
 }
 
 /**

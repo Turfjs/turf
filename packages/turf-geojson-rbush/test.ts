@@ -29,13 +29,13 @@ test("geojson-rbush", (t) => {
     const filename = fixture.filename;
     const geojson = fixture.geojson;
     const tree = geojsonRbush();
-    tree.load(geojson);
+    tree.load(geojson as any);
 
     // Retrive all features inside the RBush index
     const all = tree.all();
 
     // Search using the first item in the FeatureCollection
-    const search = tree.search(geojson.features[0]);
+    const search = tree.search((geojson as any).features[0]);
 
     if (process.env.REGEN) {
       writeJsonFileSync(directories.out + "all." + filename, all);
@@ -71,7 +71,7 @@ test("geojson-rbush -- bbox", (t) => {
   t.equal(tree.collides([-180, -80, -170, -60]), false);
 
   // Errors
-  t.throws(() => tree.search("foo"));
+  t.throws(() => tree.search("foo" as any));
   t.end();
 });
 

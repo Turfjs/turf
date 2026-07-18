@@ -1,0 +1,47 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "resolution": 10,
+    "units": "meters"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "start"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.811772, 52.151878]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "end"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [13.807807, 52.157116]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "obstacle"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [13.809135, 52.153309],
+            [13.809135, 52.152021],
+            [13.813001, 52.152021],
+            [13.813001, 52.153309],
+            [13.809135, 52.153309]
+          ]
+        ]
+      }
+    }
+  ]
+}

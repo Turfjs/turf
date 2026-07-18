@@ -2,8 +2,6 @@ import { bbox } from "@turf/bbox";
 import { coordEach } from "@turf/meta";
 import { collectionOf } from "@turf/invariant";
 import { multiLineString, featureCollection, isObject } from "@turf/helpers";
-// @ts-expect-error Legacy JS library with no types defined
-import { isoContours } from "marchingsquares";
 import { gridToMatrix } from "./lib/grid-to-matrix.js";
 import {
   FeatureCollection,
@@ -11,6 +9,7 @@ import {
   MultiLineString,
   Feature,
   GeoJsonProperties,
+  Position,
 } from "geojson";
 
 /**
@@ -18,7 +17,7 @@ import {
  * value breaks and generates [isolines](https://en.wikipedia.org/wiki/Contour_line).
  *
  * @function
- * @param {FeatureCollection<Point>} pointGrid input points
+ * @param {FeatureCollection<Point>} pointGrid input points - must be square or rectangular and already gridded. That is, to have consistent x and y dimensions and be at least 2x2 in size.
  * @param {Array<number>} breaks values of `zProperty` where to draw isolines
  * @param {Object} [options={}] Optional parameters
  * @param {string} [options.zProperty='elevation'] the property name in `points` from which z-values will be pulled
@@ -69,6 +68,23 @@ function isolines(
 
   // Isoline methods
   const matrix = gridToMatrix(pointGrid, { zProperty: zProperty, flip: true });
+
+  // A quick note on what 'top' and 'bottom' mean in coordinate system of `matrix`:
+  // Remember that the southern hemisphere is represented by negative numbers,
+  // so a matrix Y of 0 is actually the *bottom*, and a Y of dy - 1 is the *top*.
+
+  // check that the resulting matrix has consistent x and y dimensions and
+  // has at least a 2x2 size so that we can actually build grid squares
+  const dx = matrix[0].length;
+  if (matrix.length < 2 || dx < 2) {
+    throw new Error("Matrix of points must be at least 2x2");
+  }
+  for (let i = 1; i < matrix.length; i++) {
+    if (matrix[i].length !== dx) {
+      throw new Error("Matrix of points is not uniform in the x dimension");
+    }
+  }
+
   const createdIsoLines = createIsoLines(
     matrix,
     breaks,
@@ -109,16 +125,224 @@ function createIsoLines(
 
     const properties = { ...commonProperties, ...breaksProperties[i] };
     properties[zProperty] = threshold;
-    // Pass options to marchingsquares lib to reproduce historical turf
-    // behaviour.
-    const isoline = multiLineString(
-      isoContours(matrix, threshold, { linearRing: false, noFrame: true }),
-      properties
-    );
+    const isoline = multiLineString(isoContours(matrix, threshold), properties);
 
     results.push(isoline);
   }
   return results;
+}
+
+function isoContours(
+  matrix: ReadonlyArray<ReadonlyArray<number>>,
+  threshold: number
+): Position[][] {
+  // see https://en.wikipedia.org/wiki/Marching_squares
+  const segments: [Position, Position][] = [];
+
+  const dy = matrix.length;
+  const dx = matrix[0].length;
+
+  for (let y = 0; y < dy - 1; y++) {
+    for (let x = 0; x < dx - 1; x++) {
+      const tr = matrix[y + 1][x + 1];
+      const br = matrix[y][x + 1];
+      const bl = matrix[y][x];
+      const tl = matrix[y + 1][x];
+
+      let grid =
+        (tl >= threshold ? 8 : 0) |
+        (tr >= threshold ? 4 : 0) |
+        (br >= threshold ? 2 : 0) |
+        (bl >= threshold ? 1 : 0);
+
+      switch (grid) {
+        case 0:
+          continue;
+        case 1:
+          segments.push([
+            [x + frac(bl, br), y],
+            [x, y + frac(bl, tl)],
+          ]);
+          break;
+        case 2:
+          segments.push([
+            [x + 1, y + frac(br, tr)],
+            [x + frac(bl, br), y],
+          ]);
+          break;
+        case 3:
+          segments.push([
+            [x + 1, y + frac(br, tr)],
+            [x, y + frac(bl, tl)],
+          ]);
+          break;
+        case 4:
+          segments.push([
+            [x + frac(tl, tr), y + 1],
+            [x + 1, y + frac(br, tr)],
+          ]);
+          break;
+        case 5: {
+          // use the average of the 4 corners to differentiate the saddle case and correctly honor the counter-clockwise winding
+          const avg = (tl + tr + br + bl) / 4;
+          const above = avg >= threshold;
+
+          if (above) {
+            segments.push(
+              [
+                [x + frac(tl, tr), y + 1],
+                [x, y + frac(bl, tl)],
+              ],
+              [
+                [x + frac(bl, br), y],
+                [x + 1, y + frac(br, tr)],
+              ]
+            );
+          } else {
+            segments.push(
+              [
+                [x + frac(tl, tr), y + 1],
+                [x + 1, y + frac(br, tr)],
+              ],
+              [
+                [x + frac(bl, br), y],
+                [x, y + frac(bl, tl)],
+              ]
+            );
+          }
+          break;
+        }
+        case 6:
+          segments.push([
+            [x + frac(tl, tr), y + 1],
+            [x + frac(bl, br), y],
+          ]);
+          break;
+        case 7:
+          segments.push([
+            [x + frac(tl, tr), y + 1],
+            [x, y + frac(bl, tl)],
+          ]);
+          break;
+        case 8:
+          segments.push([
+            [x, y + frac(bl, tl)],
+            [x + frac(tl, tr), y + 1],
+          ]);
+          break;
+        case 9:
+          segments.push([
+            [x + frac(bl, br), y],
+            [x + frac(tl, tr), y + 1],
+          ]);
+          break;
+        case 10: {
+          const avg = (tl + tr + br + bl) / 4;
+          const above = avg >= threshold;
+
+          if (above) {
+            segments.push(
+              [
+                [x, y + frac(bl, tl)],
+                [x + frac(bl, br), y],
+              ],
+              [
+                [x + 1, y + frac(br, tr)],
+                [x + frac(tl, tr), y + 1],
+              ]
+            );
+          } else {
+            segments.push(
+              [
+                [x, y + frac(bl, tl)],
+                [x + frac(tl, tr), y + 1],
+              ],
+              [
+                [x + 1, y + frac(br, tr)],
+                [x + frac(bl, br), y],
+              ]
+            );
+          }
+          break;
+        }
+        case 11:
+          segments.push([
+            [x + 1, y + frac(br, tr)],
+            [x + frac(tl, tr), y + 1],
+          ]);
+          break;
+        case 12:
+          segments.push([
+            [x, y + frac(bl, tl)],
+            [x + 1, y + frac(br, tr)],
+          ]);
+          break;
+        case 13:
+          segments.push([
+            [x + frac(bl, br), y],
+            [x + 1, y + frac(br, tr)],
+          ]);
+          break;
+        case 14:
+          segments.push([
+            [x, y + frac(bl, tl)],
+            [x + frac(bl, br), y],
+          ]);
+          break;
+        case 15:
+          // all above
+          continue;
+      }
+    }
+  }
+
+  const contours: Position[][] = [];
+
+  while (segments.length > 0) {
+    const contour: Position[] = [...segments.shift()!];
+    contours.push(contour);
+
+    let found: boolean;
+    do {
+      found = false;
+      for (let i = 0; i < segments.length; i++) {
+        const segment = segments[i];
+        // add the segment's end point to the end of the contour
+        if (
+          segment[0][0] === contour[contour.length - 1][0] &&
+          segment[0][1] === contour[contour.length - 1][1]
+        ) {
+          found = true;
+          contour.push(segment[1]);
+          segments.splice(i, 1);
+          break;
+        }
+        // add the segment's start point to the start of the contour
+        if (
+          segment[1][0] === contour[0][0] &&
+          segment[1][1] === contour[0][1]
+        ) {
+          found = true;
+          contour.unshift(segment[0]);
+          segments.splice(i, 1);
+          break;
+        }
+      }
+    } while (found);
+  }
+
+  return contours;
+
+  // get the linear interpolation fraction of how far z is between z0 and z1
+  // See https://github.com/fschutt/marching-squares/blob/master/src/lib.rs
+  function frac(z0: number, z1: number): number {
+    if (z0 === z1) {
+      return 0.5;
+    }
+
+    let t = (threshold - z0) / (z1 - z0);
+    return t > 1 ? 1 : t < 0 ? 0 : t;
+  }
 }
 
 /**
