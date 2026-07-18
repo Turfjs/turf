@@ -44,3 +44,16 @@ test("bearing", (t) => {
     writeJsonFileSync(out + "results.geojson", results);
   }
 });
+test("bearing - final bearing is in [-180, 180] range", (t) => {
+  // Traveling due west along the equator: start=(10,0), end=(0,0)
+  // The final bearing at the destination should be -90 (west), not 270.
+  const west_start = point([10, 0]);
+  const west_end = point([0, 0]);
+  const finalWest = bearing(west_start, west_end, { final: true });
+  t.ok(
+    finalWest >= -180 && finalWest <= 180,
+    "final bearing is within [-180, 180]: got " + finalWest
+  );
+  t.equal(finalWest.toFixed(2), "-90.00", "final bearing westward is -90");
+  t.end();
+});

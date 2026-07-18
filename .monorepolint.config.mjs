@@ -1,7 +1,7 @@
 // @ts-check
 import * as path from "node:path";
-import { glob } from "glob";
-import * as fs from "node:fs";
+import { existsSync } from "node:fs";
+import * as fs from "node:fs/promises";
 import {
   alphabeticalDependencies,
   alphabeticalScripts,
@@ -9,49 +9,41 @@ import {
   packageEntry,
   packageScript,
   requireDependency,
+  REMOVE,
 } from "@monorepolint/rules";
 
-const TS_PACKAGES = []; // projects that use typescript to build
-const JS_PACKAGES = []; // projects that use javascript/rollup to build
+const PACKAGES = []; // packages that aren't @turf/turf
 const MAIN_PACKAGE = "@turf/turf";
 
-const TAPE_PACKAGES = []; // projects that have tape tests
-const TYPES_PACKAGES = []; // projects that have types tests
-const TSTYCHE_PACKAGES = []; // projects that use tstyche for type tests.
-const BENCH_PACKAGES = []; // projects that have benchmarks
+const TAPE_PACKAGES = []; // packages that have tape tests
+const TYPES_PACKAGES = []; // packages that have types tests
+const TSTYCHE_PACKAGES = []; // packages that use tstyche for type tests.
 
 // iterate all the packages and figure out what buckets everything falls into
-const __dirname = new URL(".", import.meta.url).pathname;
-glob.sync(path.join(__dirname, "packages", "turf-*")).forEach((pk) => {
-  const name = JSON.parse(
-    fs.readFileSync(path.join(pk, "package.json"), "utf8")
-  ).name;
-
-  if (fs.existsSync(path.join(pk, "index.ts"))) {
-    TS_PACKAGES.push(name);
-  } else {
-    JS_PACKAGES.push(name);
+const packagesPath = path.join(process.cwd(), "packages");
+for (const pk of await fs.readdir(packagesPath)) {
+  if (pk === "turf") {
+    continue;
   }
 
-  if (fs.existsSync(path.join(pk, "test.js"))) {
+  const name = JSON.parse(
+    await fs.readFile(path.join(packagesPath, pk, "package.json"), "utf8")
+  ).name;
+
+  PACKAGES.push(name);
+
+  if (existsSync(path.join(pk, "test.js"))) {
     TAPE_PACKAGES.push(name);
   }
 
-  if (fs.existsSync(path.join(pk, "types.ts"))) {
+  if (existsSync(path.join(packagesPath, pk, "types.ts"))) {
     TYPES_PACKAGES.push(name);
   }
 
-  if (fs.existsSync(path.join(pk, "test/types.tst.ts"))) {
+  if (existsSync(path.join(packagesPath, pk, "test/types.tst.ts"))) {
     TSTYCHE_PACKAGES.push(name);
   }
-});
-
-const TS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== TS_PACKAGES.indexOf(pkg)
-);
-const JS_TAPE_PACKAGES = TAPE_PACKAGES.filter(
-  (pkg) => -1 !== JS_PACKAGES.indexOf(pkg)
-);
+}
 
 export default {
   rules: [
@@ -152,7 +144,7 @@ export default {
           },
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     packageEntry({
@@ -161,7 +153,7 @@ export default {
           files: ["dist"],
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     packageEntry({
@@ -175,7 +167,7 @@ export default {
     packageScript({
       options: {
         scripts: {
-          docs: "tsx ../../scripts/generate-readmes.ts",
+          docs: REMOVE,
           test: "pnpm run /test:.*/",
         },
       },
@@ -188,7 +180,7 @@ export default {
           build: "tsup --config ../../tsup.config.ts",
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     packageScript({
@@ -208,7 +200,7 @@ export default {
           "test:tape": "tsx test.ts",
         },
       },
-      includePackages: [...TS_TAPE_PACKAGES, ...JS_TAPE_PACKAGES],
+      includePackages: TAPE_PACKAGES,
     }),
 
     packageScript({
@@ -233,33 +225,34 @@ export default {
     requireDependency({
       options: {
         devDependencies: {
-          benchmark: "^2.1.4",
-          tape: "^5.9.0",
-          tsup: "^8.4.0",
-          tsx: "^4.19.4",
+          benchmark: "catalog:",
+          glob: REMOVE,
+          tape: "catalog:",
+          tsup: "catalog:",
+          tsx: "catalog:",
         },
       },
-      includePackages: [...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: PACKAGES,
     }),
 
     requireDependency({
       options: {
         dependencies: {
-          tslib: "^2.8.1",
+          tslib: "catalog:",
         },
         devDependencies: {
-          "@types/benchmark": "^2.1.5",
-          "@types/tape": "^5.8.1",
-          typescript: "^5.8.3",
+          "@types/benchmark": "catalog:",
+          "@types/tape": "catalog:",
+          typescript: "catalog:",
         },
       },
-      includePackages: TS_PACKAGES,
+      includePackages: PACKAGES,
     }),
 
     requireDependency({
       options: {
         devDependencies: {
-          tstyche: "^6.2.0",
+          tstyche: "catalog:",
         },
       },
       includePackages: TSTYCHE_PACKAGES,
@@ -268,10 +261,10 @@ export default {
     requireDependency({
       options: {
         dependencies: {
-          "@types/geojson": "^7946.0.10",
+          "@types/geojson": "catalog:",
         },
       },
-      includePackages: [MAIN_PACKAGE, ...TS_PACKAGES, ...JS_PACKAGES],
+      includePackages: [MAIN_PACKAGE, ...PACKAGES],
     }),
   ],
 };

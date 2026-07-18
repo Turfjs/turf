@@ -66,12 +66,7 @@ function getCoord(coord: Feature<Point> | Point | number[]): number[] {
  */
 function getCoords<
   G extends
-    | Point
-    | LineString
-    | Polygon
-    | MultiPoint
-    | MultiLineString
-    | MultiPolygon,
+    Point | LineString | Polygon | MultiPoint | MultiLineString | MultiPolygon,
 >(coords: any[] | Feature<G> | G): any[] {
   if (Array.isArray(coords)) {
     return coords;
