@@ -3,14 +3,13 @@ import { convertLength, Coord, earthRadius, Units } from "@turf/helpers";
 import { getCoord } from "@turf/invariant";
 
 /**
- * Calculates the distance along a rhumb line between two {@link Point|points} in degrees, radians,
- * miles, or kilometers.
+ * Calculates the distance along a rhumb line between two {@link Point|points} in {@link https://turfjs.org/docs/api/types/Units Units}
  *
  * @function
  * @param {Coord} from origin point
  * @param {Coord} to destination point
  * @param {Object} [options] Optional parameters
- * @param {string} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @returns {number} distance between the two points
  * @example
  * var from = turf.point([-75.343, 39.984]);

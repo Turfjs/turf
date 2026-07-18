@@ -15,7 +15,7 @@ import { getCoords } from "@turf/invariant";
  * @param {number} bearing1 angle, in decimal degrees, of the first radius of the sector
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the sector
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units='kilometers'] miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {number} [options.steps=64] number of steps
  * @param {Properties} [options.properties={}] Translate properties to Feature Polygon
  * @returns {Feature<Polygon>} sector polygon

@@ -13,7 +13,7 @@ This uses the [Haversine formula][2] to account for global curvature.
 *   `to` **[Coord][1]** destination coordinate
 *   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][4]** can be degrees, radians, miles, or kilometers (optional, default `'kilometers'`)
+    *   `options.units` **Units** Supports all valid Turf [Units][4]. (optional, default `'kilometers'`)
 
 ### Examples
 
@@ -38,7 +38,7 @@ Returns **[number][5]** distance between the two coordinates
 
 [3]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[4]: https://turfjs.org/docs/api/types/Units
 
 [5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 

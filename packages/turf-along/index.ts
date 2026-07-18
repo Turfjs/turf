@@ -12,7 +12,7 @@ import { getGeom } from "@turf/invariant";
  * @param {Feature<LineString>|LineString} line input line
  * @param {number} distance distance along the line
  * @param {Object} [options] Optional parameters
- * @param {Units} [options.units="kilometers"] can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units="kilometers"] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {Feature<Point>} Point `distance` `units` along the line
  * @example
  * var line = turf.lineString([[-83, 30], [-84, 36], [-78, 41]]);

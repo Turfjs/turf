@@ -1,6 +1,4 @@
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import globals from "globals";
-import tsParser from "@typescript-eslint/parser";
 import js from "@eslint/js";
 import tsEslint from "typescript-eslint";
 import prettierRecommended from "eslint-plugin-prettier/recommended";
@@ -19,7 +17,7 @@ export default tsEslint.config(
   },
   {
     plugins: {
-      "@typescript-eslint": typescriptEslint,
+      "@typescript-eslint": tsEslint.plugin,
     },
 
     languageOptions: {
@@ -27,7 +25,7 @@ export default tsEslint.config(
         ...globals.node,
       },
 
-      parser: tsParser,
+      parser: tsEslint.parser,
       ecmaVersion: 6,
       sourceType: "module",
     },
@@ -70,18 +68,6 @@ export default tsEslint.config(
     languageOptions: {
       globals: {
         ...globals.node,
-      },
-    },
-  },
-  {
-    files: [
-      "packages/turf-isobands/lib/marchingsquares-isobands.js",
-      "packages/turf-isolines/lib/marchingsquares-isocontours.js",
-    ],
-
-    languageOptions: {
-      globals: {
-        ...globals.browser,
       },
     },
   },

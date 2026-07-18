@@ -4,10 +4,9 @@
 
 ## booleanContains
 
-Boolean-contains returns True if the second geometry is completely contained by the first geometry.
-The interiors of both geometries must intersect and, the interior and boundary of the secondary (geometry b)
-must not intersect the exterior of the primary (geometry a).
-Boolean-contains returns the exact opposite result of the `@turf/boolean-within`.
+Tests whether geometry a contains geometry b.
+The interiors of both geometries must intersect, and the interior and boundary of geometry b must not intersect the exterior of geometry a.
+booleanContains(a, b) is equivalent to booleanWithin(b, a)
 
 ### Parameters
 
@@ -55,4 +54,4 @@ $ npm install @turf/turf
 
 ### Diagrams
 
-![esri-contains](diagrams/esri-contains.gif)
+![esri-contains](diagrams/esri-contains.png)

@@ -31,7 +31,7 @@ Takes a set of [points][4] and partition them into clusters according to [DBSCAN
 *   `maxDistance` **[number][3]** Maximum Distance between any point of the cluster to generate the clusters (kilometers by default, see options)
 *   `options` **[Object][1]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][7]** in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers (optional, default `"kilometers"`)
+    *   `options.units` **Units** in which `maxDistance` is expressed, Supports all valid Turf [Units][7] (optional, default `"kilometers"`)
     *   `options.mutate` **[boolean][8]** Allows GeoJSON input to be mutated (optional, default `false`)
     *   `options.minPoints` **[number][3]** Minimum number of points to generate a single cluster,
         points which do not meet this requirement will be classified as an 'edge' or 'noise'. (optional, default `3`)
@@ -63,7 +63,7 @@ Returns **[FeatureCollection][6]<[Point][4], [DbscanProps][9]>** Clustered Point
 
 [6]: https://tools.ietf.org/html/rfc7946#section-3.3
 
-[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[7]: https://turfjs.org/docs/api/types/Units
 
 [8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 

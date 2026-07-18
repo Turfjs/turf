@@ -9,12 +9,15 @@ import { rhumbDestination } from "@turf/rhumb-destination";
  * Moves any geojson Feature or Geometry of a specified distance along a Rhumb Line
  * on the provided direction angle.
  *
+ * Note that this moves the points of your shape individually and can therefore change
+ * the overall shape. How noticable this is depends on the distance and the used projection.
+ *
  * @function
  * @param {GeoJSON|GeometryCollection} geojson object to be translated
  * @param {number} distance length of the motion; negative values determine motion in opposite direction
  * @param {number} direction of the motion; angle from North in decimal degrees, positive clockwise
  * @param {Object} [options={}] Optional parameters
- * @param {Units} [options.units='kilometers'] in which `distance` will be express; miles, kilometers, degrees, or radians
+ * @param {Units} [options.units='kilometers'] in which `distance` will be expressed; Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {number} [options.zTranslation=0] length of the vertical motion, same unit of distance
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON|GeometryCollection} the translated GeoJSON object

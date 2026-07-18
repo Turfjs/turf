@@ -2,7 +2,7 @@ import { GeoJsonProperties, FeatureCollection, Point } from "geojson";
 import { clone } from "@turf/clone";
 import { distance } from "@turf/distance";
 import { degreesToRadians, lengthToDegrees, Units } from "@turf/helpers";
-import { rbush as RBush } from "./lib/rbush-export.js";
+import RBush from "rbush";
 
 /**
  * Point classification within the cluster.
@@ -40,7 +40,7 @@ type IndexedPoint = {
  * @param {FeatureCollection<Point>} points to be clustered
  * @param {number} maxDistance Maximum Distance between any point of the cluster to generate the clusters (kilometers by default, see options)
  * @param {Object} [options={}] Optional parameters
- * @param {string} [options.units="kilometers"] in which `maxDistance` is expressed, can be degrees, radians, miles, or kilometers
+ * @param {Units} [options.units="kilometers"] in which `maxDistance` is expressed, Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {boolean} [options.mutate=false] Allows GeoJSON input to be mutated
  * @param {number} [options.minPoints=3] Minimum number of points to generate a single cluster,
  * points which do not meet this requirement will be classified as an 'edge' or 'noise'.
@@ -66,6 +66,9 @@ function clustersDbscan(
   } = {}
 ): FeatureCollection<Point, DbscanProps> {
   // Input validation being handled by Typescript
+  // TODO oops! No it isn't. Typescript doesn't do runtime checking. We should
+  // re-enable these checks, though will have to wait for a major version bump
+  // as more restrictive checks could break currently working code.
   // collectionOf(points, 'Point', 'points must consist of a FeatureCollection of only Points');
   // if (maxDistance === null || maxDistance === undefined) throw new Error('maxDistance is required');
   // if (!(Math.sign(maxDistance) > 0)) throw new Error('maxDistance is invalid');
@@ -138,10 +141,10 @@ function clustersDbscan(
       (neighbor) => {
         const neighborIndex = neighbor.index;
         const neighborPoint = points.features[neighborIndex];
-        const distanceInKm = distance(point, neighborPoint, {
-          units: "kilometers",
+        const distanceToNeighbor = distance(point, neighborPoint, {
+          units: options.units,
         });
-        return distanceInKm <= maxDistance;
+        return distanceToNeighbor <= maxDistance;
       }
     );
   };

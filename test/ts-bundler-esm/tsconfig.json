@@ -1,0 +1,12 @@
+{
+  "include": ["ts-bundler-esm.ts"],
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": false,
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "skipLibCheck": false
+  }
+}

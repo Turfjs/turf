@@ -15,7 +15,7 @@ between (clockwise) bearing1 and bearing2; 0 bearing is North of center point, p
 *   `bearing2` **[number][3]** angle, in decimal degrees, of the second radius of the sector
 *   `options` **[Object][4]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **[string][5]** miles, kilometers, degrees, or radians (optional, default `'kilometers'`)
+    *   `options.units` **Units** Supports all valid Turf [Units][5] (optional, default `'kilometers'`)
     *   `options.steps` **[number][3]** number of steps (optional, default `64`)
     *   `options.properties` **Properties** Translate properties to Feature Polygon (optional, default `{}`)
 
@@ -43,7 +43,7 @@ Returns **[Feature][6]<[Polygon][7]>** sector polygon
 
 [4]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[5]: https://turfjs.org/docs/api/types/Units
 
 [6]: https://tools.ietf.org/html/rfc7946#section-3.2
 
