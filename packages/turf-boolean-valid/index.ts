@@ -6,6 +6,15 @@ import { booleanCrosses } from "@turf/boolean-crosses";
 import { lineIntersect } from "@turf/line-intersect";
 import { booleanPointOnLine as isPointOnLine } from "@turf/boolean-point-on-line";
 
+const GEOMETRY_COLLECTION_ENTRY_ALLOWED_TYPES = new Set([
+  "Point",
+  "LineString",
+  "MultiLineString",
+  "MultiPoint",
+  "Polygon",
+  "MultiPolygon",
+]);
+
 /**
  * booleanValid checks if the geometry is a valid according to the OGC Simple Feature Specification.
  *
@@ -98,14 +107,8 @@ function booleanValid(feature: Feature<any> | Geometry) {
         geom.geometries.length > 0 &&
         geom.geometries.every(
           (geometry: Geometry) =>
-            [
-              "Point",
-              "LineString",
-              "MultiLineString",
-              "MultiPoint",
-              "Polygon",
-              "MultiPolygon",
-            ].includes(geometry.type) && booleanValid(geometry)
+            GEOMETRY_COLLECTION_ENTRY_ALLOWED_TYPES.has(geometry.type) &&
+            booleanValid(geometry)
         )
       );
     default:
