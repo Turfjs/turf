@@ -141,25 +141,27 @@ function isPointInMultiPolygon(multiPolygon: MultiPolygon, point: Point) {
  * @private
  * @param {MultiPolygon} multiPolygon MultiPolygon geometry
  * @param {MultiPoint} multiPoint MultiPoint geometry
- * @returns {boolean} true if every point is inside the interior of some polygon in the MultiPolygon
+ * @returns {boolean} true if no point is outside the MultiPolygon and at least one point is in the interior of some polygon
  */
 function isMultiPointInMultiPolygon(
   multiPolygon: MultiPolygon,
   multiPoint: MultiPoint
 ) {
+  let oneInside = false;
   for (const coord of multiPoint.coordinates) {
-    const pointInside = multiPolygon.coordinates.some((polyCoords) =>
-      booleanPointInPolygon(
-        coord,
-        { type: "Polygon", coordinates: polyCoords },
-        { ignoreBoundary: true }
-      )
-    );
-    if (!pointInside) {
+    // All points must be inside the MultiPolygon (boundary OK)
+    if (!booleanPointInPolygon(coord, multiPolygon)) {
       return false;
     }
+    // Track if at least one point is strictly in the interior
+    if (!oneInside) {
+      oneInside = booleanPointInPolygon(coord, multiPolygon, {
+        ignoreBoundary: true,
+      });
+    }
   }
-  return true;
+  // At least one point must be in the interior (not just on boundary)
+  return oneInside;
 }
 
 /**
