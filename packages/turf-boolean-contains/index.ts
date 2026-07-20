@@ -124,15 +124,9 @@ function isPolygonInMultiPolygon(multiPolygon: MultiPolygon, polygon: Polygon) {
  * @returns {boolean} true if point is inside the interior of any polygon in the MultiPolygon
  */
 function isPointInMultiPolygon(multiPolygon: MultiPolygon, point: Point) {
-  return multiPolygon.coordinates.some((coords) =>
-    booleanPointInPolygon(
-      point,
-      { type: "Polygon", coordinates: coords },
-      {
-        ignoreBoundary: true,
-      }
-    )
-  );
+  // booleanPointInPolygon supports MultiPolygon natively - a single call is
+  // significantly cheaper than one wrapped call per member polygon
+  return booleanPointInPolygon(point, multiPolygon, { ignoreBoundary: true });
 }
 
 /**
