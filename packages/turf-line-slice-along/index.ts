@@ -57,7 +57,17 @@ function lineSliceAlong(
       }
       direction = bearing(coords[i], coords[i - 1]) - 180;
       interpolated = destination(coords[i], overshot, direction, { units });
-      slice.push(interpolated.geometry.coordinates);
+      const startIntCoords = interpolated.geometry.coordinates;
+      const startSegDist = distance(coords[i - 1], coords[i], { units });
+      const startFrac =
+        startSegDist > 0 ? 1 - Math.abs(overshot) / startSegDist : 0;
+      setInterpolatedAltitude(
+        startIntCoords,
+        coords[i - 1],
+        coords[i],
+        startFrac
+      );
+      slice.push(startIntCoords);
     }
 
     if (travelled >= stopDist) {
@@ -68,7 +78,17 @@ function lineSliceAlong(
       }
       direction = bearing(coords[i], coords[i - 1]) - 180;
       interpolated = destination(coords[i], overshot, direction, { units });
-      slice.push(interpolated.geometry.coordinates);
+      const stopIntCoords = interpolated.geometry.coordinates;
+      const stopSegDist = distance(coords[i - 1], coords[i], { units });
+      const stopFrac =
+        stopSegDist > 0 ? 1 - Math.abs(overshot) / stopSegDist : 0;
+      setInterpolatedAltitude(
+        stopIntCoords,
+        coords[i - 1],
+        coords[i],
+        stopFrac
+      );
+      slice.push(stopIntCoords);
       return lineString(slice);
     }
 
@@ -88,6 +108,26 @@ function lineSliceAlong(
 
   var last = coords[coords.length - 1];
   return lineString([last, last]);
+}
+/**
+ * Assign an interpolated altitude to a coordinate produced by destination().
+ *
+ * When both segment endpoints carry an altitude the value is linearly
+ * interpolated at `fraction` (0 = at `from`, 1 = at `to`).  If either
+ * endpoint has no altitude, any altitude that destination() may have copied
+ * from its origin is removed so the output remains 2-D.
+ */
+function setInterpolatedAltitude(
+  coord: Position,
+  from: Position,
+  to: Position,
+  fraction: number
+): void {
+  if (from[2] !== undefined && to[2] !== undefined) {
+    coord[2] = from[2] + fraction * (to[2] - from[2]);
+  } else {
+    coord.splice(2);
+  }
 }
 
 export { lineSliceAlong };
