@@ -283,17 +283,19 @@ function isMultiPointInMultiPoint(
 function isMultiPointOnLine(lineString: LineString, multiPoint: MultiPoint) {
   let haveFoundInteriorPoint = false;
   for (const coord of multiPoint.coordinates) {
-    if (isPointOnLine(coord, lineString, { ignoreEndVertices: true })) {
-      haveFoundInteriorPoint = true;
-    }
+    // Membership check first so points not on the line exit early
     if (!isPointOnLine(coord, lineString)) {
       return false;
     }
+    // Only probe for an interior point until one has been found
+    if (
+      !haveFoundInteriorPoint &&
+      isPointOnLine(coord, lineString, { ignoreEndVertices: true })
+    ) {
+      haveFoundInteriorPoint = true;
+    }
   }
-  if (haveFoundInteriorPoint) {
-    return true;
-  }
-  return false;
+  return haveFoundInteriorPoint;
 }
 
 function isMultiPointInPoly(polygon: Polygon, multiPoint: MultiPoint) {
