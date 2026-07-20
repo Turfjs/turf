@@ -110,8 +110,10 @@ function booleanContains(
 }
 
 function isPolygonInMultiPolygon(multiPolygon: MultiPolygon, polygon: Polygon) {
+  // Compute the polygon's bbox once instead of once per member polygon
+  const polygonBbox = calcBbox(polygon);
   return multiPolygon.coordinates.some((coords) =>
-    isPolyInPoly({ type: "Polygon", coordinates: coords }, polygon)
+    isPolyInPoly({ type: "Polygon", coordinates: coords }, polygon, polygonBbox)
   );
 }
 
@@ -230,10 +232,14 @@ function isMultiPolygonInMultiPolygon(
   multiPolygon2: MultiPolygon
 ) {
   for (const poly2Coords of multiPolygon2.coordinates) {
+    const poly2: Polygon = { type: "Polygon", coordinates: poly2Coords };
+    // Compute the candidate polygon's bbox once instead of per member polygon
+    const poly2Bbox = calcBbox(poly2);
     const polyInside = multiPolygon1.coordinates.some((poly1Coords) =>
       isPolyInPoly(
         { type: "Polygon", coordinates: poly1Coords },
-        { type: "Polygon", coordinates: poly2Coords }
+        poly2,
+        poly2Bbox
       )
     );
     if (!polyInside) {
@@ -439,7 +445,8 @@ function lineInPolyStatus(
  */
 function isPolyInPoly(
   feature1: Feature<Polygon> | Polygon,
-  feature2: Feature<Polygon> | Polygon
+  feature2: Feature<Polygon> | Polygon,
+  feature2Bbox?: BBox
 ) {
   // Handle Nulls
   if (feature1.type === "Feature" && feature1.geometry === null) {
@@ -450,7 +457,7 @@ function isPolyInPoly(
   }
 
   const poly1Bbox = calcBbox(feature1);
-  const poly2Bbox = calcBbox(feature2);
+  const poly2Bbox = feature2Bbox ?? calcBbox(feature2);
   if (!doBBoxOverlap(poly1Bbox, poly2Bbox)) {
     return false;
   }
