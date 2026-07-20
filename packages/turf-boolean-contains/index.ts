@@ -187,24 +187,40 @@ function isLineInMultiPolygon(
  * @private
  * @param {MultiPolygon} multiPolygon MultiPolygon geometry
  * @param {MultiLineString} multiLineString MultiLineString geometry
- * @returns {boolean} true if every LineString is fully contained within some single polygon of the MultiPolygon
+ * @returns {boolean} true if no LineString has any part in the MultiPolygon's exterior (boundary OK) and at least one LineString has a segment in the interior of some polygon
  */
 function isMultiLineStringInMultiPolygon(
   multiPolygon: MultiPolygon,
   multiLineString: MultiLineString
 ) {
+  let oneInterior = false;
   for (const lineCoords of multiLineString.coordinates) {
-    const lineInside = multiPolygon.coordinates.some((polyCoords) =>
-      isLineInPoly(
+    const line: LineString = { type: "LineString", coordinates: lineCoords };
+    // Each line must not touch the exterior of any polygon it overlaps —
+    // lines lying entirely on a polygon's boundary are OK
+    let lineStatus: "outside" | "boundary" | "interior" = "outside";
+    for (const polyCoords of multiPolygon.coordinates) {
+      const status = lineInPolyStatus(
         { type: "Polygon", coordinates: polyCoords },
-        { type: "LineString", coordinates: lineCoords }
-      )
-    );
-    if (!lineInside) {
+        line
+      );
+      if (status === "interior") {
+        lineStatus = status;
+        break;
+      }
+      if (status === "boundary") {
+        lineStatus = status;
+      }
+    }
+    if (lineStatus === "outside") {
       return false;
     }
+    // At least one line must have a segment strictly in some polygon's interior
+    if (lineStatus === "interior") {
+      oneInterior = true;
+    }
   }
-  return true;
+  return oneInterior;
 }
 
 /**
@@ -367,20 +383,38 @@ function splitLineIntoSegmentsOnPolygon(
 }
 
 function isLineInPoly(polygon: Polygon, linestring: LineString) {
+  return lineInPolyStatus(polygon, linestring) === "interior";
+}
+
+/**
+ * Determines how a LineString relates to a Polygon:
+ * - "outside" if any part of the line lies in the polygon's exterior
+ * - "interior" if no part lies in the exterior and at least one segment lies in the interior
+ * - "boundary" if the entire line lies on the polygon's boundary
+ *
+ * @private
+ * @param {Polygon} polygon Polygon geometry
+ * @param {LineString} linestring LineString geometry
+ * @returns {"outside"|"boundary"|"interior"} the line's relation to the polygon
+ */
+function lineInPolyStatus(
+  polygon: Polygon,
+  linestring: LineString
+): "outside" | "boundary" | "interior" {
   const polyBbox = calcBbox(polygon);
   const lineBbox = calcBbox(linestring);
 
   if (!doBBoxOverlap(polyBbox, lineBbox)) {
-    return false;
+    return "outside";
   }
 
   for (const coord of linestring.coordinates) {
     if (!booleanPointInPolygon(coord, polygon)) {
-      return false;
+      return "outside";
     }
   }
 
-  let isContainedByPolygonBoundary = false;
+  let hasInteriorSegment = false;
   // split intersecting segments and verify their inclusion
   const lineSegments = splitLineIntoSegmentsOnPolygon(linestring, polygon);
 
@@ -392,19 +426,19 @@ function isLineInPoly(polygon: Polygon, linestring: LineString) {
 
     // make sure all segments do not intersect with polygon exterior
     if (!booleanPointInPolygon(midpoint, polygon)) {
-      return false;
+      return "outside";
     }
 
-    // make sure at least 1 segment intersects with the polygon's interior
+    // track whether at least 1 segment intersects with the polygon's interior
     if (
-      !isContainedByPolygonBoundary &&
+      !hasInteriorSegment &&
       booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })
     ) {
-      isContainedByPolygonBoundary = true;
+      hasInteriorSegment = true;
     }
   }
 
-  return isContainedByPolygonBoundary;
+  return hasInteriorSegment ? "interior" : "boundary";
 }
 
 /**
