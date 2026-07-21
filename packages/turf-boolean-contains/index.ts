@@ -110,8 +110,10 @@ function booleanContains(
 }
 
 function isPolygonInMultiPolygon(multiPolygon: MultiPolygon, polygon: Polygon) {
+  // Compute the polygon's bbox once instead of once per member polygon
+  const polygonBbox = calcBbox(polygon);
   return multiPolygon.coordinates.some((coords) =>
-    isPolyInPoly({ type: "Polygon", coordinates: coords }, polygon)
+    isPolyInPoly({ type: "Polygon", coordinates: coords }, polygon, polygonBbox)
   );
 }
 
@@ -124,15 +126,9 @@ function isPolygonInMultiPolygon(multiPolygon: MultiPolygon, polygon: Polygon) {
  * @returns {boolean} true if point is inside the interior of any polygon in the MultiPolygon
  */
 function isPointInMultiPolygon(multiPolygon: MultiPolygon, point: Point) {
-  return multiPolygon.coordinates.some((coords) =>
-    booleanPointInPolygon(
-      point,
-      { type: "Polygon", coordinates: coords },
-      {
-        ignoreBoundary: true,
-      }
-    )
-  );
+  // booleanPointInPolygon supports MultiPolygon natively - a single call is
+  // significantly cheaper than one wrapped call per member polygon
+  return booleanPointInPolygon(point, multiPolygon, { ignoreBoundary: true });
 }
 
 /**
@@ -236,10 +232,14 @@ function isMultiPolygonInMultiPolygon(
   multiPolygon2: MultiPolygon
 ) {
   for (const poly2Coords of multiPolygon2.coordinates) {
+    const poly2: Polygon = { type: "Polygon", coordinates: poly2Coords };
+    // Compute the candidate polygon's bbox once instead of per member polygon
+    const poly2Bbox = calcBbox(poly2);
     const polyInside = multiPolygon1.coordinates.some((poly1Coords) =>
       isPolyInPoly(
         { type: "Polygon", coordinates: poly1Coords },
-        { type: "Polygon", coordinates: poly2Coords }
+        poly2,
+        poly2Bbox
       )
     );
     if (!polyInside) {
@@ -289,17 +289,19 @@ function isMultiPointInMultiPoint(
 function isMultiPointOnLine(lineString: LineString, multiPoint: MultiPoint) {
   let haveFoundInteriorPoint = false;
   for (const coord of multiPoint.coordinates) {
-    if (isPointOnLine(coord, lineString, { ignoreEndVertices: true })) {
-      haveFoundInteriorPoint = true;
-    }
+    // Membership check first so points not on the line exit early
     if (!isPointOnLine(coord, lineString)) {
       return false;
     }
+    // Only probe for an interior point until one has been found
+    if (
+      !haveFoundInteriorPoint &&
+      isPointOnLine(coord, lineString, { ignoreEndVertices: true })
+    ) {
+      haveFoundInteriorPoint = true;
+    }
   }
-  if (haveFoundInteriorPoint) {
-    return true;
-  }
-  return false;
+  return haveFoundInteriorPoint;
 }
 
 function isMultiPointInPoly(polygon: Polygon, multiPoint: MultiPoint) {
@@ -325,35 +327,26 @@ function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   const coordinates = lineString2.coordinates;
   for (let i = 0; i < coordinates.length; i++) {
     const coords = coordinates[i];
-    if (
-      isPointOnLine({ type: "Point", coordinates: coords }, lineString1, {
-        ignoreEndVertices: true,
-      })
-    ) {
-      haveFoundInteriorPoint = true;
-    }
-    if (
-      !isPointOnLine({ type: "Point", coordinates: coords }, lineString1, {
-        ignoreEndVertices: false,
-      })
-    ) {
+    // Membership check first so vertices not on the line exit early
+    if (!isPointOnLine(coords, lineString1)) {
       return false;
     }
-    // A segment whose endpoints are both on lineString1 (e.g. lineString2's
-    // vertices coincide with lineString1's boundary) still shares interior with
-    // lineString1. Probe the segment midpoint so an interior overlap is detected
-    // even when no vertex of lineString2 is strictly interior.
-    if (!haveFoundInteriorPoint && i > 0) {
-      const midpoint: Position = [
-        (coordinates[i - 1][0] + coords[0]) / 2,
-        (coordinates[i - 1][1] + coords[1]) / 2,
-      ];
-      if (
-        isPointOnLine({ type: "Point", coordinates: midpoint }, lineString1, {
-          ignoreEndVertices: true,
-        })
-      ) {
+    // Only probe for an interior point until one has been found
+    if (!haveFoundInteriorPoint) {
+      if (isPointOnLine(coords, lineString1, { ignoreEndVertices: true })) {
         haveFoundInteriorPoint = true;
+      } else if (i > 0) {
+        // A segment whose endpoints are both on lineString1 (e.g. lineString2's
+        // vertices coincide with lineString1's boundary) still shares interior
+        // with lineString1. Probe the segment midpoint so an interior overlap
+        // is detected even when no vertex of lineString2 is strictly interior.
+        const midpoint: Position = [
+          (coordinates[i - 1][0] + coords[0]) / 2,
+          (coordinates[i - 1][1] + coords[1]) / 2,
+        ];
+        if (isPointOnLine(midpoint, lineString1, { ignoreEndVertices: true })) {
+          haveFoundInteriorPoint = true;
+        }
       }
     }
   }
@@ -452,7 +445,8 @@ function lineInPolyStatus(
  */
 function isPolyInPoly(
   feature1: Feature<Polygon> | Polygon,
-  feature2: Feature<Polygon> | Polygon
+  feature2: Feature<Polygon> | Polygon,
+  feature2Bbox?: BBox
 ) {
   // Handle Nulls
   if (feature1.type === "Feature" && feature1.geometry === null) {
@@ -463,7 +457,7 @@ function isPolyInPoly(
   }
 
   const poly1Bbox = calcBbox(feature1);
-  const poly2Bbox = calcBbox(feature2);
+  const poly2Bbox = feature2Bbox ?? calcBbox(feature2);
   if (!doBBoxOverlap(poly1Bbox, poly2Bbox)) {
     return false;
   }
