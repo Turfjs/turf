@@ -322,31 +322,92 @@ function isMultiPointInPoly(polygon: Polygon, multiPoint: MultiPoint) {
   return oneInside;
 }
 
+/**
+ * How a point relates to a LineString, given the line's raw coordinates.
+ * Replicates booleanPointOnLine's segment math (including the zero-length
+ * segment special case) without its per-call input validation, so callers
+ * can classify many points against the same line cheaply. A single scan
+ * answers both membership and interiority, where interiority matches
+ * booleanPointOnLine's ignoreEndVertices option: on the line anywhere but
+ * solely at its start or end vertex.
+ *
+ * @private
+ * @param {Position} pt point [x,y]
+ * @param {Position[]} coords LineString coordinates
+ * @returns {0|1|2} 0 = not on the line, 1 = only on the line's start or end vertex, 2 = on the line's interior
+ */
+function pointOnLineStatus(pt: Position, coords: Position[]): 0 | 1 | 2 {
+  const x = pt[0];
+  const y = pt[1];
+  const last = coords.length - 2;
+  let onLine = false;
+  for (let i = 0; i <= last; i++) {
+    const x1 = coords[i][0];
+    const y1 = coords[i][1];
+    const x2 = coords[i + 1][0];
+    const y2 = coords[i + 1][1];
+    const dxl = x2 - x1;
+    const dyl = y2 - y1;
+    if ((x - x1) * dyl - (y - y1) * dxl !== 0) {
+      continue;
+    }
+    if (dxl === 0 && dyl === 0) {
+      // Zero length segment: only its start (== end) vertex is on it, and
+      // that point counts as interior unless it is also the line's boundary
+      if (x === x1 && y === y1) {
+        onLine = true;
+        if (i !== 0 && i !== last) {
+          return 2;
+        }
+      }
+      continue;
+    }
+    const within =
+      Math.abs(dxl) >= Math.abs(dyl)
+        ? dxl > 0
+          ? x1 <= x && x <= x2
+          : x2 <= x && x <= x1
+        : dyl > 0
+          ? y1 <= y && y <= y2
+          : y2 <= y && y <= y1;
+    if (!within) {
+      continue;
+    }
+    onLine = true;
+    const atLineStart = i === 0 && x === coords[0][0] && y === coords[0][1];
+    const atLineEnd =
+      i === last && x === coords[last + 1][0] && y === coords[last + 1][1];
+    if (!atLineStart && !atLineEnd) {
+      return 2;
+    }
+  }
+  return onLine ? 1 : 0;
+}
+
 function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   let haveFoundInteriorPoint = false;
+  const coords1 = lineString1.coordinates;
   const coordinates = lineString2.coordinates;
   for (let i = 0; i < coordinates.length; i++) {
     const coords = coordinates[i];
+    const status = pointOnLineStatus(coords, coords1);
     // Membership check first so vertices not on the line exit early
-    if (!isPointOnLine(coords, lineString1)) {
+    if (status === 0) {
       return false;
     }
-    // Only probe for an interior point until one has been found
-    if (!haveFoundInteriorPoint) {
-      if (isPointOnLine(coords, lineString1, { ignoreEndVertices: true })) {
+    if (status === 2) {
+      haveFoundInteriorPoint = true;
+    } else if (!haveFoundInteriorPoint && i > 0) {
+      // A segment whose endpoints are both on lineString1 (e.g. lineString2's
+      // vertices coincide with lineString1's boundary) still shares interior
+      // with lineString1. Probe the segment midpoint so an interior overlap
+      // is detected even when no vertex of lineString2 is strictly interior.
+      const midpoint: Position = [
+        (coordinates[i - 1][0] + coords[0]) / 2,
+        (coordinates[i - 1][1] + coords[1]) / 2,
+      ];
+      if (pointOnLineStatus(midpoint, coords1) === 2) {
         haveFoundInteriorPoint = true;
-      } else if (i > 0) {
-        // A segment whose endpoints are both on lineString1 (e.g. lineString2's
-        // vertices coincide with lineString1's boundary) still shares interior
-        // with lineString1. Probe the segment midpoint so an interior overlap
-        // is detected even when no vertex of lineString2 is strictly interior.
-        const midpoint: Position = [
-          (coordinates[i - 1][0] + coords[0]) / 2,
-          (coordinates[i - 1][1] + coords[1]) / 2,
-        ];
-        if (isPointOnLine(midpoint, lineString1, { ignoreEndVertices: true })) {
-          haveFoundInteriorPoint = true;
-        }
       }
     }
   }
