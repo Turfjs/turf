@@ -16,7 +16,12 @@ import {
   round,
   degreesToRadians,
 } from "@turf/helpers";
-import { nearestPointOnLine } from "./index.js";
+import {
+  nearestPointOnLine,
+  atEndOfSegment,
+  atEndOfLineString,
+  hasNextSegment,
+} from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -333,7 +338,7 @@ test("turf-nearest-point-on-line - segmentIndex and pointDistance", (t) => {
   const pt = point([-92.110576, 41.040649]);
   const snapped = truncate(nearestPointOnLine(line, pt));
 
-  t.equal(snapped.properties.segmentIndex, 8, "properties.segmentIndex");
+  t.equal(snapped.properties.segmentIndex, 7, "properties.segmentIndex");
   t.equal(
     Number(snapped.properties.pointDistance.toFixed(6)),
     0.823802,
@@ -658,6 +663,200 @@ test("turf-nearest-point-on-line -- issue 2939 nearestPointOnSegment handles tin
     nearest.geometry.coordinates,
     [35.00010251998902, 32.00010141921075],
     "nearest point should be the end point of the line string"
+  );
+
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 3023 nearest point on last vertex", (t) => {
+  // Case 1: nearest point lands on the last vertex of the line. segmentIndex
+  // must point at the last valid segment (coords.length - 2), never overflow
+  // to coords.length - 1.
+  const line = lineString([
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+  ]);
+
+  const result = nearestPointOnLine(line, point([3, 0]));
+  t.equal(
+    result.properties.segmentIndex,
+    2,
+    "segmentIndex is the last valid segment, not coords.length - 1"
+  );
+  t.deepEqual(result.geometry.coordinates, [3, 0], "snapped to last vertex");
+
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 3023 nearest point on intermediate vertex", (t) => {
+  // Case 2: nearest point lands exactly on an intermediate vertex. segmentIndex
+  // is the segment that *ends* at that vertex (i), no longer advanced to i + 1.
+  const line = lineString([
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+  ]);
+
+  const result = nearestPointOnLine(line, point([1, 0]));
+  t.equal(
+    result.properties.segmentIndex,
+    0,
+    "segmentIndex is the segment ending at the vertex, not the next one"
+  );
+
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 3023 atEndOfSegment / hasNextSegment on intermediate vertex", (t) => {
+  // Case 3: the helpers correctly identify a nearest point sitting on a shared
+  // intermediate vertex, and let callers rebuild the old "next segment"
+  // behaviour.
+  const line = lineString([
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+  ]);
+
+  const result = nearestPointOnLine(line, point([1, 0]));
+
+  t.true(atEndOfSegment(result, line), "atEndOfSegment true on end vertex");
+  t.true(hasNextSegment(result, line), "hasNextSegment true when more follow");
+  t.false(
+    atEndOfLineString(result, line),
+    "atEndOfLineString false on intermediate vertex"
+  );
+
+  // Users can rebuild the legacy i + 1 behaviour from the helpers.
+  const legacyIndex =
+    result.properties.segmentIndex +
+    (atEndOfSegment(result, line) && hasNextSegment(result, line) ? 1 : 0);
+  t.equal(legacyIndex, 1, "legacy segmentIndex can be reconstructed");
+
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 3023 atEndOfLineString on last vertex", (t) => {
+  // Case 4: nearest point on the very last vertex of the line.
+  const line = lineString([
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+  ]);
+
+  const result = nearestPointOnLine(line, point([3, 0]));
+
+  t.true(atEndOfSegment(result, line), "atEndOfSegment true on last vertex");
+  t.true(
+    atEndOfLineString(result, line),
+    "atEndOfLineString true on last vertex"
+  );
+  t.false(hasNextSegment(result, line), "hasNextSegment false on last segment");
+
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 3023 helpers on mid-segment point", (t) => {
+  // Case 5: a point falling in the middle of a segment (not on any vertex).
+  const line = lineString([
+    [0, 0],
+    [10, 0],
+    [20, 0],
+  ]);
+
+  const result = nearestPointOnLine(line, point([5, 1]));
+
+  t.equal(result.properties.segmentIndex, 0, "found on first segment");
+  t.false(atEndOfSegment(result, line), "atEndOfSegment false mid-segment");
+  t.false(
+    atEndOfLineString(result, line),
+    "atEndOfLineString false mid-segment"
+  );
+  t.true(hasNextSegment(result, line), "hasNextSegment true mid first segment");
+
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 3023 LineString and MultiLineString parity", (t) => {
+  // Case 6: the same geometry split into a MultiLineString must yield a
+  // segmentIndex relative to its sub-LineString, reconcilable with the flat
+  // LineString segmentIndex via the accumulated segment offset.
+  const coords = [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [4, 0],
+    [5, 0],
+  ];
+  const line = lineString(coords);
+  const multiLine = multiLineString([
+    [coords[0], coords[1], coords[2]],
+    [coords[2], coords[3]],
+    [coords[3], coords[4], coords[5]],
+  ]);
+  // Segments before each sub-LineString: [P,Q,R]=2, [R,S]=1, [S,T,U]=2
+  const lineStringOffset: Record<number, number> = { 0: 0, 1: 2, 2: 3 };
+
+  const inputPoint = point([3.4, 1]);
+  const onLine = nearestPointOnLine(line, inputPoint);
+  const onMultiLine = nearestPointOnLine(multiLine, inputPoint);
+
+  t.deepEqual(
+    onLine.geometry.coordinates,
+    onMultiLine.geometry.coordinates,
+    "both representations snap to the same coordinate"
+  );
+
+  const { lineStringIndex, segmentIndex } = onMultiLine.properties;
+  t.equal(
+    onLine.properties.segmentIndex,
+    lineStringOffset[lineStringIndex] + segmentIndex,
+    "LineString segmentIndex equals offset + MultiLineString segmentIndex"
+  );
+
+  t.end();
+});
+
+test("turf-nearest-point-on-line -- issue 3023 helpers on MultiLineString geometry", (t) => {
+  // Helpers must resolve coords via lineStringIndex for MultiLineStrings, and
+  // work on bare geometries as well as Features.
+  const lines = multiLineString([
+    [
+      [0, 0],
+      [1, 0],
+      [2, 0],
+    ],
+    [
+      [10, 10],
+      [11, 10],
+      [12, 10],
+    ],
+  ]);
+
+  const result = nearestPointOnLine(lines, point([12, 10]));
+
+  t.equal(result.properties.lineStringIndex, 1, "matched second LineString");
+  t.equal(
+    result.properties.segmentIndex,
+    1,
+    "segmentIndex relative to the matched LineString, no overflow"
+  );
+  t.true(
+    atEndOfSegment(result, lines.geometry),
+    "atEndOfSegment works on bare MultiLineString geometry"
+  );
+  t.true(
+    atEndOfLineString(result, lines),
+    "atEndOfLineString true on last vertex of sub-LineString"
+  );
+  t.false(
+    hasNextSegment(result, lines),
+    "hasNextSegment false on last segment of sub-LineString"
   );
 
   t.end();
