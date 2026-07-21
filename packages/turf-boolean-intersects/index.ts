@@ -1,6 +1,5 @@
 import { Feature, Geometry } from "geojson";
 import { booleanDisjoint } from "@turf/boolean-disjoint";
-import { flattenEach } from "@turf/meta";
 
 /**
  * Boolean-intersects returns (TRUE) if the intersection of the two geometries is NOT an empty set.
@@ -36,18 +35,9 @@ function booleanIntersects(
     ignoreSelfIntersections?: boolean;
   } = {}
 ) {
-  let bool = false;
-  flattenEach(feature1, (flatten1) => {
-    flattenEach(feature2, (flatten2) => {
-      if (bool === true) {
-        return true;
-      }
-      bool = !booleanDisjoint(flatten1.geometry, flatten2.geometry, {
-        ignoreSelfIntersections,
-      });
-    });
-  });
-  return bool;
+  // booleanDisjoint already compares every flattened geometry pair, so
+  // intersects is simply its negation.
+  return !booleanDisjoint(feature1, feature2, { ignoreSelfIntersections });
 }
 
 export { booleanIntersects };
