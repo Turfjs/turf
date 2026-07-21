@@ -4,7 +4,7 @@
 
 ## toMercator
 
-Converts a WGS84 GeoJSON object into Mercator (EPSG:900913) projection
+Converts a WGS84 GeoJSON object into Mercator (EPSG:3857) projection
 
 ### Parameters
 
@@ -27,7 +27,7 @@ Returns **[GeoJSON][1]** Projected GeoJSON
 
 ## toWgs84
 
-Converts a Mercator (EPSG:900913) GeoJSON object into WGS84 projection
+Converts a Mercator (EPSG:3857) GeoJSON object into WGS84 projection
 
 ### Parameters
 
