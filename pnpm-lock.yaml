@@ -1193,12 +1193,6 @@ importers:
       '@turf/boolean-disjoint':
         specifier: workspace:*
         version: link:../turf-boolean-disjoint
-      '@turf/helpers':
-        specifier: workspace:*
-        version: link:../turf-helpers
-      '@turf/meta':
-        specifier: workspace:*
-        version: link:../turf-meta
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
