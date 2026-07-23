@@ -11,7 +11,7 @@ catalog:
   tslib: ^2.8.1
   tstyche: ^6.2.0
   tsup: ^8.5.1
-  tsx: ^4.22.4
+  tsx: ^4.23.1
   typescript: ^5.9.3
 
 overrides:
