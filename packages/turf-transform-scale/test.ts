@@ -1,4 +1,10 @@
-import { BBox, Feature, FeatureCollection } from "geojson";
+import {
+  BBox,
+  Feature,
+  FeatureCollection,
+  GeoJSON,
+  GeometryCollection,
+} from "geojson";
 import fs from "fs";
 import test from "tape";
 import path from "path";
@@ -275,6 +281,56 @@ function colorize(geojson: FeatureCollection | Feature) {
     geojson.features[index] = feature;
   });
   return geojson;
+}
+
+test("scale -- removes stale bbox values", (t) => {
+  const input = nestedGeojsonWithBboxes();
+  const scaled = scale(input, 2, { origin: [0, 0] });
+
+  t.equal(countBboxes(scaled), 0, "removes bboxes from cloned output");
+  t.ok(countBboxes(input) > 0, "does not alter input by default");
+
+  scale(input, 2, { origin: [0, 0], mutate: true });
+  t.equal(countBboxes(input), 0, "removes bboxes from mutated input");
+  t.end();
+});
+
+function nestedGeojsonWithBboxes() {
+  const geojson = featureCollection([
+    geometryCollection([
+      lineString([
+        [0, 0],
+        [1, 1],
+      ]).geometry,
+    ]),
+  ]);
+  addBboxes(geojson);
+  return geojson;
+}
+
+function addBboxes(geojson: GeoJSON | GeometryCollection): void {
+  geojson.bbox = [0, 0, 1, 1];
+  if (geojson.type === "Feature" && geojson.geometry) {
+    addBboxes(geojson.geometry);
+  } else if (geojson.type === "FeatureCollection") {
+    geojson.features.forEach(addBboxes);
+  } else if (geojson.type === "GeometryCollection") {
+    geojson.geometries.forEach(addBboxes);
+  }
+}
+
+function countBboxes(geojson: GeoJSON | GeometryCollection): number {
+  let count = geojson.bbox ? 1 : 0;
+  if (geojson.type === "Feature" && geojson.geometry) {
+    count += countBboxes(geojson.geometry);
+  } else if (geojson.type === "FeatureCollection") {
+    geojson.features.forEach((feature) => (count += countBboxes(feature)));
+  } else if (geojson.type === "GeometryCollection") {
+    geojson.geometries.forEach((geometry) => {
+      count += countBboxes(geometry);
+    });
+  }
+  return count;
 }
 
 // define origin, as defined in transform-scale, and style it

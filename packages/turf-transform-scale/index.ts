@@ -67,6 +67,7 @@ function transformScale<T extends GeoJSON | GeometryCollection>(
         origin
       );
     });
+    if (factor !== 1) delete geojson.bbox;
     return geojson;
   }
   // Scale Feature/Geometry
@@ -108,9 +109,21 @@ function scale<T extends GeoJSON | GeometryCollection>(
     if (coord.length === 3) coord[2] *= factor;
   });
 
-  delete feature.bbox;
+  removeBbox(feature);
 
   return feature;
+}
+
+function removeBbox(geojson: GeoJSON | GeometryCollection): void {
+  delete geojson.bbox;
+
+  if (geojson.type === "Feature") {
+    if (geojson.geometry) removeBbox(geojson.geometry);
+  } else if (geojson.type === "FeatureCollection") {
+    geojson.features.forEach(removeBbox);
+  } else if (geojson.type === "GeometryCollection") {
+    geojson.geometries.forEach(removeBbox);
+  }
 }
 
 /**

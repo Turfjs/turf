@@ -66,7 +66,20 @@ function transformRotate<T extends GeoJSON | GeometryCollection>(
     pointCoords[0] = newCoords[0];
     pointCoords[1] = newCoords[1];
   });
+  removeBbox(geojson);
   return geojson;
+}
+
+function removeBbox(geojson: GeoJSON | GeometryCollection): void {
+  delete geojson.bbox;
+
+  if (geojson.type === "Feature") {
+    if (geojson.geometry) removeBbox(geojson.geometry);
+  } else if (geojson.type === "FeatureCollection") {
+    geojson.features.forEach(removeBbox);
+  } else if (geojson.type === "GeometryCollection") {
+    geojson.geometries.forEach(removeBbox);
+  }
 }
 
 export { transformRotate };

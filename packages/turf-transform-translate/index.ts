@@ -79,7 +79,20 @@ function transformTranslate<T extends GeoJSON | GeometryCollection>(
     if (zTranslation && pointCoords.length === 3)
       pointCoords[2] += zTranslation;
   });
+  removeBbox(geojson);
   return geojson;
+}
+
+function removeBbox(geojson: GeoJSON | GeometryCollection): void {
+  delete geojson.bbox;
+
+  if (geojson.type === "Feature") {
+    if (geojson.geometry) removeBbox(geojson.geometry);
+  } else if (geojson.type === "FeatureCollection") {
+    geojson.features.forEach(removeBbox);
+  } else if (geojson.type === "GeometryCollection") {
+    geojson.geometries.forEach(removeBbox);
+  }
 }
 
 export { transformTranslate };

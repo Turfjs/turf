@@ -1,4 +1,4 @@
-import { Feature } from "geojson";
+import { Feature, GeoJSON, GeometryCollection } from "geojson";
 import fs from "fs";
 import test from "tape";
 import path from "path";
@@ -151,4 +151,54 @@ function colorize(geojson: Feature) {
     geojson.properties["stroke-width"] = 4;
   }
   return geojson;
+}
+
+test("translate -- removes stale bbox values", (t) => {
+  const input = nestedGeojsonWithBboxes();
+  const translated = translate(input, 10, 45);
+
+  t.equal(countBboxes(translated), 0, "removes bboxes from cloned output");
+  t.ok(countBboxes(input) > 0, "does not alter input by default");
+
+  translate(input, 10, 45, { mutate: true });
+  t.equal(countBboxes(input), 0, "removes bboxes from mutated input");
+  t.end();
+});
+
+function nestedGeojsonWithBboxes() {
+  const geojson = featureCollection([
+    geometryCollection([
+      lineString([
+        [0, 0],
+        [1, 1],
+      ]).geometry,
+    ]),
+  ]);
+  addBboxes(geojson);
+  return geojson;
+}
+
+function addBboxes(geojson: GeoJSON | GeometryCollection): void {
+  geojson.bbox = [0, 0, 1, 1];
+  if (geojson.type === "Feature" && geojson.geometry) {
+    addBboxes(geojson.geometry);
+  } else if (geojson.type === "FeatureCollection") {
+    geojson.features.forEach(addBboxes);
+  } else if (geojson.type === "GeometryCollection") {
+    geojson.geometries.forEach(addBboxes);
+  }
+}
+
+function countBboxes(geojson: GeoJSON | GeometryCollection): number {
+  let count = geojson.bbox ? 1 : 0;
+  if (geojson.type === "Feature" && geojson.geometry) {
+    count += countBboxes(geojson.geometry);
+  } else if (geojson.type === "FeatureCollection") {
+    geojson.features.forEach((feature) => (count += countBboxes(feature)));
+  } else if (geojson.type === "GeometryCollection") {
+    geojson.geometries.forEach((geometry) => {
+      count += countBboxes(geometry);
+    });
+  }
+  return count;
 }
