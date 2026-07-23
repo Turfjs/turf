@@ -1,4 +1,4 @@
-import { Corners, Coord } from "@turf/helpers";
+import { Corners, Coord, removeBbox } from "@turf/helpers";
 import { FeatureCollection, GeoJSON, GeometryCollection } from "geojson";
 import { clone } from "@turf/clone";
 import { center } from "@turf/center";
@@ -112,18 +112,6 @@ function scale<T extends GeoJSON | GeometryCollection>(
   removeBbox(feature);
 
   return feature;
-}
-
-function removeBbox(geojson: GeoJSON | GeometryCollection): void {
-  delete geojson.bbox;
-
-  if (geojson.type === "Feature") {
-    if (geojson.geometry) removeBbox(geojson.geometry);
-  } else if (geojson.type === "FeatureCollection") {
-    geojson.features.forEach(removeBbox);
-  } else if (geojson.type === "GeometryCollection") {
-    geojson.geometries.forEach(removeBbox);
-  }
 }
 
 /**

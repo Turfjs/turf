@@ -13,6 +13,7 @@ import {
   Polygon,
   Position,
   GeoJsonProperties,
+  GeoJSON,
 } from "geojson";
 
 import { Id } from "./lib/geojson.js";
@@ -875,6 +876,27 @@ export function isNumber(num: any): boolean {
  */
 export function isObject(input: any): boolean {
   return input !== null && typeof input === "object" && !Array.isArray(input);
+}
+
+/**
+ * Recursively removes bounding boxes from a GeoJSON object.
+ *
+ * This function mutates the input GeoJSON object.
+ *
+ * @function
+ * @param {GeoJSON} geojson GeoJSON object whose bounding boxes should be removed
+ * @returns {void}
+ */
+export function removeBbox(geojson: GeoJSON): void {
+  delete geojson.bbox;
+
+  if (geojson.type === "Feature") {
+    if (geojson.geometry) removeBbox(geojson.geometry);
+  } else if (geojson.type === "FeatureCollection") {
+    geojson.features.forEach(removeBbox);
+  } else if (geojson.type === "GeometryCollection") {
+    geojson.geometries.forEach(removeBbox);
+  }
 }
 
 /**

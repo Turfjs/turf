@@ -1,6 +1,6 @@
 import { GeoJSON, GeometryCollection } from "geojson";
 import { coordEach } from "@turf/meta";
-import { isObject, Units } from "@turf/helpers";
+import { isObject, removeBbox, Units } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 import { clone } from "@turf/clone";
 import { rhumbDestination } from "@turf/rhumb-destination";
@@ -81,18 +81,6 @@ function transformTranslate<T extends GeoJSON | GeometryCollection>(
   });
   removeBbox(geojson);
   return geojson;
-}
-
-function removeBbox(geojson: GeoJSON | GeometryCollection): void {
-  delete geojson.bbox;
-
-  if (geojson.type === "Feature") {
-    if (geojson.geometry) removeBbox(geojson.geometry);
-  } else if (geojson.type === "FeatureCollection") {
-    geojson.features.forEach(removeBbox);
-  } else if (geojson.type === "GeometryCollection") {
-    geojson.geometries.forEach(removeBbox);
-  }
 }
 
 export { transformTranslate };
