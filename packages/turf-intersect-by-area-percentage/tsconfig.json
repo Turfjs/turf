@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.shared.json",
+  "compilerOptions": {
+    "outDir": "./dist/esm",
+    "rootDir": ".",
+    "composite": true
+  },
+  "include": ["*.ts", "*.d.ts", "./lib"],
+  "exclude": ["test.ts", "bench.ts", "./dist"]
+} 
