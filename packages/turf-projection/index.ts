@@ -1,6 +1,6 @@
 import { Position } from "geojson";
 import { coordEach } from "@turf/meta";
-import { AllGeoJSON, isNumber } from "@turf/helpers";
+import { AllGeoJSON, isNumber, removeBbox } from "@turf/helpers";
 import { clone } from "@turf/clone";
 
 /**
@@ -88,6 +88,7 @@ function convert(
       coord[0] = newCoord[0];
       coord[1] = newCoord[1];
     });
+    removeBbox(geojson);
   }
   return geojson;
 }

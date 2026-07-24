@@ -1,5 +1,5 @@
 import { coordEach } from "@turf/meta";
-import { isObject, AllGeoJSON } from "@turf/helpers";
+import { isObject, AllGeoJSON, removeBbox } from "@turf/helpers";
 import { clone } from "@turf/clone";
 
 /**
@@ -41,6 +41,7 @@ function flip<T extends AllGeoJSON>(
     coord[0] = y;
     coord[1] = x;
   });
+  removeBbox(geojson);
   return geojson;
 }
 
