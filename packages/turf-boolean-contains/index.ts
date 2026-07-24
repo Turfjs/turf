@@ -462,6 +462,7 @@ function isPolyInPoly(
     return false;
   }
 
+  const poly1 = getGeom(feature1);
   const coords = getGeom(feature2).coordinates;
   for (const ring of coords) {
     for (const coord of ring) {
@@ -469,8 +470,49 @@ function isPolyInPoly(
         return false;
       }
     }
+    // Having every vertex inside feature1 is not sufficient when feature1 is concave: an edge of
+    // feature2 can still cross feature1's exterior (e.g. through a notch) while all its vertices
+    // remain inside. Split each edge of feature2 on feature1's boundary and reject if any resulting
+    // sub-segment lies (via its midpoint) strictly in feature1's exterior (#2242).
+    const segments = splitLineIntoSegmentsOnPolygon(
+      { type: "LineString", coordinates: ring },
+      poly1
+    );
+    for (const segment of segments.features) {
+      const midpoint = getMidpoint(
+        segment.geometry.coordinates[0],
+        segment.geometry.coordinates[1]
+      );
+      if (
+        !booleanPointInPolygon(midpoint, feature1) &&
+        !isPointOnPolygonBoundary(midpoint, poly1)
+      ) {
+        return false;
+      }
+    }
   }
   return true;
+}
+
+/**
+ * Whether a point lies on the boundary of a polygon (within a small tolerance).
+ * Used to distinguish edges that run along the polygon boundary (allowed for containment) from
+ * edges that cross into the polygon's exterior. The small epsilon absorbs the floating-point
+ * error introduced when splitting boundary-coincident edges.
+ *
+ * @private
+ * @param {Position} point point [x, y]
+ * @param {Polygon} polygon polygon geometry
+ * @returns {boolean} true if the point lies on any ring of the polygon
+ */
+function isPointOnPolygonBoundary(point: Position, polygon: Polygon): boolean {
+  return polygon.coordinates.some((ring) =>
+    isPointOnLine(
+      { type: "Point", coordinates: point },
+      { type: "LineString", coordinates: ring },
+      { epsilon: 1e-9 }
+    )
+  );
 }
 
 function doBBoxOverlap(bbox1: BBox, bbox2: BBox) {
