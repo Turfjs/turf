@@ -6,7 +6,7 @@ import { rhumbDestination } from "@turf/rhumb-destination";
 import { clone } from "@turf/clone";
 import { coordEach } from "@turf/meta";
 import { getCoords } from "@turf/invariant";
-import { isObject, Coord } from "@turf/helpers";
+import { isObject, removeBbox, Coord } from "@turf/helpers";
 
 /**
  * Rotates any geojson Feature or Geometry of a specified angle, around its `centroid` or a given `pivot` point.
@@ -66,6 +66,7 @@ function transformRotate<T extends GeoJSON | GeometryCollection>(
     pointCoords[0] = newCoords[0];
     pointCoords[1] = newCoords[1];
   });
+  removeBbox(geojson);
   return geojson;
 }
 

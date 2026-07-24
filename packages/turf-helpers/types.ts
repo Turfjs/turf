@@ -16,6 +16,7 @@ import {
   point,
   polygon,
   radiansToLength,
+  removeBbox,
 } from "./index.js";
 
 // Fixtures
@@ -57,6 +58,8 @@ const multiPoly = multiPolygon([
     ],
   ],
 ]);
+
+removeBbox(multiPoly);
 
 // radiansToLength & lengthToRadians
 radiansToLength(5);

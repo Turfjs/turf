@@ -1,4 +1,4 @@
-import { Corners, Coord } from "@turf/helpers";
+import { Corners, Coord, removeBbox } from "@turf/helpers";
 import { FeatureCollection, GeoJSON, GeometryCollection } from "geojson";
 import { clone } from "@turf/clone";
 import { center } from "@turf/center";
@@ -67,6 +67,7 @@ function transformScale<T extends GeoJSON | GeometryCollection>(
         origin
       );
     });
+    if (factor !== 1) delete geojson.bbox;
     return geojson;
   }
   // Scale Feature/Geometry
@@ -108,7 +109,7 @@ function scale<T extends GeoJSON | GeometryCollection>(
     if (coord.length === 3) coord[2] *= factor;
   });
 
-  delete feature.bbox;
+  removeBbox(feature);
 
   return feature;
 }
