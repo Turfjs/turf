@@ -462,6 +462,7 @@ function isPolyInPoly(
     return false;
   }
 
+  const poly1 = getGeom(feature1);
   const coords = getGeom(feature2).coordinates;
   for (const ring of coords) {
     for (const coord of ring) {
@@ -469,8 +470,101 @@ function isPolyInPoly(
         return false;
       }
     }
+    // Having every vertex inside feature1 is not sufficient when feature1 is concave: an edge of
+    // feature2 can still cross feature1's exterior (e.g. through a notch) while all its vertices
+    // remain inside. Split each edge of feature2 on feature1's boundary and reject if any resulting
+    // sub-segment lies (via its midpoint) strictly in feature1's exterior (#2242).
+    const segments = splitLineIntoSegmentsOnPolygon(
+      { type: "LineString", coordinates: ring },
+      poly1
+    );
+    for (const segment of segments.features) {
+      const midpoint = getMidpoint(
+        segment.geometry.coordinates[0],
+        segment.geometry.coordinates[1]
+      );
+      if (
+        !booleanPointInPolygon(midpoint, feature1) &&
+        !isPointOnPolygonBoundary(midpoint, poly1)
+      ) {
+        return false;
+      }
+    }
   }
   return true;
+}
+
+// Distance under which a point is treated as lying on a polygon boundary,
+// expressed in the coordinate units of the input (degrees for WGS84 lng/lat).
+// GeoJSON coordinates are only meaningful to about 6 decimal places, roughly
+// 10 cm on the ground, per RFC 7946 section 11.2, so anything closer than this
+// to an edge is treated as coincident with it. This is a real distance, unlike
+// a raw cross-product epsilon which scales with edge length and coordinate
+// magnitude and so is not scale invariant.
+// https://datatracker.ietf.org/doc/html/rfc7946#section-11.2
+const BOUNDARY_DISTANCE_TOLERANCE = 1e-6;
+
+/**
+ * Shortest distance from a point to a line segment on the plane, in the
+ * coordinate units of the inputs.
+ *
+ * @private
+ * @param {Position} point point [x, y]
+ * @param {Position} start segment start [x, y]
+ * @param {Position} end segment end [x, y]
+ * @returns {number} distance from the point to the segment
+ */
+function pointToSegmentDistance(
+  point: Position,
+  start: Position,
+  end: Position
+): number {
+  const dx = end[0] - start[0];
+  const dy = end[1] - start[1];
+  const segmentLengthSquared = dx * dx + dy * dy;
+
+  // Project the point onto the segment, clamping to the endpoints. A
+  // zero-length segment collapses to its shared endpoint (t stays 0).
+  let t = 0;
+  if (segmentLengthSquared > 0) {
+    t =
+      ((point[0] - start[0]) * dx + (point[1] - start[1]) * dy) /
+      segmentLengthSquared;
+    t = Math.max(0, Math.min(1, t));
+  }
+
+  const closestX = start[0] + t * dx;
+  const closestY = start[1] + t * dy;
+  const offsetX = point[0] - closestX;
+  const offsetY = point[1] - closestY;
+  return Math.sqrt(offsetX * offsetX + offsetY * offsetY);
+}
+
+/**
+ * Whether a point lies on the boundary of a polygon, within
+ * BOUNDARY_DISTANCE_TOLERANCE.
+ * Used to distinguish edges that run along the polygon boundary (allowed for containment) from
+ * edges that cross into the polygon's exterior. The tolerance absorbs the floating-point
+ * error introduced when splitting boundary-coincident edges, while staying far smaller than any
+ * real excursion into the exterior.
+ *
+ * @private
+ * @param {Position} point point [x, y]
+ * @param {Polygon} polygon polygon geometry
+ * @returns {boolean} true if the point lies on any ring of the polygon
+ */
+function isPointOnPolygonBoundary(point: Position, polygon: Polygon): boolean {
+  return polygon.coordinates.some((ring) => {
+    for (let i = 0; i < ring.length - 1; i++) {
+      if (
+        pointToSegmentDistance(point, ring[i], ring[i + 1]) <=
+        BOUNDARY_DISTANCE_TOLERANCE
+      ) {
+        return true;
+      }
+    }
+    return false;
+  });
 }
 
 function doBBoxOverlap(bbox1: BBox, bbox2: BBox) {
