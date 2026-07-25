@@ -31,7 +31,7 @@ test("to-mercator", (t) => {
   for (const { filename, name, geojson } of fromWgs84) {
     var expected = clone(geojson);
     coordEach(expected, function (coord) {
-      var newCoord = proj4("WGS84", "EPSG:900913", coord);
+      var newCoord = proj4("WGS84", "EPSG:3857", coord);
       coord[0] = newCoord[0];
       coord[1] = newCoord[1];
     });
@@ -60,7 +60,7 @@ test("to-wgs84", (t) => {
   for (const { filename, name, geojson } of fromMercator) {
     var expected = clone(geojson);
     coordEach(expected, function (coord) {
-      var newCoord = proj4("EPSG:900913", "WGS84", coord);
+      var newCoord = proj4("EPSG:3857", "WGS84", coord);
       coord[0] = newCoord[0];
       coord[1] = newCoord[1];
     });

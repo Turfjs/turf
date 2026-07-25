@@ -6,7 +6,8 @@
   "contributors": [
     "Rowan Winsemius <@rowanwins>",
     "Denis Carriere <@DenisCarriere>",
-    "David Whittingham <@01100100>"
+    "David Whittingham <@01100100>",
+    "Espen Hovlandsdal <@rexxars>"
   ],
   "license": "MIT",
   "bugs": {
@@ -67,8 +68,6 @@
   },
   "dependencies": {
     "@turf/boolean-disjoint": "workspace:*",
-    "@turf/helpers": "workspace:*",
-    "@turf/meta": "workspace:*",
     "@types/geojson": "catalog:",
     "tslib": "catalog:"
   }

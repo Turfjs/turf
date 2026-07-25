@@ -44,7 +44,7 @@ for (const name of fs.readdirSync(directory)) {
 modules = modules.filter(({ name }) => name !== "turf");
 
 test("turf -- invalid dependencies", (t) => {
-  for (const { name, dependencies, devDependencies } of modules) {
+  for (const { name, dependencies, devDependencies, dir } of modules) {
     for (const invalidDependency of [
       "load-json-file",
       "write-json-file",
@@ -62,10 +62,19 @@ test("turf -- invalid dependencies", (t) => {
     }
     if (devDependencies["eslint"] || devDependencies["eslint-config-mourner"])
       t.fail(`${name} eslint is handled at the root level`);
-    if (devDependencies["@turf/helpers"])
-      t.fail(
-        `${name} @turf/helpers should be located in Dependencies instead of DevDependencies`
-      );
+    if (devDependencies["@turf/helpers"]) {
+      // When @turf/helpers is a devDependency, we want a little extra assurance that we won't accidentally
+      // start depending on it in our dist. Check every file in the dist for an import statement and throw an
+      // error if we see something suspicious.
+      for (const file of glob.sync(`${dir}/dist/**/*.{js,cjs,mjs}`)) {
+        const fileContents = fs.readFileSync(file, "utf8");
+        if (fileContents.includes(`from "@turf/helpers"`)) {
+          t.fail(
+            `${name} @turf/helpers should be located in Dependencies instead of DevDependencies`
+          );
+        }
+      }
+    }
     // if (devDependencies['mkdirp']) t.fail(`${name} tests should not have to create folders`);
   }
   t.skip('remove "mkdirp" from testing');

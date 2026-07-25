@@ -22,6 +22,7 @@ import {
   isObject,
   isNumber,
   earthRadius,
+  removeBbox,
 } from "./index.js";
 import * as turf from "./index.js";
 
@@ -44,6 +45,38 @@ test("point", (t) => {
     point("hello");
   }, "Issue #1941 - point rejects invalid coordinate arg");
 
+  t.end();
+});
+
+test("removeBbox", (t) => {
+  const line = lineString(
+    [
+      [0, 0],
+      [1, 1],
+    ],
+    { bbox: "property value is preserved" }
+  );
+  line.bbox = [0, 0, 1, 1];
+  line.geometry.bbox = [0, 0, 1, 1];
+
+  const collection = geometryCollection([line.geometry]);
+  collection.bbox = [0, 0, 1, 1];
+  collection.geometry.bbox = [0, 0, 1, 1];
+
+  const input = featureCollection([collection]);
+  input.bbox = [0, 0, 1, 1];
+
+  removeBbox(input);
+
+  t.notOk(input.bbox, "removes FeatureCollection bbox");
+  t.notOk(collection.bbox, "removes Feature bbox");
+  t.notOk(collection.geometry.bbox, "removes GeometryCollection bbox");
+  t.notOk(line.geometry.bbox, "removes nested geometry bbox");
+  t.equal(
+    line.properties.bbox,
+    "property value is preserved",
+    "does not alter feature properties"
+  );
   t.end();
 });
 
