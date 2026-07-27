@@ -591,6 +591,8 @@ function coordAll(geojson: AllGeoJSON): number[][] {
 /**
  * Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
  *
+ * Note: Nested GeometryCollections are not recursively unwrapped.
+ *
  * @function
  * @param {FeatureCollection|Feature|Geometry|GeometryObject|Feature<GeometryCollection>} geojson any GeoJSON object
  * @param {geomEachCallback} callback a method that takes (currentGeometry, featureIndex, featureProperties, featureBBox, featureId)
