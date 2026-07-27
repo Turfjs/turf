@@ -344,6 +344,8 @@ Returns **void**&#x20;
 
 Iterate over each geometry in any GeoJSON object, similar to Array.forEach()
 
+Note: Nested GeometryCollections are not recursively unwrapped.
+
 ### Parameters
 
 *   `geojson` **([FeatureCollection][8] | [Feature][7] | [Geometry][10] | [GeometryObject][10] | [Feature][7]<[GeometryCollection][12]>)** any GeoJSON object

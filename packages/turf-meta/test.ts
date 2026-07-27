@@ -12,6 +12,7 @@ import {
   lineStrings,
 } from "@turf/helpers";
 import * as meta from "./index.js";
+import { GeometryCollection } from "geojson";
 
 const pt = point([0, 0], { a: 1 });
 const pt2 = point([1, 1]);
@@ -1653,5 +1654,25 @@ test("meta -- segmentEach -- Issue #1273", (t) => {
   );
   t.deepEqual(segmentIndexes, [0, 0, 0, 1, 1, 1]);
   t.deepEqual(geometryIndexes, [0, 1, 2, 0, 1, 2]);
+  t.end();
+});
+
+test("meta -- geomEach handles infinitely nested GeometryCollection", (t) => {
+  const evilNestedGeometryCollection: GeometryCollection = {
+    type: "GeometryCollection",
+    geometries: [{ type: "Point", coordinates: [0, 0] }],
+  };
+  evilNestedGeometryCollection.geometries.push(evilNestedGeometryCollection);
+
+  const calls: any[] = [];
+  meta.geomEach(evilNestedGeometryCollection, (g) => {
+    calls.push(g);
+  });
+
+  t.deepEqual(calls, [
+    evilNestedGeometryCollection.geometries[0], // first Geometry of the root collection
+    evilNestedGeometryCollection.geometries[0], // first Geometry of the nested collection
+    evilNestedGeometryCollection, // second Geometry of the nested collection, which is not recursed further
+  ]);
   t.end();
 });
