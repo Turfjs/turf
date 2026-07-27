@@ -27,7 +27,7 @@ let fixtures = fs.readdirSync(directory).map((filename) => {
  */
 const suite = new Benchmark.Suite("turf-line-offset");
 for (const { name, geojson } of fixtures) {
-  suite.add(name, () => lineOffset(geojson, 100, "meters"));
+  suite.add(name, () => lineOffset(geojson, 100, { units: "meters" }));
 }
 
 suite.on("cycle", (e) => console.log(String(e.target))).run();
