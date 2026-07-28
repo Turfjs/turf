@@ -154,3 +154,38 @@ test("clusters-dbscan -- allow input mutation", (t) => {
   t.equal(oldPoints.features[1].properties.cluster, 1, "cluster is 1");
   t.end();
 });
+
+test("clusters-dbscan -- respect units option", (t) => {
+  const testPoints = featureCollection([
+    point([0, 0]),
+    point([0.000001, 0]),
+    point([0.001, 0]),
+    point([0.8, 0]),
+  ]);
+
+  const kmPoints = clustersDbscan(testPoints, 1, { minPoints: 1 });
+  const mPoints = clustersDbscan(testPoints, 1, {
+    minPoints: 1,
+    units: "meters",
+  });
+  const degreePoints = clustersDbscan(testPoints, 1, {
+    minPoints: 1,
+    units: "degrees",
+  });
+
+  const kmClusters = new Set(
+    kmPoints.features.map((f) => f.properties.cluster)
+  );
+
+  const mClusters = new Set(mPoints.features.map((f) => f.properties.cluster));
+
+  const degreeClusters = new Set(
+    degreePoints.features.map((f) => f.properties.cluster)
+  );
+
+  t.equal(kmClusters.size, 2);
+  t.equal(mClusters.size, 3);
+  t.equal(degreeClusters.size, 1);
+
+  t.end();
+});

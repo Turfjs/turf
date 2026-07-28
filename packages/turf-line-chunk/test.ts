@@ -6,8 +6,14 @@ import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureEach } from "@turf/meta";
-import { lineString, featureCollection } from "@turf/helpers";
+import {
+  lineString,
+  featureCollection,
+  point,
+  geometryCollection,
+} from "@turf/helpers";
 import { lineChunk } from "./index.js";
+import { Feature } from "geojson";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -17,7 +23,10 @@ const directories = {
 };
 
 const fixtures = fs.readdirSync(directories.in).map((filename) => {
-  return { filename, geojson: loadJsonFileSync(directories.in + filename) };
+  return {
+    filename,
+    geojson: loadJsonFileSync(directories.in + filename) as any,
+  };
 });
 
 test("turf-line-chunk: shorter", (t) => {
@@ -103,8 +112,8 @@ test("turf-line-chunk: Prevent input mutation", (t) => {
  * @param {FeatureCollection|Feature<any>} geojson Feature or FeatureCollection
  * @returns {FeatureCollection<any>} colorized FeatureCollection
  */
-function colorize(geojson) {
-  const results = [];
+function colorize(geojson: any) {
+  const results: Feature[] = [];
   featureEach(geojson, (feature, index) => {
     const r = index % 2 === 0 ? "F" : "0";
     const g = index % 2 === 0 ? "0" : "0";

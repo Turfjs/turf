@@ -33,6 +33,6 @@ new Benchmark.Suite("geojson-rbush")
   })
   .add("search.points", () => pointsTree.search(point))
   .add("search.polygons", () => polygonsTree.search(polygon))
-  .on("cycle", (e) => console.log(String(e.target)))
+  .on("cycle", (e: any) => console.log(String(e.target)))
   .on("complete", () => {})
   .run();

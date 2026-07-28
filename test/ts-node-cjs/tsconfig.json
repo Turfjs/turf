@@ -1,0 +1,11 @@
+{
+  "include": ["ts-node-cjs.ts"],
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "skipLibCheck": false
+  }
+}

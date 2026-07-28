@@ -5,18 +5,14 @@ import { Edge } from "./Edge.js";
  * Node
  */
 class Node {
-  static buildId(coordinates: number[]) {
-    return coordinates.join(",");
-  }
-
-  public id: string;
+  public id: number;
   public coordinates: number[];
   public innerEdges: Edge[];
   private outerEdges: Edge[];
   private outerEdgesSorted: boolean;
 
-  constructor(coordinates: number[]) {
-    this.id = Node.buildId(coordinates);
+  constructor(id: number, coordinates: number[]) {
+    this.id = id;
     this.coordinates = coordinates; //< {Number[]}
     this.innerEdges = []; //< {Edge[]}
 

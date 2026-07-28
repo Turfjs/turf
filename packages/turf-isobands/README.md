@@ -9,7 +9,7 @@ value breaks and generates filled contour isobands.
 
 ### Parameters
 
-*   `pointGrid` **[FeatureCollection][1]<[Point][2]>** input points - must be square or rectangular
+*   `pointGrid` **[FeatureCollection][1]<[Point][2]>** input points - must be square or rectangular and already gridded. That is, to have consistent x and y dimensions and be at least 2x2 in size.
 *   `breaks` **[Array][3]<[number][4]>** where to draw contours
 *   `options` **[Object][5]** options on output (optional, default `{}`)
 

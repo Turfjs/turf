@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "properties": {
+    "tolerance": 0.5
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#F00",
+        "fill": "#F00",
+        "stroke-width": 10,
+        "stroke-opacity": 1,
+        "fill-opacity": 0.1,
+        "description": "triangle with one horizontal and one vertical side"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-75.17098005568795, 25.347140710069592],
+            [-74.06346334926921, 25.347140710069592],
+            [-74.06346334926921, 26.453856979730748],
+            [-75.17098005568795, 25.347140710069592]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#00F",
+        "fill": "#00F",
+        "stroke-width": 3,
+        "stroke-opacity": 1,
+        "fill-opacity": 0.1,
+        "description": "polygon with segments parallel to the horizontal and vertical sides of the triangle, offset within overlap tolerance."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-75.77433328502653, 24.801355223074808],
+            [-75.09510282010693, 25.344703228173987],
+            [-74.22891563805884, 25.344703228173987],
+            [-74.05974780288312, 25.19753021415865],
+            [-74.05974780288312, 26.642828790428396],
+            [-73.31725580493922, 27.286000671432706],
+            [-73.31725580493922, 24.80135522307481],
+            [-75.77433328502653, 24.801355223074808]
+          ]
+        ]
+      }
+    }
+  ]
+}

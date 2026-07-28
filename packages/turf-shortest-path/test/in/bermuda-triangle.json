@@ -1,6 +1,9 @@
 {
   "type": "FeatureCollection",
-  "properties": {},
+  "properties": {
+    "resolution": 20,
+    "units": "kilometers"
+  },
   "features": [
     {
       "type": "Feature",

@@ -27,7 +27,7 @@ let fixtures = fs.readdirSync(directories.in).map((filename) => {
 test("turf-line-offset", (t) => {
   fixtures.forEach((fixture) => {
     const name = fixture.name;
-    const geojson = fixture.geojson;
+    const geojson = fixture.geojson as any;
     const properties = geojson.properties || {};
     const distance = properties.distance || 50;
     const units = properties.units;
@@ -35,7 +35,7 @@ test("turf-line-offset", (t) => {
     const output = truncate(lineOffset(geojson, distance, { units: units }), {
       precision: 4,
     });
-    output.properties.stroke = "#00F";
+    output.properties!.stroke = "#00F";
     const results = featureCollection([output, geojson]);
 
     if (process.env.REGEN)
@@ -54,8 +54,8 @@ test("turf-line-offset - Throws Errors", (t) => {
     [10, 10],
     [0, 0],
   ]);
-  t.throws(() => lineOffset(), /geojson is required/);
-  t.throws(() => lineOffset(line), /distance is required/);
+  t.throws(() => (lineOffset as any)(), /geojson is required/);
+  t.throws(() => (lineOffset as any)(line), /distance is required/);
   t.end();
 });
 

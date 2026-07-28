@@ -52,8 +52,7 @@ function pointsWithinPolygon<
   P extends GeoJsonProperties,
 >(
   points:
-    | Feature<Point | MultiPoint, P>
-    | FeatureCollection<Point | MultiPoint, P>,
+    Feature<Point | MultiPoint, P> | FeatureCollection<Point | MultiPoint, P>,
   polygons: Feature<G> | FeatureCollection<G> | G
 ): FeatureCollection<Point | MultiPoint, P> {
   const results: Feature<Point | MultiPoint, P>[] = [];

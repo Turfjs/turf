@@ -45,8 +45,8 @@ export { combine } from "@turf/combine";
 export { concave } from "@turf/concave";
 export { convex } from "@turf/convex";
 export { destination } from "@turf/destination";
-export { difference } from "@turf/difference"; // JSTS Module
-export { dissolve } from "@turf/dissolve"; // JSTS Sub-Model
+export { difference } from "@turf/difference";
+export { dissolve } from "@turf/dissolve";
 export { distance } from "@turf/distance";
 export { distanceWeight } from "@turf/distance-weight";
 export { ellipse } from "@turf/ellipse";
@@ -58,9 +58,9 @@ export { geojsonRbush } from "@turf/geojson-rbush";
 export { greatCircle } from "@turf/great-circle";
 export * from "@turf/helpers";
 export * as helpers from "@turf/helpers";
-export { hexGrid } from "@turf/hex-grid"; // JSTS Sub-Model
-export { interpolate } from "@turf/interpolate"; // JSTS Sub-Model
-export { intersect } from "@turf/intersect"; // JSTS Module
+export { hexGrid } from "@turf/hex-grid";
+export { interpolate } from "@turf/interpolate";
+export { intersect } from "@turf/intersect";
 export * from "@turf/invariant";
 export * as invariant from "@turf/invariant";
 export { isobands } from "@turf/isobands";
@@ -77,7 +77,7 @@ export { lineSlice } from "@turf/line-slice";
 export { lineSliceAlong } from "@turf/line-slice-along";
 export { lineSplit } from "@turf/line-split";
 export { lineToPolygon } from "@turf/line-to-polygon";
-export { mask } from "@turf/mask"; // JSTS Sub-Model
+export { mask } from "@turf/mask";
 export * from "@turf/meta";
 export * as meta from "@turf/meta";
 export { midpoint } from "@turf/midpoint";
@@ -101,7 +101,7 @@ export * as projection from "@turf/projection";
 export * from "@turf/quadrat-analysis";
 export * from "@turf/random";
 export * as random from "@turf/random";
-export { rectangleGrid } from "@turf/rectangle-grid"; // JSTS Sub-Model
+export { rectangleGrid } from "@turf/rectangle-grid";
 export { rewind } from "@turf/rewind";
 export { rhumbBearing } from "@turf/rhumb-bearing";
 export { rhumbDestination } from "@turf/rhumb-destination";
@@ -111,7 +111,7 @@ export { sector } from "@turf/sector";
 export { shortestPath } from "@turf/shortest-path";
 export { simplify } from "@turf/simplify";
 export { square } from "@turf/square";
-export { squareGrid } from "@turf/square-grid"; // JSTS Sub-Model
+export { squareGrid } from "@turf/square-grid";
 export { standardDeviationalEllipse } from "@turf/standard-deviational-ellipse";
 export { tag } from "@turf/tag";
 export { tesselate } from "@turf/tesselate";
@@ -119,8 +119,9 @@ export { tin } from "@turf/tin";
 export { transformRotate } from "@turf/transform-rotate";
 export { transformScale } from "@turf/transform-scale";
 export { transformTranslate } from "@turf/transform-translate";
-export { triangleGrid } from "@turf/triangle-grid"; // JSTS Sub-Model
+export { triangleGrid } from "@turf/triangle-grid";
 export { truncate } from "@turf/truncate";
-export { union } from "@turf/union"; // JSTS Module
+export { union } from "@turf/union";
 export { unkinkPolygon } from "@turf/unkink-polygon";
 export { voronoi } from "@turf/voronoi";
+export { directionalMean } from "@turf/directional-mean";

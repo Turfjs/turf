@@ -7,6 +7,7 @@ import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { featureCollection, point, lineString } from "@turf/helpers";
 import { lineSlice } from "./index.js";
+import { Feature, FeatureCollection, LineString, Point } from "geojson";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -19,16 +20,20 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   return {
     filename,
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(directories.in + filename),
+    geojson: loadJsonFileSync(directories.in + filename) as FeatureCollection,
   };
 });
 
 test("turf-line-slice", (t) => {
   for (const { filename, geojson, name } of fixtures) {
-    const [linestring, start, stop] = geojson.features;
+    const [linestring, start, stop] = geojson.features as [
+      Feature<LineString>,
+      Feature<Point>,
+      Feature<Point>,
+    ];
     const sliced = truncate(lineSlice(start, stop, linestring));
-    sliced.properties["stroke"] = "#f0f";
-    sliced.properties["stroke-width"] = 6;
+    sliced.properties!["stroke"] = "#f0f";
+    sliced.properties!["stroke-width"] = 6;
     const results = featureCollection(geojson.features);
     results.features.push(sliced);
 
@@ -57,5 +62,33 @@ test("turf-nearest-point-on-line -- issue 2023", (t) => {
     ],
     "slice should be [[3.69140625, 51.72702816], [-0.03079923, 48.08596086]]"
   );
+  t.end();
+});
+
+test("issue 2946 - lineSlice didn't introduce duplicate points", (t) => {
+  // Test case copied from https://github.com/Turfjs/turf/issues/2946
+  // Values rounded to lower precision for realism. Same behaviour as
+  // originally reported though.
+  const startPt = point([2, 0]);
+  const endPt = point([2, 2]);
+  const line = lineString([
+    [2.999848, 0.000152],
+    [2, -1],
+    [2, 2],
+  ]);
+
+  const r1 = lineSlice(startPt, endPt, line);
+  t.equal(
+    r1.geometry.coordinates.length,
+    2,
+    "Two points only in the linestring"
+  );
+
+  // This part of the issue report should have already been fixed by the
+  // recent PR #2940.
+  t.doesNotThrow(() => {
+    const r2 = lineSlice(startPt, endPt, r1);
+  }, "Does not throw when called again on first result");
+
   t.end();
 });
