@@ -954,6 +954,9 @@ export function calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCi
     );
 
   return Math.max(3, Math.ceil(approximateNumberOfSides));
+}
+
+/**
  * Recursively removes bounding boxes from a GeoJSON object.
  *
  * This function mutates the input GeoJSON object.

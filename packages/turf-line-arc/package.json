@@ -4,7 +4,7 @@
   "description": "Creates a circular arc, of a circle of the given radius and center point, between two bearings.",
   "author": "Turf Authors",
   "contributors": [
-    "Scott Wiedemann <@lemmingapex>"
+    "Scott Wiedemann <@lemmingapex>",
     "Alexander Kireev <@chatman-media>"
   ],
   "license": "MIT",

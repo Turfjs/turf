@@ -596,6 +596,7 @@ tolerance in the polygon's circumradius.
 *   `maximumRimDeviation` **[number][13]?** The maximum allowable error for the polygon's circumradius when approximating the circle.
 
 Returns **[number][13]** The number of sides of the best-fit regular polygon.
+
 ## removeBbox
 
 Recursively removes bounding boxes from a GeoJSON object.
