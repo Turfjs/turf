@@ -896,19 +896,22 @@ export function calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle(
   }
   steps = Math.max(3, Math.ceil(steps)); // ensure at least a triangle
   // METHOD: construct a polygon with the same area as the circle, this minimizes the overall distance from the circle to the perimeter of the polygon, and is a better estimate of the circle than say an inscribed polygon
-  const circleArea = Math.PI * circleRadius * circleRadius;
-  const phi = Math.PI / steps; // angle between apothem and radius
-  // 1. calculate the polygonArea:
+  // 1. calculate the angle between apothem and radius
+  //   phi = Math.PI / steps
+  // 2. calculate the area of the circle:
+  //   circleArea = Math.PI * circleRadius * circleRadius;
+  // 3. calculate the polygonArea:
   //   polygonArea = circumRadius * sin(phi) * circumRadius * cos(phi) * steps
   //   polygonArea = circumRadius * circumRadius * 1/2 * sin(2 * phi) * steps // via double angle identity
-  // 2. set circleArea equal to  polygonArea:
+  // 4. set circleArea equal to  polygonArea:
   //   circleArea = polygonArea
   //   circleArea = circumRadius * circumRadius * 1/2 * sin(2 * phi) * steps
-  // 3. solve for the circumRadius
+  // 5. solve for the circumRadius
   //   circleArea * 2.0 / (sin(2 * phi) * steps) = circumRadiusInMeters * circumRadiusInMeters
-  const circumRadiusInMeters = Math.sqrt(
-    (circleArea * 2.0) / (Math.sin(2.0 * phi) * steps)
-  );
+  //   circumRadiusInMeters * circumRadiusInMeters = Math.PI * circleRadius * circleRadius * 2.0 / (sin(2 * phi) * steps)
+  const twoPhi = (2.0 * Math.PI) / steps;
+  const circumRadiusInMeters =
+    circleRadius * Math.sqrt(twoPhi / Math.sin(twoPhi));
 
   return circumRadiusInMeters;
 }
@@ -953,7 +956,7 @@ export function calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCi
       6 * (1 - (circleRadius * circleRadius) / (circumRadius * circumRadius))
     );
 
-  return Math.max(3, Math.ceil(approximateNumberOfSides));
+  return Math.max(3, Math.ceil(approximateNumberOfSides) || 3);
 }
 
 /**

@@ -39,7 +39,7 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   } = {}
 ): Feature<Polygon, P> {
   // default params
-  let steps = options.steps || 64;
+  let steps = options.steps ?? 64;
   if (options.maximumRimDeviation && options.maximumRimDeviation > 0) {
     steps =
       calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle(
@@ -50,11 +50,11 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
 
   const circumRadius =
     calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle(radius, steps);
-  const properties: any = options.properties
-    ? options.properties
-    : !Array.isArray(center) && center.type === "Feature" && center.properties
+  const properties = (options.properties ??
+    (!Array.isArray(center) && center.type === "Feature"
       ? center.properties
-      : {};
+      : {}) ??
+    {}) as P;
 
   // main
   const coordinates = [];
