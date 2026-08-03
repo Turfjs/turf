@@ -76,3 +76,23 @@ test("turf-truncate - prevent input mutation", (t) => {
   t.deepEqual(pt, point([120, 40]), "does mutate input");
   t.end();
 });
+
+test("turf-truncate - removes stale bbox", (t) => {
+  const input = point(
+    [120.123, 40.123],
+    {},
+    { bbox: [120.123, 40.123, 120.123, 40.123] }
+  );
+  const output = truncate(input, { precision: 0 });
+
+  t.equal(output.bbox, undefined, "removes bbox from cloned output");
+  t.deepEqual(
+    input.bbox,
+    [120.123, 40.123, 120.123, 40.123],
+    "preserves cloned input"
+  );
+
+  truncate(input, { precision: 0, mutate: true });
+  t.equal(input.bbox, undefined, "removes bbox from mutated input");
+  t.end();
+});

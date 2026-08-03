@@ -44,3 +44,15 @@ test("turf-flip - handle input mutation", (t) => {
   t.deepEqual(geojson, point([40, 120]), "does mutate input");
   t.end();
 });
+
+test("turf-flip - removes stale bbox", (t) => {
+  const input = point([120, 40], {}, { bbox: [120, 40, 120, 40] });
+  const output = flip(input);
+
+  t.equal(output.bbox, undefined, "removes bbox from cloned output");
+  t.deepEqual(input.bbox, [120, 40, 120, 40], "preserves cloned input");
+
+  flip(input, { mutate: true });
+  t.equal(input.bbox, undefined, "removes bbox from mutated input");
+  t.end();
+});
