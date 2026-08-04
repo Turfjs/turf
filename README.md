@@ -28,16 +28,25 @@ Or explore the Turf API and examples at [turfjs.org](https://turfjs.org/).
 
 Turf is currently published to work with any reasonably modern Javascript runtime.
 
-Node is a first class citizen, and we recommend using an [Active or Maintenance LTS](https://nodejs.org/en/about/previous-releases) release.
+Node is a first class citizen, and we recommend using an [Active or Maintenance LTS](https://nodejs.org/en/about/previous-releases) release. In v8, we officially support Node 22, 24, and 26, although Node 20 may continue to work for a while. We ship ESM-native packages, which means that [Node versions before 20.19.0](https://nodejs.org/api/modules.html#loading-ecmascript-modules-using-require) will cause errors with `require()`.
 
 Other runtimes, such as Deno or Bun, are not officially supported. We would be very interested to hear your experiences though.
 
 ## Browser support
 
-Turf uses Babel to transpile to a JavaScript version usable by most
+@turf/turf has a `browser` target which is pre-transpiled and minified for use in most
 modern browsers. Any browser that matches the following criteria as defined by [Browserslist](https://github.com/browserslist/browserslist):
 
 [> 0.25%, last 2 versions, fully supports es5, not dead](https://browsersl.ist/#q=%3E+0.25%25%2C+last+2+versions%2C+fully+supports+es5%2C+not+dead)
+
+If you using a bundler, we recommend transpiling Turf and all of its transitive dependencies to make sure that your specific browser targets are supported.
+
+# TypeScript compatibility notes
+
+If you set `skipLibCheck: false`, you may be partially constrained by Turf's own TypeScript settings.
+We set `strict: true`, but some of the other optional strict modes like `noUncheckedIndexAccess` are not set.
+
+We also set `esModuleInterop: true`. TypeScript will be forcing this behavior [going forward](https://devblogs.microsoft.com/typescript/announcing-typescript-6-0/#deprecated:---esmoduleinterop-false-and---allowsyntheticdefaultimports-false). Turf has a few transitive dependencies that cause errors without this flag. This can be fixed by migrating to `esModuleInterop: true`, or setting `skipLibCheck: true`.
 
 ## Contributors
 
