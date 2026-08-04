@@ -5,10 +5,12 @@ on:
     branches:
       - master
       - support/6.x
+      - support/7.x
   pull_request:
     branches:
       - master
       - support/6.x
+      - support/7.x
 
 permissions:
   contents: read
@@ -20,7 +22,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [18.x, 20.x, 22.x, 24.x, 26.x]
+        node-version: [22, 24, 26]
+        include:
+          # support/7.x adds [18, 20]
+          - node-version: ${{ (github.base_ref || github.ref_name) == 'support/7.x' && 18 || '' }}
+          - node-version: ${{ (github.base_ref || github.ref_name) == 'support/7.x' && 20 || '' }}
+          # support/6.x adds [18, 20]
+          - node-version: ${{ (github.base_ref || github.ref_name) == 'support/6.x' && 18 || '' }}
+          - node-version: ${{ (github.base_ref || github.ref_name) == 'support/6.x' && 20 || '' }}
 
     steps:
       - name: Checkout
