@@ -9,7 +9,8 @@ import { clone } from "@turf/clone";
 import { point } from "@turf/helpers";
 import { truncate } from "@turf/truncate";
 import { coordEach } from "@turf/meta";
-import { toMercator, toWgs84 } from "./index.js";
+import { toMercator, toWgs84, project } from "./index.js";
+import { FeatureCollection, Point } from "geojson";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -127,5 +128,36 @@ test("projection -- handle Position", (t) => {
   const mercator = toMercator(coord);
   const wgs84 = toWgs84(mercator);
   t.deepEqual(coord, wgs84, "coord equal same as wgs84");
+  t.end();
+});
+
+test("projection - proj4 usage", (t) => {
+  const input: FeatureCollection<Point> = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [0, 0],
+        },
+        properties: {},
+      },
+    ],
+  };
+
+  // proj4 projection usage example
+  const projected = project(
+    input,
+    (input) => {
+      return proj4("WGS84", "EPSG:3857", input);
+    },
+    { mutate: true }
+  );
+
+  t.deepEqual(
+    projected.features[0].geometry.coordinates,
+    [0, -7.081154551613622e-10]
+  );
   t.end();
 });

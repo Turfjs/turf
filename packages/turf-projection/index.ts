@@ -1,6 +1,6 @@
-import { Position } from "geojson";
+import type { Position, GeoJSON } from "geojson";
 import { coordEach } from "@turf/meta";
-import { AllGeoJSON, isNumber } from "@turf/helpers";
+import { type AllGeoJSON, isNumber } from "@turf/helpers";
 import { clone } from "@turf/clone";
 
 /**
@@ -22,7 +22,11 @@ function toMercator<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
-  return convert(geojson, "mercator", options);
+  return project(
+    geojson as GeoJSON | Position,
+    convertToMercator,
+    options
+  ) as G;
 }
 
 /**
@@ -44,47 +48,46 @@ function toWgs84<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
-  return convert(geojson, "wgs84", options);
+  return project(
+    geojson as AllGeoJSON | Position,
+    convertToWgs84,
+    options
+  ) as G;
 }
 
 /**
- * Converts a GeoJSON coordinates to the defined `projection`
+ * Projects GeoJSON or Position objects using an arbitrary projection function
  *
- * @private
- * @param {GeoJSON} geojson GeoJSON Feature or Geometry
- * @param {string} projection defines the projection system to convert the coordinates to
+ * @param {GeoJSON} geojson GeoJSON or Position object
+ * @param {string} projection A function that implements the projection
  * @param {Object} [options] Optional parameters
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
- * @returns {GeoJSON} Converted GeoJSON
+ * @returns {GeoJSON} Converted GeoJSON in the same shape as the original
  */
-function convert(
-  geojson: any,
-  projection: string,
+function project<G extends GeoJSON | Position>(
+  geojson: G,
+  projection: (input: number[]) => number[],
   options: { mutate?: boolean } = {}
-): any {
-  // Optional parameters
-  options = options || {};
-  var mutate = options.mutate;
+): G {
+  const mutate = options?.mutate ?? false;
 
   // Validation
-  if (!geojson) throw new Error("geojson is required");
+  if (!geojson) {
+    throw new Error("geojson is required");
+  }
 
-  // Handle Position
-  if (Array.isArray(geojson) && isNumber(geojson[0]))
-    geojson =
-      projection === "mercator"
-        ? convertToMercator(geojson)
-        : convertToWgs84(geojson);
-  // Handle GeoJSON
-  else {
+  if (Array.isArray(geojson) && isNumber(geojson[0])) {
+    // Handle Position
+    geojson = projection(geojson) as G;
+  } else {
+    // Handle GeoJSON
     // Handle possible data mutation
-    if (mutate !== true) geojson = clone(geojson);
+    if (mutate !== true) {
+      geojson = clone(geojson as GeoJSON) as G;
+    }
 
-    coordEach(geojson, function (coord) {
-      var newCoord =
-        projection === "mercator"
-          ? convertToMercator(coord)
-          : convertToWgs84(coord);
+    coordEach(geojson as GeoJSON, function (coord) {
+      var newCoord = projection(coord);
       coord[0] = newCoord[0];
       coord[1] = newCoord[1];
     });
@@ -154,4 +157,4 @@ function sign(x: number) {
   return x < 0 ? -1 : x > 0 ? 1 : 0;
 }
 
-export { toMercator, toWgs84 };
+export { toMercator, toWgs84, project };
