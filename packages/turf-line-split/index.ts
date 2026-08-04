@@ -239,7 +239,7 @@ function findClosestFeature(
   var closestDistance = Infinity;
   featureEach(lines, function (segment) {
     var pt = nearestPointOnLine(segment, point);
-    var dist = pt.properties.dist;
+    var dist = pt.properties.pointDistance;
     if (dist < closestDistance) {
       closestFeature = segment;
       closestDistance = dist;

@@ -1,7 +1,7 @@
 import { getCoords, getType } from "@turf/invariant";
 import { Coord, lineString as linestring } from "@turf/helpers";
 import { nearestPointOnLine } from "@turf/nearest-point-on-line";
-import { Feature, LineString } from "geojson";
+import type { Feature, LineString, Point } from "geojson";
 
 /**
  * Takes a {@link LineString|line}, a start {@link Point}, and a stop point
@@ -44,20 +44,44 @@ function lineSlice(
 
   const startVertex = nearestPointOnLine(line, startPt);
   const stopVertex = nearestPointOnLine(line, stopPt);
+
+  // Workaround until we can fix backwards incompatible nearestPointOnLine bug
+  // #3016
+  fixSegmentIndexBounds(line, startVertex);
+  fixSegmentIndexBounds(line, stopVertex);
+
   const ends =
-    startVertex.properties.index <= stopVertex.properties.index
+    startVertex.properties.segmentIndex <= stopVertex.properties.segmentIndex
       ? [startVertex, stopVertex]
       : [stopVertex, startVertex];
   const clipCoords = [ends[0].geometry.coordinates];
   for (
-    let i = ends[0].properties.index + 1;
-    i < ends[1].properties.index + 1;
+    let i = ends[0].properties.segmentIndex + 1;
+    i < ends[1].properties.segmentIndex + 1;
     i++
   ) {
     clipCoords.push(coords[i]);
   }
   clipCoords.push(ends[1].geometry.coordinates);
   return linestring(clipCoords, line.type === "Feature" ? line.properties : {});
+}
+
+function fixSegmentIndexBounds(
+  line: Feature<LineString> | LineString,
+  vertex: Feature<Point, { segmentIndex: number }>
+) {
+  // There is a bug in nearestPointOnLine where the returned segmentIndex can
+  // refer to a non-existent segment (overflows). Until we can fix that bug
+  // (see https://github.com/Turfjs/turf/issues/3016) we adjust the
+  // segmentIndex here to make sure it's in range.
+
+  let geometry: LineString = line.type === "Feature" ? line.geometry : line;
+
+  if (vertex.properties.segmentIndex >= geometry.coordinates.length - 1) {
+    // segmentIndex refers to a non-existent segment beyond the end of the
+    // lineString. Override it.
+    vertex.properties.segmentIndex = geometry.coordinates.length - 2;
+  }
 }
 
 export { lineSlice };

@@ -125,6 +125,19 @@ function isLineOnLine(
   if (doLinesIntersect.features.length > 0) {
     return true;
   }
+  // lineIntersect() only reports points where segments cross, so collinear
+  // (partially) overlapping lines are missed. Check whether a vertex of either
+  // line lies on the other line to also catch those overlapping cases.
+  for (const coords of lineString1.coordinates) {
+    if (isPointOnLine(lineString2, { type: "Point", coordinates: coords })) {
+      return true;
+    }
+  }
+  for (const coords of lineString2.coordinates) {
+    if (isPointOnLine(lineString1, { type: "Point", coordinates: coords })) {
+      return true;
+    }
+  }
   return false;
 }
 

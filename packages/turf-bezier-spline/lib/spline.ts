@@ -71,7 +71,7 @@ class Spline {
       const dy =
         this.points[i + 1].y - (this.centers[i].y + this.centers[i + 1].y) / 2;
       const dz =
-        this.points[i + 1].z - (this.centers[i].y + this.centers[i + 1].z) / 2;
+        this.points[i + 1].z - (this.centers[i].z + this.centers[i + 1].z) / 2;
       this.controls.push([
         {
           x:

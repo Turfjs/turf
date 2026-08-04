@@ -36,9 +36,7 @@ import { pointToLineDistance } from "@turf/point-to-line-distance";
  */
 function nearestPointToLine<P = { dist: number; [key: string]: any }>(
   points:
-    | FeatureCollection<Point>
-    | Feature<GeometryCollection>
-    | GeometryCollection,
+    FeatureCollection<Point> | Feature<GeometryCollection> | GeometryCollection,
   line: Feature<LineString> | LineString,
   options: {
     units?: Units;

@@ -1,6 +1,6 @@
 import { GeoJSON, GeometryCollection } from "geojson";
 import { coordEach } from "@turf/meta";
-import { isObject, Units } from "@turf/helpers";
+import { isObject, removeBbox, Units } from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 import { clone } from "@turf/clone";
 import { rhumbDestination } from "@turf/rhumb-destination";
@@ -79,6 +79,7 @@ function transformTranslate<T extends GeoJSON | GeometryCollection>(
     if (zTranslation && pointCoords.length === 3)
       pointCoords[2] += zTranslation;
   });
+  removeBbox(geojson);
   return geojson;
 }
 

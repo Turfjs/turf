@@ -42,8 +42,9 @@ function validateGeoJson(geoJson: AllGeoJSON) {
  * This graph is directed (both directions are created)
  */
 class Graph {
-  private nodes: { [id: string]: Node };
-  private edges: Edge[];
+  private nodes: Map<number, Map<number, Node>> = new Map(); // Map<longitude, Map<latitude, Node>>
+  private nodeId = 0; // the next node id to use
+  private edges = new Map<Node, Map<Node, Edge>>(); // Map<from, Map<to, Edge>>
 
   /**
    * Creates a graph from a GeoJSON.
@@ -86,9 +87,18 @@ class Graph {
    * @returns {Node} - The created or stored node
    */
   getNode(coordinates: number[]) {
-    const id = Node.buildId(coordinates);
-    let node = this.nodes[id];
-    if (!node) node = this.nodes[id] = new Node(coordinates);
+    let node = this.nodes.get(coordinates[0])?.get(coordinates[1]);
+
+    if (node == null) {
+      const node = new Node(this.nodeId++, coordinates);
+      let byLat = this.nodes.get(coordinates[0]);
+      if (byLat == null) {
+        byLat = new Map();
+        this.nodes.set(coordinates[0], byLat);
+      }
+      byLat.set(coordinates[1], node);
+      return node;
+    }
 
     return node;
   }
@@ -102,27 +112,36 @@ class Graph {
    * @param {Node} to - Node which ends the Edge
    */
   addEdge(from: Node, to: Node) {
+    // Note: Avoid creating duplicate Edges (#3045). This is done before the Edge constructor call, which modifies the Nodes that are passed in.
+    if (this.edges.get(from)?.has(to)) {
+      return;
+    }
+
     const edge = new Edge(from, to),
       symetricEdge = edge.getSymetric();
 
-    this.edges.push(edge);
-    this.edges.push(symetricEdge);
-  }
+    // add the forward edge
+    let toMap = this.edges.get(from);
+    if (toMap == null) {
+      toMap = new Map();
+      this.edges.set(from, toMap);
+    }
+    toMap.set(to, edge);
 
-  constructor() {
-    this.edges = []; //< {Edge[]} dirEdges
-
-    // The key is the `id` of the Node (ie: coordinates.join(','))
-    this.nodes = {};
+    // add the symmetric edge
+    let symToMap = this.edges.get(to);
+    if (symToMap == null) {
+      symToMap = new Map();
+      this.edges.set(to, symToMap);
+    }
+    symToMap.set(from, symetricEdge);
   }
 
   /**
    * Removes Dangle Nodes (nodes with grade 1).
    */
   deleteDangles() {
-    Object.keys(this.nodes)
-      .map((id) => this.nodes[id])
-      .forEach((node) => this._removeIfDangle(node));
+    this._forEachNode((node) => this._removeIfDangle(node));
   }
 
   /**
@@ -153,7 +172,7 @@ class Graph {
     this._findLabeledEdgeRings();
 
     // Cut-edges (bridges) are edges where both edges have the same label
-    this.edges.forEach((edge) => {
+    this._forEachEdge((edge) => {
       if (edge.label === edge.symetric!.label) {
         this.removeEdge(edge.symetric!);
         this.removeEdge(edge);
@@ -170,10 +189,8 @@ class Graph {
    * @param {Node} [node] - If no node is passed, the function calls itself for every node in the Graph
    */
   _computeNextCWEdges(node?: Node) {
-    if (typeof node === "undefined") {
-      Object.keys(this.nodes).forEach((id) =>
-        this._computeNextCWEdges(this.nodes[id])
-      );
+    if (node == null) {
+      this._forEachNode((node) => this._computeNextCWEdges(node));
     } else {
       node.getOuterEdges().forEach((edge, i) => {
         node.getOuterEdge(
@@ -237,7 +254,7 @@ class Graph {
   _findLabeledEdgeRings() {
     const edgeRingStarts: Edge[] = [];
     let label = 0;
-    this.edges.forEach((edge) => {
+    this._forEachEdge((edge) => {
       if (edge.label! >= 0) return;
 
       edgeRingStarts.push(edge);
@@ -263,7 +280,7 @@ class Graph {
     this._computeNextCWEdges();
 
     // Clear labels
-    this.edges.forEach((edge) => {
+    this._forEachEdge((edge) => {
       edge.label = undefined;
     });
 
@@ -277,7 +294,7 @@ class Graph {
     const edgeRingList: EdgeRing[] = [];
 
     // find all edgerings
-    this.edges.forEach((edge) => {
+    this._forEachEdge((edge) => {
       if (edge.ring) return;
       edgeRingList.push(this._findEdgeRing(edge));
     });
@@ -337,7 +354,7 @@ class Graph {
   removeNode(node: Node) {
     node.getOuterEdges().forEach((edge) => this.removeEdge(edge));
     node.innerEdges.forEach((edge) => this.removeEdge(edge));
-    delete this.nodes[node.id];
+    this.nodes.get(node.coordinates[0])?.delete(node.coordinates[1]);
   }
 
   /**
@@ -346,8 +363,24 @@ class Graph {
    * @param {Edge} edge - Edge to be removed
    */
   removeEdge(edge: Edge) {
-    this.edges = this.edges.filter((e) => !e.isEqual(edge));
+    this.edges.get(edge.from)?.delete(edge.to);
     edge.deleteEdge();
+  }
+
+  _forEachNode(fn: (n: Node) => void) {
+    for (const latMap of this.nodes.values()) {
+      for (const node of latMap.values()) {
+        fn(node);
+      }
+    }
+  }
+
+  _forEachEdge(fn: (e: Edge) => void) {
+    for (const toMap of this.edges.values()) {
+      for (const edge of toMap.values()) {
+        fn(edge);
+      }
+    }
   }
 }
 

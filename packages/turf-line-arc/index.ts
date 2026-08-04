@@ -57,19 +57,21 @@ function lineArc(
   const arcStartDegree = angle1;
   const arcEndDegree = angle1 < angle2 ? angle2 : angle2 + 360;
 
-  let alpha = arcStartDegree;
   const coordinates = [];
-  let i = 0;
   // How many degrees we'll swing around between each step.
   const arcStep = (arcEndDegree - arcStartDegree) / steps;
-  // Add coords to the list, increasing the angle from our start bearing
-  // (alpha) by arcStep degrees until we reach the end bearing.
-  while (alpha <= arcEndDegree) {
+  // Add coords to the list, increasing the angle from our start bearing by
+  // arcStep degrees until we reach the end bearing. Iterate a fixed number of
+  // times (steps + 1 vertices) rather than comparing an accumulated angle
+  // against arcEndDegree: floating-point drift in arcStartDegree + i * arcStep
+  // could make the final value exceed arcEndDegree (e.g. 29.000000000000004),
+  // dropping the last vertex so the arc never reached bearing2. Pin the last
+  // vertex to arcEndDegree so the arc always ends exactly on bearing2.
+  for (let i = 0; i <= steps; i++) {
+    const alpha = i === steps ? arcEndDegree : arcStartDegree + i * arcStep;
     coordinates.push(
       destination(center, radius, alpha, options).geometry.coordinates
     );
-    i++;
-    alpha = arcStartDegree + i * arcStep;
   }
   return lineString(coordinates, properties);
 }
