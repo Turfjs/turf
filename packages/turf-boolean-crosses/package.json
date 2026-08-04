@@ -71,6 +71,7 @@
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
     "@turf/line-intersect": "workspace:*",
+    "@turf/line-split": "workspace:*",
     "@turf/polygon-to-line": "workspace:*",
     "@types/geojson": "catalog:",
     "tslib": "catalog:"

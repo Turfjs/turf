@@ -1049,6 +1049,9 @@ importers:
       '@turf/line-intersect':
         specifier: workspace:*
         version: link:../turf-line-intersect
+      '@turf/line-split':
+        specifier: workspace:*
+        version: link:../turf-line-split
       '@turf/polygon-to-line':
         specifier: workspace:*
         version: link:../turf-polygon-to-line
