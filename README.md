@@ -32,6 +32,8 @@ Node is a first class citizen, and we recommend using an [Active or Maintenance 
 
 Other runtimes, such as Deno or Bun, are not officially supported. We would be very interested to hear your experiences though.
 
+When bundling Turf for the browser, ensure your build setup transpiles and polyfills Turf along with all of its transitive dependencies to match your target browsers.
+
 ## Browser support
 
 Turf uses Babel to transpile to a JavaScript version usable by most

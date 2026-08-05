@@ -14,7 +14,7 @@
       "inputs": [
         "default",
         "sources",
-        "{workspaceRoot}/tsup.config.ts",
+        "{workspaceRoot}/tsconfig.shared.json",
         "{projectRoot}/index.d.ts",
         "{projectRoot}/rollup.config.cjs"
       ],
