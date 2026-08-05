@@ -36,10 +36,8 @@ When bundling Turf for the browser, ensure your build setup transpiles and polyf
 
 ## Browser support
 
-Turf uses Babel to transpile to a JavaScript version usable by most
-modern browsers. Any browser that matches the following criteria as defined by [Browserslist](https://github.com/browserslist/browserslist):
-
-[> 0.25%, last 2 versions, fully supports es5, not dead](https://browsersl.ist/#q=%3E+0.25%25%2C+last+2+versions%2C+fully+supports+es5%2C+not+dead)
+@turf/turf includes a browser bundle that combines, transpiles, and minifies all Turf modules into a single JavaScript file.
+We periodically update our minimum browser targets using Browserslist's default preset.
 
 ## Contributors
 
