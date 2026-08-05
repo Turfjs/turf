@@ -220,15 +220,9 @@ catalogs:
     tape:
       specifier: ^5.10.2
       version: 5.10.2
-    tslib:
-      specifier: ^2.8.1
-      version: 2.8.1
     tstyche:
       specifier: ^6.2.0
       version: 6.2.0
-    tsup:
-      specifier: ^8.5.1
-      version: 8.5.1
     tsx:
       specifier: ^4.22.4
       version: 4.22.4
@@ -282,9 +276,6 @@ importers:
       documentation:
         specifier: ^14.0.3
         version: 14.0.3(supports-color@9.4.0)
-      es-check:
-        specifier: ^9.6.4
-        version: 9.6.4
       eslint:
         specifier: ^9.39.4
         version: 9.39.4(supports-color@9.4.0)
@@ -324,9 +315,6 @@ importers:
       progress:
         specifier: ^2.0.3
         version: 2.0.3
-      tsup:
-        specifier: ^8.5.1
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -760,9 +748,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -779,9 +764,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -806,9 +788,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/distance':
         specifier: workspace:*
@@ -834,9 +813,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -858,9 +834,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -877,9 +850,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -901,9 +871,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -917,9 +884,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -938,9 +902,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/bbox':
         specifier: workspace:*
@@ -960,9 +921,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -981,9 +939,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -997,9 +952,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1018,9 +970,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/destination':
         specifier: workspace:*
@@ -1037,9 +986,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1061,9 +1007,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1080,9 +1023,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1104,9 +1044,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1123,9 +1060,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1144,9 +1078,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1163,9 +1094,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1196,9 +1124,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1221,9 +1146,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1254,9 +1176,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1276,9 +1195,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1306,9 +1222,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1328,9 +1241,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1355,9 +1265,6 @@ importers:
       geojson-equality-ts:
         specifier: ^1.0.2
         version: 1.0.2
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1377,9 +1284,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1395,9 +1299,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1417,9 +1318,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1450,9 +1348,6 @@ importers:
       geojson-equality-ts:
         specifier: ^1.0.2
         version: 1.0.2
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1472,9 +1367,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1499,9 +1391,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1518,9 +1407,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1545,9 +1431,6 @@ importers:
       point-in-polygon-hao:
         specifier: ^1.1.0
         version: 1.1.0
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1561,9 +1444,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1582,9 +1462,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1601,9 +1478,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1631,9 +1505,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1656,9 +1527,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1701,9 +1569,6 @@ importers:
       geojson-polygon-self-intersections:
         specifier: ^1.2.1
         version: 1.2.1
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -1726,9 +1591,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1744,9 +1606,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/helpers':
         specifier: workspace:*
@@ -1772,9 +1631,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1808,9 +1664,6 @@ importers:
       d3-geo:
         specifier: ^2.0.2
         version: 2.0.2
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -1836,9 +1689,6 @@ importers:
       tstyche:
         specifier: 'catalog:'
         version: 6.2.0(typescript@5.9.3)
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1860,9 +1710,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:*
@@ -1885,9 +1732,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1912,9 +1756,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/center':
         specifier: workspace:*
@@ -1937,9 +1778,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -1970,9 +1808,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/center':
         specifier: workspace:*
@@ -2001,9 +1836,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2034,9 +1866,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2053,9 +1882,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2077,9 +1903,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2096,9 +1919,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2120,9 +1940,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@placemarkio/check-geojson':
         specifier: ^0.1.14
@@ -2145,9 +1962,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2172,9 +1986,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -2197,9 +2008,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2218,9 +2026,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/meta':
         specifier: workspace:*
@@ -2237,9 +2042,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2258,9 +2060,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2274,9 +2073,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2304,9 +2100,6 @@ importers:
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/centroid':
         specifier: workspace:*
@@ -2338,9 +2131,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2371,9 +2161,6 @@ importers:
       skmeans:
         specifier: 0.9.7
         version: 0.9.7
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/centroid':
         specifier: workspace:*
@@ -2408,9 +2195,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2438,9 +2222,6 @@ importers:
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2457,9 +2238,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2478,9 +2256,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2494,9 +2269,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2533,9 +2305,6 @@ importers:
       topojson-server:
         specifier: 3.x
         version: 3.0.1
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2558,9 +2327,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2585,9 +2351,6 @@ importers:
       concaveman:
         specifier: ^1.2.1
         version: 1.2.1
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2607,9 +2370,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2631,9 +2391,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -2653,9 +2410,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2680,9 +2434,6 @@ importers:
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2699,9 +2450,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2738,9 +2486,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2757,9 +2502,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2790,9 +2532,6 @@ importers:
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2809,9 +2548,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2833,9 +2569,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2852,9 +2585,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2882,9 +2612,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -2901,9 +2628,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2934,9 +2658,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@placemarkio/check-geojson':
         specifier: ^0.1.14
@@ -2971,9 +2692,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -2998,9 +2716,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -3017,9 +2732,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3038,9 +2750,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -3057,9 +2766,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3081,9 +2787,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -3100,9 +2803,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3127,9 +2827,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -3146,9 +2843,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3176,9 +2870,6 @@ importers:
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:*
@@ -3204,9 +2895,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3231,9 +2919,6 @@ importers:
       arc:
         specifier: ^0.2.0
         version: 0.2.0
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3253,9 +2938,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3271,9 +2953,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -3287,9 +2966,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3314,9 +2990,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:*
@@ -3339,9 +3012,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3390,9 +3060,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3415,9 +3082,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3442,9 +3106,6 @@ importers:
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -3461,9 +3122,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3482,9 +3140,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -3498,9 +3153,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3534,9 +3186,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/envelope':
         specifier: workspace:*
@@ -3568,9 +3217,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3598,9 +3244,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/envelope':
         specifier: workspace:*
@@ -3632,9 +3275,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3653,9 +3293,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/meta':
         specifier: workspace:*
@@ -3675,9 +3312,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3702,9 +3336,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -3721,9 +3352,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3748,9 +3376,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3770,9 +3395,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3800,9 +3422,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3822,9 +3441,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3849,9 +3465,6 @@ importers:
       tinyqueue:
         specifier: ^3.0.0
         version: 3.0.0
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3871,9 +3484,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3898,9 +3508,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -3923,9 +3530,6 @@ importers:
       tstyche:
         specifier: 'catalog:'
         version: 6.2.0(typescript@5.9.3)
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -3968,9 +3572,6 @@ importers:
       fast-deep-equal:
         specifier: ^3.1.3
         version: 3.1.3
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -3987,9 +3588,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4014,9 +3612,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4033,9 +3628,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4060,9 +3652,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -4082,9 +3671,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4112,9 +3698,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/along':
         specifier: workspace:*
@@ -4137,9 +3720,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4179,9 +3759,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4198,9 +3775,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4228,9 +3802,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4247,9 +3818,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4274,9 +3842,6 @@ importers:
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4296,9 +3861,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4317,9 +3879,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/random':
         specifier: workspace:*
@@ -4336,9 +3895,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4363,9 +3919,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4379,9 +3932,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4403,9 +3953,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4422,9 +3969,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4464,9 +4008,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -4486,9 +4027,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4516,9 +4054,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4535,9 +4070,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4565,9 +4097,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/along':
         specifier: workspace:*
@@ -4593,9 +4122,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4623,9 +4149,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/circle':
         specifier: workspace:*
@@ -4651,9 +4174,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4675,9 +4195,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4691,9 +4208,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4718,9 +4232,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:*
@@ -4743,9 +4254,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4776,9 +4284,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/meta':
         specifier: workspace:*
@@ -4798,9 +4303,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4843,9 +4345,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/circle':
         specifier: workspace:*
@@ -4865,9 +4364,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4901,9 +4397,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4920,9 +4413,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4947,9 +4437,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -4963,9 +4450,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -4984,9 +4468,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5003,9 +4484,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5039,9 +4517,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5058,9 +4533,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5082,9 +4554,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5101,9 +4570,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5134,9 +4600,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5153,9 +4616,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5180,9 +4640,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -5205,9 +4662,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5250,9 +4704,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/nearest-neighbor-analysis':
         specifier: workspace:*
@@ -5272,9 +4723,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5293,9 +4741,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5309,9 +4754,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5333,9 +4775,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:*
@@ -5358,9 +4797,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5391,9 +4827,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5410,9 +4843,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5434,9 +4864,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/destination':
         specifier: workspace:*
@@ -5453,9 +4880,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5477,9 +4901,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -5499,9 +4920,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5523,9 +4941,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/distance':
         specifier: workspace:*
@@ -5545,9 +4960,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5566,9 +4978,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5582,9 +4991,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5612,9 +5018,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -5634,9 +5037,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5679,9 +5079,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -5701,9 +5098,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5731,9 +5125,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -5753,9 +5144,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5777,9 +5165,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5793,9 +5178,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5814,9 +5196,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:*
@@ -5836,9 +5215,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5872,9 +5248,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/random':
         specifier: workspace:*
@@ -5897,9 +5270,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5927,9 +5297,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5946,9 +5313,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -5970,9 +5334,6 @@ importers:
       earcut:
         specifier: ^2.2.4
         version: 2.2.4
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -5986,9 +5347,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -6004,9 +5362,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -6020,9 +5375,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -6059,9 +5411,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -6081,9 +5430,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -6129,9 +5475,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:*
@@ -6157,9 +5500,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -6190,9 +5530,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/truncate':
         specifier: workspace:*
@@ -6212,9 +5549,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -6239,9 +5573,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/bbox-polygon':
         specifier: workspace:*
@@ -6264,9 +5595,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -6288,9 +5616,6 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -6307,9 +5632,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -6334,9 +5656,6 @@ importers:
       polyclip-ts:
         specifier: ^0.16.8
         version: 0.16.8
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -6353,9 +5672,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -6386,9 +5702,6 @@ importers:
       rbush:
         specifier: ^3.0.1
         version: 3.0.1
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@turf/kinks':
         specifier: workspace:*
@@ -6411,9 +5724,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -6444,9 +5754,6 @@ importers:
       d3-voronoi:
         specifier: 1.1.2
         version: 1.1.2
-      tslib:
-        specifier: 'catalog:'
-        version: 2.8.1
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'
@@ -6463,9 +5770,6 @@ importers:
       tape:
         specifier: 'catalog:'
         version: 5.10.2
-      tsup:
-        specifier: 'catalog:'
-        version: 8.5.1(postcss@8.5.16)(supports-color@9.4.0)(tsx@4.22.4)(typescript@5.9.3)(yaml@2.9.0)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
@@ -8318,11 +7622,6 @@ packages:
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
 
-  acorn@8.16.0:
-    resolution: {integrity: sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
   acorn@8.17.0:
     resolution: {integrity: sha512-xRQbDb9BnwDafYNn6Vwl839DYVjqXYb1XVGtWAZ1kcDc6iwAL4hg3B1dZlRiuENFeO2H53gFG3in621AdERVAg==}
     engines: {node: '>=0.4.0'}
@@ -9048,11 +8347,6 @@ packages:
   es-abstract@1.24.2:
     resolution: {integrity: sha512-2FpH9Q5i2RRwyEP1AylXe6nYLR5OhaJTZwmlcP0dL/+JCbgg7yyEo/sEK6HeGZRf3dFpWwThaRHVApXSkW3xeg==}
     engines: {node: '>= 0.4'}
-
-  es-check@9.6.4:
-    resolution: {integrity: sha512-tZq2twJz5EVZk4THqPt9Nm+/EZbwYspus9bs86WLQ6cG08Du75dHB/1ZXyRVGRbeJoxKhsFXNWxCQrOISfuC3w==}
-    engines: {node: '>=18.0.0', pnpm: '>=9.0.0'}
-    hasBin: true
 
   es-define-property@1.0.1:
     resolution: {integrity: sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g==}
@@ -13830,8 +13124,6 @@ snapshots:
     dependencies:
       acorn: 8.17.0
 
-  acorn@8.16.0: {}
-
   acorn@8.17.0: {}
 
   add-stream@1.0.0: {}
@@ -14666,11 +13958,6 @@ snapshots:
       typed-array-length: 1.0.8
       unbox-primitive: 1.1.0
       which-typed-array: 1.1.22
-
-  es-check@9.6.4:
-    dependencies:
-      acorn: 8.16.0
-      fast-glob: 3.3.3
 
   es-define-property@1.0.1: {}
 
