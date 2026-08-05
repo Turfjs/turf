@@ -5,9 +5,9 @@
     "docs": "node ./scripts/generate-readmes.mts",
     "lint": "pnpm run /lint:.*/",
     "lint:docs": "documentation lint packages/turf-*/index.js",
-    "lint:eslint": "eslint packages",
+    "lint:eslint": "eslint --cache packages",
     "lint:mrl": "mrl check",
-    "lint:prettier": "prettier --check .",
+    "lint:prettier": "prettier --cache --check .",
     "prepare": "husky && lerna run build",
     "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
   },
@@ -18,7 +18,7 @@
     "**/*.{js,ts}": [
       "eslint --fix"
     ],
-    "packages/*/index.{js,ts}": [
+    "packages/*/index.ts": [
       "node ./scripts/generate-readmes.mts",
       "git add ./packages/*/README.md"
     ],
