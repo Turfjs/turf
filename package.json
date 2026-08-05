@@ -51,7 +51,7 @@
     "meow": "^13.2.0",
     "prettier": "^3.9.4",
     "progress": "^2.0.3",
-    "typescript": "^5.9.3",
+    "typescript": "catalog:",
     "typescript-eslint": "^8.66.0",
     "yaml": "^2.9.0"
   },

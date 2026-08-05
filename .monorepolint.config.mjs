@@ -194,7 +194,7 @@ export default {
       options: {
         scripts: {
           "test:types":
-            "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts",
+            "tsc --ignoreConfig --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts",
         },
       },
       includePackages: TYPES_PACKAGES,
