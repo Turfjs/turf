@@ -11,7 +11,6 @@
     "lint:eslint": "eslint packages",
     "lint:mrl": "mrl check",
     "lint:prettier": "prettier --check .",
-    "preinstall": "npx only-allow pnpm",
     "prepare": "husky && lerna run build",
     "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
   },
@@ -28,7 +27,6 @@
     ],
     "*": "prettier --write --ignore-unknown"
   },
-  "packageManager": "pnpm@10.10.0+sha256.fa0f513aa8191764d2b6b432420788c270f07b4f999099b65bb2010eec702a30",
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^9.39.4",
@@ -61,5 +59,12 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.62.1",
     "yaml": "^2.9.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": ">=11.0.0 <12.0.0",
+      "onFail": "download"
+    }
   }
 }
