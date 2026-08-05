@@ -126,6 +126,7 @@ export default {
           module: "dist/esm/index.js",
           types: "dist/esm/index.d.ts",
           sideEffects: false,
+          files: ["dist"],
           publishConfig: {
             access: "public",
           },
@@ -142,15 +143,6 @@ export default {
               },
             },
           },
-        },
-      },
-      includePackages: PACKAGES,
-    }),
-
-    packageEntry({
-      options: {
-        entries: {
-          files: ["dist"],
         },
       },
       includePackages: PACKAGES,
@@ -224,25 +216,17 @@ export default {
 
     requireDependency({
       options: {
-        devDependencies: {
-          benchmark: "catalog:",
-          glob: REMOVE,
-          tape: "catalog:",
-          tsup: "catalog:",
-          tsx: "catalog:",
-        },
-      },
-      includePackages: PACKAGES,
-    }),
-
-    requireDependency({
-      options: {
         dependencies: {
           tslib: "catalog:",
         },
         devDependencies: {
           "@types/benchmark": "catalog:",
           "@types/tape": "catalog:",
+          benchmark: "catalog:",
+          glob: REMOVE,
+          tape: "catalog:",
+          tsup: "catalog:",
+          tsx: "catalog:",
           typescript: "catalog:",
         },
       },
