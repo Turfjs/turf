@@ -72,7 +72,7 @@
     "glob": "^11.1.0",
     "tape": "^5.10.2",
     "tsx": "^4.22.4",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "dependencies": {
     "@turf/along": "workspace:*",

@@ -10,7 +10,7 @@
     "test:ts": "tsc"
   },
   "devDependencies": {
-    "typescript": "catalog:"
+    "typescript": "catalog:typescript5"
   },
   "dependencies": {
     "@turf/turf": "workspace:*"

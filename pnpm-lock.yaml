@@ -227,7 +227,11 @@ catalogs:
       specifier: ^4.22.4
       version: 4.22.4
     typescript:
-      specifier: ^5.9.3
+      specifier: ^7.0.2
+      version: 7.0.2
+  typescript5:
+    typescript:
+      specifier: 5.9.3
       version: 5.9.3
 
 overrides:
@@ -258,6 +262,9 @@ importers:
       '@types/node':
         specifier: 22.15.3
         version: 22.15.3
+      '@typescript/native':
+        specifier: npm:typescript@^7.0.2
+        version: typescript@7.0.2
       acorn:
         specifier: ^8.17.0
         version: 8.17.0
@@ -316,11 +323,11 @@ importers:
         specifier: ^2.0.3
         version: 2.0.3
       typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+        specifier: npm:@typescript/typescript6@^6.0.2
+        version: '@typescript/typescript6@6.0.2'
       typescript-eslint:
         specifier: ^8.66.0
-        version: 8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)
+        version: 8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)
       yaml:
         specifier: ^2.9.0
         version: 2.9.0
@@ -701,8 +708,8 @@ importers:
         specifier: ^4.22.4
         version: 4.22.4
       typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+        specifier: 'catalog:'
+        version: 7.0.2
 
   packages/turf-along:
     dependencies:
@@ -745,7 +752,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-angle:
     dependencies:
@@ -794,7 +801,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -831,7 +838,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -865,7 +872,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-bbox-clip:
     dependencies:
@@ -902,7 +909,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -933,7 +940,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-bearing:
     dependencies:
@@ -967,7 +974,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1004,7 +1011,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1041,7 +1048,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-concave:
     dependencies:
@@ -1075,7 +1082,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-contains:
     dependencies:
@@ -1127,7 +1134,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-crosses:
     dependencies:
@@ -1176,7 +1183,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-disjoint:
     dependencies:
@@ -1222,7 +1229,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-equal:
     dependencies:
@@ -1265,7 +1272,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-intersects:
     dependencies:
@@ -1299,7 +1306,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-overlap:
     dependencies:
@@ -1348,7 +1355,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-parallel:
     dependencies:
@@ -1388,7 +1395,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1425,7 +1432,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-point-on-line:
     dependencies:
@@ -1459,7 +1466,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1508,7 +1515,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-valid:
     dependencies:
@@ -1572,7 +1579,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-boolean-within:
     dependencies:
@@ -1612,7 +1619,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-buffer:
     dependencies:
@@ -1664,13 +1671,13 @@ importers:
         version: 5.10.2
       tstyche:
         specifier: 'catalog:'
-        version: 6.2.0(typescript@5.9.3)
+        version: 6.2.0(typescript@7.0.2)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1713,7 +1720,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1759,7 +1766,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1817,7 +1824,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1863,7 +1870,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1900,7 +1907,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1943,7 +1950,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1989,7 +1996,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2023,7 +2030,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-clusters:
     dependencies:
@@ -2054,7 +2061,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-clusters-dbscan:
     dependencies:
@@ -2112,7 +2119,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2176,7 +2183,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2219,7 +2226,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-combine:
     dependencies:
@@ -2250,7 +2257,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-concave:
     dependencies:
@@ -2308,7 +2315,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2351,7 +2358,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2391,7 +2398,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2431,7 +2438,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2483,7 +2490,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2529,7 +2536,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2566,7 +2573,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2609,7 +2616,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2673,7 +2680,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2713,7 +2720,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-explode:
     dependencies:
@@ -2747,7 +2754,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2784,7 +2791,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2824,7 +2831,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2876,7 +2883,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2919,7 +2926,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -2947,7 +2954,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-hex-grid:
     dependencies:
@@ -2993,7 +3000,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3063,7 +3070,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3103,7 +3110,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3134,7 +3141,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-isobands:
     dependencies:
@@ -3198,7 +3205,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3256,7 +3263,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3293,7 +3300,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3333,7 +3340,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3376,7 +3383,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3422,7 +3429,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3465,7 +3472,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3505,13 +3512,13 @@ importers:
         version: 5.10.2
       tstyche:
         specifier: 'catalog:'
-        version: 6.2.0(typescript@5.9.3)
+        version: 6.2.0(typescript@7.0.2)
       tsx:
         specifier: 'catalog:'
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3569,7 +3576,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3609,7 +3616,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3652,7 +3659,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3701,7 +3708,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-line-split:
     dependencies:
@@ -3756,7 +3763,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3799,7 +3806,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3842,7 +3849,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -3876,7 +3883,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-midpoint:
     dependencies:
@@ -3913,7 +3920,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-moran-index:
     dependencies:
@@ -3950,7 +3957,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4008,7 +4015,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4051,7 +4058,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4103,7 +4110,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4155,7 +4162,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4189,7 +4196,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-point-grid:
     dependencies:
@@ -4235,7 +4242,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4284,7 +4291,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4345,7 +4352,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4394,7 +4401,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4431,7 +4438,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-polygon-smooth:
     dependencies:
@@ -4465,7 +4472,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4514,7 +4521,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4551,7 +4558,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4597,7 +4604,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4643,7 +4650,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4704,7 +4711,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4735,7 +4742,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-rectangle-grid:
     dependencies:
@@ -4778,7 +4785,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4824,7 +4831,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4861,7 +4868,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4901,7 +4908,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4941,7 +4948,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -4972,7 +4979,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-sector:
     dependencies:
@@ -5018,7 +5025,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5079,7 +5086,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5125,7 +5132,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5159,7 +5166,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-square-grid:
     dependencies:
@@ -5196,7 +5203,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5251,7 +5258,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5294,7 +5301,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-tesselate:
     dependencies:
@@ -5328,7 +5335,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-tin:
     dependencies:
@@ -5356,7 +5363,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
 
   packages/turf-transform-rotate:
     dependencies:
@@ -5411,7 +5418,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5481,7 +5488,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5530,7 +5537,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5576,7 +5583,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5613,7 +5620,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5653,7 +5660,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5705,7 +5712,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5751,7 +5758,7 @@ importers:
         version: 4.22.4
       typescript:
         specifier: 'catalog:'
-        version: 5.9.3
+        version: 7.0.2
       write-json-file:
         specifier: ^6.0.0
         version: 6.0.0
@@ -5775,7 +5782,7 @@ importers:
         version: link:../../packages/turf
     devDependencies:
       typescript:
-        specifier: 'catalog:'
+        specifier: catalog:typescript5
         version: 5.9.3
 
   test/ts-bundler-esm:
@@ -5785,7 +5792,7 @@ importers:
         version: link:../../packages/turf
     devDependencies:
       typescript:
-        specifier: 'catalog:'
+        specifier: catalog:typescript5
         version: 5.9.3
 
   test/ts-node-cjs:
@@ -5795,7 +5802,7 @@ importers:
         version: link:../../packages/turf
     devDependencies:
       typescript:
-        specifier: 'catalog:'
+        specifier: catalog:typescript5
         version: 5.9.3
 
   test/ts-node-esm:
@@ -5805,7 +5812,7 @@ importers:
         version: link:../../packages/turf
     devDependencies:
       typescript:
-        specifier: 'catalog:'
+        specifier: catalog:typescript5
         version: 5.9.3
 
 packages:
@@ -6778,6 +6785,130 @@ packages:
   '@typescript-eslint/visitor-keys@8.66.0':
     resolution: {integrity: sha512-dkKR8q+lKciskj1Y3vthHktl+3cMLWGyVUP23bRiPZ5O9BRT++4EqDDV+TVeIKBL1VXVEqrJlz8MYbcnvJcAlg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript/typescript-aix-ppc64@7.0.2':
+    resolution: {integrity: sha512-MTKKkWB7p/0E9xi1d1tHtZ5PiLkGEMIq88pK2CubZjOsLtYTLqhgIgi6zepFa+9GHZ6h05NMCkQxGKiPXMxXtQ==}
+    engines: {node: '>=16.20.0'}
+    cpu: [ppc64]
+    os: [aix]
+
+  '@typescript/typescript-darwin-arm64@7.0.2':
+    resolution: {integrity: sha512-gowzar9MwS/aRWp6f3a4KUqzRjAZjOsmGNCM6LcTgXum+dBfgsBVMN+AgvOCCbguXyick6LJhpBszxMebJ8syA==}
+    engines: {node: '>=16.20.0'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@typescript/typescript-darwin-x64@7.0.2':
+    resolution: {integrity: sha512-SZ9xZInqApNlNGc9s0W1VSsktYSOe9cFqNOIqmN1Gs8SmkjKZYFt017G4VwPxASInODuAdbTW7sXiFUf893RgA==}
+    engines: {node: '>=16.20.0'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@typescript/typescript-freebsd-arm64@7.0.2':
+    resolution: {integrity: sha512-W5NH4y/J0plIIS5b2xvTEkU7JFxyqdMAOgf+Ilhl0vHQXKO5dZoxd+C/jEtq56c4F3wk71RB4BMRQ2XdI+bwYQ==}
+    engines: {node: '>=16.20.0'}
+    cpu: [arm64]
+    os: [freebsd]
+
+  '@typescript/typescript-freebsd-x64@7.0.2':
+    resolution: {integrity: sha512-UMGDx5sTpzNw3WiPebH7l90IWfJggEd+egHt/q6p7/Cm3zqoV7VxkGXt+3DxPIw8CcmvAB0j3sVVfbhX+M4Tpw==}
+    engines: {node: '>=16.20.0'}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@typescript/typescript-linux-arm64@7.0.2':
+    resolution: {integrity: sha512-Qh4eU4/y3yDjnfjjyPYihMj5/ODIlmt+Bzu17OI+fiSRDW57QmU5SiN63exPRNJPKUzcc1INa1NXdrJ+MqHjUQ==}
+    engines: {node: '>=16.20.0'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@typescript/typescript-linux-arm@7.0.2':
+    resolution: {integrity: sha512-gffT3xPz9sR7j/YJExkyPntrI0P2EP9XbOyWzth2/Gs0RstK+90RBcO0ncXoXy/beYll1SXw846Nf2zdnEz0QQ==}
+    engines: {node: '>=16.20.0'}
+    cpu: [arm]
+    os: [linux]
+
+  '@typescript/typescript-linux-loong64@7.0.2':
+    resolution: {integrity: sha512-uEHck9i8hoAzXPiYRib1O7miOnz23SxIeVl6F4LXox+qov1K35jHcEW6VHKvZI+pyvl7fZEP4MCU5LYvIq1GuQ==}
+    engines: {node: '>=16.20.0'}
+    cpu: [loong64]
+    os: [linux]
+
+  '@typescript/typescript-linux-mips64el@7.0.2':
+    resolution: {integrity: sha512-R4KvAMnE43W5Qeqb0Ly56O3mWMWIAgsMyz36DCaycd5nbg/9kzm0liw3JocfRqyJY0KPmzFjbswozXyW0DnIYA==}
+    engines: {node: '>=16.20.0'}
+    cpu: [mips64el]
+    os: [linux]
+
+  '@typescript/typescript-linux-ppc64@7.0.2':
+    resolution: {integrity: sha512-DORx5b3sd/4S7eayxm4FQv+A7CrkUIGRaHiwI8oiHTAI1fAPWhF4J0vAlkC8biAlHSVVwxMQ3tjZ2/DVbnQiiA==}
+    engines: {node: '>=16.20.0'}
+    cpu: [ppc64]
+    os: [linux]
+
+  '@typescript/typescript-linux-riscv64@7.0.2':
+    resolution: {integrity: sha512-wf0jqEDOjrPRnKwYRyyJDRo11KMbvMFrU+q4zqKyChODBzvlkbhNQfKvLxQCcwTpdDaXSHZTVuh0JoCrKCUMHQ==}
+    engines: {node: '>=16.20.0'}
+    cpu: [riscv64]
+    os: [linux]
+
+  '@typescript/typescript-linux-s390x@7.0.2':
+    resolution: {integrity: sha512-IkwJc3L7yhytWd/ewjyxNDfOmswCm9GWMJT/ue/dU4aZNbwZeYAetq42VyLmsmSjvoX7z74X6ZaYCtzAr0EuGw==}
+    engines: {node: '>=16.20.0'}
+    cpu: [s390x]
+    os: [linux]
+
+  '@typescript/typescript-linux-x64@7.0.2':
+    resolution: {integrity: sha512-EYdf2cNg7rgCWJnxCdJ+F3V39O8ihb37eHAu1LK8oAFizgTQbPOK7zHHXbPt8rX24COqODXeI3sIf0fCXG7H/A==}
+    engines: {node: '>=16.20.0'}
+    cpu: [x64]
+    os: [linux]
+
+  '@typescript/typescript-netbsd-arm64@7.0.2':
+    resolution: {integrity: sha512-+polYF4MF04aPpO5FTkHran9yUQDSXqy5GiSDKpsll5jy3l3+g9QLhpf39T+ePtefhXLOGrLl0QIjkQP6VnelA==}
+    engines: {node: '>=16.20.0'}
+    cpu: [arm64]
+    os: [netbsd]
+
+  '@typescript/typescript-netbsd-x64@7.0.2':
+    resolution: {integrity: sha512-8YIT0EHM/3dq10ZOVF/A7pc/YSMtbcecct4rWtexrnSCHOPcpC2KTLXfTCR6vDpnSiY12heNb1GiN/wu+T/FyA==}
+    engines: {node: '>=16.20.0'}
+    cpu: [x64]
+    os: [netbsd]
+
+  '@typescript/typescript-openbsd-arm64@7.0.2':
+    resolution: {integrity: sha512-APT8+ClYnuYm1u9+kgGXoMj2VzWzcymwh2gNSQVySHfkRDGOTVkoWLjCmOQSaO+PoqQ57B0flRp9SA+7GnnkzQ==}
+    engines: {node: '>=16.20.0'}
+    cpu: [arm64]
+    os: [openbsd]
+
+  '@typescript/typescript-openbsd-x64@7.0.2':
+    resolution: {integrity: sha512-yX7s+Q0Dln0Dt9tEzZsAjXXR/+ytBM7AlglaqyeMPxQszJ1JhlJdZ6jLA+IzldHtflX81em7lDao1xXu+aRRkg==}
+    engines: {node: '>=16.20.0'}
+    cpu: [x64]
+    os: [openbsd]
+
+  '@typescript/typescript-sunos-x64@7.0.2':
+    resolution: {integrity: sha512-dLJDGaLZ1D4HPQn62u1n8mBDkJREwMsAkCdkwd4Ieqw+x3TUyTsqY0YiBCtE6H6OzzgGk3iuZ3vFWRS+E8/d1g==}
+    engines: {node: '>=16.20.0'}
+    cpu: [x64]
+    os: [sunos]
+
+  '@typescript/typescript-win32-arm64@7.0.2':
+    resolution: {integrity: sha512-Gyl1Vy6OsWesLzmq+EP0Fb7b4Nid5232AvcA2SFcdYreldpNtYFFofPjnt62y9hQy7VTaZp65ICJjuAQRaVcIQ==}
+    engines: {node: '>=16.20.0'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@typescript/typescript-win32-x64@7.0.2':
+    resolution: {integrity: sha512-0BQ3HkAHHlKLSp1qRvf3SUhGpGsDuhB/jgFw75guyqbxJqEaS0Cw/VFO8i2nHglJUzQCRtMMR/IBAKE3ETMC4g==}
+    engines: {node: '>=16.20.0'}
+    cpu: [x64]
+    os: [win32]
+
+  '@typescript/typescript6@6.0.2':
+    resolution: {integrity: sha512-mbCddXd+jm7hfx7w2YU64/Av4/NqqeG3GoRZgxPcgoTxYjhrcfJRw9ULch71SS4G+Q3bOXFhRvPqjguN0Hyp5w==}
+    hasBin: true
 
   '@vue/compiler-core@3.5.39':
     resolution: {integrity: sha512-16KBTEXAJCpDr0mwlw+AZyhu8iyC7R3S2vBwsI7QnWJU6X3WKc9VKeNEZpiMdZ569qWhz9574L3vV55qRL0Vtw==}
@@ -9985,6 +10116,16 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@7.0.2:
+    resolution: {integrity: sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==}
+    engines: {node: '>=16.20.0'}
+    hasBin: true
+
   uglify-js@3.19.3:
     resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
     engines: {node: '>=0.8.0'}
@@ -11176,31 +11317,40 @@ snapshots:
 
   '@types/unist@2.0.11': {}
 
-  '@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3))(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)':
+  '@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0))(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)
       '@typescript-eslint/scope-manager': 8.66.0
-      '@typescript-eslint/type-utils': 8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)
+      '@typescript-eslint/type-utils': 8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)
+      '@typescript-eslint/utils': 8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)
       '@typescript-eslint/visitor-keys': 8.66.0
       eslint: 10.8.0(supports-color@9.4.0)
       ignore: 7.0.5
       natural-compare: 1.4.0
-      ts-api-utils: 2.5.0(typescript@5.9.3)
-      typescript: 5.9.3
+      ts-api-utils: 2.5.0(@typescript/typescript6@6.0.2)
+      typescript: '@typescript/typescript6@6.0.2'
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)':
+  '@typescript-eslint/parser@8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.66.0
       '@typescript-eslint/types': 8.66.0
-      '@typescript-eslint/typescript-estree': 8.66.0(supports-color@9.4.0)(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.66.0(@typescript/typescript6@6.0.2)(supports-color@9.4.0)
       '@typescript-eslint/visitor-keys': 8.66.0
       debug: 4.4.3(supports-color@9.4.0)
       eslint: 10.8.0(supports-color@9.4.0)
-      typescript: 5.9.3
+      typescript: '@typescript/typescript6@6.0.2'
+    transitivePeerDependencies:
+      - supports-color
+
+  '@typescript-eslint/project-service@8.66.0(@typescript/typescript6@6.0.2)(supports-color@9.4.0)':
+    dependencies:
+      '@typescript-eslint/tsconfig-utils': 8.66.0(@typescript/typescript6@6.0.2)
+      '@typescript-eslint/types': 8.66.0
+      debug: 4.4.3(supports-color@9.4.0)
+      typescript: '@typescript/typescript6@6.0.2'
     transitivePeerDependencies:
       - supports-color
 
@@ -11218,23 +11368,42 @@ snapshots:
       '@typescript-eslint/types': 8.66.0
       '@typescript-eslint/visitor-keys': 8.66.0
 
+  '@typescript-eslint/tsconfig-utils@8.66.0(@typescript/typescript6@6.0.2)':
+    dependencies:
+      typescript: '@typescript/typescript6@6.0.2'
+
   '@typescript-eslint/tsconfig-utils@8.66.0(typescript@5.9.3)':
     dependencies:
       typescript: 5.9.3
 
-  '@typescript-eslint/type-utils@8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)':
+  '@typescript-eslint/type-utils@8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
       '@typescript-eslint/types': 8.66.0
-      '@typescript-eslint/typescript-estree': 8.66.0(supports-color@9.4.0)(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.66.0(@typescript/typescript6@6.0.2)(supports-color@9.4.0)
+      '@typescript-eslint/utils': 8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)
       debug: 4.4.3(supports-color@9.4.0)
       eslint: 10.8.0(supports-color@9.4.0)
-      ts-api-utils: 2.5.0(typescript@5.9.3)
-      typescript: 5.9.3
+      ts-api-utils: 2.5.0(@typescript/typescript6@6.0.2)
+      typescript: '@typescript/typescript6@6.0.2'
     transitivePeerDependencies:
       - supports-color
 
   '@typescript-eslint/types@8.66.0': {}
+
+  '@typescript-eslint/typescript-estree@8.66.0(@typescript/typescript6@6.0.2)(supports-color@9.4.0)':
+    dependencies:
+      '@typescript-eslint/project-service': 8.66.0(@typescript/typescript6@6.0.2)(supports-color@9.4.0)
+      '@typescript-eslint/tsconfig-utils': 8.66.0(@typescript/typescript6@6.0.2)
+      '@typescript-eslint/types': 8.66.0
+      '@typescript-eslint/visitor-keys': 8.66.0
+      debug: 4.4.3(supports-color@9.4.0)
+      minimatch: 10.2.5
+      semver: 7.8.5
+      tinyglobby: 0.2.17
+      ts-api-utils: 2.5.0(@typescript/typescript6@6.0.2)
+      typescript: '@typescript/typescript6@6.0.2'
+    transitivePeerDependencies:
+      - supports-color
 
   '@typescript-eslint/typescript-estree@8.66.0(supports-color@9.4.0)(typescript@5.9.3)':
     dependencies:
@@ -11251,14 +11420,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)':
+  '@typescript-eslint/utils@8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.8.0(supports-color@9.4.0))
       '@typescript-eslint/scope-manager': 8.66.0
       '@typescript-eslint/types': 8.66.0
-      '@typescript-eslint/typescript-estree': 8.66.0(supports-color@9.4.0)(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.66.0(@typescript/typescript6@6.0.2)(supports-color@9.4.0)
       eslint: 10.8.0(supports-color@9.4.0)
-      typescript: 5.9.3
+      typescript: '@typescript/typescript6@6.0.2'
     transitivePeerDependencies:
       - supports-color
 
@@ -11266,6 +11435,70 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.66.0
       eslint-visitor-keys: 5.0.1
+
+  '@typescript/typescript-aix-ppc64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-darwin-arm64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-darwin-x64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-freebsd-arm64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-freebsd-x64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-linux-arm64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-linux-arm@7.0.2':
+    optional: true
+
+  '@typescript/typescript-linux-loong64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-linux-mips64el@7.0.2':
+    optional: true
+
+  '@typescript/typescript-linux-ppc64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-linux-riscv64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-linux-s390x@7.0.2':
+    optional: true
+
+  '@typescript/typescript-linux-x64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-netbsd-arm64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-netbsd-x64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-openbsd-arm64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-openbsd-x64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-sunos-x64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-win32-arm64@7.0.2':
+    optional: true
+
+  '@typescript/typescript-win32-x64@7.0.2':
+    optional: true
+
+  '@typescript/typescript6@6.0.2':
+    dependencies:
+      '@typescript/old': typescript@6.0.3
 
   '@vue/compiler-core@3.5.39':
     dependencies:
@@ -15098,6 +15331,10 @@ snapshots:
 
   trough@2.2.0: {}
 
+  ts-api-utils@2.5.0(@typescript/typescript6@6.0.2):
+    dependencies:
+      typescript: '@typescript/typescript6@6.0.2'
+
   ts-api-utils@2.5.0(typescript@5.9.3):
     dependencies:
       typescript: 5.9.3
@@ -15110,9 +15347,9 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tstyche@6.2.0(typescript@5.9.3):
+  tstyche@6.2.0(typescript@7.0.2):
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 7.0.2
 
   tsx@4.22.4:
     dependencies:
@@ -15179,18 +15416,43 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typescript-eslint@8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3):
+  typescript-eslint@8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3))(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)
-      '@typescript-eslint/parser': 8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)
-      '@typescript-eslint/typescript-estree': 8.66.0(supports-color@9.4.0)(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.66.0(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)(typescript@5.9.3)
+      '@typescript-eslint/eslint-plugin': 8.66.0(@typescript-eslint/parser@8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0))(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)
+      '@typescript-eslint/parser': 8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)
+      '@typescript-eslint/typescript-estree': 8.66.0(@typescript/typescript6@6.0.2)(supports-color@9.4.0)
+      '@typescript-eslint/utils': 8.66.0(@typescript/typescript6@6.0.2)(eslint@10.8.0(supports-color@9.4.0))(supports-color@9.4.0)
       eslint: 10.8.0(supports-color@9.4.0)
-      typescript: 5.9.3
+      typescript: '@typescript/typescript6@6.0.2'
     transitivePeerDependencies:
       - supports-color
 
   typescript@5.9.3: {}
+
+  typescript@6.0.3: {}
+
+  typescript@7.0.2:
+    optionalDependencies:
+      '@typescript/typescript-aix-ppc64': 7.0.2
+      '@typescript/typescript-darwin-arm64': 7.0.2
+      '@typescript/typescript-darwin-x64': 7.0.2
+      '@typescript/typescript-freebsd-arm64': 7.0.2
+      '@typescript/typescript-freebsd-x64': 7.0.2
+      '@typescript/typescript-linux-arm': 7.0.2
+      '@typescript/typescript-linux-arm64': 7.0.2
+      '@typescript/typescript-linux-loong64': 7.0.2
+      '@typescript/typescript-linux-mips64el': 7.0.2
+      '@typescript/typescript-linux-ppc64': 7.0.2
+      '@typescript/typescript-linux-riscv64': 7.0.2
+      '@typescript/typescript-linux-s390x': 7.0.2
+      '@typescript/typescript-linux-x64': 7.0.2
+      '@typescript/typescript-netbsd-arm64': 7.0.2
+      '@typescript/typescript-netbsd-x64': 7.0.2
+      '@typescript/typescript-openbsd-arm64': 7.0.2
+      '@typescript/typescript-openbsd-x64': 7.0.2
+      '@typescript/typescript-sunos-x64': 7.0.2
+      '@typescript/typescript-win32-arm64': 7.0.2
+      '@typescript/typescript-win32-x64': 7.0.2
 
   uglify-js@3.19.3:
     optional: true

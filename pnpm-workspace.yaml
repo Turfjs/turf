@@ -14,7 +14,12 @@ catalog:
   tape: ^5.10.2
   tstyche: ^6.2.0
   tsx: ^4.22.4
-  typescript: ^5.9.3
+  typescript: ^7.0.2
+
+catalogs:
+  # keep a named catalog of typescript@5 for the consumer tests
+  typescript5:
+    typescript: 5.9.3
 
 overrides:
   # we do not use the vue capabilities of documentation, so remove this optional dependency

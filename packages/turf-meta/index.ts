@@ -1323,16 +1323,20 @@ function lineEach<P extends GeoJsonProperties = GeoJsonProperties>(
   // validation
   if (!geojson) throw new Error("geojson is required");
 
+  // @ts-expect-error: Known type conflict
   flattenEach(geojson, function (feature, featureIndex, multiFeatureIndex) {
     if (feature.geometry === null) return;
     var type = feature.geometry.type;
+    // @ts-expect-error: Known type conflict
     var coords = feature.geometry.coordinates;
     switch (type) {
+      // @ts-expect-error: Known type conflict
       case "LineString":
         // @ts-expect-error: Known type conflict
         if (callback(feature, featureIndex, multiFeatureIndex, 0, 0) === false)
           return false;
         break;
+      // @ts-expect-error: Known type conflict
       case "Polygon":
         for (
           var geometryIndex = 0;
@@ -1342,7 +1346,6 @@ function lineEach<P extends GeoJsonProperties = GeoJsonProperties>(
           if (
             // @ts-expect-error: Known type conflict
             callback(
-              // @ts-expect-error: Known type conflict
               lineString(coords[geometryIndex], feature.properties),
               featureIndex,
               multiFeatureIndex,
