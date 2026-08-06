@@ -32,6 +32,7 @@
     "@monorepolint/core": "0.6.0-alpha.6",
     "@monorepolint/rules": "0.6.0-alpha.6",
     "@types/node": "22.15.3",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "acorn": "^8.17.0",
     "camelcase": "^8.0.0",
     "d3-queue": "^3.0.7",
@@ -51,7 +52,7 @@
     "meow": "^13.2.0",
     "prettier": "^3.9.4",
     "progress": "^2.0.3",
-    "typescript": "catalog:",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
     "typescript-eslint": "^8.66.0",
     "yaml": "^2.9.0"
   },
