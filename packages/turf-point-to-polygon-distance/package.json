@@ -53,7 +53,7 @@
     "tape": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
-    "write-json-file": "^6.0.0"
+    "write-json-file": "catalog:"
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "workspace:*",
