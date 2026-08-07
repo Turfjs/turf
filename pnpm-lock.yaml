@@ -5132,9 +5132,6 @@ importers:
 
   packages/turf-square:
     dependencies:
-      '@turf/distance':
-        specifier: workspace:*
-        version: link:../turf-distance
       '@turf/helpers':
         specifier: workspace:*
         version: link:../turf-helpers
