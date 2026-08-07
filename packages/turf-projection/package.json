@@ -60,7 +60,7 @@
     "@types/tape": "catalog:",
     "benchmark": "catalog:",
     "load-json-file": "^7.0.1",
-    "proj4": "^2.20.9",
+    "proj4": "^2.21.0",
     "tape": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
