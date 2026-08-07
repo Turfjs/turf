@@ -1,6 +1,0 @@
-{
-  "include": ["${configDir}/types.ts"],
-  "compilerOptions": {
-    "noEmit": true
-  }
-}
