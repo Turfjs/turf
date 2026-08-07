@@ -63,7 +63,8 @@
     "last-checks": "pnpm run last-checks:testjs && pnpm run last-checks:example",
     "last-checks:example": "tsx test.example.js",
     "last-checks:testjs": "tsx test.ts",
-    "test": "echo '@turf/turf tests run in the last-checks step'"
+    "test": "echo '@turf/turf tests run in the last-checks step'",
+    "watch": "tsc --build --watch"
   },
   "devDependencies": {
     "@types/tape": "^5.8.1",

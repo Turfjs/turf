@@ -9,7 +9,8 @@
     "lint:mrl": "mrl check",
     "lint:prettier": "prettier --cache --check .",
     "prepare": "husky && pnpm --filter @turf/turf build",
-    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks"
+    "test": "pnpm run lint && lerna run test && lerna run --scope @turf/turf last-checks",
+    "watch": "pnpm --filter @turf/turf watch"
   },
   "lint-staged": {
     "package.json": [
