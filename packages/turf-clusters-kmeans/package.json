@@ -58,7 +58,7 @@
     "@types/tape": "catalog:",
     "benchmark": "catalog:",
     "chromatism": "^3.0.0",
-    "concaveman": "^1.2.1",
+    "concaveman": "^2.0.0",
     "load-json-file": "^7.0.1",
     "tape": "catalog:",
     "tsx": "catalog:",

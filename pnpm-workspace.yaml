@@ -12,8 +12,8 @@ catalog:
   "@types/tape": ^5.8.1
   benchmark: ^2.1.4
   tape: ^5.10.2
-  tstyche: ^6.2.0
-  tsx: ^4.22.4
+  tstyche: ^7.2.2
+  tsx: ^4.23.9
   typescript: ^6.0.3
   "write-json-file": ^6.0.0
 
