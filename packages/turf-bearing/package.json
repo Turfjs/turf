@@ -30,11 +30,12 @@
   },
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "!**/*.tsbuildinfo"
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsc",
+    "build": "tsc --build",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
