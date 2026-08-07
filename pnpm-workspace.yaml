@@ -15,6 +15,7 @@ catalog:
   tstyche: ^6.2.0
   tsx: ^4.22.4
   typescript: ^6.0.3
+  "write-json-file": ^6.0.0
 
 catalogs:
   # keep a named catalog of typescript@5 for the consumer tests

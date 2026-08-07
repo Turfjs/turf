@@ -229,6 +229,9 @@ catalogs:
     typescript:
       specifier: ^6.0.3
       version: 6.0.3
+    write-json-file:
+      specifier: ^6.0.0
+      version: 6.0.0
   typescript5:
     typescript:
       specifier: 5.9.3
@@ -800,7 +803,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-area:
@@ -837,7 +840,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-bbox:
@@ -908,7 +911,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-bbox-polygon:
@@ -973,7 +976,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-bezier-spline:
@@ -1010,7 +1013,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-boolean-clockwise:
@@ -1394,7 +1397,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-boolean-point-in-polygon:
@@ -1465,7 +1468,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-boolean-touches:
@@ -1676,7 +1679,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-center:
@@ -1719,7 +1722,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-center-mean:
@@ -1765,7 +1768,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-center-median:
@@ -1823,7 +1826,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-center-of-mass:
@@ -1869,7 +1872,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-centroid:
@@ -1906,7 +1909,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-circle:
@@ -1949,7 +1952,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-clean-coords:
@@ -1995,7 +1998,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-clone:
@@ -2118,7 +2121,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-clusters-kmeans:
@@ -2182,7 +2185,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-collect:
@@ -2314,7 +2317,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-convex:
@@ -2357,7 +2360,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-destination:
@@ -2397,7 +2400,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-difference:
@@ -2437,7 +2440,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-directional-mean:
@@ -2489,7 +2492,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-dissolve:
@@ -2535,7 +2538,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-distance:
@@ -2572,7 +2575,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-distance-weight:
@@ -2615,7 +2618,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-ellipse:
@@ -2679,7 +2682,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-envelope:
@@ -2753,7 +2756,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-flatten:
@@ -2790,7 +2793,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-flip:
@@ -2830,7 +2833,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-geojson-rbush:
@@ -2882,7 +2885,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-great-circle:
@@ -2925,7 +2928,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-helpers:
@@ -2999,7 +3002,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-interpolate:
@@ -3069,7 +3072,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-intersect:
@@ -3109,7 +3112,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-invariant:
@@ -3204,7 +3207,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-isolines:
@@ -3262,7 +3265,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-kinks:
@@ -3299,7 +3302,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-length:
@@ -3339,7 +3342,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-line-arc:
@@ -3382,7 +3385,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-line-chunk:
@@ -3428,7 +3431,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-line-intersect:
@@ -3471,7 +3474,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-line-offset:
@@ -3517,7 +3520,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-line-overlap:
@@ -3575,7 +3578,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-line-segment:
@@ -3615,7 +3618,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-line-slice:
@@ -3658,7 +3661,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-line-slice-along:
@@ -3762,7 +3765,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-line-to-polygon:
@@ -3805,7 +3808,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-mask:
@@ -3848,7 +3851,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-meta:
@@ -3956,7 +3959,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-nearest-neighbor-analysis:
@@ -4014,7 +4017,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-nearest-point:
@@ -4057,7 +4060,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-nearest-point-on-line:
@@ -4109,7 +4112,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-nearest-point-to-line:
@@ -4161,7 +4164,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-planepoint:
@@ -4241,7 +4244,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-point-on-feature:
@@ -4290,7 +4293,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-point-to-line-distance:
@@ -4351,7 +4354,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-point-to-polygon-distance:
@@ -4400,7 +4403,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-points-within-polygon:
@@ -4471,7 +4474,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-polygon-tangents:
@@ -4520,7 +4523,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-polygon-to-line:
@@ -4557,7 +4560,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-polygonize:
@@ -4603,7 +4606,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-projection:
@@ -4649,7 +4652,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-quadrat-analysis:
@@ -4710,7 +4713,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-random:
@@ -4784,7 +4787,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-rewind:
@@ -4830,7 +4833,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-rhumb-bearing:
@@ -4867,7 +4870,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-rhumb-destination:
@@ -4907,7 +4910,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-rhumb-distance:
@@ -4947,7 +4950,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-sample:
@@ -5024,7 +5027,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-shortest-path:
@@ -5085,7 +5088,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-simplify:
@@ -5131,7 +5134,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-square:
@@ -5202,7 +5205,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-standard-deviational-ellipse:
@@ -5257,7 +5260,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-tag:
@@ -5417,7 +5420,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-transform-scale:
@@ -5487,7 +5490,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-transform-translate:
@@ -5536,7 +5539,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-triangle-grid:
@@ -5582,7 +5585,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-truncate:
@@ -5619,7 +5622,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-union:
@@ -5659,7 +5662,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-unkink-polygon:
@@ -5711,7 +5714,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   packages/turf-voronoi:
@@ -5757,7 +5760,7 @@ importers:
         specifier: 'catalog:'
         version: 6.0.3
       write-json-file:
-        specifier: ^6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
 
   test/node-cjs:
