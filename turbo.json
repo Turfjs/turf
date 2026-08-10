@@ -1,0 +1,31 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "cacheMaxSize": "100MB",
+  "concurrency": "100%",
+  "futureFlags": {
+    "githubActionsRemoteBaseRefFallback": true
+  },
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "index.ts",
+        "lib/**",
+        "tsconfig.json",
+        "$TURBO_ROOT$/tsconfig.shared.json"
+      ],
+      "outputs": ["dist/**", "turf.min.js"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "inputs": ["test.ts", "test/**", "types.ts", "types.tst.ts"],
+      "outputs": ["test/out/**"],
+      "env": ["REGEN"]
+    },
+    "bench": {
+      "dependsOn": ["build"],
+      "inputs": ["bench.ts"],
+      "cache": false
+    }
+  }
+}
