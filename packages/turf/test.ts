@@ -51,7 +51,6 @@ test("turf -- invalid dependencies", (t) => {
       "tape",
       "benchmark",
       "glob",
-      "lerna",
       "documentation",
       "uglify-js",
     ]) {
