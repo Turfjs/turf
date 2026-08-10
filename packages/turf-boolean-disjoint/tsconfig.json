@@ -1,20 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-boolean-point-in-polygon"
-    },
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-line-intersect"
-    },
-    {
-      "path": "../turf-meta"
-    },
-    {
-      "path": "../turf-polygon-to-line"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

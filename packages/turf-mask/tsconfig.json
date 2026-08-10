@@ -1,11 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-clone"
-    },
-    {
-      "path": "../turf-helpers"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

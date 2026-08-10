@@ -1,35 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-area"
-    },
-    {
-      "path": "../turf-bbox"
-    },
-    {
-      "path": "../turf-bbox-polygon"
-    },
-    {
-      "path": "../turf-centroid"
-    },
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-invariant"
-    },
-    {
-      "path": "../turf-point-grid"
-    },
-    {
-      "path": "../turf-random"
-    },
-    {
-      "path": "../turf-square-grid"
-    },
-    {
-      "path": "../turf-nearest-neighbor-analysis"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

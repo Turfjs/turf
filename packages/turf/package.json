@@ -55,16 +55,14 @@
   "sideEffects": false,
   "files": [
     "dist",
-    "turf.min.js",
-    "!**/*.tsbuildinfo"
+    "turf.min.js"
   ],
   "scripts": {
-    "build": "tsc --build && esbuild index.ts --bundle --minify --target=chrome109,edge147,firefox140,ios18.5,opera127,safari26.3 --outfile=turf.min.js",
+    "build": "tsc && esbuild index.ts --bundle --minify --target=chrome109,edge147,firefox140,ios18.5,opera127,safari26.3 --outfile=turf.min.js",
     "last-checks": "pnpm run last-checks:testjs && pnpm run last-checks:example",
     "last-checks:example": "tsx test.example.js",
     "last-checks:testjs": "tsx test.ts",
-    "test": "echo '@turf/turf tests run in the last-checks step'",
-    "watch": "tsc --build --watch"
+    "test": "echo '@turf/turf tests run in the last-checks step'"
   },
   "devDependencies": {
     "@types/tape": "catalog:",

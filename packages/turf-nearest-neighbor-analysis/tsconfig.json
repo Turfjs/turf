@@ -1,32 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-area"
-    },
-    {
-      "path": "../turf-bbox"
-    },
-    {
-      "path": "../turf-bbox-polygon"
-    },
-    {
-      "path": "../turf-centroid"
-    },
-    {
-      "path": "../turf-distance"
-    },
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-meta"
-    },
-    {
-      "path": "../turf-nearest-point"
-    },
-    {
-      "path": "../turf-truncate"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

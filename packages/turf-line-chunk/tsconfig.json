@@ -1,20 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-length"
-    },
-    {
-      "path": "../turf-line-slice-along"
-    },
-    {
-      "path": "../turf-meta"
-    },
-    {
-      "path": "../turf-truncate"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

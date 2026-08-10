@@ -9,7 +9,6 @@ import {
   packageEntry,
   packageScript,
   requireDependency,
-  standardTsconfig,
   REMOVE,
 } from "@monorepolint/rules";
 
@@ -97,7 +96,7 @@ export default {
           // Example of a URL that will break: https://unpkg.com/@turf/turf/dist/turf.min.js
           // Example of a URL that will keep working: https://unpkg.com/@turf/turf
           browser: "turf.min.js",
-          files: ["dist", "turf.min.js", "!**/*.tsbuildinfo"],
+          files: ["dist", "turf.min.js"],
           exports: {
             "./package.json": "./package.json",
             ".": {
@@ -123,7 +122,7 @@ export default {
           module: REMOVE,
           types: REMOVE,
           sideEffects: false,
-          files: ["dist", "!**/*.tsbuildinfo"],
+          files: ["dist"],
           publishConfig: {
             access: "public",
           },
@@ -165,7 +164,7 @@ export default {
     packageScript({
       options: {
         scripts: {
-          build: "tsc --build",
+          build: "tsc",
         },
       },
       includePackages: PACKAGES,
@@ -175,7 +174,7 @@ export default {
       options: {
         scripts: {
           build:
-            "tsc --build && esbuild index.ts --bundle --minify --target=chrome109,edge147,firefox140,ios18.5,opera127,safari26.3 --outfile=turf.min.js",
+            "tsc && esbuild index.ts --bundle --minify --target=chrome109,edge147,firefox140,ios18.5,opera127,safari26.3 --outfile=turf.min.js",
         },
       },
       includePackages: [MAIN_PACKAGE],
@@ -243,13 +242,6 @@ export default {
         dependencies: {
           "@types/geojson": "catalog:",
         },
-      },
-      includePackages: [MAIN_PACKAGE, ...PACKAGES],
-    }),
-
-    standardTsconfig({
-      options: {
-        template: { extends: "../../tsconfig.shared.json" },
       },
       includePackages: [MAIN_PACKAGE, ...PACKAGES],
     }),
