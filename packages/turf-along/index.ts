@@ -22,6 +22,8 @@ import { getGeom } from "@turf/invariant";
  *
  * //addToMap
  * var addToMap = [along, line]
+ *
+ * TEST
  */
 function along(
   line: Feature<LineString> | LineString,
