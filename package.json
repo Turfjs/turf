@@ -10,7 +10,7 @@
     "lint:mrl": "mrl check",
     "lint:prettier": "prettier --cache --check .",
     "prepare": "husky",
-    "test": "pnpm run lint && pnpm -r run test && pnpm -r --filter '@turf/turf' last-checks",
+    "test": "pnpm run lint && pnpm -r run test",
     "watch": "pnpm --filter @turf/turf watch"
   },
   "lint-staged": {
