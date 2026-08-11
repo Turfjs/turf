@@ -335,7 +335,7 @@ test("turf -- update to newer Typescript definitions", (t) => {
 
 // File Paths
 const testFilePath = path.join(__dirname, "test.example.js");
-const turfModulesPath = path.join(__dirname, "..", "turf-*", "index.js");
+const turfModulesPath = path.join(__dirname, "..", "turf-*", "index.ts");
 const turfTypescriptPath = path.join(__dirname, "..", "turf-*", "index.d.ts");
 
 // Test Strings
