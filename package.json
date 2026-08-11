@@ -20,8 +20,7 @@
       "eslint --fix"
     ],
     "packages/*/index.ts": [
-      "node ./scripts/generate-readmes.mts",
-      "git add ./packages/*/README.md"
+      "node ./scripts/generate-readmes.mts --git-add"
     ],
     "*": "prettier --write --ignore-unknown"
   },
@@ -46,7 +45,7 @@
     "glob": "^13.0.6",
     "globals": "^17.9.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.2",
+    "lint-staged": "^17.3.0",
     "load-json-file": "^7.0.1",
     "meow": "^14.1.0",
     "prettier": "^3.9.6",
