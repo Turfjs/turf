@@ -37,4 +37,5 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: git diff --exit-code
+      - run: pnpm build
       - run: pnpm test
