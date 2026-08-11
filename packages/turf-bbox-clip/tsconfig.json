@@ -1,14 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-invariant"
-    },
-    {
-      "path": "../turf-bbox"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

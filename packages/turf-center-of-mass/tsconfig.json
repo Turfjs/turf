@@ -1,20 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-centroid"
-    },
-    {
-      "path": "../turf-convex"
-    },
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-invariant"
-    },
-    {
-      "path": "../turf-meta"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

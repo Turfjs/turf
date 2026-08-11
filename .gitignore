@@ -6,7 +6,7 @@ node_modules
 pnpm-debug.log*
 
 # build caches
-.nx
+.turbo
 .eslintcache
 
 # editor-specific

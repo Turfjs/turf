@@ -1,29 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-bbox"
-    },
-    {
-      "path": "../turf-boolean-point-on-line"
-    },
-    {
-      "path": "../turf-geojson-rbush"
-    },
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-invariant"
-    },
-    {
-      "path": "../turf-line-segment"
-    },
-    {
-      "path": "../turf-meta"
-    },
-    {
-      "path": "../turf-nearest-point-on-line"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

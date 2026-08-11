@@ -1,17 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-rectangle-grid"
-    },
-    {
-      "path": "../turf-bbox-polygon"
-    },
-    {
-      "path": "../turf-truncate"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

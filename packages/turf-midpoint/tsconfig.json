@@ -1,17 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-bearing"
-    },
-    {
-      "path": "../turf-destination"
-    },
-    {
-      "path": "../turf-distance"
-    },
-    {
-      "path": "../turf-helpers"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

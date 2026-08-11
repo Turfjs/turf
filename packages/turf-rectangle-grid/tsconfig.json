@@ -1,20 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-boolean-intersects"
-    },
-    {
-      "path": "../turf-distance"
-    },
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-bbox-polygon"
-    },
-    {
-      "path": "../turf-truncate"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

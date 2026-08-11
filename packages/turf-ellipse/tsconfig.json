@@ -1,35 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-destination"
-    },
-    {
-      "path": "../turf-distance"
-    },
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-invariant"
-    },
-    {
-      "path": "../turf-transform-rotate"
-    },
-    {
-      "path": "../turf-area"
-    },
-    {
-      "path": "../turf-bbox-polygon"
-    },
-    {
-      "path": "../turf-circle"
-    },
-    {
-      "path": "../turf-intersect"
-    },
-    {
-      "path": "../turf-truncate"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

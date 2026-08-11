@@ -1,20 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-bbox"
-    },
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-meta"
-    },
-    {
-      "path": "../turf-bbox-polygon"
-    },
-    {
-      "path": "../turf-random"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

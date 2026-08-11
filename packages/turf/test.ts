@@ -108,7 +108,6 @@ test("turf -- check if files exists", (t) => {
       if (file === "main.js") continue;
       if (file === "main.es.js") continue;
       if (file === "index.d.ts") continue;
-      if (file.startsWith("!")) continue;
       if (!fs.existsSync(path.join(dir, file)))
         t.fail(`${name} missing file ${file} in "files"`);
     }

@@ -1,29 +1,3 @@
 {
-  "extends": "../../tsconfig.shared.json",
-  "references": [
-    {
-      "path": "../turf-center-mean"
-    },
-    {
-      "path": "../turf-ellipse"
-    },
-    {
-      "path": "../turf-helpers"
-    },
-    {
-      "path": "../turf-invariant"
-    },
-    {
-      "path": "../turf-meta"
-    },
-    {
-      "path": "../turf-points-within-polygon"
-    },
-    {
-      "path": "../turf-random"
-    },
-    {
-      "path": "../turf-truncate"
-    }
-  ]
+  "extends": "../../tsconfig.shared.json"
 }

@@ -36,12 +36,11 @@
   },
   "sideEffects": false,
   "files": [
-    "dist",
-    "!**/*.tsbuildinfo"
+    "dist"
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsc --build",
+    "build": "tsc",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tsc --ignoreConfig --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
