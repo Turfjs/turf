@@ -42,7 +42,7 @@ Run the following release commands, replacing `7.0.0` with your version number:
   - `git checkout origin/master -b release-7.0.0`
 
 - increment the version number of all packages, and create a local commit, without pushing to origin.  This will also create a release tag.
-  - `pnpm lerna version --no-commit-hooks --no-push 7.0.0`
+  - `./scripts/version.sh 7.0.0`
 
 - Push the release branch and the release tag.
   - `git push origin release-7.0.0 --follow-tags`
