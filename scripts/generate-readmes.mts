@@ -5,6 +5,12 @@ import { readdir, readFile, writeFile } from "fs/promises";
 import { parse as yamlParse } from "yaml";
 import * as documentation from "documentation";
 import { existsSync } from "fs";
+import { execSync } from "node:child_process";
+
+// In the pre-commit hook lint-staged does not automatically add derived files
+// In lint-staged@17 it started warning against calling git add directly because of race conditions.
+// These conditions do not apply when the file is generated, and so we call git add directly here to avoid a spurious warning.
+const shouldGitAdd = process.argv.includes("--git-add");
 
 // Template for README Markdown
 const postfix = await readFile(
@@ -24,7 +30,7 @@ for (const dir of await readdir(packagesPath)) {
 
   const packagePath = path.join(packagesPath, dir, "package.json");
   const directory = path.parse(packagePath).dir;
-  let indexPath = path.join(directory, "index.js");
+  let indexPath = path.join(directory, "index.ts");
   const pckg = JSON.parse(await readFile(packagePath, "utf-8"));
   const name = pckg.name;
 
@@ -34,11 +40,6 @@ for (const dir of await readdir(packagesPath)) {
         /\.(jpg|jpeg|png|gif)$/i.test(path.extname(file))
       )
     : [];
-
-  // some of the packages are typescript instead
-  if (!existsSync(indexPath)) {
-    indexPath = path.join(directory, "index.ts");
-  }
 
   // Build Documentation
   let res = await documentation.build(indexPath, {
@@ -70,5 +71,9 @@ for (const dir of await readdir(packagesPath)) {
         .join("\n");
   }
 
-  await writeFile(path.join(directory, "README.md"), markdown);
+  const readme = path.join(directory, "README.md");
+  await writeFile(readme, markdown);
+  if (shouldGitAdd) {
+    execSync(`git add ${readme}`);
+  }
 }
