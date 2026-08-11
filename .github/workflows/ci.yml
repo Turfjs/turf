@@ -36,6 +36,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - run: pnpm install --frozen-lockfile
-      - run: git diff --exit-code
       - run: pnpm build
+      - run: pnpm run docs
+      - run: git diff --exit-code
       - run: pnpm test
