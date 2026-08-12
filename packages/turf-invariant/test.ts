@@ -5,8 +5,10 @@ import {
   polygon,
   featureCollection,
   geometryCollection,
+  feature,
 } from "@turf/helpers";
 import * as invariant from "./index.js";
+import { LineString, Point } from "geojson";
 
 test("invariant -- containsNumber", (t) => {
   t.equals(invariant.containsNumber([1, 1]), true);
@@ -367,13 +369,15 @@ test("invariant -- getType", (t) => {
     [0, 1],
     [1, 1],
   ]);
-  const collection = featureCollection([pt, line]);
+  const collection = featureCollection<Point | LineString>([pt, line]);
   const geomCollection = geometryCollection([pt.geometry, line.geometry]);
+  const nullFeature = feature(null);
 
   t.deepEqual(invariant.getType(pt), "Point");
   t.deepEqual(invariant.getType(line.geometry), "LineString");
   t.deepEqual(invariant.getType(geomCollection), "GeometryCollection");
   t.deepEqual(invariant.getType(collection), "FeatureCollection");
+  t.deepEqual(invariant.getType(nullFeature), "Feature");
   // t.throws(() => invariant.getType(null), /geojson is required/, 'geojson is required');
   t.end();
 });
