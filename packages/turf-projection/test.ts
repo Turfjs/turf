@@ -129,3 +129,46 @@ test("projection -- handle Position", (t) => {
   t.deepEqual(coord, wgs84, "coord equal same as wgs84");
   t.end();
 });
+
+test("projection -- removes stale bbox", (t) => {
+  const mercatorInput = point([10, 10], {}, { bbox: [10, 10, 10, 10] });
+  const mercatorOutput = toMercator(mercatorInput);
+
+  t.equal(
+    mercatorOutput.bbox,
+    undefined,
+    "toMercator removes bbox from cloned output"
+  );
+  t.deepEqual(
+    mercatorInput.bbox,
+    [10, 10, 10, 10],
+    "toMercator preserves cloned input"
+  );
+
+  toMercator(mercatorInput, { mutate: true });
+  t.equal(
+    mercatorInput.bbox,
+    undefined,
+    "toMercator removes bbox from mutated input"
+  );
+
+  const wgs84Input = point(
+    [1113194.9, 1118890],
+    {},
+    { bbox: [1113194.9, 1118890, 1113194.9, 1118890] }
+  );
+  const wgs84Output = toWgs84(wgs84Input);
+
+  t.equal(
+    wgs84Output.bbox,
+    undefined,
+    "toWgs84 removes bbox from cloned output"
+  );
+  toWgs84(wgs84Input, { mutate: true });
+  t.equal(
+    wgs84Input.bbox,
+    undefined,
+    "toWgs84 removes bbox from mutated input"
+  );
+  t.end();
+});

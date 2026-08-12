@@ -1,5 +1,5 @@
 import { coordEach } from "@turf/meta";
-import { AllGeoJSON, isObject } from "@turf/helpers";
+import { AllGeoJSON, isObject, removeBbox } from "@turf/helpers";
 
 /**
  * Takes a GeoJSON Feature or FeatureCollection and truncates the precision of the geometry.
@@ -66,6 +66,7 @@ function truncate<T extends AllGeoJSON>(
   coordEach(geojson, function (coords) {
     truncateCoords(coords, factor, coordinates!);
   });
+  removeBbox(geojson);
   return geojson;
 }
 
