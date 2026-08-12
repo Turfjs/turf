@@ -46,6 +46,18 @@ test("bearing", (t) => {
     );
   });
 
+  // Coincident points have no defined bearing — must return NaN, not 0
+  // Regression test for https://github.com/Turfjs/turf/issues/2478
+  const coincident = point([5, 5]);
+  t.ok(
+    isNaN(rhumbBearing(coincident, coincident)),
+    "coincident points return NaN"
+  );
+  t.ok(
+    isNaN(rhumbBearing(coincident, coincident, { final: true })),
+    "coincident points return NaN (final bearing)"
+  );
+
   t.throws(() => {
     rhumbBearing(point([12, -54]), "point");
   }, "invalid point");
