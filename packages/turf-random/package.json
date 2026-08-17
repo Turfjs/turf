@@ -3,6 +3,9 @@
   "version": "7.4.0",
   "description": "Generates random points, lines, or polygons for testing.",
   "author": "Turf Authors",
+  "contributors": [
+    "Muhammad Faizan <@faizanjafar>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
