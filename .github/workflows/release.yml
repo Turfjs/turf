@@ -39,9 +39,13 @@ jobs:
       - name: run publish
         run: pnpm -r publish --no-git-checks --provenance --access public
 
-      - name: Create Github Release
-        uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # 3.0.2
-        with:
-          make_latest: true
-          generate_release_notes: true
-          draft: true
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --verify-tag \
+            --fail-on-no-commits \
+            --draft \
+            --generate-notes \
+            --latest
