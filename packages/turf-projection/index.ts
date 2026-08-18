@@ -18,11 +18,15 @@ import { clone } from "@turf/clone";
  * //addToMap
  * var addToMap = [pt, converted];
  */
-function toMercator<G extends AllGeoJSON | Position>(
+function toMercator<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
-  return project(geojson, convertToMercator, options);
+  return project(
+    geojson as GeoJSON | Position,
+    convertToMercator,
+    options
+  ) as G;
 }
 
 /**
@@ -40,11 +44,11 @@ function toMercator<G extends AllGeoJSON | Position>(
  * //addToMap
  * var addToMap = [pt, converted];
  */
-function toWgs84<G extends AllGeoJSON | Position>(
+function toWgs84<G = AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
-  return project(geojson, convertToWgs84, options);
+  return project(geojson as GeoJSON | Position, convertToWgs84, options) as G;
 }
 
 /**
