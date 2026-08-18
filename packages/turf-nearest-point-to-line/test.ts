@@ -9,8 +9,8 @@ import { truncate } from "@turf/truncate";
 import {
   geometryCollection,
   featureCollection,
-  point,
   lineString,
+  point,
   round,
 } from "@turf/helpers";
 import { nearestPointToLine } from "./index.js";
