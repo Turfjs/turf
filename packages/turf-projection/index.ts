@@ -18,15 +18,11 @@ import { clone } from "@turf/clone";
  * //addToMap
  * var addToMap = [pt, converted];
  */
-function toMercator<G = AllGeoJSON | Position>(
+function toMercator<G extends AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
-  return project(
-    geojson as GeoJSON | Position,
-    convertToMercator,
-    options
-  ) as G;
+  return project(geojson, convertToMercator, options);
 }
 
 /**
@@ -44,19 +40,18 @@ function toMercator<G = AllGeoJSON | Position>(
  * //addToMap
  * var addToMap = [pt, converted];
  */
-function toWgs84<G = AllGeoJSON | Position>(
+function toWgs84<G extends AllGeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
-  return project(
-    geojson as AllGeoJSON | Position,
-    convertToWgs84,
-    options
-  ) as G;
+  return project(geojson, convertToWgs84, options);
 }
 
 /**
- * Projects GeoJSON or Position objects using an arbitrary projection function
+ * Projects GeoJSON or Position objects using a custom projection function.
+ *
+ * Designed for reprojecting coordinates using external libraries like proj4 or custom transformations
+ * not built into @turf/projection, handling all GeoJSON structure traversal automatically.
  *
  * @param {GeoJSON} geojson GeoJSON or Position object
  * @param {string} projection A function that implements the projection
@@ -86,8 +81,8 @@ function project<G extends GeoJSON | Position>(
       geojson = clone(geojson as GeoJSON) as G;
     }
 
-    coordEach(geojson as GeoJSON, function (coord) {
-      var newCoord = projection(coord);
+    coordEach(geojson as GeoJSON, (coord) => {
+      const newCoord = projection(coord);
       coord[0] = newCoord[0];
       coord[1] = newCoord[1];
     });

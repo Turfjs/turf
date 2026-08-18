@@ -50,7 +50,10 @@ Returns **[GeoJSON][1]** Projected GeoJSON
 
 ## project
 
-Projects GeoJSON or Position objects using an arbitrary projection function
+Projects GeoJSON or Position objects using a custom projection function.
+
+Designed for reprojecting coordinates using external libraries like proj4 or custom transformations
+not built into @turf/projection, handling all GeoJSON structure traversal automatically.
 
 ### Parameters
 
