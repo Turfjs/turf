@@ -260,8 +260,7 @@ function getGeom<G extends Geometry>(geojson: Feature<G> | G): G {
  * //="Point"
  */
 function getType(
-  geojson: Feature<any> | FeatureCollection<any> | Geometry,
-  _name?: string
+  geojson: Feature<any> | FeatureCollection<any> | Geometry
 ): string {
   if (geojson.type === "FeatureCollection") {
     return "FeatureCollection";
