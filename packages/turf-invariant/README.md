@@ -132,7 +132,6 @@ Get GeoJSON object's type, Geometry type is prioritize.
 ### Parameters
 
 *   `geojson` **[GeoJSON][7]** GeoJSON object
-*   `name` **[string][8]** name of the variable to display in error message (unused) (optional, default `"geojson"`)
 
 ### Examples
 
