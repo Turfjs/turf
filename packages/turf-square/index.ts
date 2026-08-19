@@ -1,4 +1,3 @@
-import { distance } from "@turf/distance";
 import { BBox } from "geojson";
 
 /**
@@ -21,22 +20,24 @@ function square(bbox: BBox): BBox {
   var east = bbox[2];
   var north = bbox[3];
 
-  var horizontalDistance = distance(bbox.slice(0, 2), [east, south]);
-  var verticalDistance = distance(bbox.slice(0, 2), [west, north]);
-  if (horizontalDistance >= verticalDistance) {
+  // Spans are compared in degrees, the same units they are grown in below, so
+  // that the result always surrounds the input.
+  var horizontalSpan = east - west;
+  var verticalSpan = north - south;
+  if (horizontalSpan >= verticalSpan) {
     var verticalMidpoint = (south + north) / 2;
     return [
       west,
-      verticalMidpoint - (east - west) / 2,
+      verticalMidpoint - horizontalSpan / 2,
       east,
-      verticalMidpoint + (east - west) / 2,
+      verticalMidpoint + horizontalSpan / 2,
     ];
   } else {
     var horizontalMidpoint = (west + east) / 2;
     return [
-      horizontalMidpoint - (north - south) / 2,
+      horizontalMidpoint - verticalSpan / 2,
       south,
-      horizontalMidpoint + (north - south) / 2,
+      horizontalMidpoint + verticalSpan / 2,
       north,
     ];
   }
