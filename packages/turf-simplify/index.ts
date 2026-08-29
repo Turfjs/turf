@@ -1,8 +1,8 @@
-import { Geometry, Position } from "geojson";
+import type { GeoJSON, Geometry, Position } from "geojson";
 import { cleanCoords } from "@turf/clean-coords";
 import { clone } from "@turf/clone";
 import { geomEach } from "@turf/meta";
-import { AllGeoJSON, isObject } from "@turf/helpers";
+import { isObject } from "@turf/helpers";
 import { simplify as simplifyJS } from "./lib/simplify.js";
 
 /**
@@ -45,7 +45,7 @@ import { simplify as simplifyJS } from "./lib/simplify.js";
  * //addToMap
  * const addToMap = [geojson, result0_01, result0_005]
  */
-function simplify<T extends AllGeoJSON>(
+function simplify<T extends GeoJSON>(
   geojson: T,
   options: {
     tolerance?: number;

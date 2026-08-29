@@ -1,5 +1,5 @@
 import { BBox } from "geojson";
-import { AllGeoJSON } from "@turf/helpers";
+import type { GeoJSON } from "geojson";
 import { coordEach } from "@turf/meta";
 
 /**
@@ -20,7 +20,7 @@ import { coordEach } from "@turf/meta";
  * var addToMap = [line, bboxPolygon]
  */
 function bbox(
-  geojson: AllGeoJSON,
+  geojson: GeoJSON,
   options: {
     recompute?: boolean;
   } = {}

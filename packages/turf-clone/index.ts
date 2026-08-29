@@ -1,5 +1,4 @@
-import { Feature, GeoJsonProperties } from "geojson";
-import { AllGeoJSON } from "@turf/helpers";
+import type { Feature, GeoJSON, GeoJsonProperties } from "geojson";
 
 /**
  * Returns a cloned copy of the passed GeoJSON Object, including possible 'Foreign Members'.
@@ -13,7 +12,7 @@ import { AllGeoJSON } from "@turf/helpers";
  *
  * var lineCloned = turf.clone(line);
  */
-function clone<T extends AllGeoJSON>(geojson: T): T {
+function clone<T extends GeoJSON>(geojson: T): T {
   if (!geojson) {
     throw new Error("geojson is required");
   }

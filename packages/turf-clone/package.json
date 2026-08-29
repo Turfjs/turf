@@ -47,13 +47,13 @@
     "@turf/meta": "workspace:*",
     "@types/benchmark": "catalog:",
     "@types/tape": "catalog:",
+    "@turf/helpers": "workspace:*",
     "benchmark": "catalog:",
     "tape": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:"
   },
   "dependencies": {
-    "@turf/helpers": "workspace:*",
     "@types/geojson": "catalog:"
   },
   "engines": {

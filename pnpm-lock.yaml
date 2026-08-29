@@ -842,9 +842,6 @@ importers:
 
   packages/turf-bbox:
     dependencies:
-      '@turf/helpers':
-        specifier: workspace:*
-        version: link:../turf-helpers
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
@@ -852,6 +849,9 @@ importers:
         specifier: 'catalog:'
         version: 7946.0.14
     devDependencies:
+      '@turf/helpers':
+        specifier: workspace:*
+        version: link:../turf-helpers
       '@types/benchmark':
         specifier: 'catalog:'
         version: 2.1.5
@@ -2000,13 +2000,13 @@ importers:
 
   packages/turf-clone:
     dependencies:
-      '@turf/helpers':
-        specifier: workspace:*
-        version: link:../turf-helpers
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
     devDependencies:
+      '@turf/helpers':
+        specifier: workspace:*
+        version: link:../turf-helpers
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
@@ -4255,9 +4255,6 @@ importers:
       '@turf/explode':
         specifier: workspace:*
         version: link:../turf-explode
-      '@turf/helpers':
-        specifier: workspace:*
-        version: link:../turf-helpers
       '@turf/nearest-point':
         specifier: workspace:*
         version: link:../turf-nearest-point
@@ -4265,6 +4262,9 @@ importers:
         specifier: 'catalog:'
         version: 7946.0.14
     devDependencies:
+      '@turf/helpers':
+        specifier: workspace:*
+        version: link:../turf-helpers
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta

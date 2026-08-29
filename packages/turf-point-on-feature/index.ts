@@ -1,5 +1,4 @@
-import type { Feature, Point } from "geojson";
-import type { AllGeoJSON } from "@turf/helpers";
+import type { Feature, GeoJSON, Point } from "geojson";
 import { explode } from "@turf/explode";
 import { center as centroid } from "@turf/center";
 import { nearestPoint } from "@turf/nearest-point";
@@ -32,7 +31,7 @@ import { featureCollection, feature, point } from "@turf/helpers";
  * //addToMap
  * var addToMap = [polygon, pointOnPolygon];
  */
-function pointOnFeature(geojson: AllGeoJSON): Feature<Point> {
+function pointOnFeature(geojson: GeoJSON): Feature<Point> {
   // normalize
   const fc = normalize(geojson);
 
@@ -131,7 +130,7 @@ function pointOnFeature(geojson: AllGeoJSON): Feature<Point> {
  * @param {GeoJSON} geojson Any GeoJSON
  * @returns {FeatureCollection} FeatureCollection
  */
-function normalize(geojson: AllGeoJSON) {
+function normalize(geojson: GeoJSON) {
   if (geojson.type !== "FeatureCollection") {
     if (geojson.type !== "Feature") {
       return featureCollection([feature(geojson)]);

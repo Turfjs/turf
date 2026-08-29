@@ -1,5 +1,5 @@
-import { Feature, GeoJsonProperties, Point } from "geojson";
-import { point, AllGeoJSON } from "@turf/helpers";
+import type { Feature, GeoJSON, GeoJsonProperties, Point } from "geojson";
+import { point } from "@turf/helpers";
 import { coordEach } from "@turf/meta";
 
 /**
@@ -19,7 +19,7 @@ import { coordEach } from "@turf/meta";
  * var addToMap = [polygon, centroid]
  */
 function centroid<P extends GeoJsonProperties = GeoJsonProperties>(
-  geojson: AllGeoJSON,
+  geojson: GeoJSON,
   options: {
     properties?: P;
   } = {}

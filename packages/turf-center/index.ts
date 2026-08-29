@@ -1,6 +1,6 @@
-import { BBox, Feature, GeoJsonProperties, Point } from "geojson";
+import type { BBox, Feature, GeoJSON, GeoJsonProperties, Point } from "geojson";
 import { bbox } from "@turf/bbox";
-import { point, Id, AllGeoJSON } from "@turf/helpers";
+import { point, type Id } from "@turf/helpers";
 
 /**
  * Takes a {@link Feature} or {@link FeatureCollection} and returns the absolute center point of all features.
@@ -27,7 +27,7 @@ import { point, Id, AllGeoJSON } from "@turf/helpers";
  * center.properties['marker-color'] = '#000';
  */
 function center<P extends GeoJsonProperties = GeoJsonProperties>(
-  geojson: AllGeoJSON,
+  geojson: GeoJSON,
   options: { properties?: P; bbox?: BBox; id?: Id } = {}
 ): Feature<Point, P> {
   const ext = bbox(geojson);

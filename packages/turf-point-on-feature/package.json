@@ -48,6 +48,7 @@
     "@turf/truncate": "workspace:*",
     "@types/benchmark": "catalog:",
     "@types/tape": "catalog:",
+    "@turf/helpers": "workspace:*",
     "benchmark": "catalog:",
     "tape": "catalog:",
     "tsx": "catalog:",
@@ -58,7 +59,6 @@
     "@turf/boolean-point-in-polygon": "workspace:*",
     "@turf/center": "workspace:*",
     "@turf/explode": "workspace:*",
-    "@turf/helpers": "workspace:*",
     "@turf/nearest-point": "workspace:*",
     "@types/geojson": "catalog:"
   },

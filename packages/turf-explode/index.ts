@@ -1,7 +1,6 @@
 import { coordEach, featureEach } from "@turf/meta";
 import { point, featureCollection } from "@turf/helpers";
-import type { AllGeoJSON } from "@turf/helpers";
-import type { Feature, FeatureCollection, Point } from "geojson";
+import type { Feature, FeatureCollection, GeoJSON, Point } from "geojson";
 
 /**
  * Takes a feature or set of features and returns all positions as {@link Point|points}.
@@ -18,7 +17,7 @@ import type { Feature, FeatureCollection, Point } from "geojson";
  * //addToMap
  * var addToMap = [polygon, explode]
  */
-function explode(geojson: AllGeoJSON): FeatureCollection<Point> {
+function explode(geojson: GeoJSON): FeatureCollection<Point> {
   const points: Feature<Point>[] = [];
   if (geojson.type === "FeatureCollection") {
     featureEach(geojson, function (feature) {

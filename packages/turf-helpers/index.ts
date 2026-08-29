@@ -100,14 +100,6 @@ export type Corners = "sw" | "se" | "nw" | "ne" | "center" | "centroid";
 export type Lines = LineString | MultiLineString | Polygon | MultiPolygon;
 
 /**
- * Convenience type for all possible GeoJSON.
- *
- * @typedef
- */
-export type AllGeoJSON =
-  Feature | FeatureCollection | Geometry | GeometryCollection;
-
-/**
  * The Earth radius in meters. Used by Turf modules that model the Earth as a sphere. The {@link https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius mean radius} was selected because it is {@link https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended recommended } by the Haversine formula (used by turf/distance) to reduce error.
  *
  * @constant

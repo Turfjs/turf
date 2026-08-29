@@ -8,13 +8,13 @@ import type {
   MultiPolygon,
   Polygon,
   FeatureCollection,
+  GeoJSON,
 } from "geojson";
 import { clone } from "@turf/clone";
 import { booleanClockwise } from "@turf/boolean-clockwise";
 import { geomEach, featureEach } from "@turf/meta";
 import { getCoords } from "@turf/invariant";
 import { featureCollection, isObject } from "@turf/helpers";
-import type { AllGeoJSON } from "@turf/helpers";
 
 /**
  * Rewind {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon} outer ring counterclockwise and inner rings clockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
@@ -33,7 +33,7 @@ import type { AllGeoJSON } from "@turf/helpers";
  * //addToMap
  * var addToMap = [rewind];
  */
-function rewind<T extends AllGeoJSON>(
+function rewind<T extends GeoJSON>(
   geojson: T,
   options: {
     reverse?: boolean;

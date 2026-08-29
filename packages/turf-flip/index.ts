@@ -1,6 +1,7 @@
 import { coordEach } from "@turf/meta";
-import { isObject, AllGeoJSON } from "@turf/helpers";
+import { isObject } from "@turf/helpers";
 import { clone } from "@turf/clone";
+import type { GeoJSON } from "geojson";
 
 /**
  * Takes input features and flips all of their coordinates from `[x, y]` to `[y, x]`.
@@ -18,7 +19,7 @@ import { clone } from "@turf/clone";
  * //addToMap
  * var addToMap = [serbia, saudiArabia];
  */
-function flip<T extends AllGeoJSON>(
+function flip<T extends GeoJSON>(
   geojson: T,
   options?: {
     mutate?: boolean;

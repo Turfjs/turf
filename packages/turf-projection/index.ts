@@ -1,6 +1,6 @@
 import type { Position, GeoJSON } from "geojson";
 import { coordEach } from "@turf/meta";
-import { type AllGeoJSON, isNumber } from "@turf/helpers";
+import { isNumber } from "@turf/helpers";
 import { clone } from "@turf/clone";
 
 /**
@@ -18,7 +18,7 @@ import { clone } from "@turf/clone";
  * //addToMap
  * var addToMap = [pt, converted];
  */
-function toMercator<G = AllGeoJSON | Position>(
+function toMercator<G = GeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
@@ -44,7 +44,7 @@ function toMercator<G = AllGeoJSON | Position>(
  * //addToMap
  * var addToMap = [pt, converted];
  */
-function toWgs84<G = AllGeoJSON | Position>(
+function toWgs84<G = GeoJSON | Position>(
   geojson: G,
   options: { mutate?: boolean } = {}
 ): G {
