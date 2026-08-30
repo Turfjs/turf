@@ -41,17 +41,11 @@ Geometries made up of lines i.e. lines and polygons.
 
 Type: ([LineString][3] | [MultiLineString][4] | [Polygon][5] | [MultiPolygon][6])
 
-## AllGeoJSON
-
-Convenience type for all possible GeoJSON.
-
-Type: ([Feature][7] | [FeatureCollection][8] | [Geometry][9] | [GeometryCollection][10])
-
 ## earthRadius
 
-The Earth radius in meters. Used by Turf modules that model the Earth as a sphere. The [mean radius][11] was selected because it is [recommended ][12] by the Haversine formula (used by turf/distance) to reduce error.
+The Earth radius in meters. Used by Turf modules that model the Earth as a sphere. The [mean radius][7] was selected because it is [recommended ][8] by the Haversine formula (used by turf/distance) to reduce error.
 
-Type: [number][13]
+Type: [number][9]
 
 ## factors
 
@@ -59,27 +53,27 @@ Unit of measurement factors based on earthRadius.
 
 Keys are the name of the unit, values are the number of that unit in a single radian
 
-Type: Record<[Units][2], [number][13]>
+Type: Record<[Units][2], [number][9]>
 
 ## areaFactors
 
 Area of measurement factors based on 1 square meter.
 
-Type: Record<[AreaUnits][14], [number][13]>
+Type: Record<[AreaUnits][10], [number][9]>
 
 ## feature
 
-Wraps a GeoJSON [Geometry][9] in a GeoJSON [Feature][7].
+Wraps a GeoJSON [Geometry][11] in a GeoJSON [Feature][12].
 
 ### Parameters
 
 *   `geom` **(G | null)**&#x20;
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the Feature
-*   `geometry` **[GeometryObject][9]** input geometry
+*   `geometry` **[GeometryObject][11]** input geometry
 
 ### Examples
 
@@ -94,19 +88,19 @@ var feature = turf.feature(geometry);
 //=feature
 ```
 
-Returns **[Feature][7]<[GeometryObject][9], [GeoJsonProperties][7]>** a GeoJSON Feature
+Returns **[Feature][12]<[GeometryObject][11], [GeoJsonProperties][12]>** a GeoJSON Feature
 
 ## geometry
 
-Creates a GeoJSON [Geometry][9] from a Geometry string type & coordinates.
+Creates a GeoJSON [Geometry][11] from a Geometry string type & coordinates.
 For GeometryCollection type use `helpers.geometryCollection`
 
 ### Parameters
 
 *   `type` **(`"Point"` | `"LineString"` | `"Polygon"` | `"MultiPoint"` | `"MultiLineString"` | `"MultiPolygon"`)** Geometry Type
-*   `coordinates` **[Array][17]\<any>** Coordinates
-*   `_options` **Record<[string][18], never>**  (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][15]\<any>** Coordinates
+*   `_options` **Record<[string][16], never>**  (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
 ### Examples
 
@@ -117,19 +111,19 @@ var geometry = turf.geometry(type, coordinates);
 // => geometry
 ```
 
-Returns **[Geometry][9]** a GeoJSON Geometry
+Returns **[Geometry][11]** a GeoJSON Geometry
 
 ## point
 
-Creates a [Point][19] [Feature][7] from a Position.
+Creates a [Point][17] [Feature][12] from a Position.
 
 ### Parameters
 
-*   `coordinates` **[Position][20]** longitude, latitude position (each in decimal degrees)
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Position][18]** longitude, latitude position (each in decimal degrees)
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the Feature
 
 ### Examples
@@ -140,19 +134,19 @@ var point = turf.point([-75.343, 39.984]);
 //=point
 ```
 
-Returns **[Feature][7]<[Point][19], [GeoJsonProperties][7]>** a Point feature
+Returns **[Feature][12]<[Point][17], [GeoJsonProperties][12]>** a Point feature
 
 ## points
 
-Creates a [Point][19] [FeatureCollection][8] from an Array of Point coordinates.
+Creates a [Point][17] [FeatureCollection][19] from an Array of Point coordinates.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Position][20]>** an array of Points
-*   `properties` **[GeoJsonProperties][7]** Translate these properties to each Feature (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][15]<[Position][18]>** an array of Points
+*   `properties` **[GeoJsonProperties][12]** Translate these properties to each Feature (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north]
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north]
         associated with the FeatureCollection
     *   `options.id` **Id?** Identifier associated with the FeatureCollection
 
@@ -168,19 +162,19 @@ var points = turf.points([
 //=points
 ```
 
-Returns **[FeatureCollection][8]<[Point][19]>** Point Feature
+Returns **[FeatureCollection][19]<[Point][17]>** Point Feature
 
 ## polygon
 
-Creates a [Polygon][5] [Feature][7] from an Array of LinearRings.
+Creates a [Polygon][5] [Feature][12] from an Array of LinearRings.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Position][20]>>**&#x20;
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][15]<[Array][15]<[Position][18]>>**&#x20;
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the Feature
 
 ### Examples
@@ -191,19 +185,19 @@ var polygon = turf.polygon([[[-5, 52], [-4, 56], [-2, 51], [-7, 54], [-5, 52]]],
 //=polygon
 ```
 
-Returns **[Feature][7]<[Polygon][5], [GeoJsonProperties][7]>** Polygon Feature
+Returns **[Feature][12]<[Polygon][5], [GeoJsonProperties][12]>** Polygon Feature
 
 ## polygons
 
-Creates a [Polygon][5] [FeatureCollection][8] from an Array of Polygon coordinates.
+Creates a [Polygon][5] [FeatureCollection][19] from an Array of Polygon coordinates.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Array][17]<[Position][20]>>>**&#x20;
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][15]<[Array][15]<[Array][15]<[Position][18]>>>**&#x20;
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the FeatureCollection
 
 ### Examples
@@ -217,19 +211,19 @@ var polygons = turf.polygons([
 //=polygons
 ```
 
-Returns **[FeatureCollection][8]<[Polygon][5], [GeoJsonProperties][7]>** Polygon FeatureCollection
+Returns **[FeatureCollection][19]<[Polygon][5], [GeoJsonProperties][12]>** Polygon FeatureCollection
 
 ## lineString
 
-Creates a [LineString][3] [Feature][7] from an Array of Positions.
+Creates a [LineString][3] [Feature][12] from an Array of Positions.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Position][20]>** an array of Positions
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][15]<[Position][18]>** an array of Positions
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the Feature
 
 ### Examples
@@ -242,19 +236,19 @@ var linestring2 = turf.lineString([[-14, 43], [-13, 40], [-15, 45], [-10, 49]], 
 //=linestring2
 ```
 
-Returns **[Feature][7]<[LineString][3], [GeoJsonProperties][7]>** LineString Feature
+Returns **[Feature][12]<[LineString][3], [GeoJsonProperties][12]>** LineString Feature
 
 ## lineStrings
 
-Creates a [LineString][3] [FeatureCollection][8] from an Array of LineString coordinates.
+Creates a [LineString][3] [FeatureCollection][19] from an Array of LineString coordinates.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Position][20]>>**&#x20;
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][15]<[Array][15]<[Position][18]>>**&#x20;
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north]
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north]
         associated with the FeatureCollection
     *   `options.id` **Id?** Identifier associated with the FeatureCollection
 
@@ -269,18 +263,18 @@ var linestrings = turf.lineStrings([
 //=linestrings
 ```
 
-Returns **[FeatureCollection][8]<[LineString][3], [GeoJsonProperties][7]>** LineString FeatureCollection
+Returns **[FeatureCollection][19]<[LineString][3], [GeoJsonProperties][12]>** LineString FeatureCollection
 
 ## featureCollection
 
-Takes one or more [Features][7] and creates a [FeatureCollection][8].
+Takes one or more [Features][12] and creates a [FeatureCollection][19].
 
 ### Parameters
 
-*   `features` **[Array][17]<[Feature][7]<[GeometryObject][9], [GeoJsonProperties][7]>>** input features
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `features` **[Array][15]<[Feature][12]<[GeometryObject][11], [GeoJsonProperties][12]>>** input features
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the Feature
 
 ### Examples
@@ -299,20 +293,20 @@ var collection = turf.featureCollection([
 //=collection
 ```
 
-Returns **[FeatureCollection][8]<[GeometryObject][9], [GeoJsonProperties][7]>** FeatureCollection of Features
+Returns **[FeatureCollection][19]<[GeometryObject][11], [GeoJsonProperties][12]>** FeatureCollection of Features
 
 ## multiLineString
 
-Creates a [Feature][7]<[MultiLineString][4]> based on a
+Creates a [Feature][12]<[MultiLineString][4]> based on a
 coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Position][20]>>**&#x20;
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][15]<[Array][15]<[Position][18]>>**&#x20;
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the Feature
 
 ### Examples
@@ -323,22 +317,22 @@ var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
 //=multiLine
 ```
 
-*   Throws **[Error][21]** if no coordinates are passed
+*   Throws **[Error][20]** if no coordinates are passed
 
-Returns **[Feature][7]<[MultiLineString][4], [GeoJsonProperties][7]>** a MultiLineString feature
+Returns **[Feature][12]<[MultiLineString][4], [GeoJsonProperties][12]>** a MultiLineString feature
 
 ## multiPoint
 
-Creates a [Feature][7]<[MultiPoint][22]> based on a
+Creates a [Feature][12]<[MultiPoint][21]> based on a
 coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Position][20]>** an array of Positions
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][15]<[Position][18]>** an array of Positions
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the Feature
 
 ### Examples
@@ -349,22 +343,22 @@ var multiPt = turf.multiPoint([[0,0],[10,10]]);
 //=multiPt
 ```
 
-*   Throws **[Error][21]** if no coordinates are passed
+*   Throws **[Error][20]** if no coordinates are passed
 
-Returns **[Feature][7]<[MultiPoint][22], [GeoJsonProperties][7]>** a MultiPoint feature
+Returns **[Feature][12]<[MultiPoint][21], [GeoJsonProperties][12]>** a MultiPoint feature
 
 ## multiPolygon
 
-Creates a [Feature][7]<[MultiPolygon][6]> based on a
+Creates a [Feature][12]<[MultiPolygon][6]> based on a
 coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Array][17]<[Position][20]>>>**&#x20;
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `coordinates` **[Array][15]<[Array][15]<[Array][15]<[Position][18]>>>**&#x20;
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the Feature
 
 ### Examples
@@ -375,9 +369,9 @@ var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]]);
 //=multiPoly
 ```
 
-*   Throws **[Error][21]** if no coordinates are passed
+*   Throws **[Error][20]** if no coordinates are passed
 
-Returns **[Feature][7]<[MultiPolygon][6], [GeoJsonProperties][7]>** a multipolygon feature
+Returns **[Feature][12]<[MultiPolygon][6], [GeoJsonProperties][12]>** a multipolygon feature
 
 ## geometryCollection
 
@@ -386,11 +380,11 @@ coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `geometries` **[Array][17]<([Point][19] | [LineString][3] | [Polygon][5] | [MultiPoint][22] | [MultiLineString][4] | [MultiPolygon][6])>** an array of GeoJSON Geometries
-*   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
-*   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
+*   `geometries` **[Array][15]<([Point][17] | [LineString][3] | [Polygon][5] | [MultiPoint][21] | [MultiLineString][4] | [MultiPolygon][6])>** an array of GeoJSON Geometries
+*   `properties` **[GeoJsonProperties][12]** an Object of key-value pairs to add as properties (optional, default `{}`)
+*   `options` **[Object][13]** Optional Parameters (optional, default `{}`)
 
-    *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
+    *   `options.bbox` **[BBox][14]?** Bounding Box Array \[west, south, east, north] associated with the Feature
     *   `options.id` **Id?** Identifier associated with the Feature
 
 ### Examples
@@ -403,7 +397,7 @@ var collection = turf.geometryCollection([pt, line]);
 // => collection
 ```
 
-Returns **[Feature][7]<[GeometryCollection][10], [GeoJsonProperties][7]>** a GeoJSON GeometryCollection Feature
+Returns **[Feature][12]<[GeometryCollection][22], [GeoJsonProperties][12]>** a GeoJSON GeometryCollection Feature
 
 ## round
 
@@ -411,8 +405,8 @@ Round number to precision
 
 ### Parameters
 
-*   `num` **[number][13]** Number
-*   `precision` **[number][13]** Precision (optional, default `0`)
+*   `num` **[number][9]** Number
+*   `precision` **[number][9]** Precision (optional, default `0`)
 
 ### Examples
 
@@ -424,7 +418,7 @@ turf.round(120.4321, 2)
 //=120.43
 ```
 
-Returns **[number][13]** rounded number
+Returns **[number][9]** rounded number
 
 ## radiansToLength
 
@@ -433,11 +427,11 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 ### Parameters
 
-*   `radians` **[number][13]** in radians across the sphere
+*   `radians` **[number][9]** in radians across the sphere
 *   `units` **[Units][2]** can be degrees, radians, miles, inches, yards, metres,
     meters, kilometres, kilometers. (optional, default `"kilometers"`)
 
-Returns **[number][13]** distance
+Returns **[number][9]** distance
 
 ## lengthToRadians
 
@@ -446,11 +440,11 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, kilometers, ce
 
 ### Parameters
 
-*   `distance` **[number][13]** in real units
+*   `distance` **[number][9]** in real units
 *   `units` **[Units][2]** can be degrees, radians, miles, inches, yards, metres,
     meters, kilometres, kilometers. (optional, default `"kilometers"`)
 
-Returns **[number][13]** radians
+Returns **[number][9]** radians
 
 ## lengthToDegrees
 
@@ -459,11 +453,11 @@ Valid units: miles, nauticalmiles, inches, yards, meters, metres, centimeters, k
 
 ### Parameters
 
-*   `distance` **[number][13]** in real units
+*   `distance` **[number][9]** in real units
 *   `units` **[Units][2]** can be degrees, radians, miles, inches, yards, metres,
     meters, kilometres, kilometers. (optional, default `"kilometers"`)
 
-Returns **[number][13]** degrees
+Returns **[number][9]** degrees
 
 ## bearingToAzimuth
 
@@ -472,9 +466,9 @@ and returns an angle between 0-360 degrees (positive clockwise), 0 being the nor
 
 ### Parameters
 
-*   `bearing` **[number][13]** angle, between -180 and +180 degrees
+*   `bearing` **[number][9]** angle, between -180 and +180 degrees
 
-Returns **[number][13]** angle between 0 and 360 degrees
+Returns **[number][9]** angle between 0 and 360 degrees
 
 ## azimuthToBearing
 
@@ -483,9 +477,9 @@ and returns an angle between -180 and +180 degrees (positive clockwise), 0 being
 
 ### Parameters
 
-*   `angle` **[number][13]** between 0 and 360 degrees
+*   `angle` **[number][9]** between 0 and 360 degrees
 
-Returns **[number][13]** bearing between -180 and +180 degrees
+Returns **[number][9]** bearing between -180 and +180 degrees
 
 ## radiansToDegrees
 
@@ -493,9 +487,9 @@ Converts an angle in radians to degrees
 
 ### Parameters
 
-*   `radians` **[number][13]** angle in radians
+*   `radians` **[number][9]** angle in radians
 
-Returns **[number][13]** degrees between 0 and 360 degrees
+Returns **[number][9]** degrees between 0 and 360 degrees
 
 ## degreesToRadians
 
@@ -503,9 +497,9 @@ Converts an angle in degrees to radians
 
 ### Parameters
 
-*   `degrees` **[number][13]** angle between 0 and 360 degrees
+*   `degrees` **[number][9]** angle between 0 and 360 degrees
 
-Returns **[number][13]** angle in radians
+Returns **[number][9]** angle in radians
 
 ## convertLength
 
@@ -513,11 +507,11 @@ Converts a length from one unit to another.
 
 ### Parameters
 
-*   `length` **[number][13]** Length to be converted
+*   `length` **[number][9]** Length to be converted
 *   `originalUnit` **[Units][2]** Input length unit (optional, default `"kilometers"`)
 *   `finalUnit` **[Units][2]** Returned length unit (optional, default `"kilometers"`)
 
-Returns **[number][13]** The converted length
+Returns **[number][9]** The converted length
 
 ## convertArea
 
@@ -525,11 +519,11 @@ Converts an area from one unit to another.
 
 ### Parameters
 
-*   `area` **[number][13]** Area to be converted
-*   `originalUnit` **[AreaUnits][14]** Input area unit (optional, default `"meters"`)
-*   `finalUnit` **[AreaUnits][14]** Returned area unit (optional, default `"kilometers"`)
+*   `area` **[number][9]** Area to be converted
+*   `originalUnit` **[AreaUnits][10]** Input area unit (optional, default `"meters"`)
+*   `finalUnit` **[AreaUnits][10]** Returned area unit (optional, default `"kilometers"`)
 
-Returns **[number][13]** The converted length
+Returns **[number][9]** The converted length
 
 ## isNumber
 
@@ -593,37 +587,37 @@ Returns **void**&#x20;
 
 [6]: https://tools.ietf.org/html/rfc7946#section-3.1.7
 
-[7]: https://tools.ietf.org/html/rfc7946#section-3.2
+[7]: https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius
 
-[8]: https://tools.ietf.org/html/rfc7946#section-3.3
+[8]: https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended
 
-[9]: https://tools.ietf.org/html/rfc7946#section-3.1
+[9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[10]: https://tools.ietf.org/html/rfc7946#section-3.1.8
+[10]: #areaunits
 
-[11]: https://en.wikipedia.org/wiki/Earth_radius#Arithmetic_mean_radius
+[11]: https://tools.ietf.org/html/rfc7946#section-3.1
 
-[12]: https://rosettacode.org/wiki/Haversine_formula#:~:text=This%20value%20is%20recommended
+[12]: https://tools.ietf.org/html/rfc7946#section-3.2
 
-[13]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[13]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[14]: #areaunits
+[14]: https://tools.ietf.org/html/rfc7946#section-5
 
-[15]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[15]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[16]: https://tools.ietf.org/html/rfc7946#section-5
+[16]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[17]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 
-[18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[18]: https://developer.mozilla.org/docs/Web/API/Position
 
-[19]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+[19]: https://tools.ietf.org/html/rfc7946#section-3.3
 
-[20]: https://developer.mozilla.org/docs/Web/API/Position
+[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+[21]: https://tools.ietf.org/html/rfc7946#section-3.1.3
 
-[22]: https://tools.ietf.org/html/rfc7946#section-3.1.3
+[22]: https://tools.ietf.org/html/rfc7946#section-3.1.8
 
 [23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
