@@ -13,7 +13,8 @@ import type {
   GeoJsonProperties,
   BBox,
   GeoJsonTypes,
-  GeoJSON,
+  MultiPoint,
+  Position,
 } from "geojson";
 import { AllGeoJSON, Lines, Id } from "@turf/helpers";
 
@@ -51,10 +52,17 @@ import { AllGeoJSON, Lines, Id } from "@turf/helpers";
  *   //=geometryIndex
  * });
  */
-function coordEach(
-  geojson: GeoJSON,
+function coordEach<
+  G extends
+    Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon,
+>(
+  geojson:
+    | FeatureCollection<GeometryCollection<G> | G | null>
+    | Feature<GeometryCollection<G> | G | null>
+    | GeometryCollection<G>
+    | G,
   callback: (
-    currentCoord: number[],
+    currentCoord: Position,
     coordIndex: number,
     featureIndex: number,
     multiFeatureIndex: number,
@@ -62,11 +70,6 @@ function coordEach(
   ) => false | void,
   excludeWrapCoord?: boolean
 ): false | void {
-  // Handles null Geometry -- Skips this GeoJSON
-  if (geojson === null) {
-    return;
-  }
-
   // This logic may look a little weird. The reason why it is that way
   // is because it's trying to be fast. GeoJSON supports multiple kinds
   // of objects at its root: FeatureCollection, Features, Geometries.
@@ -220,16 +223,6 @@ function coordEach(
               geometryIndex++;
             }
             multiFeatureIndex++;
-          }
-          break;
-        case "GeometryCollection":
-          for (let j = 0; j < geometry.geometries.length; j++) {
-            if (
-              coordEach(geometry.geometries[j], callback, excludeWrapCoord) ===
-              false
-            ) {
-              return false;
-            }
           }
           break;
         default:
