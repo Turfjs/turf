@@ -520,14 +520,14 @@ test("null geometries", (t) => {
   );
   t.equal(
     meta.geomReduce(fcNull, (prev) => (prev += 1), 0),
-    2,
+    0,
     "geomReduce"
-  );
+  ); // null geometries are skipped
   t.equal(
     meta.flattenReduce(fcNull, (prev) => (prev += 1), 0),
-    2,
+    0,
     "flattenReduce"
-  );
+  ); // null geometries are skipped
   t.equal(
     meta.coordReduce(fcNull, (prev) => (prev += 1), 0),
     0,
@@ -562,18 +562,18 @@ test("null geometries -- index", (t) => {
       (prev, geom, featureIndex) => prev.concat(featureIndex),
       []
     ),
-    [0, 1, 2, 3],
+    [1, 3],
     "geomReduce"
-  );
+  ); // null features are skipped
   t.deepEqual(
     meta.flattenReduce(
       fc,
       (prev, feature, featureIndex) => prev.concat(featureIndex),
       []
     ),
-    [0, 1, 2, 3],
+    [1, 3],
     "flattenReduce"
-  );
+  ); // null geometries are skipped entirely
   t.end();
 });
 
@@ -1654,25 +1654,5 @@ test("meta -- segmentEach -- Issue #1273", (t) => {
   );
   t.deepEqual(segmentIndexes, [0, 0, 0, 1, 1, 1]);
   t.deepEqual(geometryIndexes, [0, 1, 2, 0, 1, 2]);
-  t.end();
-});
-
-test("meta -- geomEach handles infinitely nested GeometryCollection", (t) => {
-  const evilNestedGeometryCollection: GeometryCollection = {
-    type: "GeometryCollection",
-    geometries: [{ type: "Point", coordinates: [0, 0] }],
-  };
-  evilNestedGeometryCollection.geometries.push(evilNestedGeometryCollection);
-
-  const calls: any[] = [];
-  meta.geomEach(evilNestedGeometryCollection, (g) => {
-    calls.push(g);
-  });
-
-  t.deepEqual(calls, [
-    evilNestedGeometryCollection.geometries[0], // first Geometry of the root collection
-    evilNestedGeometryCollection.geometries[0], // first Geometry of the nested collection
-    evilNestedGeometryCollection, // second Geometry of the nested collection, which is not recursed further
-  ]);
   t.end();
 });

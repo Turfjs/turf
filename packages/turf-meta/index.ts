@@ -617,41 +617,23 @@ function coordAll(geojson: AllGeoJSON): number[][] {
  * });
  */
 function geomEach<
-  G extends GeometryObject | null,
+  G extends
+    Point | MultiPoint | LineString | MultiLineString | Polygon | MultiPolygon,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
   geojson:
-    | Feature<G, P>
-    | FeatureCollection<G, P>
-    | G
-    | GeometryCollection
-    | Feature<GeometryCollection, P>,
+    | FeatureCollection<GeometryCollection<G> | G | null, P>
+    | Feature<GeometryCollection<G> | G | null, P>
+    | GeometryCollection<G>
+    | G,
   callback: (
     currentGeometry: G,
     featureIndex: number,
     featureProperties: P,
-    featureBBox: BBox,
-    featureId: Id
-  ) => void
-): void {
-  var i,
-    j,
-    g,
-    geometry,
-    stopG,
-    geometryMaybeCollection,
-    isGeometryCollection,
-    featureProperties,
-    featureBBox,
-    featureId,
-    featureIndex = 0,
-    // @ts-expect-error: Known type conflict
-    isFeatureCollection = geojson.type === "FeatureCollection",
-    // @ts-expect-error: Known type conflict
-    isFeature = geojson.type === "Feature",
-    // @ts-expect-error: Known type conflict
-    stop = isFeatureCollection ? geojson.features.length : 1;
-
+    featureBBox: BBox | undefined,
+    featureId: Id | undefined
+  ) => false | void
+): false | void {
   // This logic may look a little weird. The reason why it is that way
   // is because it's trying to be fast. GeoJSON supports multiple kinds
   // of objects at its root: FeatureCollection, Features, Geometries.
@@ -664,64 +646,39 @@ function geomEach<
   // This also aims to allocate as few resources as possible: just a
   // few numbers and booleans, rather than any temporary arrays as would
   // be required with the normalization approach.
-  for (i = 0; i < stop; i++) {
-    geometryMaybeCollection = isFeatureCollection
-      ? // @ts-expect-error: Known type conflict
-        geojson.features[i].geometry
-      : isFeature
-        ? // @ts-expect-error: Known type conflict
-          geojson.geometry
-        : geojson;
-    featureProperties = isFeatureCollection
-      ? // @ts-expect-error: Known type conflict
-        geojson.features[i].properties
-      : isFeature
-        ? // @ts-expect-error: Known type conflict
-          geojson.properties
-        : {};
-    featureBBox = isFeatureCollection
-      ? // @ts-expect-error: Known type conflict
-        geojson.features[i].bbox
-      : isFeature
-        ? // @ts-expect-error: Known type conflict
-          geojson.bbox
-        : undefined;
-    featureId = isFeatureCollection
-      ? // @ts-expect-error: Known type conflict
-        geojson.features[i].id
-      : isFeature
-        ? // @ts-expect-error: Known type conflict
-          geojson.id
-        : undefined;
-    isGeometryCollection = geometryMaybeCollection
-      ? geometryMaybeCollection.type === "GeometryCollection"
-      : false;
-    stopG = isGeometryCollection
-      ? geometryMaybeCollection.geometries.length
-      : 1;
+  for (
+    let featureIndex = 0,
+      stop = geojson.type === "FeatureCollection" ? geojson.features.length : 1;
+    featureIndex < stop;
+    featureIndex++
+  ) {
+    const feature =
+      geojson.type === "FeatureCollection"
+        ? geojson.features[featureIndex]
+        : geojson.type === "Feature"
+          ? geojson
+          : ({ geometry: geojson } as Feature<G, P>);
+    const geometryMaybeCollection = feature.geometry;
 
-    for (g = 0; g < stopG; g++) {
-      geometry = isGeometryCollection
-        ? geometryMaybeCollection.geometries[g]
-        : geometryMaybeCollection;
+    // Handle null Geometry
+    if (geometryMaybeCollection === null) {
+      continue;
+    }
 
-      // Handle null Geometry
-      if (geometry === null) {
-        if (
-          // @ts-expect-error: Known type conflict
-          callback(
-            // @ts-expect-error: Known type conflict
-            null,
-            featureIndex,
-            featureProperties,
-            featureBBox,
-            featureId
-          ) === false
-        )
-          // @ts-expect-error: Known type conflict
-          return false;
-        continue;
-      }
+    for (
+      let g = 0,
+        stopG =
+          geometryMaybeCollection.type === "GeometryCollection"
+            ? geometryMaybeCollection.geometries.length
+            : 1;
+      g < stopG;
+      g++
+    ) {
+      const geometry =
+        geometryMaybeCollection.type === "GeometryCollection"
+          ? geometryMaybeCollection.geometries[g]
+          : geometryMaybeCollection;
+
       switch (geometry.type) {
         case "Point":
         case "LineString":
@@ -730,33 +687,15 @@ function geomEach<
         case "MultiLineString":
         case "MultiPolygon": {
           if (
-            // @ts-expect-error: Known type conflict
             callback(
               geometry,
               featureIndex,
-              featureProperties,
-              featureBBox,
-              featureId
+              feature.properties,
+              feature.bbox,
+              feature.id
             ) === false
-          )
-            // @ts-expect-error: Known type conflict
+          ) {
             return false;
-          break;
-        }
-        case "GeometryCollection": {
-          for (j = 0; j < geometry.geometries.length; j++) {
-            if (
-              // @ts-expect-error: Known type conflict
-              callback(
-                geometry.geometries[j],
-                featureIndex,
-                featureProperties,
-                featureBBox,
-                featureId
-              ) === false
-            )
-              // @ts-expect-error: Known type conflict
-              return false;
           }
           break;
         }
@@ -764,8 +703,6 @@ function geomEach<
           throw new Error("Unknown Geometry Type");
       }
     }
-    // Only increase `featureIndex` per each feature
-    featureIndex++;
   }
 }
 
