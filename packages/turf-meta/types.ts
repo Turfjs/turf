@@ -73,9 +73,15 @@ const customLineStrings = featureCollection([customLineString]);
 /**
  * meta.coordEach
  */
-const coordEachValue: void = meta.coordEach(pt, (coords) => coords);
-coordEach(pt, (coords, index) => coords);
-meta.coordEach(pt, (coords, index) => coords);
+const coordEachValue: false | void = meta.coordEach(pt, (coords) => {
+  coords;
+});
+coordEach(pt, (coords, index) => {
+  coords;
+});
+meta.coordEach(pt, (coords, index) => {
+  coords;
+});
 meta.coordEach(pt.geometry, (coords) => {
   const equal: number[] = coords;
 });
@@ -88,7 +94,9 @@ meta.coordEach(poly, (coords) => {
 meta.coordEach(multiPoly, (coords) => {
   const equal: number[] = coords;
 });
-meta.coordEach(geomCollection, (coords) => coords);
+meta.coordEach(geomCollection, (coords) => {
+  coords;
+});
 
 /**
  * meta.coordReduce
