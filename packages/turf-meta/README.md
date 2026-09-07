@@ -122,7 +122,7 @@ Type: [Function][1]
 *   `currentProperties` **[GeoJsonProperties][9]** The current Properties being processed.
 *   `featureIndex` **[number][3]** The current index of the Feature being processed.
 
-Returns **void**&#x20;
+Returns **(`false` | void)** Return false to stop iteration
 
 ## propEach
 
@@ -130,7 +130,7 @@ Iterate over properties in any GeoJSON object, similar to Array.forEach()
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][10] | [Feature][9])** any GeoJSON object
+*   `geojson` **([FeatureCollection][10] | [Feature][9])** any GeoJSON Feature or FeatureCollection
 *   `callback` **[propEachCallback][11]** a method that takes (currentProperties, featureIndex)
 
 ### Examples

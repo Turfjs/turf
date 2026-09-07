@@ -327,14 +327,14 @@ function coordReduce<Reducer>(
  * @callback propEachCallback
  * @param {GeoJsonProperties} currentProperties The current Properties being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
- * @returns {void}
+ * @returns {false | void} Return false to stop iteration
  */
 
 /**
  * Iterate over properties in any GeoJSON object, similar to Array.forEach()
  *
  * @function
- * @param {FeatureCollection|Feature} geojson any GeoJSON object
+ * @param {FeatureCollection|Feature} geojson any GeoJSON Feature or FeatureCollection
  * @param {propEachCallback} callback a method that takes (currentProperties, featureIndex)
  * @returns {void}
  * @example
@@ -349,19 +349,16 @@ function coordReduce<Reducer>(
  * });
  */
 function propEach<Props extends GeoJsonProperties>(
-  geojson: Feature<any> | FeatureCollection<any> | Feature<GeometryCollection>,
-  callback: (currentProperties: Props, featureIndex: number) => void
+  geojson: Feature<Geometry, Props> | FeatureCollection<Geometry, Props>,
+  callback: (currentProperties: Props, featureIndex: number) => false | void
 ): void {
-  var i;
   switch (geojson.type) {
     case "FeatureCollection":
-      for (i = 0; i < geojson.features.length; i++) {
-        // @ts-expect-error: Known type conflict
+      for (let i = 0; i < geojson.features.length; i++) {
         if (callback(geojson.features[i].properties, i) === false) break;
       }
       break;
     case "Feature":
-      // @ts-expect-error: Known type conflict
       callback(geojson.properties, 0);
       break;
   }
