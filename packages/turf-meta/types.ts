@@ -1,4 +1,4 @@
-import { Point, LineString } from "geojson";
+import { Point, LineString, Polygon, Feature } from "geojson";
 import * as helpers from "@turf/helpers";
 import { featureCollection, point, lineString } from "@turf/helpers";
 import * as meta from "./index.js";
@@ -128,12 +128,24 @@ meta.propReduce(geomCollection, (previous, prop) => prop);
 /**
  * meta.propEach
  */
-const propEachValue: void = meta.propEach(poly, (prop) => prop);
-propEach(features, (prop) => prop);
-meta.propEach(features, (prop) => prop);
-meta.propEach(poly, (prop, index) => prop);
-meta.propEach<{ bar: string }>(poly, (prop) => prop.bar);
-meta.propEach(geomCollection, (prop) => prop);
+const propEachValue: void = meta.propEach(poly, (prop) => {
+  prop;
+});
+propEach(features, (prop) => {
+  prop;
+});
+meta.propEach(features, (prop) => {
+  prop;
+});
+meta.propEach(poly, (prop, index) => {
+  prop;
+});
+meta.propEach(poly as Feature<Polygon, { bar: string }>, (prop) => {
+  prop.bar;
+});
+meta.propEach(geomCollection, (prop) => {
+  prop;
+});
 
 /**
  * meta.coordAll
