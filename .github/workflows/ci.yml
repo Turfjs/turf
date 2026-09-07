@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [22, 24, 26]
+        node: [22, 24, 26]
 
     steps:
       - name: Checkout
@@ -26,18 +26,13 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+      - name: pnpm/setup
+        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
         with:
-          run_install: false
+          runtime: node@${{ matrix.node }}
+          require-lockfile: true
+          cache: true
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          cache: "pnpm"
-          node-version: ${{ matrix.node-version }}
-
-      - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: pnpm run docs
       - run: git diff --exit-code
