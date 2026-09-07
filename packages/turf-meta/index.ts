@@ -438,7 +438,7 @@ function propReduce<Reducer, P extends GeoJsonProperties = GeoJsonProperties>(
  * @callback featureEachCallback
  * @param {Feature<any>} currentFeature The current Feature being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
- * @returns {void}
+ * @returns {false|void} Return false to stop iteration.
  */
 
 /**
@@ -446,7 +446,7 @@ function propReduce<Reducer, P extends GeoJsonProperties = GeoJsonProperties>(
  * Array.forEach.
  *
  * @function
- * @param {FeatureCollection|Feature|Feature<GeometryCollection>} geojson any GeoJSON object
+ * @param {FeatureCollection|Feature} geojson any GeoJSON Feature or FeatureCollection
  * @param {featureEachCallback} callback a method that takes (currentFeature, featureIndex)
  * @returns {void}
  * @example
@@ -464,16 +464,16 @@ function featureEach<
   G extends GeometryObject,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
-  geojson:
-    Feature<G, P> | FeatureCollection<G, P> | Feature<GeometryCollection, P>,
-  callback: (currentFeature: Feature<G, P>, featureIndex: number) => void
+  geojson: Feature<G, P> | FeatureCollection<G, P>,
+  callback: (
+    currentFeature: Feature<G, P>,
+    featureIndex: number
+  ) => false | void
 ): void {
   if (geojson.type === "Feature") {
-    // @ts-expect-error: Known type conflict
     callback(geojson, 0);
   } else if (geojson.type === "FeatureCollection") {
-    for (var i = 0; i < geojson.features.length; i++) {
-      // @ts-expect-error: Known type conflict
+    for (let i = 0; i < geojson.features.length; i++) {
       if (callback(geojson.features[i], i) === false) break;
     }
   }
@@ -505,7 +505,7 @@ function featureEach<
  * Reduce features in any GeoJSON object, similar to Array.reduce().
  *
  * @function
- * @param {FeatureCollection|Feature|Feature<GeometryCollection>} geojson any GeoJSON object
+ * @param {FeatureCollection|Feature} geojson any GeoJSON FeatureCollection or Feature
  * @param {featureReduceCallback} callback a method that takes (previousValue, currentFeature, featureIndex)
  * @param {Reducer} [initialValue] Value to use as the first argument to the first call of the callback.
  * @returns {Reducer} The value that results from the reduction.
@@ -524,11 +524,10 @@ function featureEach<
  */
 function featureReduce<
   Reducer,
-  G extends GeometryObject,
+  G extends Geometry,
   P extends GeoJsonProperties = GeoJsonProperties,
 >(
-  geojson:
-    Feature<G, P> | FeatureCollection<G, P> | Feature<GeometryCollection, P>,
+  geojson: Feature<G, P> | FeatureCollection<G, P>,
   callback: (
     previousValue: Reducer,
     currentFeature: Feature<G, P>,

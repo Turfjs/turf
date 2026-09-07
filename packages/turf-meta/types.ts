@@ -169,11 +169,21 @@ meta.featureReduce(geomCollection, (previous, feature, index) => feature);
 /**
  * meta.featureEach
  */
-const featureEachValue: void = meta.featureEach(poly, (feature) => feature);
-featureEach(features, (feature) => feature);
-meta.featureEach(features, (feature) => feature);
-meta.featureEach(poly, (feature, index) => feature);
-meta.featureEach(geomCollection, (feature, index) => feature);
+const featureEachValue: void = meta.featureEach(poly, (feature) => {
+  feature;
+});
+featureEach(features, (feature) => {
+  feature;
+});
+meta.featureEach(features, (feature) => {
+  feature;
+});
+meta.featureEach(poly, (feature, index) => {
+  feature;
+});
+meta.featureEach(geomCollection, (feature, index) => {
+  feature;
+});
 
 // Access custom properties
 featureEach(customPoints, (pt) => {
