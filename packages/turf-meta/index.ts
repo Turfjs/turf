@@ -1,5 +1,5 @@
 import { feature, point, lineString, isObject } from "@turf/helpers";
-import {
+import type {
   Point,
   LineString,
   Polygon,
@@ -13,29 +13,31 @@ import {
   GeoJsonProperties,
   BBox,
   GeoJsonTypes,
+  GeoJSON,
+  Position,
 } from "geojson";
-import { AllGeoJSON, Lines, Id } from "@turf/helpers";
+import type { AllGeoJSON, Lines, Id } from "@turf/helpers";
 
 /**
  * Callback for coordEach
  *
  * @callback coordEachCallback
- * @param {number[]} currentCoord The current coordinate being processed.
+ * @param {Position} currentCoord The current coordinate being processed.
  * @param {number} coordIndex The current index of the coordinate being processed.
  * @param {number} featureIndex The current index of the Feature being processed.
  * @param {number} multiFeatureIndex The current index of the Multi-Feature being processed.
  * @param {number} geometryIndex The current index of the Geometry being processed.
- * @returns {void}
+ * @returns {false|void} Return false to stop iteration
  */
 
 /**
  * Iterate over coordinates in any GeoJSON object, similar to Array.forEach()
  *
  * @function
- * @param {AllGeoJSON} geojson any GeoJSON object
+ * @param {GeoJSON} geojson any GeoJSON object, nested GeometryCollections are not supported
  * @param {coordEachCallback} callback a method that takes (currentCoord, coordIndex, featureIndex, multiFeatureIndex)
  * @param {boolean} [excludeWrapCoord=false] whether or not to include the final coordinate of LinearRings that wraps the ring in its iteration.
- * @returns {void}
+ * @returns {false|void} Returns false if callback returned false
  * @example
  * var features = turf.featureCollection([
  *   turf.point([26, 37], {"foo": "bar"}),
@@ -51,33 +53,21 @@ import { AllGeoJSON, Lines, Id } from "@turf/helpers";
  * });
  */
 function coordEach(
-  geojson: AllGeoJSON,
+  geojson: GeoJSON,
   callback: (
-    currentCoord: number[],
+    currentCoord: Position,
     coordIndex: number,
     featureIndex: number,
     multiFeatureIndex: number,
     geometryIndex: number
-  ) => void,
+  ) => false | void,
   excludeWrapCoord?: boolean
-): void {
-  // Handles null Geometry -- Skips this GeoJSON
+): false | void {
+  // Handles null Geometry -- Skips this GeoJSON, this isn't strictly allowed by the type signature but acts as a nice defense
   if (geojson === null) return;
-  var j,
-    k,
-    l,
-    geometry,
-    stopG,
-    coords,
-    geometryMaybeCollection,
-    wrapShrink = 0,
-    coordIndex = 0,
-    isGeometryCollection,
-    type = geojson.type,
-    isFeatureCollection = type === "FeatureCollection",
-    isFeature = type === "Feature",
-    // @ts-expect-error: Known type conflict
-    stop = isFeatureCollection ? geojson.features.length : 1;
+
+  let coordIndex = 0;
+  const wrapShrink = excludeWrapCoord ? 1 : 0;
 
   // This logic may look a little weird. The reason why it is that way
   // is because it's trying to be fast. GeoJSON supports multiple kinds
@@ -91,117 +81,135 @@ function coordEach(
   // This also aims to allocate as few resources as possible: just a
   // few numbers and booleans, rather than any temporary arrays as would
   // be required with the normalization approach.
-  for (var featureIndex = 0; featureIndex < stop; featureIndex++) {
-    geometryMaybeCollection = isFeatureCollection
-      ? // @ts-expect-error: Known type conflict
-        geojson.features[featureIndex].geometry
-      : isFeature
-        ? // @ts-expect-error: Known type conflict
-          geojson.geometry
-        : geojson;
-    isGeometryCollection = geometryMaybeCollection
-      ? geometryMaybeCollection.type === "GeometryCollection"
-      : false;
-    stopG = isGeometryCollection
-      ? geometryMaybeCollection.geometries.length
-      : 1;
+  const stop =
+    geojson.type === "FeatureCollection" ? geojson.features.length : 1;
+  for (let featureIndex = 0; featureIndex < stop; featureIndex++) {
+    // unwrap a Feature / FeatureCollection to get the underlying Geometry
+    const geometryMaybeCollection =
+      geojson.type === "FeatureCollection"
+        ? geojson.features[featureIndex].geometry
+        : geojson.type === "Feature"
+          ? geojson.geometry
+          : geojson;
 
-    for (var geomIndex = 0; geomIndex < stopG; geomIndex++) {
-      var multiFeatureIndex = 0;
-      var geometryIndex = 0;
-      geometry = isGeometryCollection
-        ? geometryMaybeCollection.geometries[geomIndex]
-        : geometryMaybeCollection;
+    // Handles null Geometry -- Skips this geometry
+    // This can happen with a Feature that contains a null Geometry, which is spec-compliant but not part of @types/geojson
+    if (geometryMaybeCollection === null) continue;
 
-      // Handles null Geometry -- Skips this geometry
-      if (geometry === null) continue;
-      coords = geometry.coordinates;
-      var geomType = geometry.type;
+    const stopG =
+      geometryMaybeCollection.type === "GeometryCollection"
+        ? geometryMaybeCollection.geometries.length
+        : 1;
+    for (let geomIndex = 0; geomIndex < stopG; geomIndex++) {
+      let multiFeatureIndex = 0;
+      let geometryIndex = 0;
 
-      wrapShrink =
-        excludeWrapCoord &&
-        (geomType === "Polygon" || geomType === "MultiPolygon")
-          ? 1
-          : 0;
+      // unwrap a GeometryCollection if one exists
+      const geometry =
+        geometryMaybeCollection.type === "GeometryCollection"
+          ? geometryMaybeCollection.geometries[geomIndex]
+          : geometryMaybeCollection;
 
-      switch (geomType) {
-        case null:
-          break;
+      switch (geometry.type) {
         case "Point":
           if (
-            // @ts-expect-error: Known type conflict
             callback(
-              coords,
+              geometry.coordinates,
               coordIndex,
               featureIndex,
               multiFeatureIndex,
               geometryIndex
             ) === false
           )
-            // @ts-expect-error: Known type conflict
             return false;
           coordIndex++;
           multiFeatureIndex++;
           break;
         case "LineString":
-        case "MultiPoint":
-          for (j = 0; j < coords.length; j++) {
+          for (const coord of geometry.coordinates) {
             if (
-              // @ts-expect-error: Known type conflict
               callback(
-                coords[j],
+                coord,
                 coordIndex,
                 featureIndex,
                 multiFeatureIndex,
                 geometryIndex
               ) === false
             )
-              // @ts-expect-error: Known type conflict
               return false;
             coordIndex++;
-            if (geomType === "MultiPoint") multiFeatureIndex++;
           }
-          if (geomType === "LineString") multiFeatureIndex++;
+          multiFeatureIndex++;
+          break;
+        case "MultiPoint":
+          for (const coord of geometry.coordinates) {
+            if (
+              callback(
+                coord,
+                coordIndex,
+                featureIndex,
+                multiFeatureIndex,
+                geometryIndex
+              ) === false
+            )
+              return false;
+            coordIndex++;
+            multiFeatureIndex++;
+          }
           break;
         case "Polygon":
-        case "MultiLineString":
-          for (j = 0; j < coords.length; j++) {
-            for (k = 0; k < coords[j].length - wrapShrink; k++) {
+          for (const ring of geometry.coordinates) {
+            const len = ring.length - wrapShrink;
+            for (let k = 0; k < len; k++) {
               if (
-                // @ts-expect-error: Known type conflict
                 callback(
-                  coords[j][k],
+                  ring[k],
                   coordIndex,
                   featureIndex,
                   multiFeatureIndex,
                   geometryIndex
                 ) === false
               )
-                // @ts-expect-error: Known type conflict
                 return false;
               coordIndex++;
             }
-            if (geomType === "MultiLineString") multiFeatureIndex++;
-            if (geomType === "Polygon") geometryIndex++;
+            geometryIndex++;
           }
-          if (geomType === "Polygon") multiFeatureIndex++;
+          multiFeatureIndex++;
+          break;
+        case "MultiLineString":
+          for (const line of geometry.coordinates) {
+            for (const coord of line) {
+              if (
+                callback(
+                  coord,
+                  coordIndex,
+                  featureIndex,
+                  multiFeatureIndex,
+                  geometryIndex
+                ) === false
+              )
+                return false;
+              coordIndex++;
+            }
+            multiFeatureIndex++;
+          }
           break;
         case "MultiPolygon":
-          for (j = 0; j < coords.length; j++) {
+          for (const polygon of geometry.coordinates) {
             geometryIndex = 0;
-            for (k = 0; k < coords[j].length; k++) {
-              for (l = 0; l < coords[j][k].length - wrapShrink; l++) {
+            for (const ring of polygon) {
+              const len = ring.length - wrapShrink;
+              for (let l = 0; l < len; l++) {
                 if (
-                  // @ts-expect-error: Known type conflict
                   callback(
-                    coords[j][k][l],
+                    ring[l],
                     coordIndex,
                     featureIndex,
                     multiFeatureIndex,
                     geometryIndex
                   ) === false
                 )
-                  // @ts-expect-error: Known type conflict
                   return false;
                 coordIndex++;
               }
@@ -211,15 +219,7 @@ function coordEach(
           }
           break;
         case "GeometryCollection":
-          for (j = 0; j < geometry.geometries.length; j++)
-            if (
-              // @ts-expect-error: Known type conflict
-              coordEach(geometry.geometries[j], callback, excludeWrapCoord) ===
-              false
-            )
-              // @ts-expect-error: Known type conflict
-              return false;
-          break;
+          throw new Error("Nested GeometryCollections are not supported");
         default:
           throw new Error("Unknown Geometry Type");
       }
@@ -1118,7 +1118,6 @@ function segmentEach<P extends GeoJsonProperties = GeoJsonProperties>(
     var previousMultiIndex = 0;
     var prevGeomIndex = 0;
     if (
-      // @ts-expect-error: Known type conflict
       coordEach(
         feature,
         function (

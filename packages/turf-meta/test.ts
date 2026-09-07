@@ -11,8 +11,18 @@ import {
   featureCollection,
   lineStrings,
 } from "@turf/helpers";
-import * as meta from "./index.js";
-import { GeometryCollection } from "geojson";
+import * as meta from "./index.ts";
+import type {
+  Feature,
+  FeatureCollection,
+  GeoJSON,
+  Geometry,
+  GeometryCollection,
+  LineString,
+  MultiLineString,
+  Point,
+  Position,
+} from "geojson";
 
 const pt = point([0, 0], { a: 1 });
 const pt2 = point([1, 1]);
@@ -81,7 +91,7 @@ const geomCollection = geometryCollection(
   { a: 0 }
 );
 const fcNull = featureCollection([feature(null), feature(null)]);
-const fcMixed = featureCollection([
+const fcMixed = featureCollection<Point | LineString | MultiLineString>([
   point([0, 0]),
   lineString([
     [1, 1],
@@ -99,8 +109,13 @@ const fcMixed = featureCollection([
   ]),
 ]);
 
-function collection(feature) {
-  const featureCollection = {
+const fcPoints = featureCollection([pt, pt2]);
+const fcMultiPoly = featureCollection([multiPoly, multiPoly]);
+
+function collection<G extends Geometry>(
+  feature: Feature<G>
+): [Feature<G>, FeatureCollection<G>] {
+  const featureCollection: FeatureCollection<G> = {
     type: "FeatureCollection",
     features: [feature],
   };
@@ -108,14 +123,16 @@ function collection(feature) {
   return [feature, featureCollection];
 }
 
-function featureAndCollection(geometry) {
-  const feature = {
+function featureAndCollection<G extends Geometry>(
+  geometry: G
+): [G, Feature<G>, FeatureCollection<G>] {
+  const feature: Feature<G> = {
     type: "Feature",
     geometry: geometry,
     properties: { a: 1 },
   };
 
-  const featureCollection = {
+  const featureCollection: FeatureCollection<G> = {
     type: "FeatureCollection",
     features: [feature],
   };
@@ -145,7 +162,7 @@ test("coordEach -- Point", (t) => {
 
 test("coordEach -- LineString", (t) => {
   featureAndCollection(line.geometry).forEach((input) => {
-    const output = [];
+    const output: Position[] = [];
     let lastIndex;
     meta.coordEach(input, (coord, index) => {
       output.push(coord);
@@ -162,7 +179,7 @@ test("coordEach -- LineString", (t) => {
 
 test("coordEach -- Polygon", (t) => {
   featureAndCollection(poly.geometry).forEach((input) => {
-    const output = [];
+    const output: Position[] = [];
     let lastIndex;
     meta.coordEach(input, (coord, index) => {
       output.push(coord);
@@ -196,11 +213,34 @@ test("coordEach -- Polygon excludeWrapCoord", (t) => {
   t.end();
 });
 
+test("coordEach -- MultiPolygon excludeWrapCoord", (t) => {
+  featureAndCollection(multiPoly.geometry).forEach((input) => {
+    let lastIndex;
+    meta.coordEach(
+      input,
+      (_coord, index) => {
+        lastIndex = index;
+      },
+      true
+    );
+    t.equal(lastIndex, 5);
+  });
+  t.end();
+});
+
+test("coordEach -- null", (t) => {
+  meta.coordEach(null as unknown as GeoJSON, (c) =>
+    t.fail("coordEach should not call its callback on null input")
+  );
+  t.ok("coordEach should handle null input without failing");
+  t.end();
+});
+
 test("coordEach -- MultiPolygon", (t) => {
-  const coords = [];
-  const coordIndexes = [];
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
+  const coords: Position[] = [];
+  const coordIndexes: number[] = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
   meta.coordEach(
     multiPoly,
     (coord, coordIndex, featureIndex, multiFeatureIndex) => {
@@ -217,11 +257,32 @@ test("coordEach -- MultiPolygon", (t) => {
   t.end();
 });
 
+test("coordEach -- MultiPoint", (t) => {
+  const coords: Position[] = [];
+  const coordIndexes: number[] = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
+  meta.coordEach(
+    multiPt,
+    (coord, coordIndex, featureIndex, multiFeatureIndex) => {
+      coords.push(coord);
+      coordIndexes.push(coordIndex);
+      featureIndexes.push(featureIndex);
+      multiFeatureIndexes.push(multiFeatureIndex);
+    }
+  );
+  t.deepEqual(coordIndexes, [0, 1]);
+  t.deepEqual(featureIndexes, [0, 0]);
+  t.deepEqual(multiFeatureIndexes, [0, 1]);
+  t.equal(coords.length, 2);
+  t.end();
+});
+
 test("coordEach -- FeatureCollection", (t) => {
-  const coords = [];
-  const coordIndexes = [];
-  const featureIndexes = [];
-  const multiFeatureIndexes = [];
+  const coords: Position[] = [];
+  const coordIndexes: number[] = [];
+  const featureIndexes: number[] = [];
+  const multiFeatureIndexes: number[] = [];
   meta.coordEach(
     fcMixed,
     (coord, coordIndex, featureIndex, multiFeatureIndex) => {
@@ -235,6 +296,23 @@ test("coordEach -- FeatureCollection", (t) => {
   t.deepEqual(featureIndexes, [0, 1, 1, 2, 2, 2, 2]);
   t.deepEqual(multiFeatureIndexes, [0, 0, 0, 0, 0, 1, 1]);
   t.equal(coords.length, 7);
+  t.end();
+});
+
+test("coordEach -- rejects nested GeometryCollection", (t) => {
+  const nestedGeometryCollection: GeometryCollection = {
+    type: "GeometryCollection",
+    geometries: [{ type: "GeometryCollection", geometries: [] }],
+  };
+
+  const calls: any[] = [];
+  try {
+    meta.coordEach(nestedGeometryCollection, (p) => {});
+    t.fail("coordEach should reject nested GeometryCollections");
+  } catch (e) {
+    t.pass("coordEach rejects nested GeometryCollections");
+  }
+
   t.end();
 });
 
@@ -1381,6 +1459,20 @@ test("meta -- breaking of iterations", (t) => {
       return false;
     });
     t.equal(multiCount, 1, func.name);
+
+    // Points
+    let pointCount = 0;
+    func(fcPoints, () => {
+      pointCount++;
+      return false;
+    });
+
+    // MultiPolygons
+    let multiPolyCount = 0;
+    func(fcMultiPoly, () => {
+      multiPolyCount++;
+      return false;
+    });
   }
   t.end();
 });
