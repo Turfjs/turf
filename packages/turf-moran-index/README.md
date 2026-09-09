@@ -68,7 +68,7 @@ Returns **[MoranIndex][8]**&#x20;
 
 [3]: https://en.wikipedia.org/wiki/Moran%27s_I
 
-[4]: http://pysal.readthedocs.io/en/latest/index.html
+[4]: https://pysal.org/
 
 [5]: https://tools.ietf.org/html/rfc7946#section-3.3
 

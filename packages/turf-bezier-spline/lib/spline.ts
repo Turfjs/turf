@@ -6,7 +6,6 @@ interface Point {
 
 /**
  * BezierSpline
- * https://github.com/leszekr/bezier-spline-js
  *
  * @private
  * @copyright

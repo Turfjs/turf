@@ -5,7 +5,7 @@ import { getGeom } from "@turf/invariant";
 
 /**
  * Determine whether two geometries of the same type have identical X,Y coordinate values.
- * See http://edndoc.esri.com/arcsde/9.0/general_topics/understand_spatial_relations.htm
+ * See https://developers.arcgis.com/geoanalytics/core-concepts/spatial-relationships/
  *
  * @function
  * @param {Geometry|Feature} feature1 GeoJSON input
