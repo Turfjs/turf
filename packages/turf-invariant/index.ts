@@ -24,32 +24,7 @@ import { isNumber } from "@turf/helpers";
  * //= [10, 10]
  */
 function getCoord(coord: Feature<Point> | Point | number[]): number[] {
-  if (!coord) {
-    throw new Error("coord is required");
-  }
-
-  if (!Array.isArray(coord)) {
-    if (
-      coord.type === "Feature" &&
-      coord.geometry !== null &&
-      coord.geometry.type === "Point"
-    ) {
-      return [...coord.geometry.coordinates];
-    }
-    if (coord.type === "Point") {
-      return [...coord.coordinates];
-    }
-  }
-  if (
-    Array.isArray(coord) &&
-    coord.length >= 2 &&
-    !Array.isArray(coord[0]) &&
-    !Array.isArray(coord[1])
-  ) {
-    return [...coord];
-  }
-
-  throw new Error("coord must be GeoJSON Point or an Array of numbers");
+  return [...getCoordRaw(coord)];
 }
 
 /**
