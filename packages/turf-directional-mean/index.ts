@@ -3,7 +3,7 @@ import { bearing } from "@turf/bearing";
 import { centroid } from "@turf/centroid";
 import { destination } from "@turf/destination";
 import { featureCollection, lineString, point } from "@turf/helpers";
-import { getCoord } from "@turf/invariant";
+import { getCoordRaw } from "@turf/invariant";
 import { length } from "@turf/length";
 import { featureEach, segmentEach, segmentReduce } from "@turf/meta";
 
@@ -118,7 +118,7 @@ function directionalMean(
   );
   const averageLength = sumOfLen / countOfLines;
   const centroidOfLines = centroid(featureCollection(centroidList));
-  const [averageX, averageY]: number[] = getCoord(centroidOfLines);
+  const [averageX, averageY]: number[] = getCoordRaw(centroidOfLines);
   let meanLinestring;
   if (isPlanar) {
     meanLinestring = getMeanLineString(
@@ -287,7 +287,7 @@ function getMeanLineString(
     const begin = destination(point(centroidOfLine), -lenOfLine / 2, angle, {
       units: "meters",
     });
-    return [getCoord(begin), getCoord(end)];
+    return [getCoordRaw(begin), getCoordRaw(end)];
   }
 }
 

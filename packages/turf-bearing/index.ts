@@ -1,5 +1,5 @@
 import { Coord, degreesToRadians, radiansToDegrees } from "@turf/helpers";
-import { getCoord } from "@turf/invariant";
+import { getCoordRaw } from "@turf/invariant";
 
 // http://en.wikipedia.org/wiki/Haversine_formula
 // http://www.movable-type.co.uk/scripts/latlong.html#bearing
@@ -38,8 +38,8 @@ function bearing(
     return calculateFinalBearing(start, end);
   }
 
-  const coordinates1 = getCoord(start);
-  const coordinates2 = getCoord(end);
+  const coordinates1 = getCoordRaw(start);
+  const coordinates2 = getCoordRaw(end);
 
   const lon1 = degreesToRadians(coordinates1[0]);
   const lon2 = degreesToRadians(coordinates2[0]);

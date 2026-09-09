@@ -53,6 +53,45 @@ function getCoord(coord: Feature<Point> | Point | number[]): number[] {
 }
 
 /**
+ * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate,
+ * without copying it. For internal use only, in hot paths that only read the
+ * result and never mutate it or store it in a returned GeoJSON object — the
+ * result may alias input geometry, unlike {@link getCoord}.
+ *
+ * @private
+ * @param {Array<number>|Geometry<Point>|Feature<Point>} coord GeoJSON Point or an Array of numbers
+ * @returns {Array<number>} coordinates, by reference
+ */
+function getCoordRaw(coord: Feature<Point> | Point | number[]): number[] {
+  if (!coord) {
+    throw new Error("coord is required");
+  }
+
+  if (!Array.isArray(coord)) {
+    if (
+      coord.type === "Feature" &&
+      coord.geometry !== null &&
+      coord.geometry.type === "Point"
+    ) {
+      return coord.geometry.coordinates;
+    }
+    if (coord.type === "Point") {
+      return coord.coordinates;
+    }
+  }
+  if (
+    Array.isArray(coord) &&
+    coord.length >= 2 &&
+    !Array.isArray(coord[0]) &&
+    !Array.isArray(coord[1])
+  ) {
+    return coord;
+  }
+
+  throw new Error("coord must be GeoJSON Point or an Array of numbers");
+}
+
+/**
  * Unwrap coordinates from a Feature, Geometry Object or an Array
  *
  * @function
@@ -275,6 +314,7 @@ function getType(
 
 export {
   getCoord,
+  getCoordRaw,
   getCoords,
   containsNumber,
   geojsonType,

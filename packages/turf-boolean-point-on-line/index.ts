@@ -1,6 +1,6 @@
 import { Feature, LineString } from "geojson";
 import { Coord } from "@turf/helpers";
-import { getCoord, getCoords } from "@turf/invariant";
+import { getCoordRaw, getCoords } from "@turf/invariant";
 
 /**
  * Returns true if a point is on a line. Accepts a optional parameter to ignore the
@@ -28,7 +28,7 @@ function booleanPointOnLine(
   } = {}
 ): boolean {
   // Normalize inputs
-  const ptCoords = getCoord(pt);
+  const ptCoords = getCoordRaw(pt);
   const lineCoords = getCoords(line);
 
   // Main
