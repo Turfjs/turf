@@ -1,5 +1,5 @@
 import { Feature, Polygon } from "geojson";
-import { getCoord, getGeom } from "@turf/invariant";
+import { getCoordRaw, getGeom } from "@turf/invariant";
 import { Coord } from "@turf/helpers";
 
 /**
@@ -40,7 +40,7 @@ function planepoint(
   triangle: Feature<Polygon> | Polygon
 ): number {
   // Normalize input
-  const coord = getCoord(point);
+  const coord = getCoordRaw(point);
   const geom = getGeom(triangle);
   const coords = geom.coordinates;
   const outer = coords[0];

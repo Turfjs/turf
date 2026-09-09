@@ -8,7 +8,7 @@ import {
   Coord,
   Units,
 } from "@turf/helpers";
-import { getCoord, getCoords } from "@turf/invariant";
+import { getCoordRaw, getCoords } from "@turf/invariant";
 
 /**
  * Returns the nearest point on a line to a given point.
@@ -82,7 +82,7 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
     throw new Error("lines and inputPoint are required arguments");
   }
 
-  const inputPos = getCoord(inputPoint);
+  const inputPos = getCoordRaw(inputPoint);
 
   let closestPt = point([Infinity, Infinity], {
     lineStringIndex: -1,
@@ -115,15 +115,13 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
 
       for (let i = 0; i < coords.length - 1; i++) {
         //start - start of current line section
-        const start: Feature<Point, { dist: number }> = point(coords[i]);
-        const startPos = getCoord(start);
+        const startPos = coords[i];
 
         //stop - end of current line section
-        const stop: Feature<Point, { dist: number }> = point(coords[i + 1]);
-        const stopPos = getCoord(stop);
+        const stopPos = coords[i + 1];
 
         // segmentLength
-        const segmentLength = distance(start, stop, options);
+        const segmentLength = distance(startPos, stopPos, options);
         let intersectPos: Position;
         let wasEnd: boolean;
 
@@ -146,7 +144,7 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         const pointDistance = distance(inputPoint, intersectPos, options);
 
         if (pointDistance < closestPt.properties.pointDistance) {
-          const segmentDistance = distance(start, intersectPos, options);
+          const segmentDistance = distance(startPos, intersectPos, options);
           closestPt = point(intersectPos, {
             lineStringIndex: lineStringIndex,
             // Legacy behaviour where index progresses to next segment # if we

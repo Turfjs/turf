@@ -9,7 +9,7 @@ import { rhumbDistance } from "@turf/rhumb-distance";
 import { rhumbDestination } from "@turf/rhumb-destination";
 import { coordEach, featureEach } from "@turf/meta";
 import { point, isObject } from "@turf/helpers";
-import { getCoord, getCoords, getType } from "@turf/invariant";
+import { getCoordRaw, getCoords, getType } from "@turf/invariant";
 
 /**
  * Scale GeoJSON objects from a given point by a scaling factor e.g. factor=2
@@ -131,7 +131,7 @@ function defineOrigin(
 
   // Input Coord
   if (Array.isArray(origin) || typeof origin === "object")
-    return getCoord(origin);
+    return getCoordRaw(origin);
 
   // Define BBox
   const bbox = geojson.bbox

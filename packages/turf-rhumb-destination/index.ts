@@ -8,7 +8,7 @@ import {
   point,
   Units,
 } from "@turf/helpers";
-import { getCoord } from "@turf/invariant";
+import { getCoordRaw } from "@turf/invariant";
 
 /**
  * Returns the destination {@link Point} having travelled the given distance along a Rhumb line from the
@@ -50,7 +50,7 @@ function rhumbDestination<P extends GeoJsonProperties = GeoJsonProperties>(
     "meters"
   );
   if (wasNegativeDistance) distanceInMeters = -Math.abs(distanceInMeters);
-  const coords = getCoord(origin);
+  const coords = getCoordRaw(origin);
   const destination = calculateRhumbDestination(
     coords,
     distanceInMeters,

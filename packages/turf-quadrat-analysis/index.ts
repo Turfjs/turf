@@ -2,7 +2,7 @@ import { BBox, FeatureCollection, Point } from "geojson";
 import { area } from "@turf/area";
 import { bbox as turfBBox } from "@turf/bbox";
 import { bboxPolygon } from "@turf/bbox-polygon";
-import { getCoord } from "@turf/invariant";
+import { getCoordRaw } from "@turf/invariant";
 import { squareGrid } from "@turf/square-grid";
 
 interface QuadratAnalysisResult {
@@ -87,7 +87,7 @@ function quadratAnalysis(
   for (const pt of points) {
     for (const key of Object.keys(quadratIdDict)) {
       const box = quadratIdDict[key].box;
-      if (inBBox(getCoord(pt), box)) {
+      if (inBBox(getCoordRaw(pt), box)) {
         quadratIdDict[key].cnt += 1;
         sumOfPoint += 1;
         break;
