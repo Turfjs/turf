@@ -1,10 +1,11 @@
 import { Feature, Geometry, Polygon, LineString, MultiPoint } from "geojson";
 import { lineIntersect } from "@turf/line-intersect";
+import { lineSplit } from "@turf/line-split";
 import { polygonToLine } from "@turf/polygon-to-line";
 import { booleanEqual } from "@turf/boolean-equal";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { getGeom } from "@turf/invariant";
-import { point } from "@turf/helpers";
+import { feature, lineString as lineStringFeature, point } from "@turf/helpers";
 
 /**
  * Boolean-Crosses returns True if the intersection results in a geometry whose dimension is one less than
@@ -136,8 +137,41 @@ function doLineStringsCross(lineString1: LineString, lineString2: LineString) {
 function doLineStringAndPolygonCross(lineString: LineString, polygon: Polygon) {
   const line: any = polygonToLine(polygon);
   const doLinesIntersect = lineIntersect(lineString, line);
-  if (doLinesIntersect.features.length > 0) {
-    return true;
+  if (doLinesIntersect.features.length === 0) {
+    return false;
+  }
+
+  // The line meets the polygon boundary, but crossing additionally requires the
+  // line to have interior points both inside and outside the polygon. Split the
+  // line on the polygon boundary and inspect each resulting sub-segment: a line
+  // that only touches the boundary (while lying wholly inside or wholly outside)
+  // is not a crossing.
+  const split = lineSplit(
+    lineStringFeature(lineString.coordinates),
+    feature(polygon)
+  );
+  const segments = split.features.length
+    ? split.features
+    : [lineStringFeature(lineString.coordinates)];
+
+  let hasInterior = false;
+  let hasExterior = false;
+  for (const segment of segments) {
+    const coords = segment.geometry.coordinates;
+    for (let i = 0; i < coords.length - 1; i++) {
+      const midpoint = [
+        (coords[i][0] + coords[i + 1][0]) / 2,
+        (coords[i][1] + coords[i + 1][1]) / 2,
+      ];
+      if (booleanPointInPolygon(midpoint, polygon, { ignoreBoundary: true })) {
+        hasInterior = true;
+      } else if (!booleanPointInPolygon(midpoint, polygon)) {
+        hasExterior = true;
+      }
+      if (hasInterior && hasExterior) {
+        return true;
+      }
+    }
   }
   return false;
 }
