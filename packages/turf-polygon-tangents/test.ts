@@ -109,3 +109,24 @@ test("turf-polygon-tangents - Issue #1050", (t) => {
   }
   t.end();
 });
+
+test("turf-polygon-tangents - Issue #2898", (t) => {
+  // When the viewpoint is inside the polygon bbox and the nearest vertex is
+  // below the viewpoint, polygonTangents previously returned the same point
+  // for both tangents instead of two distinct tangent vertices.
+  const pt = point([-79.41285676230808, 43.627309605975235]);
+  const poly = polygon([
+    [
+      [-79.428776, 43.708224],
+      [-79.325734, 43.675502],
+      [-79.414155, 43.595383],
+      [-79.353931, 43.670969],
+      [-79.428776, 43.708224],
+    ],
+  ]);
+  const tangents = polygonTangents(pt, poly);
+  t.equal(tangents.features.length, 2, "returns two features");
+  const [t1, t2] = tangents.features.map((f) => f.geometry.coordinates);
+  t.notDeepEqual(t1, t2, "tangent points must be distinct vertices");
+  t.end();
+});
