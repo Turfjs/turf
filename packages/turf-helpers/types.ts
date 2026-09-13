@@ -1,4 +1,13 @@
-import { BBox, GeometryCollection, LineString, Polygon, Point } from "geojson";
+import {
+  BBox,
+  GeometryCollection,
+  LineString,
+  MultiLineString,
+  MultiPoint,
+  MultiPolygon,
+  Polygon,
+  Point,
+} from "geojson";
 import {
   feature,
   featureCollection,
@@ -199,6 +208,51 @@ const multiLineGeom = geometry(
   multiLine.geometry.coordinates
 );
 const multiPolyGeom = geometry("MultiPolygon", multiPoly.geometry.coordinates);
+
+// Strict coordinates typing
+const geomPoint: Point = geometry("Point", [110, 50]);
+const geomLineString: LineString = geometry("LineString", [
+  [110, 50],
+  [111, 51],
+]);
+const geomPolygon: Polygon = geometry("Polygon", [
+  [
+    [110, 50],
+    [111, 51],
+    [110, 51],
+    [110, 50],
+  ],
+]);
+const geomMultiPoint: MultiPoint = geometry("MultiPoint", [
+  [110, 50],
+  [111, 51],
+]);
+const geomMultiLineString: MultiLineString = geometry("MultiLineString", [
+  [
+    [110, 50],
+    [111, 51],
+  ],
+]);
+const geomMultiPolygon: MultiPolygon = geometry("MultiPolygon", [
+  [
+    [
+      [110, 50],
+      [111, 51],
+      [110, 51],
+      [110, 50],
+    ],
+  ],
+]);
+const notAPosition = [
+  [110, 50],
+  [111, 51],
+];
+// @ts-expect-error — a Point's coordinates must be a single Position
+geometry("Point", notAPosition);
+// @ts-expect-error — a Polygon's coordinates must be nested two levels
+geometry("Polygon", [110, 50]);
+// @ts-expect-error — "GeometryCollection" is not a valid type for geometry()
+geometry("GeometryCollection", []);
 
 // Custom Properties
 const customPt = point([10, 50], { foo: "bar" });
