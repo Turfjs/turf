@@ -1,10 +1,9 @@
 {
-  "type": "Feature",
-  "properties": {},
-  "geometry": {
-    "type": "MultiPolygon",
-    "coordinates": [
-      [
+  "type": "GeometryCollection",
+  "geometries": [
+    {
+      "type": "Polygon",
+      "coordinates": [
         [
           [0, 0],
           [5, 0],
@@ -24,18 +23,19 @@
           [4.5, 5],
           [1, 5]
         ]
-      ],
-      [
-        [
-          [11, 11],
-          [11.5, 11],
-          [12, 11],
-          [12, 12],
-          [11.5, 11.5],
-          [11, 11],
-          [11, 11]
-        ]
       ]
-    ]
-  }
+    },
+    {
+      "type": "LineString",
+      "coordinates": [
+        [11, 11],
+        [11, 11],
+        [11.5, 11],
+        [12, 11],
+        [12, 12],
+        [11.5, 11.5],
+        [11, 11]
+      ]
+    }
+  ]
 }
