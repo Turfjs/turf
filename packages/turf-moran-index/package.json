@@ -4,7 +4,8 @@
   "description": "Measures patterns of attribute values associated with features. Reveals whether similar values tend to occur near each other, or whether high or low values are interspersed",
   "author": "Turf Authors",
   "contributors": [
-    "Haoming Zhuang <@zhuang-hao-ming>"
+    "Haoming Zhuang <@zhuang-hao-ming>",
+    "Modusensus <@modusensus>"
   ],
   "license": "MIT",
   "bugs": {
