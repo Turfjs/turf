@@ -46,10 +46,6 @@ test("turf-nearest-point-on-line", (t) => {
       6
     );
     onLine.properties.pointDistance = round(onLine.properties.pointDistance, 6);
-    // deprecated properties START
-    onLine.properties.dist = round(onLine.properties.dist, 6);
-    onLine.properties.location = round(onLine.properties.location, 6);
-    // deprecated properties END
     onLine.properties["marker-color"] = "#F0F";
     const between = lineString(
       [onLine.geometry.coordinates, point.geometry.coordinates],
