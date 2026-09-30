@@ -75,6 +75,26 @@ function polygonTangents<T extends Polygon | MultiPolygon>(
         rtan,
         ltan
       );
+      // When the nearest-vertex initialisation sets ltan === rtan (both below
+      // the viewpoint), processPolygon may fail to find a distinct left tangent
+      // because every above-viewpoint candidate is considered "above" the
+      // current ltan and therefore not chosen.  Detect this degenerate result
+      // and retry with ltan reset to vertex[0] so the traversal can pick the
+      // correct left tangent.  See https://github.com/Turfjs/turf/issues/2898
+      if (
+        nearestPtIndex !== 0 &&
+        rtan[0] === ltan[0] &&
+        rtan[1] === ltan[1]
+      ) {
+        ltan = polyCoords[0][0];
+        [rtan, ltan] = processPolygon(
+          polyCoords[0],
+          pointCoords,
+          eprev,
+          rtan,
+          ltan
+        );
+      }
       break;
     case "MultiPolygon":
       var closestFeature = 0;
