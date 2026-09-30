@@ -8,6 +8,7 @@ pnpm-debug.log*
 # build caches
 .nx
 .eslintcache
+.pnpm-store
 
 # editor-specific
 .vscode
