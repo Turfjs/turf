@@ -226,12 +226,34 @@ export function feature<
 }
 
 /**
+ * The GeoJSON geometry types that {@link geometry} can create.
+ */
+export type GeometryType =
+  | "Point"
+  | "LineString"
+  | "Polygon"
+  | "MultiPoint"
+  | "MultiLineString"
+  | "MultiPolygon";
+
+// Maps a geometry type to the shape of its `coordinates` argument.
+type CoordinatesFor<T extends GeometryType> = T extends "Point"
+  ? Position
+  : T extends "LineString" | "MultiPoint"
+    ? Position[]
+    : T extends "Polygon" | "MultiLineString"
+      ? Position[][]
+      : T extends "MultiPolygon"
+        ? Position[][][]
+        : never;
+
+/**
  * Creates a GeoJSON {@link Geometry} from a Geometry string type & coordinates.
  * For GeometryCollection type use `helpers.geometryCollection`
  *
  * @function
  * @param {("Point" | "LineString" | "Polygon" | "MultiPoint" | "MultiLineString" | "MultiPolygon")} type Geometry Type
- * @param {Array<any>} coordinates Coordinates
+ * @param {CoordinatesFor<T>} coordinates Coordinates
  * @param {Object} [options={}] Optional Parameters
  * @returns {Geometry} a GeoJSON Geometry
  * @example
@@ -240,38 +262,27 @@ export function feature<
  * var geometry = turf.geometry(type, coordinates);
  * // => geometry
  */
-export function geometry<
-  T extends
-    | "Point"
-    | "LineString"
-    | "Polygon"
-    | "MultiPoint"
-    | "MultiLineString"
-    | "MultiPolygon",
->(
+export function geometry<T extends GeometryType>(
   type: T,
-  coordinates: any[],
+  coordinates: CoordinatesFor<T>,
   _options: Record<string, never> = {}
 ): Extract<Geometry, { type: T }> {
+  // `T` can't be narrowed inside the switch, so re-broaden the coordinates to
+  // the array shapes the constructors below accept.
+  const coords: any[] = coordinates;
   switch (type) {
     case "Point":
-      return point(coordinates).geometry as Extract<Geometry, { type: T }>;
+      return point(coords).geometry as Extract<Geometry, { type: T }>;
     case "LineString":
-      return lineString(coordinates).geometry as Extract<Geometry, { type: T }>;
+      return lineString(coords).geometry as Extract<Geometry, { type: T }>;
     case "Polygon":
-      return polygon(coordinates).geometry as Extract<Geometry, { type: T }>;
+      return polygon(coords).geometry as Extract<Geometry, { type: T }>;
     case "MultiPoint":
-      return multiPoint(coordinates).geometry as Extract<Geometry, { type: T }>;
+      return multiPoint(coords).geometry as Extract<Geometry, { type: T }>;
     case "MultiLineString":
-      return multiLineString(coordinates).geometry as Extract<
-        Geometry,
-        { type: T }
-      >;
+      return multiLineString(coords).geometry as Extract<Geometry, { type: T }>;
     case "MultiPolygon":
-      return multiPolygon(coordinates).geometry as Extract<
-        Geometry,
-        { type: T }
-      >;
+      return multiPolygon(coords).geometry as Extract<Geometry, { type: T }>;
     default:
       throw new Error(type + " is invalid");
   }
