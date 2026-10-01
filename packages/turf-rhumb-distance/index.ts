@@ -1,6 +1,6 @@
 // https://en.wikipedia.org/wiki/Rhumb_line
 import { convertLength, Coord, earthRadius, Units } from "@turf/helpers";
-import { getCoord } from "@turf/invariant";
+import { getCoord, getCoordRaw } from "@turf/invariant";
 
 /**
  * Calculates the distance along a rhumb line between two {@link Point|points} in {@link https://turfjs.org/docs/api/types/Units Units}
@@ -30,7 +30,8 @@ function rhumbDistance(
     units?: Units;
   } = {}
 ): number {
-  const origin = getCoord(from);
+  const origin = getCoordRaw(from);
+  // destination[0] is mutated below, so use the copying getCoord() here.
   const destination = getCoord(to);
 
   // compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)

@@ -7,7 +7,7 @@ import type {
   Position,
 } from "geojson";
 import { lineString } from "@turf/helpers";
-import { getCoord } from "@turf/invariant";
+import { getCoordRaw } from "@turf/invariant";
 import { GreatCircle } from "arc";
 
 /**
@@ -47,8 +47,8 @@ function greatCircle(
   if (typeof options !== "object") throw new Error("options is invalid");
   const { properties = {}, npoints = 100, offset = 10 } = options;
 
-  const startCoord = getCoord(start);
-  const endCoord = getCoord(end);
+  const startCoord = getCoordRaw(start);
+  const endCoord = getCoordRaw(end);
 
   if (startCoord[0] === endCoord[0] && startCoord[1] === endCoord[1]) {
     const arr = Array(npoints).fill([startCoord[0], startCoord[1]]);

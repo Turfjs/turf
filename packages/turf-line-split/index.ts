@@ -3,7 +3,7 @@ import { truncate } from "@turf/truncate";
 import { lineSegment } from "@turf/line-segment";
 import { lineIntersect } from "@turf/line-intersect";
 import { nearestPointOnLine } from "@turf/nearest-point-on-line";
-import { getCoords, getCoord, getType } from "@turf/invariant";
+import { getCoords, getCoord, getCoordRaw, getType } from "@turf/invariant";
 import { featureEach, featureReduce, flattenEach } from "@turf/meta";
 import { lineString, featureCollection, feature } from "@turf/helpers";
 import {
@@ -168,8 +168,8 @@ function splitLineWithPoint(
   var startPoint = getCoords(line)[0];
   var endPoint = getCoords(line)[line.geometry.coordinates.length - 1];
   if (
-    pointsEquals(startPoint, getCoord(splitter)) ||
-    pointsEquals(endPoint, getCoord(splitter))
+    pointsEquals(startPoint, getCoordRaw(splitter)) ||
+    pointsEquals(endPoint, getCoordRaw(splitter))
   )
     return featureCollection([line]);
 
@@ -193,6 +193,8 @@ function splitLineWithPoint(
     segments,
     function (previous, current, index) {
       var currentCoords = getCoords(current)[1];
+      // Must stay copy-safe (getCoord, not getCoordRaw): pushed into `results`
+      // below, which is returned to the caller as new line features.
       var splitterCoords = getCoord(splitter);
 
       // Location where segment intersects with line

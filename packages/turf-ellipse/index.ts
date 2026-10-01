@@ -9,7 +9,7 @@ import {
 } from "@turf/helpers";
 import { destination } from "@turf/destination";
 import { transformRotate } from "@turf/transform-rotate";
-import { getCoord } from "@turf/invariant";
+import { getCoordRaw } from "@turf/invariant";
 import { GeoJsonProperties, Feature, Polygon, Position } from "geojson";
 
 /**
@@ -61,8 +61,10 @@ function ellipse(
   if (!isNumber(steps)) throw new Error("steps must be a number");
   if (!isNumber(angle)) throw new Error("angle must be a number");
 
-  const centerCoords = getCoord(
-    transformRotate(point(getCoord(center)), angle, { pivot })
+  // transformRotate clones its input by default (mutate:false), so it's safe
+  // to hand it a raw, non-copied coordinate reference here.
+  const centerCoords = getCoordRaw(
+    transformRotate(point(getCoordRaw(center)), angle, { pivot })
   );
 
   angle = -90 + angle;

@@ -1,4 +1,4 @@
-import { getCoord } from "@turf/invariant";
+import { getCoordRaw } from "@turf/invariant";
 import { radiansToLength, degreesToRadians, Coord, Units } from "@turf/helpers";
 
 //http://en.wikipedia.org/wiki/Haversine_formula
@@ -33,8 +33,10 @@ function distance(
     units?: Units;
   } = {}
 ) {
-  var coordinates1 = getCoord(from);
-  var coordinates2 = getCoord(to);
+  // getCoordRaw is safe here: both results are only read, never mutated
+  // or embedded in a returned value.
+  var coordinates1 = getCoordRaw(from);
+  var coordinates2 = getCoordRaw(to);
   var dLat = degreesToRadians(coordinates2[1] - coordinates1[1]);
   var dLon = degreesToRadians(coordinates2[0] - coordinates1[0]);
   var lat1 = degreesToRadians(coordinates1[1]);

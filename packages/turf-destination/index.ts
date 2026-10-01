@@ -9,7 +9,7 @@ import {
   radiansToDegrees,
   Units,
 } from "@turf/helpers";
-import { getCoord } from "@turf/invariant";
+import { getCoordRaw } from "@turf/invariant";
 
 /**
  * Takes a {@link Point} and calculates the location of a destination point given a distance in
@@ -47,7 +47,7 @@ function destination<P extends GeoJsonProperties = GeoJsonProperties>(
   } = {}
 ): Feature<Point, P> {
   // Handle input
-  const coordinates1 = getCoord(origin);
+  const coordinates1 = getCoordRaw(origin);
   const longitude1 = degreesToRadians(coordinates1[0]);
   const latitude1 = degreesToRadians(coordinates1[1]);
   const bearingRad = degreesToRadians(bearing);

@@ -1,6 +1,6 @@
 import { Feature, FeatureCollection, Point } from "geojson";
 import { centroid } from "@turf/centroid";
-import { getCoord } from "@turf/invariant";
+import { getCoordRaw } from "@turf/invariant";
 import { featureEach } from "@turf/meta";
 
 /**
@@ -16,8 +16,8 @@ function pNormDistance(
   feature2: Feature<Point>,
   p = 2
 ): number {
-  const coordinate1 = getCoord(feature1);
-  const coordinate2 = getCoord(feature2);
+  const coordinate1 = getCoordRaw(feature1);
+  const coordinate2 = getCoordRaw(feature2);
   const xDiff = coordinate1[0] - coordinate2[0];
   const yDiff = coordinate1[1] - coordinate2[1];
   if (p === 1) {

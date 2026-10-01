@@ -24,6 +24,20 @@ import { isNumber } from "@turf/helpers";
  * //= [10, 10]
  */
 function getCoord(coord: Feature<Point> | Point | number[]): number[] {
+  return [...getCoordRaw(coord)];
+}
+
+/**
+ * Unwrap a coordinate from a Point Feature, Geometry or a single coordinate,
+ * without copying it. For internal use only, in hot paths that only read the
+ * result and never mutate it or store it in a returned GeoJSON object — the
+ * result may alias input geometry, unlike {@link getCoord}.
+ *
+ * @private
+ * @param {Array<number>|Geometry<Point>|Feature<Point>} coord GeoJSON Point or an Array of numbers
+ * @returns {Array<number>} coordinates, by reference
+ */
+function getCoordRaw(coord: Feature<Point> | Point | number[]): number[] {
   if (!coord) {
     throw new Error("coord is required");
   }
@@ -34,10 +48,10 @@ function getCoord(coord: Feature<Point> | Point | number[]): number[] {
       coord.geometry !== null &&
       coord.geometry.type === "Point"
     ) {
-      return [...coord.geometry.coordinates];
+      return coord.geometry.coordinates;
     }
     if (coord.type === "Point") {
-      return [...coord.coordinates];
+      return coord.coordinates;
     }
   }
   if (
@@ -46,7 +60,7 @@ function getCoord(coord: Feature<Point> | Point | number[]): number[] {
     !Array.isArray(coord[0]) &&
     !Array.isArray(coord[1])
   ) {
-    return [...coord];
+    return coord;
   }
 
   throw new Error("coord must be GeoJSON Point or an Array of numbers");
@@ -275,6 +289,7 @@ function getType(
 
 export {
   getCoord,
+  getCoordRaw,
   getCoords,
   containsNumber,
   geojsonType,

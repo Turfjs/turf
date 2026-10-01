@@ -7,7 +7,7 @@ import {
   GeoJsonProperties,
 } from "geojson";
 import { Coord } from "@turf/helpers";
-import { getCoord, getGeom } from "@turf/invariant";
+import { getCoordRaw, getGeom } from "@turf/invariant";
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -54,7 +54,7 @@ function booleanPointInPolygon<
     throw new Error("polygon is required");
   }
 
-  const pt = getCoord(point);
+  const pt = getCoordRaw(point);
   const geom = getGeom(polygon);
   const type = geom.type;
   const bbox = polygon.bbox;
