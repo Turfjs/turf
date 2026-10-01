@@ -3,6 +3,9 @@
   "version": "7.4.0",
   "description": "Takes a bounding box and calculates the minimum square bounding box that would contain the input.",
   "author": "Turf Authors",
+  "contributors": [
+    "Jayesh Bhade <@Jaybhade>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
@@ -50,7 +53,6 @@
     "typescript": "catalog:"
   },
   "dependencies": {
-    "@turf/distance": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@types/geojson": "catalog:"
   },
