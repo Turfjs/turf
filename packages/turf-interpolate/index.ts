@@ -119,7 +119,10 @@ function interpolate<T extends Grid = "square">(
         throw new Error("zValue is missing");
       }
       if (d === 0) {
+        // Use the exact input value instead of distance weighting.
+        sw = 1;
         zw = zValue;
+        return false;
       }
       var w = 1.0 / Math.pow(d, weight);
       sw += w;
