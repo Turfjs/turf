@@ -93,6 +93,15 @@ test("turf-interpolate -- throws errors", (t) => {
     /zValue is missing/,
     "zValue is missing"
   );
+  t.throws(
+    () =>
+      interpolate(featureCollection([point([0, 0])]), 1000, {
+        gridType: "point",
+        bbox: [-1, -1, 1, 1],
+      }),
+    /zValue is missing/,
+    "an exact match still requires a zValue"
+  );
   t.end();
 });
 
@@ -107,6 +116,96 @@ test("turf-interpolate -- zValue from 3rd coordinate", (t) => {
     interpolate(points, cellSize).features.length,
     "zValue from 3rd coordinate"
   );
+  t.end();
+});
+
+test("turf-interpolate -- exact match preserves the input value", (t) => {
+  for (const elevation of [42, 0, -10]) {
+    for (const matchIndex of [0, 1, 2]) {
+      const samples = [
+        point([1, 1], { elevation: 100 }),
+        point([-1, 1], { elevation: 200 }),
+      ];
+      samples.splice(matchIndex, 0, point([0, 0, 999], { elevation }));
+      const points = featureCollection(samples);
+      const original = JSON.stringify(points);
+      const result = interpolate(points, 1000, {
+        gridType: "point",
+        bbox: [-1, -1, 1, 1],
+      });
+
+      t.equal(result.features.length, 1, "one grid point");
+      t.deepEqual(result.features[0].geometry.coordinates, [0, 0]);
+      t.equal(
+        result.features[0].properties.elevation,
+        elevation,
+        `exact value ${elevation} at input index ${matchIndex}`
+      );
+      t.equal(JSON.stringify(points), original, "input is not modified");
+    }
+  }
+  t.end();
+});
+
+test("turf-interpolate -- exact match with different weights", (t) => {
+  const points = featureCollection([
+    point([1, 1], { elevation: 100 }),
+    point([0, 0], { elevation: 42 }),
+  ]);
+  for (const weight of [0.5, 2, 0, -1]) {
+    for (const features of [points.features, [...points.features].reverse()]) {
+      const result = interpolate(featureCollection(features), 1000, {
+        gridType: "point",
+        bbox: [-1, -1, 1, 1],
+        weight,
+      });
+      t.equal(result.features[0].properties.elevation, 42, `weight ${weight}`);
+    }
+  }
+  t.end();
+});
+
+test("turf-interpolate -- exact match uses the third coordinate fallback", (t) => {
+  const result = interpolate(featureCollection([point([0, 0, -10])]), 1000, {
+    gridType: "point",
+    bbox: [-1, -1, 1, 1],
+    property: "temperature",
+  });
+  t.equal(result.features[0].properties.temperature, -10);
+  t.end();
+});
+
+test("turf-interpolate -- exact match at a polygon centroid", (t) => {
+  const result = interpolate(
+    featureCollection([
+      point([1, 1], { elevation: 100 }),
+      point([0, 0], { elevation: 42 }),
+    ]),
+    200,
+    { bbox: [-1, -1, 1, 1] }
+  );
+  t.equal(result.features.length, 1, "one square grid cell");
+  t.equal(result.features[0].properties.elevation, 42);
+  t.end();
+});
+
+test("turf-interpolate -- nonmatching points retain distance weighting", (t) => {
+  const points = featureCollection([
+    point([-1, 0], { elevation: 20 }),
+    point([1, 0], { elevation: 40 }),
+  ]);
+  for (const weight of [0, 1, 2, -1]) {
+    const result = interpolate(points, 1000, {
+      gridType: "point",
+      bbox: [-1, -1, 1, 1],
+      weight,
+    });
+    t.equal(
+      round(result.features[0].properties.elevation),
+      30,
+      `weight ${weight}`
+    );
+  }
   t.end();
 });
 
