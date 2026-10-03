@@ -29,6 +29,14 @@ import { getCoord, getCoords } from "@turf/invariant";
  * multiFeatureIndex, index, location, and dist continue to work as previously
  * until at least the next major release.
  *
+ * `segmentIndex` always refers to the segment on which the nearest point was
+ * found (the segment starting at `coords[segmentIndex]`). When the nearest
+ * point lands exactly on a shared vertex it is *not* advanced to the following
+ * segment. Callers that relied on the previous "favour the next segment"
+ * behaviour (for example turn-by-turn navigation) can reconstruct it with the
+ * {@link atEndOfSegment}, {@link atEndOfLineString} and {@link hasNextSegment}
+ * helpers exported by this package.
+ *
  * @function
  * @param {Geometry|Feature<LineString|MultiLineString>} lines Lines to snap to
  * @param {Geometry|Feature<Point>|number[]} inputPoint Point to snap from
@@ -125,22 +133,17 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
         // segmentLength
         const segmentLength = distance(start, stop, options);
         let intersectPos: Position;
-        let wasEnd: boolean;
 
         // Short circuit if snap point is start or end position of the line
         // Test the end position first for consistency in case they are
         // coincident
         if (stopPos[0] === inputPos[0] && stopPos[1] === inputPos[1]) {
-          [intersectPos, wasEnd] = [stopPos, true];
+          intersectPos = stopPos;
         } else if (startPos[0] === inputPos[0] && startPos[1] === inputPos[1]) {
-          [intersectPos, wasEnd] = [startPos, false];
+          intersectPos = startPos;
         } else {
           // Otherwise, find the nearest point the hard way.
-          [intersectPos, wasEnd] = nearestPointOnSegment(
-            startPos,
-            stopPos,
-            inputPos
-          );
+          [intersectPos] = nearestPointOnSegment(startPos, stopPos, inputPos);
         }
 
         const pointDistance = distance(inputPoint, intersectPos, options);
@@ -149,9 +152,11 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
           const segmentDistance = distance(start, intersectPos, options);
           closestPt = point(intersectPos, {
             lineStringIndex: lineStringIndex,
-            // Legacy behaviour where index progresses to next segment # if we
-            // went with the end point this iteration.
-            segmentIndex: wasEnd ? i + 1 : i,
+            // segmentIndex always refers to the segment on which the point was
+            // found (the one starting at coords[i]), never the following one.
+            // Use atEndOfSegment/hasNextSegment to detect and restore the old
+            // "favour the next segment" behaviour where it is still needed.
+            segmentIndex: i,
             totalDistance: totalDistance + segmentDistance,
             lineDistance: lineDistance + segmentDistance,
             segmentDistance: segmentDistance,
@@ -181,6 +186,94 @@ function nearestPointOnLine<G extends LineString | MultiLineString>(
   );
 
   return closestPt;
+}
+
+/**
+ * The subset of `nearestPointOnLine`'s output that the segment helpers below
+ * rely on. Any point returned by {@link nearestPointOnLine} satisfies this.
+ */
+type NearestPoint = Feature<
+  Point,
+  { segmentIndex: number; lineStringIndex: number; [key: string]: any }
+>;
+
+type LineInput =
+  | Feature<LineString | MultiLineString>
+  | LineString
+  | MultiLineString;
+
+/**
+ * Resolves the array of coordinates for the LineString on which the nearest
+ * point was found, transparently handling Feature vs Geometry inputs and
+ * MultiLineStrings (via lineStringIndex).
+ */
+function resolveLineStringCoords(
+  nearestPoint: NearestPoint,
+  line: LineInput
+): Position[] {
+  const geom = line.type === "Feature" ? line.geometry : line;
+  return geom.type === "MultiLineString"
+    ? geom.coordinates[nearestPoint.properties.lineStringIndex]
+    : geom.coordinates;
+}
+
+/**
+ * Returns true if the nearest point lies exactly on the end vertex of its
+ * segment (i.e. its coordinates equal `coords[segmentIndex + 1]`).
+ *
+ * This is useful to restore the previous Turf behaviour of "favouring the next
+ * segment" when the nearest point falls on a shared vertex between two
+ * segments. Combine with {@link hasNextSegment} to decide whether it is safe to
+ * advance `segmentIndex`.
+ *
+ * @function
+ * @param {Feature<Point>} nearestPoint A point returned by {@link nearestPointOnLine}
+ * @param {Feature<LineString|MultiLineString>|LineString|MultiLineString} line The original line passed to {@link nearestPointOnLine}
+ * @returns {boolean} true if the point is at the end vertex of its segment
+ */
+function atEndOfSegment(nearestPoint: NearestPoint, line: LineInput): boolean {
+  const coords = resolveLineStringCoords(nearestPoint, line);
+  const segmentEnd = coords[nearestPoint.properties.segmentIndex + 1];
+  if (!segmentEnd) return false;
+
+  const [npLng, npLat] = nearestPoint.geometry.coordinates;
+  return npLng === segmentEnd[0] && npLat === segmentEnd[1];
+}
+
+/**
+ * Returns true if the nearest point lies at the very last vertex of its
+ * LineString. For MultiLineStrings, this checks within the specific
+ * sub-LineString identified by `lineStringIndex`.
+ *
+ * @function
+ * @param {Feature<Point>} nearestPoint A point returned by {@link nearestPointOnLine}
+ * @param {Feature<LineString|MultiLineString>|LineString|MultiLineString} line The original line passed to {@link nearestPointOnLine}
+ * @returns {boolean} true if the point is at the end of the LineString
+ */
+function atEndOfLineString(
+  nearestPoint: NearestPoint,
+  line: LineInput
+): boolean {
+  const coords = resolveLineStringCoords(nearestPoint, line);
+  const isLastSegment =
+    nearestPoint.properties.segmentIndex === coords.length - 2;
+  return isLastSegment && atEndOfSegment(nearestPoint, line);
+}
+
+/**
+ * Returns true if there is another segment after the one on which the nearest
+ * point was found, regardless of where on that segment the point landed. Useful
+ * in combination with {@link atEndOfSegment} to determine whether it is safe to
+ * advance to the next segment.
+ *
+ * @function
+ * @param {Feature<Point>} nearestPoint A point returned by {@link nearestPointOnLine}
+ * @param {Feature<LineString|MultiLineString>|LineString|MultiLineString} line The original line passed to {@link nearestPointOnLine}
+ * @returns {boolean} true if a next segment exists
+ */
+function hasNextSegment(nearestPoint: NearestPoint, line: LineInput): boolean {
+  const coords = resolveLineStringCoords(nearestPoint, line);
+  return nearestPoint.properties.segmentIndex < coords.length - 2;
 }
 
 // A simple Vector3 type for cartesian operations.
@@ -319,5 +412,10 @@ function nearestPointOnSegment(
   }
 }
 
-export { nearestPointOnLine };
+export {
+  nearestPointOnLine,
+  atEndOfSegment,
+  atEndOfLineString,
+  hasNextSegment,
+};
 export default nearestPointOnLine;
