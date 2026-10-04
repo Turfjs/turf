@@ -6,7 +6,11 @@ import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
 import { destination } from "@turf/destination";
-import { featureCollection, point } from "@turf/helpers";
+import {
+  calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle,
+  featureCollection,
+  point,
+} from "@turf/helpers";
 import { lineArc } from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -88,14 +92,21 @@ test("turf-line-arc -- reaches bearing2 despite floating-point drift", (t) => {
   // dropped the final vertex, returning `steps` points instead of `steps + 1`
   // and ending the arc a full step short of bearing2.
   const center = point([-75, 40]);
-  const arc = lineArc(center, 5, 0, 29, { steps: 7 });
+  const steps = 7;
+  const radius = 5;
+  const bearing1 = 0;
+  const bearing2 = 29;
+  const arc = lineArc(center, radius, bearing1, bearing2, { steps });
   const coords = arc.geometry.coordinates;
 
   t.equals(coords.length, 7 + 1, "arc has steps + 1 vertices");
 
   // The final vertex must sit on bearing2 (29°). destination(center, r, 29)
   // gives the reference coordinate; the old code stopped at bearing ~24.857°.
-  const expectedLast = destination(center, 5, 29).geometry.coordinates;
+  const circumRadius =
+    calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle(radius, steps);
+  const expectedLast = destination(center, circumRadius, bearing2).geometry
+    .coordinates;
   t.deepEquals(
     truncate(point(coords[coords.length - 1])).geometry.coordinates,
     truncate(point(expectedLast)).geometry.coordinates,
