@@ -1,0 +1,64 @@
+{
+  "name": "@turf/multiGeometryScale",
+  "version": "1.0.0",
+  "description": "Scales a multiGeometry without disturbing the relative distance",
+  "author": "Mishor Patra",
+  "contributors": [],
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "funding": "https://opencollective.com/turf",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "translate",
+    "multiPolygon",
+    "multiPoint",
+    "multiLineString"
+  ],
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "scripts": {
+    "bench": "tsx bench.ts",
+    "build": "tsc --build",
+    "test": "pnpm run /test:.*/",
+    "test:tape": "tsx test.ts"
+  },
+  "devDependencies": {
+    "@types/benchmark": "catalog:",
+    "@types/tape": "catalog:",
+    "benchmark": "catalog:",
+    "load-json-file": "^7.0.1",
+    "tape": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "write-json-file": "catalog:"
+  },
+  "dependencies": {
+    "@turf/center-of-mass": "workspace:*",
+    "@turf/helpers": "^7.4.0",
+    "@types/geojson": "catalog:"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
