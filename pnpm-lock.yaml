@@ -2928,43 +2928,6 @@ importers:
         specifier: 'catalog:'
         version: 6.0.0
 
-  packages/turf-group-translate:
-    dependencies:
-      '@turf/center-of-mass':
-        specifier: workspace:*
-        version: link:../turf-center-of-mass
-      '@turf/helpers':
-        specifier: ^7.4.0
-        version: 7.4.0
-      '@types/geojson':
-        specifier: 'catalog:'
-        version: 7946.0.14
-    devDependencies:
-      '@types/benchmark':
-        specifier: 'catalog:'
-        version: 2.1.5
-      '@types/tape':
-        specifier: 'catalog:'
-        version: 5.8.1
-      benchmark:
-        specifier: 'catalog:'
-        version: 2.1.4
-      load-json-file:
-        specifier: ^7.0.1
-        version: 7.0.1
-      tape:
-        specifier: 'catalog:'
-        version: 5.10.2
-      tsx:
-        specifier: 'catalog:'
-        version: 4.23.9
-      typescript:
-        specifier: 'catalog:'
-        version: 6.0.3
-      write-json-file:
-        specifier: 'catalog:'
-        version: 6.0.0
-
   packages/turf-helpers:
     dependencies:
       '@types/geojson':
@@ -3967,6 +3930,43 @@ importers:
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
+      '@types/geojson':
+        specifier: 'catalog:'
+        version: 7946.0.14
+    devDependencies:
+      '@types/benchmark':
+        specifier: 'catalog:'
+        version: 2.1.5
+      '@types/tape':
+        specifier: 'catalog:'
+        version: 5.8.1
+      benchmark:
+        specifier: 'catalog:'
+        version: 2.1.4
+      load-json-file:
+        specifier: ^7.0.1
+        version: 7.0.1
+      tape:
+        specifier: 'catalog:'
+        version: 5.10.2
+      tsx:
+        specifier: 'catalog:'
+        version: 4.23.9
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      write-json-file:
+        specifier: 'catalog:'
+        version: 6.0.0
+
+  packages/turf-multi-geometry-scale:
+    dependencies:
+      '@turf/center-of-mass':
+        specifier: workspace:*
+        version: link:../turf-center-of-mass
+      '@turf/helpers':
+        specifier: ^7.4.0
+        version: 7.4.0
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
