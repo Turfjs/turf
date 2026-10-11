@@ -1,6 +1,7 @@
 import fs from "fs";
 import test from "tape";
 import path from "path";
+import { GeoJSON } from "geojson";
 import { geojsonEquality } from "geojson-equality-ts";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
@@ -34,7 +35,7 @@ test("turf-clean-coords", (t) => {
   fixtures.forEach((fixture) => {
     const filename = fixture.filename;
     const name = fixture.name;
-    const geojson = fixture.geojson;
+    const geojson = fixture.geojson as any as GeoJSON;
     const results = cleanCoords(geojson);
 
     if (process.env.REGEN)
@@ -108,7 +109,11 @@ test("turf-clean-coords -- truncate", (t) => {
 });
 
 test("turf-clean-coords -- throws", (t) => {
-  t.throws(() => cleanCoords(null), /geojson is required/, "missing geojson");
+  t.throws(
+    () => cleanCoords(null as any),
+    /geojson is required/,
+    "missing geojson"
+  );
   t.end();
 });
 
@@ -316,5 +321,31 @@ test("turf-clean-coords - multipolygon - issue #918", (t) => {
     "invalid polygon"
   );
 
+  t.end();
+});
+
+test("turf-clean-coords - degenerate linestring", (t) => {
+  const ls = lineString([
+    [1, 1],
+    [1, 1],
+  ]);
+  const clean = cleanCoords(ls);
+
+  t.true(geojsonEquality(clean, ls), "degenerate linestring is valid");
+  t.end();
+});
+
+test("turf-clean-coords - epsilon passed to booleanPointOnLine", (t) => {
+  const ls = lineString([
+    [1, 1],
+    [1, 1.5],
+    [1.000001, 2],
+  ]);
+  const clean = cleanCoords(ls);
+  const cleanEpsilon = cleanCoords(ls, { epsilon: 0.001 });
+
+  // When passing epsilon through correctly, this case will only have two points in the output
+  t.equals(clean.geometry.coordinates.length, 3);
+  t.equals(cleanEpsilon.geometry.coordinates.length, 2);
   t.end();
 });
