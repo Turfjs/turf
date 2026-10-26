@@ -1,4 +1,5 @@
 import {
+  convertLength,
   polygon,
   isObject,
   isNumber,
@@ -7,6 +8,7 @@ import {
   point,
   radiansToDegrees,
 } from "@turf/helpers";
+import { area } from "@turf/area";
 import { destination } from "@turf/destination";
 import { transformRotate } from "@turf/transform-rotate";
 import { getCoord } from "@turf/invariant";
@@ -65,95 +67,110 @@ function ellipse(
     transformRotate(point(getCoord(center)), angle, { pivot })
   );
 
-  angle = -90 + angle;
-
   // Divide steps by 4 for one quadrant
   steps = Math.ceil(steps / 4);
 
-  let quadrantParameters = [];
-  let parameters = [];
+  const getParameters = (a: number, b: number, k: number) => {
+    const quadrantParameters = [];
+    const parameters = [];
 
-  const a = xSemiAxis;
-  const b = ySemiAxis;
+    // Gradient x intersect
+    const c = b;
 
-  // Gradient x intersect
-  const c = b;
+    // Gradient of line
+    const m = (a - b) / (Math.PI / 2);
 
-  // Gradient of line
-  const m = (a - b) / (Math.PI / 2);
+    // Area under line
+    const A = ((a + b) * Math.PI) / 4;
 
-  // Area under line
-  const A = ((a + b) * Math.PI) / 4;
+    // Weighting function
+    const v = 0.5;
 
-  // Weighting function
-  const v = 0.5;
+    let w = 0;
+    let x = 0;
 
-  const k = steps;
+    for (let i = 0; i < steps; i++) {
+      x += w;
 
-  let w = 0;
-  let x = 0;
-
-  for (let i = 0; i < steps; i++) {
-    x += w;
-
-    if (m === 0) {
-      // It's a circle, so use simplified c*w - A/k == 0
-      w = A / k / c;
-    } else {
-      // Otherwise, use full (v*m)*w^2 + (m*x+c)*w - A/k == 0
-      // Solve as quadratic ax^2 + bx + c = 0
-      w =
-        (-(m * x + c) +
-          Math.sqrt(Math.pow(m * x + c, 2) - 4 * (v * m) * -(A / k))) /
-        (2 * (v * m));
+      if (m === 0) {
+        // It's a circle, so use simplified c*w - A/k == 0
+        w = A / k / c;
+      } else {
+        // Otherwise, use full (v*m)*w^2 + (m*x+c)*w - A/k == 0
+        // Solve as quadratic ax^2 + bx + c = 0
+        w =
+          (-(m * x + c) +
+            Math.sqrt(Math.pow(m * x + c, 2) - 4 * (v * m) * -(A / k))) /
+          (2 * (v * m));
+      }
+      if (x != 0) {
+        // easier to add it later to avoid having twice the same point
+        quadrantParameters.push(x);
+      }
     }
-    if (x != 0) {
-      // easier to add it later to avoid having twice the same point
-      quadrantParameters.push(x);
+
+    //NE
+    parameters.push(0);
+    for (let i = 0; i < quadrantParameters.length; i++) {
+      parameters.push(quadrantParameters[i]);
     }
-  }
+    //NW
+    parameters.push(Math.PI / 2);
+    for (let i = 0; i < quadrantParameters.length; i++) {
+      parameters.push(
+        Math.PI - quadrantParameters[quadrantParameters.length - i - 1]
+      );
+    }
+    //SW
+    parameters.push(Math.PI);
+    for (let i = 0; i < quadrantParameters.length; i++) {
+      parameters.push(Math.PI + quadrantParameters[i]);
+    }
+    //SE
+    parameters.push((3 * Math.PI) / 2);
+    for (let i = 0; i < quadrantParameters.length; i++) {
+      parameters.push(
+        2 * Math.PI - quadrantParameters[quadrantParameters.length - i - 1]
+      );
+    }
+    parameters.push(0);
+    return parameters;
+  };
 
-  //NE
-  parameters.push(0);
-  for (let i = 0; i < quadrantParameters.length; i++) {
-    parameters.push(quadrantParameters[i]);
-  }
-  //NW
-  parameters.push(Math.PI / 2);
-  for (let i = 0; i < quadrantParameters.length; i++) {
-    parameters.push(
-      Math.PI - quadrantParameters[quadrantParameters.length - i - 1]
-    );
-  }
-  //SW
-  parameters.push(Math.PI);
-  for (let i = 0; i < quadrantParameters.length; i++) {
-    parameters.push(Math.PI + quadrantParameters[i]);
-  }
-  //SE
-  parameters.push((3 * Math.PI) / 2);
-  for (let i = 0; i < quadrantParameters.length; i++) {
-    parameters.push(
-      2 * Math.PI - quadrantParameters[quadrantParameters.length - i - 1]
-    );
-  }
-  parameters.push(0);
+  const constructCoords = (a: number, b: number, k: number): Position[] => {
+    const coords: Position[] = [];
+    for (const param of getParameters(a, b, k)) {
+      const theta = Math.atan2(b * Math.sin(param), a * Math.cos(param));
+      const r = Math.sqrt(
+        (Math.pow(a, 2) * Math.pow(b, 2)) /
+          (Math.pow(a * Math.sin(theta), 2) + Math.pow(b * Math.cos(theta), 2))
+      );
+      coords.push(
+        destination(centerCoords, r, angle + radiansToDegrees(theta), {
+          units: units,
+        }).geometry.coordinates
+      );
+    }
+    return coords;
+  };
 
-  // We can now construct the ellipse
-  const coords: Position[] = [];
-  for (const param of parameters) {
-    const theta = Math.atan2(b * Math.sin(param), a * Math.cos(param));
-    const r = Math.sqrt(
-      (Math.pow(a, 2) * Math.pow(b, 2)) /
-        (Math.pow(a * Math.sin(theta), 2) + Math.pow(b * Math.cos(theta), 2))
-    );
-    coords.push(
-      destination(centerCoords, r, angle + radiansToDegrees(theta), {
-        units: units,
-      }).geometry.coordinates
-    );
-  }
-  return polygon([coords], properties);
+  angle = -90 + angle;
+
+  // construct the ellipse
+  const coords: Position[] = constructCoords(xSemiAxis, ySemiAxis, steps);
+
+  // the area is smaller than the true ellipse, so we need to scale it up to match the area of the real ellipse
+  const polygonArea = area(polygon([coords])); // in meters squared
+  const ellipseArea =
+    Math.PI *
+    convertLength(xSemiAxis, units, "meters") *
+    convertLength(ySemiAxis, units, "meters");
+  const scaleFactor = Math.sqrt(ellipseArea / polygonArea);
+  const a1 = xSemiAxis * scaleFactor;
+  const b1 = ySemiAxis * scaleFactor;
+
+  const coords1: Position[] = constructCoords(a1, b1, steps);
+  return polygon([coords1], properties);
 }
 
 export { ellipse };
