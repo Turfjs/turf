@@ -81,6 +81,41 @@ test("center of mass -- no area", (t) => {
   t.end();
 });
 
+test("center of mass -- polygon with a hole", (t) => {
+  const outer = [
+    [0, 0],
+    [10, 0],
+    [10, 10],
+    [0, 10],
+    [0, 0],
+  ];
+  const hole = [
+    [6, 2],
+    [6, 4],
+    [8, 4],
+    [8, 2],
+    [6, 2],
+  ];
+  const expected = point([59 / 12, 61 / 12]);
+
+  for (const reverseOuter of [false, true]) {
+    for (const reverseHole of [false, true]) {
+      const poly = polygon([
+        reverseOuter ? outer.slice().reverse() : outer,
+        reverseHole ? hole.slice().reverse() : hole,
+      ]);
+      const winding = `outer reversed: ${reverseOuter}, hole reversed: ${reverseHole}`;
+      t.deepEqual(centerOfMass(poly), expected, `feature, ${winding}`);
+      t.deepEqual(
+        centerOfMass(poly.geometry),
+        expected,
+        `geometry, ${winding}`
+      );
+    }
+  }
+  t.end();
+});
+
 test("center of mass -- point", (t) => {
   const p = point([0, 0]);
   const pt = centerOfMass(p);
