@@ -23,13 +23,21 @@ this function. The new properties we recommend using as of v7.4 are:
 multiFeatureIndex, index, location, and dist continue to work as previously
 until at least the next major release.
 
+`segmentIndex` always refers to the segment on which the nearest point was
+found (the segment starting at `coords[segmentIndex]`). When the nearest
+point lands exactly on a shared vertex it is *not* advanced to the following
+segment. Callers that relied on the previous "favour the next segment"
+behaviour (for example turn-by-turn navigation) can reconstruct it with the
+[atEndOfSegment][1], [atEndOfLineString][2] and [hasNextSegment][3]
+helpers exported by this package.
+
 ### Parameters
 
-*   `lines` **([Geometry][1] | [Feature][2]<([LineString][3] | [MultiLineString][4])>)** Lines to snap to
-*   `inputPoint` **([Geometry][1] | [Feature][2]<[Point][5]> | [Array][6]<[number][7]>)** Point to snap from
-*   `options` **[Object][8]** Optional parameters (optional, default `{}`)
+*   `lines` **([Geometry][4] | [Feature][5]<([LineString][6] | [MultiLineString][7])>)** Lines to snap to
+*   `inputPoint` **([Geometry][4] | [Feature][5]<[Point][8]> | [Array][9]<[number][10]>)** Point to snap from
+*   `options` **[Object][11]** Optional parameters (optional, default `{}`)
 
-    *   `options.units` **Units** Supports all valid Turf [Units][9] (optional, default `'kilometers'`)
+    *   `options.units` **Units** Supports all valid Turf [Units][12] (optional, default `'kilometers'`)
 
 ### Examples
 
@@ -51,25 +59,103 @@ var addToMap = [line, inputPoint, snapped];
 snapped.properties['marker-color'] = '#00f';
 ```
 
-Returns **[Feature][2]<[Point][5]>** closest point on the `lines` to the `inputPoint`. The point will have the following properties: `lineStringIndex`: closest point was found on the nth LineString (only relevant if input is MultiLineString), `segmentIndex`: closest point was found on nth line segment of the LineString, `totalDistance`: distance along the line from the absolute start of the MultiLineString, `lineDistance`: distance along the line from the start of the LineString where the closest point was found, `segmentDistance`: distance along the line from the start of the line segment where the closest point was found, `pointDistance`: distance to the input point.
+Returns **[Feature][5]<[Point][8]>** closest point on the `lines` to the `inputPoint`. The point will have the following properties: `lineStringIndex`: closest point was found on the nth LineString (only relevant if input is MultiLineString), `segmentIndex`: closest point was found on nth line segment of the LineString, `totalDistance`: distance along the line from the absolute start of the MultiLineString, `lineDistance`: distance along the line from the start of the LineString where the closest point was found, `segmentDistance`: distance along the line from the start of the line segment where the closest point was found, `pointDistance`: distance to the input point.
 
-[1]: https://tools.ietf.org/html/rfc7946#section-3.1
+## NearestPoint
 
-[2]: https://tools.ietf.org/html/rfc7946#section-3.2
+The subset of `nearestPointOnLine`'s output that the segment helpers below
+rely on. Any point returned by [nearestPointOnLine][13] satisfies this.
 
-[3]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+Type: [Feature][5]<[Point][8], {segmentIndex: [number][10], lineStringIndex: [number][10], : any}>
 
-[4]: https://tools.ietf.org/html/rfc7946#section-3.1.5
+## resolveLineStringCoords
 
-[5]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+Resolves the array of coordinates for the LineString on which the nearest
+point was found, transparently handling Feature vs Geometry inputs and
+MultiLineStrings (via lineStringIndex).
 
-[6]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+### Parameters
 
-[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+*   `nearestPoint` **[NearestPoint][14]**&#x20;
+*   `line` **LineInput**&#x20;
 
-[8]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+Returns **[Array][9]<[Position][15]>**&#x20;
 
-[9]: https://turfjs.org/docs/api/types/Units
+## atEndOfSegment
+
+Returns true if the nearest point lies exactly on the end vertex of its
+segment (i.e. its coordinates equal `coords[segmentIndex + 1]`).
+
+This is useful to restore the previous Turf behaviour of "favouring the next
+segment" when the nearest point falls on a shared vertex between two
+segments. Combine with [hasNextSegment][3] to decide whether it is safe to
+advance `segmentIndex`.
+
+### Parameters
+
+*   `nearestPoint` **[Feature][5]<[Point][8]>** A point returned by [nearestPointOnLine][13]
+*   `line` **([Feature][5]<([LineString][6] | [MultiLineString][7])> | [LineString][6] | [MultiLineString][7])** The original line passed to [nearestPointOnLine][13]
+
+Returns **[boolean][16]** true if the point is at the end vertex of its segment
+
+## atEndOfLineString
+
+Returns true if the nearest point lies at the very last vertex of its
+LineString. For MultiLineStrings, this checks within the specific
+sub-LineString identified by `lineStringIndex`.
+
+### Parameters
+
+*   `nearestPoint` **[Feature][5]<[Point][8]>** A point returned by [nearestPointOnLine][13]
+*   `line` **([Feature][5]<([LineString][6] | [MultiLineString][7])> | [LineString][6] | [MultiLineString][7])** The original line passed to [nearestPointOnLine][13]
+
+Returns **[boolean][16]** true if the point is at the end of the LineString
+
+## hasNextSegment
+
+Returns true if there is another segment after the one on which the nearest
+point was found, regardless of where on that segment the point landed. Useful
+in combination with [atEndOfSegment][1] to determine whether it is safe to
+advance to the next segment.
+
+### Parameters
+
+*   `nearestPoint` **[Feature][5]<[Point][8]>** A point returned by [nearestPointOnLine][13]
+*   `line` **([Feature][5]<([LineString][6] | [MultiLineString][7])> | [LineString][6] | [MultiLineString][7])** The original line passed to [nearestPointOnLine][13]
+
+Returns **[boolean][16]** true if a next segment exists
+
+[1]: #atendofsegment
+
+[2]: #atendoflinestring
+
+[3]: #hasnextsegment
+
+[4]: https://tools.ietf.org/html/rfc7946#section-3.1
+
+[5]: https://tools.ietf.org/html/rfc7946#section-3.2
+
+[6]: https://tools.ietf.org/html/rfc7946#section-3.1.4
+
+[7]: https://tools.ietf.org/html/rfc7946#section-3.1.5
+
+[8]: https://tools.ietf.org/html/rfc7946#section-3.1.2
+
+[9]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[10]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[11]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[12]: https://turfjs.org/docs/api/types/Units
+
+[13]: #nearestpointonline
+
+[14]: #nearestpoint
+
+[15]: https://developer.mozilla.org/docs/Web/API/Position
+
+[16]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
 <!-- This file is automatically generated. Please don't edit it directly. If you find an error, edit the source file of the module in question (likely index.js or index.ts), and re-run "yarn docs" from the root of the turf project. -->
 
