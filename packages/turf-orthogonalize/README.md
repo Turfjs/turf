@@ -15,8 +15,8 @@ Balances squaring every matching corner against moving the vertices, based on Lo
 squared, though moving their neighbors can change their angle.
 
 Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
-apart. A ring stays unchanged if squaring would fold it or if it is beyond the Mercator latitude
-limit of 85.05°.
+apart. A ring stays unchanged if squaring would fold it or cross its edges, or if it is beyond the
+Mercator latitude limit of 85.05°.
 
 ### Parameters
 

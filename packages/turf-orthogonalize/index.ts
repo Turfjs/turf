@@ -7,7 +7,7 @@ import type {
   Position,
 } from "geojson";
 import { clone } from "@turf/clone";
-import { degreesToRadians } from "@turf/helpers";
+import { AllGeoJSON, degreesToRadians } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
 import { toMercator, toWgs84 } from "@turf/projection";
 
@@ -23,8 +23,8 @@ import { toMercator, toWgs84 } from "@turf/projection";
  * squared, though moving their neighbors can change their angle.
  *
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
- * apart. A ring stays unchanged if squaring would fold it or if it is beyond the Mercator latitude
- * limit of 85.05°.
+ * apart. A ring stays unchanged if squaring would fold it or cross its edges, or if it is beyond the
+ * Mercator latitude limit of 85.05°.
  *
  * @function
  * @param {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up. Other geometries in a FeatureCollection are copied as they are
@@ -42,7 +42,7 @@ import { toMercator, toWgs84 } from "@turf/projection";
 function orthogonalize<
   T extends
     | Feature<Polygon | MultiPolygon>
-    | FeatureCollection
+    | FeatureCollection<Geometry | null>
     | Polygon
     | MultiPolygon,
 >(geojson: T, options: { thresholdDegrees?: number } = {}): T {
@@ -50,7 +50,7 @@ function orthogonalize<
   if (!(thresholdDegrees >= 0 && thresholdDegrees <= 45)) {
     throw new Error("thresholdDegrees must be between 0 and 45");
   }
-  const result = clone(geojson);
+  const result = clone(geojson as AllGeoJSON) as T;
   geomEach(result as FeatureCollection<Geometry | null>, (geometry) => {
     if (geometry?.type !== "Polygon" && geometry?.type !== "MultiPolygon") {
       if (geometry && geojson.type !== "FeatureCollection") {
@@ -58,11 +58,9 @@ function orthogonalize<
       }
       return;
     }
-    const polygons =
-      geometry.type === "Polygon"
-        ? [geometry.coordinates]
-        : geometry.coordinates;
-    for (const ring of polygons.flat()) {
+    for (const ring of geometry.type === "Polygon"
+      ? geometry.coordinates
+      : geometry.coordinates.flat()) {
       orthogonalizeRing(ring, degreesToRadians(thresholdDegrees));
     }
   });
@@ -78,7 +76,7 @@ const DIAGONAL_THRESHOLD_RADIANS = degreesToRadians(8);
 // weights make corners more exact but let impossible corner sets distort the ring.
 const CORNER_WEIGHT = 10;
 const CONVERGED_STEP_METERS = 1e-6;
-const CONVERGED_RESIDUAL = 1e-6;
+const FOLDED_COSINE = 1 - 1e-6;
 
 type CornerKind = "square" | "straight" | "acute" | "obtuse";
 
@@ -104,83 +102,78 @@ function orthogonalizeRing(ring: Position[], thresholdRadians: number) {
     } else if (cosine < -Math.cos(STRAIGHT_THRESHOLD_RADIANS)) {
       corners.push({ vertex, kind: "straight" });
     } else if (
-      Math.abs(Math.acos(cosine) - Math.PI / 4) < DIAGONAL_THRESHOLD_RADIANS
-    ) {
-      corners.push({ vertex, kind: "acute" });
-    } else if (
-      Math.abs(Math.acos(cosine) - (3 * Math.PI) / 4) <
+      Math.abs(Math.acos(Math.abs(cosine)) - Math.PI / 4) <
       DIAGONAL_THRESHOLD_RADIANS
     ) {
-      corners.push({ vertex, kind: "obtuse" });
+      corners.push({ vertex, kind: cosine > 0 ? "acute" : "obtuse" });
     }
   }
 
-  // A ring that needs nothing keeps its exact coordinates, free of projection rounding.
-  const isSquared = corners.every(
-    ({ vertex, kind }) =>
-      Math.abs(measureCorner(original, vertex, kind).residual) <
-      CONVERGED_RESIDUAL
-  );
-  if (!isSquared) {
-    const perimeter = vertices.reduce((sum, _, i) => {
-      const next = (i + 1) % vertices.length;
-      return (
-        sum +
-        Math.hypot(
-          original[2 * next] - original[2 * i],
-          original[2 * next + 1] - original[2 * i + 1]
-        )
-      );
-    }, 0);
-    const cornerWeight = CORNER_WEIGHT * (perimeter / vertices.length) ** 2;
-    const current = original.slice();
+  const perimeter = vertices.reduce((sum, _, i) => {
+    const next = (i + 1) % vertices.length;
+    return (
+      sum +
+      Math.hypot(
+        original[2 * next] - original[2 * i],
+        original[2 * next + 1] - original[2 * i + 1]
+      )
+    );
+  }, 0);
+  const cornerWeight = CORNER_WEIGHT * (perimeter / vertices.length) ** 2;
+  const current = original.slice();
 
-    // Gauss-Newton. Each round linearizes the corners and solves for the best step.
-    for (let round = 0; round < 50; round++) {
-      const linearized = corners.map(({ vertex, kind }) =>
-        measureCorner(current, vertex, kind)
-      );
-      // Minimize |step - (original - current)|² + cornerWeight Σ (residual + gradient · step)².
-      const target = original.map((value, i) => value - current[i]);
-      for (const { residual, indices, gradient } of linearized) {
+  // Gauss-Newton. Each round linearizes the corners and solves for the best step.
+  for (let round = 0; round < 50; round++) {
+    const linearized = corners.map(({ vertex, kind }) =>
+      measureCorner(current, vertex, kind)
+    );
+    // Minimize |step - (original - current)|² + cornerWeight Σ (residual + gradient · step)².
+    const target = original.map((value, i) => value - current[i]);
+    for (const { residual, indices, gradient } of linearized) {
+      indices.forEach((index, k) => {
+        target[index] -= cornerWeight * residual * gradient[k];
+      });
+    }
+    const step = conjugateGradient((vector) => {
+      const product = vector.slice();
+      for (const { indices, gradient } of linearized) {
+        const dot = indices.reduce(
+          (sum, index, k) => sum + gradient[k] * vector[index],
+          0
+        );
         indices.forEach((index, k) => {
-          target[index] -= cornerWeight * residual * gradient[k];
+          product[index] += cornerWeight * dot * gradient[k];
         });
       }
-      const step = conjugateGradient((vector) => {
-        const product = vector.slice();
-        for (const { indices, gradient } of linearized) {
-          const dot = indices.reduce(
-            (sum, index, k) => sum + gradient[k] * vector[index],
-            0
-          );
-          indices.forEach((index, k) => {
-            product[index] += cornerWeight * dot * gradient[k];
-          });
-        }
-        return product;
-      }, target);
-      step.forEach((value, i) => (current[i] += value));
-      if (step.every((value) => Math.abs(value) < CONVERGED_STEP_METERS)) break;
-    }
+      return product;
+    }, target);
+    step.forEach((value, i) => (current[i] += value));
+    if (step.every((value) => Math.abs(value) < CONVERGED_STEP_METERS)) break;
+  }
 
-    // Corners that can't all be square, like two right angles on a thin triangle, can fold the ring.
-    const isFolded = vertices.some(
+  // A corner squeezed shut folds its two edges flat onto each other, which never counts as crossing.
+  const isFolded =
+    hasCrossingEdges(current) ||
+    vertices.some(
       (_, vertex) =>
-        !(
-          measureCorner(current, vertex, "square").residual <
-          1 - CONVERGED_RESIDUAL
-        )
+        !(measureCorner(current, vertex, "square").residual < FOLDED_COSINE)
     );
-    if (isFolded) return;
+  if (isFolded) return;
 
-    vertices.forEach((position, i) => {
+  // Vertices that barely moved keep their exact coordinates, free of projection rounding.
+  vertices.forEach((position, i) => {
+    if (
+      Math.hypot(
+        current[2 * i] - original[2 * i],
+        current[2 * i + 1] - original[2 * i + 1]
+      ) >= CONVERGED_STEP_METERS
+    ) {
       [position[0], position[1]] = toWgs84([
         current[2 * i],
         current[2 * i + 1],
       ]);
-    });
-  }
+    }
+  });
   ring.splice(0, ring.length, ...vertices, vertices[0].slice());
 }
 
@@ -231,6 +224,32 @@ function measureCorner(
   };
 }
 
+// Corners that can't all be square, like those on a narrow comb, can push edges across each other.
+function hasCrossingEdges(coordinates: number[]) {
+  const count = coordinates.length / 2;
+  // The sign says which side of the line through a and b the point c is on.
+  const getSide = (a: number, b: number, c: number) =>
+    (coordinates[2 * b] - coordinates[2 * a]) *
+      (coordinates[2 * c + 1] - coordinates[2 * a + 1]) -
+    (coordinates[2 * b + 1] - coordinates[2 * a + 1]) *
+      (coordinates[2 * c] - coordinates[2 * a]);
+  for (let a = 0; a < count; a++) {
+    const b = (a + 1) % count;
+    // Neighboring edges share a vertex, so they can't properly cross.
+    for (let c = a + 2; c < count; c++) {
+      const d = (c + 1) % count;
+      if (
+        d !== a &&
+        getSide(a, b, c) * getSide(a, b, d) < 0 &&
+        getSide(c, d, a) * getSide(c, d, b) < 0
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 // Solves multiply(x) = target for a symmetric positive definite operator.
 function conjugateGradient(
   multiply: (vector: number[]) => number[],
@@ -242,7 +261,7 @@ function conjugateGradient(
   const residual = target.slice();
   const direction = target.slice();
   let residualSquared = dot(residual, residual);
-  for (let i = 0; i < target.length && residualSquared > 1e-20; i++) {
+  for (let i = 0; i < target.length && residualSquared > 1e-14; i++) {
     const product = multiply(direction);
     const stepSize = residualSquared / dot(direction, product);
     direction.forEach((value, j) => {

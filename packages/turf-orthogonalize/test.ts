@@ -1,4 +1,11 @@
-import { Feature, MultiPolygon, Point, Polygon, Position } from "geojson";
+import {
+  Feature,
+  FeatureCollection,
+  MultiPolygon,
+  Point,
+  Polygon,
+  Position,
+} from "geojson";
 import fs from "fs";
 import test from "tape";
 import path from "path";
@@ -27,6 +34,30 @@ const fixtures = fs.readdirSync(directories.in).map((filename) => {
   };
 });
 
+const nearSquare = polygon([
+  [
+    [0, 0],
+    [0.001, 0.00005],
+    [0.00095, 0.001],
+    [-0.00005, 0.00095],
+    [0, 0],
+  ],
+]);
+
+const getAngles = (ring: Position[]) =>
+  ring.slice(0, -1).map((position, i) => {
+    const previous = ring[(i + ring.length - 2) % (ring.length - 1)];
+    const [ax, ay] = [previous[0] - position[0], previous[1] - position[1]];
+    const [bx, by] = [
+      ring[i + 1][0] - position[0],
+      ring[i + 1][1] - position[1],
+    ];
+    return (
+      (Math.atan2(Math.abs(ax * by - ay * bx), ax * bx + ay * by) * 180) /
+      Math.PI
+    );
+  });
+
 test("orthogonalize", (t) => {
   for (const { filename, name, geojson } of fixtures) {
     const squared = orthogonalize(geojson, geojson.properties ?? {});
@@ -47,17 +78,9 @@ test("orthogonalize -- squares corners on the ground", (t) => {
   const rectangle = fixtures.find(({ name }) => name === "rectangle")!.geojson;
   const ring = toMercator(orthogonalize(rectangle)).geometry
     .coordinates[0] as Position[];
-  for (let i = 0; i < ring.length - 1; i++) {
-    const previous = ring[(i + ring.length - 2) % (ring.length - 1)];
-    const [ax, ay] = [previous[0] - ring[i][0], previous[1] - ring[i][1]];
-    const [bx, by] = [ring[i + 1][0] - ring[i][0], ring[i + 1][1] - ring[i][1]];
-    const cosine =
-      (ax * bx + ay * by) / Math.hypot(ax, ay) / Math.hypot(bx, by);
-    t.ok(
-      Math.abs(cosine) < Math.sin((0.5 * Math.PI) / 180),
-      `corner ${i} is within 0.5° of square`
-    );
-  }
+  getAngles(ring).forEach((angle, i) => {
+    t.ok(Math.abs(angle - 90) < 0.5, `corner ${i} is within 0.5° of square`);
+  });
   t.end();
 });
 
@@ -76,17 +99,9 @@ test("orthogonalize -- squares across repeated vertices", (t) => {
   );
   const ring = toMercator(squared).geometry.coordinates[0] as Position[];
   t.equal(ring.length, 5, "drops the repeat");
-  for (let i = 0; i < ring.length - 1; i++) {
-    const previous = ring[(i + ring.length - 2) % (ring.length - 1)];
-    const [ax, ay] = [previous[0] - ring[i][0], previous[1] - ring[i][1]];
-    const [bx, by] = [ring[i + 1][0] - ring[i][0], ring[i + 1][1] - ring[i][1]];
-    const cosine =
-      (ax * bx + ay * by) / Math.hypot(ax, ay) / Math.hypot(bx, by);
-    t.ok(
-      Math.abs(cosine) < Math.sin((0.5 * Math.PI) / 180),
-      `corner ${i} is within 0.5° of square`
-    );
-  }
+  getAngles(ring).forEach((angle, i) => {
+    t.ok(Math.abs(angle - 90) < 0.5, `corner ${i} is within 0.5° of square`);
+  });
   t.end();
 });
 
@@ -107,27 +122,50 @@ test("orthogonalize -- does not fold a sharp spike flat", (t) => {
       ])
     )
   ).geometry.coordinates[0] as Position[];
-  const [ax, ay] = [ring[3][0] - ring[4][0], ring[3][1] - ring[4][1]];
-  const [bx, by] = [ring[5][0] - ring[4][0], ring[5][1] - ring[4][1]];
-  const sine = (ax * by - ay * bx) / Math.hypot(ax, ay) / Math.hypot(bx, by);
-  t.ok(Math.abs(sine) > 0.01, "spike keeps its width");
+  t.ok(getAngles(ring)[4] > 0.57, "spike keeps its width");
+  t.end();
+});
+
+test("orthogonalize -- leaves a ring unchanged if squaring would cross its edges", (t) => {
+  const comb = polygon([
+    [
+      [0.0000126, 0.0000152],
+      [0.0002242, -0.0000056],
+      [0.0002439, 0.0005134],
+      [0.0001853, 0.0005073],
+      [0.0002054, 0.0001035],
+      [0.0001553, 0.000083],
+      [0.0001617, 0.0004973],
+      [0.0001399, 0.000481],
+      [0.0001182, 0.0000953],
+      [0.000081, 0.0001156],
+      [0.0000962, 0.0004997],
+      [0.0000724, 0.0005136],
+      [0.0000776, 0.0001077],
+      [0.0000218, 0.0000937],
+      [0.0000186, 0.000501],
+      [0.0000166, 0.0004818],
+      [0.0000126, 0.0000152],
+    ],
+  ]);
+  t.deepEqual(orthogonalize(comb), comb);
+  t.end();
+});
+
+test("orthogonalize -- leaves a ring unchanged if squaring would fold it flat", (t) => {
+  const sliver = polygon([
+    [
+      [0.0009881523926742375, 0.00059748405800201],
+      [0.00038771376851946116, 0.0004966128289233894],
+      [0.0007051316774450242, 0.0005414671518374235],
+      [0.0009881523926742375, 0.00059748405800201],
+    ],
+  ]);
+  t.deepEqual(orthogonalize(sliver, { thresholdDegrees: 45 }), sliver);
   t.end();
 });
 
 test("orthogonalize -- compromises on rings it can't square", (t) => {
-  const getAngles = (ring: Position[]) =>
-    ring.slice(0, -1).map((position, i) => {
-      const previous = ring[(i + ring.length - 2) % (ring.length - 1)];
-      const [ax, ay] = [previous[0] - position[0], previous[1] - position[1]];
-      const [bx, by] = [
-        ring[i + 1][0] - position[0],
-        ring[i + 1][1] - position[1],
-      ];
-      return (
-        (Math.atan2(Math.abs(ax * by - ay * bx), ax * bx + ay * by) * 180) /
-        Math.PI
-      );
-    });
   const cases: [string, Position[], number][] = [
     [
       "thin triangle",
@@ -215,25 +253,19 @@ test("orthogonalize -- leaves polar geometry unchanged", (t) => {
 });
 
 test("orthogonalize -- FeatureCollection", (t) => {
-  const square = polygon([
-    [
-      [0, 0],
-      [0.001, 0.00005],
-      [0.00095, 0.001],
-      [-0.00005, 0.00095],
-      [0, 0],
-    ],
-  ]);
   const location = point([1, 2]);
   const nothing: Feature<null> = {
     type: "Feature",
     properties: {},
     geometry: null,
   };
-  const { features } = orthogonalize(
-    featureCollection<Polygon | Point | null>([square, location, nothing])
+  const { features } = orthogonalize<FeatureCollection<Polygon | Point | null>>(
+    {
+      type: "FeatureCollection",
+      features: [nearSquare, location, nothing],
+    }
   );
-  t.deepEqual(features[0], orthogonalize(square), "squares polygons");
+  t.deepEqual(features[0], orthogonalize(nearSquare), "squares polygons");
   t.deepEqual(features[1], location, "copies other geometries");
   t.deepEqual(features[2], nothing, "copies null geometries");
   t.end();
@@ -311,14 +343,11 @@ test("orthogonalize -- squares near-45° and near-135° corners", (t) => {
       ])
     )
   ).geometry.coordinates[0] as Position[];
+  const angles = getAngles(ring);
   for (const i of [2, 3]) {
-    const [ax, ay] = [ring[i - 1][0] - ring[i][0], ring[i - 1][1] - ring[i][1]];
-    const [bx, by] = [ring[i + 1][0] - ring[i][0], ring[i + 1][1] - ring[i][1]];
-    const cosine =
-      (ax * bx + ay * by) / Math.hypot(ax, ay) / Math.hypot(bx, by);
     t.ok(
-      Math.abs(cosine + Math.SQRT1_2) < 0.01,
-      `corner ${i} is within about 0.5° of 135°`
+      Math.abs(angles[i] - 135) < 0.81,
+      `corner ${i} is within 0.81° of 135°`
     );
   }
   t.end();
@@ -343,17 +372,8 @@ test("orthogonalize -- keeps exact coordinates when nothing needs squaring", (t)
 });
 
 test("orthogonalize -- does not mutate input", (t) => {
-  const input = polygon([
-    [
-      [0, 0],
-      [0.001, 0.00005],
-      [0.00095, 0.001],
-      [-0.00005, 0.00095],
-      [0, 0],
-    ],
-  ]);
-  const before = JSON.parse(JSON.stringify(input));
-  orthogonalize(input);
-  t.deepEqual(input, before);
+  const before = JSON.parse(JSON.stringify(nearSquare));
+  orthogonalize(nearSquare);
+  t.deepEqual(nearSquare, before);
   t.end();
 });
