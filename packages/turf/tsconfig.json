@@ -236,6 +236,9 @@
       "path": "../turf-nearest-point-to-line"
     },
     {
+      "path": "../turf-orthogonalize"
+    },
+    {
       "path": "../turf-planepoint"
     },
     {
