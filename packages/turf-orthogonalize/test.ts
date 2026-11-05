@@ -127,28 +127,113 @@ test("orthogonalize -- does not fold a sharp spike flat", (t) => {
 });
 
 test("orthogonalize -- leaves a ring unchanged if squaring would cross its edges", (t) => {
-  const comb = polygon([
+  const building = polygon([
     [
-      [0.0000126, 0.0000152],
-      [0.0002242, -0.0000056],
-      [0.0002439, 0.0005134],
-      [0.0001853, 0.0005073],
-      [0.0002054, 0.0001035],
-      [0.0001553, 0.000083],
-      [0.0001617, 0.0004973],
-      [0.0001399, 0.000481],
-      [0.0001182, 0.0000953],
-      [0.000081, 0.0001156],
-      [0.0000962, 0.0004997],
-      [0.0000724, 0.0005136],
-      [0.0000776, 0.0001077],
-      [0.0000218, 0.0000937],
-      [0.0000186, 0.000501],
-      [0.0000166, 0.0004818],
-      [0.0000126, 0.0000152],
+      [9.93272, 49.79607],
+      [9.9328007, 49.7960902],
+      [9.9328254, 49.7960553],
+      [9.932829, 49.7960502],
+      [9.9327317, 49.7960468],
+      [9.93272, 49.79607],
     ],
   ]);
-  t.deepEqual(orthogonalize(comb), comb);
+  t.deepEqual(orthogonalize(building), building);
+  t.end();
+});
+
+test("orthogonalize -- leaves a ring unchanged if squaring never settles", (t) => {
+  const building = polygon([
+    [
+      [9.9153039, 49.8020556],
+      [9.9153809, 49.8020317],
+      [9.9155131, 49.8019906],
+      [9.9157128, 49.8019285],
+      [9.9158112, 49.8018979],
+      [9.915869, 49.8018799],
+      [9.9160171, 49.8018183],
+      [9.9161687, 49.8017552],
+      [9.9163575, 49.8016767],
+      [9.9164406, 49.8016421],
+      [9.9163611, 49.8015693],
+      [9.9162139, 49.801629],
+      [9.9159516, 49.8017353],
+      [9.915823, 49.8017875],
+      [9.9157909, 49.8017991],
+      [9.915756, 49.8018117],
+      [9.9155753, 49.80187],
+      [9.9154567, 49.8019082],
+      [9.9153573, 49.8019393],
+      [9.9152491, 49.8019752],
+      [9.9153039, 49.8020556],
+    ],
+  ]);
+  t.deepEqual(orthogonalize(building), building);
+  t.end();
+});
+
+test("orthogonalize -- settles on a building with short edges", (t) => {
+  const start = [
+    [9.9517011, 49.8020573],
+    [9.9515905, 49.8017924],
+    [9.9515254, 49.8017938],
+    [9.9515169, 49.8017596],
+    [9.9513035, 49.8017678],
+    [9.9511707, 49.8017757],
+    [9.9511711, 49.801786],
+    [9.9510131, 49.8017935],
+    [9.951021, 49.8018357],
+    [9.9510472, 49.8019573],
+    [9.9512167, 49.8019464],
+    [9.9512148, 49.8018961],
+    [9.9514292, 49.8018846],
+    [9.9515171, 49.8020796],
+    [9.9517011, 49.8020573],
+  ];
+  const before = getAngles(
+    toMercator(polygon([start])).geometry.coordinates[0]
+  );
+  const after = getAngles(
+    toMercator(orthogonalize(polygon([start]))).geometry.coordinates[0]
+  );
+  const error = after.reduce(
+    (sum, angle, i) =>
+      Math.abs(before[i] - 90) < 15 ? sum + Math.abs(angle - 90) : sum,
+    0
+  );
+  t.ok(error < 1, `total error is under 1°, got ${error}`);
+  t.end();
+});
+
+test("orthogonalize -- brings a building with a diagonal wall closer to square", (t) => {
+  const start = [
+    [9.9348528, 49.7969079],
+    [9.9350119, 49.7969033],
+    [9.9349995, 49.7968822],
+    [9.9350505, 49.7968875],
+    [9.9350547, 49.7968461],
+    [9.9349792, 49.7968366],
+    [9.9349884, 49.7968236],
+    [9.9349433, 49.7967347],
+    [9.9349289, 49.7967374],
+    [9.9347811, 49.7967687],
+    [9.9348528, 49.7969079],
+  ];
+  const before = getAngles(
+    toMercator(polygon([start])).geometry.coordinates[0]
+  );
+  const after = getAngles(
+    toMercator(orthogonalize(polygon([start]))).geometry.coordinates[0]
+  );
+  const getError = (angles: number[]) =>
+    angles.reduce(
+      (sum, angle, i) =>
+        Math.abs(before[i] - 90) < 15 ? sum + Math.abs(angle - 90) : sum,
+      0
+    );
+  t.ok(
+    getError(after) < getError(before),
+    `error falls from ${getError(before)}° to ${getError(after)}°`
+  );
   t.end();
 });
 
@@ -166,7 +251,7 @@ test("orthogonalize -- leaves a ring unchanged if squaring would fold it flat", 
 });
 
 test("orthogonalize -- compromises on rings it can't square", (t) => {
-  const cases: [string, Position[], number][] = [
+  const cases: [string, Position[], number, number][] = [
     [
       "thin triangle",
       [
@@ -176,6 +261,7 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
         [0, 0],
       ],
       15,
+      40,
     ],
     [
       "needle on square shoulders",
@@ -190,6 +276,7 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
         [0, 0],
       ],
       15,
+      40,
     ],
     [
       "pentagon with five near-square corners",
@@ -202,9 +289,10 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
         [0.001, 0],
       ],
       25,
+      70,
     ],
   ];
-  for (const [name, ring, thresholdDegrees] of cases) {
+  for (const [name, ring, thresholdDegrees, maxMovedMeters] of cases) {
     const start = toMercator(polygon([ring])).geometry.coordinates[0];
     const squared = toMercator(
       orthogonalize(polygon([ring]), { thresholdDegrees })
@@ -233,7 +321,10 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
         Math.hypot(position[0] - start[i][0], position[1] - start[i][1])
       )
     );
-    t.ok(moved < 40, `${name} stays near its input, moved ${moved} m`);
+    t.ok(
+      moved < maxMovedMeters,
+      `${name} stays near its input, moved ${moved} m`
+    );
   }
   t.end();
 });
