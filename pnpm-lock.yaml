@@ -565,6 +565,9 @@ importers:
       '@turf/nearest-point-to-line':
         specifier: workspace:*
         version: link:../turf-nearest-point-to-line
+      '@turf/orthogonalize':
+        specifier: workspace:*
+        version: link:../turf-orthogonalize
       '@turf/planepoint':
         specifier: workspace:*
         version: link:../turf-planepoint
@@ -4142,6 +4145,52 @@ importers:
       '@types/object-assign':
         specifier: ^4.0.33
         version: 4.0.33
+      '@types/tape':
+        specifier: 'catalog:'
+        version: 5.8.1
+      benchmark:
+        specifier: 'catalog:'
+        version: 2.1.4
+      load-json-file:
+        specifier: ^7.0.1
+        version: 7.0.1
+      tape:
+        specifier: 'catalog:'
+        version: 5.10.2
+      tsx:
+        specifier: 'catalog:'
+        version: 4.23.9
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      write-json-file:
+        specifier: 'catalog:'
+        version: 6.0.0
+
+  packages/turf-orthogonalize:
+    dependencies:
+      '@turf/clone':
+        specifier: workspace:*
+        version: link:../turf-clone
+      '@turf/helpers':
+        specifier: workspace:*
+        version: link:../turf-helpers
+      '@turf/meta':
+        specifier: workspace:*
+        version: link:../turf-meta
+      '@turf/projection':
+        specifier: workspace:*
+        version: link:../turf-projection
+      '@types/geojson':
+        specifier: 'catalog:'
+        version: 7946.0.14
+    devDependencies:
+      '@turf/truncate':
+        specifier: workspace:*
+        version: link:../turf-truncate
+      '@types/benchmark':
+        specifier: 'catalog:'
+        version: 2.1.5
       '@types/tape':
         specifier: 'catalog:'
         version: 5.8.1
