@@ -694,23 +694,19 @@ test("orthogonalize -- rejects a bare Feature holding a GeometryCollection with 
   t.end();
 });
 
-test(
-  "orthogonalize -- drops the bbox of a bare Feature's GeometryCollection",
-  { todo: true },
-  (t) => {
-    const squared: any = orthogonalize({
-      type: "Feature",
-      properties: {},
-      geometry: {
-        type: "GeometryCollection",
-        bbox: [0, 0, 1, 1],
-        geometries: [nearSquare.geometry],
-      },
-    } as any);
-    t.equal(squared.geometry.bbox, undefined);
-    t.end();
-  }
-);
+test("orthogonalize -- drops the bbox of a bare Feature's GeometryCollection", (t) => {
+  const squared: any = orthogonalize({
+    type: "Feature",
+    properties: {},
+    geometry: {
+      type: "GeometryCollection",
+      bbox: [0, 0, 1, 1],
+      geometries: [nearSquare.geometry],
+    },
+  } as any);
+  t.equal(squared.geometry.bbox, undefined);
+  t.end();
+});
 
 test("orthogonalize -- drops the bbox of a ring it leaves unchanged", (t) => {
   const sliver = polygon(

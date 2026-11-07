@@ -1,6 +1,7 @@
 import type {
   Feature,
   FeatureCollection,
+  GeoJSON,
   Geometry,
   MultiPolygon,
   Polygon,
@@ -93,10 +94,11 @@ function orthogonalize<
       }
       return;
     }
-    delete geometry.bbox;
-    if (result.type === "FeatureCollection") {
-      removeBbox(result.features[index!] as Feature);
-    }
+    removeBbox(
+      (result.type === "FeatureCollection"
+        ? result.features[index!]
+        : result) as GeoJSON
+    );
     for (const ring of geometry.type === "Polygon"
       ? geometry.coordinates
       : geometry.coordinates.flat()) {
