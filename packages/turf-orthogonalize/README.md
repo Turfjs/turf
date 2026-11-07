@@ -17,7 +17,8 @@ curved wall drawn as a run of short segments keeps its curve. Diagonals at 45° 
 common, so theirs sits in between.
 
 Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
-apart. A ring stays unchanged if squaring would fold it, cross its edges, or fail to settle.
+apart, and a hole close to a wall can cross it. A ring stays unchanged if squaring would fold it,
+cross its edges, or fail to settle.
 
 Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
 or be cut into a [MultiPolygon][2], whose parts are squared on their own.

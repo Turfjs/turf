@@ -10,6 +10,7 @@ import { clone } from "@turf/clone";
 import {
   AllGeoJSON,
   degreesToRadians,
+  polygon,
   radiansToDegrees,
   radiansToLength,
 } from "@turf/helpers";
@@ -29,7 +30,8 @@ import { geomEach } from "@turf/meta";
  * common, so theirs sits in between.
  *
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
- * apart. A ring stays unchanged if squaring would fold it, cross its edges, or fail to settle.
+ * apart, and a hole close to a wall can cross it. A ring stays unchanged if squaring would fold it,
+ * cross its edges, or fail to settle.
  *
  * Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
  * or be cut into a {@link MultiPolygon}, whose parts are squared on their own.
@@ -80,12 +82,17 @@ function orthogonalize<
     throw new Error("diagonalToleranceDegrees must be between 0 and 22.5");
   }
   const result = clone(geojson as AllGeoJSON) as T;
-  geomEach(result as FeatureCollection<Geometry | null>, (geometry) => {
+  delete result.bbox;
+  geomEach(result as FeatureCollection<Geometry | null>, (geometry, index) => {
     if (geometry?.type !== "Polygon" && geometry?.type !== "MultiPolygon") {
       if (geometry && geojson.type !== "FeatureCollection") {
         throw new Error(`${geometry.type} geometry is not supported`);
       }
       return;
+    }
+    delete geometry.bbox;
+    if (result.type === "FeatureCollection") {
+      delete result.features[index!].bbox;
     }
     for (const ring of geometry.type === "Polygon"
       ? geometry.coordinates
@@ -99,8 +106,9 @@ function orthogonalize<
 const METERS_PER_DEGREE = radiansToLength(degreesToRadians(1), "meters");
 // How hard each corner pulls toward its angle, against a pull of 1 for every vertex to stay put
 const CORNER_WEIGHTS = { right: 100, flat: 15, acute: 10, obtuse: 10 };
-// Squaring settles once no vertex moves more than this in a round, or gives up after the cap
-const CONVERGED_STEP_METERS = 1e-3;
+// Squaring settles once no vertex moves more than this in a round, or gives up after the cap. The
+// paper gets the same squares from 0.1 mm to 10 cm, and its 1 mm stalls some long buildings here
+const CONVERGED_STEP_METERS = 1e-2;
 const MAX_ROUNDS = 50;
 // A squared ring with a corner narrower than this has folded, so it is rejected
 const FOLDED_ANGLE_DEGREES = 0.08;
@@ -110,11 +118,7 @@ type Corner = { vertex: number; kind: CornerKind };
 type Tolerances = Record<"right" | "flat" | "diagonal", number>;
 
 function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
-  if (ring.length < 4) throw new Error("invalid polygon, fewer than 4 points");
-  const last = ring[ring.length - 1];
-  if (ring[0][0] !== last[0] || ring[0][1] !== last[1]) {
-    throw new Error("invalid polygon, first and last points not equal");
-  }
+  polygon([ring]);
 
   // Drop repeated vertices and the closing vertex
   const vertices = ring.filter((position, i) => {
@@ -151,11 +155,7 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
   // A ring with nothing to square keeps its exact coordinates
   if (corners.length === 0) return;
 
-  let perimeter = 0;
-  for (let i = 0; i < vertices.length; i++) {
-    perimeter += measureDistance(original, i, (i + 1) % vertices.length);
-  }
-  const squared = squareCorners(original, corners, perimeter / vertices.length);
+  const squared = squareCorners(original, corners);
   if (
     !squared ||
     hasCrossingEdges(squared) ||
@@ -184,14 +184,16 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
  * @private
  * @param {number[]} original flat x, y coordinates in meters
  * @param {Corner[]} corners which vertices to square and how
- * @param {number} meanEdgeLength in meters, so the weights don't depend on the ring's size
  * @returns {number[]|undefined} squared coordinates, or undefined if the ring never settles
  */
-function squareCorners(
-  original: number[],
-  corners: Corner[],
-  meanEdgeLength: number
-) {
+function squareCorners(original: number[], corners: Corner[]) {
+  const count = original.length / 2;
+  let perimeter = 0;
+  for (let i = 0; i < count; i++) {
+    perimeter += measureDistance(original, i, (i + 1) % count);
+  }
+  // Scaling the weights by the mean edge length keeps them independent of the ring's size
+  const meanEdgeLength = perimeter / count;
   const current = original.slice();
   for (let round = 0; round < MAX_ROUNDS; round++) {
     // Each corner becomes one equation, linear near the current positions
@@ -250,15 +252,6 @@ function measureAngle(coordinates: number[], vertex: number) {
   );
 }
 
-/**
- * Measures the distance between two vertices.
- *
- * @private
- * @param {number[]} coordinates flat x, y coordinates
- * @param {number} a index of one vertex
- * @param {number} b index of the other
- * @returns {number} distance in the coordinates' units
- */
 function measureDistance(coordinates: number[], a: number, b: number) {
   return Math.hypot(
     coordinates[2 * b] - coordinates[2 * a],
@@ -345,7 +338,6 @@ function hasCrossingEdges(coordinates: number[]) {
     for (let c = a + 2; c < count; c++) {
       const d = (c + 1) % count;
       if (
-        d !== a &&
         getSide(a, b, c) * getSide(a, b, d) < 0 &&
         getSide(c, d, a) * getSide(c, d, b) < 0
       ) {

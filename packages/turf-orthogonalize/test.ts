@@ -184,6 +184,21 @@ test("orthogonalize -- leaves a ring unchanged if squaring would cross its edges
 });
 
 test("orthogonalize -- leaves a ring unchanged if squaring never settles", (t) => {
+  const pentagon = polygon([
+    [
+      [10.0000221, 49.9999941],
+      [10.0001527, 49.9999852],
+      [10.0002248, 50.0000946],
+      [10.0001387, 50.0001856],
+      [10.000004, 50.0001127],
+      [10.0000221, 49.9999941],
+    ],
+  ]);
+  t.deepEqual(orthogonalize(pentagon, { toleranceDegrees: 45 }), pentagon);
+  t.end();
+});
+
+test("orthogonalize -- settles on a long building that creeps toward square", (t) => {
   const building = polygon([
     [
       [9.9153039, 49.8020556],
@@ -209,7 +224,15 @@ test("orthogonalize -- leaves a ring unchanged if squaring never settles", (t) =
       [9.9153039, 49.8020556],
     ],
   ]);
-  t.deepEqual(orthogonalize(building), building);
+  const angles = getAngles(
+    toMercator(orthogonalize(building)).geometry.coordinates[0]
+  );
+  for (const i of [0, 9, 10, 19]) {
+    t.ok(
+      Math.abs(angles[i] - 90) < 0.5,
+      `corner ${i} is within 0.5° of square`
+    );
+  }
   t.end();
 });
 
@@ -413,15 +436,6 @@ test("orthogonalize -- keeps elevation", (t) => {
 });
 
 test("orthogonalize -- rejects bad input", (t) => {
-  const square = polygon([
-    [
-      [0, 0],
-      [0.001, 0],
-      [0.001, 0.001],
-      [0, 0.001],
-      [0, 0],
-    ],
-  ]);
   const limits = {
     toleranceDegrees: 45,
     flatToleranceDegrees: 90,
@@ -430,7 +444,7 @@ test("orthogonalize -- rejects bad input", (t) => {
   for (const [name, limit] of Object.entries(limits)) {
     for (const value of [-1, limit + 1, NaN]) {
       t.throws(
-        () => orthogonalize(square, { [name]: value }),
+        () => orthogonalize(nearSquare, { [name]: value }),
         new RegExp(`${name} must be between 0 and ${limit}`),
         `${name} ${value}`
       );
@@ -453,7 +467,7 @@ test("orthogonalize -- rejects bad input", (t) => {
           ],
         ],
       }),
-    /first and last points not equal/
+    /First and last Position are not equivalent/
   );
   t.throws(
     () =>
@@ -467,7 +481,7 @@ test("orthogonalize -- rejects bad input", (t) => {
           ],
         ],
       }),
-    /fewer than 4 points/
+    /must have 4 or more Positions/
   );
   t.end();
 });
@@ -541,6 +555,25 @@ test("orthogonalize -- keeps exact coordinates when nothing needs squaring", (t)
     roundTower,
     "a wider flat tolerance flattens the tower"
   );
+  t.end();
+});
+
+test("orthogonalize -- drops the bbox of squared geometries", (t) => {
+  const bbox: [number, number, number, number] = [0, 0, 1, 1];
+  t.equal(orthogonalize({ ...nearSquare, bbox }).bbox, undefined, "Feature");
+  t.equal(
+    orthogonalize({ ...nearSquare.geometry, bbox }).bbox,
+    undefined,
+    "Polygon"
+  );
+  const { features } = orthogonalize(
+    featureCollection<Polygon | Point>([
+      { ...nearSquare, bbox },
+      { ...point([1, 2]), bbox },
+    ])
+  );
+  t.equal(features[0].bbox, undefined, "polygon in a FeatureCollection");
+  t.deepEqual(features[1].bbox, bbox, "other geometry in a FeatureCollection");
   t.end();
 });
 
