@@ -136,7 +136,8 @@ function orthogonalizeRing(ring: Position[], thresholds: Thresholds) {
     latitude * METERS_PER_DEGREE,
   ]);
 
-  // Pick the corners to square. The rest can still shift when their neighbors do
+  // Pick the corners to square, each toward at most one target angle, widest band first. The rest
+  // can still shift when their neighbors do
   const corners: Corner[] = [];
   for (let vertex = 0; vertex < vertices.length; vertex++) {
     const angle = measureAngle(original, vertex);
@@ -150,6 +151,7 @@ function orthogonalizeRing(ring: Position[], thresholds: Thresholds) {
       corners.push({ vertex, kind: "obtuse" });
     }
   }
+  // A ring with nothing to square keeps its exact coordinates
   if (corners.length === 0) return;
 
   let perimeter = 0;
@@ -195,11 +197,14 @@ function squareCorners(
 ) {
   const current = original.slice();
   for (let round = 0; round < MAX_ROUNDS; round++) {
+    // Each corner becomes one equation, linear near the current positions
     const linearized = corners.map(({ vertex, kind }) => ({
       ...measureResidual(current, vertex, kind, original),
       weight: CORNER_WEIGHTS[kind] * meanEdgeLength ** 2,
     }));
-    // Minimize |step - (original - current)|² + Σ weight (residual + gradient · step)²
+    // Two competing wishes: every vertex wants to return to where it started, and every corner
+    // wants its residual at zero. Minimize |step - (original - current)|² + Σ weight (residual +
+    // gradient · step)²
     const target = original.map((value, i) => value - current[i]);
     for (const { residual, indices, gradient, weight } of linearized) {
       for (let k = 0; k < 6; k++) {
@@ -217,6 +222,7 @@ function squareCorners(
       }
       return product;
     }, target);
+    // Done when the largest vertex move is under a millimeter
     let hasSettled = true;
     for (let i = 0; i < current.length; i++) {
       current[i] += step[i];
@@ -286,6 +292,7 @@ function measureResidual(
   const count = coordinates.length / 2;
   const previous = (vertex + count - 1) % count;
   const next = (vertex + 1) % count;
+  // u and v are the two edges, pointing away from the corner
   const ux = coordinates[2 * previous] - coordinates[2 * vertex];
   const uy = coordinates[2 * previous + 1] - coordinates[2 * vertex + 1];
   const vx = coordinates[2 * next] - coordinates[2 * vertex];
@@ -315,6 +322,7 @@ function measureResidual(
       2 * next,
       2 * next + 1,
     ],
+    // Moving the corner itself shifts both edges, so its gradient is minus the other two
     gradient: [dux, duy, -dux - dvx, -duy - dvy, dvx, dvy],
   };
 }
@@ -367,22 +375,22 @@ function conjugateGradient(
   target: number[]
 ) {
   const solution = target.map(() => 0);
-  const residual = target.slice();
+  const imbalance = target.slice();
   const direction = target.slice();
-  let residualSquared = dot(residual, residual);
-  for (let i = 0; i < target.length && residualSquared > 1e-14; i++) {
+  let imbalanceSquared = dot(imbalance, imbalance);
+  for (let i = 0; i < target.length && imbalanceSquared > 1e-14; i++) {
     const product = multiply(direction);
-    const stepSize = residualSquared / dot(direction, product);
+    const stepSize = imbalanceSquared / dot(direction, product);
     for (let j = 0; j < target.length; j++) {
       solution[j] += stepSize * direction[j];
-      residual[j] -= stepSize * product[j];
+      imbalance[j] -= stepSize * product[j];
     }
-    const nextResidualSquared = dot(residual, residual);
+    const nextImbalanceSquared = dot(imbalance, imbalance);
     for (let j = 0; j < target.length; j++) {
       direction[j] =
-        residual[j] + (nextResidualSquared / residualSquared) * direction[j];
+        imbalance[j] + (nextImbalanceSquared / imbalanceSquared) * direction[j];
     }
-    residualSquared = nextResidualSquared;
+    imbalanceSquared = nextImbalanceSquared;
   }
   return solution;
 }
