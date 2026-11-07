@@ -268,6 +268,11 @@ test("orthogonalize -- leaves a ring unchanged if squaring would fold it flat", 
     ],
   ]);
   t.deepEqual(orthogonalize(sliver, { thresholdDegrees: 45 }), sliver);
+  t.notDeepEqual(
+    orthogonalize(sliver, { thresholdDegrees: 45, foldedThresholdDegrees: 0 }),
+    sliver,
+    "a zero folded threshold lets it fold"
+  );
   t.end();
 });
 
@@ -433,12 +438,20 @@ test("orthogonalize -- rejects bad input", (t) => {
       [0, 0],
     ],
   ]);
-  for (const thresholdDegrees of [-1, 46, NaN]) {
-    t.throws(
-      () => orthogonalize(square, { thresholdDegrees }),
-      /thresholdDegrees must be between 0 and 45/,
-      `thresholdDegrees ${thresholdDegrees}`
-    );
+  const limits = {
+    thresholdDegrees: 45,
+    straightThresholdDegrees: 90,
+    diagonalThresholdDegrees: 22.5,
+    foldedThresholdDegrees: 90,
+  };
+  for (const [name, limit] of Object.entries(limits)) {
+    for (const value of [-1, limit + 1, NaN]) {
+      t.throws(
+        () => orthogonalize(square, { [name]: value }),
+        new RegExp(`${name} must be between 0 and ${limit}`),
+        `${name} ${value}`
+      );
+    }
   }
   t.throws(
     () => orthogonalize(point([0, 0]) as any),
@@ -448,27 +461,30 @@ test("orthogonalize -- rejects bad input", (t) => {
 });
 
 test("orthogonalize -- squares near-45° and near-135° corners", (t) => {
-  const ring = toMercator(
-    orthogonalize(
-      polygon([
-        [
-          [0, 0],
-          [0.001, 0.00002],
-          [0.00098, 0.0006],
-          [0.0006, 0.00097],
-          [0, 0.001],
-          [0, 0],
-        ],
-      ])
-    )
-  ).geometry.coordinates[0] as Position[];
-  const angles = getAngles(ring);
+  const chamfered = polygon([
+    [
+      [0, 0],
+      [0.001, 0.00002],
+      [0.00098, 0.0006],
+      [0.0006, 0.00097],
+      [0, 0.001],
+      [0, 0],
+    ],
+  ]);
+  const angles = getAngles(
+    toMercator(orthogonalize(chamfered)).geometry.coordinates[0] as Position[]
+  );
   for (const i of [2, 3]) {
     t.ok(
       Math.abs(angles[i] - 135) < 0.81,
       `corner ${i} is within 0.81° of 135°`
     );
   }
+  t.notDeepEqual(
+    orthogonalize(chamfered, { diagonalThresholdDegrees: 0 }),
+    orthogonalize(chamfered),
+    "a zero diagonal threshold leaves the diagonals to their neighbors"
+  );
   t.end();
 });
 
@@ -487,6 +503,11 @@ test("orthogonalize -- keeps exact coordinates when nothing needs squaring", (t)
     ({ name }) => name === "round-tower"
   )!.geojson;
   t.deepEqual(orthogonalize(roundTower), roundTower);
+  t.notDeepEqual(
+    orthogonalize(roundTower, { straightThresholdDegrees: 15 }),
+    roundTower,
+    "a wider straight threshold flattens the tower"
+  );
   t.end();
 });
 

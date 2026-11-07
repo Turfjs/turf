@@ -10,21 +10,22 @@ import { clone } from "@turf/clone";
 import {
   AllGeoJSON,
   degreesToRadians,
-  earthRadius,
   radiansToDegrees,
+  radiansToLength,
 } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
 
 /**
- * Squares up a {@link Polygon} or {@link MultiPolygon}, nudging its vertices so that corners near
- * 90° move close to right angles, corners within 8° of 45° or 135° move close to those angles, and
- * corners within 5° of straight move close to straight. Most finish within 0.5°, but many are not exact.
- * This is a common cleanup step for building footprints traced from imagery. It makes shapes look
- * regular but doesn't guarantee they are closer to the real building.
+ * Squares up a {@link Polygon} or {@link MultiPolygon}, nudging its vertices so that corners close
+ * to right angles, 45° diagonals, or straight lines land on them. This is a common cleanup step
+ * for building footprints traced from imagery.
  *
- * Balances squaring every matching corner against moving the vertices, based on Lokhat and Touya,
- * "Enhancing building footprints with squaring operations" (JOSIS, 2016). Other corners are not
- * squared, though moving their neighbors can change their angle.
+ * Based on Lokhat and Touya, "Enhancing building footprints with squaring operations" (JOSIS,
+ * 2016).
+ *
+ * Each kind of corner has its own tolerance. Right angles matter most, so theirs is the widest.
+ * Straight corners get the tightest, so that a curved wall drawn as a run of short segments keeps
+ * its curve. Diagonals at 45° and 135° are less common, so theirs sits in between.
  *
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
  * apart. A ring stays unchanged if squaring would fold it, cross its edges, or fail to settle.
@@ -35,7 +36,10 @@ import { geomEach } from "@turf/meta";
  * @function
  * @param {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up. Other geometries in a FeatureCollection are copied as they are
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.thresholdDegrees=15] corners further than this from square are not squared, between 0 and 45
+ * @param {number} [options.thresholdDegrees=15] corners further than this from 90° are not squared, between 0 and 45
+ * @param {number} [options.straightThresholdDegrees=5] corners further than this from 180° are not straightened, between 0 and 90
+ * @param {number} [options.diagonalThresholdDegrees=8] corners further than this from 45° or 135° are not squared, between 0 and 22.5
+ * @param {number} [options.foldedThresholdDegrees=0.08] a ring is left unchanged if squaring narrows any corner below this, between 0 and 90
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} a squared copy of the input
  * @example
  * const polygon = turf.polygon([[[0, 0], [0.001, 0.00005], [0.00095, 0.001], [-0.00005, 0.00095], [0, 0]]]);
@@ -51,10 +55,32 @@ function orthogonalize<
     | FeatureCollection<Geometry | null>
     | Polygon
     | MultiPolygon,
->(geojson: T, options: { thresholdDegrees?: number } = {}): T {
-  const thresholdDegrees = options.thresholdDegrees ?? 15;
-  if (!(thresholdDegrees >= 0 && thresholdDegrees <= 45)) {
+>(
+  geojson: T,
+  options: {
+    thresholdDegrees?: number;
+    straightThresholdDegrees?: number;
+    diagonalThresholdDegrees?: number;
+    foldedThresholdDegrees?: number;
+  } = {}
+): T {
+  const thresholds = {
+    square: options.thresholdDegrees ?? 15,
+    straight: options.straightThresholdDegrees ?? 5,
+    diagonal: options.diagonalThresholdDegrees ?? 8,
+    folded: options.foldedThresholdDegrees ?? 0.08,
+  };
+  if (!(thresholds.square >= 0 && thresholds.square <= 45)) {
     throw new Error("thresholdDegrees must be between 0 and 45");
+  }
+  if (!(thresholds.straight >= 0 && thresholds.straight <= 90)) {
+    throw new Error("straightThresholdDegrees must be between 0 and 90");
+  }
+  if (!(thresholds.diagonal >= 0 && thresholds.diagonal <= 22.5)) {
+    throw new Error("diagonalThresholdDegrees must be between 0 and 22.5");
+  }
+  if (!(thresholds.folded >= 0 && thresholds.folded <= 90)) {
+    throw new Error("foldedThresholdDegrees must be between 0 and 90");
   }
   const result = clone(geojson as AllGeoJSON) as T;
   geomEach(result as FeatureCollection<Geometry | null>, (geometry) => {
@@ -67,27 +93,31 @@ function orthogonalize<
     for (const ring of geometry.type === "Polygon"
       ? geometry.coordinates
       : geometry.coordinates.flat()) {
-      orthogonalizeRing(ring, thresholdDegrees);
+      orthogonalizeRing(ring, thresholds);
     }
   });
   return result;
 }
 
-const METERS_PER_DEGREE = (earthRadius * Math.PI) / 180;
-// Curves have many corners just short of straight, so straightening is held to a tighter limit.
-const STRAIGHT_THRESHOLD_DEGREES = 5;
-const DIAGONAL_THRESHOLD_DEGREES = 8;
-const FOLDED_ANGLE_DEGREES = 0.08;
-// Per squared mean edge length, so the result doesn't depend on the ring's size. Higher weights
-// make corners more exact but let impossible corner sets distort the ring.
+const METERS_PER_DEGREE = radiansToLength(degreesToRadians(1), "meters");
+// How hard each corner pulls toward its angle, against a pull of 1 for every vertex to stay put.
+// Higher weights make corners more exact but distort rings whose corners can't all be satisfied.
+// Not a user-facing option because the paper found other weightings squared 99% of buildings
+// identically.
 const CORNER_WEIGHTS = { square: 100, straight: 15, acute: 10, obtuse: 10 };
 const CONVERGED_STEP_METERS = 1e-3;
 const MAX_ROUNDS = 50;
 
 type CornerKind = keyof typeof CORNER_WEIGHTS;
 type Corner = { vertex: number; kind: CornerKind };
+type Thresholds = {
+  square: number;
+  straight: number;
+  diagonal: number;
+  folded: number;
+};
 
-function orthogonalizeRing(ring: Position[], thresholdDegrees: number) {
+function orthogonalizeRing(ring: Position[], thresholds: Thresholds) {
   // Dropping a vertex equal to the next one removes repeats and the closing vertex alike.
   const vertices = ring.filter((position, i) => {
     const next = ring[(i + 1) % ring.length];
@@ -95,8 +125,7 @@ function orthogonalizeRing(ring: Position[], thresholdDegrees: number) {
   });
   if (vertices.length < 3) return;
 
-  // Over a building, scaling degrees to meters at the ring's own latitude is as faithful as any
-  // projection, and it has no latitude limit or wraparound.
+  // Project coordinates into an equirectangular projection centered on the ring.
   const meanLatitude =
     vertices.reduce((sum, [, latitude]) => sum + latitude, 0) / vertices.length;
   const metersPerDegreeLongitude =
@@ -109,13 +138,13 @@ function orthogonalizeRing(ring: Position[], thresholdDegrees: number) {
   const corners: Corner[] = [];
   for (let vertex = 0; vertex < vertices.length; vertex++) {
     const angle = measureAngle(original, vertex);
-    if (Math.abs(angle - 90) < thresholdDegrees) {
+    if (Math.abs(angle - 90) < thresholds.square) {
       corners.push({ vertex, kind: "square" });
-    } else if (angle > 180 - STRAIGHT_THRESHOLD_DEGREES) {
+    } else if (angle > 180 - thresholds.straight) {
       corners.push({ vertex, kind: "straight" });
-    } else if (Math.abs(angle - 45) < DIAGONAL_THRESHOLD_DEGREES) {
+    } else if (Math.abs(angle - 45) < thresholds.diagonal) {
       corners.push({ vertex, kind: "acute" });
-    } else if (Math.abs(angle - 135) < DIAGONAL_THRESHOLD_DEGREES) {
+    } else if (Math.abs(angle - 135) < thresholds.diagonal) {
       corners.push({ vertex, kind: "obtuse" });
     }
   }
@@ -131,7 +160,7 @@ function orthogonalizeRing(ring: Position[], thresholdDegrees: number) {
     hasCrossingEdges(squared) ||
     // A corner squeezed shut folds its two edges onto each other, which never counts as crossing.
     vertices.some(
-      (_, vertex) => measureAngle(squared, vertex) < FOLDED_ANGLE_DEGREES
+      (_, vertex) => measureAngle(squared, vertex) < thresholds.folded
     )
   ) {
     return;
@@ -187,7 +216,8 @@ function squareCorners(
   return undefined;
 }
 
-// The angle at a vertex in degrees, from 0 when the ring folds back on itself to 180 when it runs straight.
+// The angle at a vertex in degrees, 0 where the ring folds back on itself and 180 where it runs
+// straight.
 function measureAngle(coordinates: number[], vertex: number) {
   const count = coordinates.length / 2;
   const previous = (vertex + count - 1) % count;
