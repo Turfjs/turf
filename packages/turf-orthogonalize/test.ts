@@ -12,7 +12,13 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import { featureCollection, point, polygon } from "@turf/helpers";
+import {
+  degreesToRadians,
+  featureCollection,
+  point,
+  polygon,
+  radiansToDegrees,
+} from "@turf/helpers";
 import { toMercator } from "@turf/projection";
 import { truncate } from "@turf/truncate";
 import { orthogonalize } from "./index.js";
@@ -52,11 +58,29 @@ const getAngles = (ring: Position[]) =>
       ring[i + 1][0] - position[0],
       ring[i + 1][1] - position[1],
     ];
-    return (
-      (Math.atan2(Math.abs(ax * by - ay * bx), ax * bx + ay * by) * 180) /
-      Math.PI
+    return radiansToDegrees(
+      Math.atan2(Math.abs(ax * by - ay * bx), ax * bx + ay * by)
     );
   });
+
+const getErrorDegrees = (
+  before: number[],
+  after: number[],
+  toleranceDegrees = 15
+) =>
+  after.reduce(
+    (sum, angle, i) =>
+      Math.abs(before[i] - 90) < toleranceDegrees
+        ? sum + Math.abs(angle - 90)
+        : sum,
+    0
+  );
+
+const assertSquare = (t: test.Test, ring: Position[]) => {
+  getAngles(ring).forEach((angle, i) => {
+    t.ok(Math.abs(angle - 90) < 0.5, `corner ${i} is within 0.5° of square`);
+  });
+};
 
 test("orthogonalize", (t) => {
   for (const { filename, name, geojson } of fixtures) {
@@ -76,11 +100,10 @@ test("orthogonalize", (t) => {
 
 test("orthogonalize -- squares corners on the ground", (t) => {
   const rectangle = fixtures.find(({ name }) => name === "rectangle")!.geojson;
-  const ring = toMercator(orthogonalize(rectangle)).geometry
-    .coordinates[0] as Position[];
-  getAngles(ring).forEach((angle, i) => {
-    t.ok(Math.abs(angle - 90) < 0.5, `corner ${i} is within 0.5° of square`);
-  });
+  assertSquare(
+    t,
+    toMercator(orthogonalize(rectangle)).geometry.coordinates[0] as Position[]
+  );
   t.end();
 });
 
@@ -118,11 +141,9 @@ test("orthogonalize -- squares across repeated vertices", (t) => {
       ],
     ])
   );
-  const ring = toMercator(squared).geometry.coordinates[0] as Position[];
+  const ring = toMercator(squared).geometry.coordinates[0];
   t.equal(ring.length, 5, "drops the repeat");
-  getAngles(ring).forEach((angle, i) => {
-    t.ok(Math.abs(angle - 90) < 0.5, `corner ${i} is within 0.5° of square`);
-  });
+  assertSquare(t, ring);
   t.end();
 });
 
@@ -142,7 +163,7 @@ test("orthogonalize -- does not fold a sharp spike flat", (t) => {
         ],
       ])
     )
-  ).geometry.coordinates[0] as Position[];
+  ).geometry.coordinates[0];
   t.ok(getAngles(ring)[4] > 0.57, "spike keeps its width");
   t.end();
 });
@@ -216,11 +237,7 @@ test("orthogonalize -- settles on a building with short edges", (t) => {
   const after = getAngles(
     toMercator(orthogonalize(polygon([start]))).geometry.coordinates[0]
   );
-  const error = after.reduce(
-    (sum, angle, i) =>
-      Math.abs(before[i] - 90) < 15 ? sum + Math.abs(angle - 90) : sum,
-    0
-  );
+  const error = getErrorDegrees(before, after);
   t.ok(error < 1, `total error is under 1°, got ${error}`);
   t.end();
 });
@@ -245,15 +262,11 @@ test("orthogonalize -- brings a building with a diagonal wall closer to square",
   const after = getAngles(
     toMercator(orthogonalize(polygon([start]))).geometry.coordinates[0]
   );
-  const getError = (angles: number[]) =>
-    angles.reduce(
-      (sum, angle, i) =>
-        Math.abs(before[i] - 90) < 15 ? sum + Math.abs(angle - 90) : sum,
-      0
-    );
+  const errorBefore = getErrorDegrees(before, before);
+  const errorAfter = getErrorDegrees(before, after);
   t.ok(
-    getError(after) < getError(before),
-    `error falls from ${getError(before)}° to ${getError(after)}°`
+    errorAfter < errorBefore,
+    `error falls from ${errorBefore}° to ${errorAfter}°`
   );
   t.end();
 });
@@ -267,12 +280,7 @@ test("orthogonalize -- leaves a ring unchanged if squaring would fold it flat", 
       [0.0009881523926742375, 0.00059748405800201],
     ],
   ]);
-  t.deepEqual(orthogonalize(sliver, { thresholdDegrees: 45 }), sliver);
-  t.notDeepEqual(
-    orthogonalize(sliver, { thresholdDegrees: 45, foldedThresholdDegrees: 0 }),
-    sliver,
-    "a zero folded threshold lets it fold"
-  );
+  t.deepEqual(orthogonalize(sliver, { toleranceDegrees: 45 }), sliver);
   t.end();
 });
 
@@ -318,24 +326,17 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
       70,
     ],
   ];
-  for (const [name, ring, thresholdDegrees, maxMovedMeters] of cases) {
+  for (const [name, ring, toleranceDegrees, maxMovedMeters] of cases) {
     const start = toMercator(polygon([ring])).geometry.coordinates[0];
     const squared = toMercator(
-      orthogonalize(polygon([ring]), { thresholdDegrees })
+      orthogonalize(polygon([ring]), { toleranceDegrees })
     ).geometry.coordinates[0];
     const before = getAngles(start);
     const after = getAngles(squared);
-    const getError = (angles: number[]) =>
-      angles.reduce(
-        (sum, angle, i) =>
-          Math.abs(before[i] - 90) < thresholdDegrees
-            ? sum + Math.abs(angle - 90)
-            : sum,
-        0
-      );
     // A pentagon's angles sum to 540°, so its total error can't shrink, only stay put.
     t.ok(
-      getError(after) < getError(before) + 1e-6,
+      getErrorDegrees(before, after, toleranceDegrees) <
+        getErrorDegrees(before, before, toleranceDegrees) + 1e-6,
       `${name} gets no further from square`
     );
     t.ok(
@@ -357,7 +358,7 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
 
 test("orthogonalize -- squares a building near the pole", (t) => {
   // Longitude degrees shrink with latitude, so a square on the ground at 89° is wide in degrees.
-  const stretch = 1 / Math.cos((89 * Math.PI) / 180);
+  const stretch = 1 / Math.cos(degreesToRadians(89));
   const squared = orthogonalize(
     polygon([
       nearSquare.geometry.coordinates[0].map(([longitude, latitude]) => [
@@ -366,13 +367,13 @@ test("orthogonalize -- squares a building near the pole", (t) => {
       ]),
     ])
   );
-  const ring = squared.geometry.coordinates[0].map(([longitude, latitude]) => [
-    longitude / stretch,
-    latitude,
-  ]);
-  getAngles(ring).forEach((angle, i) => {
-    t.ok(Math.abs(angle - 90) < 0.5, `corner ${i} is within 0.5° of square`);
-  });
+  assertSquare(
+    t,
+    squared.geometry.coordinates[0].map(([longitude, latitude]) => [
+      longitude / stretch,
+      latitude,
+    ])
+  );
   t.end();
 });
 
@@ -392,23 +393,6 @@ test("orthogonalize -- FeatureCollection", (t) => {
   t.deepEqual(features[0], orthogonalize(nearSquare), "squares polygons");
   t.deepEqual(features[1], location, "copies other geometries");
   t.deepEqual(features[2], nothing, "copies null geometries");
-  t.end();
-});
-
-test("orthogonalize -- closes an unclosed ring", (t) => {
-  const { coordinates } = orthogonalize({
-    type: "Polygon",
-    coordinates: [
-      [
-        [0, 0],
-        [0.001, 0],
-        [0.001, 0.001],
-        [0, 0.001],
-      ],
-    ],
-  });
-  t.equal(coordinates[0].length, 5);
-  t.deepEqual(coordinates[0][0], coordinates[0][4]);
   t.end();
 });
 
@@ -439,10 +423,9 @@ test("orthogonalize -- rejects bad input", (t) => {
     ],
   ]);
   const limits = {
-    thresholdDegrees: 45,
-    flatThresholdDegrees: 90,
-    diagonalThresholdDegrees: 22.5,
-    foldedThresholdDegrees: 90,
+    toleranceDegrees: 45,
+    flatToleranceDegrees: 90,
+    diagonalToleranceDegrees: 22.5,
   };
   for (const [name, limit] of Object.entries(limits)) {
     for (const value of [-1, limit + 1, NaN]) {
@@ -456,6 +439,35 @@ test("orthogonalize -- rejects bad input", (t) => {
   t.throws(
     () => orthogonalize(point([0, 0]) as any),
     /Point geometry is not supported/
+  );
+  t.throws(
+    () =>
+      orthogonalize({
+        type: "Polygon",
+        coordinates: [
+          [
+            [0, 0],
+            [0.001, 0],
+            [0.001, 0.001],
+            [0, 0.001],
+          ],
+        ],
+      }),
+    /first and last points not equal/
+  );
+  t.throws(
+    () =>
+      orthogonalize({
+        type: "Polygon",
+        coordinates: [
+          [
+            [0, 0],
+            [0.001, 0],
+            [0, 0],
+          ],
+        ],
+      }),
+    /fewer than 4 points/
   );
   t.end();
 });
@@ -472,7 +484,7 @@ test("orthogonalize -- squares near-45° and near-135° corners", (t) => {
     ],
   ]);
   const angles = getAngles(
-    toMercator(orthogonalize(chamfered)).geometry.coordinates[0] as Position[]
+    toMercator(orthogonalize(chamfered)).geometry.coordinates[0]
   );
   for (const i of [2, 3]) {
     t.ok(
@@ -481,9 +493,30 @@ test("orthogonalize -- squares near-45° and near-135° corners", (t) => {
     );
   }
   t.notDeepEqual(
-    orthogonalize(chamfered, { diagonalThresholdDegrees: 0 }),
+    orthogonalize(chamfered, { diagonalToleranceDegrees: 0 }),
     orthogonalize(chamfered),
-    "a zero diagonal threshold leaves the diagonals to their neighbors"
+    "a zero diagonal tolerance leaves the diagonals to their neighbors"
+  );
+  t.end();
+});
+
+test("orthogonalize -- squares a near-45° corner", (t) => {
+  const wedge = polygon([
+    [
+      [0, 0],
+      [0.002, 0.00005],
+      [0.0011, 0.00095],
+      [0, 0.001],
+      [0, 0],
+    ],
+  ]);
+  const before = getAngles(toMercator(wedge).geometry.coordinates[0]);
+  const after = getAngles(
+    toMercator(orthogonalize(wedge)).geometry.coordinates[0]
+  );
+  t.ok(
+    Math.abs(before[1] - 45) < 8 && Math.abs(after[1] - 45) < 1,
+    `corner 1 moves from ${before[1]}° to ${after[1]}°`
   );
   t.end();
 });
@@ -504,9 +537,9 @@ test("orthogonalize -- keeps exact coordinates when nothing needs squaring", (t)
   )!.geojson;
   t.deepEqual(orthogonalize(roundTower), roundTower);
   t.notDeepEqual(
-    orthogonalize(roundTower, { flatThresholdDegrees: 15 }),
+    orthogonalize(roundTower, { flatToleranceDegrees: 15 }),
     roundTower,
-    "a wider flat threshold flattens the tower"
+    "a wider flat tolerance flattens the tower"
   );
   t.end();
 });

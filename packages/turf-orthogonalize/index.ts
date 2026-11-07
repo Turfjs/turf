@@ -37,10 +37,9 @@ import { geomEach } from "@turf/meta";
  * @function
  * @param {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up. Other geometries in a FeatureCollection are copied as they are
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.thresholdDegrees=15] corners further than this from 90° are not squared, between 0 and 45
- * @param {number} [options.flatThresholdDegrees=5] corners further than this from 180° are not flattened, between 0 and 90
- * @param {number} [options.diagonalThresholdDegrees=8] corners further than this from 45° or 135° are not squared, between 0 and 22.5
- * @param {number} [options.foldedThresholdDegrees=0.08] a ring is left unchanged if squaring narrows any corner below this, between 0 and 90
+ * @param {number} [options.toleranceDegrees=15] corners further than this from 90° are not squared, between 0 and 45
+ * @param {number} [options.flatToleranceDegrees=5] corners further than this from 180° are not flattened, between 0 and 90
+ * @param {number} [options.diagonalToleranceDegrees=8] corners further than this from 45° or 135° are not squared, between 0 and 22.5
  * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} a squared copy of the input
  * @example
  * const polygon = turf.polygon([[[0, 0], [0.001, 0.00005], [0.00095, 0.001], [-0.00005, 0.00095], [0, 0]]]);
@@ -59,31 +58,26 @@ function orthogonalize<
 >(
   geojson: T,
   options: {
-    thresholdDegrees?: number;
-    flatThresholdDegrees?: number;
-    diagonalThresholdDegrees?: number;
-    foldedThresholdDegrees?: number;
+    toleranceDegrees?: number;
+    flatToleranceDegrees?: number;
+    diagonalToleranceDegrees?: number;
   } = {}
 ): T {
   // Optional parameters
-  const thresholds = {
-    square: options.thresholdDegrees ?? 15,
-    flat: options.flatThresholdDegrees ?? 5,
-    diagonal: options.diagonalThresholdDegrees ?? 8,
-    folded: options.foldedThresholdDegrees ?? 0.08,
+  const tolerances = {
+    right: options.toleranceDegrees ?? 15,
+    flat: options.flatToleranceDegrees ?? 5,
+    diagonal: options.diagonalToleranceDegrees ?? 8,
   };
   // Validation
-  if (!(thresholds.square >= 0 && thresholds.square <= 45)) {
-    throw new Error("thresholdDegrees must be between 0 and 45");
+  if (!(tolerances.right >= 0 && tolerances.right <= 45)) {
+    throw new Error("toleranceDegrees must be between 0 and 45");
   }
-  if (!(thresholds.flat >= 0 && thresholds.flat <= 90)) {
-    throw new Error("flatThresholdDegrees must be between 0 and 90");
+  if (!(tolerances.flat >= 0 && tolerances.flat <= 90)) {
+    throw new Error("flatToleranceDegrees must be between 0 and 90");
   }
-  if (!(thresholds.diagonal >= 0 && thresholds.diagonal <= 22.5)) {
-    throw new Error("diagonalThresholdDegrees must be between 0 and 22.5");
-  }
-  if (!(thresholds.folded >= 0 && thresholds.folded <= 90)) {
-    throw new Error("foldedThresholdDegrees must be between 0 and 90");
+  if (!(tolerances.diagonal >= 0 && tolerances.diagonal <= 22.5)) {
+    throw new Error("diagonalToleranceDegrees must be between 0 and 22.5");
   }
   const result = clone(geojson as AllGeoJSON) as T;
   geomEach(result as FeatureCollection<Geometry | null>, (geometry) => {
@@ -96,7 +90,7 @@ function orthogonalize<
     for (const ring of geometry.type === "Polygon"
       ? geometry.coordinates
       : geometry.coordinates.flat()) {
-      orthogonalizeRing(ring, thresholds);
+      orthogonalizeRing(ring, tolerances);
     }
   });
   return result;
@@ -104,21 +98,24 @@ function orthogonalize<
 
 const METERS_PER_DEGREE = radiansToLength(degreesToRadians(1), "meters");
 // How hard each corner pulls toward its angle, against a pull of 1 for every vertex to stay put
-const CORNER_WEIGHTS = { square: 100, flat: 15, acute: 10, obtuse: 10 };
+const CORNER_WEIGHTS = { right: 100, flat: 15, acute: 10, obtuse: 10 };
 // Squaring settles once no vertex moves more than this in a round, or gives up after the cap
 const CONVERGED_STEP_METERS = 1e-3;
 const MAX_ROUNDS = 50;
+// A squared ring with a corner narrower than this has folded, so it is rejected
+const FOLDED_ANGLE_DEGREES = 0.08;
 
 type CornerKind = keyof typeof CORNER_WEIGHTS;
 type Corner = { vertex: number; kind: CornerKind };
-type Thresholds = {
-  square: number;
-  flat: number;
-  diagonal: number;
-  folded: number;
-};
+type Tolerances = Record<"right" | "flat" | "diagonal", number>;
 
-function orthogonalizeRing(ring: Position[], thresholds: Thresholds) {
+function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
+  if (ring.length < 4) throw new Error("invalid polygon, fewer than 4 points");
+  const last = ring[ring.length - 1];
+  if (ring[0][0] !== last[0] || ring[0][1] !== last[1]) {
+    throw new Error("invalid polygon, first and last points not equal");
+  }
+
   // Drop repeated vertices and the closing vertex
   const vertices = ring.filter((position, i) => {
     const next = ring[(i + 1) % ring.length];
@@ -136,18 +133,18 @@ function orthogonalizeRing(ring: Position[], thresholds: Thresholds) {
     latitude * METERS_PER_DEGREE,
   ]);
 
-  // Pick the corners to square, each toward at most one target angle, widest band first. The rest
+  // Pick the corners to square, each toward at most one target angle, right angles first. The rest
   // can still shift when their neighbors do
   const corners: Corner[] = [];
   for (let vertex = 0; vertex < vertices.length; vertex++) {
     const angle = measureAngle(original, vertex);
-    if (Math.abs(angle - 90) < thresholds.square) {
-      corners.push({ vertex, kind: "square" });
-    } else if (angle > 180 - thresholds.flat) {
+    if (Math.abs(angle - 90) < tolerances.right) {
+      corners.push({ vertex, kind: "right" });
+    } else if (angle > 180 - tolerances.flat) {
       corners.push({ vertex, kind: "flat" });
-    } else if (Math.abs(angle - 45) < thresholds.diagonal) {
+    } else if (Math.abs(angle - 45) < tolerances.diagonal) {
       corners.push({ vertex, kind: "acute" });
-    } else if (Math.abs(angle - 135) < thresholds.diagonal) {
+    } else if (Math.abs(angle - 135) < tolerances.diagonal) {
       corners.push({ vertex, kind: "obtuse" });
     }
   }
@@ -163,7 +160,7 @@ function orthogonalizeRing(ring: Position[], thresholds: Thresholds) {
     !squared ||
     hasCrossingEdges(squared) ||
     vertices.some(
-      (_, vertex) => measureAngle(squared, vertex) < thresholds.folded
+      (_, vertex) => measureAngle(squared, vertex) < FOLDED_ANGLE_DEGREES
     )
   ) {
     // Rings that can't be squared are returned as-is
@@ -214,21 +211,20 @@ function squareCorners(
     const step = conjugateGradient((vector) => {
       const product = vector.slice();
       for (const { indices, gradient, weight } of linearized) {
-        let dot = 0;
-        for (let k = 0; k < 6; k++) dot += gradient[k] * vector[indices[k]];
+        let projection = 0;
         for (let k = 0; k < 6; k++) {
-          product[indices[k]] += weight * dot * gradient[k];
+          projection += gradient[k] * vector[indices[k]];
+        }
+        for (let k = 0; k < 6; k++) {
+          product[indices[k]] += weight * projection * gradient[k];
         }
       }
       return product;
     }, target);
-    // Done when the largest vertex move is under a millimeter
-    let hasSettled = true;
-    for (let i = 0; i < current.length; i++) {
-      current[i] += step[i];
-      if (Math.abs(step[i]) >= CONVERGED_STEP_METERS) hasSettled = false;
+    step.forEach((value, i) => (current[i] += value));
+    if (step.every((value) => Math.abs(value) < CONVERGED_STEP_METERS)) {
+      return current;
     }
-    if (hasSettled) return current;
   }
   return undefined;
 }
@@ -386,9 +382,9 @@ function conjugateGradient(
       imbalance[j] -= stepSize * product[j];
     }
     const nextImbalanceSquared = dot(imbalance, imbalance);
+    const directionScale = nextImbalanceSquared / imbalanceSquared;
     for (let j = 0; j < target.length; j++) {
-      direction[j] =
-        imbalance[j] + (nextImbalanceSquared / imbalanceSquared) * direction[j];
+      direction[j] = imbalance[j] + directionScale * direction[j];
     }
     imbalanceSquared = nextImbalanceSquared;
   }

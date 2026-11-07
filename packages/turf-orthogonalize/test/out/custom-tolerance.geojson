@@ -23,7 +23,7 @@
     {
       "type": "Feature",
       "properties": {
-        "thresholdDegrees": 5
+        "toleranceDegrees": 5
       },
       "geometry": {
         "type": "Polygon",

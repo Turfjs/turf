@@ -16,10 +16,9 @@ const multiPoly = multiPolygon([poly.geometry.coordinates]);
 const squaredFeature: Feature<Polygon> = orthogonalize(poly);
 const squaredMultiFeature: Feature<MultiPolygon> = orthogonalize(multiPoly);
 const squaredGeometry: Polygon = orthogonalize(poly.geometry, {
-  thresholdDegrees: 10,
-  flatThresholdDegrees: 10,
-  diagonalThresholdDegrees: 5,
-  foldedThresholdDegrees: 1,
+  toleranceDegrees: 10,
+  flatToleranceDegrees: 10,
+  diagonalToleranceDegrees: 5,
 });
 const squaredMultiGeometry: MultiPolygon = orthogonalize(multiPoly.geometry);
 const squaredCollection: FeatureCollection = orthogonalize(

@@ -27,10 +27,9 @@ or be cut into a [MultiPolygon][2], whose parts are squared on their own.
 *   `geojson` **([FeatureCollection][3] | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up. Other geometries in a FeatureCollection are copied as they are
 *   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
-    *   `options.thresholdDegrees` **[number][6]** corners further than this from 90° are not squared, between 0 and 45 (optional, default `15`)
-    *   `options.flatThresholdDegrees` **[number][6]** corners further than this from 180° are not flattened, between 0 and 90 (optional, default `5`)
-    *   `options.diagonalThresholdDegrees` **[number][6]** corners further than this from 45° or 135° are not squared, between 0 and 22.5 (optional, default `8`)
-    *   `options.foldedThresholdDegrees` **[number][6]** a ring is left unchanged if squaring narrows any corner below this, between 0 and 90 (optional, default `0.08`)
+    *   `options.toleranceDegrees` **[number][6]** corners further than this from 90° are not squared, between 0 and 45 (optional, default `15`)
+    *   `options.flatToleranceDegrees` **[number][6]** corners further than this from 180° are not flattened, between 0 and 90 (optional, default `5`)
+    *   `options.diagonalToleranceDegrees` **[number][6]** corners further than this from 45° or 135° are not squared, between 0 and 22.5 (optional, default `8`)
 
 ### Examples
 
