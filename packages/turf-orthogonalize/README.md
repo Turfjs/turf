@@ -18,6 +18,9 @@ Each ring is squared independently, so holes and adjacent polygons that share a 
 apart. A ring stays unchanged if squaring would fold it, cross its edges, or fail to settle, or if
 it is beyond the Mercator latitude limit of 85.05°.
 
+Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
+or be cut into a [MultiPolygon][2], whose parts are squared on their own.
+
 ### Parameters
 
 *   `geojson` **([FeatureCollection][3] | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up. Other geometries in a FeatureCollection are copied as they are

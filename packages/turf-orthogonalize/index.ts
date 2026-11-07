@@ -26,6 +26,9 @@ import { toMercator, toWgs84 } from "@turf/projection";
  * apart. A ring stays unchanged if squaring would fold it, cross its edges, or fail to settle, or if
  * it is beyond the Mercator latitude limit of 85.05°.
  *
+ * Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
+ * or be cut into a {@link MultiPolygon}, whose parts are squared on their own.
+ *
  * @function
  * @param {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up. Other geometries in a FeatureCollection are copied as they are
  * @param {Object} [options={}] Optional parameters
@@ -69,6 +72,8 @@ function orthogonalize<
 
 // toMercator clamps latitudes beyond this, which would flatten the shape.
 const MAX_MERCATOR_LATITUDE = 85.0511287798066;
+// toMercator wraps and clamps longitude, which would tear a ring that runs past ±180°.
+const METERS_PER_DEGREE_LONGITUDE = toMercator([1, 0])[0];
 // Curves have many corners just short of straight, so straightening is held to a tighter limit.
 const STRAIGHT_THRESHOLD_RADIANS = degreesToRadians(5);
 const DIAGONAL_THRESHOLD_RADIANS = degreesToRadians(8);
@@ -92,7 +97,10 @@ function orthogonalizeRing(ring: Position[], thresholdRadians: number) {
   ) {
     return;
   }
-  const original = vertices.flatMap((position) => toMercator(position));
+  const original = vertices.flatMap(([longitude, latitude]) => [
+    longitude * METERS_PER_DEGREE_LONGITUDE,
+    toMercator([0, latitude])[1],
+  ]);
 
   const corners: { vertex: number; kind: CornerKind }[] = [];
   for (let vertex = 0; vertex < vertices.length; vertex++) {

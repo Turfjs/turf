@@ -84,6 +84,27 @@ test("orthogonalize -- squares corners on the ground", (t) => {
   t.end();
 });
 
+test("orthogonalize -- squares a ring running past the antimeridian", (t) => {
+  const expected = orthogonalize(nearSquare).geometry.coordinates[0];
+  for (const offset of [179.9995, -180.0005, 181]) {
+    const translated = polygon([
+      nearSquare.geometry.coordinates[0].map(([longitude, latitude]) => [
+        longitude + offset,
+        latitude,
+      ]),
+    ]);
+    const actual = orthogonalize(translated).geometry.coordinates[0];
+    actual.forEach(([longitude, latitude], i) => {
+      t.ok(
+        Math.abs(longitude - expected[i][0] - offset) < 1e-8 &&
+          Math.abs(latitude - expected[i][1]) < 1e-8,
+        `corner ${i} keeps its longitude range at ${offset}°`
+      );
+    });
+  }
+  t.end();
+});
+
 test("orthogonalize -- squares across repeated vertices", (t) => {
   const squared = orthogonalize(
     polygon([
