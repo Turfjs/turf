@@ -17,15 +17,17 @@ curved wall drawn as a run of short segments keeps its curve. Diagonals at 45° 
 common, so theirs sits in between.
 
 Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
-apart, and a hole close to a wall can cross it. A ring stays unchanged if squaring would fold it,
-cross its edges, or fail to settle.
+apart, and a hole close to a wall can cross it. An edge far shorter than the rest is merged away.
+A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, or fail to
+settle.
 
 Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
-or be cut into a [MultiPolygon][2], whose parts are squared on their own.
+or be cut into a [MultiPolygon][2]. Each part is squared on its own, so its cut edge can drift
+off ±180°.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][3] | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up. Other geometries in a FeatureCollection are copied as they are
+*   `geojson` **([FeatureCollection][3] | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up. Other geometries in a FeatureCollection are copied as they are, though polygons inside a GeometryCollection are squared
 *   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
     *   `options.toleranceDegrees` **[number][6]** corners further than this from 90° are not squared, between 0 and 45 (optional, default `15`)

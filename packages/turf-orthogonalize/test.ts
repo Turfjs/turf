@@ -63,16 +63,10 @@ const getAngles = (ring: Position[]) =>
     );
   });
 
-const getErrorDegrees = (
-  before: number[],
-  after: number[],
-  toleranceDegrees = 15
-) =>
+const getErrorDegrees = (before: number[], after: number[]) =>
   after.reduce(
     (sum, angle, i) =>
-      Math.abs(before[i] - 90) < toleranceDegrees
-        ? sum + Math.abs(angle - 90)
-        : sum,
+      Math.abs(before[i] - 90) < 15 ? sum + Math.abs(angle - 90) : sum,
     0
   );
 
@@ -128,22 +122,27 @@ test("orthogonalize -- squares a ring running past the antimeridian", (t) => {
   t.end();
 });
 
-test("orthogonalize -- squares across repeated vertices", (t) => {
-  const squared = orthogonalize(
-    polygon([
-      [
-        [0, 0],
-        [0.001, 0.00005],
-        [0.001, 0.00005],
-        [0.00095, 0.001],
-        [-0.00005, 0.00095],
-        [0, 0],
-      ],
-    ])
-  );
-  const ring = toMercator(squared).geometry.coordinates[0];
-  t.equal(ring.length, 5, "drops the repeat");
-  assertSquare(t, ring);
+test("orthogonalize -- squares across repeated vertices and very short edges", (t) => {
+  for (const extra of [
+    [0.001, 0.00005],
+    [0.0010000999, 0.000050005],
+  ]) {
+    const squared = orthogonalize(
+      polygon([
+        [
+          [0, 0],
+          [0.001, 0.00005],
+          extra,
+          [0.00095, 0.001],
+          [-0.00005, 0.00095],
+          [0, 0],
+        ],
+      ])
+    );
+    const ring = toMercator(squared).geometry.coordinates[0];
+    t.equal(ring.length, 5, `merges the edge to ${extra}`);
+    assertSquare(t, ring);
+  }
   t.end();
 });
 
@@ -183,7 +182,7 @@ test("orthogonalize -- leaves a ring unchanged if squaring would cross its edges
   t.end();
 });
 
-test("orthogonalize -- leaves a ring unchanged if squaring never settles", (t) => {
+test("orthogonalize -- leaves a ring unchanged if squaring settles too slowly", (t) => {
   const pentagon = polygon([
     [
       [10.0000221, 49.9999941],
@@ -224,14 +223,24 @@ test("orthogonalize -- settles on a long building that creeps toward square", (t
       [9.9153039, 49.8020556],
     ],
   ]);
-  const angles = getAngles(
-    toMercator(orthogonalize(building)).geometry.coordinates[0]
-  );
-  for (const i of [0, 9, 10, 19]) {
-    t.ok(
-      Math.abs(angles[i] - 90) < 0.5,
-      `corner ${i} is within 0.5° of square`
+  for (const scale of [1, 10]) {
+    const [originLongitude, originLatitude] =
+      building.geometry.coordinates[0][0];
+    const scaled = polygon([
+      building.geometry.coordinates[0].map(([longitude, latitude]) => [
+        originLongitude + (longitude - originLongitude) * scale,
+        originLatitude + (latitude - originLatitude) * scale,
+      ]),
+    ]);
+    const angles = getAngles(
+      toMercator(orthogonalize(scaled)).geometry.coordinates[0]
     );
+    for (const i of [0, 9, 10, 19]) {
+      t.ok(
+        Math.abs(angles[i] - 90) < 0.5,
+        `corner ${i} is within 0.5° of square at ${scale}x`
+      );
+    }
   }
   t.end();
 });
@@ -307,8 +316,24 @@ test("orthogonalize -- leaves a ring unchanged if squaring would fold it flat", 
   t.end();
 });
 
+test("orthogonalize -- leaves a ring unchanged if squaring would collapse a wall", (t) => {
+  // A pentagon's angles sum to 540°, so five right angles can only be approached by losing a wall.
+  const pentagon = polygon([
+    [
+      [0.001, 0],
+      [0.00032, 0.00094],
+      [-0.00079, 0.00057],
+      [-0.00078, -0.0006],
+      [0.00035, -0.00096],
+      [0.001, 0],
+    ],
+  ]);
+  t.deepEqual(orthogonalize(pentagon, { toleranceDegrees: 25 }), pentagon);
+  t.end();
+});
+
 test("orthogonalize -- compromises on rings it can't square", (t) => {
-  const cases: [string, Position[], number, number][] = [
+  const cases: [string, Position[]][] = [
     [
       "thin triangle",
       [
@@ -317,8 +342,6 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
         [0.00025, 0.003],
         [0, 0],
       ],
-      15,
-      40,
     ],
     [
       "needle on square shoulders",
@@ -332,34 +355,16 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
         [0, 0.001],
         [0, 0],
       ],
-      15,
-      40,
-    ],
-    [
-      "pentagon with five near-square corners",
-      [
-        [0.001, 0],
-        [0.00032, 0.00094],
-        [-0.00079, 0.00057],
-        [-0.00078, -0.0006],
-        [0.00035, -0.00096],
-        [0.001, 0],
-      ],
-      25,
-      70,
     ],
   ];
-  for (const [name, ring, toleranceDegrees, maxMovedMeters] of cases) {
+  for (const [name, ring] of cases) {
     const start = toMercator(polygon([ring])).geometry.coordinates[0];
-    const squared = toMercator(
-      orthogonalize(polygon([ring]), { toleranceDegrees })
-    ).geometry.coordinates[0];
+    const squared = toMercator(orthogonalize(polygon([ring]))).geometry
+      .coordinates[0];
     const before = getAngles(start);
     const after = getAngles(squared);
-    // A pentagon's angles sum to 540°, so its total error can't shrink, only stay put.
     t.ok(
-      getErrorDegrees(before, after, toleranceDegrees) <
-        getErrorDegrees(before, before, toleranceDegrees) + 1e-6,
+      getErrorDegrees(before, after) < getErrorDegrees(before, before) + 1e-6,
       `${name} gets no further from square`
     );
     t.ok(
@@ -371,10 +376,7 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
         Math.hypot(position[0] - start[i][0], position[1] - start[i][1])
       )
     );
-    t.ok(
-      moved < maxMovedMeters,
-      `${name} stays near its input, moved ${moved} m`
-    );
+    t.ok(moved < 40, `${name} stays near its input, moved ${moved} m`);
   }
   t.end();
 });
@@ -486,7 +488,7 @@ test("orthogonalize -- rejects bad input", (t) => {
   t.end();
 });
 
-test("orthogonalize -- squares near-45° and near-135° corners", (t) => {
+test("orthogonalize -- squares near-135° corners", (t) => {
   const chamfered = polygon([
     [
       [0, 0],
@@ -574,6 +576,25 @@ test("orthogonalize -- drops the bbox of squared geometries", (t) => {
   );
   t.equal(features[0].bbox, undefined, "polygon in a FeatureCollection");
   t.deepEqual(features[1].bbox, bbox, "other geometry in a FeatureCollection");
+  t.end();
+});
+
+test("orthogonalize -- drops the bbox of a GeometryCollection holding a squared polygon", (t) => {
+  const { features } = orthogonalize<FeatureCollection>({
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "GeometryCollection",
+          bbox: [0, 0, 1, 1],
+          geometries: [nearSquare.geometry],
+        },
+      },
+    ],
+  });
+  t.equal(features[0].geometry.bbox, undefined);
   t.end();
 });
 

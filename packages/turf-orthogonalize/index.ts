@@ -13,6 +13,7 @@ import {
   polygon,
   radiansToDegrees,
   radiansToLength,
+  removeBbox,
 } from "@turf/helpers";
 import { geomEach } from "@turf/meta";
 
@@ -30,14 +31,16 @@ import { geomEach } from "@turf/meta";
  * common, so theirs sits in between.
  *
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
- * apart, and a hole close to a wall can cross it. A ring stays unchanged if squaring would fold it,
- * cross its edges, or fail to settle.
+ * apart, and a hole close to a wall can cross it. An edge far shorter than the rest is merged away.
+ * A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, or fail to
+ * settle.
  *
  * Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
- * or be cut into a {@link MultiPolygon}, whose parts are squared on their own.
+ * or be cut into a {@link MultiPolygon}. Each part is squared on its own, so its cut edge can drift
+ * off ±180°.
  *
  * @function
- * @param {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up. Other geometries in a FeatureCollection are copied as they are
+ * @param {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up. Other geometries in a FeatureCollection are copied as they are, though polygons inside a GeometryCollection are squared
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.toleranceDegrees=15] corners further than this from 90° are not squared, between 0 and 45
  * @param {number} [options.flatToleranceDegrees=5] corners further than this from 180° are not flattened, between 0 and 90
@@ -92,7 +95,7 @@ function orthogonalize<
     }
     delete geometry.bbox;
     if (result.type === "FeatureCollection") {
-      delete result.features[index!].bbox;
+      removeBbox(result.features[index!] as Feature);
     }
     for (const ring of geometry.type === "Polygon"
       ? geometry.coordinates
@@ -106,10 +109,14 @@ function orthogonalize<
 const METERS_PER_DEGREE = radiansToLength(degreesToRadians(1), "meters");
 // How hard each corner pulls toward its angle, against a pull of 1 for every vertex to stay put
 const CORNER_WEIGHTS = { right: 100, flat: 15, acute: 10, obtuse: 10 };
-// Squaring settles once no vertex moves more than this in a round, or gives up after the cap. The
-// paper gets the same squares from 0.1 mm to 10 cm, and its 1 mm stalls some long buildings here
-const CONVERGED_STEP_METERS = 1e-2;
+// Squaring settles once no vertex moves more than this share of the mean edge length in a round, or
+// gives up after the cap. Long buildings creep toward square, so a tighter stop can miss the cap
+const CONVERGED_STEP_RATIO = 1e-3;
 const MAX_ROUNDS = 50;
+// An edge shorter than this share of the mean edge length can flip in one step, so it is merged away
+const MERGED_EDGE_RATIO = 0.005;
+// A squared edge shorter than this share of its original length has collapsed, so it is rejected
+const COLLAPSED_EDGE_RATIO = 0.1;
 // A squared ring with a corner narrower than this has folded, so it is rejected
 const FOLDED_ANGLE_DEGREES = 0.08;
 
@@ -120,22 +127,31 @@ type Tolerances = Record<"right" | "flat" | "diagonal", number>;
 function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
   polygon([ring]);
 
-  // Drop repeated vertices and the closing vertex
-  const vertices = ring.filter((position, i) => {
-    const next = ring[(i + 1) % ring.length];
-    return position[0] !== next[0] || position[1] !== next[1];
-  });
-  if (vertices.length < 3) return;
-
   // Project to meters with an equirectangular projection centered on the ring
+  const positions = ring.slice(0, -1);
   const meanLatitude =
-    vertices.reduce((sum, [, latitude]) => sum + latitude, 0) / vertices.length;
+    positions.reduce((sum, [, latitude]) => sum + latitude, 0) /
+    positions.length;
   const metersPerDegreeLongitude =
     METERS_PER_DEGREE * Math.cos(degreesToRadians(meanLatitude));
-  const original = vertices.flatMap(([longitude, latitude]) => [
+  const project = ([longitude, latitude]: Position) => [
     longitude * metersPerDegreeLongitude,
     latitude * METERS_PER_DEGREE,
-  ]);
+  ];
+  const projected = ring.flatMap(project);
+
+  // Drop the closing vertex, repeated vertices, and the start of each very short edge
+  const edgeLengths = positions.map((_, i) =>
+    measureDistance(projected, i, i + 1)
+  );
+  const shortestEdgeLength =
+    (MERGED_EDGE_RATIO * edgeLengths.reduce((sum, length) => sum + length, 0)) /
+    positions.length;
+  const vertices = positions.filter(
+    (_, i) => edgeLengths[i] > shortestEdgeLength
+  );
+  if (vertices.length < 3) return;
+  const original = vertices.flatMap(project);
 
   // Pick the corners to square, each toward at most one target angle, right angles first. The rest
   // can still shift when their neighbors do
@@ -159,9 +175,14 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
   if (
     !squared ||
     hasCrossingEdges(squared) ||
-    vertices.some(
-      (_, vertex) => measureAngle(squared, vertex) < FOLDED_ANGLE_DEGREES
-    )
+    vertices.some((_, vertex) => {
+      const next = (vertex + 1) % vertices.length;
+      return (
+        measureAngle(squared, vertex) < FOLDED_ANGLE_DEGREES ||
+        measureDistance(squared, vertex, next) <
+          COLLAPSED_EDGE_RATIO * measureDistance(original, vertex, next)
+      );
+    })
   ) {
     // Rings that can't be squared are returned as-is
     return;
@@ -192,14 +213,26 @@ function squareCorners(original: number[], corners: Corner[]) {
   for (let i = 0; i < count; i++) {
     perimeter += measureDistance(original, i, (i + 1) % count);
   }
-  // Scaling the weights by the mean edge length keeps them independent of the ring's size
+  // Scaling by the mean edge length keeps the weights independent of the ring's size. Dividing by a
+  // corner's original edge lengths keeps a short edge from overshooting as it shrinks
+  // Leaving flat vertices out of this mean would ignore vertex density, but it collapses short edges
   const meanEdgeLength = perimeter / count;
+  const weightedCorners = corners.map(({ vertex, kind }) => ({
+    vertex,
+    kind,
+    weight:
+      CORNER_WEIGHTS[kind] *
+      (meanEdgeLength /
+        (measureDistance(original, (vertex + count - 1) % count, vertex) *
+          measureDistance(original, vertex, (vertex + 1) % count))) **
+        2,
+  }));
   const current = original.slice();
   for (let round = 0; round < MAX_ROUNDS; round++) {
     // Each corner becomes one equation, linear near the current positions
-    const linearized = corners.map(({ vertex, kind }) => ({
-      ...measureResidual(current, vertex, kind, original),
-      weight: CORNER_WEIGHTS[kind] * meanEdgeLength ** 2,
+    const linearized = weightedCorners.map(({ vertex, kind, weight }) => ({
+      ...measureResidual(current, vertex, kind),
+      weight,
     }));
     // Two competing wishes: every vertex wants to return to where it started, and every corner
     // wants its residual at zero. Minimize |step - (original - current)|² + Σ weight (residual +
@@ -224,7 +257,11 @@ function squareCorners(original: number[], corners: Corner[]) {
       return product;
     }, target);
     step.forEach((value, i) => (current[i] += value));
-    if (step.every((value) => Math.abs(value) < CONVERGED_STEP_METERS)) {
+    if (
+      step.every(
+        (value) => Math.abs(value) < CONVERGED_STEP_RATIO * meanEdgeLength
+      )
+    ) {
       return current;
     }
   }
@@ -261,22 +298,19 @@ function measureDistance(coordinates: number[], a: number, b: number) {
 
 /**
  * Measures how far a corner is from its target angle, as the dot product of its two edges (the
- * cross product for a flat corner) less the target cosine. Scaling by the edges' original lengths
- * keeps a short edge from overshooting as it shrinks.
+ * cross product for a flat corner) less the target cosine.
  *
  * @private
  * @param {number[]} coordinates flat x, y coordinates
  * @param {number} vertex index of the corner's vertex
  * @param {CornerKind} kind which angle the corner is pulled toward
- * @param {number[]} reference coordinates whose edge lengths scale the residual
  * @returns {Object} residual, zero when the corner is perfect, with its gradient and the indices of
  * the three vertices' coordinates that the gradient is taken with respect to
  */
 function measureResidual(
   coordinates: number[],
   vertex: number,
-  kind: CornerKind,
-  reference: number[]
+  kind: CornerKind
 ) {
   const count = coordinates.length / 2;
   const previous = (vertex + count - 1) % count;
@@ -288,29 +322,21 @@ function measureResidual(
   const vy = coordinates[2 * next + 1] - coordinates[2 * vertex + 1];
   const uLength = Math.hypot(ux, uy);
   const vLength = Math.hypot(vx, vy);
-  const referenceLengths =
-    measureDistance(reference, previous, vertex) *
-    measureDistance(reference, vertex, next);
   const targetCosine =
     kind === "acute" ? Math.SQRT1_2 : kind === "obtuse" ? -Math.SQRT1_2 : 0;
   // The cosine barely changes near 180°, so a flat corner rotates one edge by 90° to use the sine
   const [px, py, qx, qy] =
     kind === "flat" ? [vy, -vx, -uy, ux] : [vx, vy, ux, uy];
-  const dux = (px - (targetCosine * vLength * ux) / uLength) / referenceLengths;
-  const duy = (py - (targetCosine * vLength * uy) / uLength) / referenceLengths;
-  const dvx = (qx - (targetCosine * uLength * vx) / vLength) / referenceLengths;
-  const dvy = (qy - (targetCosine * uLength * vy) / vLength) / referenceLengths;
+  const dux = px - (targetCosine * vLength * ux) / uLength;
+  const duy = py - (targetCosine * vLength * uy) / uLength;
+  const dvx = qx - (targetCosine * uLength * vx) / vLength;
+  const dvy = qy - (targetCosine * uLength * vy) / vLength;
   return {
-    residual:
-      (ux * px + uy * py - targetCosine * uLength * vLength) / referenceLengths,
-    indices: [
-      2 * previous,
-      2 * previous + 1,
-      2 * vertex,
-      2 * vertex + 1,
-      2 * next,
-      2 * next + 1,
-    ],
+    residual: ux * px + uy * py - targetCosine * uLength * vLength,
+    indices: [previous, vertex, next].flatMap((index) => [
+      2 * index,
+      2 * index + 1,
+    ]),
     // Moving the corner itself shifts both edges, so its gradient is minus the other two
     gradient: [dux, duy, -dux - dvx, -duy - dvy, dvx, dvy],
   };
