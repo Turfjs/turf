@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#F00",
+        "stroke-width": 4
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [0.0000024, 0.0000074],
+            [0.0009916, 0.0000125],
+            [0.0009885, 0.0006],
+            [0.0005999, 0.0009864],
+            [-0.0000024, 0.0009836],
+            [0.0000024, 0.0000074]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "diagonalToleranceDegrees": 0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [0, 0],
+            [0.001, 0.00002],
+            [0.00098, 0.0006],
+            [0.0006, 0.00097],
+            [0, 0.001],
+            [0, 0]
+          ]
+        ]
+      }
+    }
+  ]
+}

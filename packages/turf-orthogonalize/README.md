@@ -20,6 +20,7 @@ Each ring is squared independently, so holes and adjacent polygons that share a 
 apart, and a hole close to a wall can cross it. An edge far shorter than the rest is merged away.
 A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
 a pole, or fail to settle.
+A second pass can move a ring again, once the first has brought new corners into tolerance.
 
 Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
 or be cut into a [MultiPolygon][2]. Each part is squared on its own, so its cut edge can drift
