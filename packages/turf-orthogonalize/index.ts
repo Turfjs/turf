@@ -32,8 +32,8 @@ import { geomEach } from "@turf/meta";
  *
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
  * apart, and a hole close to a wall can cross it. An edge far shorter than the rest is merged away.
- * A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, or fail to
- * settle.
+ * A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
+ * a pole, or fail to settle.
  *
  * Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
  * or be cut into a {@link MultiPolygon}. Each part is squared on its own, so its cut edge can drift
@@ -178,6 +178,7 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
     vertices.some((_, vertex) => {
       const next = (vertex + 1) % vertices.length;
       return (
+        Math.abs(squared[2 * vertex + 1]) > 90 * METERS_PER_DEGREE ||
         measureAngle(squared, vertex) < FOLDED_ANGLE_DEGREES ||
         measureDistance(squared, vertex, next) <
           COLLAPSED_EDGE_RATIO * measureDistance(original, vertex, next)

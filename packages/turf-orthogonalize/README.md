@@ -18,8 +18,8 @@ common, so theirs sits in between.
 
 Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
 apart, and a hole close to a wall can cross it. An edge far shorter than the rest is merged away.
-A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, or fail to
-settle.
+A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
+a pole, or fail to settle.
 
 Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
 or be cut into a [MultiPolygon][2]. Each part is squared on its own, so its cut edge can drift

@@ -1,6 +1,8 @@
 import {
   Feature,
   FeatureCollection,
+  Geometry,
+  GeometryCollection,
   MultiPolygon,
   Point,
   Polygon,
@@ -15,6 +17,7 @@ import { writeJsonFileSync } from "write-json-file";
 import {
   degreesToRadians,
   featureCollection,
+  multiPolygon,
   point,
   polygon,
   radiansToDegrees,
@@ -69,6 +72,22 @@ const getErrorDegrees = (before: number[], after: number[]) =>
       Math.abs(before[i] - 90) < 15 ? sum + Math.abs(angle - 90) : sum,
     0
   );
+
+const haveCrossingEdges = (a: Position[], b: Position[]) => {
+  const getSide = (p: Position, q: Position, r: Position) =>
+    (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]);
+  return a
+    .slice(1)
+    .some((aEnd, i) =>
+      b
+        .slice(1)
+        .some(
+          (bEnd, j) =>
+            getSide(a[i], aEnd, b[j]) * getSide(a[i], aEnd, bEnd) < 0 &&
+            getSide(b[j], bEnd, a[i]) * getSide(b[j], bEnd, aEnd) < 0
+        )
+    );
+};
 
 const assertSquare = (t: test.Test, ring: Position[]) => {
   getAngles(ring).forEach((angle, i) => {
@@ -223,7 +242,7 @@ test("orthogonalize -- settles on a long building that creeps toward square", (t
       [9.9153039, 49.8020556],
     ],
   ]);
-  for (const scale of [1, 10]) {
+  for (const scale of [0.1, 1, 10, 100]) {
     const [originLongitude, originLatitude] =
       building.geometry.coordinates[0][0];
     const scaled = polygon([
@@ -332,52 +351,88 @@ test("orthogonalize -- leaves a ring unchanged if squaring would collapse a wall
   t.end();
 });
 
-test("orthogonalize -- compromises on rings it can't square", (t) => {
-  const cases: [string, Position[]][] = [
+test("orthogonalize -- compromises on a ring it can't square", (t) => {
+  const triangle = polygon([
     [
-      "thin triangle",
-      [
-        [0, 0],
-        [0.0005, 0],
-        [0.00025, 0.003],
-        [0, 0],
-      ],
+      [0, 0],
+      [0.0005, 0],
+      [0.00025, 0.003],
+      [0, 0],
     ],
+  ]);
+  const squared = orthogonalize(triangle);
+  t.notDeepEqual(squared, triangle, "moves the ring");
+  const start = toMercator(triangle).geometry.coordinates[0];
+  const end = toMercator(squared).geometry.coordinates[0];
+  const [before, after] = [getAngles(start), getAngles(end)];
+  t.ok(
+    getErrorDegrees(before, after) < getErrorDegrees(before, before) + 1e-6,
+    "gets no further from square"
+  );
+  t.ok(
+    after.every((angle) => angle > 0.1),
+    "does not fold"
+  );
+  const moved = Math.max(
+    ...end.map((position, i) =>
+      Math.hypot(position[0] - start[i][0], position[1] - start[i][1])
+    )
+  );
+  t.ok(moved < 40, `stays near its input, moved ${moved} m`);
+  t.end();
+});
+
+test("orthogonalize -- leaves a ring unchanged if a needle on it would fold", (t) => {
+  const needle = polygon([
     [
-      "needle on square shoulders",
-      [
-        [0, 0],
-        [0.001, 0],
-        [0.001, 0.001],
-        [0.0005, 0.001],
-        [0.0005, 0.002],
-        [0.00049, 0.001],
-        [0, 0.001],
-        [0, 0],
-      ],
+      [0, 0],
+      [0.001, 0],
+      [0.001, 0.001],
+      [0.0005, 0.001],
+      [0.0005, 0.002],
+      [0.00049, 0.001],
+      [0, 0.001],
+      [0, 0],
     ],
+  ]);
+  t.deepEqual(orthogonalize(needle), needle);
+  t.end();
+});
+
+test("orthogonalize -- leaves a ring unchanged if a spur folds back along a wall", (t) => {
+  // A valid ring, with a 1 m spur running back at 175° along a 40 m wall.
+  const metersPerDegree = 111195;
+  const stretch = 1 / Math.cos(degreesToRadians(50));
+  const toPosition = ([x, y]: number[]) => [
+    10 + (x * stretch) / metersPerDegree,
+    50 + y / metersPerDegree,
   ];
-  for (const [name, ring] of cases) {
-    const start = toMercator(polygon([ring])).geometry.coordinates[0];
-    const squared = toMercator(orthogonalize(polygon([ring]))).geometry
-      .coordinates[0];
-    const before = getAngles(start);
-    const after = getAngles(squared);
-    t.ok(
-      getErrorDegrees(before, after) < getErrorDegrees(before, before) + 1e-6,
-      `${name} gets no further from square`
-    );
-    t.ok(
-      after.every((angle) => angle > 0.1),
-      `${name} does not fold`
-    );
-    const moved = Math.max(
-      ...squared.map((position, i) =>
-        Math.hypot(position[0] - start[i][0], position[1] - start[i][1])
-      )
-    );
-    t.ok(moved < 40, `${name} stays near its input, moved ${moved} m`);
-  }
+  const corners = [
+    [0, 0],
+    [40, 2],
+    [40 + Math.cos(degreesToRadians(175)), 2 + Math.sin(degreesToRadians(175))],
+    [38, 42],
+    [-2, 40],
+    [0, 0],
+  ];
+  const spur = polygon([corners.map(toPosition)]);
+  const ring = spur.geometry.coordinates[0];
+  t.notOk(haveCrossingEdges(ring, ring), "the input is valid");
+  t.deepEqual(orthogonalize(spur), spur);
+  t.end();
+});
+
+test("orthogonalize -- leaves a self-crossing ring unchanged", (t) => {
+  const bowtie = polygon([
+    [
+      [0, 0],
+      [0.001, 0.001],
+      [0.001, 0],
+      [0, 0.001],
+      [0, 0],
+    ],
+  ]);
+  t.deepEqual(orthogonalize(bowtie), bowtie);
   t.end();
 });
 
@@ -595,6 +650,454 @@ test("orthogonalize -- drops the bbox of a GeometryCollection holding a squared 
     ],
   });
   t.equal(features[0].geometry.bbox, undefined);
+  t.end();
+});
+
+test("orthogonalize -- squares polygons inside a GeometryCollection", (t) => {
+  const geometries = [
+    { ...point([1, 2]).geometry, bbox: [1, 2, 1, 2] },
+    nearSquare.geometry,
+  ] as Geometry[];
+  const { features } = orthogonalize<FeatureCollection>(
+    featureCollection([
+      {
+        type: "Feature",
+        properties: {},
+        geometry: { type: "GeometryCollection", geometries },
+      },
+    ])
+  );
+  const [location, squared] = (features[0].geometry as GeometryCollection)
+    .geometries;
+  t.deepEqual(
+    squared,
+    orthogonalize(nearSquare.geometry),
+    "squares the polygon"
+  );
+  t.deepEqual(location, point([1, 2]).geometry, "drops the sibling's bbox");
+  t.end();
+});
+
+test("orthogonalize -- rejects a bare Feature holding a GeometryCollection with a Point", (t) => {
+  t.throws(
+    () =>
+      orthogonalize({
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "GeometryCollection",
+          geometries: [point([1, 2]).geometry],
+        },
+      } as any),
+    /Point geometry is not supported/
+  );
+  t.end();
+});
+
+test(
+  "orthogonalize -- drops the bbox of a bare Feature's GeometryCollection",
+  { todo: true },
+  (t) => {
+    const squared: any = orthogonalize({
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "GeometryCollection",
+        bbox: [0, 0, 1, 1],
+        geometries: [nearSquare.geometry],
+      },
+    } as any);
+    t.equal(squared.geometry.bbox, undefined);
+    t.end();
+  }
+);
+
+test("orthogonalize -- drops the bbox of a ring it leaves unchanged", (t) => {
+  const sliver = polygon(
+    [
+      [
+        [0.0009881523926742375, 0.00059748405800201],
+        [0.00038771376851946116, 0.0004966128289233894],
+        [0.0007051316774450242, 0.0005414671518374235],
+        [0.0009881523926742375, 0.00059748405800201],
+      ],
+    ],
+    {},
+    { bbox: [0, 0, 1, 1] }
+  );
+  t.equal(orthogonalize(sliver, { toleranceDegrees: 45 }).bbox, undefined);
+  t.end();
+});
+
+test("orthogonalize -- merges a very short edge in any direction", (t) => {
+  const length = 4.5e-7;
+  for (const [x, y] of [
+    [1, 0.05],
+    [-0.05, 0.95],
+    [1, 1 / 3],
+    [-1, 1 / 3],
+  ]) {
+    const norm = Math.hypot(x, y);
+    const squared = orthogonalize(
+      polygon([
+        [
+          [0, 0],
+          [0.001, 0.00005],
+          [0.001 + (length * x) / norm, 0.00005 + (length * y) / norm],
+          [0.00095, 0.001],
+          [-0.00005, 0.00095],
+          [0, 0],
+        ],
+      ])
+    );
+    const ring = toMercator(squared).geometry.coordinates[0];
+    t.equal(ring.length, 5, `merges the edge toward ${x}, ${y}`);
+    assertSquare(t, ring);
+  }
+  t.end();
+});
+
+test("orthogonalize -- merges a very short first or closing edge", (t) => {
+  const short = [-0.00000045, 0.00000045];
+  const rings = {
+    first: [
+      [0, 0],
+      short,
+      [0.001, 0.00005],
+      [0.00095, 0.001],
+      [-0.00005, 0.00095],
+      [0, 0],
+    ],
+    closing: [
+      [0, 0],
+      [0.001, 0.00005],
+      [0.00095, 0.001],
+      [-0.00005, 0.00095],
+      short,
+      [0, 0],
+    ],
+  };
+  for (const [name, ring] of Object.entries(rings)) {
+    const { coordinates } = orthogonalize(polygon([ring])).geometry;
+    t.equal(coordinates[0].length, 5, `${name} edge is merged`);
+    t.deepEqual(coordinates[0][0], coordinates[0][4], `${name} ring is closed`);
+    assertSquare(t, toMercator(polygon(coordinates)).geometry.coordinates[0]);
+  }
+  t.end();
+});
+
+test("orthogonalize -- keeps elevation across a merged edge", (t) => {
+  const squared = orthogonalize(
+    polygon([
+      [
+        [0, 0, 7],
+        [0.001, 0.00005, 7],
+        [0.0010000999, 0.000050005, 7],
+        [0.00095, 0.001, 7],
+        [-0.00005, 0.00095, 7],
+        [0, 0, 7],
+      ],
+    ])
+  );
+  t.equal(squared.geometry.coordinates[0].length, 5);
+  t.ok(squared.geometry.coordinates[0].every(([, , z]) => z === 7));
+  t.end();
+});
+
+test("orthogonalize -- keeps a small jog on a long wall", (t) => {
+  const stretch = 1 / Math.cos(degreesToRadians(50));
+  const metersPerDegree = 111195;
+  const jog = polygon([
+    [
+      [0, 0],
+      [300.3, 0.2],
+      [299.8, 20.2],
+      [150.3, 19.9],
+      [149.8, 21.2],
+      [0.3, 21.2],
+      [0, 0],
+    ].map(([x, y]) => [
+      10 + (x * stretch) / metersPerDegree,
+      50 + y / metersPerDegree,
+    ]),
+  ]);
+  t.equal(orthogonalize(jog).geometry.coordinates[0].length, 7);
+  t.end();
+});
+
+test("orthogonalize -- keeps the corners square however densely a wall is drawn", (t) => {
+  const corners = nearSquare.geometry.coordinates[0];
+  for (const density of [4, 16, 64]) {
+    const ring = corners
+      .slice(0, -1)
+      .flatMap(([x, y], i) =>
+        Array.from({ length: density }, (_, step) => [
+          x + ((corners[i + 1][0] - x) * step) / density,
+          y + ((corners[i + 1][1] - y) * step) / density,
+        ])
+      );
+    ring.push(ring[0]);
+    const squared = toMercator(orthogonalize(polygon([ring]))).geometry
+      .coordinates[0];
+    t.equal(squared.length, ring.length, `keeps vertices at ${density}x`);
+    assertSquare(t, [
+      ...[0, 1, 2, 3].map((corner) => squared[corner * density]),
+      squared[0],
+    ]);
+  }
+  t.end();
+});
+
+test("orthogonalize -- squares any size of near-square", (t) => {
+  for (const scale of [0.01, 0.1, 1, 10, 100]) {
+    const scaled = nearSquare.geometry.coordinates[0].map(([x, y]) => [
+      x * scale,
+      y * scale,
+    ]);
+    assertSquare(
+      t,
+      toMercator(orthogonalize(polygon([scaled]))).geometry.coordinates[0]
+    );
+  }
+  t.end();
+});
+
+test("orthogonalize -- ignores where a ring starts and which way it winds", (t) => {
+  const ring = [
+    [10.0000013, 49.9999904],
+    [10.0004227, 50.0000046],
+    [10.0004053, 50.0000977],
+    [10.0002649, 50.0001183],
+    [10.0002432, 50.0002136],
+    [9.9999868, 50.0002182],
+    [10.0000013, 49.9999904],
+  ];
+  const squared = orthogonalize(polygon([ring])).geometry.coordinates[0];
+  const assertSame = (actual: Position[], name: string) =>
+    t.ok(
+      actual.every(
+        (position, i) =>
+          Math.hypot(position[0] - squared[i][0], position[1] - squared[i][1]) <
+          1e-8
+      ),
+      name
+    );
+  const shifted = orthogonalize(
+    polygon([[...ring.slice(2, -1), ...ring.slice(0, 2), ring[2]]])
+  ).geometry.coordinates[0];
+  assertSame(
+    [...shifted.slice(4, -1), ...shifted.slice(0, 4), shifted[4]],
+    "start vertex"
+  );
+  assertSame(
+    orthogonalize(
+      polygon([[...ring].reverse()])
+    ).geometry.coordinates[0].reverse(),
+    "winding"
+  );
+  t.end();
+});
+
+test("orthogonalize -- a second pass settles most rings but can square new corners", (t) => {
+  const getMovedDegrees = (ring: Position[]) => {
+    const once = orthogonalize(polygon([ring])).geometry.coordinates[0];
+    const twice = orthogonalize(polygon([once])).geometry.coordinates[0];
+    return Math.max(
+      ...once.map((position, i) =>
+        Math.hypot(position[0] - twice[i][0], position[1] - twice[i][1])
+      )
+    );
+  };
+  t.ok(getMovedDegrees(nearSquare.geometry.coordinates[0]) < 1e-7, "stable");
+  t.ok(
+    getMovedDegrees([
+      [10.0000013, 49.9999904],
+      [10.0004227, 50.0000046],
+      [10.0004053, 50.0000977],
+      [10.0002649, 50.0001183],
+      [10.0002432, 50.0002136],
+      [9.9999868, 50.0002182],
+      [10.0000013, 49.9999904],
+    ]) > 1e-6,
+    "moves again once a corner comes into tolerance"
+  );
+  t.end();
+});
+
+test("orthogonalize -- squares each part of a MultiPolygon on its own", (t) => {
+  const sliver = [
+    [0.0009881523926742375, 0.00059748405800201],
+    [0.00038771376851946116, 0.0004966128289233894],
+    [0.0007051316774450242, 0.0005414671518374235],
+    [0.0009881523926742375, 0.00059748405800201],
+  ];
+  const near = nearSquare.geometry.coordinates[0].map(([x, y]) => [x + 1, y]);
+  const [leftAlone, squared] = orthogonalize(multiPolygon([[sliver], [near]]), {
+    toleranceDegrees: 45,
+  }).geometry.coordinates;
+  t.deepEqual(leftAlone[0], sliver, "a part it can't square stays unchanged");
+  t.notDeepEqual(squared[0], near, "the other part is still squared");
+  t.end();
+});
+
+test("orthogonalize -- a squared hole can cross its shell", (t) => {
+  const shell = [
+    [9.9999621, 50.0000137],
+    [10.0003913, 50.0000228],
+    [10.0004027, 50.0001845],
+    [10.0000284, 50.0001819],
+    [9.9999621, 50.0000137],
+  ];
+  const hole = [
+    [10.0000257, 50.0000181],
+    [10.0000257, 50.000063],
+    [10.0001097, 50.000063],
+    [10.0001097, 50.0000181],
+    [10.0000257, 50.0000181],
+  ];
+  t.notOk(haveCrossingEdges(shell, hole), "the input is valid");
+  const [squaredShell, squaredHole] = orthogonalize(polygon([shell, hole]))
+    .geometry.coordinates;
+  t.ok(haveCrossingEdges(squaredShell, squaredHole), "the output crosses");
+  t.end();
+});
+
+test("orthogonalize -- squared parts of a MultiPolygon can cross", (t) => {
+  const left = [
+    [9.9999893, 50.000005],
+    [10.0002991, 49.9999987],
+    [10.0002981, 50.0001386],
+    [9.9999899, 50.0001468],
+    [9.9999893, 50.000005],
+  ];
+  const right = [
+    [10.0003048, 49.9999961],
+    [10.0005971, 50.000013],
+    [10.0005977, 50.0001418],
+    [10.0003039, 50.0001285],
+    [10.0003048, 49.9999961],
+  ];
+  t.notOk(haveCrossingEdges(left, right), "the input is valid");
+  const [squaredLeft, squaredRight] = orthogonalize(
+    multiPolygon([[left], [right]])
+  ).geometry.coordinates;
+  t.ok(
+    haveCrossingEdges(squaredLeft[0], squaredRight[0]),
+    "the output crosses"
+  );
+  t.end();
+});
+
+test("orthogonalize -- a part cut at the antimeridian drifts off 180°", (t) => {
+  const { coordinates } = orthogonalize(
+    polygon([
+      [
+        [179.999, 0],
+        [180, 0.00005],
+        [180, 0.001],
+        [179.999, 0.00095],
+        [179.999, 0],
+      ],
+    ])
+  ).geometry;
+  t.ok(Math.max(...coordinates[0].map(([longitude]) => longitude)) > 180);
+  t.notOk(coordinates[0].some(([longitude]) => longitude === 180));
+  t.end();
+});
+
+test("orthogonalize -- leaves a ring unchanged if squaring would push it past the pole", (t) => {
+  const pole = polygon([
+    [
+      [0, 89.99],
+      [90, 89.99],
+      [180, 90],
+      [-90, 89.99],
+      [0, 89.99],
+    ],
+  ]);
+  t.deepEqual(orthogonalize(pole), pole);
+  t.end();
+});
+
+test("orthogonalize -- leaves degenerate rings as they are", (t) => {
+  const rings: Record<string, Position[]> = {
+    "identical vertices": [
+      [1, 1],
+      [1, 1],
+      [1, 1],
+      [1, 1],
+    ],
+    "fewer than 3 distinct vertices": [
+      [0, 0],
+      [0.001, 0],
+      [0.001, 0],
+      [0, 0],
+    ],
+    "no area": [
+      [0, 0],
+      [0.001, 0],
+      [0.002, 0],
+      [0, 0],
+    ],
+    "all at the pole": [
+      [0, 90],
+      [90, 90],
+      [180, 90],
+      [-90, 90],
+      [0, 90],
+    ],
+    "a NaN coordinate": [
+      [0, 0],
+      [NaN, 0.001],
+      [0.001, 0.001],
+      [0, 0],
+    ],
+  };
+  for (const [name, ring] of Object.entries(rings)) {
+    t.deepEqual(orthogonalize(polygon([ring])), polygon([ring]), name);
+  }
+  t.end();
+});
+
+test("orthogonalize -- keeps repeated vertices in a ring it does not square", (t) => {
+  const roundTower = fixtures.find(({ name }) => name === "round-tower")!
+    .geojson.geometry.coordinates[0] as Position[];
+  const repeated = polygon([[roundTower[0], ...roundTower]]);
+  t.deepEqual(orthogonalize(repeated), repeated);
+  t.end();
+});
+
+test("orthogonalize -- keeps repeated vertices in a ring it rejects", (t) => {
+  const pentagon = polygon([
+    [
+      [0.001, 0],
+      [0.00032, 0.00094],
+      [0.00032, 0.00094],
+      [-0.00079, 0.00057],
+      [-0.00078, -0.0006],
+      [0.00035, -0.00096],
+      [0.001, 0],
+    ],
+  ]);
+  t.deepEqual(orthogonalize(pentagon, { toleranceDegrees: 25 }), pentagon);
+  t.end();
+});
+
+test("orthogonalize -- copies empty input", (t) => {
+  const empty: Polygon = { type: "Polygon", coordinates: [] };
+  t.deepEqual(orthogonalize(empty), empty, "empty Polygon");
+  t.deepEqual(
+    orthogonalize(featureCollection([])),
+    featureCollection([]),
+    "empty FeatureCollection"
+  );
+  const nothing = { type: "Feature", properties: {}, geometry: null };
+  t.deepEqual(orthogonalize(nothing as any), nothing, "null geometry");
+  t.end();
+});
+
+test("orthogonalize -- throws on null options", (t) => {
+  t.throws(() => orthogonalize(nearSquare, null as any), TypeError);
   t.end();
 });
 
