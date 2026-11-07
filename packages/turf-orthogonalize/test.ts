@@ -350,17 +350,24 @@ test("orthogonalize -- compromises on rings it can't square", (t) => {
   t.end();
 });
 
-test("orthogonalize -- leaves polar geometry unchanged", (t) => {
-  const input = polygon([
-    [
-      [10, 89],
-      [10.001, 89.00005],
-      [10.00095, 89.001],
-      [9.99995, 89.00095],
-      [10, 89],
-    ],
+test("orthogonalize -- squares a building near the pole", (t) => {
+  // Longitude degrees shrink with latitude, so a square on the ground at 89° is wide in degrees.
+  const stretch = 1 / Math.cos((89 * Math.PI) / 180);
+  const squared = orthogonalize(
+    polygon([
+      nearSquare.geometry.coordinates[0].map(([longitude, latitude]) => [
+        10 + longitude * stretch,
+        89 + latitude,
+      ]),
+    ])
+  );
+  const ring = squared.geometry.coordinates[0].map(([longitude, latitude]) => [
+    longitude / stretch,
+    latitude,
   ]);
-  t.deepEqual(orthogonalize(input), input);
+  getAngles(ring).forEach((angle, i) => {
+    t.ok(Math.abs(angle - 90) < 0.5, `corner ${i} is within 0.5° of square`);
+  });
   t.end();
 });
 

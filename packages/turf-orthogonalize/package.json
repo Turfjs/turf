@@ -47,6 +47,7 @@
     "test:types": "tsc --ignoreConfig --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
+    "@turf/projection": "workspace:*",
     "@turf/truncate": "workspace:*",
     "@types/benchmark": "catalog:",
     "@types/tape": "catalog:",
@@ -61,7 +62,6 @@
     "@turf/clone": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@turf/meta": "workspace:*",
-    "@turf/projection": "workspace:*",
     "@types/geojson": "catalog:"
   },
   "engines": {

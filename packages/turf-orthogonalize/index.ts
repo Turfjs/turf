@@ -7,9 +7,13 @@ import type {
   Position,
 } from "geojson";
 import { clone } from "@turf/clone";
-import { AllGeoJSON, degreesToRadians } from "@turf/helpers";
+import {
+  AllGeoJSON,
+  degreesToRadians,
+  earthRadius,
+  radiansToDegrees,
+} from "@turf/helpers";
 import { geomEach } from "@turf/meta";
-import { toMercator, toWgs84 } from "@turf/projection";
 
 /**
  * Squares up a {@link Polygon} or {@link MultiPolygon}, nudging its vertices so that corners near
@@ -23,8 +27,7 @@ import { toMercator, toWgs84 } from "@turf/projection";
  * squared, though moving their neighbors can change their angle.
  *
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
- * apart. A ring stays unchanged if squaring would fold it, cross its edges, or fail to settle, or if
- * it is beyond the Mercator latitude limit of 85.05°.
+ * apart. A ring stays unchanged if squaring would fold it, cross its edges, or fail to settle.
  *
  * Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
  * or be cut into a {@link MultiPolygon}, whose parts are squared on their own.
@@ -64,190 +67,191 @@ function orthogonalize<
     for (const ring of geometry.type === "Polygon"
       ? geometry.coordinates
       : geometry.coordinates.flat()) {
-      orthogonalizeRing(ring, degreesToRadians(thresholdDegrees));
+      orthogonalizeRing(ring, thresholdDegrees);
     }
   });
   return result;
 }
 
-// toMercator clamps latitudes beyond this, which would flatten the shape.
-const MAX_MERCATOR_LATITUDE = 85.0511287798066;
-// toMercator wraps and clamps longitude, which would tear a ring that runs past ±180°.
-const METERS_PER_DEGREE_LONGITUDE = toMercator([1, 0])[0];
+const METERS_PER_DEGREE = (earthRadius * Math.PI) / 180;
 // Curves have many corners just short of straight, so straightening is held to a tighter limit.
-const STRAIGHT_THRESHOLD_RADIANS = degreesToRadians(5);
-const DIAGONAL_THRESHOLD_RADIANS = degreesToRadians(8);
-// Per squared mean edge length in meters, so the result doesn't depend on the ring's size. Higher
-// weights make corners more exact but let impossible corner sets distort the ring.
+const STRAIGHT_THRESHOLD_DEGREES = 5;
+const DIAGONAL_THRESHOLD_DEGREES = 8;
+const FOLDED_ANGLE_DEGREES = 0.08;
+// Per squared mean edge length, so the result doesn't depend on the ring's size. Higher weights
+// make corners more exact but let impossible corner sets distort the ring.
 const CORNER_WEIGHTS = { square: 100, straight: 15, acute: 10, obtuse: 10 };
 const CONVERGED_STEP_METERS = 1e-3;
-const FOLDED_COSINE = 1 - 1e-6;
+const MAX_ROUNDS = 50;
 
-type CornerKind = "square" | "straight" | "acute" | "obtuse";
+type CornerKind = keyof typeof CORNER_WEIGHTS;
+type Corner = { vertex: number; kind: CornerKind };
 
-function orthogonalizeRing(ring: Position[], thresholdRadians: number) {
+function orthogonalizeRing(ring: Position[], thresholdDegrees: number) {
   // Dropping a vertex equal to the next one removes repeats and the closing vertex alike.
   const vertices = ring.filter((position, i) => {
     const next = ring[(i + 1) % ring.length];
     return position[0] !== next[0] || position[1] !== next[1];
   });
+  if (vertices.length < 3) return;
+
+  // Over a building, scaling degrees to meters at the ring's own latitude is as faithful as any
+  // projection, and it has no latitude limit or wraparound.
+  const meanLatitude =
+    vertices.reduce((sum, [, latitude]) => sum + latitude, 0) / vertices.length;
+  const metersPerDegreeLongitude =
+    METERS_PER_DEGREE * Math.cos(degreesToRadians(meanLatitude));
+  const original = vertices.flatMap(([longitude, latitude]) => [
+    longitude * metersPerDegreeLongitude,
+    latitude * METERS_PER_DEGREE,
+  ]);
+
+  const corners: Corner[] = [];
+  for (let vertex = 0; vertex < vertices.length; vertex++) {
+    const angle = measureAngle(original, vertex);
+    if (Math.abs(angle - 90) < thresholdDegrees) {
+      corners.push({ vertex, kind: "square" });
+    } else if (angle > 180 - STRAIGHT_THRESHOLD_DEGREES) {
+      corners.push({ vertex, kind: "straight" });
+    } else if (Math.abs(angle - 45) < DIAGONAL_THRESHOLD_DEGREES) {
+      corners.push({ vertex, kind: "acute" });
+    } else if (Math.abs(angle - 135) < DIAGONAL_THRESHOLD_DEGREES) {
+      corners.push({ vertex, kind: "obtuse" });
+    }
+  }
+  if (corners.length === 0) return;
+
+  let perimeter = 0;
+  for (let i = 0; i < vertices.length; i++) {
+    perimeter += measureDistance(original, i, (i + 1) % vertices.length);
+  }
+  const squared = squareCorners(original, corners, perimeter / vertices.length);
   if (
-    vertices.length < 3 ||
-    vertices.some(([, latitude]) => Math.abs(latitude) > MAX_MERCATOR_LATITUDE)
+    !squared ||
+    hasCrossingEdges(squared) ||
+    // A corner squeezed shut folds its two edges onto each other, which never counts as crossing.
+    vertices.some(
+      (_, vertex) => measureAngle(squared, vertex) < FOLDED_ANGLE_DEGREES
+    )
   ) {
     return;
   }
-  const original = vertices.flatMap(([longitude, latitude]) => [
-    longitude * METERS_PER_DEGREE_LONGITUDE,
-    toMercator([0, latitude])[1],
-  ]);
 
-  const corners: { vertex: number; kind: CornerKind }[] = [];
-  for (let vertex = 0; vertex < vertices.length; vertex++) {
-    const { residual: cosine } = measureCorner(original, vertex, "square");
-    if (Math.abs(cosine) < Math.sin(thresholdRadians)) {
-      corners.push({ vertex, kind: "square" });
-    } else if (cosine < -Math.cos(STRAIGHT_THRESHOLD_RADIANS)) {
-      corners.push({ vertex, kind: "straight" });
-    } else if (
-      Math.abs(Math.acos(Math.abs(cosine)) - Math.PI / 4) <
-      DIAGONAL_THRESHOLD_RADIANS
-    ) {
-      corners.push({ vertex, kind: cosine > 0 ? "acute" : "obtuse" });
-    }
-  }
-
-  const perimeter = vertices.reduce((sum, _, i) => {
-    const next = (i + 1) % vertices.length;
-    return (
-      sum +
-      Math.hypot(
-        original[2 * next] - original[2 * i],
-        original[2 * next + 1] - original[2 * i + 1]
-      )
-    );
-  }, 0);
-  const weightScale = (perimeter / vertices.length) ** 2;
-  const current = original.slice();
-  let hasSettled = false;
-
-  // Gauss-Newton. Each round linearizes the corners and solves for the best step.
-  for (let round = 0; round < 50; round++) {
-    const linearized = corners.map(({ vertex, kind }) => ({
-      ...measureCorner(current, vertex, kind, original),
-      weight: CORNER_WEIGHTS[kind] * weightScale,
-    }));
-    // Minimize |step - (original - current)|² + Σ weight (residual + gradient · step)².
-    const target = original.map((value, i) => value - current[i]);
-    for (const { residual, indices, gradient, weight } of linearized) {
-      indices.forEach((index, k) => {
-        target[index] -= weight * residual * gradient[k];
-      });
-    }
-    const step = conjugateGradient((vector) => {
-      const product = vector.slice();
-      for (const { indices, gradient, weight } of linearized) {
-        const dot = indices.reduce(
-          (sum, index, k) => sum + gradient[k] * vector[index],
-          0
-        );
-        indices.forEach((index, k) => {
-          product[index] += weight * dot * gradient[k];
-        });
-      }
-      return product;
-    }, target);
-    step.forEach((value, i) => (current[i] += value));
-    if (step.every((value) => Math.abs(value) < CONVERGED_STEP_METERS)) {
-      hasSettled = true;
-      break;
-    }
-  }
-
-  // A corner squeezed shut folds its two edges flat onto each other, which never counts as crossing.
-  const isFolded =
-    hasCrossingEdges(current) ||
-    vertices.some(
-      (_, vertex) =>
-        !(measureCorner(current, vertex, "square").residual < FOLDED_COSINE)
-    );
-  if (isFolded || !hasSettled) return;
-
-  // Vertices that barely moved keep their exact coordinates, free of projection rounding.
   vertices.forEach((position, i) => {
-    if (
-      Math.hypot(
-        current[2 * i] - original[2 * i],
-        current[2 * i + 1] - original[2 * i + 1]
-      ) >= CONVERGED_STEP_METERS
-    ) {
-      [position[0], position[1]] = toWgs84([
-        current[2 * i],
-        current[2 * i + 1],
-      ]);
-    }
+    position[0] +=
+      (squared[2 * i] - original[2 * i]) / metersPerDegreeLongitude;
+    position[1] +=
+      (squared[2 * i + 1] - original[2 * i + 1]) / METERS_PER_DEGREE;
   });
   ring.splice(0, ring.length, ...vertices, vertices[0].slice());
 }
 
-// Each corner's residual is zero when the corner is perfect. That's the cosine for a square corner,
-// the sine for a straight one, and the cosine's distance from ±√½ for an acute or obtuse one.
+// Gauss-Newton. Each round linearizes the corners and solves for the step that best trades
+// squaring them against moving the vertices. Returns undefined if the ring never settles.
+function squareCorners(
+  original: number[],
+  corners: Corner[],
+  meanEdgeLength: number
+) {
+  const current = original.slice();
+  for (let round = 0; round < MAX_ROUNDS; round++) {
+    const linearized = corners.map(({ vertex, kind }) => ({
+      ...measureCorner(current, vertex, kind, original),
+      weight: CORNER_WEIGHTS[kind] * meanEdgeLength ** 2,
+    }));
+    // Minimize |step - (original - current)|² + Σ weight (residual + gradient · step)².
+    const target = original.map((value, i) => value - current[i]);
+    for (const { residual, indices, gradient, weight } of linearized) {
+      for (let k = 0; k < 6; k++) {
+        target[indices[k]] -= weight * residual * gradient[k];
+      }
+    }
+    const step = conjugateGradient((vector) => {
+      const product = vector.slice();
+      for (const { indices, gradient, weight } of linearized) {
+        let dot = 0;
+        for (let k = 0; k < 6; k++) dot += gradient[k] * vector[indices[k]];
+        for (let k = 0; k < 6; k++) {
+          product[indices[k]] += weight * dot * gradient[k];
+        }
+      }
+      return product;
+    }, target);
+    let hasSettled = true;
+    for (let i = 0; i < current.length; i++) {
+      current[i] += step[i];
+      if (Math.abs(step[i]) >= CONVERGED_STEP_METERS) hasSettled = false;
+    }
+    if (hasSettled) return current;
+  }
+  return undefined;
+}
+
+// The angle at a vertex in degrees, from 0 when the ring folds back on itself to 180 when it runs straight.
+function measureAngle(coordinates: number[], vertex: number) {
+  const count = coordinates.length / 2;
+  const previous = (vertex + count - 1) % count;
+  const next = (vertex + 1) % count;
+  const ux = coordinates[2 * previous] - coordinates[2 * vertex];
+  const uy = coordinates[2 * previous + 1] - coordinates[2 * vertex + 1];
+  const vx = coordinates[2 * next] - coordinates[2 * vertex];
+  const vy = coordinates[2 * next + 1] - coordinates[2 * vertex + 1];
+  return radiansToDegrees(
+    Math.atan2(Math.abs(ux * vy - uy * vx), ux * vx + uy * vy)
+  );
+}
+
+function measureDistance(coordinates: number[], a: number, b: number) {
+  return Math.hypot(
+    coordinates[2 * b] - coordinates[2 * a],
+    coordinates[2 * b + 1] - coordinates[2 * a + 1]
+  );
+}
+
+// Each corner's residual is zero when the corner is perfect. It is the dot product of the two
+// edges, minus the target cosine times their lengths, divided by the lengths of the same edges in
+// `reference`. Dividing by the original lengths rather than the current ones keeps the residual a
+// plain quadratic in the coordinates, so Gauss-Newton can't overshoot as an edge shrinks.
 // Returns the residual and its gradient with respect to the three vertices' coordinates.
-// Residuals divide by the lengths in `reference`. Dividing by the current lengths makes short edges
-// overshoot, so Gauss-Newton can wander far from the input or never settle.
 function measureCorner(
   coordinates: number[],
   vertex: number,
   kind: CornerKind,
-  reference = coordinates
+  reference: number[]
 ) {
   const count = coordinates.length / 2;
-  const [a, b, c] = [
-    (vertex + count - 1) % count,
-    vertex,
-    (vertex + 1) % count,
-  ];
-  const u = [
-    coordinates[2 * a] - coordinates[2 * b],
-    coordinates[2 * a + 1] - coordinates[2 * b + 1],
-  ];
-  const v = [
-    coordinates[2 * c] - coordinates[2 * b],
-    coordinates[2 * c + 1] - coordinates[2 * b + 1],
-  ];
-  const uLength = Math.hypot(u[0], u[1]);
-  const vLength = Math.hypot(v[0], v[1]);
+  const previous = (vertex + count - 1) % count;
+  const next = (vertex + 1) % count;
+  const ux = coordinates[2 * previous] - coordinates[2 * vertex];
+  const uy = coordinates[2 * previous + 1] - coordinates[2 * vertex + 1];
+  const vx = coordinates[2 * next] - coordinates[2 * vertex];
+  const vy = coordinates[2 * next + 1] - coordinates[2 * vertex + 1];
+  const uLength = Math.hypot(ux, uy);
+  const vLength = Math.hypot(vx, vy);
   const referenceLengths =
-    Math.hypot(
-      reference[2 * a] - reference[2 * b],
-      reference[2 * a + 1] - reference[2 * b + 1]
-    ) *
-    Math.hypot(
-      reference[2 * c] - reference[2 * b],
-      reference[2 * c + 1] - reference[2 * b + 1]
-    );
+    measureDistance(reference, previous, vertex) *
+    measureDistance(reference, vertex, next);
   const targetCosine =
     kind === "acute" ? Math.SQRT1_2 : kind === "obtuse" ? -Math.SQRT1_2 : 0;
-  // Rotating one side by 90° turns the cosine into the sine.
-  const [p, q] =
-    kind === "straight"
-      ? [
-          [v[1], -v[0]],
-          [-u[1], u[0]],
-        ]
-      : [v, u];
-  const du = [0, 1].map(
-    (k) => (p[k] - (targetCosine * vLength * u[k]) / uLength) / referenceLengths
-  );
-  const dv = [0, 1].map(
-    (k) => (q[k] - (targetCosine * uLength * v[k]) / vLength) / referenceLengths
-  );
+  // The cosine is flat near 180°, so a straight corner rotates one edge by 90° to use the sine.
+  const [px, py, qx, qy] =
+    kind === "straight" ? [vy, -vx, -uy, ux] : [vx, vy, ux, uy];
+  const dux = (px - (targetCosine * vLength * ux) / uLength) / referenceLengths;
+  const duy = (py - (targetCosine * vLength * uy) / uLength) / referenceLengths;
+  const dvx = (qx - (targetCosine * uLength * vx) / vLength) / referenceLengths;
+  const dvy = (qy - (targetCosine * uLength * vy) / vLength) / referenceLengths;
   return {
     residual:
-      (u[0] * p[0] + u[1] * p[1] - targetCosine * uLength * vLength) /
-      referenceLengths,
-    indices: [2 * a, 2 * a + 1, 2 * b, 2 * b + 1, 2 * c, 2 * c + 1],
-    gradient: [du[0], du[1], -du[0] - dv[0], -du[1] - dv[1], dv[0], dv[1]],
+      (ux * px + uy * py - targetCosine * uLength * vLength) / referenceLengths,
+    indices: [
+      2 * previous,
+      2 * previous + 1,
+      2 * vertex,
+      2 * vertex + 1,
+      2 * next,
+      2 * next + 1,
+    ],
+    gradient: [dux, duy, -dux - dvx, -duy - dvy, dvx, dvy],
   };
 }
 
@@ -282,8 +286,6 @@ function conjugateGradient(
   multiply: (vector: number[]) => number[],
   target: number[]
 ) {
-  const dot = (a: number[], b: number[]) =>
-    a.reduce((sum, value, i) => sum + value * b[i], 0);
   const solution = target.map(() => 0);
   const residual = target.slice();
   const direction = target.slice();
@@ -291,18 +293,24 @@ function conjugateGradient(
   for (let i = 0; i < target.length && residualSquared > 1e-14; i++) {
     const product = multiply(direction);
     const stepSize = residualSquared / dot(direction, product);
-    direction.forEach((value, j) => {
-      solution[j] += stepSize * value;
+    for (let j = 0; j < target.length; j++) {
+      solution[j] += stepSize * direction[j];
       residual[j] -= stepSize * product[j];
-    });
+    }
     const nextResidualSquared = dot(residual, residual);
-    direction.forEach((value, j) => {
+    for (let j = 0; j < target.length; j++) {
       direction[j] =
-        residual[j] + (nextResidualSquared / residualSquared) * value;
-    });
+        residual[j] + (nextResidualSquared / residualSquared) * direction[j];
+    }
     residualSquared = nextResidualSquared;
   }
   return solution;
+}
+
+function dot(a: number[], b: number[]) {
+  let sum = 0;
+  for (let i = 0; i < a.length; i++) sum += a[i] * b[i];
+  return sum;
 }
 
 export { orthogonalize };

@@ -4178,13 +4178,13 @@ importers:
       '@turf/meta':
         specifier: workspace:*
         version: link:../turf-meta
-      '@turf/projection':
-        specifier: workspace:*
-        version: link:../turf-projection
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
     devDependencies:
+      '@turf/projection':
+        specifier: workspace:*
+        version: link:../turf-projection
       '@turf/truncate':
         specifier: workspace:*
         version: link:../turf-truncate
