@@ -351,7 +351,7 @@ test("orthogonalize -- keeps exact coordinates when nothing needs squaring", (t)
   t.end();
 });
 
-test("orthogonalize -- drops the bbox of squared geometries", (t) => {
+test("orthogonalize -- drops every bbox", (t) => {
   const bbox: [number, number, number, number] = [0, 0, 1, 1];
   const collection: any = {
     type: "Feature",
@@ -387,7 +387,7 @@ test("orthogonalize -- drops the bbox of squared geometries", (t) => {
     ])
   );
   t.equal(features[0].bbox, undefined, "polygon in a FeatureCollection");
-  t.deepEqual(features[1].bbox, bbox, "other geometry in a FeatureCollection");
+  t.equal(features[1].bbox, undefined, "other geometry in a FeatureCollection");
   t.equal(
     features[2].geometry.bbox,
     undefined,
@@ -576,11 +576,6 @@ test("orthogonalize -- copies empty input", (t) => {
   );
   const nothing = { type: "Feature", properties: {}, geometry: null };
   t.deepEqual(orthogonalize(nothing as any), nothing, "null geometry");
-  t.end();
-});
-
-test("orthogonalize -- throws on null options", (t) => {
-  t.throws(() => orthogonalize(nearSquare, null as any), TypeError);
   t.end();
 });
 

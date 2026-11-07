@@ -28,7 +28,7 @@ off ±180°.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][3] | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up. Other geometries in a FeatureCollection are copied as they are, though polygons inside a GeometryCollection are squared
+*   `geojson` **([FeatureCollection][3] | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up.
 *   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
     *   `options.toleranceDegrees` **[number][6]** corners further than this from 90° are not squared, between 0 and 45 (optional, default `15`)

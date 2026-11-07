@@ -11,6 +11,7 @@ import { execSync } from "node:child_process";
 // In lint-staged@17 it started warning against calling git add directly because of race conditions.
 // These conditions do not apply when the file is generated, and so we call git add directly here to avoid a spurious warning.
 const shouldGitAdd = process.argv.includes("--git-add");
+const readmes: string[] = [];
 
 // Template for README Markdown
 const postfix = await readFile(
@@ -73,7 +74,17 @@ for (const dir of await readdir(packagesPath)) {
 
   const readme = path.join(directory, "README.md");
   await writeFile(readme, markdown);
-  if (shouldGitAdd) {
-    execSync(`git add ${readme}`);
+  readmes.push(readme);
+}
+
+// Editors refresh their git status as the READMEs change and briefly hold the index lock, so
+// stage everything in one call and retry rather than once per package.
+for (let attempt = 1; shouldGitAdd; attempt++) {
+  try {
+    execSync(`git add ${readmes.join(" ")}`, { stdio: "pipe" });
+    break;
+  } catch (error) {
+    if (attempt === 10) throw error;
+    await new Promise((resolve) => setTimeout(resolve, 500));
   }
 }
