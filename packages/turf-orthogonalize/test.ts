@@ -440,7 +440,7 @@ test("orthogonalize -- rejects bad input", (t) => {
   ]);
   const limits = {
     thresholdDegrees: 45,
-    straightThresholdDegrees: 90,
+    flatThresholdDegrees: 90,
     diagonalThresholdDegrees: 22.5,
     foldedThresholdDegrees: 90,
   };
@@ -504,9 +504,9 @@ test("orthogonalize -- keeps exact coordinates when nothing needs squaring", (t)
   )!.geojson;
   t.deepEqual(orthogonalize(roundTower), roundTower);
   t.notDeepEqual(
-    orthogonalize(roundTower, { straightThresholdDegrees: 15 }),
+    orthogonalize(roundTower, { flatThresholdDegrees: 15 }),
     roundTower,
-    "a wider straight threshold flattens the tower"
+    "a wider flat threshold flattens the tower"
   );
   t.end();
 });

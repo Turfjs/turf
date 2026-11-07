@@ -5,15 +5,16 @@
 ## orthogonalize
 
 Squares up a [Polygon][1] or [MultiPolygon][2], nudging its vertices so that corners close
-to right angles, 45° diagonals, or straight lines land on them. This is a common cleanup step
+to right angles, 45° diagonals, or flat lines land on them. This is a common cleanup step
 for building footprints traced from imagery.
 
 Based on Lokhat and Touya, "Enhancing building footprints with squaring operations" (JOSIS,
 2016\).
 
-Each kind of corner has its own tolerance. Right angles matter most, so theirs is the widest.
-Straight corners get the tightest, so that a curved wall drawn as a run of short segments keeps
-its curve. Diagonals at 45° and 135° are less common, so theirs sits in between.
+Each kind of corner has its own tolerance. Right angles matter most, so theirs is the widest,
+with a 15° default drawn from cartographic practice. Flat corners get the tightest, so that a
+curved wall drawn as a run of short segments keeps its curve. Diagonals at 45° and 135° are less
+common, so theirs sits in between.
 
 Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
 apart. A ring stays unchanged if squaring would fold it, cross its edges, or fail to settle.
@@ -27,7 +28,7 @@ or be cut into a [MultiPolygon][2], whose parts are squared on their own.
 *   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
     *   `options.thresholdDegrees` **[number][6]** corners further than this from 90° are not squared, between 0 and 45 (optional, default `15`)
-    *   `options.straightThresholdDegrees` **[number][6]** corners further than this from 180° are not straightened, between 0 and 90 (optional, default `5`)
+    *   `options.flatThresholdDegrees` **[number][6]** corners further than this from 180° are not flattened, between 0 and 90 (optional, default `5`)
     *   `options.diagonalThresholdDegrees` **[number][6]** corners further than this from 45° or 135° are not squared, between 0 and 22.5 (optional, default `8`)
     *   `options.foldedThresholdDegrees` **[number][6]** a ring is left unchanged if squaring narrows any corner below this, between 0 and 90 (optional, default `0.08`)
 
