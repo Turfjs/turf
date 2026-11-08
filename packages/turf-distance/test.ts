@@ -56,6 +56,31 @@ test("distance -- Issue #758", (t) => {
   t.end();
 });
 
+// https://github.com/Turfjs/turf/issues/3182
+test("distance -- Issue #3182", (t) => {
+  const from = point([0, 8]);
+  // This pair can round the haversine intermediate above 1.
+  const antipodal = distance(from, point([180, -8]), { units: "radians" });
+  t.ok(
+    Number.isFinite(antipodal) && antipodal <= Math.PI,
+    "antipodal distance should be finite and at most pi radians"
+  );
+  t.ok(
+    antipodal >= Math.PI - 1e-7,
+    "antipodal distance should be close to pi radians"
+  );
+
+  const nearAntipodal = distance(from, point([180, -7.999]), {
+    units: "radians",
+  });
+  const expected = (179.999 * Math.PI) / 180;
+  t.ok(
+    Math.abs(nearAntipodal - expected) < 1e-7,
+    "near-antipodal distance should match the shorter meridian arc"
+  );
+  t.end();
+});
+
 test("distance -- throws", (t) => {
   t.throws(
     () => distance(point([0, 0]), point([10, 10]), { units: "foo" }),

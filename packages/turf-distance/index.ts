@@ -40,9 +40,12 @@ function distance(
   var lat1 = degreesToRadians(coordinates1[1]);
   var lat2 = degreesToRadians(coordinates2[1]);
 
-  var a =
+  // Floating-point rounding can push a above 1 for antipodal points.
+  const a = Math.min(
+    1,
     Math.pow(Math.sin(dLat / 2), 2) +
-    Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
+      Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2)
+  );
 
   return radiansToLength(
     2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)),
