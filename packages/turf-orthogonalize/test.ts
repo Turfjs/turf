@@ -526,6 +526,18 @@ test("orthogonalize -- squares each part of a MultiPolygon on its own", (t) => {
   t.end();
 });
 
+test("orthogonalize -- leaves only the MultiPolygon part whose rings would cross", (t) => {
+  const crossing = unchangedFixtures.find(
+    ({ name }) => name === "hole-crossing-wall"
+  )!.geojson.geometry.coordinates;
+  const near = nearSquare.geometry.coordinates[0].map(([x, y]) => [x + 1, y]);
+  const [leftAlone, squared] = orthogonalize(multiPolygon([crossing, [near]]))
+    .geometry.coordinates;
+  t.deepEqual(leftAlone, crossing, "the crossing part stays unchanged");
+  t.notDeepEqual(squared[0], near, "the other part is still squared");
+  t.end();
+});
+
 test("orthogonalize -- leaves degenerate rings as they are", (t) => {
   const rings: Record<string, Position[]> = {
     "identical vertices": [

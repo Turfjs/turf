@@ -32,9 +32,9 @@ import { geomEach } from "@turf/meta";
  * common, so theirs sits in between.
  *
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
- * apart, and a hole close to a wall can cross it. An edge far shorter than the rest is merged away.
+ * apart. An edge far shorter than the rest is merged away.
  * A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
- * a pole, or fail to settle.
+ * a pole, or fail to settle. A polygon stays unchanged if squaring would make its rings cross.
  * A second pass can move a ring again, once the first has brought new corners into tolerance.
  *
  * Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
@@ -95,10 +95,16 @@ function orthogonalize<
       }
       return;
     }
-    for (const ring of geometry.type === "Polygon"
-      ? geometry.coordinates
-      : geometry.coordinates.flat()) {
-      orthogonalizeRing(ring, tolerances);
+    for (const rings of geometry.type === "Polygon"
+      ? [geometry.coordinates]
+      : geometry.coordinates) {
+      const unsquaredRings = rings.map((ring) =>
+        ring.map((position) => position.slice())
+      );
+      for (const ring of rings) orthogonalizeRing(ring, tolerances);
+      if (hasCrossingRings(rings)) {
+        rings.splice(0, rings.length, ...unsquaredRings);
+      }
     }
   });
   return result;
@@ -360,26 +366,75 @@ function measureResidual(
  */
 function hasCrossingEdges(coordinates: number[]) {
   const count = coordinates.length / 2;
-  // The sign says which side of the line through a and b the point c is on
-  const getSide = (a: number, b: number, c: number) =>
-    (coordinates[2 * b] - coordinates[2 * a]) *
-      (coordinates[2 * c + 1] - coordinates[2 * a + 1]) -
-    (coordinates[2 * b + 1] - coordinates[2 * a + 1]) *
-      (coordinates[2 * c] - coordinates[2 * a]);
   for (let a = 0; a < count; a++) {
     const b = (a + 1) % count;
+    const ax = coordinates[2 * a];
+    const ay = coordinates[2 * a + 1];
+    const bx = coordinates[2 * b];
+    const by = coordinates[2 * b + 1];
     // Neighboring edges share a vertex, so they can't properly cross
     for (let c = a + 2; c < count; c++) {
       const d = (c + 1) % count;
+      const cx = coordinates[2 * c];
+      const cy = coordinates[2 * c + 1];
+      const dx = coordinates[2 * d];
+      const dy = coordinates[2 * d + 1];
       if (
-        getSide(a, b, c) * getSide(a, b, d) < 0 &&
-        getSide(c, d, a) * getSide(c, d, b) < 0
+        measureOrientation(ax, ay, bx, by, cx, cy) *
+          measureOrientation(ax, ay, bx, by, dx, dy) <
+          0 &&
+        measureOrientation(cx, cy, dx, dy, ax, ay) *
+          measureOrientation(cx, cy, dx, dy, bx, by) <
+          0
       ) {
         return true;
       }
     }
   }
   return false;
+}
+
+function hasCrossingRings(rings: Position[][]) {
+  for (let ringA = 0; ringA < rings.length; ringA++) {
+    for (let ringB = ringA + 1; ringB < rings.length; ringB++) {
+      for (let i = 0; i < rings[ringA].length - 1; i++) {
+        const ax = rings[ringA][i][0];
+        const ay = rings[ringA][i][1];
+        const bx = rings[ringA][i + 1][0];
+        const by = rings[ringA][i + 1][1];
+        for (let j = 0; j < rings[ringB].length - 1; j++) {
+          const cx = rings[ringB][j][0];
+          const cy = rings[ringB][j][1];
+          const dx = rings[ringB][j + 1][0];
+          const dy = rings[ringB][j + 1][1];
+          if (
+            measureOrientation(ax, ay, bx, by, cx, cy) *
+              measureOrientation(ax, ay, bx, by, dx, dy) <
+              0 &&
+            measureOrientation(cx, cy, dx, dy, ax, ay) *
+              measureOrientation(cx, cy, dx, dy, bx, by) <
+              0
+          ) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
+
+// The 2D cross product (b - a) × (c - a), known as the orientation test. Its sign says which side of
+// the line through a and b the point c is on, and it is zero when all three are collinear
+function measureOrientation(
+  ax: number,
+  ay: number,
+  bx: number,
+  by: number,
+  cx: number,
+  cy: number
+) {
+  return (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
 }
 
 /**
