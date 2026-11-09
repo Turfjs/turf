@@ -23,8 +23,10 @@ import { geomEach } from "@turf/meta";
  * to right angles, 45° diagonals, or flat lines land on them. This is a common cleanup step
  * for building footprints traced from imagery.
  *
- * Based on Lokhat and Touya, "Enhancing building footprints with squaring operations" (JOSIS,
- * 2016).
+ * Based on Lokhat and Touya, "Enhancing building footprints with squaring operations", Journal of
+ * Spatial Information Science 13 (2016), pages 33 to 60.
+ * DOI https://doi.org/10.5311/JOSIS.2016.13.276
+ * PDF https://hal.science/hal-02147792/document
  *
  * Each kind of corner has its own tolerance. Right angles matter most, so theirs is the widest,
  * with a 15° default drawn from cartographic practice. Flat corners get the tightest, so that a
