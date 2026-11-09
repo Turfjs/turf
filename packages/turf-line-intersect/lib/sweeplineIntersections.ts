@@ -24,6 +24,7 @@
 
 // This code is a vendored version from https://github.com/rowanwins/sweepline-intersections
 // We have applied our formatting rules, and then added type annotations.
+// runCheck now removes ending segments by identity (Turfjs/turf#2948); upstream still uses outQueue.pop().
 
 // The vendoring was required because the latest upstream versions are required to fix packaging,
 // but those versions include devDependencies in dependencies (see: rowanwins/sweepline-intersections#25)
@@ -58,16 +59,6 @@ function checkWhichEventIsLeft(e1: Event, e2: Event) {
   }
 
   if (e1.p.y !== e2.p.y) return e1.p.y > e2.p.y ? 1 : -1;
-  return 1;
-}
-
-function checkWhichSegmentHasRightEndpointFirst(seg1: Segment, seg2: Segment) {
-  if (seg1.rightSweepEvent.p.x > seg2.rightSweepEvent.p.x) return 1;
-  if (seg1.rightSweepEvent.p.x < seg2.rightSweepEvent.p.x) return -1;
-
-  if (seg1.rightSweepEvent.p.y !== seg2.rightSweepEvent.p.y) {
-    return seg1.rightSweepEvent.p.y < seg2.rightSweepEvent.p.y ? 1 : -1;
-  }
   return 1;
 }
 
@@ -179,26 +170,51 @@ function runCheck(
   ignoreSelfIntersections: boolean = false
 ): [number, number][] {
   const intersectionPoints: [number, number][] = [];
-  const outQueue = new TinyQueue([], checkWhichSegmentHasRightEndpointFirst);
+  const activeSegments: Segment[] = [];
+  // Zero-length segments whose right event was popped before their left
+  // event. They stay active while the sweep is still at their x, where they
+  // can touch other segments, and are removed once it moves past.
+  const endedBeforeStart = new Set<Event>();
+  const orphanedSegments: Segment[] = [];
 
   while (eventQueue.length) {
     const event = eventQueue.pop()!;
+    if (
+      orphanedSegments.length > 0 &&
+      event.p.x > orphanedSegments[0].leftSweepEvent.p.x
+    ) {
+      for (const seg of orphanedSegments) {
+        activeSegments.splice(activeSegments.indexOf(seg), 1);
+      }
+      orphanedSegments.length = 0;
+    }
     if (event.isLeftEndpoint) {
-      // debugEventAndSegments(event.p, outQueue.data)
+      // debugEventAndSegments(event.p, activeSegments)
       const segment = new Segment(event);
-      for (let i = 0; i < outQueue.data.length; i++) {
-        const otherSeg = outQueue.data[i];
+      for (let i = 0; i < activeSegments.length; i++) {
+        const otherSeg = activeSegments[i];
         if (ignoreSelfIntersections) {
           if (otherSeg.leftSweepEvent.featureId === event.featureId) continue;
         }
         const intersection = testSegmentIntersect(segment, otherSeg);
         if (intersection !== false) intersectionPoints.push(intersection);
       }
-      outQueue.push(segment);
+      activeSegments.push(segment);
+      if (
+        endedBeforeStart.size > 0 &&
+        endedBeforeStart.delete(segment.rightSweepEvent)
+      ) {
+        orphanedSegments.push(segment);
+      }
     } else if (event.isLeftEndpoint === false) {
-      outQueue.pop();
-      // const seg = outQueue.pop()
-      // debugRemovingSegment(event.p, seg)
+      // Remove this event's own segment; several active segments can end at
+      // the same x.
+      const index = activeSegments.findIndex(
+        (seg) => seg.rightSweepEvent === event
+      );
+      // debugRemovingSegment(event.p, activeSegments[index])
+      if (index !== -1) activeSegments.splice(index, 1);
+      else endedBeforeStart.add(event);
     }
   }
   return intersectionPoints;
