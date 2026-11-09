@@ -28,6 +28,11 @@ Longitudes are read as plain numbers, so a ring crossing the antimeridian should
 or be cut into a [MultiPolygon][2]. Each part is squared on its own, so its cut edge can drift
 off ±180°.
 
+Squaring operates in the planar coordinates of an equirectangular projection of a spherical
+Earth, with a separate projection centered on each ring. For rings up to 1 km across at latitudes
+up to 89°, the projection adds at most about 0.3° of error to each squared corner's angle on the
+sphere. A ring that surrounds a pole is not squared and is returned as it is.
+
 ### Parameters
 
 *   `geojson` **([FeatureCollection][3]<([Polygon][1] | [MultiPolygon][2])> | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up.

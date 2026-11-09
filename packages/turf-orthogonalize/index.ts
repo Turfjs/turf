@@ -43,6 +43,10 @@ import { geomEach } from "@turf/meta";
  * or be cut into a {@link MultiPolygon}. Each part is squared on its own, so its cut edge can drift
  * off ±180°.
  *
+ * Squaring operates in the planar coordinates of an equirectangular projection of a spherical
+ * Earth, with a separate projection centered on each ring. For rings up to 1 km across at latitudes
+ * up to 89°, the projection adds at most about 0.3° of error to each squared corner's angle. A ring that surrounds a pole is not squared and is returned as it is.
+ *
  * @function
  * @param {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up.
  * @param {Object} [options={}] Optional parameters
@@ -139,7 +143,16 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
   // Only for its validation, which throws on an unclosed or too short ring
   polygon([ring]);
 
-  // Project to meters with an equirectangular projection centered on the ring
+  // A ring around a pole winds through a full turn of longitude, and no flat projection can hold it
+  let windingDegrees = 0;
+  for (let i = 0; i < ring.length - 1; i++) {
+    const longitudeDelta = ring[i + 1][0] - ring[i][0];
+    windingDegrees += longitudeDelta - 360 * Math.round(longitudeDelta / 360);
+  }
+  if (Math.abs(windingDegrees) > 180) return;
+
+  // Project to meters with an equirectangular projection centered on the ring. Corners land off
+  // square on the sphere by about tan(latitude) × half the ring's height ÷ Earth's radius, in radians
   const positions = ring.slice(0, -1);
   const meanLatitude =
     positions.reduce((sum, [, latitude]) => sum + latitude, 0) /
