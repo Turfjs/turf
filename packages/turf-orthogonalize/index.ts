@@ -42,12 +42,12 @@ import { geomEach } from "@turf/meta";
  * off ±180°.
  *
  * @function
- * @param {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up.
+ * @param {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up.
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.toleranceDegrees=15] corners further than this from 90° are not squared, between 0 and 45
  * @param {number} [options.flatToleranceDegrees=5] corners further than this from 180° are not flattened, between 0 and 90
  * @param {number} [options.diagonalToleranceDegrees=8] corners further than this from 45° or 135° are not squared, between 0 and 22.5
- * @returns {FeatureCollection|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} a squared copy of the input
+ * @returns {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} a squared copy of the input
  * @example
  * const polygon = turf.polygon([[[0, 0], [0.001, 0.00005], [0.00095, 0.001], [-0.00005, 0.00095], [0, 0]]]);
  * const squared = turf.orthogonalize(polygon);
@@ -59,7 +59,7 @@ import { geomEach } from "@turf/meta";
 function orthogonalize<
   T extends
     | Feature<Polygon | MultiPolygon>
-    | FeatureCollection<Geometry | null>
+    | FeatureCollection<Polygon | MultiPolygon>
     | Polygon
     | MultiPolygon,
 >(

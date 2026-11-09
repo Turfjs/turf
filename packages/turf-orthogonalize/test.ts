@@ -251,12 +251,10 @@ test("orthogonalize -- FeatureCollection", (t) => {
     properties: {},
     geometry: null,
   };
-  const { features } = orthogonalize<FeatureCollection<Polygon | Point | null>>(
-    {
-      type: "FeatureCollection",
-      features: [nearSquare, location, nothing],
-    }
-  );
+  const { features } = orthogonalize({
+    type: "FeatureCollection",
+    features: [nearSquare, location, nothing],
+  } as FeatureCollection<Polygon>);
   t.deepEqual(features[0], orthogonalize(nearSquare), "squares polygons");
   t.deepEqual(features[1], location, "copies other geometries");
   t.deepEqual(features[2], nothing, "copies null geometries");
@@ -401,17 +399,18 @@ test("orthogonalize -- squares polygons inside a GeometryCollection", (t) => {
     { ...point([1, 2]).geometry, bbox: [1, 2, 1, 2] },
     nearSquare.geometry,
   ] as Geometry[];
-  const { features } = orthogonalize<FeatureCollection>(
+  const { features } = orthogonalize(
     featureCollection([
       {
         type: "Feature",
         properties: {},
         geometry: { type: "GeometryCollection", geometries },
       },
-    ])
+    ]) as unknown as FeatureCollection<Polygon>
   );
-  const [location, squared] = (features[0].geometry as GeometryCollection)
-    .geometries;
+  const [location, squared] = (
+    features[0].geometry as unknown as GeometryCollection
+  ).geometries;
   t.deepEqual(
     squared,
     orthogonalize(nearSquare.geometry),

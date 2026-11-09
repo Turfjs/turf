@@ -28,7 +28,7 @@ off ±180°.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][3] | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up.
+*   `geojson` **([FeatureCollection][3]<([Polygon][1] | [MultiPolygon][2])> | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up.
 *   `options` **[Object][5]** Optional parameters (optional, default `{}`)
 
     *   `options.toleranceDegrees` **[number][6]** corners further than this from 90° are not squared, between 0 and 45 (optional, default `15`)
@@ -46,7 +46,7 @@ const addToMap = [polygon, squared];
 squared.properties = {stroke: '#F00', 'stroke-width': 4};
 ```
 
-Returns **([FeatureCollection][3] | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** a squared copy of the input
+Returns **([FeatureCollection][3]<([Polygon][1] | [MultiPolygon][2])> | [Feature][4]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** a squared copy of the input
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

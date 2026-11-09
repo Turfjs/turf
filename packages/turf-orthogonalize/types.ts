@@ -24,11 +24,3 @@ const squaredMultiGeometry: MultiPolygon = orthogonalize(multiPoly.geometry);
 const squaredCollection: FeatureCollection = orthogonalize(
   featureCollection<Polygon | MultiPolygon>([poly, multiPoly])
 );
-
-// Accepts null geometries
-const nullableCollection: FeatureCollection<Polygon | null> = {
-  type: "FeatureCollection",
-  features: [poly, { type: "Feature", properties: {}, geometry: null }],
-};
-const squaredNullableCollection: FeatureCollection<Polygon | null> =
-  orthogonalize(nullableCollection);
