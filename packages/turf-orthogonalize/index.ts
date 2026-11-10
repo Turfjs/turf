@@ -7,6 +7,8 @@ import type {
   Polygon,
   Position,
 } from "geojson";
+import { bbox } from "@turf/bbox";
+import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { clone } from "@turf/clone";
 import {
   AllGeoJSON,
@@ -131,12 +133,9 @@ const CONVERGED_STEP_RATIO = 1e-3;
 const MAX_ROUNDS = 50;
 // An edge shorter than this share of the mean edge length can flip in one step, so it is merged away
 const MERGED_EDGE_RATIO = 0.005;
-// A squared edge shorter than this share of its original length has collapsed, so it is rejected.
-// A ratio of 0.2 would also reject the diagonal-wall fixture
-const COLLAPSED_EDGE_RATIO = 0.1;
-// A squared ring with a corner narrower than this has folded, so it is rejected. An angle of 0.01°
-// would let the spur and needle fixtures fold
-const FOLDED_ANGLE_DEGREES = 0.08;
+// A squared edge or corner angle shrunk below this share of its original has collapsed, so the ring
+// is rejected. A ratio of 0.2 would also reject the diagonal-wall fixture
+const COLLAPSED_RATIO = 0.1;
 
 type CornerKind = keyof typeof CORNER_WEIGHTS;
 type Corner = { vertex: number; kind: CornerKind };
@@ -151,7 +150,7 @@ function orthogonalizeMultiPolygon(
   );
   if (squaredParts.every((rings, i) => rings === parts[i])) return parts;
   // Parts are squared on their own, so neighbors that share a wall can end up crossing
-  if (hasCrossingRings(squaredParts.flat())) return parts;
+  if (hasNewCrossings(squaredParts.flat(), parts.flat())) return parts;
   return squaredParts;
 }
 
@@ -159,11 +158,12 @@ function orthogonalizePolygon(rings: Position[][], tolerances: Tolerances) {
   const squaredRings = rings.map((ring) => orthogonalizeRing(ring, tolerances));
   if (squaredRings.every((ring, i) => ring === rings[i])) return rings;
   // Rings are squared on their own, so a hole can end up crossing its outer ring
-  if (hasCrossingRings(squaredRings)) return rings;
+  if (hasNewCrossings(squaredRings, rings)) return rings;
   // With no crossings a hole is wholly inside or wholly outside, so one vertex decides. A small
   // hole can be moved clear of the wall without crossing it
+  const outer: Polygon = { type: "Polygon", coordinates: [squaredRings[0]] };
   for (let i = 1; i < squaredRings.length; i++) {
-    if (!isInsideRing(squaredRings[i][0], squaredRings[0])) return rings;
+    if (!booleanPointInPolygon(squaredRings[i][0], outer)) return rings;
   }
   return squaredRings;
 }
@@ -240,9 +240,10 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
       const next = (vertex + 1) % vertices.length;
       return (
         Math.abs(squared[2 * vertex + 1]) > 90 * METERS_PER_DEGREE ||
-        measureAngle(squared, vertex) < FOLDED_ANGLE_DEGREES ||
+        measureAngle(squared, vertex) <
+          COLLAPSED_RATIO * measureAngle(original, vertex) ||
         measureDistance(squared, vertex, next) <
-          COLLAPSED_EDGE_RATIO * measureDistance(original, vertex, next)
+          COLLAPSED_RATIO * measureDistance(original, vertex, next)
       );
     })
   ) {
@@ -273,23 +274,22 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
  */
 function squareCorners(original: number[], corners: Corner[]) {
   const count = original.length / 2;
-  let perimeter = 0;
-  for (let i = 0; i < count; i++) {
-    perimeter += measureDistance(original, i, (i + 1) % count);
-  }
+  const edgeLengths = Array.from({ length: count }, (_, i) =>
+    measureDistance(original, i, (i + 1) % count)
+  );
   // A residual is a dot or cross product, in square meters. Dividing by both original edge lengths
   // makes it a cosine or sine, and multiplying by the mean edge length puts it in meters, like vertex
   // movement, which also keeps a short edge from overshooting as it shrinks. The weight squares this
   // scale because the least squares terms square the residual
-  const meanEdgeLength = perimeter / count;
+  const meanEdgeLength =
+    edgeLengths.reduce((sum, length) => sum + length, 0) / count;
   const weightedCorners = corners.map(({ vertex, kind }) => ({
     vertex,
     kind,
     weight:
       CORNER_WEIGHTS[kind] *
       (meanEdgeLength /
-        (measureDistance(original, (vertex + count - 1) % count, vertex) *
-          measureDistance(original, vertex, (vertex + 1) % count))) **
+        (edgeLengths[(vertex + count - 1) % count] * edgeLengths[vertex])) **
         2,
   }));
   const current = original.slice();
@@ -438,70 +438,41 @@ function hasCrossingEdges(coordinates: number[]) {
   return false;
 }
 
-function hasCrossingRings(rings: Position[][]) {
-  if (rings.length < 2) return false;
+// Crossings already in the input don't count, so they don't block squaring the rest
+function hasNewCrossings(squaredRings: Position[][], rings: Position[][]) {
   // Rings whose bounding boxes don't overlap can't cross, which skips most pairs of parts in a
   // MultiPolygon with many of them
-  const boxes = rings.map((ring) => {
-    const box = [Infinity, Infinity, -Infinity, -Infinity];
-    for (let i = 0; i < ring.length - 1; i++) {
-      if (ring[i][0] < box[0]) box[0] = ring[i][0];
-      if (ring[i][1] < box[1]) box[1] = ring[i][1];
-      if (ring[i][0] > box[2]) box[2] = ring[i][0];
-      if (ring[i][1] > box[3]) box[3] = ring[i][1];
-    }
-    return box;
-  });
-  for (let ringA = 0; ringA < rings.length; ringA++) {
-    const a = rings[ringA];
-    for (let ringB = ringA + 1; ringB < rings.length; ringB++) {
+  const boxes = squaredRings.map((ring) =>
+    bbox({ type: "LineString", coordinates: ring })
+  );
+  for (let a = 0; a < squaredRings.length; a++) {
+    for (let b = a + 1; b < squaredRings.length; b++) {
       if (
-        boxes[ringA][2] < boxes[ringB][0] ||
-        boxes[ringB][2] < boxes[ringA][0] ||
-        boxes[ringA][3] < boxes[ringB][1] ||
-        boxes[ringB][3] < boxes[ringA][1]
+        boxes[a][2] >= boxes[b][0] &&
+        boxes[b][2] >= boxes[a][0] &&
+        boxes[a][3] >= boxes[b][1] &&
+        boxes[b][3] >= boxes[a][1] &&
+        ringsCross(squaredRings[a], squaredRings[b]) &&
+        !ringsCross(rings[a], rings[b])
       ) {
-        continue;
-      }
-      const b = rings[ringB];
-      for (let i = 0; i < a.length - 1; i++) {
-        const ax = a[i][0];
-        const ay = a[i][1];
-        const bx = a[i + 1][0];
-        const by = a[i + 1][1];
-        for (let j = 0; j < b.length - 1; j++) {
-          const c = b[j];
-          const d = b[j + 1];
-          if (segmentsCross(ax, ay, bx, by, c[0], c[1], d[0], d[1])) {
-            return true;
-          }
-        }
+        return true;
       }
     }
   }
   return false;
 }
 
-// Even-odd ray cast. A point is inside when a ray from it to the right crosses the ring an odd
-// number of times. An edge is crossed when it spans the point's latitude and the point lies to the
-// left of it, read off the orientation's sign
-function isInsideRing(point: Position, ring: Position[]) {
-  const x = point[0];
-  const y = point[1];
-  let isInside = false;
-  for (let i = 0; i < ring.length - 1; i++) {
-    const x1 = ring[i][0];
-    const y1 = ring[i][1];
-    const x2 = ring[i + 1][0];
-    const y2 = ring[i + 1][1];
-    if (
-      y1 > y !== y2 > y &&
-      measureOrientation(x1, y1, x2, y2, x, y) > 0 === y2 > y1
-    ) {
-      isInside = !isInside;
+function ringsCross(a: Position[], b: Position[]) {
+  for (let i = 0; i < a.length - 1; i++) {
+    for (let j = 0; j < b.length - 1; j++) {
+      const [ax, ay] = a[i];
+      const [bx, by] = a[i + 1];
+      const [cx, cy] = b[j];
+      const [dx, dy] = b[j + 1];
+      if (segmentsCross(ax, ay, bx, by, cx, cy, dx, dy)) return true;
     }
   }
-  return isInside;
+  return false;
 }
 
 // Two segments properly cross when each one's endpoints fall on opposite sides of the other.

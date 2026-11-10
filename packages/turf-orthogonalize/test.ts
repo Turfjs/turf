@@ -63,6 +63,11 @@ const nearSquare = polygon([
   ],
 ]);
 
+const nearSquareShifted = nearSquare.geometry.coordinates[0].map(([x, y]) => [
+  x + 1,
+  y,
+]);
+
 const getAngles = (ring: Position[]) =>
   ring.slice(0, -1).map((position, i) => {
     const previous = ring[(i + ring.length - 2) % (ring.length - 1)];
@@ -516,12 +521,18 @@ test("orthogonalize -- squares each part of a MultiPolygon on its own", (t) => {
     [0.0007051316774450242, 0.0005414671518374235],
     [0.0009881523926742375, 0.00059748405800201],
   ];
-  const near = nearSquare.geometry.coordinates[0].map(([x, y]) => [x + 1, y]);
-  const [leftAlone, squared] = orthogonalize(multiPolygon([[sliver], [near]]), {
-    toleranceDegrees: 45,
-  }).geometry.coordinates;
+  const [leftAlone, squared] = orthogonalize(
+    multiPolygon([[sliver], [nearSquareShifted]]),
+    {
+      toleranceDegrees: 45,
+    }
+  ).geometry.coordinates;
   t.deepEqual(leftAlone[0], sliver, "a part it can't square stays unchanged");
-  t.notDeepEqual(squared[0], near, "the other part is still squared");
+  t.notDeepEqual(
+    squared[0],
+    nearSquareShifted,
+    "the other part is still squared"
+  );
   t.end();
 });
 
@@ -529,11 +540,31 @@ test("orthogonalize -- leaves only the MultiPolygon part whose rings would cross
   const crossing = unchangedFixtures.find(
     ({ name }) => name === "hole-crossing-wall"
   )!.geojson.geometry.coordinates;
-  const near = nearSquare.geometry.coordinates[0].map(([x, y]) => [x + 1, y]);
-  const [leftAlone, squared] = orthogonalize(multiPolygon([crossing, [near]]))
-    .geometry.coordinates;
+  const [leftAlone, squared] = orthogonalize(
+    multiPolygon([crossing, [nearSquareShifted]])
+  ).geometry.coordinates;
   t.deepEqual(leftAlone, crossing, "the crossing part stays unchanged");
-  t.notDeepEqual(squared[0], near, "the other part is still squared");
+  t.notDeepEqual(
+    squared[0],
+    nearSquareShifted,
+    "the other part is still squared"
+  );
+  t.end();
+});
+
+test("orthogonalize -- squares a MultiPolygon whose other parts already overlap", (t) => {
+  const square = (offset: number) => [
+    [offset, offset],
+    [offset + 0.001, offset],
+    [offset + 0.001, offset + 0.001],
+    [offset, offset + 0.001],
+    [offset, offset],
+  ];
+  const [first, second, squared] = orthogonalize(
+    multiPolygon([[square(0)], [square(0.0005)], [nearSquareShifted]])
+  ).geometry.coordinates;
+  t.deepEqual([first[0], second[0]], [square(0), square(0.0005)]);
+  t.notDeepEqual(squared[0], nearSquareShifted, "the far part is squared");
   t.end();
 });
 

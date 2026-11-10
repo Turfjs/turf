@@ -2,6 +2,12 @@
   "extends": "../../tsconfig.shared.json",
   "references": [
     {
+      "path": "../turf-bbox"
+    },
+    {
+      "path": "../turf-boolean-point-in-polygon"
+    },
+    {
       "path": "../turf-clone"
     },
     {

@@ -59,6 +59,8 @@
     "write-json-file": "catalog:"
   },
   "dependencies": {
+    "@turf/bbox": "workspace:*",
+    "@turf/boolean-point-in-polygon": "workspace:*",
     "@turf/clone": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@turf/meta": "workspace:*",

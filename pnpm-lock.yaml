@@ -4169,6 +4169,12 @@ importers:
 
   packages/turf-orthogonalize:
     dependencies:
+      '@turf/bbox':
+        specifier: workspace:*
+        version: link:../turf-bbox
+      '@turf/boolean-point-in-polygon':
+        specifier: workspace:*
+        version: link:../turf-boolean-point-in-polygon
       '@turf/clone':
         specifier: workspace:*
         version: link:../turf-clone
