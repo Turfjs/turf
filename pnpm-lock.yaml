@@ -1104,6 +1104,9 @@ importers:
       '@types/geojson':
         specifier: 'catalog:'
         version: 7946.0.14
+      robust-predicates:
+        specifier: ^3.0.3
+        version: 3.0.3
     devDependencies:
       '@types/benchmark':
         specifier: 'catalog:'

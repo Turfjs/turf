@@ -2,6 +2,7 @@ import { glob } from "glob";
 import path from "path";
 import { fileURLToPath } from "url";
 import test from "tape";
+import { lineString } from "@turf/helpers";
 import { loadJsonFileSync } from "load-json-file";
 import shapely from "boolean-shapely";
 import booleanJSTS from "boolean-jsts";
@@ -56,5 +57,25 @@ test("turf-boolean-within", (t) => {
           .then((result) => t.false(result, "[false] shapely - " + name));
       t.false(result, "[false] " + name);
     });
+  t.end();
+});
+
+test("turf-boolean-within -- LineString segment coverage", (t) => {
+  t.false(
+    within(
+      lineString([
+        [0, 0],
+        [2, 0],
+        [3, 0],
+      ]),
+      lineString([
+        [0, 0],
+        [1, 1],
+        [2, 0],
+        [3, 0],
+      ])
+    ),
+    "a later covered segment does not make the earlier chord contained"
+  );
   t.end();
 });
