@@ -94,7 +94,7 @@ function orthogonalize<
   }
   const result = clone(geojson as AllGeoJSON) as T;
   removeBbox(result as GeoJSON);
-  geomEach(result as FeatureCollection<Geometry | null>, (geometry) => {
+  geomEach(result, (geometry: Geometry | null) => {
     if (geometry?.type !== "Polygon" && geometry?.type !== "MultiPolygon") {
       if (geometry && geojson.type !== "FeatureCollection") {
         throw new Error(`${geometry.type} geometry is not supported`);
