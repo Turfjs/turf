@@ -110,13 +110,10 @@ function orthogonalize<
         tolerances
       );
     } else {
-      const squaredParts = geometry.coordinates.map((rings) =>
-        orthogonalizePolygon(rings, tolerances)
+      geometry.coordinates = orthogonalizeMultiPolygon(
+        geometry.coordinates,
+        tolerances
       );
-      // Parts are squared on their own too, so neighbors that share a wall can end up crossing
-      if (!hasCrossingRings(squaredParts.flat())) {
-        geometry.coordinates = squaredParts;
-      }
     }
   });
   return result;
@@ -145,17 +142,28 @@ type CornerKind = keyof typeof CORNER_WEIGHTS;
 type Corner = { vertex: number; kind: CornerKind };
 type Tolerances = Record<"right" | "flat" | "diagonal", number>;
 
+function orthogonalizeMultiPolygon(
+  parts: Position[][][],
+  tolerances: Tolerances
+) {
+  const squaredParts = parts.map((rings) =>
+    orthogonalizePolygon(rings, tolerances)
+  );
+  if (squaredParts.every((rings, i) => rings === parts[i])) return parts;
+  // Parts are squared on their own, so neighbors that share a wall can end up crossing
+  if (hasCrossingRings(squaredParts.flat())) return parts;
+  return squaredParts;
+}
+
 function orthogonalizePolygon(rings: Position[][], tolerances: Tolerances) {
   const squaredRings = rings.map((ring) => orthogonalizeRing(ring, tolerances));
-  // Each ring is squared on its own, so a hole can end up crossing its outer ring, or a small
-  // one can slip outside it without crossing
-  if (
-    hasCrossingRings(squaredRings) ||
-    squaredRings.some(
-      (hole, i) => i > 0 && !isInsideRing(hole[0], squaredRings[0])
-    )
-  ) {
-    return rings;
+  if (squaredRings.every((ring, i) => ring === rings[i])) return rings;
+  // Rings are squared on their own, so a hole can end up crossing its outer ring
+  if (hasCrossingRings(squaredRings)) return rings;
+  // With no crossings a hole is wholly inside or wholly outside, so one vertex decides. A small
+  // hole can be moved clear of the wall without crossing it
+  for (let i = 1; i < squaredRings.length; i++) {
+    if (!isInsideRing(squaredRings[i][0], squaredRings[0])) return rings;
   }
   return squaredRings;
 }
@@ -222,7 +230,6 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
       corners.push({ vertex, kind: "obtuse" });
     }
   }
-  // A ring with nothing to square keeps its exact coordinates
   if (corners.length === 0) return ring;
 
   const squared = squareCorners(original, corners);
@@ -239,7 +246,6 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
       );
     })
   ) {
-    // Rings that can't be squared are returned as-is
     return ring;
   }
 
@@ -433,9 +439,30 @@ function hasCrossingEdges(coordinates: number[]) {
 }
 
 function hasCrossingRings(rings: Position[][]) {
+  if (rings.length < 2) return false;
+  // Rings whose bounding boxes don't overlap can't cross, which skips most pairs of parts in a
+  // MultiPolygon with many of them
+  const boxes = rings.map((ring) => {
+    const box = [Infinity, Infinity, -Infinity, -Infinity];
+    for (let i = 0; i < ring.length - 1; i++) {
+      if (ring[i][0] < box[0]) box[0] = ring[i][0];
+      if (ring[i][1] < box[1]) box[1] = ring[i][1];
+      if (ring[i][0] > box[2]) box[2] = ring[i][0];
+      if (ring[i][1] > box[3]) box[3] = ring[i][1];
+    }
+    return box;
+  });
   for (let ringA = 0; ringA < rings.length; ringA++) {
     const a = rings[ringA];
     for (let ringB = ringA + 1; ringB < rings.length; ringB++) {
+      if (
+        boxes[ringA][2] < boxes[ringB][0] ||
+        boxes[ringB][2] < boxes[ringA][0] ||
+        boxes[ringA][3] < boxes[ringB][1] ||
+        boxes[ringB][3] < boxes[ringA][1]
+      ) {
+        continue;
+      }
       const b = rings[ringB];
       for (let i = 0; i < a.length - 1; i++) {
         const ax = a[i][0];
@@ -443,18 +470,9 @@ function hasCrossingRings(rings: Position[][]) {
         const bx = a[i + 1][0];
         const by = a[i + 1][1];
         for (let j = 0; j < b.length - 1; j++) {
-          if (
-            segmentsCross(
-              ax,
-              ay,
-              bx,
-              by,
-              b[j][0],
-              b[j][1],
-              b[j + 1][0],
-              b[j + 1][1]
-            )
-          ) {
+          const c = b[j];
+          const d = b[j + 1];
+          if (segmentsCross(ax, ay, bx, by, c[0], c[1], d[0], d[1])) {
             return true;
           }
         }
@@ -465,7 +483,8 @@ function hasCrossingRings(rings: Position[][]) {
 }
 
 // Even-odd ray cast. A point is inside when a ray from it to the right crosses the ring an odd
-// number of times
+// number of times. An edge is crossed when it spans the point's latitude and the point lies to the
+// left of it, read off the orientation's sign
 function isInsideRing(point: Position, ring: Position[]) {
   const x = point[0];
   const y = point[1];
@@ -475,7 +494,10 @@ function isInsideRing(point: Position, ring: Position[]) {
     const y1 = ring[i][1];
     const x2 = ring[i + 1][0];
     const y2 = ring[i + 1][1];
-    if (y1 > y !== y2 > y && x < ((x2 - x1) * (y - y1)) / (y2 - y1) + x1) {
+    if (
+      y1 > y !== y2 > y &&
+      measureOrientation(x1, y1, x2, y2, x, y) > 0 === y2 > y1
+    ) {
       isInside = !isInside;
     }
   }
