@@ -38,9 +38,9 @@ import { geomEach } from "@turf/meta";
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
  * apart. An edge far shorter than the rest is merged away.
  * A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
- * a pole, or fail to settle. A polygon stays unchanged if squaring would make rings cross that
- * didn't before or push a hole outside. A {@link MultiPolygon} stays unchanged if squaring would
- * make parts cross that didn't before.
+ * a pole, or fail to settle. A polygon stays unchanged if squaring would make two of its rings newly
+ * cross, or move one into or out of another. A {@link MultiPolygon} stays unchanged if squaring
+ * would do the same to its parts.
  * Running it again on its output can move a ring further, since the first run can bring new corners
  * into tolerance.
  *
@@ -153,22 +153,16 @@ function orthogonalizeMultiPolygon(
     orthogonalizePolygon(rings, tolerances)
   );
   if (squaredParts.every((rings, i) => rings === parts[i])) return parts;
-  // Parts are squared on their own, so neighbors that share a wall can end up crossing
-  if (hasNewCrossings(squaredParts.flat(), parts.flat())) return parts;
+  // Parts are squared on their own, so neighbors that share a wall can end up overlapping
+  if (hasNewOverlaps(squaredParts.flat(), parts.flat())) return parts;
   return squaredParts;
 }
 
 function orthogonalizePolygon(rings: Position[][], tolerances: Tolerances) {
   const squaredRings = rings.map((ring) => orthogonalizeRing(ring, tolerances));
   if (squaredRings.every((ring, i) => ring === rings[i])) return rings;
-  // Rings are squared on their own, so a hole can end up crossing its outer ring
-  if (hasNewCrossings(squaredRings, rings)) return rings;
-  // With no crossings a hole is wholly inside or wholly outside, so one vertex decides. A small
-  // hole can be moved clear of the wall without crossing it
-  const outer: Polygon = { type: "Polygon", coordinates: [squaredRings[0]] };
-  for (let i = 1; i < squaredRings.length; i++) {
-    if (!booleanPointInPolygon(squaredRings[i][0], outer)) return rings;
-  }
+  // Rings are squared on their own, so a hole can end up crossing or escaping its outer ring
+  if (hasNewOverlaps(squaredRings, rings)) return rings;
   return squaredRings;
 }
 
@@ -441,23 +435,41 @@ function hasCrossingEdges(coordinates: number[]) {
   return false;
 }
 
-// Crossings already in the input don't count, so they don't block squaring the rest
-function hasNewCrossings(squaredRings: Position[][], rings: Position[][]) {
+// Two rings overlap differently when they cross or when one moves into or out of the other. With
+// no crossing a ring is wholly inside or outside, so one vertex decides. Changes already in the
+// input don't count, so they don't block squaring the rest
+function hasNewOverlaps(squaredRings: Position[][], rings: Position[][]) {
   if (squaredRings.length < 2) return false;
-  // Rings whose bounding boxes don't overlap can't cross, which skips most pairs of parts in a
-  // MultiPolygon with many of them
-  const boxes = squaredRings.map((ring) =>
-    bbox({ type: "LineString", coordinates: ring })
-  );
-  for (let a = 0; a < squaredRings.length; a++) {
-    for (let b = a + 1; b < squaredRings.length; b++) {
+  const toBox = (ring: Position[]) =>
+    bbox({ type: "LineString", coordinates: ring });
+  const isBoxOverlap = (a: number[], b: number[]) =>
+    a[2] >= b[0] && b[2] >= a[0] && a[3] >= b[1] && b[3] >= a[1];
+  // A vertex on a shared wall counts as outside, or every part that shares a wall would flip
+  const isInside = (a: Position[], b: Position[]) =>
+    booleanPointInPolygon(
+      a[0],
+      { type: "Polygon", coordinates: [b] },
+      { ignoreBoundary: true }
+    );
+  const squaredBoxes = squaredRings.map(toBox);
+  const boxes = rings.map(toBox);
+  for (let a = 0; a < rings.length; a++) {
+    for (let b = a + 1; b < rings.length; b++) {
+      // Rings whose boxes don't overlap before or after can't cross or hold each other, which
+      // skips most pairs of parts in a MultiPolygon with many of them
       if (
-        boxes[a][2] >= boxes[b][0] &&
-        boxes[b][2] >= boxes[a][0] &&
-        boxes[a][3] >= boxes[b][1] &&
-        boxes[b][3] >= boxes[a][1] &&
-        ringsCross(squaredRings[a], squaredRings[b]) &&
-        !ringsCross(rings[a], rings[b])
+        !isBoxOverlap(squaredBoxes[a], squaredBoxes[b]) &&
+        !isBoxOverlap(boxes[a], boxes[b])
+      ) {
+        continue;
+      }
+      if (
+        (ringsCross(squaredRings[a], squaredRings[b]) &&
+          !ringsCross(rings[a], rings[b])) ||
+        isInside(squaredRings[a], squaredRings[b]) !==
+          isInside(rings[a], rings[b]) ||
+        isInside(squaredRings[b], squaredRings[a]) !==
+          isInside(rings[b], rings[a])
       ) {
         return true;
       }

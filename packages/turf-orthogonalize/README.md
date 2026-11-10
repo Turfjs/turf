@@ -21,9 +21,9 @@ common, so theirs sits in between.
 Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
 apart. An edge far shorter than the rest is merged away.
 A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
-a pole, or fail to settle. A polygon stays unchanged if squaring would make rings cross that
-didn't before or push a hole outside. A [MultiPolygon][2] stays unchanged if squaring would
-make parts cross that didn't before.
+a pole, or fail to settle. A polygon stays unchanged if squaring would make two of its rings newly
+cross, or move one into or out of another. A [MultiPolygon][2] stays unchanged if squaring
+would do the same to its parts.
 Running it again on its output can move a ring further, since the first run can bring new corners
 into tolerance.
 

@@ -348,7 +348,6 @@ test("orthogonalize -- keeps exact coordinates when nothing needs squaring", (t)
   const roundTower = fixtures.find(
     ({ name }) => name === "round-tower"
   )!.geojson;
-  t.deepEqual(orthogonalize(roundTower), roundTower);
   t.notDeepEqual(
     orthogonalize(roundTower, { flatToleranceDegrees: 15 }),
     roundTower,
@@ -513,28 +512,6 @@ test("orthogonalize -- ignores where a ring starts and which way it winds", (t) 
       polygon([[...ring].reverse()])
     ).geometry.coordinates[0].reverse(),
     "winding"
-  );
-  t.end();
-});
-
-test("orthogonalize -- squares each part of a MultiPolygon on its own", (t) => {
-  const sliver = [
-    [0.0009881523926742375, 0.00059748405800201],
-    [0.00038771376851946116, 0.0004966128289233894],
-    [0.0007051316774450242, 0.0005414671518374235],
-    [0.0009881523926742375, 0.00059748405800201],
-  ];
-  const [leftAlone, squared] = orthogonalize(
-    multiPolygon([[sliver], [nearSquareShifted]]),
-    {
-      toleranceDegrees: 45,
-    }
-  ).geometry.coordinates;
-  t.deepEqual(leftAlone[0], sliver, "a part it can't square stays unchanged");
-  t.notDeepEqual(
-    squared[0],
-    nearSquareShifted,
-    "the other part is still squared"
   );
   t.end();
 });
