@@ -109,7 +109,7 @@ function orthogonalize<
       );
       for (const ring of rings) orthogonalizeRing(ring, tolerances);
       if (hasCrossingRings(rings)) {
-        rings.splice(0, rings.length, ...unsquaredRings);
+        for (let i = 0; i < rings.length; i++) rings[i] = unsquaredRings[i];
       }
     }
   });
@@ -215,13 +215,15 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
   }
 
   // Unproject by applying each vertex's displacement in degrees
-  vertices.forEach((position, i) => {
-    position[0] +=
+  for (let i = 0; i < vertices.length; i++) {
+    vertices[i][0] +=
       (squared[2 * i] - original[2 * i]) / metersPerDegreeLongitude;
-    position[1] +=
+    vertices[i][1] +=
       (squared[2 * i + 1] - original[2 * i + 1]) / METERS_PER_DEGREE;
-  });
-  ring.splice(0, ring.length, ...vertices, vertices[0].slice());
+    ring[i] = vertices[i];
+  }
+  ring[vertices.length] = vertices[0].slice();
+  ring.length = vertices.length + 1;
 }
 
 /**
@@ -284,7 +286,7 @@ function squareCorners(original: number[], corners: Corner[]) {
       }
       return product;
     }, target);
-    step.forEach((value, i) => (current[i] += value));
+    for (let i = 0; i < step.length; i++) current[i] += step[i];
     if (
       step.every(
         (value) => Math.abs(value) < CONVERGED_STEP_RATIO * meanEdgeLength
