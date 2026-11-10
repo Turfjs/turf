@@ -21,7 +21,9 @@ common, so theirs sits in between.
 Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
 apart. An edge far shorter than the rest is merged away.
 A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
-a pole, or fail to settle. A polygon stays unchanged if squaring would make its rings cross.
+a pole, or fail to settle. A polygon stays unchanged if squaring would make its rings cross or
+push a hole outside, and a [MultiPolygon][2] stays unchanged if squaring would make its parts
+cross.
 A second pass can move a ring again, once the first has brought new corners into tolerance.
 
 Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
@@ -30,7 +32,8 @@ off ±180°.
 
 Squaring operates in the planar coordinates of an equirectangular projection of a spherical
 Earth, with a separate projection centered on each ring. For rings up to 1 km across at latitudes
-up to 89°, the projection adds at most about 0.3° of error to each squared corner's angle. A ring that surrounds a pole is not squared and is returned as it is.
+up to 89°, the projection adds at most about 0.3° of error to each squared corner's angle. A ring
+that surrounds a pole is not squared and is returned as it is.
 
 ### Parameters
 

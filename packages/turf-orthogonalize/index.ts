@@ -36,7 +36,9 @@ import { geomEach } from "@turf/meta";
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
  * apart. An edge far shorter than the rest is merged away.
  * A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
- * a pole, or fail to settle. A polygon stays unchanged if squaring would make its rings cross.
+ * a pole, or fail to settle. A polygon stays unchanged if squaring would make its rings cross or
+ * push a hole outside, and a {@link MultiPolygon} stays unchanged if squaring would make its parts
+ * cross.
  * A second pass can move a ring again, once the first has brought new corners into tolerance.
  *
  * Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
@@ -45,7 +47,8 @@ import { geomEach } from "@turf/meta";
  *
  * Squaring operates in the planar coordinates of an equirectangular projection of a spherical
  * Earth, with a separate projection centered on each ring. For rings up to 1 km across at latitudes
- * up to 89°, the projection adds at most about 0.3° of error to each squared corner's angle. A ring that surrounds a pole is not squared and is returned as it is.
+ * up to 89°, the projection adds at most about 0.3° of error to each squared corner's angle. A ring
+ * that surrounds a pole is not squared and is returned as it is.
  *
  * @function
  * @param {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up.
@@ -101,15 +104,18 @@ function orthogonalize<
       }
       return;
     }
-    for (const rings of geometry.type === "Polygon"
-      ? [geometry.coordinates]
-      : geometry.coordinates) {
-      const unsquaredRings = rings.map((ring) =>
-        ring.map((position) => position.slice())
+    if (geometry.type === "Polygon") {
+      geometry.coordinates = orthogonalizePolygon(
+        geometry.coordinates,
+        tolerances
       );
-      for (const ring of rings) orthogonalizeRing(ring, tolerances);
-      if (hasCrossingRings(rings)) {
-        for (let i = 0; i < rings.length; i++) rings[i] = unsquaredRings[i];
+    } else {
+      const squaredParts = geometry.coordinates.map((rings) =>
+        orthogonalizePolygon(rings, tolerances)
+      );
+      // Parts are squared on their own too, so neighbors that share a wall can end up crossing
+      if (!hasCrossingRings(squaredParts.flat())) {
+        geometry.coordinates = squaredParts;
       }
     }
   });
@@ -139,6 +145,29 @@ type CornerKind = keyof typeof CORNER_WEIGHTS;
 type Corner = { vertex: number; kind: CornerKind };
 type Tolerances = Record<"right" | "flat" | "diagonal", number>;
 
+function orthogonalizePolygon(rings: Position[][], tolerances: Tolerances) {
+  const squaredRings = rings.map((ring) => orthogonalizeRing(ring, tolerances));
+  // Each ring is squared on its own, so a hole can end up crossing its outer ring, or a small
+  // one can slip outside it without crossing
+  if (
+    hasCrossingRings(squaredRings) ||
+    squaredRings.some(
+      (hole, i) => i > 0 && !isInsideRing(hole[0], squaredRings[0])
+    )
+  ) {
+    return rings;
+  }
+  return squaredRings;
+}
+
+/**
+ * Squares one ring, or returns it as it is when it can't be squared.
+ *
+ * @private
+ * @param {Position[]} ring a closed ring in degrees
+ * @param {Tolerances} tolerances how far a corner may be from each target angle
+ * @returns {Position[]} the squared ring, with new positions, or the input ring
+ */
 function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
   // Only for its validation, which throws on an unclosed or too short ring
   polygon([ring]);
@@ -149,7 +178,7 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
     const longitudeDelta = ring[i + 1][0] - ring[i][0];
     windingDegrees += longitudeDelta - 360 * Math.round(longitudeDelta / 360);
   }
-  if (Math.abs(windingDegrees) > 180) return;
+  if (Math.abs(windingDegrees) > 180) return ring;
 
   // Project to meters with an equirectangular projection centered on the ring. Corners land off
   // square on the sphere by about tan(latitude) × half the ring's height ÷ Earth's radius, in radians
@@ -175,7 +204,7 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
     positions.length;
   const isKept = (_: unknown, i: number) => edgeLengths[i] > shortestEdgeLength;
   const vertices = positions.filter(isKept);
-  if (vertices.length < 3) return;
+  if (vertices.length < 3) return ring;
   const original = projected.filter(isKept).flat();
 
   // Pick the corners to square, each toward at most one target angle, right angles first. The rest
@@ -194,7 +223,7 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
     }
   }
   // A ring with nothing to square keeps its exact coordinates
-  if (corners.length === 0) return;
+  if (corners.length === 0) return ring;
 
   const squared = squareCorners(original, corners);
   if (
@@ -211,19 +240,20 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
     })
   ) {
     // Rings that can't be squared are returned as-is
-    return;
+    return ring;
   }
 
-  // Unproject by applying each vertex's displacement in degrees
+  // Unproject by applying each vertex's displacement in degrees to a copy of the position
   for (let i = 0; i < vertices.length; i++) {
-    vertices[i][0] +=
+    const position = vertices[i].slice();
+    position[0] +=
       (squared[2 * i] - original[2 * i]) / metersPerDegreeLongitude;
-    vertices[i][1] +=
+    position[1] +=
       (squared[2 * i + 1] - original[2 * i + 1]) / METERS_PER_DEGREE;
-    ring[i] = vertices[i];
+    vertices[i] = position;
   }
-  ring[vertices.length] = vertices[0].slice();
-  ring.length = vertices.length + 1;
+  vertices.push(vertices[0].slice());
+  return vertices;
 }
 
 /**
@@ -396,16 +426,7 @@ function hasCrossingEdges(coordinates: number[]) {
       const cy = coordinates[2 * c + 1];
       const dx = coordinates[2 * d];
       const dy = coordinates[2 * d + 1];
-      if (
-        measureOrientation(ax, ay, bx, by, cx, cy) *
-          measureOrientation(ax, ay, bx, by, dx, dy) <
-          0 &&
-        measureOrientation(cx, cy, dx, dy, ax, ay) *
-          measureOrientation(cx, cy, dx, dy, bx, by) <
-          0
-      ) {
-        return true;
-      }
+      if (segmentsCross(ax, ay, bx, by, cx, cy, dx, dy)) return true;
     }
   }
   return false;
@@ -413,24 +434,26 @@ function hasCrossingEdges(coordinates: number[]) {
 
 function hasCrossingRings(rings: Position[][]) {
   for (let ringA = 0; ringA < rings.length; ringA++) {
+    const a = rings[ringA];
     for (let ringB = ringA + 1; ringB < rings.length; ringB++) {
-      for (let i = 0; i < rings[ringA].length - 1; i++) {
-        const ax = rings[ringA][i][0];
-        const ay = rings[ringA][i][1];
-        const bx = rings[ringA][i + 1][0];
-        const by = rings[ringA][i + 1][1];
-        for (let j = 0; j < rings[ringB].length - 1; j++) {
-          const cx = rings[ringB][j][0];
-          const cy = rings[ringB][j][1];
-          const dx = rings[ringB][j + 1][0];
-          const dy = rings[ringB][j + 1][1];
+      const b = rings[ringB];
+      for (let i = 0; i < a.length - 1; i++) {
+        const ax = a[i][0];
+        const ay = a[i][1];
+        const bx = a[i + 1][0];
+        const by = a[i + 1][1];
+        for (let j = 0; j < b.length - 1; j++) {
           if (
-            measureOrientation(ax, ay, bx, by, cx, cy) *
-              measureOrientation(ax, ay, bx, by, dx, dy) <
-              0 &&
-            measureOrientation(cx, cy, dx, dy, ax, ay) *
-              measureOrientation(cx, cy, dx, dy, bx, by) <
-              0
+            segmentsCross(
+              ax,
+              ay,
+              bx,
+              by,
+              b[j][0],
+              b[j][1],
+              b[j + 1][0],
+              b[j + 1][1]
+            )
           ) {
             return true;
           }
@@ -439,6 +462,46 @@ function hasCrossingRings(rings: Position[][]) {
     }
   }
   return false;
+}
+
+// Even-odd ray cast. A point is inside when a ray from it to the right crosses the ring an odd
+// number of times
+function isInsideRing(point: Position, ring: Position[]) {
+  const x = point[0];
+  const y = point[1];
+  let isInside = false;
+  for (let i = 0; i < ring.length - 1; i++) {
+    const x1 = ring[i][0];
+    const y1 = ring[i][1];
+    const x2 = ring[i + 1][0];
+    const y2 = ring[i + 1][1];
+    if (y1 > y !== y2 > y && x < ((x2 - x1) * (y - y1)) / (y2 - y1) + x1) {
+      isInside = !isInside;
+    }
+  }
+  return isInside;
+}
+
+// Two segments properly cross when each one's endpoints fall on opposite sides of the other.
+// Touching at an endpoint or lying collinear doesn't count
+function segmentsCross(
+  ax: number,
+  ay: number,
+  bx: number,
+  by: number,
+  cx: number,
+  cy: number,
+  dx: number,
+  dy: number
+) {
+  return (
+    measureOrientation(ax, ay, bx, by, cx, cy) *
+      measureOrientation(ax, ay, bx, by, dx, dy) <
+      0 &&
+    measureOrientation(cx, cy, dx, dy, ax, ay) *
+      measureOrientation(cx, cy, dx, dy, bx, by) <
+      0
+  );
 }
 
 // The 2D cross product (b - a) × (c - a), known as the orientation test. Its sign says which side of
