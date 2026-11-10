@@ -38,10 +38,11 @@ import { geomEach } from "@turf/meta";
  * Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
  * apart. An edge far shorter than the rest is merged away.
  * A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
- * a pole, or fail to settle. A polygon stays unchanged if squaring would make its rings cross or
- * push a hole outside, and a {@link MultiPolygon} stays unchanged if squaring would make its parts
- * cross.
- * A second pass can move a ring again, once the first has brought new corners into tolerance.
+ * a pole, or fail to settle. A polygon stays unchanged if squaring would make rings cross that
+ * didn't before or push a hole outside. A {@link MultiPolygon} stays unchanged if squaring would
+ * make parts cross that didn't before.
+ * Running it again on its output can move a ring further, since the first run can bring new corners
+ * into tolerance.
  *
  * Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
  * or be cut into a {@link MultiPolygon}. Each part is squared on its own, so its cut edge can drift
@@ -55,9 +56,9 @@ import { geomEach } from "@turf/meta";
  * @function
  * @param {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up.
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.toleranceDegrees=15] corners further than this from 90° are not squared, between 0 and 45
- * @param {number} [options.flatToleranceDegrees=5] corners further than this from 180° are not flattened, between 0 and 90
- * @param {number} [options.diagonalToleranceDegrees=8] corners further than this from 45° or 135° are not squared, between 0 and 22.5
+ * @param {number} [options.toleranceDegrees=15] corners farther than this from 90° are left as they are, between 0° and 45°
+ * @param {number} [options.flatToleranceDegrees=5] corners farther than this from 180° are left as they are, between 0° and 90°
+ * @param {number} [options.diagonalToleranceDegrees=8] corners farther than this from 45° or 135° are left as they are, between 0° and 22.5°
  * @returns {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} a squared copy of the input
  * @example
  * const polygon = turf.polygon([[[0, 0], [0.001, 0.00005], [0.00095, 0.001], [-0.00005, 0.00095], [0, 0]]]);
@@ -133,9 +134,12 @@ const CONVERGED_STEP_RATIO = 1e-3;
 const MAX_ROUNDS = 50;
 // An edge shorter than this share of the mean edge length can flip in one step, so it is merged away
 const MERGED_EDGE_RATIO = 0.005;
-// A squared edge or corner angle shrunk below this share of its original has collapsed, so the ring
-// is rejected. A ratio of 0.2 would also reject the diagonal-wall fixture
-const COLLAPSED_RATIO = 0.1;
+// A squared edge shorter than this share of its original length has collapsed, so it is rejected.
+// A ratio of 0.2 would also reject the diagonal-wall fixture
+const COLLAPSED_EDGE_RATIO = 0.1;
+// A squared ring with a corner narrower than this has folded, so it is rejected. An angle of 0.01°
+// would let the spur and needle fixtures fold
+const FOLDED_ANGLE_DEGREES = 0.08;
 
 type CornerKind = keyof typeof CORNER_WEIGHTS;
 type Corner = { vertex: number; kind: CornerKind };
@@ -202,15 +206,15 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
   ];
   const projected = positions.map(project);
 
-  // Drop the closing vertex, repeated vertices, and the start of each very short edge
+  // Merge away very short edges, including the zero-length ones from repeated vertices
   const edgeLengths = projected.map(([x, y], i) => {
     const [nextX, nextY] = projected[(i + 1) % projected.length];
     return Math.hypot(nextX - x, nextY - y);
   });
-  const shortestEdgeLength =
+  const mergedEdgeLength =
     (MERGED_EDGE_RATIO * edgeLengths.reduce((sum, length) => sum + length, 0)) /
     positions.length;
-  const isKept = (_: unknown, i: number) => edgeLengths[i] > shortestEdgeLength;
+  const isKept = (_: unknown, i: number) => edgeLengths[i] > mergedEdgeLength;
   const vertices = positions.filter(isKept);
   if (vertices.length < 3) return ring;
   const original = projected.filter(isKept).flat();
@@ -240,10 +244,9 @@ function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
       const next = (vertex + 1) % vertices.length;
       return (
         Math.abs(squared[2 * vertex + 1]) > 90 * METERS_PER_DEGREE ||
-        measureAngle(squared, vertex) <
-          COLLAPSED_RATIO * measureAngle(original, vertex) ||
+        measureAngle(squared, vertex) < FOLDED_ANGLE_DEGREES ||
         measureDistance(squared, vertex, next) <
-          COLLAPSED_RATIO * measureDistance(original, vertex, next)
+          COLLAPSED_EDGE_RATIO * measureDistance(original, vertex, next)
       );
     })
   ) {
@@ -296,7 +299,7 @@ function squareCorners(original: number[], corners: Corner[]) {
   for (let round = 0; round < MAX_ROUNDS; round++) {
     // Each corner becomes one equation, linear near the current positions
     const linearized = weightedCorners.map(({ vertex, kind, weight }) => ({
-      ...measureResidual(current, vertex, kind),
+      ...linearizeCorner(current, vertex, kind),
       weight,
     }));
     // Two competing wishes: every vertex wants to return to where it started, and every corner
@@ -373,7 +376,7 @@ function measureDistance(coordinates: number[], a: number, b: number) {
  * @returns {Object} residual, zero when the corner is perfect, with its gradient and the indices of
  * the three vertices' coordinates that the gradient is taken with respect to
  */
-function measureResidual(
+function linearizeCorner(
   coordinates: number[],
   vertex: number,
   kind: CornerKind
@@ -440,6 +443,7 @@ function hasCrossingEdges(coordinates: number[]) {
 
 // Crossings already in the input don't count, so they don't block squaring the rest
 function hasNewCrossings(squaredRings: Position[][], rings: Position[][]) {
+  if (squaredRings.length < 2) return false;
   // Rings whose bounding boxes don't overlap can't cross, which skips most pairs of parts in a
   // MultiPolygon with many of them
   const boxes = squaredRings.map((ring) =>
@@ -464,9 +468,9 @@ function hasNewCrossings(squaredRings: Position[][], rings: Position[][]) {
 
 function ringsCross(a: Position[], b: Position[]) {
   for (let i = 0; i < a.length - 1; i++) {
+    const [ax, ay] = a[i];
+    const [bx, by] = a[i + 1];
     for (let j = 0; j < b.length - 1; j++) {
-      const [ax, ay] = a[i];
-      const [bx, by] = a[i + 1];
       const [cx, cy] = b[j];
       const [dx, dy] = b[j + 1];
       if (segmentsCross(ax, ay, bx, by, cx, cy, dx, dy)) return true;

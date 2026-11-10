@@ -48,9 +48,9 @@ const unchangedFixtures = fs
   .readdirSync(directories.unchanged)
   .map((filename) => ({
     name: path.parse(filename).name,
-    geojson: loadJsonFileSync(
-      directories.unchanged + filename
-    ) as Feature<Polygon>,
+    geojson: loadJsonFileSync(directories.unchanged + filename) as Feature<
+      Polygon | MultiPolygon
+    >,
   }));
 
 const nearSquare = polygon([
@@ -274,8 +274,11 @@ test("orthogonalize -- keeps elevation", (t) => {
   ]) {
     const squared = orthogonalize(polygon([ring.map(([x, y]) => [x, y, 7])]))
       .geometry.coordinates[0];
-    t.equal(squared.length, 5);
-    t.ok(squared.every(([, , z]) => z === 7));
+    t.equal(squared.length, 5, "keeps every vertex");
+    t.ok(
+      squared.every(([, , z]) => z === 7),
+      "keeps the elevation of every vertex"
+    );
   }
   t.end();
 });
@@ -539,7 +542,7 @@ test("orthogonalize -- squares each part of a MultiPolygon on its own", (t) => {
 test("orthogonalize -- leaves only the MultiPolygon part whose rings would cross", (t) => {
   const crossing = unchangedFixtures.find(
     ({ name }) => name === "hole-crossing-wall"
-  )!.geojson.geometry.coordinates;
+  )!.geojson.geometry.coordinates as Position[][];
   const [leftAlone, squared] = orthogonalize(
     multiPolygon([crossing, [nearSquareShifted]])
   ).geometry.coordinates;
@@ -563,8 +566,29 @@ test("orthogonalize -- squares a MultiPolygon whose other parts already overlap"
   const [first, second, squared] = orthogonalize(
     multiPolygon([[square(0)], [square(0.0005)], [nearSquareShifted]])
   ).geometry.coordinates;
-  t.deepEqual([first[0], second[0]], [square(0), square(0.0005)]);
+  t.deepEqual(
+    [first[0], second[0]],
+    [square(0), square(0.0005)],
+    "the overlapping parts stay as they are"
+  );
   t.notDeepEqual(squared[0], nearSquareShifted, "the far part is squared");
+  t.end();
+});
+
+test("orthogonalize -- squares a polygon whose hole already crosses its wall", (t) => {
+  const [outer] = nearSquare.geometry.coordinates;
+  // An exact square straddling the right wall, starting inside it
+  const hole = [
+    [0.0009, 0.0004],
+    [0.0009, 0.0006],
+    [0.0011, 0.0006],
+    [0.0011, 0.0004],
+    [0.0009, 0.0004],
+  ];
+  const [squaredOuter, squaredHole] = orthogonalize(polygon([outer, hole]))
+    .geometry.coordinates;
+  t.notDeepEqual(squaredOuter, outer, "the outer ring is squared");
+  t.deepEqual(squaredHole, hole, "the hole stays as it is");
   t.end();
 });
 

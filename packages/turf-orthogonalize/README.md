@@ -21,10 +21,11 @@ common, so theirs sits in between.
 Each ring is squared independently, so holes and adjacent polygons that share a wall can drift
 apart. An edge far shorter than the rest is merged away.
 A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
-a pole, or fail to settle. A polygon stays unchanged if squaring would make its rings cross or
-push a hole outside, and a [MultiPolygon][2] stays unchanged if squaring would make its parts
-cross.
-A second pass can move a ring again, once the first has brought new corners into tolerance.
+a pole, or fail to settle. A polygon stays unchanged if squaring would make rings cross that
+didn't before or push a hole outside. A [MultiPolygon][2] stays unchanged if squaring would
+make parts cross that didn't before.
+Running it again on its output can move a ring further, since the first run can bring new corners
+into tolerance.
 
 Longitudes are read as plain numbers, so a ring crossing the antimeridian should run past ±180°
 or be cut into a [MultiPolygon][2]. Each part is squared on its own, so its cut edge can drift
@@ -40,9 +41,9 @@ that surrounds a pole is not squared and is returned as it is.
 *   `geojson` **([FeatureCollection][5]<([Polygon][1] | [MultiPolygon][2])> | [Feature][6]<([Polygon][1] | [MultiPolygon][2])> | [Polygon][1] | [MultiPolygon][2])** polygons to square up.
 *   `options` **[Object][7]** Optional parameters (optional, default `{}`)
 
-    *   `options.toleranceDegrees` **[number][8]** corners further than this from 90° are not squared, between 0 and 45 (optional, default `15`)
-    *   `options.flatToleranceDegrees` **[number][8]** corners further than this from 180° are not flattened, between 0 and 90 (optional, default `5`)
-    *   `options.diagonalToleranceDegrees` **[number][8]** corners further than this from 45° or 135° are not squared, between 0 and 22.5 (optional, default `8`)
+    *   `options.toleranceDegrees` **[number][8]** corners farther than this from 90° are left as they are, between 0° and 45° (optional, default `15`)
+    *   `options.flatToleranceDegrees` **[number][8]** corners farther than this from 180° are left as they are, between 0° and 90° (optional, default `5`)
+    *   `options.diagonalToleranceDegrees` **[number][8]** corners farther than this from 45° or 135° are left as they are, between 0° and 22.5° (optional, default `8`)
 
 ### Examples
 
