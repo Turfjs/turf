@@ -17,7 +17,7 @@ between (clockwise) bearing1 and bearing2; 0 bearing is North of center point, p
 
     *   `options.units` **Units** Supports all valid Turf [Units][5] (optional, default `'kilometers'`)
     *   `options.steps` **[number][3]** number of steps (optional, default `64`)
-    *   `options.properties` **Properties** Translate properties to Feature Polygon (optional, default `{}`)
+    *   `options.properties` **[Object][4]** Translate properties to Feature Polygon (optional, default `{}`)
 
 ### Examples
 

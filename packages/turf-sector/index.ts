@@ -17,7 +17,7 @@ import { getCoords } from "@turf/invariant";
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {number} [options.steps=64] number of steps
- * @param {Properties} [options.properties={}] Translate properties to Feature Polygon
+ * @param {Object} [options.properties={}] Translate properties to Feature Polygon
  * @returns {Feature<Polygon>} sector polygon
  * @example
  * var center = turf.point([-75, 40]);
@@ -30,7 +30,7 @@ import { getCoords } from "@turf/invariant";
  * //addToMap
  * var addToMap = [center, sector];
  */
-function sector(
+function sector<P extends GeoJsonProperties = GeoJsonProperties>(
   center: Coord,
   radius: number,
   bearing1: number,
@@ -38,9 +38,9 @@ function sector(
   options: {
     steps?: number;
     units?: Units;
-    properties?: GeoJsonProperties;
+    properties?: P;
   } = {}
-): Feature<Polygon> {
+): Feature<Polygon, P> {
   // Optional parameters
   options = options || {};
   if (!isObject(options)) throw new Error("options is invalid");
@@ -57,7 +57,8 @@ function sector(
   if (typeof options !== "object") throw new Error("options must be an object");
 
   if (convertAngleTo360(bearing1) === convertAngleTo360(bearing2)) {
-    return circle(center, radius, options);
+    // circle() infers P from center, but options.properties takes precedence at runtime
+    return circle(center, radius, options) as Feature<Polygon, P>;
   }
   const coords = getCoords(center);
   const arc = lineArc(center, radius, bearing1, bearing2, options);
