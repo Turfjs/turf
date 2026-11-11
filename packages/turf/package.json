@@ -152,6 +152,7 @@
     "@turf/nearest-point": "workspace:*",
     "@turf/nearest-point-on-line": "workspace:*",
     "@turf/nearest-point-to-line": "workspace:*",
+    "@turf/orthogonalize": "workspace:*",
     "@turf/planepoint": "workspace:*",
     "@turf/point-grid": "workspace:*",
     "@turf/point-on-feature": "workspace:*",
