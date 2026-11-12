@@ -1,6 +1,6 @@
 {
   "name": "@turf/point-to-polygon-distance",
-  "version": "7.3.5",
+  "version": "7.4.0",
   "description": "Calculates the distance from a point to the edges of a polygon or multi-polygon.",
   "author": "Turf Authors",
   "contributors": [
@@ -27,29 +27,21 @@
     "distance"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "!**/*.tsbuildinfo"
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsc --build",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
@@ -59,10 +51,9 @@
     "benchmark": "catalog:",
     "load-json-file": "^7.0.1",
     "tape": "catalog:",
-    "tsup": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
-    "write-json-file": "^6.0.0"
+    "write-json-file": "catalog:"
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "workspace:*",
@@ -71,7 +62,9 @@
     "@turf/meta": "workspace:*",
     "@turf/point-to-line-distance": "workspace:*",
     "@turf/polygon-to-line": "workspace:*",
-    "@types/geojson": "catalog:",
-    "tslib": "catalog:"
+    "@types/geojson": "catalog:"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@turf/turf",
-  "version": "7.3.5",
+  "version": "7.4.0",
   "description": "a JavaScript library for performing geospatial operations with GeoJSON",
   "author": "Turf Authors",
   "license": "MIT",
@@ -44,52 +44,34 @@
     "sample"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "browser": "turf.min.js",
   "sideEffects": false,
   "files": [
     "dist",
-    "turf.min.js"
+    "turf.min.js",
+    "!**/*.tsbuildinfo"
   ],
   "scripts": {
-    "build": "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
-    "last-checks": "pnpm run last-checks:testjs && pnpm run last-checks:example",
-    "last-checks:example": "tsx test.example.js",
-    "last-checks:testjs": "tsx test.ts",
-    "test": "echo '@turf/turf tests run in the last-checks step'"
+    "build": "tsc --build && esbuild index.ts --bundle --minify --target=chrome109,edge147,firefox140,ios18.5,opera127,safari26.3 --outfile=turf.min.js",
+    "test": "tsx test.ts && tsx test.example.js",
+    "watch": "tsc --build --watch"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.7",
-    "@babel/preset-env": "^7.29.7",
-    "@rollup/plugin-babel": "^7.1.0",
-    "@rollup/plugin-commonjs": "^29.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@types/tape": "^5.8.1",
-    "camelcase": "^8.0.0",
+    "@types/tape": "catalog:",
+    "camelcase": "^9.0.0",
     "documentation": "^14.0.3",
-    "glob": "^11.1.0",
-    "rollup": "^4.62.2",
-    "rollup-plugin-polyfill-node": "^0.13.0",
-    "tape": "^5.10.2",
-    "tsup": "^8.5.1",
-    "tsx": "^4.22.4",
-    "typescript": "^5.9.3"
+    "esbuild": "^0.28.1",
+    "glob": "^13.0.6",
+    "tape": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
   },
   "dependencies": {
     "@turf/along": "workspace:*",
@@ -209,5 +191,8 @@
     "@types/geojson": "catalog:",
     "@types/kdbush": "^3.0.5",
     "tslib": "^2.8.1"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

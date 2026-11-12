@@ -1,6 +1,6 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { glob } from "glob";
 import test from "tape";
 import camelCase from "camelcase";
@@ -19,7 +19,7 @@ for (const name of fs.readdirSync(directory)) {
   if (!fs.existsSync(pckgPath)) continue;
   const pckg = JSON.parse(fs.readFileSync(pckgPath));
 
-  let mainFile = path.join(directory, name, pckg.main);
+  let mainFile = path.join(directory, name, pckg["exports"]["."].default);
   if (!fs.existsSync(mainFile)) {
     mainFile += ".js";
   }
@@ -51,7 +51,6 @@ test("turf -- invalid dependencies", (t) => {
       "tape",
       "benchmark",
       "glob",
-      "lerna",
       "documentation",
       "uglify-js",
     ]) {
@@ -109,6 +108,7 @@ test("turf -- check if files exists", (t) => {
       if (file === "main.js") continue;
       if (file === "main.es.js") continue;
       if (file === "index.d.ts") continue;
+      if (file.startsWith("!")) continue;
       if (!fs.existsSync(path.join(dir, file)))
         t.fail(`${name} missing file ${file} in "files"`);
     }
@@ -230,8 +230,8 @@ test("turf -- parsing dependencies from index.js", (t) => {
 // Test for missing modules
 test("turf -- missing modules", (t) => {
   const files = {
-    typescript: fs.readFileSync(path.join(__dirname, "dist/cjs/index.d.cts")),
-    modules: fs.readFileSync(path.join(__dirname, "dist/cjs/index.cjs")),
+    typescript: fs.readFileSync(path.join(__dirname, "dist/index.d.ts")),
+    modules: fs.readFileSync(path.join(__dirname, "dist/index.js")),
   };
 
   modules.forEach(({ name }) => {
@@ -335,12 +335,12 @@ test("turf -- update to newer Typescript definitions", (t) => {
 
 // File Paths
 const testFilePath = path.join(__dirname, "test.example.js");
-const turfModulesPath = path.join(__dirname, "..", "turf-*", "index.js");
+const turfModulesPath = path.join(__dirname, "..", "turf-*", "index.ts");
 const turfTypescriptPath = path.join(__dirname, "..", "turf-*", "index.d.ts");
 
 // Test Strings
 const requireString = `import test from 'tape';
-import * as turf from './dist/esm/index.js';
+import * as turf from './dist/index.js';
 `;
 
 /**

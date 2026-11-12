@@ -90,8 +90,8 @@ function randomPoint(
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
  * @param {BBox} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
- * @param {number} [options.num_vertices=10] is how many coordinates each LineString will contain.
- * @param {number} [options.max_radial_length=10] is the maximum number of decimal degrees latitude or longitude that a
+ * @param {number} [options.numVertices=10] is how many coordinates each LineString will contain.
+ * @param {number} [options.maxRadialLength=10] is the maximum number of decimal degrees latitude or longitude that a
  * vertex can reach out of the center of the Polygon.
  * @returns {FeatureCollection<Polygon>} GeoJSON FeatureCollection of polygons
  * @throws {Error} if bbox is invalid
@@ -103,8 +103,8 @@ function randomPolygon(
   count?: number,
   options: {
     bbox?: BBox;
-    num_vertices?: number;
-    max_radial_length?: number;
+    numVertices?: number;
+    maxRadialLength?: number;
   } = {}
 ): FeatureCollection<Polygon, any> {
   checkBBox(options.bbox);
@@ -116,14 +116,14 @@ function randomPolygon(
   if (options.bbox === undefined || options.bbox === null) {
     options.bbox = [-180, -90, 180, 90];
   }
-  if (!isNumber(options.num_vertices) || options.num_vertices === undefined) {
-    options.num_vertices = 10;
+  if (!isNumber(options.numVertices) || options.numVertices === undefined) {
+    options.numVertices = 10;
   }
   if (
-    !isNumber(options.max_radial_length) ||
-    options.max_radial_length === undefined
+    !isNumber(options.maxRadialLength) ||
+    options.maxRadialLength === undefined
   ) {
-    options.max_radial_length = 10;
+    options.maxRadialLength = 10;
   }
 
   const bboxWidth = Math.abs(options.bbox[0] - options.bbox[2]);
@@ -131,22 +131,22 @@ function randomPolygon(
 
   const maxRadius = Math.min(bboxWidth / 2, bboxHeight / 2);
 
-  if (options.max_radial_length > maxRadius) {
-    throw new Error("max_radial_length is greater than the radius of the bbox");
+  if (options.maxRadialLength > maxRadius) {
+    throw new Error("maxRadialLength is greater than the radius of the bbox");
   }
 
   // Create a padded bbox to avoid the polygons to be too close to the border
   const paddedBbox = [
-    options.bbox[0] + options.max_radial_length,
-    options.bbox[1] + options.max_radial_length,
-    options.bbox[2] - options.max_radial_length,
-    options.bbox[3] - options.max_radial_length,
+    options.bbox[0] + options.maxRadialLength,
+    options.bbox[1] + options.maxRadialLength,
+    options.bbox[2] - options.maxRadialLength,
+    options.bbox[3] - options.maxRadialLength,
   ] as BBox;
 
   const features = [];
   for (let i = 0; i < count; i++) {
     let vertices: number[][] = [];
-    const circleOffsets = [...Array(options.num_vertices + 1)].map(Math.random);
+    const circleOffsets = [...Array(options.numVertices + 1)].map(Math.random);
 
     // Sum Offsets
     circleOffsets.forEach((cur, index, arr) => {
@@ -158,8 +158,8 @@ function randomPolygon(
       cur = (cur * 2 * Math.PI) / circleOffsets[circleOffsets.length - 1];
       const radialScaler = Math.random();
       vertices.push([
-        radialScaler * (options.max_radial_length || 10) * Math.sin(cur),
-        radialScaler * (options.max_radial_length || 10) * Math.cos(cur),
+        radialScaler * (options.maxRadialLength || 10) * Math.sin(cur),
+        radialScaler * (options.maxRadialLength || 10) * Math.cos(cur),
       ]);
     });
     vertices[vertices.length - 1] = vertices[0]; // close the ring
@@ -180,10 +180,10 @@ function randomPolygon(
  * @param {number} [count=1] how many geometries will be generated
  * @param {Object} [options={}] Optional parameters
  * @param {BBox} [options.bbox=[-180, -90, 180, 90]] a bounding box inside of which geometries are placed.
- * @param {number} [options.num_vertices=10] is how many coordinates each LineString will contain.
- * @param {number} [options.max_length=0.0001] is the maximum number of decimal degrees that a
+ * @param {number} [options.numVertices=10] is how many coordinates each LineString will contain.
+ * @param {number} [options.maxLength=0.0001] is the maximum number of decimal degrees that a
  * vertex can be from its predecessor
- * @param {number} [options.max_rotation=Math.PI / 8] is the maximum number of radians that a
+ * @param {number} [options.maxRotation=Math.PI / 8] is the maximum number of radians that a
  * line segment can turn from the previous segment.
  * @returns {FeatureCollection<LineString>} GeoJSON FeatureCollection of linestrings
  * @throws {Error} if bbox is invalid
@@ -195,9 +195,9 @@ function randomLineString(
   count?: number,
   options: {
     bbox?: BBox;
-    num_vertices?: number;
-    max_length?: number;
-    max_rotation?: number;
+    numVertices?: number;
+    maxLength?: number;
+    maxRotation?: number;
   } = {}
 ): FeatureCollection<LineString, any> {
   // Optional parameters
@@ -207,33 +207,29 @@ function randomLineString(
   }
   const bbox = options.bbox;
   checkBBox(bbox);
-  let num_vertices = options.num_vertices;
-  let max_length = options.max_length;
-  let max_rotation = options.max_rotation;
+  let numVertices = options.numVertices;
+  let maxLength = options.maxLength;
+  let maxRotation = options.maxRotation;
   if (count === undefined || count === null) {
     count = 1;
   }
 
   // Default parameters
-  if (
-    !isNumber(num_vertices) ||
-    num_vertices === undefined ||
-    num_vertices < 2
-  ) {
-    num_vertices = 10;
+  if (!isNumber(numVertices) || numVertices === undefined || numVertices < 2) {
+    numVertices = 10;
   }
-  if (!isNumber(max_length) || max_length === undefined) {
-    max_length = 0.0001;
+  if (!isNumber(maxLength) || maxLength === undefined) {
+    maxLength = 0.0001;
   }
-  if (!isNumber(max_rotation) || max_rotation === undefined) {
-    max_rotation = Math.PI / 8;
+  if (!isNumber(maxRotation) || maxRotation === undefined) {
+    maxRotation = Math.PI / 8;
   }
 
   const features = [];
   for (let i = 0; i < count; i++) {
     const startingPoint = randomPositionUnchecked(bbox);
     const vertices = [startingPoint];
-    for (let j = 0; j < num_vertices - 1; j++) {
+    for (let j = 0; j < numVertices - 1; j++) {
       const priorAngle =
         j === 0
           ? Math.random() * 2 * Math.PI
@@ -241,8 +237,8 @@ function randomLineString(
               (vertices[j][1] - vertices[j - 1][1]) /
                 (vertices[j][0] - vertices[j - 1][0])
             );
-      const angle = priorAngle + (Math.random() - 0.5) * max_rotation * 2;
-      const distance = Math.random() * max_length;
+      const angle = priorAngle + (Math.random() - 0.5) * maxRotation * 2;
+      const distance = Math.random() * maxLength;
       vertices.push([
         vertices[j][0] + distance * Math.cos(angle),
         vertices[j][1] + distance * Math.sin(angle),

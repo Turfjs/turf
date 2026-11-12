@@ -1,6 +1,6 @@
 {
   "name": "@turf/buffer",
-  "version": "7.3.5",
+  "version": "7.4.0",
   "description": "Creates a buffer around a GeoJSON feature.",
   "author": "Turf Authors",
   "contributors": [
@@ -31,29 +31,21 @@
     "turf"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "!**/*.tsbuildinfo"
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsc --build",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
     "test:types": "tstyche"
@@ -67,10 +59,9 @@
     "load-json-file": "^7.0.1",
     "tape": "catalog:",
     "tstyche": "catalog:",
-    "tsup": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
-    "write-json-file": "^6.0.0"
+    "write-json-file": "catalog:"
   },
   "dependencies": {
     "@turf/bbox": "workspace:*",
@@ -80,7 +71,9 @@
     "@turf/meta": "workspace:*",
     "@turf/projection": "workspace:*",
     "@types/geojson": "catalog:",
-    "d3-geo": "^2.0.2",
-    "tslib": "catalog:"
+    "d3-geo": "^2.0.2"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

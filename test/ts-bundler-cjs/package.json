@@ -1,6 +1,6 @@
 {
   "name": "ts-bundler-cjs",
-  "version": "1.0.0",
+  "version": "7.4.0",
   "private": true,
   "license": "MIT",
   "funding": "https://opencollective.com/turf",
@@ -10,7 +10,7 @@
     "test:ts": "tsc"
   },
   "devDependencies": {
-    "typescript": "catalog:"
+    "typescript": "catalog:typescript5"
   },
   "dependencies": {
     "@turf/turf": "workspace:*"

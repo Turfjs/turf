@@ -18,8 +18,9 @@ import { feature, featureCollection, lineString } from "@turf/helpers";
 import { lineSplit } from "@turf/line-split";
 
 /**
- * Tests whether geometry a contains geometry b.
- * The interiors of both geometries must intersect, and the interior and boundary of geometry b must not intersect the exterior of geometry a.
+ * booleanContains returns True if the second geometry is completely contained by the first geometry.
+ * The interiors of both geometries must intersect, and the interior and boundary of the second geometry must not intersect the exterior of the first geometry.
+ *
  * booleanContains(a, b) is equivalent to booleanWithin(b, a)
  *
  * @function

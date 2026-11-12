@@ -28,9 +28,11 @@ If you'd like to become a core contributor, just start making contributions, and
 Once you've cloned a Turf repository, and have a terminal open and currenty in the top-level turf directory. Run the following:
 - `git checkout master` (if not already)
 - `corepack enable pnpm`
-  - enable pnpm as a package manager. Requires Node 16+.  Alternatively just `npm install -g pnpm`.
+  - enable pnpm as a package manager. Requires Node 22+.  Alternatively just `npm install -g pnpm`.
 - `pnpm install`
-  - install dependencies and build packages
+  - install dependencies
+- `pnpm build`
+  - builds and runs type checking on the entire repository
 - `pnpm test`
   - run all tests and linters
 
@@ -84,6 +86,7 @@ Work in a feature branch when possible
 - This allows you to keep your local master branch clean and in sync with the official remote. This will ease your ability to keep your local repo up to date with changes other people have made while you work on your feature.
 
 As you make code changes
+- You can run `pnpm watch` from the root for constant builds and type checking.
 - Regularly run `pnpm test` in whatever package you are working in to avoid unintended bugs.
 - Occasionally run `pnpm test` at the top-level directory to run test for all packages, to make sure you haven't introduced a problem that affects another package.
 </details>
@@ -124,51 +127,25 @@ JSDoc comments are found in the top-level index file for each package (for examp
 
 We have lots of tooling dedicated to ensuring consistent code. We use [Prettier](https://prettier.io/), [TypeScript](https://www.typescriptlang.org/), and [ESLint](https://eslint.org/) to help us deliver quality code. These are checked by the build system and should be enforced at commit time by [Husky](https://typicode.github.io/husky/#/).
 
-Packages are written in TypeScript. You can generally use modern TypeScript when modifying Turf itself as all exported code is transpiled to a more compatible subset (currently es2017).
+Packages are written in TypeScript. You can generally use modern TypeScript when modifying Turf.
 
-Code for consumption by browsers is transpiled by Babel as described in the README.
+Code for consumption by browsers is transpiled by [ESBuild](https://esbuild.github.io/) as described in the README.
 
-Making sure that the monorepo packages can be managed at scale, we use [Monorepolint](https://github.com/monorepolint/monorepolint) to programmatically ensure the individual packages remain consistent.
+Making sure that the monorepo packages can be managed at scale, we use [Monorepolint](https://monorepolint.com/) to programmatically ensure the individual packages remain consistent.
 
 ## Documentation
 
 - API docs for each turf package are extracted from JSDoc comments in the source code into the top-level README.md files. README's are automatically updated on commit via a pre-commit hook.
 
-Should you want to generate new README files manually, use `pnpm run docs`:
-  - **inside a package:** will generate the docs for that package.
-  - **from root folder:** will generate docs for all package.
-
-### Documentation - Examples
-
-**Builds docs for all packages**
-
-```bash
-$ cd ./turf
-$ pnpm run docs
-> @ docs /Users/mac/Github/turf
-> node ./scripts/generate-readmes.mts
-
-Building Docs: @turf/along
-Building Docs: @turf/area
-Building Docs: @turf/bbox-clip
-Building Docs: @turf/bbox-polygon
-Building Docs: @turf/bbox
-Building Docs: @turf/bearing
-Building Docs: @turf/bezier-spline
-Building Docs: @turf/boolean-clockwise
-....
-```
-
-Note: This should be automatically executed with a pre-commit hook when necessary
+Should you want to generate new README files manually, use `pnpm run docs`
 
 ### Public website
 
-The [turfjs.org](https://turfjs.org/) website is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
+The [turfjs.org](https://turfjs.org) website is managed in a [separate repo](https://github.com/Turfjs/turf-www) with its own [contributing guide](https://github.com/Turfjs/turf-www/blob/master/CONTRIBUTING.md).
 
 ## Other Dependencies
 
-  - Turf uses [pnpm](https://pnpm.io/) and [lerna](https://lernajs.io/) during the testing, packaging and publishing process.
-  - Lerna will be automatically installed when you run `pnpm install` in the root directory.
+  - Turf uses [pnpm](https://pnpm.io/) during the testing, packaging, and publishing process.
   - Pnpm will need to be installed on your computer, installers are available via the pnpm website. When using [corepack](https://nodejs.org/api/corepack.html), this is automatically installed when running `pnpm`.
 
 ## Financial contributions

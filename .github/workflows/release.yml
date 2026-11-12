@@ -10,44 +10,36 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  publish:
+    name: "Publish Release"
     environment: release
-    strategy:
-      fail-fast: true
-      matrix:
-        node:
-          - 26
-        platform:
-          - ubuntu-latest
-    name: "${{matrix.platform}} / Node.js ${{ matrix.node }}"
-    runs-on: ${{matrix.platform}}
-
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # 7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # 6.0.9
+      - name: pnpm/setup
+        uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3.1.2
         with:
-          run_install: false
+          runtime: node@26
+          require-lockfile: true
+          cache: false
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # 7.0.0
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-
-      - run: pnpm install --frozen-lockfile
-
+      - run: pnpm build
       - run: pnpm test
 
       - name: run publish
         run: pnpm -r publish --no-git-checks --provenance --access public
 
-      - name: Create Github Release
-        uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # 3.0.2
-        with:
-          make_latest: true
-          generate_release_notes: true
-          draft: true
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --verify-tag \
+            --fail-on-no-commits \
+            --draft \
+            --generate-notes \
+            --latest

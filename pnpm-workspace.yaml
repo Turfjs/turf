@@ -2,17 +2,24 @@ packages:
   - "packages/*"
   - "test/*"
 
+allowBuilds:
+  esbuild: false
+
 catalog:
   "@types/benchmark": ^2.1.5
   "@types/geojson": ^7946.0.10
   "@types/tape": ^5.8.1
   benchmark: ^2.1.4
   tape: ^5.10.2
-  tslib: ^2.8.1
-  tstyche: ^6.2.0
-  tsup: ^8.5.1
-  tsx: ^4.22.4
-  typescript: ^5.9.3
+  tstyche: ^7.2.2
+  tsx: ^4.23.9
+  typescript: ^6.0.3
+  "write-json-file": ^6.0.0
+
+catalogs:
+  # keep a named catalog of typescript@5 for the consumer tests
+  typescript5:
+    typescript: 5.9.3
 
 overrides:
   # we do not use the vue capabilities of documentation, so remove this optional dependency

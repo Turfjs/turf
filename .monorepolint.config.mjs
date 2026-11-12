@@ -9,6 +9,7 @@ import {
   packageEntry,
   packageScript,
   requireDependency,
+  standardTsconfig,
   REMOVE,
 } from "@monorepolint/rules";
 
@@ -64,9 +65,6 @@ export default {
           "publishConfig",
           "keywords",
           "type",
-          "main",
-          "module",
-          "types",
           "exports",
           "browser",
           "sideEffects",
@@ -87,9 +85,9 @@ export default {
       options: {
         entries: {
           type: "module",
-          main: "dist/cjs/index.cjs",
-          module: "dist/esm/index.js",
-          types: "dist/esm/index.d.ts",
+          main: REMOVE,
+          module: REMOVE,
+          types: REMOVE,
           sideEffects: false,
           publishConfig: {
             access: "public",
@@ -99,19 +97,18 @@ export default {
           // Example of a URL that will break: https://unpkg.com/@turf/turf/dist/turf.min.js
           // Example of a URL that will keep working: https://unpkg.com/@turf/turf
           browser: "turf.min.js",
-          files: ["dist", "turf.min.js"],
+          files: ["dist", "turf.min.js", "!**/*.tsbuildinfo"],
           exports: {
             "./package.json": "./package.json",
             ".": {
-              import: {
-                types: "./dist/esm/index.d.ts",
-                default: "./dist/esm/index.js",
-              },
-              require: {
-                types: "./dist/cjs/index.d.cts",
-                default: "./dist/cjs/index.cjs",
-              },
+              types: "./dist/index.d.ts",
+              default: "./dist/index.js",
+              require: REMOVE,
+              import: REMOVE,
             },
+          },
+          engines: {
+            node: ">=22",
           },
         },
       },
@@ -122,35 +119,26 @@ export default {
       options: {
         entries: {
           type: "module",
-          main: "dist/cjs/index.cjs",
-          module: "dist/esm/index.js",
-          types: "dist/esm/index.d.ts",
+          main: REMOVE,
+          module: REMOVE,
+          types: REMOVE,
           sideEffects: false,
+          files: ["dist", "!**/*.tsbuildinfo"],
           publishConfig: {
             access: "public",
           },
           exports: {
             "./package.json": "./package.json",
             ".": {
-              import: {
-                types: "./dist/esm/index.d.ts",
-                default: "./dist/esm/index.js",
-              },
-              require: {
-                types: "./dist/cjs/index.d.cts",
-                default: "./dist/cjs/index.cjs",
-              },
+              types: "./dist/index.d.ts",
+              default: "./dist/index.js",
+              require: REMOVE,
+              import: REMOVE,
             },
           },
-        },
-      },
-      includePackages: PACKAGES,
-    }),
-
-    packageEntry({
-      options: {
-        entries: {
-          files: ["dist"],
+          engines: {
+            node: ">=22",
+          },
         },
       },
       includePackages: PACKAGES,
@@ -177,7 +165,7 @@ export default {
     packageScript({
       options: {
         scripts: {
-          build: "tsup --config ../../tsup.config.ts",
+          build: "tsc --build",
         },
       },
       includePackages: PACKAGES,
@@ -187,7 +175,7 @@ export default {
       options: {
         scripts: {
           build:
-            "tsup --config ../../tsup.config.ts && rollup -c rollup.config.js",
+            "tsc --build && esbuild index.ts --bundle --minify --target=chrome109,edge147,firefox140,ios18.5,opera127,safari26.3 --outfile=turf.min.js",
         },
       },
       includePackages: [MAIN_PACKAGE],
@@ -207,7 +195,7 @@ export default {
       options: {
         scripts: {
           "test:types":
-            "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts",
+            "tsc --ignoreConfig --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts",
         },
       },
       includePackages: TYPES_PACKAGES,
@@ -224,25 +212,17 @@ export default {
 
     requireDependency({
       options: {
-        devDependencies: {
-          benchmark: "catalog:",
-          glob: REMOVE,
-          tape: "catalog:",
-          tsup: "catalog:",
-          tsx: "catalog:",
-        },
-      },
-      includePackages: PACKAGES,
-    }),
-
-    requireDependency({
-      options: {
         dependencies: {
-          tslib: "catalog:",
+          tslib: REMOVE,
         },
         devDependencies: {
           "@types/benchmark": "catalog:",
           "@types/tape": "catalog:",
+          benchmark: "catalog:",
+          glob: REMOVE,
+          tape: "catalog:",
+          tsup: REMOVE,
+          tsx: "catalog:",
           typescript: "catalog:",
         },
       },
@@ -263,6 +243,13 @@ export default {
         dependencies: {
           "@types/geojson": "catalog:",
         },
+      },
+      includePackages: [MAIN_PACKAGE, ...PACKAGES],
+    }),
+
+    standardTsconfig({
+      options: {
+        template: { extends: "../../tsconfig.shared.json" },
       },
       includePackages: [MAIN_PACKAGE, ...PACKAGES],
     }),

@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - master
-      - support/6.x
   pull_request:
     branches:
       - master
-      - support/6.x
 
 permissions:
   contents: read
@@ -20,23 +18,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [18.x, 20.x, 22.x, 24.x, 26.x]
+        node: [22, 24, 26]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # 7.0.1
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # 6.0.9
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          run_install: false
+          persist-credentials: false
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # 7.0.0
+      - name: pnpm/setup
+        uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3.1.2
         with:
-          cache: "pnpm"
-          node-version: ${{ matrix.node-version }}
+          runtime: node@${{ matrix.node }}
+          require-lockfile: true
+          cache: true
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: pnpm run docs --write-all
       - run: git diff --exit-code
       - run: pnpm test

@@ -2,8 +2,9 @@ import { Feature, Geometry } from "geojson";
 import { booleanContains } from "@turf/boolean-contains";
 
 /**
- * Tests whether geometry a is contained by geometry b.
+ * booleanWithin returns true if the first geometry is completely within the second geometry.
  * The interiors of both geometries must intersect, and the interior and boundary of geometry a must not intersect the exterior of geometry b.
+ *
  * booleanWithin(a, b) is equivalent to booleanContains(b, a)
  *
  * @function

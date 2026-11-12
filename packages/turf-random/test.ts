@@ -30,8 +30,8 @@ test("random(polygons, 10)", (t) => {
   t.end();
 });
 
-test("random(polygons, 1, {num_vertices})", (t) => {
-  var points = randomPolygon(10, { num_vertices: 23 });
+test("random(polygons, 1, {numVertices})", (t) => {
+  var points = randomPolygon(10, { numVertices: 23 });
   t.equal(points.type, "FeatureCollection", "is a featurecollection");
   t.equal(points.features.length, 10, "right number of features");
   t.equal(

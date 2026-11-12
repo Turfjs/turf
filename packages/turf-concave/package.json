@@ -1,6 +1,6 @@
 {
   "name": "@turf/concave",
-  "version": "7.3.5",
+  "version": "7.4.0",
   "description": "Creates a concave hull around points.",
   "author": "Turf Authors",
   "contributors": [
@@ -34,29 +34,21 @@
     "geometry"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "!**/*.tsbuildinfo"
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsc --build",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts"
   },
@@ -68,10 +60,9 @@
     "benchmark": "catalog:",
     "load-json-file": "^7.0.1",
     "tape": "catalog:",
-    "tsup": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
-    "write-json-file": "^6.0.0"
+    "write-json-file": "catalog:"
   },
   "dependencies": {
     "@turf/clone": "workspace:*",
@@ -82,7 +73,9 @@
     "@turf/tin": "workspace:*",
     "@types/geojson": "catalog:",
     "topojson-client": "3.x",
-    "topojson-server": "3.x",
-    "tslib": "catalog:"
+    "topojson-server": "3.x"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

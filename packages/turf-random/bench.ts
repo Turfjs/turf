@@ -5,7 +5,7 @@ let totalTime = 0.0;
 const suite = new Benchmark.Suite("turf-random");
 
 suite
-  .add("turf-random", () => randomPolygon(1, { num_vertices: 100000 }), {
+  .add("turf-random", () => randomPolygon(1, { numVertices: 100000 }), {
     onComplete: (e: Event) =>
       (totalTime = totalTime += e.target.times?.elapsed),
   })

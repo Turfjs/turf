@@ -1,13 +1,13 @@
 {
+  "include": ["${configDir}/index.ts", "${configDir}/lib/**/*.ts"],
   "compilerOptions": {
-    "target": "es2017",
-    "module": "node16",
+    "outDir": "${configDir}/dist",
+    "composite": true, // Lets us use tsc in --build mode which will automatically build transitive dependencies and handles caching
+    "target": "es2022", // This aligns with node@22 and should also be broadly compatible with browsers
+    "module": "node18", // This is a relatively strict setting, which should work in node@22 and bundlers
     "declaration": true,
-    "esModuleInterop": true,
     "strict": true,
-    "moduleResolution": "node16",
-    "importHelpers": true,
-    "skipLibCheck": true,
-    "erasableSyntaxOnly": true
+    "skipLibCheck": false, // This helps catch any type errors in our transitive dependencies
+    "erasableSyntaxOnly": true // This limits us to syntax that node can execute directly from .ts
   }
 }

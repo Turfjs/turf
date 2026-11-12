@@ -1,6 +1,6 @@
 {
   "name": "@turf/nearest-point",
-  "version": "7.3.5",
+  "version": "7.4.0",
   "description": "Finds the nearest point from a FeatureCollection of Features with Point geometries to a given point.",
   "author": "Turf Authors",
   "license": "MIT",
@@ -25,32 +25,24 @@
     "point"
   ],
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "!**/*.tsbuildinfo"
   ],
   "scripts": {
     "bench": "tsx bench.ts",
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsc --build",
     "test": "pnpm run /test:.*/",
     "test:tape": "tsx test.ts",
-    "test:types": "tsc --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
+    "test:types": "tsc --ignoreConfig --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
   },
   "devDependencies": {
     "@types/benchmark": "catalog:",
@@ -58,17 +50,18 @@
     "benchmark": "catalog:",
     "load-json-file": "^7.0.1",
     "tape": "catalog:",
-    "tsup": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
-    "write-json-file": "^6.0.0"
+    "write-json-file": "catalog:"
   },
   "dependencies": {
     "@turf/clone": "workspace:*",
     "@turf/distance": "workspace:*",
     "@turf/helpers": "workspace:*",
     "@turf/meta": "workspace:*",
-    "@types/geojson": "catalog:",
-    "tslib": "catalog:"
+    "@types/geojson": "catalog:"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

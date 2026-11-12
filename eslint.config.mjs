@@ -46,6 +46,22 @@ export default tsEslint.config(
       "no-redeclare": "off",
       "no-var": "off",
       "prefer-const": "off",
+      "no-useless-assignment": "off",
+    },
+  },
+  // ban top-level await in our source files
+  // Node's commonjs require() of ESM syntax requires that they be synchronous
+  {
+    files: ["packages/*/index.ts", "packages/*/lib/**/*.ts"],
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector:
+            "AwaitExpression[argument.type!='AwaitExpression'][parent.type!='FunctionExpression'][parent.type!='FunctionDeclaration'][parent.type!='ArrowFunctionExpression']",
+          message: "Top-level await is not allowed.",
+        },
+      ],
     },
   },
   {

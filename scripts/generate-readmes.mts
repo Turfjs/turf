@@ -5,6 +5,16 @@ import { readdir, readFile, writeFile } from "fs/promises";
 import { parse as yamlParse } from "yaml";
 import * as documentation from "documentation";
 import { existsSync } from "fs";
+import { execFileSync } from "node:child_process";
+
+// In the pre-commit hook lint-staged does not automatically add derived files
+// In lint-staged@17 it started warning against calling git add directly because of race conditions.
+// These conditions do not apply when the file is generated, and so we call git add directly here to avoid a spurious warning.
+const shouldGitAdd = process.argv.includes("--git-add");
+const updated: string[] = [];
+
+// In CI we want to regenerate all docs files to check for staleness
+const shouldWriteAll = process.argv.includes("--write-all");
 
 // Template for README Markdown
 const postfix = await readFile(
@@ -24,7 +34,7 @@ for (const dir of await readdir(packagesPath)) {
 
   const packagePath = path.join(packagesPath, dir, "package.json");
   const directory = path.parse(packagePath).dir;
-  let indexPath = path.join(directory, "index.js");
+  let indexPath = path.join(directory, "index.ts");
   const pckg = JSON.parse(await readFile(packagePath, "utf-8"));
   const name = pckg.name;
 
@@ -34,11 +44,6 @@ for (const dir of await readdir(packagesPath)) {
         /\.(jpg|jpeg|png|gif)$/i.test(path.extname(file))
       )
     : [];
-
-  // some of the packages are typescript instead
-  if (!existsSync(indexPath)) {
-    indexPath = path.join(directory, "index.ts");
-  }
 
   // Build Documentation
   let res = await documentation.build(indexPath, {
@@ -50,8 +55,6 @@ for (const dir of await readdir(packagesPath)) {
     console.warn(`Failed to build docs for ${packagePath}`);
     continue;
   }
-
-  console.log("Building Docs: " + name);
 
   // Workaround to exclude @deprecated tags from docs
   // See https://github.com/documentationjs/documentation/issues/1596
@@ -70,5 +73,26 @@ for (const dir of await readdir(packagesPath)) {
         .join("\n");
   }
 
-  await writeFile(path.join(directory, "README.md"), markdown);
+  const readme = path.join(directory, "README.md");
+
+  let existing = "";
+  if (!shouldWriteAll) {
+    // If we're already writing every docs file, we can skip reading the existing ones.
+    // The existing value won't match the generated markdown and it will cause a write.
+    try {
+      existing = await readFile(readme, "utf8");
+    } catch {
+      // any errors will just result in us writing the expected contents anyhow
+    }
+  }
+
+  if (existing !== markdown) {
+    console.log(`Writing ${readme}`);
+    await writeFile(readme, markdown);
+    updated.push(readme);
+  }
+}
+
+if (shouldGitAdd) {
+  execFileSync("git", ["add", "--", ...updated]);
 }

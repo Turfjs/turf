@@ -1,4 +1,4 @@
-import { Point, LineString } from "geojson";
+import { Point, LineString, Polygon, Feature } from "geojson";
 import * as helpers from "@turf/helpers";
 import { featureCollection, point, lineString } from "@turf/helpers";
 import * as meta from "./index.js";
@@ -73,9 +73,15 @@ const customLineStrings = featureCollection([customLineString]);
 /**
  * meta.coordEach
  */
-const coordEachValue: void = meta.coordEach(pt, (coords) => coords);
-coordEach(pt, (coords, index) => coords);
-meta.coordEach(pt, (coords, index) => coords);
+const coordEachValue: false | void = meta.coordEach(pt, (coords) => {
+  coords;
+});
+coordEach(pt, (coords, index) => {
+  coords;
+});
+meta.coordEach(pt, (coords, index) => {
+  coords;
+});
 meta.coordEach(pt.geometry, (coords) => {
   const equal: number[] = coords;
 });
@@ -88,7 +94,9 @@ meta.coordEach(poly, (coords) => {
 meta.coordEach(multiPoly, (coords) => {
   const equal: number[] = coords;
 });
-meta.coordEach(geomCollection, (coords) => coords);
+meta.coordEach(geomCollection, (coords) => {
+  coords;
+});
 
 /**
  * meta.coordReduce
@@ -120,12 +128,24 @@ meta.propReduce(geomCollection, (previous, prop) => prop);
 /**
  * meta.propEach
  */
-const propEachValue: void = meta.propEach(poly, (prop) => prop);
-propEach(features, (prop) => prop);
-meta.propEach(features, (prop) => prop);
-meta.propEach(poly, (prop, index) => prop);
-meta.propEach<{ bar: string }>(poly, (prop) => prop.bar);
-meta.propEach(geomCollection, (prop) => prop);
+const propEachValue: void = meta.propEach(poly, (prop) => {
+  prop;
+});
+propEach(features, (prop) => {
+  prop;
+});
+meta.propEach(features, (prop) => {
+  prop;
+});
+meta.propEach(poly, (prop, index) => {
+  prop;
+});
+meta.propEach(poly as Feature<Polygon, { bar: string }>, (prop) => {
+  prop.bar;
+});
+meta.propEach(geomCollection, (prop) => {
+  prop;
+});
 
 /**
  * meta.coordAll
@@ -149,11 +169,21 @@ meta.featureReduce(geomCollection, (previous, feature, index) => feature);
 /**
  * meta.featureEach
  */
-const featureEachValue: void = meta.featureEach(poly, (feature) => feature);
-featureEach(features, (feature) => feature);
-meta.featureEach(features, (feature) => feature);
-meta.featureEach(poly, (feature, index) => feature);
-meta.featureEach(geomCollection, (feature, index) => feature);
+const featureEachValue: void = meta.featureEach(poly, (feature) => {
+  feature;
+});
+featureEach(features, (feature) => {
+  feature;
+});
+meta.featureEach(features, (feature) => {
+  feature;
+});
+meta.featureEach(poly, (feature, index) => {
+  feature;
+});
+meta.featureEach(geomCollection, (feature, index) => {
+  feature;
+});
 
 // Access custom properties
 featureEach(customPoints, (pt) => {
