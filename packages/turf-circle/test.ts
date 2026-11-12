@@ -85,24 +85,24 @@ test("turf-circle -- steps parameter controls resolution", (t) => {
   t.end();
 });
 
-test("turf-circle -- maximumRimDeviation parameter", (t) => {
+test("turf-circle -- arcTolerance parameter", (t) => {
   const center = [0, 60];
   const radius = 1000;
 
-  // Test different rim deviation values
-  const c1 = circle(center, radius, { maximumRimDeviation: 1 }); // Very precise
-  const c2 = circle(center, radius, { maximumRimDeviation: 10 }); // Less precise
-  const c3 = circle(center, radius, { maximumRimDeviation: 100 }); // Coarse
+  // Test different arc tolerance values
+  const c1 = circle(center, radius, { arcTolerance: 1 }); // Very precise
+  const c2 = circle(center, radius, { arcTolerance: 10 }); // Less precise
+  const c3 = circle(center, radius, { arcTolerance: 100 }); // Coarse
 
   const coords1 = c1.geometry.coordinates[0].length - 1;
   const coords2 = c2.geometry.coordinates[0].length - 1;
   const coords3 = c3.geometry.coordinates[0].length - 1;
 
-  // Smaller rim deviation should produce more points
-  t.true(coords1 > coords2, "smaller maximumRimDeviation produces more points");
+  // Smaller arc tolerance should produce more points
+  t.true(coords1 > coords2, "smaller arcTolerance produces more points");
   t.true(
     coords2 > coords3,
-    "medium maximumRimDeviation produces fewer points than small"
+    "medium arcTolerance produces fewer points than small"
   );
 
   // All should produce valid circles

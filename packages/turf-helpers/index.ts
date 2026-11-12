@@ -918,7 +918,7 @@ export function calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle(
 
 /**
  * Calculates the number of sides of a regular polygon that best approximates a circle
- * with an equal area, while not exceeding an allowable rim deviation in meters.
+ * with an equal area, while not exceeding an allowable arc tolerance.
  *
  * This function determines the optimal number of sides for a regular polygon that
  * closely matches the area of a given circle while not exceeding an acceptable error
@@ -926,21 +926,21 @@ export function calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle(
  *
  * @function
  * @param {number} circleRadius The radius of the target circle.
- * @param {number} [maximumRimDeviation] The maximum allowable error for the polygon's circumradius when approximating the circle.
+ * @param {number} [arcTolerance] The maximum allowable error for the polygon's circumradius when approximating the circle, in the same units as circleRadius.
  * @returns {number} The number of sides of the best-fit regular polygon.
  */
 export function calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle(
   circleRadius: number,
-  maximumRimDeviation: number
+  arcTolerance: number
 ): number {
   if (circleRadius <= 0) {
     throw new Error("circleRadius must be positive");
   }
-  if (maximumRimDeviation <= 0) {
-    throw new Error("maximumRimDeviation must be positive");
+  if (arcTolerance <= 0) {
+    throw new Error("arcTolerance must be positive");
   }
   // step 1: assume highest allowable error
-  const circumRadius = circleRadius + maximumRimDeviation;
+  const circumRadius = circleRadius + arcTolerance;
 
   // step 2: equate the area of the circle to the area of the polygon and solve for the number of sides
   //   Math.PI * circleRadius * circleRadius = circumRadius * circumRadius * 1/2 * sin(2 * Math.PI / numberOfSides) * numberOfSides

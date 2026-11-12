@@ -15,7 +15,7 @@ import {
  * @param {number} radius radius of the circle
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps
- * @param {number} [options.maximumRimDeviation] if provided, will ignore steps and use a number of steps such that the rim of returned approximate regular polygon is at most this far away from the true circle
+ * @param {number} [options.arcTolerance] if provided, will ignore steps and use a number of steps such that the returned approximate regular polygon is at most this far away from the true circle
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} circle polygon
@@ -33,18 +33,18 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   radius: number,
   options: {
     steps?: number;
-    maximumRimDeviation?: number;
+    arcTolerance?: number;
     units?: Units;
     properties?: P;
   } = {}
 ): Feature<Polygon, P> {
   // default params
   let steps = options.steps ?? 64;
-  if (options.maximumRimDeviation && options.maximumRimDeviation > 0) {
+  if (options.arcTolerance && options.arcTolerance > 0) {
     steps =
       calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle(
         radius,
-        options.maximumRimDeviation
+        options.arcTolerance
       );
   }
 

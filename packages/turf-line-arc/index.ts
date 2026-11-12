@@ -20,7 +20,7 @@ import {
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps (straight segments) that will constitute the arc
- * @param {number} [options.maximumRimDeviation] if provided, will ignore steps and use a number of steps such that the rim of returned approximate regular polygon is at most this far away from the true arc
+ * @param {number} [options.arcTolerance] if provided, will ignore steps and use a number of steps such that the returned approximate arc is at most this far away from the true arc
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {Feature<LineString>} line arc
  * @example
@@ -41,17 +41,17 @@ function lineArc(
   bearing2: number,
   options: {
     steps?: number;
-    maximumRimDeviation?: number;
+    arcTolerance?: number;
     units?: Units;
   } = {}
 ): Feature<LineString> {
   // default params
   let steps = options.steps || 64;
-  if (options.maximumRimDeviation && options.maximumRimDeviation > 0) {
+  if (options.arcTolerance && options.arcTolerance > 0) {
     steps =
       calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle(
         radius,
-        options.maximumRimDeviation
+        options.arcTolerance
       );
   }
 

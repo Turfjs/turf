@@ -584,7 +584,7 @@ Returns **[number][13]** The length of the circum radius in the same units as ci
 ## calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle
 
 Calculates the number of sides of a regular polygon that best approximates a circle
-with an equal area, while not exceeding an allowable rim deviation in meters.
+with an equal area, while not exceeding an allowable arc tolerance.
 
 This function determines the optimal number of sides for a regular polygon that
 closely matches the area of a given circle while not exceeding an acceptable error
@@ -593,7 +593,7 @@ tolerance in the polygon's circumradius.
 ### Parameters
 
 *   `circleRadius` **[number][13]** The radius of the target circle.
-*   `maximumRimDeviation` **[number][13]?** The maximum allowable error for the polygon's circumradius when approximating the circle.
+*   `arcTolerance` **[number][13]?** The maximum allowable error for the polygon's circumradius when approximating the circle, in the same units as circleRadius.
 
 Returns **[number][13]** The number of sides of the best-fit regular polygon.
 
