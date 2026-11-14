@@ -71,8 +71,8 @@ toc:
     - shortestPath
     - unkinkPolygon
   Helper:
-    - calculateNumberOfRegularPolygonSidesToBestApproximateEqualAreaCircle
-    - calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle
+    - calculateNumberOfRegularPolygonSidesToApproximateCircle
+    - calculatePolygonCircumRadius
     - featureCollection
     - feature
     - geometryCollection

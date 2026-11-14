@@ -539,6 +539,109 @@ test("turf-ellipse -- angle and rotation interact correctly", (t) => {
   t.end();
 });
 
+test("turf-ellipse -- method parameter", (t) => {
+  const center = [0, 60];
+  const steps = 16;
+
+  // circle case (eccentricity ~0)
+  const a = 2000;
+  const b = 2000;
+  const circleArea = Math.PI * a * b;
+  const inscribedCircle = ellipse(center, a, b, {
+    steps,
+    units: "meters",
+    method: "inscribed",
+  });
+  const equalAreaCircle = ellipse(center, a, b, {
+    steps,
+    units: "meters",
+    method: "equalarea",
+  });
+  const circumscribedCircle = ellipse(center, a, b, {
+    steps,
+    units: "meters",
+    method: "circumscribed",
+  });
+
+  t.true(
+    area(inscribedCircle.geometry) < circleArea,
+    "inscribed understates the circle's area"
+  );
+  t.true(
+    Math.abs(area(equalAreaCircle.geometry) - circleArea) / circleArea < 0.0001,
+    "equalarea closely matches the circle's area"
+  );
+  t.true(
+    area(circumscribedCircle.geometry) > circleArea,
+    "circumscribed overstates the circle's area"
+  );
+
+  // actual ellipse case
+  const ex = 2000;
+  const ey = 1000;
+  const ellipseArea = Math.PI * ex * ey;
+  const inscribedEllipse = ellipse(center, ex, ey, {
+    steps,
+    units: "meters",
+    method: "inscribed",
+  });
+  const circumscribedEllipse = ellipse(center, ex, ey, {
+    steps,
+    units: "meters",
+    method: "circumscribed",
+  });
+
+  t.true(
+    area(inscribedEllipse.geometry) < ellipseArea,
+    "inscribed understates the ellipse's area"
+  );
+  t.true(
+    area(circumscribedEllipse.geometry) > ellipseArea,
+    "circumscribed overstates the ellipse's area"
+  );
+
+  t.deepEquals(
+    ellipse(center, ex, ey, { steps }),
+    ellipse(center, ex, ey, { steps, method: "equalarea" }),
+    "equalarea is the default method"
+  );
+
+  t.throws(
+    () => ellipse(center, ex, ey, { steps, method: "bogus" as any }),
+    /method must be one of/,
+    "throws for an unknown method"
+  );
+
+  t.end();
+});
+
+test("turf-ellipse -- equalarea matches the area of a non-circular ellipse", (t) => {
+  const center = [0, 60];
+  // eccentricities ~0.66, ~0.87, ~0.97 -- all take the non-circular code path
+  const axes: [number, number][] = [
+    [2000, 1500],
+    [2000, 1000],
+    [2000, 500],
+  ];
+
+  axes.forEach(([a, b]) => {
+    [64, 256].forEach((steps) => {
+      const trueArea = Math.PI * a * b;
+      const polygonArea = area(
+        ellipse(center, a, b, { steps, units: "meters", method: "equalarea" })
+          .geometry
+      );
+      const relativeError = (polygonArea - trueArea) / trueArea;
+      t.true(
+        Math.abs(relativeError) < 0.001,
+        `${a}x${b} @ ${steps} steps: equalarea area within 0.1% of πab (got ${(relativeError * 100).toFixed(4)}%)`
+      );
+    });
+  });
+
+  t.end();
+});
+
 function colorize(feature, color) {
   color = color || "#F00";
   feature.properties["stroke-width"] = 6;

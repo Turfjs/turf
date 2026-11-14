@@ -14,6 +14,7 @@ Takes a [Point][1] and calculates the circle polygon given a radius in [Units][2
 
     *   `options.steps` **[number][5]** number of steps (optional, default `64`)
     *   `options.arcTolerance` **[number][5]?** if provided, will ignore steps and use a number of steps such that the returned approximate regular polygon is at most this far away from the true circle
+    *   `options.method` **ArcApproximationMethod** how the returned regular polygon approximates the circle: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' matches the polygon's area to the circle's area (optional, default `'equalarea'`)
     *   `options.units` **Units** Supports all valid Turf [Units][2] (optional, default `'kilometers'`)
     *   `options.properties` **[Object][6]** properties (optional, default `{}`)
 

@@ -5,9 +5,11 @@ import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
+import { circle } from "@turf/circle";
 import { destination } from "@turf/destination";
 import {
-  calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle,
+  calculateNumberOfRegularPolygonSidesToApproximateCircle,
+  calculatePolygonCircumRadius,
   featureCollection,
   point,
 } from "@turf/helpers";
@@ -103,8 +105,7 @@ test("turf-line-arc -- reaches bearing2 despite floating-point drift", (t) => {
 
   // The final vertex must sit on bearing2 (29°). destination(center, r, 29)
   // gives the reference coordinate; the old code stopped at bearing ~24.857°.
-  const circumRadius =
-    calculatePolygonCircumRadiusToBestApproximateEqualAreaCircle(radius, steps);
+  const circumRadius = calculatePolygonCircumRadius(radius, steps);
   const expectedLast = destination(center, circumRadius, bearing2).geometry
     .coordinates;
   t.deepEquals(
@@ -112,6 +113,117 @@ test("turf-line-arc -- reaches bearing2 despite floating-point drift", (t) => {
     truncate(point(expectedLast)).geometry.coordinates,
     "last vertex lies on bearing2"
   );
+
+  t.end();
+});
+
+test("turf-line-arc -- method parameter", (t) => {
+  const center = point([-75, 40]);
+  const radius = 5;
+  const steps = 8;
+  const bearing1 = 0;
+  const bearing2 = 90;
+
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    const arc = lineArc(center, radius, bearing1, bearing2, {
+      steps,
+      method,
+    });
+    const expectedCircumRadius = calculatePolygonCircumRadius(
+      radius,
+      steps,
+      method
+    );
+    const expectedFirstVertex = destination(
+      center,
+      expectedCircumRadius,
+      bearing1
+    ).geometry.coordinates;
+    t.deepEquals(
+      arc.geometry.coordinates[0],
+      expectedFirstVertex,
+      `${method} arc uses the ${method} circumradius`
+    );
+  });
+
+  t.deepEquals(
+    lineArc(center, radius, bearing1, bearing2, { steps }),
+    lineArc(center, radius, bearing1, bearing2, {
+      steps,
+      method: "equalarea",
+    }),
+    "equalarea is the default method"
+  );
+
+  t.throws(
+    () =>
+      lineArc(center, radius, bearing1, bearing2, {
+        steps,
+        method: "bogus" as any,
+      }),
+    /method must be one of/,
+    "throws for an unknown method"
+  );
+
+  t.end();
+});
+
+test("turf-line-arc -- full circle applies method once", (t) => {
+  const center = point([-75, 40]);
+  const radius = 5;
+  const steps = 8;
+
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    t.deepEquals(
+      lineArc(center, radius, 0, 360, { steps, method }).geometry.coordinates,
+      circle(center, radius, { steps, method }).geometry.coordinates[0],
+      `${method}: full-circle arc matches circle() with the same method`
+    );
+    t.deepEquals(
+      lineArc(center, radius, 0, 360, { arcTolerance: 0.01, method }).geometry
+        .coordinates,
+      circle(center, radius, { arcTolerance: 0.01, method }).geometry
+        .coordinates[0],
+      `${method}: full-circle arc matches circle() with the same arcTolerance`
+    );
+  });
+
+  t.end();
+});
+
+test("turf-line-arc -- method with arcTolerance", (t) => {
+  const center = point([-75, 40]);
+  const radius = 5;
+  const arcTolerance = 0.01;
+  const bearing1 = 0;
+  const bearing2 = 90;
+
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    const expectedSteps =
+      calculateNumberOfRegularPolygonSidesToApproximateCircle(
+        radius,
+        arcTolerance,
+        method
+      );
+    const arc = lineArc(center, radius, bearing1, bearing2, {
+      arcTolerance,
+      method,
+    });
+    t.equal(
+      arc.geometry.coordinates.length,
+      expectedSteps + 1,
+      `${method}: step count is derived from arcTolerance using ${method}`
+    );
+    t.deepEquals(
+      arc.geometry.coordinates[0],
+      destination(
+        center,
+        calculatePolygonCircumRadius(radius, expectedSteps, method),
+        bearing1
+      ).geometry.coordinates,
+      `${method}: circumradius is computed for the derived step count`
+    );
+  });
 
   t.end();
 });

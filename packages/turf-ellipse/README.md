@@ -16,6 +16,7 @@ Takes a [Point][1] and calculates the ellipse polygon given two semi-axes expres
     *   `options.angle` **[number][3]** angle of rotation in decimal degrees, positive clockwise (optional, default `0`)
     *   `options.pivot` **[Coord][2]** point around which any rotation will be performed (optional, default `center`)
     *   `options.steps` **[number][3]** number of steps (optional, default `64`)
+    *   `options.method` **ArcApproximationMethod** how the returned polygon approximates the ellipse: 'inscribed' places every vertex on the ellipse, 'circumscribed' scales every vertex outward from the ellipse, and 'equalarea' matches the polygon's area to the ellipse's area (optional, default `'equalarea'`)
     *   `options.units` **Units** unit of measurement for axes. Supports all valid Turf [Units][5] (optional, default `'kilometers'`)
     *   `options.properties` **[Object][4]** properties (optional, default `{}`)
 
@@ -47,6 +48,7 @@ The angle parameter rotates the entire ellipse orientation (not just the startin
 *   `a` **[number][3]** semi-major axis (x-axis)
 *   `b` **[number][3]** semi-minor axis (y-axis)
 *   `numPoints` **[number][3]** number of vertices to generate (not including closing point)
+*   `params` **[Array][8]<[number][3]>** parametric angles to place ellipse vertices at (ignored for circles)
 
 Returns **[Array][8]<[Position][9]>** array of \[lon, lat] coordinates
 
@@ -56,21 +58,17 @@ Determine if this is a circle (or very close to one)
 
 ## numPoints
 
-Calculate the scaling factor analytically to match the theoretical ellipse area.
+Calculate the scaling factor to apply to both semi-axes so that the constructed
+polygon approximates the ellipse according to `method`.
 
-METHOD: Similar to turf-circle's approach - construct a polygon with the same area as the
-theoretical ellipse. This minimizes the overall distance from the true ellipse to the polygon
-perimeter and is more accurate than an inscribed polygon.
+Near-circular ellipses use uniform spacing, so turf-circle's circumradius-to-radius
+ratio applies directly (passing a unit circleRadius of 1 yields that ratio).
 
-The polygon constructed from uniform angles typically has slightly less area than the true
-ellipse. We scale up both semi-axes by a constant factor to match areas exactly.
-
-For uniform angle spacing:
-twoPhi = 2π / numPoints
-scaleFactor = sqrt(twoPhi / sin(twoPhi))
-
-For adaptive spacing (ellipses), we need a slightly larger correction factor because
-the non-uniform distribution affects the polygon area differently.
+Actual ellipses use adaptive, non-uniform parameter spacing, so for `equalarea` the
+polygon's area is computed analytically instead: vertices at (a·cos tᵢ, b·sin tᵢ)
+enclose (a·b/2)·Σ sin(Δtᵢ), and scaling both axes by s multiplies that by s². Solving
+s²·(a·b/2)·Σ sin(Δtᵢ) = π·a·b gives s = √(2π / Σ sin(Δtᵢ)). For uniform spacing this
+reduces to the same ratio turf-circle uses.
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.2
 

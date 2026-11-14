@@ -5,7 +5,13 @@ import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
 import { truncate } from "@turf/truncate";
-import { featureCollection, point } from "@turf/helpers";
+import { destination } from "@turf/destination";
+import {
+  calculateNumberOfRegularPolygonSidesToApproximateCircle,
+  calculatePolygonCircumRadius,
+  featureCollection,
+  point,
+} from "@turf/helpers";
 import { check } from "@placemarkio/check-geojson";
 import { circle } from "./index.js";
 
@@ -109,6 +115,108 @@ test("turf-circle -- arcTolerance parameter", (t) => {
   [c1, c2, c3].forEach((c) => {
     t.ok(c.geometry.coordinates[0].length >= 4, "produces valid polygon");
   });
+
+  t.end();
+});
+
+test("turf-circle -- method parameter", (t) => {
+  const center = [0, 60];
+  const radius = 1000;
+  const steps = 8;
+
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    const c = circle(center, radius, { steps, method });
+    const expectedCircumRadius = calculatePolygonCircumRadius(
+      radius,
+      steps,
+      method
+    );
+    const expectedFirstVertex = destination(center, expectedCircumRadius, 0)
+      .geometry.coordinates;
+    t.deepEquals(
+      c.geometry.coordinates[0][0],
+      expectedFirstVertex,
+      `${method} circle uses the ${method} circumradius`
+    );
+  });
+
+  const inscribedRadius = calculatePolygonCircumRadius(
+    radius,
+    steps,
+    "inscribed"
+  );
+  const equalAreaRadius = calculatePolygonCircumRadius(
+    radius,
+    steps,
+    "equalarea"
+  );
+  const circumscribedRadius = calculatePolygonCircumRadius(
+    radius,
+    steps,
+    "circumscribed"
+  );
+
+  t.equals(
+    inscribedRadius,
+    radius,
+    "inscribed circumradius equals the circle radius"
+  );
+  t.true(
+    equalAreaRadius > inscribedRadius && equalAreaRadius < circumscribedRadius,
+    "equalarea circumradius falls between inscribed and circumscribed"
+  );
+
+  t.deepEquals(
+    circle(center, radius, { steps }),
+    circle(center, radius, { steps, method: "equalarea" }),
+    "equalarea is the default method"
+  );
+
+  t.throws(
+    () => circle(center, radius, { steps, method: "bogus" as any }),
+    /method must be one of/,
+    "throws for an unknown method"
+  );
+
+  t.end();
+});
+
+test("turf-circle -- method with arcTolerance", (t) => {
+  const center = [0, 60];
+  const radius = 1; // kilometers
+  const arcTolerance = 0.01; // kilometers
+
+  const stepsByMethod = {} as Record<string, number>;
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    const expectedSteps =
+      calculateNumberOfRegularPolygonSidesToApproximateCircle(
+        radius,
+        arcTolerance,
+        method
+      );
+    stepsByMethod[method] = expectedSteps;
+    const c = circle(center, radius, { arcTolerance, method });
+    t.equal(
+      c.geometry.coordinates[0].length,
+      expectedSteps + 1,
+      `${method}: step count is derived from arcTolerance using ${method}`
+    );
+    t.deepEquals(
+      c.geometry.coordinates[0][0],
+      destination(
+        center,
+        calculatePolygonCircumRadius(radius, expectedSteps, method),
+        0
+      ).geometry.coordinates,
+      `${method}: circumradius is computed for the derived step count`
+    );
+  });
+
+  t.true(
+    stepsByMethod.equalarea < stepsByMethod.inscribed &&
+      stepsByMethod.equalarea < stepsByMethod.circumscribed,
+    "equalarea needs fewer steps than inscribed or circumscribed for the same arcTolerance"
+  );
 
   t.end();
 });
