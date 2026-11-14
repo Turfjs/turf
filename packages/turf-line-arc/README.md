@@ -16,6 +16,8 @@ Creates a circular arc, of a circle of the given radius and center point, betwee
 *   `options` **[Object][3]** Optional parameters (optional, default `{}`)
 
     *   `options.steps` **[number][2]** number of steps (straight segments) that will constitute the arc (optional, default `64`)
+    *   `options.arcTolerance` **[number][2]?** if provided, will ignore steps and use a number of steps such that the returned approximate arc is at most this far away from the true arc
+    *   `options.method` **ArcApproximationMethod** how the returned arc approximates the true arc: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' matches the enclosed area of the full circle's polygon approximation to the circle's area (optional, default `'equalarea'`)
     *   `options.units` **Units** Supports all valid Turf [Units][4]. (optional, default `'kilometers'`)
 
 ### Examples

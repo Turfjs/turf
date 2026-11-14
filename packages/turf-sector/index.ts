@@ -2,7 +2,13 @@ import { Feature, Polygon, GeoJsonProperties } from "geojson";
 import { circle } from "@turf/circle";
 import { lineArc } from "@turf/line-arc";
 import { coordEach } from "@turf/meta";
-import { Units, Coord, isObject, polygon } from "@turf/helpers";
+import {
+  ArcApproximationMethod,
+  Coord,
+  isObject,
+  polygon,
+  Units,
+} from "@turf/helpers";
 import { getCoords } from "@turf/invariant";
 
 /**
@@ -17,6 +23,8 @@ import { getCoords } from "@turf/invariant";
  * @param {Object} [options={}] Optional parameters
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {number} [options.steps=64] number of steps
+ * @param {number} [options.arcTolerance] if provided, will ignore steps and use a number of steps such that the returned approximate regular polygon is at most this far away from the true circle
+ * @param {ArcApproximationMethod} [options.method='equalarea'] how the returned sector approximates the true circle: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' matches the enclosed area of the full circle's polygon approximation to the circle's area
  * @param {Properties} [options.properties={}] Translate properties to Feature Polygon
  * @returns {Feature<Polygon>} sector polygon
  * @example
@@ -37,6 +45,8 @@ function sector(
   bearing2: number,
   options: {
     steps?: number;
+    arcTolerance?: number;
+    method?: ArcApproximationMethod;
     units?: Units;
     properties?: GeoJsonProperties;
   } = {}

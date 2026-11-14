@@ -1,7 +1,14 @@
 import { Feature, LineString } from "geojson";
 import { circle } from "@turf/circle";
 import { destination } from "@turf/destination";
-import { Coord, lineString, Units } from "@turf/helpers";
+import {
+  calculateNumberOfRegularPolygonSidesToApproximateCircle,
+  calculatePolygonCircumRadius,
+  ArcApproximationMethod,
+  Coord,
+  lineString,
+  Units,
+} from "@turf/helpers";
 
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
@@ -14,6 +21,8 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps (straight segments) that will constitute the arc
+ * @param {number} [options.arcTolerance] if provided, will ignore steps and use a number of steps such that the returned approximate arc is at most this far away from the true arc
+ * @param {ArcApproximationMethod} [options.method='equalarea'] how the returned arc approximates the true arc: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' matches the enclosed area of the full circle's polygon approximation to the circle's area
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {Feature<LineString>} line arc
  * @example
@@ -34,11 +43,21 @@ function lineArc(
   bearing2: number,
   options: {
     steps?: number;
+    arcTolerance?: number;
+    method?: ArcApproximationMethod;
     units?: Units;
   } = {}
 ): Feature<LineString> {
   // default params
-  const steps = options.steps || 64;
+  const method = options.method ?? "equalarea";
+  let steps = options.steps || 64;
+  if (options.arcTolerance && options.arcTolerance > 0) {
+    steps = calculateNumberOfRegularPolygonSidesToApproximateCircle(
+      radius,
+      options.arcTolerance,
+      method
+    );
+  }
 
   const angle1 = convertAngleTo360(bearing1);
   const angle2 = convertAngleTo360(bearing2);
@@ -47,10 +66,15 @@ function lineArc(
       ? center.properties
       : {};
 
+  const circumRadius = calculatePolygonCircumRadius(radius, steps, method);
+
   // handle angle parameters
   if (angle1 === angle2) {
+    // circle() applies `method` itself, so pass the true radius (not
+    // circumRadius) and the already-resolved steps to avoid applying it twice.
     return lineString(
-      circle(center, radius, options).geometry.coordinates[0],
+      circle(center, radius, { ...options, steps, arcTolerance: undefined })
+        .geometry.coordinates[0],
       properties
     );
   }
@@ -70,7 +94,7 @@ function lineArc(
   for (let i = 0; i <= steps; i++) {
     const alpha = i === steps ? arcEndDegree : arcStartDegree + i * arcStep;
     coordinates.push(
-      destination(center, radius, alpha, options).geometry.coordinates
+      destination(center, circumRadius, alpha, options).geometry.coordinates
     );
   }
   return lineString(coordinates, properties);

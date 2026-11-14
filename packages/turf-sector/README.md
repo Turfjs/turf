@@ -17,6 +17,8 @@ between (clockwise) bearing1 and bearing2; 0 bearing is North of center point, p
 
     *   `options.units` **Units** Supports all valid Turf [Units][5] (optional, default `'kilometers'`)
     *   `options.steps` **[number][3]** number of steps (optional, default `64`)
+    *   `options.arcTolerance` **[number][3]?** if provided, will ignore steps and use a number of steps such that the returned approximate regular polygon is at most this far away from the true circle
+    *   `options.method` **ArcApproximationMethod** how the returned sector approximates the true circle: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' matches the enclosed area of the full circle's polygon approximation to the circle's area (optional, default `'equalarea'`)
     *   `options.properties` **Properties** Translate properties to Feature Polygon (optional, default `{}`)
 
 ### Examples

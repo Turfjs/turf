@@ -23,6 +23,8 @@ import {
   isNumber,
   earthRadius,
   removeBbox,
+  calculatePolygonCircumRadius,
+  calculateNumberOfRegularPolygonSidesToApproximateCircle,
 } from "./index.js";
 import * as turf from "./index.js";
 
@@ -844,5 +846,154 @@ test("turf-helpers -- Issue #1284 - Prevent mutating Properties", (t) => {
 
   // New Features should contain empty properties {}
   t.deepEqual(feature(coord).properties, {});
+  t.end();
+});
+
+test("turf-helpers -- calculatePolygonCircumRadius", (t) => {
+  const circleRadius = 1000;
+  const steps = 16;
+  const phi = Math.PI / steps;
+
+  t.equal(
+    calculatePolygonCircumRadius(circleRadius, steps, "inscribed"),
+    circleRadius,
+    "inscribed circumradius equals the circle radius"
+  );
+  t.equal(
+    calculatePolygonCircumRadius(circleRadius, steps, "circumscribed"),
+    circleRadius / Math.cos(phi),
+    "circumscribed circumradius matches the apothem-tangent formula"
+  );
+
+  const inscribed = calculatePolygonCircumRadius(
+    circleRadius,
+    steps,
+    "inscribed"
+  );
+  const equalArea = calculatePolygonCircumRadius(
+    circleRadius,
+    steps,
+    "equalarea"
+  );
+  const circumscribed = calculatePolygonCircumRadius(
+    circleRadius,
+    steps,
+    "circumscribed"
+  );
+  t.true(
+    inscribed < equalArea && equalArea < circumscribed,
+    "equalarea circumradius falls between inscribed and circumscribed"
+  );
+
+  t.equal(
+    calculatePolygonCircumRadius(circleRadius, steps),
+    equalArea,
+    "equalarea is the default method"
+  );
+
+  t.throws(
+    () => calculatePolygonCircumRadius(-1, steps),
+    "throws for non-positive circleRadius"
+  );
+  t.throws(
+    () => calculatePolygonCircumRadius(circleRadius, steps, "bogus" as any),
+    /method must be one of/,
+    "throws for an unknown method"
+  );
+
+  t.end();
+});
+
+test("turf-helpers -- calculateNumberOfRegularPolygonSidesToApproximateCircle", (t) => {
+  const circleRadius = 1000;
+
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    const stepsForLooseTolerance =
+      calculateNumberOfRegularPolygonSidesToApproximateCircle(
+        circleRadius,
+        10,
+        method
+      );
+    const stepsForTightTolerance =
+      calculateNumberOfRegularPolygonSidesToApproximateCircle(
+        circleRadius,
+        1,
+        method
+      );
+    t.true(
+      stepsForTightTolerance > stepsForLooseTolerance,
+      `${method}: a tighter arcTolerance requires more steps`
+    );
+  });
+
+  t.throws(
+    () => calculateNumberOfRegularPolygonSidesToApproximateCircle(-1, 10),
+    "throws for non-positive circleRadius"
+  );
+  t.throws(
+    () => calculateNumberOfRegularPolygonSidesToApproximateCircle(1000, -1),
+    "throws for non-positive arcTolerance"
+  );
+  t.throws(
+    () =>
+      calculateNumberOfRegularPolygonSidesToApproximateCircle(
+        1000,
+        10,
+        "bogus" as any
+      ),
+    /method must be one of/,
+    "throws for an unknown method"
+  );
+
+  t.end();
+});
+
+test("turf-helpers -- calculateNumberOfRegularPolygonSidesToApproximateCircle honors arcTolerance", (t) => {
+  // Largest distance between a regular n-gon (built with the given method) and
+  // its target circle: the larger of the vertex error (circumradius vs radius)
+  // and the edge-midpoint error (apothem vs radius).
+  const maxDeviation = (
+    circleRadius: number,
+    steps: number,
+    method: "inscribed" | "circumscribed" | "equalarea"
+  ) => {
+    const circumRadius = calculatePolygonCircumRadius(
+      circleRadius,
+      steps,
+      method
+    );
+    const apothem = circumRadius * Math.cos(Math.PI / steps);
+    return Math.max(
+      Math.abs(circumRadius - circleRadius),
+      Math.abs(circleRadius - apothem)
+    );
+  };
+
+  const cases: [number, number][] = [
+    [1000, 10],
+    [1000, 1],
+    [1000, 0.01],
+    [5, 0.001],
+  ];
+
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    cases.forEach(([circleRadius, arcTolerance]) => {
+      const steps = calculateNumberOfRegularPolygonSidesToApproximateCircle(
+        circleRadius,
+        arcTolerance,
+        method
+      );
+      const label = `${method} r=${circleRadius} tol=${arcTolerance}`;
+      t.true(
+        maxDeviation(circleRadius, steps, method) <= arcTolerance,
+        `${label}: ${steps} steps stays within arcTolerance`
+      );
+      t.true(
+        maxDeviation(circleRadius, steps - 1, method) > arcTolerance,
+        `${label}: ${steps - 1} steps would exceed arcTolerance`
+      );
+    });
+  });
+
   t.end();
 });
