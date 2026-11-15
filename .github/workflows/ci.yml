@@ -34,6 +34,6 @@ jobs:
           cache: true
 
       - run: pnpm build
-      - run: pnpm run docs
+      - run: pnpm run docs --write-all
       - run: git diff --exit-code
       - run: pnpm test
