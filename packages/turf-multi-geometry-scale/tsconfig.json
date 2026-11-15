@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.shared.json",
+  "references": [
+    {
+      "path": "../turf-center-of-mass"
+    },
+    {
+      "path": "../turf-helpers"
+    }
+  ]
+}
