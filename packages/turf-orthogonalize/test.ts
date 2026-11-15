@@ -4,7 +4,6 @@ import type {
   Geometry,
   GeometryCollection,
   MultiPolygon,
-  Point,
   Polygon,
   Position,
 } from "geojson";
