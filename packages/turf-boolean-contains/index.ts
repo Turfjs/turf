@@ -10,6 +10,7 @@ import {
   Polygon,
   Position,
 } from "geojson";
+import { orient2d } from "robust-predicates";
 import { bbox as calcBbox } from "@turf/bbox";
 import { booleanPointInPolygon } from "@turf/boolean-point-in-polygon";
 import { booleanPointOnLine as isPointOnLine } from "@turf/boolean-point-on-line";
@@ -327,31 +328,62 @@ function isLineOnLine(lineString1: LineString, lineString2: LineString) {
   let haveFoundInteriorPoint = false;
   const coordinates = lineString2.coordinates;
   for (let i = 0; i < coordinates.length; i++) {
-    const coords = coordinates[i];
-    // Membership check first so vertices not on the line exit early
-    if (!isPointOnLine(coords, lineString1)) {
-      return false;
-    }
-    // Only probe for an interior point until one has been found
-    if (!haveFoundInteriorPoint) {
-      if (isPointOnLine(coords, lineString1, { ignoreEndVertices: true })) {
+    const end = coordinates[i];
+    const start = coordinates[i - 1];
+    if (start && !compareCoords(start, end)) {
+      if (!isSegmentCovered(start, end, lineString1.coordinates)) {
+        return false;
+      }
+      haveFoundInteriorPoint = true;
+    } else {
+      if (!isPointOnLine(end, lineString1)) {
+        return false;
+      }
+      if (isPointOnLine(end, lineString1, { ignoreEndVertices: true })) {
         haveFoundInteriorPoint = true;
-      } else if (i > 0) {
-        // A segment whose endpoints are both on lineString1 (e.g. lineString2's
-        // vertices coincide with lineString1's boundary) still shares interior
-        // with lineString1. Probe the segment midpoint so an interior overlap
-        // is detected even when no vertex of lineString2 is strictly interior.
-        const midpoint: Position = [
-          (coordinates[i - 1][0] + coords[0]) / 2,
-          (coordinates[i - 1][1] + coords[1]) / 2,
-        ];
-        if (isPointOnLine(midpoint, lineString1, { ignoreEndVertices: true })) {
-          haveFoundInteriorPoint = true;
-        }
       }
     }
   }
   return haveFoundInteriorPoint;
+}
+
+function isSegmentCovered(start: Position, end: Position, line: Position[]) {
+  const dx = end[0] - start[0];
+  const dy = end[1] - start[1];
+  const axis = Math.abs(dx) >= Math.abs(dy) ? 0 : 1;
+  const from = Math.min(start[axis], end[axis]);
+  const to = Math.max(start[axis], end[axis]);
+  const intervals: [number, number][] = [];
+  const isCollinear = (point: Position) =>
+    orient2d(start[0], start[1], end[0], end[1], point[0], point[1]) === 0;
+
+  for (let i = 1; i < line.length; i++) {
+    const a = line[i - 1];
+    const b = line[i];
+    const left = Math.min(a[axis], b[axis]);
+    const right = Math.max(a[axis], b[axis]);
+    if (left >= to || right <= from || left === right) continue;
+    if (left <= from && right >= to) {
+      const segment: LineString = { type: "LineString", coordinates: [a, b] };
+      // Preserve the point predicate for fractional coordinates on one piece.
+      if (isPointOnLine(start, segment) && isPointOnLine(end, segment)) {
+        return true;
+      }
+    }
+    if (!isCollinear(a) || !isCollinear(b)) continue;
+    if (left <= from && right >= to) return true;
+    intervals.push([left, right]);
+  }
+
+  // Several collinear pieces may cover the segment, but gaps cannot.
+  intervals.sort((a, b) => a[0] - b[0]);
+  let covered = from;
+  for (const [left, right] of intervals) {
+    if (left > covered) return false;
+    covered = Math.max(covered, right);
+    if (covered >= to) return true;
+  }
+  return false;
 }
 
 function splitLineIntoSegmentsOnPolygon(
