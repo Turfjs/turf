@@ -133,6 +133,133 @@ test("turf-line-intersect - polygon support #586", (t) => {
   t.end();
 });
 
+const coords = (fc: GeoJSON.FeatureCollection<Point>) =>
+  fc.features
+    .map((f) => f.geometry.coordinates)
+    .sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+
+test("turf-line-intersect - endpoint on vertical segment #2948", (t) => {
+  const line1 = lineString([
+    [0, 2],
+    [0, 0],
+    [4, 0],
+    [4, 4],
+    [3, 4],
+    [3, 1],
+    [1, 1],
+    [1, 2],
+    [0, 2],
+  ]);
+  const line2 = lineString([
+    [3, 2],
+    [4, 2],
+  ]);
+
+  t.deepEqual(
+    coords(lineIntersect(line1, line2)),
+    [
+      [3, 2],
+      [4, 2],
+    ],
+    "should find both intersections"
+  );
+  t.deepEqual(
+    coords(lineIntersect(line2, line1)),
+    [
+      [3, 2],
+      [4, 2],
+    ],
+    "should find both intersections with inputs swapped"
+  );
+  t.end();
+});
+
+test("turf-line-intersect - repeated vertex #2948", (t) => {
+  const line1 = lineString([
+    [2, 2],
+    [2, 2],
+    [3, 0],
+  ]);
+  const line2 = lineString([
+    [0, 1],
+    [4, 1],
+  ]);
+
+  t.deepEqual(
+    coords(lineIntersect(line1, line2)),
+    [[2.5, 1]],
+    "should find the intersection"
+  );
+  t.deepEqual(
+    coords(lineIntersect(line2, line1)),
+    [[2.5, 1]],
+    "should find the intersection with inputs swapped"
+  );
+  t.end();
+});
+
+test("turf-line-intersect - consecutive repeated vertices #2948", (t) => {
+  const line1 = lineString([
+    [0, 0],
+    [2, 6],
+    [2, 6],
+    [2, 6],
+    [4, 0],
+    [4, 0],
+    [4, 0],
+    [6, 6],
+  ]);
+  const line2 = lineString([
+    [0, 3],
+    [6, 3],
+  ]);
+
+  t.deepEqual(
+    coords(lineIntersect(line1, line2)),
+    [
+      [1, 3],
+      [3, 3],
+      [5, 3],
+    ],
+    "should find all intersections"
+  );
+  t.deepEqual(
+    coords(lineIntersect(line2, line1)),
+    [
+      [1, 3],
+      [3, 3],
+      [5, 3],
+    ],
+    "should find all intersections with inputs swapped"
+  );
+  t.end();
+});
+
+test("turf-line-intersect - one-point line on an endpoint #2948", (t) => {
+  const line1 = lineString([
+    [2, 2],
+    [2, 2],
+  ]);
+  const line2 = lineString([
+    [2, 3],
+    [0, 3],
+    [2, 1],
+    [2, 2],
+  ]);
+
+  t.deepEqual(
+    coords(lineIntersect(line1, line2)),
+    [[2, 2]],
+    "should find the touch point"
+  );
+  t.deepEqual(
+    coords(lineIntersect(line2, line1)),
+    [[2, 2]],
+    "should find the touch point with inputs swapped"
+  );
+  t.end();
+});
+
 /**
  * ensures that the self intersection param behaves as expected -
  * since it cannot be verified in the fixture format.
