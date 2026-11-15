@@ -53,7 +53,7 @@ function cloneFeature(geojson: any) {
       case "geometry":
         return;
       default:
-        cloned[key] = geojson[key];
+        assignKey(cloned, key, geojson[key]);
     }
   });
   // Add properties & geometry last
@@ -64,6 +64,32 @@ function cloneFeature(geojson: any) {
     cloned.geometry = cloneGeometry(geojson.geometry);
   }
   return cloned;
+}
+
+/**
+ * Assign a member to a clone as an own property.
+ *
+ * A key named "__proto__" (which JSON.parse produces as a regular own property)
+ * cannot be copied with a plain assignment: that invokes the
+ * Object.prototype.__proto__ setter and replaces the prototype of the clone
+ * with the input value instead of copying the member.
+ *
+ * @private
+ * @param {Object} target object being cloned into
+ * @param {string} key member name
+ * @param {*} value member value
+ */
+function assignKey(target: any, key: string, value: any) {
+  if (key === "__proto__") {
+    Object.defineProperty(target, key, {
+      configurable: true,
+      enumerable: true,
+      value,
+      writable: true,
+    });
+  } else {
+    target[key] = value;
+  }
 }
 
 /**
@@ -83,18 +109,22 @@ function cloneProperties(properties: GeoJsonProperties) {
     if (typeof value === "object") {
       if (value === null) {
         // handle null
-        cloned[key] = null;
+        assignKey(cloned, key, null);
       } else if (Array.isArray(value)) {
         // handle Array
-        cloned[key] = value.map((item) => {
-          return item;
-        });
+        assignKey(
+          cloned,
+          key,
+          value.map((item) => {
+            return item;
+          })
+        );
       } else {
         // handle generic Object
-        cloned[key] = cloneProperties(value);
+        assignKey(cloned, key, cloneProperties(value));
       }
     } else {
-      cloned[key] = value;
+      assignKey(cloned, key, value);
     }
   });
   return cloned;
@@ -117,7 +147,7 @@ function cloneFeatureCollection(geojson: any) {
       case "features":
         return;
       default:
-        cloned[key] = geojson[key];
+        assignKey(cloned, key, geojson[key]);
     }
   });
   // Add features
