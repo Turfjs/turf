@@ -102,6 +102,7 @@ function orthogonalize<
   removeBbox(result as GeoJSON);
   geomEach(result, (geometry: Geometry | null) => {
     if (geometry?.type !== "Polygon" && geometry?.type !== "MultiPolygon") {
+      // A FeatureCollection can mix in other geometries, which pass through untouched
       if (geometry && geojson.type !== "FeatureCollection") {
         throw new Error(`${geometry.type} geometry is not supported`);
       }
