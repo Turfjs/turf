@@ -193,6 +193,18 @@ test("orthogonalize -- leaves a ring unchanged if squaring would damage it", (t)
       geojson,
       name
     );
+    const reversed = structuredClone(geojson);
+    const { geometry } = reversed;
+    const rings =
+      geometry.type === "Polygon"
+        ? geometry.coordinates
+        : geometry.coordinates.flat();
+    for (const ring of rings) ring.reverse();
+    t.deepEqual(
+      orthogonalize(reversed, reversed.properties ?? {}),
+      reversed,
+      `${name} reversed`
+    );
   }
   t.end();
 });
