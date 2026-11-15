@@ -176,7 +176,7 @@ function orthogonalizeMultiPolygon(
  * @private
  * @param {Position[]} ring a closed ring in degrees
  * @param {Tolerances} tolerances how far a corner may be from each target angle
- * @returns {Position[]} the squared ring, with new positions, or the input ring
+ * @returns {Position[]} the squared ring, with new positions, or the input ring if it was not orthogonalized
  */
 function orthogonalizeRing(ring: Position[], tolerances: Tolerances) {
   // Only for its validation, which throws on an unclosed or too short ring
