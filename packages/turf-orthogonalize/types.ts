@@ -1,4 +1,10 @@
-import { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
+import {
+  Feature,
+  FeatureCollection,
+  GeometryCollection,
+  MultiPolygon,
+  Polygon,
+} from "geojson";
 import { featureCollection, multiPolygon, polygon } from "@turf/helpers";
 import { orthogonalize } from "./index.js";
 
@@ -24,3 +30,8 @@ const squaredMultiGeometry: MultiPolygon = orthogonalize(multiPoly.geometry);
 const squaredCollection: FeatureCollection = orthogonalize(
   featureCollection<Polygon | MultiPolygon>([poly, multiPoly])
 );
+const squaredGeometryCollection: GeometryCollection<Polygon | MultiPolygon> =
+  orthogonalize({
+    type: "GeometryCollection",
+    geometries: [poly.geometry, multiPoly.geometry],
+  });

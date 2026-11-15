@@ -270,7 +270,7 @@ test("orthogonalize -- FeatureCollection", (t) => {
   const { features } = orthogonalize({
     type: "FeatureCollection",
     features: [nearSquare, location, nothing],
-  } as FeatureCollection<Polygon>);
+  });
   t.deepEqual(features[0], orthogonalize(nearSquare), "squares polygons");
   t.deepEqual(features[1], location, "copies other geometries");
   t.deepEqual(features[2], nothing, "copies null geometries");
@@ -561,6 +561,18 @@ test("orthogonalize -- squares a MultiPolygon whose other parts already overlap"
   t.end();
 });
 
+test("orthogonalize -- squares a MultiPolygon with a duplicated part", (t) => {
+  const [first, second] = orthogonalize(
+    multiPolygon([
+      nearSquare.geometry.coordinates,
+      nearSquare.geometry.coordinates,
+    ])
+  ).geometry.coordinates;
+  const squared = orthogonalize(nearSquare).geometry.coordinates;
+  t.deepEqual([first, second], [squared, squared]);
+  t.end();
+});
+
 test("orthogonalize -- squares a polygon whose hole already crosses its wall", (t) => {
   const [outer] = nearSquare.geometry.coordinates;
   // An exact square straddling the right wall, starting inside it
@@ -575,6 +587,26 @@ test("orthogonalize -- squares a polygon whose hole already crosses its wall", (
     .geometry.coordinates;
   t.notDeepEqual(squaredOuter, outer, "the outer ring is squared");
   t.deepEqual(squaredHole, hole, "the hole stays as it is");
+  t.end();
+});
+
+test("orthogonalize -- squares a polygon whose hole touches its wall", (t) => {
+  const [outer] = nearSquare.geometry.coordinates;
+  // A diamond whose bottom corner touches a stretch of the bottom wall that squaring lowers
+  const hole = [
+    [0.0002, 0.00001],
+    [0.0001, 0.00021],
+    [0.0002, 0.00041],
+    [0.0003, 0.00021],
+    [0.0002, 0.00001],
+  ];
+  const [squaredOuter] = orthogonalize(polygon([outer, hole])).geometry
+    .coordinates;
+  t.deepEqual(
+    squaredOuter,
+    orthogonalize(polygon([outer])).geometry.coordinates[0],
+    "the outer ring is squared"
+  );
   t.end();
 });
 

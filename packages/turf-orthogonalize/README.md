@@ -39,12 +39,12 @@ that surrounds a pole is not squared and is returned as it is.
 
 ### Parameters
 
-*   `geojson` **([FeatureCollection][6]<([Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)> | [Feature][7]<([Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)> | [Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)** polygons to square up.
+*   `geojson` **([FeatureCollection][6] | [Feature][7]<([Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)> | [Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)** polygons to square up.
 *   `options` **[Object][8]** Optional parameters (optional, default `{}`)
 
-    *   `options.toleranceDegrees` **[number][9]** corners farther than this from 90° are left as they are, between 0° and 45° (optional, default `15`)
-    *   `options.flatToleranceDegrees` **[number][9]** corners farther than this from 180° are left as they are, between 0° and 90° (optional, default `5`)
-    *   `options.diagonalToleranceDegrees` **[number][9]** corners farther than this from 45° or 135° are left as they are, between 0° and 22.5° (optional, default `8`)
+    *   `options.toleranceDegrees` **[number][9]** corners farther than this from 90° aren't pulled toward it, between 0° and 45° (optional, default `15`)
+    *   `options.flatToleranceDegrees` **[number][9]** corners farther than this from 180° aren't pulled toward it, between 0° and 90° (optional, default `5`)
+    *   `options.diagonalToleranceDegrees` **[number][9]** corners farther than this from 45° or 135° aren't pulled toward them, between 0° and 22.5° (optional, default `8`)
 
 ### Examples
 
@@ -57,7 +57,7 @@ const addToMap = [polygon, squared];
 squared.properties = {stroke: '#F00', 'stroke-width': 4};
 ```
 
-Returns **([FeatureCollection][6]<([Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)> | [Feature][7]<([Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)> | [Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)** a squared copy of the input
+Returns **([FeatureCollection][6] | [Feature][7]<([Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)> | [Polygon][1] | [MultiPolygon][2] | [GeometryCollection][5]<([Polygon][1] | [MultiPolygon][2])>)** a squared copy of the input
 
 [1]: https://tools.ietf.org/html/rfc7946#section-3.1.6
 

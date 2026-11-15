@@ -56,12 +56,12 @@ import { geomEach } from "@turf/meta";
  * that surrounds a pole is not squared and is returned as it is.
  *
  * @function
- * @param {FeatureCollection<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Feature<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>} geojson polygons to square up.
+ * @param {FeatureCollection|Feature<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>} geojson polygons to square up.
  * @param {Object} [options={}] Optional parameters
- * @param {number} [options.toleranceDegrees=15] corners farther than this from 90° are left as they are, between 0° and 45°
- * @param {number} [options.flatToleranceDegrees=5] corners farther than this from 180° are left as they are, between 0° and 90°
- * @param {number} [options.diagonalToleranceDegrees=8] corners farther than this from 45° or 135° are left as they are, between 0° and 22.5°
- * @returns {FeatureCollection<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Feature<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>} a squared copy of the input
+ * @param {number} [options.toleranceDegrees=15] corners farther than this from 90° aren't pulled toward it, between 0° and 45°
+ * @param {number} [options.flatToleranceDegrees=5] corners farther than this from 180° aren't pulled toward it, between 0° and 90°
+ * @param {number} [options.diagonalToleranceDegrees=8] corners farther than this from 45° or 135° aren't pulled toward them, between 0° and 22.5°
+ * @returns {FeatureCollection|Feature<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>} a squared copy of the input
  * @example
  * const polygon = turf.polygon([[[0, 0], [0.001, 0.00005], [0.00095, 0.001], [-0.00005, 0.00095], [0, 0]]]);
  * const squared = turf.orthogonalize(polygon);
@@ -75,9 +75,7 @@ function orthogonalize<
     | Feature<
         Polygon | MultiPolygon | GeometryCollection<Polygon | MultiPolygon>
       >
-    | FeatureCollection<
-        Polygon | MultiPolygon | GeometryCollection<Polygon | MultiPolygon>
-      >
+    | FeatureCollection<Geometry | null>
     | Polygon
     | MultiPolygon
     | GeometryCollection<Polygon | MultiPolygon>,
@@ -460,13 +458,18 @@ function hasNewOverlaps(
     bbox({ type: "LineString", coordinates: ring });
   const isBoxOverlap = (a: number[], b: number[]) =>
     a[2] >= b[0] && b[2] >= a[0] && a[3] >= b[1] && b[3] >= a[1];
-  // A vertex on a shared wall counts as outside, or every part that shares a wall would flip
-  const isInside = (a: Position[], b: Position[]) =>
-    booleanPointInPolygon(
-      a[0],
-      { type: "Polygon", coordinates: [b] },
-      { ignoreBoundary: true }
-    );
+  // A vertex on the other ring's boundary, like a shared wall or a hole's touch point, can't tell
+  // inside from outside, so the first vertex off it decides
+  const isInside = (a: Position[], b: Position[]) => {
+    const ring: Polygon = { type: "Polygon", coordinates: [b] };
+    for (const vertex of a) {
+      if (!booleanPointInPolygon(vertex, ring)) return false;
+      if (booleanPointInPolygon(vertex, ring, { ignoreBoundary: true })) {
+        return true;
+      }
+    }
+    return false;
+  };
   const squaredBoxes = squaredRings.map(toBox);
   const boxes = rings.map(toBox);
   for (let a = 0; a < rings.length; a++) {
