@@ -370,7 +370,7 @@ test("orthogonalize -- keeps exact coordinates when nothing needs squaring", (t)
 
 test("orthogonalize -- drops every bbox", (t) => {
   const bbox: [number, number, number, number] = [0, 0, 1, 1];
-  const collection: any = {
+  const collection: Feature<GeometryCollection<Polygon>> = {
     type: "Feature",
     properties: {},
     geometry: {
@@ -392,7 +392,7 @@ test("orthogonalize -- drops every bbox", (t) => {
     "ring it leaves unchanged"
   );
   t.equal(
-    (orthogonalize(collection) as any).geometry.bbox,
+    orthogonalize(collection).geometry.bbox,
     undefined,
     "bare Feature's GeometryCollection"
   );
@@ -425,11 +425,9 @@ test("orthogonalize -- squares polygons inside a GeometryCollection", (t) => {
         properties: {},
         geometry: { type: "GeometryCollection", geometries },
       },
-    ]) as unknown as FeatureCollection<Polygon>
+    ]) as FeatureCollection<GeometryCollection<Polygon>>
   );
-  const [location, squared] = (
-    features[0].geometry as unknown as GeometryCollection
-  ).geometries;
+  const [location, squared] = features[0].geometry.geometries;
   t.deepEqual(
     squared,
     orthogonalize(nearSquare.geometry),

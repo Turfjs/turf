@@ -3,6 +3,7 @@ import type {
   FeatureCollection,
   GeoJSON,
   Geometry,
+  GeometryCollection,
   MultiPolygon,
   Polygon,
   Position,
@@ -40,7 +41,8 @@ import { geomEach } from "@turf/meta";
  * A ring stays unchanged if squaring would fold it, cross its edges, collapse a wall, push it past
  * a pole, or fail to settle. A polygon stays unchanged if squaring would make two of its rings newly
  * cross, or move one into or out of another. A {@link MultiPolygon} stays unchanged if squaring
- * would do the same to its parts.
+ * would do the same to its parts. Each {@link Polygon} or {@link MultiPolygon} in a
+ * {@link GeometryCollection} is squared on its own, so members can end up overlapping.
  * Running it again on its output can move a ring further, since the first run can bring new corners
  * into tolerance.
  *
@@ -54,12 +56,12 @@ import { geomEach } from "@turf/meta";
  * that surrounds a pole is not squared and is returned as it is.
  *
  * @function
- * @param {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} geojson polygons to square up.
+ * @param {FeatureCollection<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Feature<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>} geojson polygons to square up.
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.toleranceDegrees=15] corners farther than this from 90° are left as they are, between 0° and 45°
  * @param {number} [options.flatToleranceDegrees=5] corners farther than this from 180° are left as they are, between 0° and 90°
  * @param {number} [options.diagonalToleranceDegrees=8] corners farther than this from 45° or 135° are left as they are, between 0° and 22.5°
- * @returns {FeatureCollection<Polygon|MultiPolygon>|Feature<Polygon|MultiPolygon>|Polygon|MultiPolygon} a squared copy of the input
+ * @returns {FeatureCollection<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Feature<Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>>|Polygon|MultiPolygon|GeometryCollection<Polygon|MultiPolygon>} a squared copy of the input
  * @example
  * const polygon = turf.polygon([[[0, 0], [0.001, 0.00005], [0.00095, 0.001], [-0.00005, 0.00095], [0, 0]]]);
  * const squared = turf.orthogonalize(polygon);
@@ -70,10 +72,15 @@ import { geomEach } from "@turf/meta";
  */
 function orthogonalize<
   T extends
-    | Feature<Polygon | MultiPolygon>
-    | FeatureCollection<Polygon | MultiPolygon>
+    | Feature<
+        Polygon | MultiPolygon | GeometryCollection<Polygon | MultiPolygon>
+      >
+    | FeatureCollection<
+        Polygon | MultiPolygon | GeometryCollection<Polygon | MultiPolygon>
+      >
     | Polygon
-    | MultiPolygon,
+    | MultiPolygon
+    | GeometryCollection<Polygon | MultiPolygon>,
 >(
   geojson: T,
   options: {
