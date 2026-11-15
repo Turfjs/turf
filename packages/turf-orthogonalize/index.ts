@@ -109,10 +109,10 @@ function orthogonalize<
       return;
     }
     if (geometry.type === "Polygon") {
-      geometry.coordinates = orthogonalizePolygon(
-        geometry.coordinates,
+      geometry.coordinates = orthogonalizeMultiPolygon(
+        [geometry.coordinates],
         tolerances
-      );
+      )[0];
     } else {
       geometry.coordinates = orthogonalizeMultiPolygon(
         geometry.coordinates,
@@ -150,21 +150,24 @@ function orthogonalizeMultiPolygon(
   parts: Position[][][],
   tolerances: Tolerances
 ) {
-  const squaredParts = parts.map((rings) =>
-    orthogonalizePolygon(rings, tolerances)
-  );
-  if (squaredParts.every((rings, i) => rings === parts[i])) return parts;
+  const squaredParts = parts.map((rings) => {
+    const squaredRings = rings.map((ring) =>
+      orthogonalizeRing(ring, tolerances)
+    );
+    // Rings are squared on their own, so a hole can end up crossing or escaping its outer ring
+    return hasNewOverlaps(squaredRings, rings) ? rings : squaredRings;
+  });
   // Parts are squared on their own, so neighbors that share a wall can end up overlapping
-  if (hasNewOverlaps(squaredParts.flat(), parts.flat())) return parts;
+  if (
+    hasNewOverlaps(
+      squaredParts.flat(),
+      parts.flat(),
+      parts.flatMap((rings, i) => rings.map(() => i))
+    )
+  ) {
+    return parts;
+  }
   return squaredParts;
-}
-
-function orthogonalizePolygon(rings: Position[][], tolerances: Tolerances) {
-  const squaredRings = rings.map((ring) => orthogonalizeRing(ring, tolerances));
-  if (squaredRings.every((ring, i) => ring === rings[i])) return rings;
-  // Rings are squared on their own, so a hole can end up crossing or escaping its outer ring
-  if (hasNewOverlaps(squaredRings, rings)) return rings;
-  return squaredRings;
 }
 
 /**
@@ -438,9 +441,14 @@ function hasCrossingEdges(coordinates: number[]) {
 
 // Two rings overlap differently when they cross or when one moves into or out of the other. With
 // no crossing a ring is wholly inside or outside, so one vertex decides. Changes already in the
-// input don't count, so they don't block squaring the rest
-function hasNewOverlaps(squaredRings: Position[][], rings: Position[][]) {
-  if (squaredRings.length < 2) return false;
+// input don't count, so they don't block squaring the rest. Two unchanged rings aren't compared, and
+// neither are rings in the same part, since a part's own rings were checked when it was squared
+function hasNewOverlaps(
+  squaredRings: Position[][],
+  rings: Position[][],
+  partIndices?: number[]
+) {
+  if (rings.length < 2) return false;
   const toBox = (ring: Position[]) =>
     bbox({ type: "LineString", coordinates: ring });
   const isBoxOverlap = (a: number[], b: number[]) =>
@@ -456,6 +464,12 @@ function hasNewOverlaps(squaredRings: Position[][], rings: Position[][]) {
   const boxes = rings.map(toBox);
   for (let a = 0; a < rings.length; a++) {
     for (let b = a + 1; b < rings.length; b++) {
+      if (
+        (partIndices && partIndices[a] === partIndices[b]) ||
+        (squaredRings[a] === rings[a] && squaredRings[b] === rings[b])
+      ) {
+        continue;
+      }
       // Rings whose boxes don't overlap before or after can't cross or hold each other, which
       // skips most pairs of parts in a MultiPolygon with many of them
       if (
