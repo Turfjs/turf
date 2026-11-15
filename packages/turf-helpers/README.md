@@ -96,6 +96,12 @@ var feature = turf.feature(geometry);
 
 Returns **[Feature][7]<[GeometryObject][9], [GeoJsonProperties][7]>** a GeoJSON Feature
 
+## GeometryType
+
+The GeoJSON geometry types that [geometry][17] can create.
+
+Type: (`"Point"` | `"LineString"` | `"Polygon"` | `"MultiPoint"` | `"MultiLineString"` | `"MultiPolygon"`)
+
 ## geometry
 
 Creates a GeoJSON [Geometry][9] from a Geometry string type & coordinates.
@@ -104,7 +110,7 @@ For GeometryCollection type use `helpers.geometryCollection`
 ### Parameters
 
 *   `type` **(`"Point"` | `"LineString"` | `"Polygon"` | `"MultiPoint"` | `"MultiLineString"` | `"MultiPolygon"`)** Geometry Type
-*   `coordinates` **[Array][17]\<any>** Coordinates
+*   `coordinates` **CoordinatesFor\<T>** Coordinates
 *   `_options` **Record<[string][18], never>**  (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -148,7 +154,7 @@ Creates a [Point][19] [FeatureCollection][8] from an Array of Point coordinates.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Position][20]>** an array of Points
+*   `coordinates` **[Array][21]<[Position][20]>** an array of Points
 *   `properties` **[GeoJsonProperties][7]** Translate these properties to each Feature (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -176,7 +182,7 @@ Creates a [Polygon][5] [Feature][7] from an Array of LinearRings.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Position][20]>>**&#x20;
+*   `coordinates` **[Array][21]<[Array][21]<[Position][20]>>**&#x20;
 *   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -199,7 +205,7 @@ Creates a [Polygon][5] [FeatureCollection][8] from an Array of Polygon coordinat
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Array][17]<[Position][20]>>>**&#x20;
+*   `coordinates` **[Array][21]<[Array][21]<[Array][21]<[Position][20]>>>**&#x20;
 *   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -225,7 +231,7 @@ Creates a [LineString][3] [Feature][7] from an Array of Positions.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Position][20]>** an array of Positions
+*   `coordinates` **[Array][21]<[Position][20]>** an array of Positions
 *   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -250,7 +256,7 @@ Creates a [LineString][3] [FeatureCollection][8] from an Array of LineString coo
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Position][20]>>**&#x20;
+*   `coordinates` **[Array][21]<[Array][21]<[Position][20]>>**&#x20;
 *   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -277,7 +283,7 @@ Takes one or more [Features][7] and creates a [FeatureCollection][8].
 
 ### Parameters
 
-*   `features` **[Array][17]<[Feature][7]<[GeometryObject][9], [GeoJsonProperties][7]>>** input features
+*   `features` **[Array][21]<[Feature][7]<[GeometryObject][9], [GeoJsonProperties][7]>>** input features
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
     *   `options.bbox` **[BBox][16]?** Bounding Box Array \[west, south, east, north] associated with the Feature
@@ -308,7 +314,7 @@ coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Position][20]>>**&#x20;
+*   `coordinates` **[Array][21]<[Array][21]<[Position][20]>>**&#x20;
 *   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -323,18 +329,18 @@ var multiLine = turf.multiLineString([[[0,0],[10,10]]]);
 //=multiLine
 ```
 
-*   Throws **[Error][21]** if no coordinates are passed
+*   Throws **[Error][22]** if no coordinates are passed
 
 Returns **[Feature][7]<[MultiLineString][4], [GeoJsonProperties][7]>** a MultiLineString feature
 
 ## multiPoint
 
-Creates a [Feature][7]<[MultiPoint][22]> based on a
+Creates a [Feature][7]<[MultiPoint][23]> based on a
 coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Position][20]>** an array of Positions
+*   `coordinates` **[Array][21]<[Position][20]>** an array of Positions
 *   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -349,9 +355,9 @@ var multiPt = turf.multiPoint([[0,0],[10,10]]);
 //=multiPt
 ```
 
-*   Throws **[Error][21]** if no coordinates are passed
+*   Throws **[Error][22]** if no coordinates are passed
 
-Returns **[Feature][7]<[MultiPoint][22], [GeoJsonProperties][7]>** a MultiPoint feature
+Returns **[Feature][7]<[MultiPoint][23], [GeoJsonProperties][7]>** a MultiPoint feature
 
 ## multiPolygon
 
@@ -360,7 +366,7 @@ coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `coordinates` **[Array][17]<[Array][17]<[Array][17]<[Position][20]>>>**&#x20;
+*   `coordinates` **[Array][21]<[Array][21]<[Array][21]<[Position][20]>>>**&#x20;
 *   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -375,7 +381,7 @@ var multiPoly = turf.multiPolygon([[[[0,0],[0,10],[10,10],[10,0],[0,0]]]]);
 //=multiPoly
 ```
 
-*   Throws **[Error][21]** if no coordinates are passed
+*   Throws **[Error][22]** if no coordinates are passed
 
 Returns **[Feature][7]<[MultiPolygon][6], [GeoJsonProperties][7]>** a multipolygon feature
 
@@ -386,7 +392,7 @@ coordinate array. Properties can be added optionally.
 
 ### Parameters
 
-*   `geometries` **[Array][17]<([Point][19] | [LineString][3] | [Polygon][5] | [MultiPoint][22] | [MultiLineString][4] | [MultiPolygon][6])>** an array of GeoJSON Geometries
+*   `geometries` **[Array][21]<([Point][19] | [LineString][3] | [Polygon][5] | [MultiPoint][23] | [MultiLineString][4] | [MultiPolygon][6])>** an array of GeoJSON Geometries
 *   `properties` **[GeoJsonProperties][7]** an Object of key-value pairs to add as properties (optional, default `{}`)
 *   `options` **[Object][15]** Optional Parameters (optional, default `{}`)
 
@@ -548,7 +554,7 @@ turf.isNumber('foo')
 //=false
 ```
 
-Returns **[boolean][23]** true/false
+Returns **[boolean][24]** true/false
 
 ## isObject
 
@@ -567,7 +573,7 @@ turf.isObject('foo')
 //=false
 ```
 
-Returns **[boolean][23]** true/false, including false for Arrays and Functions
+Returns **[boolean][24]** true/false, including false for Arrays and Functions
 
 ## removeBbox
 
@@ -577,7 +583,7 @@ This function mutates the input GeoJSON object.
 
 ### Parameters
 
-*   `geojson` **[GeoJSON][24]** GeoJSON object whose bounding boxes should be removed
+*   `geojson` **[GeoJSON][25]** GeoJSON object whose bounding boxes should be removed
 
 Returns **void**&#x20;
 
@@ -613,7 +619,7 @@ Returns **void**&#x20;
 
 [16]: https://tools.ietf.org/html/rfc7946#section-5
 
-[17]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[17]: #geometry
 
 [18]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
@@ -621,13 +627,15 @@ Returns **void**&#x20;
 
 [20]: https://developer.mozilla.org/docs/Web/API/Position
 
-[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[22]: https://tools.ietf.org/html/rfc7946#section-3.1.3
+[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
 
-[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[23]: https://tools.ietf.org/html/rfc7946#section-3.1.3
 
-[24]: https://tools.ietf.org/html/rfc7946#section-3
+[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[25]: https://tools.ietf.org/html/rfc7946#section-3
 
 <!-- This file is automatically generated. Please don't edit it directly. If you find an error, edit the source file of the module in question (likely index.js or index.ts), and re-run "yarn docs" from the root of the turf project. -->
 
