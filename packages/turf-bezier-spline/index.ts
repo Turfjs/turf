@@ -8,7 +8,7 @@ import { Spline } from "./lib/spline.js";
  * by applying a [Bezier spline](http://en.wikipedia.org/wiki/B%C3%A9zier_spline)
  * algorithm.
  *
- * The bezier spline implementation is by [Leszek Rybicki](http://leszek.rybicki.cc/).
+ * The bezier spline implementation is by Leszek Rybicki.
  *
  * @function
  * @param {Feature<LineString>} line input LineString

@@ -35,7 +35,7 @@ type MoranIndex = {
  *
  * 1. [Moran's I](https://en.wikipedia.org/wiki/Moran%27s_I)
  *
- * 2. [pysal](http://pysal.readthedocs.io/en/latest/index.html)
+ * 2. [pysal](https://pysal.org/)
  *
  * 3. Andy Mitchell, The ESRI Guide to GIS Analysis Volume 2: Spatial Measurements & Statistics.
  *
