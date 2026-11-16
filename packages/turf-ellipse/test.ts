@@ -617,11 +617,12 @@ test("turf-ellipse -- method parameter", (t) => {
 
 test("turf-ellipse -- equalarea matches the area of a non-circular ellipse", (t) => {
   const center = [0, 60];
-  // eccentricities ~0.66, ~0.87, ~0.97 -- all take the non-circular code path
+  // eccentricities ~0.66, ~0.87, ~0.97, ~0.999 -- all take the non-circular code path
   const axes: [number, number][] = [
     [2000, 1500],
     [2000, 1000],
     [2000, 500],
+    [5000, 200],
   ];
 
   axes.forEach(([a, b]) => {
@@ -650,3 +651,47 @@ function colorize(feature, color) {
   feature.properties["fill-opacity"] = 0;
   return feature;
 }
+
+test("turf-ellipse -- elongated ellipses do not self-intersect", (t) => {
+  // An ellipse is star-shaped around its center, so its ring is simple exactly
+  // when every vertex advances the same way around the center and the ring
+  // winds around it once. Angular order around the center is preserved by the
+  // lon/lat aspect distortion (a positive axis scaling), so raw degree
+  // offsets suffice.
+  const center = [0, 60];
+  const methods = ["inscribed", "equalarea", "circumscribed"] as const;
+
+  [10, 25, 50, 100].forEach((ratio) => {
+    [8, 16, 64, 256].forEach((steps) => {
+      methods.forEach((method) => {
+        const ring = ellipse(center, 1000 * ratio, 1000, {
+          steps,
+          units: "meters",
+          method,
+          angle: 30,
+        }).geometry.coordinates[0];
+        const angles = ring.map(([lon, lat]) =>
+          Math.atan2(lat - center[1], lon - center[0])
+        );
+        let winding = 0;
+        let forward = 0;
+        let backward = 0;
+        for (let i = 1; i < angles.length; i++) {
+          let step = angles[i] - angles[i - 1];
+          if (step > Math.PI) step -= 2 * Math.PI;
+          if (step <= -Math.PI) step += 2 * Math.PI;
+          if (step > 0) forward++;
+          else backward++;
+          winding += step;
+        }
+        const monotonic = forward === 0 || backward === 0;
+        t.true(
+          monotonic && Math.abs(Math.abs(winding) - 2 * Math.PI) < 1e-9,
+          `${ratio}:1 @ ${steps} steps, ${method}: ring winds once without doubling back`
+        );
+      });
+    });
+  });
+
+  t.end();
+});

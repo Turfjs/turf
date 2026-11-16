@@ -191,11 +191,14 @@ function ellipse(
 }
 
 /**
- * Generate parametric angles t₀ = 0 < t₁ < … for an ellipse with semi-axes a and b,
- * spaced to approximate an even arc-length distribution of numPoints vertices.
+ * Generate parametric angles t₀ = 0 < t₁ < … < tₙ₋₁ < 2π for an ellipse with semi-axes
+ * a and b, spaced so that consecutive vertices are an equal arc length apart.
  *
- * The spacing depends only on the ratio of a to b (apart from a small-derivative guard),
- * so uniformly scaling both axes afterwards leaves it unchanged.
+ * The ellipse is densely sampled to build a cumulative arc-length table s(t), which is
+ * then inverted at evenly spaced lengths. The angles are therefore strictly increasing
+ * and always span exactly one revolution, so the resulting ring never self-intersects.
+ * The spacing depends only on the ratio of a to b, so uniformly scaling both axes
+ * afterwards leaves it unchanged.
  *
  * @private
  * @param {number} a semi-axis along x
@@ -204,47 +207,31 @@ function ellipse(
  * @returns {number[]} numPoints parametric angles in radians, starting at 0
  */
 function adaptiveParams(a: number, b: number, numPoints: number): number[] {
-  // Estimate total perimeter using Ramanujan's approximation
-  const h = Math.pow((a - b) / (a + b), 2);
-  const perimeter =
-    Math.PI * (a + b) * (1 + (3 * h) / (10 + Math.sqrt(4 - 3 * h)));
-  const targetSegmentLength = perimeter / numPoints;
+  // cumulative[j] is the arc length from t = 0 to t = 2πj / samples, measured
+  // along the polyline through the dense samples
+  const samples = Math.max(1024, numPoints * 16);
+  const cumulative: number[] = [0];
+  let prevX = a;
+  let prevY = 0;
+  for (let j = 1; j <= samples; j++) {
+    const t = (2 * Math.PI * j) / samples;
+    const x = a * Math.cos(t);
+    const y = b * Math.sin(t);
+    cumulative.push(cumulative[j - 1] + Math.hypot(x - prevX, y - prevY));
+    prevX = x;
+    prevY = y;
+  }
+  const perimeter = cumulative[samples];
 
-  let currentParam = 0;
+  // invert s(t) at i/numPoints of the perimeter, interpolating within a sample
   const params: number[] = [0];
-
-  // Generate adaptive parameters using iterative arc-length approximation
+  let j = 0;
   for (let i = 1; i < numPoints; i++) {
-    // Start with uniform increment as initial guess
-    let deltaParam = (2 * Math.PI) / numPoints;
-
-    // Refine using Newton-Raphson iterations to match target arc-length
-    // Arc-length derivative: ds/dt = sqrt(a²sin²(t) + b²cos²(t))
-    for (let iter = 0; iter < 5; iter++) {
-      const midParam = currentParam + deltaParam / 2;
-      const sinMid = Math.sin(midParam);
-      const cosMid = Math.cos(midParam);
-      const arcLengthDerivative = Math.sqrt(
-        a * a * sinMid * sinMid + b * b * cosMid * cosMid
-      );
-
-      // Estimate arc-length for this parameter increment
-      if (arcLengthDerivative > 0.001) {
-        const estimatedLength = arcLengthDerivative * deltaParam;
-        // Adjust parameter increment to match target segment length
-        const correction = targetSegmentLength / estimatedLength;
-        deltaParam *= correction;
-
-        // Clamp to prevent overshooting
-        deltaParam = Math.max(
-          (Math.PI / 180) * 0.5, // min 0.5°
-          Math.min((Math.PI / 180) * 120, deltaParam) // max 120°
-        );
-      }
-    }
-
-    currentParam += deltaParam;
-    params.push(currentParam);
+    const target = (perimeter * i) / numPoints;
+    while (cumulative[j + 1] < target) j++;
+    const fraction =
+      (target - cumulative[j]) / (cumulative[j + 1] - cumulative[j]);
+    params.push((2 * Math.PI * (j + fraction)) / samples);
   }
 
   return params;
