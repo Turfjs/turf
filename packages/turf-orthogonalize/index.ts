@@ -569,7 +569,9 @@ function conjugateGradient(
   const imbalance = target.slice();
   const direction = target.slice();
   let imbalanceSquared = dot(imbalance, imbalance);
-  for (let i = 0; i < target.length && imbalanceSquared > 1e-14; i++) {
+  // Stop relative to the starting imbalance so that large rings don't chase a fixed, tiny target
+  const stopSquared = 1e-10 * imbalanceSquared;
+  for (let i = 0; i < target.length && imbalanceSquared > stopSquared; i++) {
     const product = multiply(direction);
     const stepSize = imbalanceSquared / dot(direction, product);
     for (let j = 0; j < target.length; j++) {

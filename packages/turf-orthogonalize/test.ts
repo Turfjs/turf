@@ -164,6 +164,23 @@ test("orthogonalize -- merges a very short edge wherever it is", (t) => {
   t.end();
 });
 
+test("orthogonalize -- squares a corner within both the right and flat tolerances", (t) => {
+  const { coordinates } = orthogonalize(
+    polygon([
+      [
+        [0, 0],
+        [0.001, 0],
+        [0.001176, 0.001],
+        [0.000176, 0.001],
+        [0, 0],
+      ],
+    ]),
+    { toleranceDegrees: 45, flatToleranceDegrees: 90 }
+  ).geometry;
+  assertSquare(t, toMercator(polygon(coordinates)).geometry.coordinates[0]);
+  t.end();
+});
+
 test("orthogonalize -- does not fold a sharp spike flat", (t) => {
   const ring = toMercator(
     orthogonalize(
