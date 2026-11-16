@@ -21,7 +21,7 @@ import { GeoJsonProperties, Feature, Polygon, Position } from "geojson";
  * @param {number} [options.angle=0] angle of rotation in decimal degrees, positive clockwise
  * @param {Coord} [options.pivot=center] point around which any rotation will be performed
  * @param {number} [options.steps=64] number of steps
- * @param {ArcApproximationMethod} [options.method='equalarea'] how the returned polygon approximates the ellipse: 'inscribed' places every vertex on the ellipse, 'circumscribed' scales every vertex outward from the ellipse, and 'equalarea' matches the polygon's area to the ellipse's area
+ * @param {ArcApproximationMethod} [options.method='equalarea'] how the returned polygon approximates the ellipse: 'inscribed' places every vertex on the ellipse, 'circumscribed' places every edge tangent to the ellipse, and 'equalarea' matches the polygon's area to the ellipse's area
  * @param {Units} [options.units='kilometers'] unit of measurement for axes. Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} ellipse polygon
@@ -60,7 +60,15 @@ function ellipse(
   if (!ySemiAxis) throw new Error("ySemiAxis is required");
   if (!isObject(options)) throw new Error("options must be an object");
   if (!isNumber(steps)) throw new Error("steps must be a number");
+  if (!Number.isFinite(steps) || steps <= 0)
+    throw new Error("steps must be a positive finite number");
+  // a polygon needs whole vertices, and at least three of them
+  steps = Math.max(3, Math.ceil(steps));
   if (!isNumber(angle)) throw new Error("angle must be a number");
+  if (!["inscribed", "circumscribed", "equalarea"].includes(method))
+    throw new Error(
+      "method must be one of 'inscribed', 'circumscribed', 'equalarea'"
+    );
 
   const centerCoords = getCoord(center);
 
@@ -108,13 +116,25 @@ function ellipse(
 
     // For ellipses, use the adaptive parametric angles (even arc-length spacing)
     // Convert parametric angles to geographic coordinates
-    for (const param of params) {
+    for (let i = 0; i < params.length; i++) {
       // Parametric ellipse: x = a*cos(t), y = b*sin(t)
       // This is in Cartesian coords with 0° = east
+      let t = params[i];
+      let k = 1;
+      if (method === "circumscribed") {
+        // Place the vertex where the tangents at params[i] and params[i + 1]
+        // meet. The ellipse is the unit circle stretched by (a, b), which keeps
+        // tangents tangent, and on the unit circle the tangents at t₁ and t₂
+        // meet at angle (t₁ + t₂) / 2, a distance 1 / cos((t₂ − t₁) / 2) out.
+        // The final segment closes the ring back to params[0] (= 0, i.e. 2π).
+        const next = i + 1 < params.length ? params[i + 1] : 2 * Math.PI;
+        t = (params[i] + next) / 2;
+        k = 1 / Math.cos((next - params[i]) / 2);
+      }
 
       // Convert to polar form to get radius and angle
-      const x = a * Math.cos(param);
-      const y = b * Math.sin(param);
+      const x = k * a * Math.cos(t);
+      const y = k * b * Math.sin(t);
       const r = Math.sqrt(x * x + y * y);
 
       // Convert Cartesian angle to geographic bearing
@@ -156,11 +176,16 @@ function ellipse(
    * Near-circular ellipses use uniform spacing, so turf-circle's circumradius-to-radius
    * ratio applies directly (passing a unit circleRadius of 1 yields that ratio).
    *
-   * Actual ellipses use adaptive, non-uniform parameter spacing, so for `equalarea` the
-   * polygon's area is computed analytically instead: vertices at (a·cos tᵢ, b·sin tᵢ)
-   * enclose (a·b/2)·Σ sin(Δtᵢ), and scaling both axes by s multiplies that by s². Solving
-   * s²·(a·b/2)·Σ sin(Δtᵢ) = π·a·b gives s = √(2π / Σ sin(Δtᵢ)). For uniform spacing this
-   * reduces to the same ratio turf-circle uses.
+   * Actual ellipses use adaptive, non-uniform parameter spacing, so turf-circle's ratio
+   * (which assumes uniform spacing) does not apply:
+   * - `inscribed` needs no scaling: every vertex already lies on the ellipse.
+   * - `circumscribed` needs no scaling either: constructCoords places each vertex where
+   *   neighbouring tangent lines meet, so every edge is tangent to the ellipse.
+   * - `equalarea` computes the polygon's area analytically: vertices at
+   *   (a·cos tᵢ, b·sin tᵢ) enclose (a·b/2)·Σ sin(Δtᵢ), and scaling both axes by s
+   *   multiplies that by s². Solving s²·(a·b/2)·Σ sin(Δtᵢ) = π·a·b gives
+   *   s = √(2π / Σ sin(Δtᵢ)). For uniform spacing this reduces to the same ratio
+   *   turf-circle uses.
    */
   // Use steps directly as the number of points
   const numPoints = steps;
@@ -169,7 +194,9 @@ function ellipse(
     ? []
     : adaptiveParams(xSemiAxis, ySemiAxis, numPoints);
 
-  let scaleFactor = calculatePolygonCircumRadius(1, numPoints, method);
+  let scaleFactor = isCircle
+    ? calculatePolygonCircumRadius(1, numPoints, method)
+    : 1;
 
   if (method === "equalarea" && !isCircle) {
     let sumSinDelta = 0;
@@ -208,8 +235,10 @@ function ellipse(
  */
 function adaptiveParams(a: number, b: number, numPoints: number): number[] {
   // cumulative[j] is the arc length from t = 0 to t = 2πj / samples, measured
-  // along the polyline through the dense samples
-  const samples = Math.max(1024, numPoints * 16);
+  // along the polyline through the dense samples. Four samples per vertex
+  // (and at least 256) moves vertices by under 0.1% of a segment length
+  // compared with much denser sampling.
+  const samples = Math.max(256, numPoints * 4);
   const cumulative: number[] = [0];
   let prevX = a;
   let prevY = 0;
@@ -217,7 +246,10 @@ function adaptiveParams(a: number, b: number, numPoints: number): number[] {
     const t = (2 * Math.PI * j) / samples;
     const x = a * Math.cos(t);
     const y = b * Math.sin(t);
-    cumulative.push(cumulative[j - 1] + Math.hypot(x - prevX, y - prevY));
+    // Math.sqrt rather than Math.hypot: hypot is markedly slower in V8
+    const dx = x - prevX;
+    const dy = y - prevY;
+    cumulative.push(cumulative[j - 1] + Math.sqrt(dx * dx + dy * dy));
     prevX = x;
     prevY = y;
   }

@@ -51,6 +51,10 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
       method
     );
   }
+  if (typeof steps !== "number" || !Number.isFinite(steps) || steps <= 0)
+    throw new Error("steps must be a positive finite number");
+  // a polygon needs whole vertices, and at least three of them
+  steps = Math.max(3, Math.ceil(steps));
 
   const circumRadius = calculatePolygonCircumRadius(radius, steps, method);
   const properties = (options.properties ??

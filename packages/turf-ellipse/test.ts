@@ -9,6 +9,7 @@ import { check } from "@placemarkio/check-geojson";
 import { featureCollection } from "@turf/helpers";
 import { intersect } from "@turf/intersect";
 import { area } from "@turf/area";
+import { distance } from "@turf/distance";
 import { ellipse } from "./index.js";
 import fs from "fs";
 import { Position } from "geojson";
@@ -652,12 +653,33 @@ function colorize(feature, color) {
   return feature;
 }
 
+/**
+ * An ellipse is star-shaped around its center, so its ring is simple exactly
+ * when every vertex advances the same way around the center and the ring
+ * winds around it once. Angular order around the center is preserved by the
+ * lon/lat aspect distortion (a positive axis scaling), so raw degree offsets
+ * suffice.
+ */
+function windsOnceAroundCenter(ring: Position[], center: number[]): boolean {
+  const angles = ring.map(([lon, lat]) =>
+    Math.atan2(lat - center[1], lon - center[0])
+  );
+  let winding = 0;
+  let forward = 0;
+  let backward = 0;
+  for (let i = 1; i < angles.length; i++) {
+    let step = angles[i] - angles[i - 1];
+    if (step > Math.PI) step -= 2 * Math.PI;
+    if (step <= -Math.PI) step += 2 * Math.PI;
+    if (step > 0) forward++;
+    else backward++;
+    winding += step;
+  }
+  const monotonic = forward === 0 || backward === 0;
+  return monotonic && Math.abs(Math.abs(winding) - 2 * Math.PI) < 1e-9;
+}
+
 test("turf-ellipse -- elongated ellipses do not self-intersect", (t) => {
-  // An ellipse is star-shaped around its center, so its ring is simple exactly
-  // when every vertex advances the same way around the center and the ring
-  // winds around it once. Angular order around the center is preserved by the
-  // lon/lat aspect distortion (a positive axis scaling), so raw degree
-  // offsets suffice.
   const center = [0, 60];
   const methods = ["inscribed", "equalarea", "circumscribed"] as const;
 
@@ -670,26 +692,230 @@ test("turf-ellipse -- elongated ellipses do not self-intersect", (t) => {
           method,
           angle: 30,
         }).geometry.coordinates[0];
-        const angles = ring.map(([lon, lat]) =>
-          Math.atan2(lat - center[1], lon - center[0])
-        );
-        let winding = 0;
-        let forward = 0;
-        let backward = 0;
-        for (let i = 1; i < angles.length; i++) {
-          let step = angles[i] - angles[i - 1];
-          if (step > Math.PI) step -= 2 * Math.PI;
-          if (step <= -Math.PI) step += 2 * Math.PI;
-          if (step > 0) forward++;
-          else backward++;
-          winding += step;
-        }
-        const monotonic = forward === 0 || backward === 0;
         t.true(
-          monotonic && Math.abs(Math.abs(winding) - 2 * Math.PI) < 1e-9,
+          windsOnceAroundCenter(ring, center),
           `${ratio}:1 @ ${steps} steps, ${method}: ring winds once without doubling back`
         );
       });
+    });
+  });
+
+  t.end();
+});
+
+test("turf-ellipse -- inscribed vertices lie on, and circumscribed edges are tangent to, the ellipse", (t) => {
+  const center = [0, 60];
+  const tolerance = 0.001; // meters
+
+  // Undo ellipse()'s mapping: each vertex was placed with
+  // destination(center, r, 90 - φ + angle), so recover r and φ to get the
+  // planar (x, y) the vertex was constructed at.
+  const toPlanar = (p: Position, angle: number) => {
+    const r = distance(center, p, { units: "meters" });
+    const [lon1, lat1, lon2, lat2] = [center[0], center[1], p[0], p[1]].map(
+      (deg) => (deg * Math.PI) / 180
+    );
+    const bearing = Math.atan2(
+      Math.sin(lon2 - lon1) * Math.cos(lat2),
+      Math.cos(lat1) * Math.sin(lat2) -
+        Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1)
+    );
+    const phi = Math.PI / 2 - bearing + (angle * Math.PI) / 180;
+    return [r * Math.cos(phi), r * Math.sin(phi)];
+  };
+
+  const axes: [number, number][] = [
+    [2000, 1000],
+    [2000, 500],
+    [5000, 200],
+  ];
+  axes.forEach(([a, b]) => {
+    // includes odd and prime counts, where no vertex sits on the minor axis
+    [3, 5, 7, 8, 13, 16, 64, 127].forEach((steps) => {
+      [0, 30].forEach((angle) => {
+        const label = `${a}x${b} @ ${steps} steps, angle ${angle}`;
+        const options = { steps, units: "meters" as const, angle };
+
+        // inscribed: the vertex's radial distance equals the ellipse's radius
+        // in that direction
+        const inscribed = ellipse(center, a, b, {
+          ...options,
+          method: "inscribed",
+        }).geometry.coordinates[0].map((p) => toPlanar(p, angle));
+        const worstVertex = Math.max(
+          ...inscribed.map(([x, y]) => {
+            const phi = Math.atan2(y, x);
+            const radius =
+              (a * b) / Math.hypot(b * Math.cos(phi), a * Math.sin(phi));
+            return Math.abs(Math.hypot(x, y) - radius);
+          })
+        );
+        t.true(
+          worstVertex < tolerance,
+          `${label}: inscribed vertices lie on the ellipse`
+        );
+
+        // circumscribed: each edge's distance from the center equals the
+        // ellipse's support distance along the edge's normal (tangent), so the
+        // polygon contains the ellipse while touching it on every edge
+        const circumscribed = ellipse(center, a, b, {
+          ...options,
+          method: "circumscribed",
+        }).geometry.coordinates[0].map((p) => toPlanar(p, angle));
+        let worstEdge = 0;
+        for (let i = 0; i < circumscribed.length - 1; i++) {
+          const [x1, y1] = circumscribed[i];
+          const [x2, y2] = circumscribed[i + 1];
+          const length = Math.hypot(x2 - x1, y2 - y1);
+          const nx = (y2 - y1) / length;
+          const ny = (x1 - x2) / length;
+          const edgeDistance = Math.abs(nx * x1 + ny * y1);
+          const support = Math.hypot(a * nx, b * ny);
+          worstEdge = Math.max(worstEdge, Math.abs(edgeDistance - support));
+        }
+        t.true(
+          worstEdge < tolerance,
+          `${label}: circumscribed edges are tangent to the ellipse`
+        );
+      });
+    });
+  });
+
+  t.end();
+});
+
+// Shapes used by the unusual-steps tests: a circle (uniform-bearing code
+// path), a moderate ellipse and a very elongated one (adaptive code path).
+const unusualStepShapes: [number, number][] = [
+  [2000, 2000],
+  [2000, 1000],
+  [5000, 200],
+];
+const allMethods = ["inscribed", "equalarea", "circumscribed"] as const;
+
+test("turf-ellipse -- unusual integer step counts", (t) => {
+  const center = [0, 60];
+  // minimum, odd, prime, and just either side of powers of two
+  const stepCounts = [
+    3, 4, 5, 6, 7, 9, 11, 13, 17, 31, 33, 63, 65, 97, 127, 129, 255, 257, 1000,
+    4096,
+  ];
+
+  unusualStepShapes.forEach(([a, b]) => {
+    stepCounts.forEach((steps) => {
+      const label = `${a}x${b} @ ${steps} steps`;
+      const areas = {} as Record<(typeof allMethods)[number], number>;
+
+      allMethods.forEach((method) => {
+        const e = ellipse(center, a, b, { steps, units: "meters", method });
+        const ring = e.geometry.coordinates[0];
+        const ok =
+          ring.length === steps + 1 &&
+          ring.every((p) => p.every(Number.isFinite)) &&
+          ring[0][0] === ring[steps][0] &&
+          ring[0][1] === ring[steps][1] &&
+          check(JSON.stringify(e)) !== undefined &&
+          windsOnceAroundCenter(ring, center);
+        t.true(
+          ok,
+          `${label}, ${method}: ${steps} finite vertices in a closed, simple ring`
+        );
+        areas[method] = area(e);
+      });
+
+      // A tolerance is needed only for the geodesic projection; the ordering
+      // itself must hold at every step count.
+      t.true(
+        areas.inscribed < areas.equalarea &&
+          areas.equalarea < areas.circumscribed,
+        `${label}: inscribed < equalarea < circumscribed area`
+      );
+      const relativeError =
+        Math.abs(areas.equalarea - Math.PI * a * b) / (Math.PI * a * b);
+      t.true(
+        relativeError < 0.001,
+        `${label}: equalarea within 0.1% of πab (got ${(relativeError * 100).toFixed(4)}%)`
+      );
+    });
+  });
+
+  t.end();
+});
+
+test("turf-ellipse -- fractional steps round up to the next whole step", (t) => {
+  const center = [0, 60];
+  const cases: [number, number][] = [
+    [2.5, 3],
+    [3.2, 4],
+    [7.9, 8],
+    [16.5, 17],
+    [63.01, 64],
+  ];
+
+  unusualStepShapes.forEach(([a, b]) => {
+    cases.forEach(([fractional, whole]) => {
+      allMethods.forEach((method) => {
+        const options = { units: "meters" as const, method, angle: 30 };
+        t.deepEqual(
+          ellipse(center, a, b, { ...options, steps: fractional }),
+          ellipse(center, a, b, { ...options, steps: whole }),
+          `${a}x${b}, ${method}: steps ${fractional} matches steps ${whole}`
+        );
+      });
+    });
+  });
+
+  t.end();
+});
+
+test("turf-ellipse -- fewer than three steps still yields a valid polygon", (t) => {
+  const center = [0, 60];
+
+  unusualStepShapes.forEach(([a, b]) => {
+    [1e-9, 0.5, 1, 2].forEach((steps) => {
+      allMethods.forEach((method) => {
+        const label = `${a}x${b} @ ${steps} steps, ${method}`;
+        try {
+          const e = ellipse(center, a, b, { steps, units: "meters", method });
+          const ring = e.geometry.coordinates[0];
+          t.true(
+            ring.length >= 4 &&
+              ring.every((p) => p.every(Number.isFinite)) &&
+              windsOnceAroundCenter(ring, center),
+            `${label}: at least a triangle, closed and simple`
+          );
+        } catch (err) {
+          t.fail(`${label}: threw "${(err as Error).message}"`);
+        }
+      });
+    });
+  });
+
+  t.end();
+});
+
+test("turf-ellipse -- invalid steps throw a descriptive error", (t) => {
+  const center = [0, 60];
+
+  const cases: [number, number, number][] = [
+    [2000, 2000, -1],
+    [2000, 2000, -16],
+    [2000, 2000, -Infinity],
+    // used to loop forever and exhaust memory
+    [2000, 2000, Infinity],
+    [2000, 1000, -1],
+    [2000, 1000, -16],
+    [2000, 1000, -Infinity],
+    [2000, 1000, Infinity],
+  ];
+
+  cases.forEach(([a, b, steps]) => {
+    allMethods.forEach((method) => {
+      t.throws(
+        () => ellipse(center, a, b, { steps, units: "meters", method }),
+        /steps/,
+        `${a}x${b} @ ${steps} steps, ${method}: throws an error mentioning steps`
+      );
     });
   });
 

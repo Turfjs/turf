@@ -449,3 +449,87 @@ test("turf-circle -- consistency: multiple calls same result", (t) => {
 
   t.end();
 });
+
+const allMethods = ["inscribed", "equalarea", "circumscribed"] as const;
+
+test("turf-circle -- unusual integer step counts", (t) => {
+  const center = [0, 60];
+  // minimum, odd, prime, and just either side of powers of two
+  const stepCounts = [
+    3, 4, 5, 6, 7, 9, 11, 13, 17, 31, 33, 63, 65, 97, 127, 129, 255, 257, 1000,
+    4096,
+  ];
+
+  stepCounts.forEach((steps) => {
+    allMethods.forEach((method) => {
+      const c = circle(center, 1000, { steps, method });
+      const ring = c.geometry.coordinates[0];
+      t.true(
+        ring.length === steps + 1 &&
+          ring.every((p) => p.every(Number.isFinite)) &&
+          ring[0][0] === ring[steps][0] &&
+          ring[0][1] === ring[steps][1] &&
+          check(JSON.stringify(c)) !== undefined,
+        `${steps} steps, ${method}: ${steps} finite vertices in a closed, valid ring`
+      );
+    });
+  });
+
+  t.end();
+});
+
+test("turf-circle -- fractional steps round up to the next whole step", (t) => {
+  const center = [0, 60];
+  const cases: [number, number][] = [
+    [2.5, 3],
+    [3.2, 4],
+    [7.9, 8],
+    [16.5, 17],
+    [63.01, 64],
+  ];
+
+  cases.forEach(([fractional, whole]) => {
+    allMethods.forEach((method) => {
+      t.deepEqual(
+        circle(center, 1000, { steps: fractional, method }),
+        circle(center, 1000, { steps: whole, method }),
+        `${method}: steps ${fractional} matches steps ${whole}`
+      );
+    });
+  });
+
+  t.end();
+});
+
+test("turf-circle -- fewer than three steps yields a triangle", (t) => {
+  const center = [0, 60];
+
+  [1e-9, 0.5, 1, 2].forEach((steps) => {
+    allMethods.forEach((method) => {
+      t.deepEqual(
+        circle(center, 1000, { steps, method }),
+        circle(center, 1000, { steps: 3, method }),
+        `${steps} steps, ${method}: same as 3 steps`
+      );
+    });
+  });
+
+  t.end();
+});
+
+test("turf-circle -- invalid steps throw a descriptive error", (t) => {
+  const center = [0, 60];
+
+  // Infinity used to loop forever and exhaust memory
+  [0, -1, -16, NaN, Infinity, -Infinity].forEach((steps) => {
+    allMethods.forEach((method) => {
+      t.throws(
+        () => circle(center, 1000, { steps, method }),
+        /steps/,
+        `${steps} steps, ${method}: throws an error mentioning steps`
+      );
+    });
+  });
+
+  t.end();
+});
