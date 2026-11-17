@@ -374,7 +374,7 @@ test("turf-circle -- area approximation quality", (t) => {
   t.end();
 });
 
-test("turf-circle -- clockwise winding order", (t) => {
+test("turf-circle -- counter-clockwise winding order", (t) => {
   const center = [0, 60];
   const radius = 1000;
   const c = circle(center, radius, { steps: 64 });
@@ -382,10 +382,10 @@ test("turf-circle -- clockwise winding order", (t) => {
   const coords = c.geometry.coordinates[0];
 
   // First point should be due north from center (bearing = 0)
-  // Second point should be west of first (clockwise)
+  // Second point should be west of first (counter-clockwise)
   t.true(
     coords[1][0] < coords[0][0],
-    "second point is west of first (clockwise winding)"
+    "second point is west of first (counter-clockwise winding)"
   );
 
   t.end();
