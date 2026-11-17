@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.shared.json",
+  "references": [
+    {
+      "path": "../turf-bbox"
+    },
+    {
+      "path": "../turf-boolean-point-in-polygon"
+    },
+    {
+      "path": "../turf-clone"
+    },
+    {
+      "path": "../turf-helpers"
+    },
+    {
+      "path": "../turf-meta"
+    },
+    {
+      "path": "../turf-projection"
+    },
+    {
+      "path": "../turf-truncate"
+    }
+  ]
+}
