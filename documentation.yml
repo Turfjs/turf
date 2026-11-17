@@ -40,6 +40,7 @@ toc:
     - dissolve
     - intersect
     - lineOffset
+    - orthogonalize
     - polygonSmooth
     - simplify
     - tesselate
