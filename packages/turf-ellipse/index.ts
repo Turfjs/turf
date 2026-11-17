@@ -2,7 +2,6 @@ import {
   polygon,
   isObject,
   isNumber,
-  calculatePolygonCircumRadius,
   ArcApproximationMethod,
   Coord,
   Units,
@@ -82,154 +81,86 @@ function ellipse(
       )
     : getCoord(center);
 
-  /**
-   * Generate ellipse coordinates with adaptive arc-length spacing.
-   *
-   * For circles: uses uniform bearings (matches turf-circle exactly)
-   * For ellipses: uses adaptive parametric angles to approximate even arc-length distribution
-   *
-   * The angle parameter rotates the entire ellipse orientation (not just the starting point).
-   *
-   * @param a - semi-major axis (x-axis)
-   * @param b - semi-minor axis (y-axis)
-   * @param numPoints - number of vertices to generate (not including closing point)
-   * @param params - parametric angles to place ellipse vertices at (ignored for circles)
-   * @returns array of [lon, lat] coordinates
-   */
-  const constructCoords = (
-    a: number,
-    b: number,
-    numPoints: number,
-    params: number[]
-  ): Position[] => {
-    const coords: Position[] = [];
-    const eccentricity = Math.sqrt(
-      1 - Math.pow(Math.min(a, b) / Math.max(a, b), 2)
-    );
-    const isCircle = eccentricity < 0.01;
+  // There is deliberately a single construction for every axis ratio, with
+  // no special case for near-circles: when xSemiAxis === ySemiAxis each step
+  // below reduces to turf-circle's construction (vertices at bearings
+  // 0, -360/n, -720/n, ... and the same circumradius for each method), so the
+  // output changes continuously as an ellipse is morphed into a circle and a
+  // degenerate ellipse matches circle() to within floating-point noise.
 
-    // For circles, use uniform bearings to match turf-circle exactly
-    // BUT start from the east point (like ellipses) for smooth transition
-    if (isCircle) {
-      for (let i = 0; i < numPoints; i++) {
-        // Start from bearing=90° (east) to match ellipse starting point
-        const bearing = 90 + angle + (i * -360) / numPoints;
-        coords.push(
-          destination(centerCoords, a, bearing, {
-            units: units,
-          }).geometry.coordinates
-        );
+  // Parametric angles of the vertices, evenly spaced by arc length and
+  // starting at the end of the y semi-axis (north, before rotation), where
+  // turf-circle starts. For a circle they are evenly spaced angles.
+  const params = adaptiveParams(xSemiAxis, ySemiAxis, steps);
+  // the parameter after the last vertex, closing the ring
+  const paramAt = (i: number) =>
+    i < steps ? params[i] : params[i - steps] + 2 * Math.PI;
+
+  // Each vertex is placed at parametric angle t and scaled by k from the
+  // ellipse (x = k·a·cos t, y = k·b·sin t).
+  const vertexParams: number[] = [];
+  const vertexScales: number[] = [];
+  if (method === "circumscribed") {
+    // Every edge is tangent to the ellipse at the midpoint m_i of its two
+    // vertices' parameters, and each vertex is where the tangents at m_(i-1)
+    // and m_i meet. The ellipse is the unit circle stretched by (a, b), which
+    // keeps tangents tangent, and on the unit circle the tangents at u and v
+    // meet at angle (u + v) / 2, a distance 1 / cos((v − u) / 2) out. For a
+    // circle that puts vertex i at its own angle, r / cos(π / n) out, exactly
+    // like turf-circle.
+    const tangentParam = (i: number) => (paramAt(i) + paramAt(i + 1)) / 2;
+    for (let i = 0; i < steps; i++) {
+      const before =
+        i === 0 ? tangentParam(steps - 1) - 2 * Math.PI : tangentParam(i - 1);
+      const after = tangentParam(i);
+      vertexParams.push((before + after) / 2);
+      vertexScales.push(1 / Math.cos((after - before) / 2));
+    }
+  } else {
+    // 'inscribed' needs no scaling: every vertex lies on the ellipse.
+    // 'equalarea' scales both axes by s. Vertices at (a·cos tᵢ, b·sin tᵢ)
+    // enclose (a·b/2)·Σ sin(Δtᵢ), and scaling by s multiplies that by s², so
+    // s²·(a·b/2)·Σ sin(Δtᵢ) = π·a·b gives s = √(2π / Σ sin(Δtᵢ)). For a
+    // circle (Δt = 2π/n) that is turf-circle's equal-area circumradius ratio.
+    let scale = 1;
+    if (method === "equalarea") {
+      let sumSinDelta = 0;
+      for (let i = 0; i < steps; i++) {
+        sumSinDelta += Math.sin(paramAt(i + 1) - paramAt(i));
       }
-      coords.push(coords[0]);
-      return coords;
+      if (sumSinDelta > 0) scale = Math.sqrt((2 * Math.PI) / sumSinDelta);
     }
-
-    // For ellipses, use the adaptive parametric angles (even arc-length spacing)
-    // Convert parametric angles to geographic coordinates
-    for (let i = 0; i < params.length; i++) {
-      // Parametric ellipse: x = a*cos(t), y = b*sin(t)
-      // This is in Cartesian coords with 0° = east
-      let t = params[i];
-      let k = 1;
-      if (method === "circumscribed") {
-        // Place the vertex where the tangents at params[i] and params[i + 1]
-        // meet. The ellipse is the unit circle stretched by (a, b), which keeps
-        // tangents tangent, and on the unit circle the tangents at t₁ and t₂
-        // meet at angle (t₁ + t₂) / 2, a distance 1 / cos((t₂ − t₁) / 2) out.
-        // The final segment closes the ring back to params[0] (= 0, i.e. 2π).
-        const next = i + 1 < params.length ? params[i + 1] : 2 * Math.PI;
-        t = (params[i] + next) / 2;
-        k = 1 / Math.cos((next - params[i]) / 2);
-      }
-
-      // Convert to polar form to get radius and angle
-      const x = k * a * Math.cos(t);
-      const y = k * b * Math.sin(t);
-      const r = Math.sqrt(x * x + y * y);
-
-      // Convert Cartesian angle to geographic bearing
-      // Cartesian: 0°=east, 90°=north, counter-clockwise
-      // Geographic: 0°=north, 90°=east, clockwise
-      // bearing = 90 - cartesianAngle (for standard position)
-      const cartesianAngle = Math.atan2(y, x);
-      const bearing = 90 - (cartesianAngle * 180) / Math.PI;
-
-      // Apply the user's rotation angle
-      const rotatedBearing = bearing + angle;
-
-      coords.push(
-        destination(centerCoords, r, rotatedBearing, {
-          units: units,
-        }).geometry.coordinates
-      );
-    }
-
-    coords.push(coords[0]);
-    return coords;
-  };
-
-  /**
-   * Determine if this is a circle (or very close to one)
-   */
-  const eccentricity = Math.sqrt(
-    1 -
-      Math.pow(
-        Math.min(xSemiAxis, ySemiAxis) / Math.max(xSemiAxis, ySemiAxis),
-        2
-      )
-  );
-
-  /**
-   * Calculate the scaling factor to apply to both semi-axes so that the constructed
-   * polygon approximates the ellipse according to `method`.
-   *
-   * Near-circular ellipses use uniform spacing, so turf-circle's circumradius-to-radius
-   * ratio applies directly (passing a unit circleRadius of 1 yields that ratio).
-   *
-   * Actual ellipses use adaptive, non-uniform parameter spacing, so turf-circle's ratio
-   * (which assumes uniform spacing) does not apply:
-   * - `inscribed` needs no scaling: every vertex already lies on the ellipse.
-   * - `circumscribed` needs no scaling either: constructCoords places each vertex where
-   *   neighbouring tangent lines meet, so every edge is tangent to the ellipse.
-   * - `equalarea` computes the polygon's area analytically: vertices at
-   *   (a·cos tᵢ, b·sin tᵢ) enclose (a·b/2)·Σ sin(Δtᵢ), and scaling both axes by s
-   *   multiplies that by s². Solving s²·(a·b/2)·Σ sin(Δtᵢ) = π·a·b gives
-   *   s = √(2π / Σ sin(Δtᵢ)). For uniform spacing this reduces to the same ratio
-   *   turf-circle uses.
-   */
-  // Use steps directly as the number of points
-  const numPoints = steps;
-  const isCircle = eccentricity < 0.01;
-  const params = isCircle
-    ? []
-    : adaptiveParams(xSemiAxis, ySemiAxis, numPoints);
-
-  let scaleFactor = isCircle
-    ? calculatePolygonCircumRadius(1, numPoints, method)
-    : 1;
-
-  if (method === "equalarea" && !isCircle) {
-    let sumSinDelta = 0;
-    for (let i = 0; i < params.length; i++) {
-      // the final segment closes the ring back to params[0] (= 0, i.e. 2π)
-      const next = i + 1 < params.length ? params[i + 1] : 2 * Math.PI;
-      sumSinDelta += Math.sin(next - params[i]);
-    }
-    if (sumSinDelta > 0) {
-      scaleFactor = Math.sqrt((2 * Math.PI) / sumSinDelta);
+    for (let i = 0; i < steps; i++) {
+      vertexParams.push(params[i]);
+      vertexScales.push(scale);
     }
   }
 
-  const a1 = xSemiAxis * scaleFactor;
-  const b1 = ySemiAxis * scaleFactor;
-
-  const coords1: Position[] = constructCoords(a1, b1, numPoints, params);
-  return polygon([coords1], properties);
+  const coords: Position[] = [];
+  for (let i = 0; i < steps; i++) {
+    const t = vertexParams[i];
+    const k = vertexScales[i];
+    // Cartesian, with x pointing east and y north
+    const x = k * xSemiAxis * Math.cos(t);
+    const y = k * ySemiAxis * Math.sin(t);
+    // Cartesian angles run counter-clockwise from east, bearings clockwise
+    // from north, so bearing = 90° − angle. Rotating the ellipse by `angle`
+    // rotates every vertex's bearing.
+    const bearing = 90 - (Math.atan2(y, x) * 180) / Math.PI + angle;
+    coords.push(
+      destination(centerCoords, Math.sqrt(x * x + y * y), bearing, { units })
+        .geometry.coordinates
+    );
+  }
+  coords.push(coords[0]);
+  return polygon([coords], properties);
 }
 
 /**
- * Generate parametric angles t₀ = 0 < t₁ < … < tₙ₋₁ < 2π for an ellipse with semi-axes
- * a and b, spaced so that consecutive vertices are an equal arc length apart.
+ * Generate parametric angles π/2 = t₀ < t₁ < … < tₙ₋₁ < π/2 + 2π for an ellipse with
+ * semi-axes a and b, spaced so that consecutive vertices are an equal arc length apart.
+ * They start at the end of the b semi-axis (t = π/2) and run counter-clockwise, the
+ * same start and direction as turf-circle; for a circle they are evenly spaced.
  *
  * The ellipse is densely sampled to build a cumulative arc-length table s(t), which is
  * then inverted at evenly spaced lengths. The angles are therefore strictly increasing
@@ -241,7 +172,7 @@ function ellipse(
  * @param {number} a semi-axis along x
  * @param {number} b semi-axis along y
  * @param {number} numPoints number of vertices (not including the closing point)
- * @returns {number[]} numPoints parametric angles in radians, starting at 0
+ * @returns {number[]} numPoints parametric angles in radians, starting at π/2
  */
 function adaptiveParams(a: number, b: number, numPoints: number): number[] {
   // cumulative[j] is the arc length from t = 0 to t = 2πj / samples, measured
@@ -249,11 +180,12 @@ function adaptiveParams(a: number, b: number, numPoints: number): number[] {
   // (and at least 256) moves vertices by under 0.1% of a segment length
   // compared with much denser sampling.
   const samples = Math.max(256, numPoints * 4);
+  const start = Math.PI / 2;
   const cumulative: number[] = [0];
-  let prevX = a;
-  let prevY = 0;
+  let prevX = 0;
+  let prevY = b;
   for (let j = 1; j <= samples; j++) {
-    const t = (2 * Math.PI * j) / samples;
+    const t = start + (2 * Math.PI * j) / samples;
     const x = a * Math.cos(t);
     const y = b * Math.sin(t);
     // Math.sqrt rather than Math.hypot: hypot is markedly slower in V8
@@ -266,14 +198,14 @@ function adaptiveParams(a: number, b: number, numPoints: number): number[] {
   const perimeter = cumulative[samples];
 
   // invert s(t) at i/numPoints of the perimeter, interpolating within a sample
-  const params: number[] = [0];
+  const params: number[] = [start];
   let j = 0;
   for (let i = 1; i < numPoints; i++) {
     const target = (perimeter * i) / numPoints;
     while (cumulative[j + 1] < target) j++;
     const fraction =
       (target - cumulative[j]) / (cumulative[j + 1] - cumulative[j]);
-    params.push((2 * Math.PI * (j + fraction)) / samples);
+    params.push(start + (2 * Math.PI * (j + fraction)) / samples);
   }
 
   return params;

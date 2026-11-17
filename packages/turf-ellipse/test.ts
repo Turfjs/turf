@@ -91,6 +91,8 @@ test("turf-ellipse -- circle consistency", (t) => {
   t.end();
 });
 
+const allMethods = ["inscribed", "equalarea", "circumscribed"] as const;
+
 // Normalizes longitude into (-180, 180] so that two representations of the
 // same point 360° apart (e.g. -285 and 75) compare as equal. This arises from
 // a signed-zero quirk in destination()'s atan2 call when a geodesic passes
@@ -103,36 +105,83 @@ function normalizeLon(coords: Position[][]): Position[][] {
   );
 }
 
-test("turf-ellipse -- degenerate ellipse matches circle exactly", (t) => {
-  // When xSemiAxis === ySemiAxis, ellipse takes the "isCircle" code path, which
-  // uses the same circumRadius formula as turf-circle but starts its bearing
-  // sweep from east (90°) instead of north (0°). Passing angle: -90 cancels
-  // that offset, so the two vertex grids should line up exactly.
+test("turf-ellipse -- degenerate ellipse matches circle", (t) => {
+  // ellipse has one construction for every axis ratio, and with
+  // xSemiAxis === ySemiAxis it reduces to turf-circle's: the same start
+  // (north), direction, bearings and per-method circumradius. It goes through
+  // atan2 and a sampled arc-length table, so it agrees to floating-point noise
+  // rather than bit for bit.
   const centers = [
     [-105, 40],
     [0, 60],
     [-179, -10],
   ];
   const radii = [1, 1000, 12345.6789];
-  const stepsOptions = [8, 16, 64, 128];
+  // include step counts that are not multiples of 4, where a different start
+  // or vertex placement would give a different set of vertices
+  const stepsOptions = [3, 7, 8, 16, 63, 64, 128];
 
   centers.forEach((center) => {
     radii.forEach((radius) => {
       stepsOptions.forEach((steps) => {
-        const ellipseGeom = ellipse(center, radius, radius, {
-          steps,
-          angle: -90,
+        allMethods.forEach((method) => {
+          const e = normalizeLon(
+            ellipse(center, radius, radius, { steps, method }).geometry
+              .coordinates
+          )[0];
+          const c = normalizeLon(
+            circle(center, radius, { steps, method }).geometry.coordinates
+          )[0];
+          const maxDiff = Math.max(
+            ...e.map((v, i) =>
+              Math.max(Math.abs(v[0] - c[i][0]), Math.abs(v[1] - c[i][1]))
+            )
+          );
+          t.true(
+            e.length === c.length && maxDiff < 1e-9,
+            `${method}: degenerate ellipse matches circle at center=${center}, radius=${radius}, steps=${steps} (max diff ${maxDiff.toExponential(1)}°)`
+          );
         });
-        const circleGeom = circle(center, radius, { steps });
-
-        t.deepEqual(
-          normalizeLon(ellipseGeom.geometry.coordinates),
-          normalizeLon(circleGeom.geometry.coordinates),
-          `degenerate ellipse matches circle at center=${center}, radius=${radius}, steps=${steps}`
-        );
       });
     });
   });
+
+  t.end();
+});
+
+test("turf-ellipse -- vertices move continuously as an ellipse becomes a circle", (t) => {
+  // Shrinking ySemiAxis towards xSemiAxis in small increments must move each
+  // vertex by an amount proportional to the change, with no jump anywhere,
+  // in particular not near eccentricity 0 (where an earlier version switched
+  // to a separate circle code path and moved vertices by up to half a step).
+  const center = [0, 60];
+  const a = 1000;
+  const ratios: number[] = [];
+  for (let r = 0.98; r < 1; r += 0.0005) ratios.push(r);
+  // straddle the old eccentricity-0.01 cutoff (axis ratio ≈ 0.99995) closely
+  ratios.push(0.9999, 0.99994, 0.99995, 0.99996, 0.99999, 1);
+
+  [7, 64].forEach((steps) => {
+    allMethods.forEach((method) => {
+      let worst = 0;
+      for (let i = 1; i < ratios.length; i++) {
+        const prev = ellipse(center, a, a * ratios[i - 1], { steps, method })
+          .geometry.coordinates[0];
+        const curr = ellipse(center, a, a * ratios[i], { steps, method })
+          .geometry.coordinates[0];
+        const axisChange = a * (ratios[i] - ratios[i - 1]);
+        const moved = Math.max(...prev.map((v, j) => distance(v, curr[j])));
+        // a vertex can move by at most about the change in the semi-axis,
+        // plus some slack for the arc-length spacing shifting along the ring
+        worst = Math.max(worst, moved / axisChange);
+      }
+      t.true(
+        worst < 3,
+        `${method}, ${steps} steps: vertices move at most ${worst.toFixed(2)}x the change in ySemiAxis`
+      );
+    });
+  });
+
   t.end();
 });
 
@@ -162,8 +211,14 @@ test("turf-ellipse -- degenerate ellipse is circular regardless of angle", (t) =
 });
 
 test("turf-ellipse -- rotation consistency", (t) => {
-  const ellipseGeom = ellipse([0, 60], 2000, 2000, { angle: 0 });
-  const ellipseTurnedGeom = ellipse([0, 60], 2000, 2000, { angle: 90 });
+  // A degenerate ellipse turned by 90° (a multiple of 360 / 64) has the same
+  // vertices, to about 1e-13°. intersect() mishandles edges that overlap
+  // almost but not exactly, so truncate both first, as the circle
+  // consistency test does.
+  const ellipseGeom = truncate(ellipse([0, 60], 2000, 2000, { angle: 0 }));
+  const ellipseTurnedGeom = truncate(
+    ellipse([0, 60], 2000, 2000, { angle: 90 })
+  );
   const intersectionGeom = intersect(
     featureCollection([ellipseGeom, ellipseTurnedGeom])
   );
@@ -619,7 +674,7 @@ test("turf-ellipse -- method parameter", (t) => {
 
 test("turf-ellipse -- equalarea matches the area of a non-circular ellipse", (t) => {
   const center = [0, 60];
-  // eccentricities ~0.66, ~0.87, ~0.97, ~0.999 -- all take the non-circular code path
+  // eccentricities ~0.66, ~0.87, ~0.97, ~0.999
   const axes: [number, number][] = [
     [2000, 1500],
     [2000, 1000],
@@ -785,14 +840,13 @@ test("turf-ellipse -- inscribed vertices lie on, and circumscribed edges are tan
   t.end();
 });
 
-// Shapes used by the unusual-steps tests: a circle (uniform-bearing code
-// path), a moderate ellipse and a very elongated one (adaptive code path).
+// Shapes used by the unusual-steps tests: a circle, a moderate ellipse and a
+// very elongated one.
 const unusualStepShapes: [number, number][] = [
   [2000, 2000],
   [2000, 1000],
   [5000, 200],
 ];
-const allMethods = ["inscribed", "equalarea", "circumscribed"] as const;
 
 test("turf-ellipse -- unusual integer step counts", (t) => {
   const center = [0, 60];
@@ -833,9 +887,15 @@ test("turf-ellipse -- unusual integer step counts", (t) => {
       );
       const relativeError =
         Math.abs(areas.equalarea - Math.PI * a * b) / (Math.PI * a * b);
+      // equalarea is exact in the plane; the error measured here comes from
+      // @turf/area treating each edge as straight in lon/lat, while the
+      // vertices are placed along great circles. That only matters for very
+      // long edges far from north-south: the 3-step 5000x200 m triangle's
+      // 11 km, nearly east-west base at latitude 60 is off by about 0.7%.
+      const tolerance = steps === 3 ? 0.01 : 0.001;
       t.true(
-        relativeError < 0.001,
-        `${label}: equalarea within 0.1% of πab (got ${(relativeError * 100).toFixed(4)}%)`
+        relativeError < tolerance,
+        `${label}: equalarea within ${tolerance * 100}% of πab (got ${(relativeError * 100).toFixed(4)}%)`
       );
     });
   });
