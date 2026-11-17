@@ -175,27 +175,52 @@ function ellipse(
  * @returns {number[]} numPoints parametric angles in radians, starting at π/2
  */
 function adaptiveParams(a: number, b: number, numPoints: number): number[] {
-  // cumulative[j] is the arc length from t = 0 to t = 2πj / samples, measured
-  // along the polyline through the dense samples. Four samples per vertex
-  // (and at least 256) moves vertices by under 0.1% of a segment length
-  // compared with much denser sampling.
+  // cumulative[j] is the arc length from t = π/2 to t = π/2 + 2πj / samples,
+  // measured along the polyline through the dense samples. Four samples per
+  // vertex (and at least 256) moves vertices by under 0.1% of a segment length
+  // compared with much denser sampling. numPoints is a whole number, so
+  // samples is always a multiple of 4 whatever numPoints is.
   const samples = Math.max(256, numPoints * 4);
   const start = Math.PI / 2;
-  const cumulative: number[] = [0];
+
+  // The ellipse is symmetric about both axes, and with samples a multiple of 4
+  // the sample grid lands exactly on the quadrant boundaries, so every sample
+  // in the other three quadrants mirrors one in the first. Measure only the
+  // first quadrant (t from π/2 to π), then mirror it, saving three quarters of
+  // the trig calls. quadrant[r] is the arc length from π/2 to π/2 + 2πr / samples.
+  // Preallocated typed arrays rather than push(): building the tables is the
+  // hot loop here, and growing plain arrays roughly doubled its cost.
+  const perQuadrant = samples / 4;
+  const quadrant = new Float64Array(perQuadrant + 1);
   let prevX = 0;
   let prevY = b;
-  for (let j = 1; j <= samples; j++) {
-    const t = start + (2 * Math.PI * j) / samples;
+  for (let r = 1; r <= perQuadrant; r++) {
+    const t = start + (2 * Math.PI * r) / samples;
     const x = a * Math.cos(t);
     const y = b * Math.sin(t);
     // Math.sqrt rather than Math.hypot: hypot is markedly slower in V8
     const dx = x - prevX;
     const dy = y - prevY;
-    cumulative.push(cumulative[j - 1] + Math.sqrt(dx * dx + dy * dy));
+    quadrant[r] = quadrant[r - 1] + Math.sqrt(dx * dx + dy * dy);
     prevX = x;
     prevY = y;
   }
-  const perimeter = cumulative[samples];
+  const quarter = quadrant[perQuadrant];
+  // Quadrants 0 and 2 repeat the first quadrant's lengths. Quadrants 1 and 3
+  // trace it in reverse (mirrored across an axis), so the length covered r
+  // samples into them is what remains of the first quadrant after
+  // perQuadrant − r samples.
+  const cumulative = new Float64Array(samples + 1);
+  for (let k = 0; k < 4; k++) {
+    const offset = k * quarter;
+    for (let r = 0; r < perQuadrant; r++) {
+      cumulative[k * perQuadrant + r] =
+        offset +
+        (k % 2 === 0 ? quadrant[r] : quarter - quadrant[perQuadrant - r]);
+    }
+  }
+  const perimeter = 4 * quarter;
+  cumulative[samples] = perimeter;
 
   // invert s(t) at i/numPoints of the perimeter, interpolating within a sample
   const params: number[] = [start];
