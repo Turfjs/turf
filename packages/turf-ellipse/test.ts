@@ -604,7 +604,7 @@ test("turf-ellipse -- method parameter", (t) => {
 
   t.deepEquals(
     ellipse(center, ex, ey, { steps }),
-    ellipse(center, ex, ey, { steps, method: "equalarea" }),
+    ellipse(center, ex, ey, { steps, method: "inscribed" }),
     "equalarea is the default method"
   );
 
@@ -899,6 +899,11 @@ test("turf-ellipse -- invalid steps throw a descriptive error", (t) => {
   const center = [0, 60];
 
   const cases: [number, number, number][] = [
+    // used to silently fall back to the default of 64
+    [2000, 2000, 0],
+    [2000, 1000, 0],
+    [2000, 2000, NaN],
+    [2000, 1000, NaN],
     [2000, 2000, -1],
     [2000, 2000, -16],
     [2000, 2000, -Infinity],

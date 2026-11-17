@@ -24,7 +24,7 @@ import { getCoords } from "@turf/invariant";
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {number} [options.steps=64] number of steps
  * @param {number} [options.arcTolerance] if provided, will ignore steps and use a number of steps such that the returned approximate regular polygon is at most this far away from the true circle
- * @param {ArcApproximationMethod} [options.method='equalarea'] how the returned sector approximates the true circle: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' matches the enclosed area of the full circle's polygon approximation to the circle's area
+ * @param {ArcApproximationMethod} [options.method='inscribed'] how the returned sector approximates the true circle: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' makes the area between each segment and the center equal to that of the circular sector it replaces
  * @param {Properties} [options.properties={}] Translate properties to Feature Polygon
  * @returns {Feature<Polygon>} sector polygon
  * @example

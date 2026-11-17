@@ -17,7 +17,7 @@ import {
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps
  * @param {number} [options.arcTolerance] if provided, will ignore steps and use a number of steps such that the returned approximate regular polygon is at most this far away from the true circle
- * @param {ArcApproximationMethod} [options.method='equalarea'] how the returned regular polygon approximates the circle: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' matches the polygon's area to the circle's area
+ * @param {ArcApproximationMethod} [options.method='inscribed'] how the returned regular polygon approximates the circle: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' matches the polygon's area to the circle's area
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} circle polygon
@@ -42,9 +42,11 @@ function circle<P extends GeoJsonProperties = GeoJsonProperties>(
   } = {}
 ): Feature<Polygon, P> {
   // default params
-  const method = options.method ?? "equalarea";
+  const method = options.method ?? "inscribed";
   let steps = options.steps ?? 64;
-  if (options.arcTolerance && options.arcTolerance > 0) {
+  // the helper validates arcTolerance, so an invalid value throws rather than
+  // silently falling back to the default steps
+  if (options.arcTolerance != null) {
     steps = calculateNumberOfRegularPolygonSidesToApproximateCircle(
       radius,
       options.arcTolerance,

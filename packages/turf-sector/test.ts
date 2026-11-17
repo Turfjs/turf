@@ -58,7 +58,7 @@ test("turf-sector -- method parameter", (t) => {
 
   t.deepEquals(
     sector(center, radius, bearing1, bearing2, { steps }),
-    sector(center, radius, bearing1, bearing2, { steps, method: "equalarea" }),
+    sector(center, radius, bearing1, bearing2, { steps, method: "inscribed" }),
     "equalarea is the default method"
   );
 
@@ -111,3 +111,18 @@ function colorize(feature, color = "#FF0", width = 10) {
   };
   return feature;
 }
+
+test("turf-sector -- a zero or negative radius throws", (t) => {
+  [0, -5].forEach((radius) => {
+    t.throws(
+      () => sector([-75, 40], radius, 0, 90),
+      `radius ${radius} throws for a partial sector`
+    );
+    t.throws(
+      () => sector([-75, 40], radius, 0, 360),
+      `radius ${radius} throws for a full circle`
+    );
+  });
+
+  t.end();
+});

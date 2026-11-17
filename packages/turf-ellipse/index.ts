@@ -23,7 +23,7 @@ import { GeoJsonProperties, Feature, Polygon, Position } from "geojson";
  * @param {number} [options.angle=0] angle of rotation in decimal degrees, positive clockwise
  * @param {Coord} [options.pivot=center] point around which any rotation will be performed
  * @param {number} [options.steps=64] number of steps
- * @param {ArcApproximationMethod} [options.method='equalarea'] how the returned polygon approximates the ellipse: 'inscribed' places every vertex on the ellipse, 'circumscribed' places every edge tangent to the ellipse, and 'equalarea' matches the polygon's area to the ellipse's area
+ * @param {ArcApproximationMethod} [options.method='inscribed'] how the returned polygon approximates the ellipse: 'inscribed' places every vertex on the ellipse, 'circumscribed' places every edge tangent to the ellipse, and 'equalarea' matches the polygon's area to the ellipse's area
  * @param {Units} [options.units='kilometers'] unit of measurement for axes. Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}
  * @param {Object} [options.properties={}] properties
  * @returns {Feature<Polygon>} ellipse polygon
@@ -51,8 +51,8 @@ function ellipse(
 ): Feature<Polygon> {
   // Optional params
   options = options || {};
-  let steps = options.steps || 64;
-  const method = options.method || "equalarea";
+  let steps = options.steps ?? 64;
+  const method = options.method ?? "inscribed";
   const units = options.units || "kilometers";
   let angle = options.angle || 0;
   const properties = options.properties || {};

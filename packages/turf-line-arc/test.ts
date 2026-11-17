@@ -41,7 +41,7 @@ test("turf-line-arc", (t) => {
       writeJsonFileSync(directories.out + filename, results);
     t.deepEquals(results, loadJsonFileSync(directories.out + filename), name);
     // Check the resulting arc geometry has the expected number of points.
-    // undefined or 0 steps should default to 64 + 1 points, 1 to 1 + 1,
+    // undefined steps should default to 64 + 1 points, 1 to 1 + 1,
     // 2 to 2 + 1, ...
     const expectedPoints = geojson.properties?.steps
       ? geojson.properties?.steps + 1
@@ -129,9 +129,11 @@ test("turf-line-arc -- method parameter", (t) => {
       steps,
       method,
     });
+    // each of the 8 segments spans 90 / 8 degrees, i.e. a side of a regular
+    // 32-gon, so the circumradius is the 32-gon's, not the 8-gon's
     const expectedCircumRadius = calculatePolygonCircumRadius(
       radius,
-      steps,
+      (steps * 360) / (bearing2 - bearing1),
       method
     );
     const expectedFirstVertex = destination(
@@ -150,9 +152,9 @@ test("turf-line-arc -- method parameter", (t) => {
     lineArc(center, radius, bearing1, bearing2, { steps }),
     lineArc(center, radius, bearing1, bearing2, {
       steps,
-      method: "equalarea",
+      method: "inscribed",
     }),
-    "equalarea is the default method"
+    "inscribed is the default method"
   );
 
   t.throws(
@@ -199,12 +201,14 @@ test("turf-line-arc -- method with arcTolerance", (t) => {
   const bearing2 = 90;
 
   (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
-    const expectedSteps =
+    const fullCircleSteps =
       calculateNumberOfRegularPolygonSidesToApproximateCircle(
         radius,
         arcTolerance,
         method
       );
+    // a 90 degree arc needs only a quarter of a full circle's sides
+    const expectedSteps = Math.ceil(fullCircleSteps / 4);
     const arc = lineArc(center, radius, bearing1, bearing2, {
       arcTolerance,
       method,
@@ -218,12 +222,93 @@ test("turf-line-arc -- method with arcTolerance", (t) => {
       arc.geometry.coordinates[0],
       destination(
         center,
-        calculatePolygonCircumRadius(radius, expectedSteps, method),
+        calculatePolygonCircumRadius(radius, expectedSteps * 4, method),
         bearing1
       ).geometry.coordinates,
       `${method}: circumradius is computed for the derived step count`
     );
   });
+
+  t.end();
+});
+
+test("turf-line-arc -- arcTolerance gives an arc only its share of a circle's steps", (t) => {
+  const center = point([-75, 40]);
+  const radius = 1000;
+  const arcTolerance = 0.001;
+  const fullCircleSteps =
+    calculateNumberOfRegularPolygonSidesToApproximateCircle(
+      radius,
+      arcTolerance
+    );
+  const arc = lineArc(center, radius, 0, 10, { arcTolerance });
+  t.equal(
+    arc.geometry.coordinates.length,
+    Math.ceil(fullCircleSteps / 36) + 1,
+    "a 10 degree arc gets 1/36 of a full circle's steps"
+  );
+
+  t.end();
+});
+
+test("turf-line-arc -- short arcs with few steps stay near the radius", (t) => {
+  // one 5 degree step: a circumscribed segment is tangent at its midpoint, so
+  // its endpoints sit at radius / cos(2.5 degrees), not at the circumradius of
+  // a triangle (2 x radius)
+  const center = point([11.343, 44.495]);
+  const radius = 500;
+  const arc = lineArc(center, radius, 60, 65, {
+    steps: 1,
+    method: "circumscribed",
+  });
+  const halfAngle = (2.5 * Math.PI) / 180;
+  t.deepEquals(
+    arc.geometry.coordinates[0],
+    destination(center, radius / Math.cos(halfAngle), 60).geometry.coordinates,
+    "circumscribed endpoints are at radius / cos(half the segment angle)"
+  );
+  t.deepEquals(
+    lineArc(center, radius, 60, 65, { steps: 1 }).geometry.coordinates[0],
+    destination(center, radius, 60).geometry.coordinates,
+    "inscribed endpoints are on the radius"
+  );
+
+  t.end();
+});
+
+test("turf-line-arc -- a zero or negative radius throws", (t) => {
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    [0, -5].forEach((radius) => {
+      t.throws(
+        () => lineArc([-75, 40], radius, 0, 90, { method }),
+        /must be positive/,
+        `${method}: radius ${radius} throws for a partial arc`
+      );
+      t.throws(
+        () => lineArc([-75, 40], radius, 0, 360, { method }),
+        /must be positive/,
+        `${method}: radius ${radius} throws for a full circle`
+      );
+    });
+  });
+
+  t.end();
+});
+
+test("turf-line-arc -- invalid arcTolerance throws instead of being ignored", (t) => {
+  [-0.01, 0, NaN, "0.01" as any].forEach((arcTolerance) => {
+    t.throws(
+      () => lineArc([-75, 40], 5, 0, 90, { arcTolerance }),
+      /arcTolerance must be positive/,
+      `arcTolerance = ${JSON.stringify(arcTolerance)} throws`
+    );
+  });
+  // the 20000-side limit applies to the full circle the arc is a part of
+  t.throws(
+    () => lineArc([-75, 40], 6000, 0, 1, { arcTolerance: 1e-9 }),
+    /too small for circleRadius 6000/,
+    "an arcTolerance needing more than 20000 sides for the circle throws"
+  );
 
   t.end();
 });
@@ -254,7 +339,7 @@ test("turf-line-arc -- fractional steps round up and still reach bearing2", (t) 
 });
 
 test("turf-line-arc -- invalid steps throw a descriptive error", (t) => {
-  [-5, -0.5, Infinity, -Infinity].forEach((steps) => {
+  [0, -5, -0.5, NaN, Infinity, -Infinity].forEach((steps) => {
     t.throws(
       () => lineArc([-75, 40], 5, 0, 90, { steps }),
       /steps must be a positive finite number/,

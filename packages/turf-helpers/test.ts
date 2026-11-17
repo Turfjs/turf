@@ -887,8 +887,8 @@ test("turf-helpers -- calculatePolygonCircumRadius", (t) => {
 
   t.equal(
     calculatePolygonCircumRadius(circleRadius, steps),
-    equalArea,
-    "equalarea is the default method"
+    inscribed,
+    "inscribed is the default method"
   );
 
   t.throws(
@@ -939,10 +939,42 @@ test("turf-helpers -- calculateNumberOfRegularPolygonSidesToApproximateCircle", 
     () => calculateNumberOfRegularPolygonSidesToApproximateCircle(-1, 10),
     "throws for non-positive circleRadius"
   );
-  t.throws(
-    () => calculateNumberOfRegularPolygonSidesToApproximateCircle(1000, -1),
-    "throws for non-positive arcTolerance"
-  );
+  [-1, 0, NaN, "10" as any].forEach((arcTolerance) => {
+    t.throws(
+      () =>
+        calculateNumberOfRegularPolygonSidesToApproximateCircle(
+          1000,
+          arcTolerance
+        ),
+      /arcTolerance must be positive/,
+      `throws for arcTolerance = ${JSON.stringify(arcTolerance)}`
+    );
+  });
+
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    // a relative tolerance of 1.3e-8 needs just under 20000 sides for every
+    // method; 1e-9 needs far more, and 1e-20 rounds 1 - tol / r to 1 (Infinity)
+    t.true(
+      calculateNumberOfRegularPolygonSidesToApproximateCircle(
+        6000,
+        6000 * 1.3e-8,
+        method
+      ) <= 20000,
+      `${method}: a tolerance just above the limit is allowed`
+    );
+    [1e-9, 1e-20].forEach((arcTolerance) => {
+      t.throws(
+        () =>
+          calculateNumberOfRegularPolygonSidesToApproximateCircle(
+            6000,
+            arcTolerance,
+            method
+          ),
+        /too small for circleRadius 6000.*maximum of 20000/,
+        `${method}: arcTolerance ${arcTolerance} exceeds the 20000-side limit`
+      );
+    });
+  });
   t.throws(
     () =>
       calculateNumberOfRegularPolygonSidesToApproximateCircle(

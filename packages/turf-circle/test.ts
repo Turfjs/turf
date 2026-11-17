@@ -168,7 +168,7 @@ test("turf-circle -- method parameter", (t) => {
 
   t.deepEquals(
     circle(center, radius, { steps }),
-    circle(center, radius, { steps, method: "equalarea" }),
+    circle(center, radius, { steps, method: "inscribed" }),
     "equalarea is the default method"
   );
 
@@ -176,6 +176,45 @@ test("turf-circle -- method parameter", (t) => {
     () => circle(center, radius, { steps, method: "bogus" as any }),
     /method must be one of/,
     "throws for an unknown method"
+  );
+
+  t.end();
+});
+
+test("turf-circle -- a zero or negative radius throws", (t) => {
+  // a radius of 0 used to return a degenerate ring with every vertex at the
+  // center; that is not a usable polygon, so it is an error now
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    [0, -5].forEach((radius) => {
+      t.throws(
+        () => circle([0, 60], radius, { method }),
+        /must be positive/,
+        `${method}: radius ${radius} throws`
+      );
+    });
+  });
+
+  t.end();
+});
+
+test("turf-circle -- invalid arcTolerance throws instead of being ignored", (t) => {
+  [-0.01, 0, NaN, "0.01" as any].forEach((arcTolerance) => {
+    t.throws(
+      () => circle([0, 60], 10, { arcTolerance }),
+      /arcTolerance must be positive/,
+      `arcTolerance = ${JSON.stringify(arcTolerance)} throws`
+    );
+  });
+  t.equal(
+    circle([0, 60], 10, { arcTolerance: undefined }).geometry.coordinates[0]
+      .length,
+    64 + 1,
+    "undefined arcTolerance falls back to the default steps"
+  );
+  t.throws(
+    () => circle([0, 60], 6000, { arcTolerance: 1e-9 }),
+    /too small for circleRadius 6000/,
+    "an arcTolerance needing more than 20000 sides throws instead of hanging"
   );
 
   t.end();

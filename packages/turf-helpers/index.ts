@@ -900,14 +900,14 @@ export function isObject(input: any): boolean {
  *
  * @function
  * @param {number} circleRadius The radius of the target circle.
- * @param {number} steps The degree of the regular polygon.
- * @param {ArcApproximationMethod} [method='equalarea'] How the polygon approximates the circle.
+ * @param {number} steps The degree of the regular polygon. Need not be a whole number: a fractional value gives the circumradius for sides that each subtend 360 / steps degrees, as when only part of the polygon (an arc) is built. Values below 3 are treated as 3.
+ * @param {ArcApproximationMethod} [method='inscribed'] How the polygon approximates the circle.
  * @returns {number} The length of the circumradius in the same units as circleRadius.
  */
 export function calculatePolygonCircumRadius(
   circleRadius: number,
   steps: number = 64,
-  method: ArcApproximationMethod = "equalarea"
+  method: ArcApproximationMethod = "inscribed"
 ): number {
   if (circleRadius <= 0) {
     throw new Error("circleRadius must be positive");
@@ -917,7 +917,9 @@ export function calculatePolygonCircumRadius(
   if (typeof steps !== "number" || !Number.isFinite(steps)) {
     throw new Error("steps must be a finite number");
   }
-  steps = Math.max(3, Math.ceil(steps)); // ensure at least a triangle
+  // not rounded, so lineArc can pass the fractional side count of the regular
+  // polygon whose sides match its segments
+  steps = Math.max(3, steps); // ensure at least a triangle
   // phi is the angle, at the circle's center, between the apothem (to an
   // edge midpoint) and the circumradius (to a vertex) of the polygon.
   const phi = Math.PI / steps;
@@ -963,35 +965,77 @@ export function calculatePolygonCircumRadius(
  * @function
  * @param {number} circleRadius The radius of the target circle.
  * @param {number} [arcTolerance] The maximum allowable distance between the polygon's boundary and the circle, in the same units as circleRadius.
- * @param {ArcApproximationMethod} [method='equalarea'] How the polygon approximates the circle.
- * @returns {number} The number of sides of the best-fit regular polygon.
+ * @param {ArcApproximationMethod} [method='inscribed'] How the polygon approximates the circle.
+ * @returns {number} The number of sides of the best-fit regular polygon, at most 20000.
+ * @throws {Error} if meeting arcTolerance would take more than 20000 sides (arcTolerance below roughly 1.2e-8 times circleRadius for 'inscribed')
  */
 export function calculateNumberOfRegularPolygonSidesToApproximateCircle(
   circleRadius: number,
   arcTolerance: number,
-  method: ArcApproximationMethod = "equalarea"
+  method: ArcApproximationMethod = "inscribed"
 ): number {
-  if (circleRadius <= 0) {
+  // written as !(x > 0) so that NaN and non-numbers are rejected too
+  if (typeof circleRadius !== "number" || !(circleRadius > 0)) {
     throw new Error("circleRadius must be positive");
   }
-  if (arcTolerance <= 0) {
+  if (typeof arcTolerance !== "number" || !(arcTolerance > 0)) {
     throw new Error("arcTolerance must be positive");
   }
 
+  const sides = Math.max(
+    3,
+    Math.ceil(sidesForArcTolerance(circleRadius, arcTolerance, method)) || 3
+  );
+  // A tiny arcTolerance relative to circleRadius would otherwise ask for
+  // millions of vertices (each a destination() call), or Infinity once
+  // 1 - arcTolerance / circleRadius rounds to 1. Throw rather than silently
+  // capping, so callers are never handed a polygon that misses their
+  // tolerance. 20000 sides already keeps an inscribed polygon within about
+  // 1.2e-8 * circleRadius of the circle (8 cm on a 6371 km radius).
+  if (!(sides <= MAX_CIRCLE_APPROXIMATION_SIDES)) {
+    throw new Error(
+      `arcTolerance ${arcTolerance} is too small for circleRadius ${circleRadius}: ` +
+        `it would take ${Number.isFinite(sides) ? sides : "infinitely many"} sides, ` +
+        `more than the maximum of ${MAX_CIRCLE_APPROXIMATION_SIDES}`
+    );
+  }
+  return sides;
+}
+
+/**
+ * The most sides calculateNumberOfRegularPolygonSidesToApproximateCircle will return.
+ *
+ * @private
+ */
+const MAX_CIRCLE_APPROXIMATION_SIDES = 20000;
+
+/**
+ * The (unrounded) number of sides a regular polygon built with `method` needs to stay
+ * within arcTolerance of a circle of circleRadius.
+ *
+ * @private
+ * @param {number} circleRadius The radius of the target circle (positive).
+ * @param {number} arcTolerance The allowable deviation (positive).
+ * @param {ArcApproximationMethod} method How the polygon approximates the circle.
+ * @returns {number} The number of sides, possibly fractional or Infinity.
+ */
+function sidesForArcTolerance(
+  circleRadius: number,
+  arcTolerance: number,
+  method: ArcApproximationMethod
+): number {
   switch (method) {
     case "inscribed": {
       // vertices lie on the circle, so the max deviation is the sagitta at
       // each edge's midpoint: arcTolerance = circleRadius * (1 - cos(phi))
       const cosPhi = Math.max(-1, 1 - arcTolerance / circleRadius);
-      const phi = Math.acos(cosPhi);
-      return Math.max(3, Math.ceil(Math.PI / phi) || 3);
+      return Math.PI / Math.acos(cosPhi);
     }
     case "circumscribed": {
       // edges are tangent to the circle, so the max deviation is at each
       // vertex: arcTolerance = circleRadius * (1 / cos(phi) - 1)
       const cosPhi = 1 / (1 + arcTolerance / circleRadius);
-      const phi = Math.acos(cosPhi);
-      return Math.max(3, Math.ceil(Math.PI / phi) || 3);
+      return Math.PI / Math.acos(cosPhi);
     }
     case "equalarea":
       break;
@@ -1012,13 +1056,12 @@ export function calculateNumberOfRegularPolygonSidesToApproximateCircle(
   //   use taylor series to approximate sin(x) * x ≈ 1 - x*x/6
   //   1 - x*x/6 ≈ (circleRadius * circleRadius) / (circumRadius * circumRadius)
   //   re-sub and solve for numberOfSides
-  const approximateNumberOfSides =
+  return (
     (2 * Math.PI) /
     Math.sqrt(
       6 * (1 - (circleRadius * circleRadius) / (circumRadius * circumRadius))
-    );
-
-  return Math.max(3, Math.ceil(approximateNumberOfSides) || 3);
+    )
+  );
 }
 
 /**

@@ -592,8 +592,8 @@ using the given approximation method. The degree of the polygon is determined by
 ### Parameters
 
 *   `circleRadius` **[number][13]** The radius of the target circle.
-*   `steps` **[number][13]** The degree of the regular polygon. (optional, default `64`)
-*   `method` **[ArcApproximationMethod][24]** How the polygon approximates the circle. (optional, default `'equalarea'`)
+*   `steps` **[number][13]** The degree of the regular polygon. Need not be a whole number: a fractional value gives the circumradius for sides that each subtend 360 / steps degrees, as when only part of the polygon (an arc) is built. Values below 3 are treated as 3. (optional, default `64`)
+*   `method` **[ArcApproximationMethod][24]** How the polygon approximates the circle. (optional, default `'inscribed'`)
 
 Returns **[number][13]** The length of the circumradius in the same units as circleRadius.
 
@@ -610,9 +610,13 @@ the polygon's boundary and the circle.
 
 *   `circleRadius` **[number][13]** The radius of the target circle.
 *   `arcTolerance` **[number][13]?** The maximum allowable distance between the polygon's boundary and the circle, in the same units as circleRadius.
-*   `method` **[ArcApproximationMethod][24]** How the polygon approximates the circle. (optional, default `'equalarea'`)
+*   `method` **[ArcApproximationMethod][24]** How the polygon approximates the circle. (optional, default `'inscribed'`)
 
-Returns **[number][13]** The number of sides of the best-fit regular polygon.
+<!---->
+
+*   Throws **[Error][21]** if meeting arcTolerance would take more than 20000 sides (arcTolerance below roughly 1.2e-8 times circleRadius for 'inscribed')
+
+Returns **[number][13]** The number of sides of the best-fit regular polygon, at most 20000.
 
 ## removeBbox
 
