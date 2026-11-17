@@ -58,6 +58,11 @@ function lineArc(
       method
     );
   }
+  if (typeof steps !== "number" || !Number.isFinite(steps) || steps <= 0)
+    throw new Error("steps must be a positive finite number");
+  // the loop below places one vertex per whole step and pins the last one to
+  // bearing2, so a fractional step count would stop the arc short of bearing2
+  steps = Math.ceil(steps);
 
   const angle1 = convertAngleTo360(bearing1);
   const angle2 = convertAngleTo360(bearing2);

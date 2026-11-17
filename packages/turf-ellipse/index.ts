@@ -6,8 +6,10 @@ import {
   ArcApproximationMethod,
   Coord,
   Units,
+  point,
 } from "@turf/helpers";
 import { destination } from "@turf/destination";
+import { transformRotate } from "@turf/transform-rotate";
 import { getCoord } from "@turf/invariant";
 import { GeoJsonProperties, Feature, Polygon, Position } from "geojson";
 
@@ -70,7 +72,15 @@ function ellipse(
       "method must be one of 'inscribed', 'circumscribed', 'equalarea'"
     );
 
-  const centerCoords = getCoord(center);
+  // Rotating the ellipse about a pivot other than its own center is the same
+  // as rotating it in place and then moving its center about the pivot.
+  const centerCoords = options.pivot
+    ? getCoord(
+        transformRotate(point(getCoord(center)), angle, {
+          pivot: options.pivot,
+        })
+      )
+    : getCoord(center);
 
   /**
    * Generate ellipse coordinates with adaptive arc-length spacing.

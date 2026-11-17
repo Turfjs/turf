@@ -912,6 +912,11 @@ export function calculatePolygonCircumRadius(
   if (circleRadius <= 0) {
     throw new Error("circleRadius must be positive");
   }
+  // Infinity or NaN would make phi 0 or NaN, and equalarea's 2φ / sin(2φ)
+  // would evaluate to 0 / 0
+  if (typeof steps !== "number" || !Number.isFinite(steps)) {
+    throw new Error("steps must be a finite number");
+  }
   steps = Math.max(3, Math.ceil(steps)); // ensure at least a triangle
   // phi is the angle, at the circle's center, between the apothem (to an
   // edge midpoint) and the circumradius (to a vertex) of the polygon.

@@ -900,6 +900,15 @@ test("turf-helpers -- calculatePolygonCircumRadius", (t) => {
     /method must be one of/,
     "throws for an unknown method"
   );
+  [Infinity, -Infinity, NaN].forEach((badSteps) => {
+    (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+      t.throws(
+        () => calculatePolygonCircumRadius(circleRadius, badSteps, method),
+        /steps must be a finite number/,
+        `${method}: throws for steps = ${badSteps} rather than returning NaN`
+      );
+    });
+  });
 
   t.end();
 });

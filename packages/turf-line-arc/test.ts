@@ -227,3 +227,45 @@ test("turf-line-arc -- method with arcTolerance", (t) => {
 
   t.end();
 });
+
+test("turf-line-arc -- fractional steps round up and still reach bearing2", (t) => {
+  const center = [-75, 40];
+  const radius = 5;
+  const bearing1 = 0;
+  const bearing2 = 90;
+
+  const fractional = lineArc(center, radius, bearing1, bearing2, {
+    steps: 2.5,
+  });
+  const whole = lineArc(center, radius, bearing1, bearing2, { steps: 3 });
+  t.deepEquals(
+    fractional.geometry.coordinates,
+    whole.geometry.coordinates,
+    "steps: 2.5 behaves like steps: 3"
+  );
+  t.deepEquals(
+    fractional.geometry.coordinates[fractional.geometry.coordinates.length - 1],
+    destination(center, calculatePolygonCircumRadius(radius, 3), bearing2)
+      .geometry.coordinates,
+    "the last vertex lies on bearing2"
+  );
+
+  t.end();
+});
+
+test("turf-line-arc -- invalid steps throw a descriptive error", (t) => {
+  [-5, -0.5, Infinity, -Infinity].forEach((steps) => {
+    t.throws(
+      () => lineArc([-75, 40], 5, 0, 90, { steps }),
+      /steps must be a positive finite number/,
+      `steps = ${steps} throws`
+    );
+  });
+  t.throws(
+    () => lineArc([-75, 40], 5, 0, 90, { steps: "8" as any }),
+    /steps must be a positive finite number/,
+    "a non-number steps throws"
+  );
+
+  t.end();
+});

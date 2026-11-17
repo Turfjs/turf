@@ -6,7 +6,8 @@ import { writeJsonFileSync } from "write-json-file";
 import { circle } from "@turf/circle";
 import { truncate } from "@turf/truncate";
 import { check } from "@placemarkio/check-geojson";
-import { featureCollection } from "@turf/helpers";
+import { featureCollection, point } from "@turf/helpers";
+import { transformRotate } from "@turf/transform-rotate";
 import { intersect } from "@turf/intersect";
 import { area } from "@turf/area";
 import { distance } from "@turf/distance";
@@ -917,6 +918,68 @@ test("turf-ellipse -- invalid steps throw a descriptive error", (t) => {
         `${a}x${b} @ ${steps} steps, ${method}: throws an error mentioning steps`
       );
     });
+  });
+
+  t.end();
+});
+
+test("turf-ellipse -- pivot", (t) => {
+  const center = [-75, 40];
+  const xSemiAxis = 5;
+  const ySemiAxis = 2;
+  const pivot = [-75.2, 40.1];
+  const angle = 60;
+
+  (["inscribed", "circumscribed", "equalarea"] as const).forEach((method) => {
+    const inPlace = ellipse(center, xSemiAxis, ySemiAxis, { angle, method });
+
+    // a pivot only matters when there is a rotation
+    t.deepEquals(
+      ellipse(center, xSemiAxis, ySemiAxis, { pivot, method }).geometry,
+      ellipse(center, xSemiAxis, ySemiAxis, { method }).geometry,
+      `${method}: a pivot with no angle leaves the ellipse unchanged`
+    );
+
+    // pivoting about the ellipse's own center is the same as no pivot
+    const aboutCenter = ellipse(center, xSemiAxis, ySemiAxis, {
+      angle,
+      pivot: center,
+      method,
+    });
+    aboutCenter.geometry.coordinates[0].forEach((c, i) => {
+      const expected = inPlace.geometry.coordinates[0][i];
+      t.true(
+        Math.abs(c[0] - expected[0]) < 1e-9 &&
+          Math.abs(c[1] - expected[1]) < 1e-9,
+        `${method}: pivot = center matches no pivot at vertex ${i}`
+      );
+    });
+
+    // pivoting elsewhere matches rotating the in-place ellipse about the pivot
+    const pivoted = ellipse(center, xSemiAxis, ySemiAxis, {
+      angle,
+      pivot,
+      method,
+    });
+    const expected = transformRotate(
+      ellipse(center, xSemiAxis, ySemiAxis, { method }),
+      angle,
+      { pivot }
+    );
+    const overlap = intersect(featureCollection([pivoted, expected]));
+    const overlapRatio = overlap != null ? area(overlap) / area(expected) : 0;
+    t.true(
+      overlapRatio > 0.999,
+      `${method}: pivoted ellipse overlaps the rotated ellipse (${overlapRatio})`
+    );
+    t.true(
+      Math.abs(area(pivoted) - area(inPlace)) / area(inPlace) < 1e-6,
+      `${method}: pivoting moves the ellipse without changing its area`
+    );
+    t.true(
+      distance(pivoted.geometry.coordinates[0][0], point(center)) > 10,
+      `${method}: pivoting moves the ellipse away from its original center`
+    );
   });
 
   t.end();
