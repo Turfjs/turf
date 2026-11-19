@@ -1,0 +1,47 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [1.610801725, 44.072336553],
+            [1.609931694, 44.072693195],
+            [1.613978273, 44.066500014],
+            [1.613978273, 44.066500014],
+            [1.613978273, 44.066500014],
+            [1.614624814, 44.066066981],
+            [1.610801725, 44.072336553]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "outside",
+        "expected_distance": 9290.497958436006,
+        "units": "meters"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1.5, 44.1]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "near-duplicate-vertex",
+        "expected_distance": 63.82933574677142,
+        "units": "meters"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1.6145, 44.0655]
+      }
+    }
+  ]
+}

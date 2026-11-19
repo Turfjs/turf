@@ -4,7 +4,8 @@
   "description": "Calculates the distance from a point to the edges of a polygon or multi-polygon.",
   "author": "Turf Authors",
   "contributors": [
-    "Marc <@pachacamac>"
+    "Marc <@pachacamac>",
+    "Mostafa Khaled <@senkop>"
   ],
   "license": "MIT",
   "bugs": {

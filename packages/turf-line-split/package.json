@@ -4,7 +4,8 @@
   "description": "Split a LineString by another GeoJSON Feature.",
   "author": "Turf Authors",
   "contributors": [
-    "Denis Carriere <@DenisCarriere>"
+    "Denis Carriere <@DenisCarriere>",
+    "Mostafa Khaled <@senkop>"
   ],
   "license": "MIT",
   "bugs": {
