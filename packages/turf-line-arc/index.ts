@@ -1,7 +1,14 @@
 import { Feature, LineString } from "geojson";
 import { circle } from "@turf/circle";
 import { destination } from "@turf/destination";
-import { Coord, lineString, Units } from "@turf/helpers";
+import {
+  calculateNumberOfRegularPolygonSidesToApproximateCircle,
+  calculatePolygonCircumRadius,
+  ArcApproximationMethod,
+  Coord,
+  lineString,
+  Units,
+} from "@turf/helpers";
 
 /**
  * Creates a circular arc, of a circle of the given radius and center point, between bearing1 and bearing2;
@@ -14,6 +21,8 @@ import { Coord, lineString, Units } from "@turf/helpers";
  * @param {number} bearing2 angle, in decimal degrees, of the second radius of the arc
  * @param {Object} [options={}] Optional parameters
  * @param {number} [options.steps=64] number of steps (straight segments) that will constitute the arc
+ * @param {number} [options.arcTolerance] if provided, will ignore steps and use a number of steps such that the returned approximate arc is at most this far away from the true arc
+ * @param {ArcApproximationMethod} [options.method='inscribed'] how the returned arc approximates the true arc: 'inscribed' places every vertex on the circle, 'circumscribed' places every edge tangent to the circle, and 'equalarea' makes the area between each segment and the center equal to that of the circular sector it replaces
  * @param {Units} [options.units='kilometers'] Supports all valid Turf {@link https://turfjs.org/docs/api/types/Units Units}.
  * @returns {Feature<LineString>} line arc
  * @example
@@ -34,12 +43,13 @@ function lineArc(
   bearing2: number,
   options: {
     steps?: number;
+    arcTolerance?: number;
+    method?: ArcApproximationMethod;
     units?: Units;
   } = {}
 ): Feature<LineString> {
   // default params
-  const steps = options.steps || 64;
-
+  const method = options.method ?? "inscribed";
   const angle1 = convertAngleTo360(bearing1);
   const angle2 = convertAngleTo360(bearing2);
   const properties =
@@ -47,15 +57,50 @@ function lineArc(
       ? center.properties
       : {};
 
+  const arcStartDegree = angle1;
+  const arcEndDegree = angle1 < angle2 ? angle2 : angle2 + 360;
+  // degrees the arc sweeps through: 360 when the bearings coincide
+  const arcSpan = arcEndDegree - arcStartDegree;
+
+  let steps = options.steps ?? 64;
+  // the helper validates arcTolerance, so an invalid value throws rather than
+  // silently falling back to the default steps
+  if (options.arcTolerance != null) {
+    // the helper sizes a whole circle, but the arc only covers arcSpan / 360 of
+    // it, so it needs only that share of the sides to meet the same tolerance
+    const fullCircleSteps =
+      calculateNumberOfRegularPolygonSidesToApproximateCircle(
+        radius,
+        options.arcTolerance,
+        method
+      );
+    steps = (fullCircleSteps * arcSpan) / 360;
+  }
+  if (typeof steps !== "number" || !Number.isFinite(steps) || steps <= 0)
+    throw new Error("steps must be a positive finite number");
+  // the loop below places one vertex per whole step and pins the last one to
+  // bearing2, so a fractional step count would stop the arc short of bearing2
+  steps = Math.ceil(steps);
+
   // handle angle parameters
   if (angle1 === angle2) {
+    // circle() applies `method` itself, so pass the true radius (not
+    // circumRadius) and the already-resolved steps to avoid applying it twice.
     return lineString(
-      circle(center, radius, options).geometry.coordinates[0],
+      circle(center, radius, { ...options, steps, arcTolerance: undefined })
+        .geometry.coordinates[0],
       properties
     );
   }
-  const arcStartDegree = angle1;
-  const arcEndDegree = angle1 < angle2 ? angle2 : angle2 + 360;
+  // Each segment subtends arcSpan / steps degrees, the same angle as a side of
+  // a regular polygon with 360 * steps / arcSpan sides, so size the
+  // circumradius for that polygon rather than for a `steps`-gon (which would
+  // push the vertices far out for a short arc with few steps).
+  const circumRadius = calculatePolygonCircumRadius(
+    radius,
+    (360 * steps) / arcSpan,
+    method
+  );
 
   const coordinates = [];
   // How many degrees we'll swing around between each step.
@@ -70,7 +115,7 @@ function lineArc(
   for (let i = 0; i <= steps; i++) {
     const alpha = i === steps ? arcEndDegree : arcStartDegree + i * arcStep;
     coordinates.push(
-      destination(center, radius, alpha, options).geometry.coordinates
+      destination(center, circumRadius, alpha, options).geometry.coordinates
     );
   }
   return lineString(coordinates, properties);

@@ -4,9 +4,10 @@
   "description": "Provides helper functions to create GeoJSON features, like points, lines, or areas on a map.",
   "author": "Turf Authors",
   "contributors": [
-    "Tom MacWright <@tmcw>",
-    "Stefano Borghi <@stebogit>",
     "Denis Carriere <@DenisCarriere>",
+    "Scott Wiedemann <@lemmingapex>",
+    "Stefano Borghi <@stebogit>",
+    "Tom MacWright <@tmcw>",
     "William Nordmann <@wnordmann>"
   ],
   "license": "MIT",

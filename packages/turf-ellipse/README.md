@@ -16,6 +16,7 @@ Takes a [Point][1] and calculates the ellipse polygon given two semi-axes expres
     *   `options.angle` **[number][3]** angle of rotation in decimal degrees, positive clockwise (optional, default `0`)
     *   `options.pivot` **[Coord][2]** point around which any rotation will be performed (optional, default `center`)
     *   `options.steps` **[number][3]** number of steps (optional, default `64`)
+    *   `options.method` **ArcApproximationMethod** how the returned polygon approximates the ellipse: 'inscribed' places every vertex on the ellipse, 'circumscribed' places every edge tangent to the ellipse, and 'equalarea' matches the polygon's area to the ellipse's area (optional, default `'inscribed'`)
     *   `options.units` **Units** unit of measurement for axes. Supports all valid Turf [Units][5] (optional, default `'kilometers'`)
     *   `options.properties` **[Object][4]** properties (optional, default `{}`)
 

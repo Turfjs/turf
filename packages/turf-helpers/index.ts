@@ -67,6 +67,22 @@ export type Units =
   | "deg";
 
 /**
+ * How a sequence of straight segments approximates a curved arc, as used by
+ * circle, ellipse, lineArc and sector. Described here for a circle:
+ * - `inscribed`: every vertex lies exactly on the arc; the polygon is
+ *   entirely contained within the circle and understates its area.
+ * - `circumscribed`: every edge is tangent to the arc; the polygon
+ *   entirely contains the circle and overstates its area.
+ * - `equalarea`: the polygon's area matches the circle's area, which
+ *   minimizes the overall distance between the polygon's perimeter and the
+ *   circle.
+ *
+ * @typedef
+ */
+export type ArcApproximationMethod =
+  "inscribed" | "circumscribed" | "equalarea";
+
+/**
  * Area measurement units.
  *
  * @typedef
@@ -876,6 +892,176 @@ export function isNumber(num: any): boolean {
  */
 export function isObject(input: any): boolean {
   return input !== null && typeof input === "object" && !Array.isArray(input);
+}
+
+/**
+ * Calculates the length of the circumradius of a regular polygon that approximates a circle,
+ * using the given approximation method. The degree of the polygon is determined by steps.
+ *
+ * @function
+ * @param {number} circleRadius The radius of the target circle.
+ * @param {number} steps The degree of the regular polygon. Need not be a whole number: a fractional value gives the circumradius for sides that each subtend 360 / steps degrees, as when only part of the polygon (an arc) is built. Values below 3 are treated as 3.
+ * @param {ArcApproximationMethod} [method='inscribed'] How the polygon approximates the circle.
+ * @returns {number} The length of the circumradius in the same units as circleRadius.
+ */
+export function calculatePolygonCircumRadius(
+  circleRadius: number,
+  steps: number = 64,
+  method: ArcApproximationMethod = "inscribed"
+): number {
+  if (circleRadius <= 0) {
+    throw new Error("circleRadius must be positive");
+  }
+  // Infinity or NaN would make phi 0 or NaN, and equalarea's 2φ / sin(2φ)
+  // would evaluate to 0 / 0
+  if (typeof steps !== "number" || !Number.isFinite(steps)) {
+    throw new Error("steps must be a finite number");
+  }
+  // not rounded, so lineArc can pass the fractional side count of the regular
+  // polygon whose sides match its segments
+  steps = Math.max(3, steps); // ensure at least a triangle
+  // phi is the angle, at the circle's center, between the apothem (to an
+  // edge midpoint) and the circumradius (to a vertex) of the polygon.
+  const phi = Math.PI / steps;
+
+  switch (method) {
+    case "inscribed":
+      // every vertex lies exactly on the circle
+      return circleRadius;
+    case "circumscribed":
+      // every edge is tangent to the circle, i.e. the apothem equals circleRadius
+      return circleRadius / Math.cos(phi);
+    case "equalarea": {
+      // METHOD: construct a polygon with the same area as the circle, this minimizes the overall distance from the circle to the perimeter of the polygon, and is a better estimate of the circle than say an inscribed polygon
+      // 1. calculate the area of the circle:
+      //   circleArea = Math.PI * circleRadius * circleRadius;
+      // 2. calculate the polygonArea:
+      //   polygonArea = circumRadius * sin(phi) * circumRadius * cos(phi) * steps
+      //   polygonArea = circumRadius * circumRadius * 1/2 * sin(2 * phi) * steps // via double angle identity
+      // 3. set circleArea equal to polygonArea:
+      //   circleArea = polygonArea
+      //   circleArea = circumRadius * circumRadius * 1/2 * sin(2 * phi) * steps
+      // 4. solve for the circumRadius
+      //   circleArea * 2.0 / (sin(2 * phi) * steps) = circumRadiusInMeters * circumRadiusInMeters
+      //   circumRadiusInMeters * circumRadiusInMeters = Math.PI * circleRadius * circleRadius * 2.0 / (sin(2 * phi) * steps)
+      const twoPhi = 2 * phi;
+      return circleRadius * Math.sqrt(twoPhi / Math.sin(twoPhi));
+    }
+    default:
+      throw new Error(
+        "method must be one of 'inscribed', 'circumscribed', 'equalarea'"
+      );
+  }
+}
+
+/**
+ * Calculates the number of sides of a regular polygon that approximates a circle,
+ * using the given approximation method, while not exceeding an allowable arc tolerance.
+ *
+ * This function determines the optimal number of sides for a regular polygon that
+ * approximates a given circle without exceeding an acceptable error tolerance between
+ * the polygon's boundary and the circle.
+ *
+ * @function
+ * @param {number} circleRadius The radius of the target circle.
+ * @param {number} [arcTolerance] The maximum allowable distance between the polygon's boundary and the circle, in the same units as circleRadius.
+ * @param {ArcApproximationMethod} [method='inscribed'] How the polygon approximates the circle.
+ * @returns {number} The number of sides of the best-fit regular polygon, at most 20000.
+ * @throws {Error} if meeting arcTolerance would take more than 20000 sides (arcTolerance below roughly 1.2e-8 times circleRadius for 'inscribed')
+ */
+export function calculateNumberOfRegularPolygonSidesToApproximateCircle(
+  circleRadius: number,
+  arcTolerance: number,
+  method: ArcApproximationMethod = "inscribed"
+): number {
+  // written as !(x > 0) so that NaN and non-numbers are rejected too
+  if (typeof circleRadius !== "number" || !(circleRadius > 0)) {
+    throw new Error("circleRadius must be positive");
+  }
+  if (typeof arcTolerance !== "number" || !(arcTolerance > 0)) {
+    throw new Error("arcTolerance must be positive");
+  }
+
+  const sides = Math.max(
+    3,
+    Math.ceil(sidesForArcTolerance(circleRadius, arcTolerance, method)) || 3
+  );
+  // A tiny arcTolerance relative to circleRadius would otherwise ask for
+  // millions of vertices (each a destination() call), or Infinity once
+  // 1 - arcTolerance / circleRadius rounds to 1. Throw rather than silently
+  // capping, so callers are never handed a polygon that misses their
+  // tolerance. 20000 sides already keeps an inscribed polygon within about
+  // 1.2e-8 * circleRadius of the circle (8 cm on a 6371 km radius).
+  if (!(sides <= MAX_CIRCLE_APPROXIMATION_SIDES)) {
+    throw new Error(
+      `arcTolerance ${arcTolerance} is too small for circleRadius ${circleRadius}: ` +
+        `it would take ${Number.isFinite(sides) ? sides : "infinitely many"} sides, ` +
+        `more than the maximum of ${MAX_CIRCLE_APPROXIMATION_SIDES}`
+    );
+  }
+  return sides;
+}
+
+/**
+ * The most sides calculateNumberOfRegularPolygonSidesToApproximateCircle will return.
+ *
+ * @private
+ */
+const MAX_CIRCLE_APPROXIMATION_SIDES = 20000;
+
+/**
+ * The (unrounded) number of sides a regular polygon built with `method` needs to stay
+ * within arcTolerance of a circle of circleRadius.
+ *
+ * @private
+ * @param {number} circleRadius The radius of the target circle (positive).
+ * @param {number} arcTolerance The allowable deviation (positive).
+ * @param {ArcApproximationMethod} method How the polygon approximates the circle.
+ * @returns {number} The number of sides, possibly fractional or Infinity.
+ */
+function sidesForArcTolerance(
+  circleRadius: number,
+  arcTolerance: number,
+  method: ArcApproximationMethod
+): number {
+  switch (method) {
+    case "inscribed": {
+      // vertices lie on the circle, so the max deviation is the sagitta at
+      // each edge's midpoint: arcTolerance = circleRadius * (1 - cos(phi))
+      const cosPhi = Math.max(-1, 1 - arcTolerance / circleRadius);
+      return Math.PI / Math.acos(cosPhi);
+    }
+    case "circumscribed": {
+      // edges are tangent to the circle, so the max deviation is at each
+      // vertex: arcTolerance = circleRadius * (1 / cos(phi) - 1)
+      const cosPhi = 1 / (1 + arcTolerance / circleRadius);
+      return Math.PI / Math.acos(cosPhi);
+    }
+    case "equalarea":
+      break;
+    default:
+      throw new Error(
+        "method must be one of 'inscribed', 'circumscribed', 'equalarea'"
+      );
+  }
+
+  // step 1: assume highest allowable error
+  const circumRadius = circleRadius + arcTolerance;
+
+  // step 2: equate the area of the circle to the area of the polygon and solve for the number of sides
+  //   Math.PI * circleRadius * circleRadius = circumRadius * circumRadius * 1/2 * sin(2 * Math.PI / numberOfSides) * numberOfSides
+  //   2 * Math.PI * circleRadius * circleRadius / circumRadius * circumRadius = sin(2 * Math.PI / numberOfSides) * numberOfSides
+  //   let x = 2 * pi/numberOfSides
+  //   sin(x)* 2pi/x = 2 * pi * circleRadius * circleRadius / circumRadius * circumRadius
+  //   use taylor series to approximate sin(x) * x ≈ 1 - x*x/6
+  //   1 - x*x/6 ≈ (circleRadius * circleRadius) / (circumRadius * circumRadius)
+  //   re-sub and solve for numberOfSides
+  return (
+    (2 * Math.PI) /
+    Math.sqrt(
+      6 * (1 - (circleRadius * circleRadius) / (circumRadius * circumRadius))
+    )
+  );
 }
 
 /**
