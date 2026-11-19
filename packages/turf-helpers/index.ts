@@ -938,7 +938,7 @@ export function calculatePolygonCircumRadius(
       // 2. calculate the polygonArea:
       //   polygonArea = circumRadius * sin(phi) * circumRadius * cos(phi) * steps
       //   polygonArea = circumRadius * circumRadius * 1/2 * sin(2 * phi) * steps // via double angle identity
-      // 3. set circleArea equal to  polygonArea:
+      // 3. set circleArea equal to polygonArea:
       //   circleArea = polygonArea
       //   circleArea = circumRadius * circumRadius * 1/2 * sin(2 * phi) * steps
       // 4. solve for the circumRadius
