@@ -610,8 +610,8 @@ test("convertLength", (t) => {
   t.equal(convertLength(1, "miles", "kilometers"), 1.609344);
   t.equal(convertLength(1, "nauticalmiles"), 1.852);
   t.equal(convertLength(1, "meters", "centimeters"), 100.00000000000001);
-  t.equal(convertLength(1, "meters", "yards"), 1.0936);
-  t.equal(convertLength(1, "yards", "meters"), 0.91441111923921);
+  t.equal(convertLength(1, "meters", "yards"), 1.0936132983377078);
+  t.equal(convertLength(1, "yards", "meters"), 0.9144);
   // t.throws(() => convertLength(1, 'foo'), 'invalid units');
 
   t.equal(
@@ -629,16 +629,63 @@ test("convertLength", (t) => {
 
 test("convertArea", (t) => {
   t.equal(convertArea(1000), 0.001);
-  t.equal(convertArea(1, "kilometres", "miles"), 0.386);
-  t.equal(convertArea(1, "miles", "kilometers"), 2.5906735751295336);
+  t.equal(convertArea(1, "kilometres", "miles"), 0.38610215854244584);
+  t.equal(convertArea(1, "miles", "kilometers"), 2.589988110336);
   t.equal(convertArea(1, "meters", "centimetres"), 10000);
-  t.equal(convertArea(100, "metres", "acres"), 0.0247105);
-  t.equal(convertArea(100, undefined, "yards"), 119.59900459999999);
-  t.equal(convertArea(100, "metres", "feet"), 1076.3910417);
-  t.equal(convertArea(100000, "feet", undefined), 0.009290303999749462);
+  t.equal(convertArea(100, "metres", "acres"), 0.024710538146716532);
+  t.equal(convertArea(100, undefined, "yards"), 119.59900463010801);
+  t.equal(convertArea(100, "metres", "feet"), 1076.3910416709723);
+  t.equal(convertArea(100000, "feet", undefined), 0.009290304);
   t.equal(convertArea(1, "meters", "hectares"), 0.0001);
   // t.throws(() => convertLength(1, 'foo'), 'invalid original units');
   // t.throws(() => convertLength(1, 'meters', 'foo'), 'invalid final units');
+
+  t.end();
+});
+
+// The relations below are definitions, not measurements: the 1959 international
+// yard and pound agreement fixes 1 yd = 0.9144 m exactly, hence 1 ft = 0.3048 m
+// and 1 in = 0.0254 m exactly, and the international mile is 1609.344 m exactly.
+// They are asserted here rather than the factor values themselves so the check
+// cannot be satisfied by whatever constants the tables happen to hold.
+test("convertLength - imperial relations are exact by definition", (t) => {
+  // Allow 4 ulp for the two divisions convertLength performs.
+  const closeTo = (actual: number, expected: number, msg: string) =>
+    t.ok(
+      Math.abs(actual - expected) <= 4 * Number.EPSILON * Math.abs(expected),
+      `${msg} (got ${actual}, expected ${expected})`
+    );
+
+  closeTo(convertLength(1, "yards", "feet"), 3, "1 yard is 3 feet");
+  closeTo(convertLength(1, "feet", "inches"), 12, "1 foot is 12 inches");
+  closeTo(convertLength(1, "yards", "inches"), 36, "1 yard is 36 inches");
+  closeTo(convertLength(1, "miles", "yards"), 1760, "1 mile is 1760 yards");
+  closeTo(convertLength(1, "miles", "feet"), 5280, "1 mile is 5280 feet");
+  closeTo(
+    convertLength(1, "nauticalmiles", "meters"),
+    1852,
+    "1 nautical mile is 1852 metres"
+  );
+
+  t.end();
+});
+
+test("convertArea - imperial relations are exact by definition", (t) => {
+  const closeTo = (actual: number, expected: number, msg: string) =>
+    t.ok(
+      Math.abs(actual - expected) <= 4 * Number.EPSILON * Math.abs(expected),
+      `${msg} (got ${actual}, expected ${expected})`
+    );
+
+  closeTo(convertArea(1, "yards", "feet"), 9, "1 sq yard is 9 sq feet");
+  closeTo(convertArea(1, "feet", "inches"), 144, "1 sq foot is 144 sq inches");
+  closeTo(convertArea(1, "acres", "yards"), 4840, "1 acre is 4840 sq yards");
+  closeTo(convertArea(1, "miles", "acres"), 640, "1 sq mile is 640 acres");
+  closeTo(
+    convertArea(1, "hectares", "meters"),
+    10000,
+    "1 hectare is 10000 sq metres"
+  );
 
   t.end();
 });
