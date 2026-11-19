@@ -17,6 +17,9 @@
       "path": "../turf-line-intersect"
     },
     {
+      "path": "../turf-line-split"
+    },
+    {
       "path": "../turf-polygon-to-line"
     }
   ]
