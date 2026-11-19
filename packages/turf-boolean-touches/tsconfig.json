@@ -5,9 +5,6 @@
       "path": "../turf-boolean-point-in-polygon"
     },
     {
-      "path": "../turf-boolean-point-on-line"
-    },
-    {
       "path": "../turf-helpers"
     },
     {

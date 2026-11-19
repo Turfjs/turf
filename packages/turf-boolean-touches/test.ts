@@ -32,6 +32,7 @@ test("turf-boolean-touches", (t) => {
           .touches(feature1, feature2)
           .then((result) => t.true(result, "[true] shapely - " + name));
       t.true(result, "[true] " + name);
+      t.true(touches(feature2, feature1), "[true] reversed - " + name);
     });
   // False Fixtures
   glob
@@ -55,6 +56,7 @@ test("turf-boolean-touches", (t) => {
           .touches(feature1, feature2)
           .then((result) => t.false(result, "[false] shapely - " + name));
       t.false(result, "[false] " + name);
+      t.false(touches(feature2, feature1), "[false] reversed - " + name);
     });
   t.end();
 });
