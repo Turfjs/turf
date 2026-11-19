@@ -1476,9 +1476,6 @@ importers:
       '@turf/boolean-point-in-polygon':
         specifier: workspace:*
         version: link:../turf-boolean-point-in-polygon
-      '@turf/boolean-point-on-line':
-        specifier: workspace:*
-        version: link:../turf-boolean-point-on-line
       '@turf/helpers':
         specifier: workspace:*
         version: link:../turf-helpers
