@@ -17,7 +17,21 @@ import { featureCollection, isObject } from "@turf/helpers";
 import type { AllGeoJSON } from "@turf/helpers";
 
 /**
- * Rewind {@link LineString|(Multi)LineString} or {@link Polygon|(Multi)Polygon} outer ring counterclockwise and inner rings clockwise (Uses {@link http://en.wikipedia.org/wiki/Shoelace_formula|Shoelace Formula}).
+ * Rewinds the rings of a {@link Polygon|(Multi)Polygon} or the coordinates of
+ * a {@link LineString|(Multi)LineString} so their directions are consistent.
+ *
+ * The *winding* of a polygon is the direction in which its component rings
+ * run - clockwise or counter-clockwise. Ring direction is significant,
+ * especially for polygons with holes e.g. donut shapes. By default rewind
+ * makes the outer ring run counter-clockwise and any inner rings (holes)
+ * clockwise. A (Multi)LineString is treated like a ring: it is reversed
+ * when `booleanClockwise` reports it as counter-clockwise (or clockwise
+ * when `reverse` is true). The `reverse` option flips all of these
+ * directions.
+ *
+ * The shape may not appear to change visually, however the rings will now be
+ * running in consistent directions, making subsequent operations more likely
+ * to produce correct results.
  *
  * @function
  * @param {GeoJSON} geojson input GeoJSON Polygon
@@ -26,9 +40,12 @@ import type { AllGeoJSON } from "@turf/helpers";
  * @param {boolean} [options.mutate=false] allows GeoJSON input to be mutated (significant performance increase if true)
  * @returns {GeoJSON} rewind Polygon
  * @example
- * var polygon = turf.polygon([[[121, -29], [138, -29], [138, -18], [121, -18], [121, -29]]]);
+ * var polygon = turf.polygon([[[121, -29], [121, -18], [138, -18], [138, -29], [121, -29]]]);
  *
  * var rewind = turf.rewind(polygon);
+ *
+ * rewind.geometry.coordinates;
+ * //= [[[121, -29], [138, -29], [138, -18], [121, -18], [121, -29]]]
  *
  * //addToMap
  * var addToMap = [rewind];
