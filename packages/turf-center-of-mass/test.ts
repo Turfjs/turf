@@ -95,6 +95,80 @@ test("center of mass -- point geom", (t) => {
   t.end();
 });
 
+test("center of mass -- polygon with a hole", (t) => {
+  // Outer ring is a 10x10 square, the hole a 2x2 square sitting off-centre at
+  // x in [6, 8], y in [2, 4]. Subtracting the hole's area and moments from the
+  // square's gives an exact answer of [59/12, 61/12].
+  const outer = [
+    [0, 0],
+    [10, 0],
+    [10, 10],
+    [0, 10],
+    [0, 0],
+  ];
+  // Counter-clockwise hole, the winding the report in #3173 used.
+  const holeCCW = [
+    [6, 2],
+    [8, 2],
+    [8, 4],
+    [6, 4],
+    [6, 2],
+  ];
+  // Clockwise hole, the winding RFC 7946 prescribes for interior rings.
+  const holeCW = [
+    [6, 2],
+    [6, 4],
+    [8, 4],
+    [8, 2],
+    [6, 2],
+  ];
+  // Exact values are 59/12 and 61/12; 9 decimal places is well inside double
+  // precision for them and still an order of magnitude finer than the error
+  // this test guards against.
+  const expected = ["4.916666667", "5.083333333"];
+  const rounded = (coords: number[]) => coords.map((n: number) => n.toFixed(9));
+
+  const withCCWHole = centerOfMass(polygon([outer, holeCCW]));
+  t.deepEqual(
+    rounded(withCCWHole.geometry.coordinates),
+    expected,
+    "counter-clockwise hole centroid"
+  );
+
+  const withCWHole = centerOfMass(polygon([outer, holeCW]));
+  t.deepEqual(
+    rounded(withCWHole.geometry.coordinates),
+    expected,
+    "hole winding must not change the centroid"
+  );
+  t.end();
+});
+
+test("center of mass -- hole centred in the polygon", (t) => {
+  // A centred hole removes mass symmetrically, so the centroid stays at the
+  // square's centre no matter which way the hole is wound.
+  const outer = [
+    [0, 0],
+    [10, 0],
+    [10, 10],
+    [0, 10],
+    [0, 0],
+  ];
+  const hole = [
+    [4, 4],
+    [6, 4],
+    [6, 6],
+    [4, 6],
+    [4, 4],
+  ];
+  t.deepEqual(
+    centerOfMass(polygon([outer, hole])),
+    point([5, 5]),
+    "centred hole keeps the centroid at the centre"
+  );
+  t.end();
+});
+
 test("center of mass -- properties", (t) => {
   const line = lineString([
     [0, 0],
