@@ -65,7 +65,8 @@
     "@turf/helpers": "workspace:*",
     "@turf/invariant": "workspace:*",
     "@turf/line-split": "workspace:*",
-    "@types/geojson": "catalog:"
+    "@types/geojson": "catalog:",
+    "robust-predicates": "^3.0.3"
   },
   "engines": {
     "node": ">=22"
