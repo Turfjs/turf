@@ -63,3 +63,22 @@ test("distance -- throws", (t) => {
   );
   t.end();
 });
+
+// https://github.com/Turfjs/turf/issues/3182
+test("distance -- antipodal points -- Issue #3182", (t) => {
+  const expected = distance(point([0, 30]), point([180, -30]));
+  t.equal(
+    distance(point([-180, -58]), point([0, 58])),
+    expected,
+    "should be finite for antipodal points"
+  );
+  t.equal(
+    distance(
+      point([0, 75.92808393761516]),
+      point([179.99999998686485, -75.92808393761516])
+    ),
+    expected,
+    "should be finite for nearly antipodal points"
+  );
+  t.end();
+});
