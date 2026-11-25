@@ -44,8 +44,11 @@ function distance(
     Math.pow(Math.sin(dLat / 2), 2) +
     Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
 
+  // Floating point rounding can push `a` slightly outside [0, 1] for
+  // (near-)antipodal points, which would make Math.sqrt(1 - a) NaN.
+  const clampedA = Math.min(1, Math.max(0, a));
   return radiansToLength(
-    2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)),
+    2 * Math.atan2(Math.sqrt(clampedA), Math.sqrt(1 - clampedA)),
     options.units
   );
 }
