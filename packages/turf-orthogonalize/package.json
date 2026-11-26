@@ -1,0 +1,72 @@
+{
+  "name": "@turf/orthogonalize",
+  "version": "7.4.0",
+  "description": "Squares up building footprints so their corners meet at right angles.",
+  "author": "Turf Authors",
+  "contributors": [
+    "Lucas Wojciechowski <@lucaswoj>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Turfjs/turf.git"
+  },
+  "funding": "https://opencollective.com/turf",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "turf",
+    "orthogonalize",
+    "square",
+    "building",
+    "polygon"
+  ],
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "scripts": {
+    "bench": "tsx bench.ts",
+    "build": "tsc --build",
+    "test": "pnpm run /test:.*/",
+    "test:tape": "tsx test.ts",
+    "test:types": "tsc --ignoreConfig --esModuleInterop --module node16 --moduleResolution node16 --noEmit --strict types.ts"
+  },
+  "devDependencies": {
+    "@turf/projection": "workspace:*",
+    "@turf/truncate": "workspace:*",
+    "@types/benchmark": "catalog:",
+    "@types/tape": "catalog:",
+    "benchmark": "catalog:",
+    "load-json-file": "^7.0.1",
+    "tape": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "write-json-file": "catalog:"
+  },
+  "dependencies": {
+    "@turf/bbox": "workspace:*",
+    "@turf/boolean-point-in-polygon": "workspace:*",
+    "@turf/clone": "workspace:*",
+    "@turf/helpers": "workspace:*",
+    "@turf/meta": "workspace:*",
+    "@types/geojson": "catalog:"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
