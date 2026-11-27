@@ -200,8 +200,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#ffff00",
+        "dbscan": "edge",
+        "marker-color": "#999900",
         "marker-size": "small"
       },
       "geometry": {
