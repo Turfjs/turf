@@ -346,3 +346,30 @@ test("turf-clone -- Feature with property called 'length', issue #1621", (t) => 
 
   t.end();
 });
+
+test("turf-clone -- '__proto__' member is copied, not used as prototype", (t) => {
+  // JSON.parse yields "__proto__" as an ordinary own property
+  const f = JSON.parse(
+    '{"type":"Feature","geometry":null,"properties":{"__proto__":{"inherited":true}},"__proto__":{"foreign":true}}'
+  );
+  const fc = JSON.parse(
+    '{"type":"FeatureCollection","features":[],"__proto__":{"foreign":true}}'
+  );
+
+  const cloned = clone(f);
+  const fcCloned = clone(fc);
+
+  t.deepEqual(cloned, f, "cloned feature should be deeply equal");
+  t.deepEqual(fcCloned, fc, "cloned feature collection should be deeply equal");
+  t.equal(Object.getPrototypeOf(cloned), Object.prototype);
+  t.equal(Object.getPrototypeOf(cloned.properties), Object.prototype);
+  t.equal(Object.getPrototypeOf(fcCloned), Object.prototype);
+  t.equal(cloned.foreign, undefined, "feature should not inherit members");
+  t.equal(
+    cloned.properties.inherited,
+    undefined,
+    "properties should not inherit members"
+  );
+  t.equal(fcCloned.foreign, undefined, "fc should not inherit members");
+  t.end();
+});
