@@ -3,6 +3,9 @@
   "version": "7.4.0",
   "description": "Smooths a line into a curve using Bézier splines, great for visualizing routes.",
   "author": "Turf Authors",
+  "contributors": [
+    "Modusensus <@modusensus>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
