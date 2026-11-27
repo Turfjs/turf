@@ -3,6 +3,9 @@
   "version": "7.4.0",
   "description": "Finds the “balance point” of irregular shapes, like a country outline.",
   "author": "Turf Authors",
+  "contributors": [
+    "vera-rubin <@vera-rubin>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Turfjs/turf/issues"
