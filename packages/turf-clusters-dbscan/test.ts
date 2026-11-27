@@ -189,3 +189,29 @@ test("clusters-dbscan -- respect units option", (t) => {
 
   t.end();
 });
+
+test("clusters-dbscan joins neighboring points across the antimeridian", (t) => {
+  const locations = [179.99, -179.99, 0].map((lng) => point([lng, 0]));
+  const input = featureCollection(locations);
+  const clustered = clustersDbscan(input, 3, { minPoints: 2 });
+  t.deepEqual(
+    clustered.features.map((f) => [f.properties.dbscan, f.properties.cluster]),
+    [
+      ["core", 0],
+      ["core", 0],
+      ["noise", undefined],
+    ]
+  );
+  const isolated = clustersDbscan(input, 1, { minPoints: 2 });
+  t.true(isolated.features.every((f) => f.properties.dbscan === "noise"));
+  t.end();
+});
+
+test("clusters-dbscan counts each indexed point once in a global search", (t) => {
+  const points = featureCollection([point([179.99, 0]), point([180.01, 0])]);
+  const close = clustersDbscan(points, 3, { minPoints: 2 });
+  t.true(close.features.every((p) => p.properties.cluster === 0));
+  const sparse = clustersDbscan(points, 21000, { minPoints: 3 });
+  t.true(sparse.features.every((p) => p.properties.dbscan === "noise"));
+  t.end();
+});
