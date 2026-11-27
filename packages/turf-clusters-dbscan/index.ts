@@ -92,8 +92,8 @@ function clustersDbscan(
   // Keeps track of whether a point is assigned to a cluster or not.
   var assigned = points.features.map((_) => false);
 
-  // Keeps track of whether a point is noise|edge or not.
-  var isnoise = points.features.map((_) => false);
+  // Core points have at least minPoints neighbors, including themselves.
+  var isCore = points.features.map((_) => false);
 
   // Keeps track of the clusterId for each point
   var clusterIds: number[] = points.features.map((_) => -1);
@@ -158,6 +158,7 @@ function clustersDbscan(
         visited[neighborIndex] = true;
         const nextNeighbors = regionQuery(neighborIndex);
         if (nextNeighbors.length >= minPoints) {
+          isCore[neighborIndex] = true;
           neighbors.push(...nextNeighbors);
         }
       }
@@ -172,14 +173,13 @@ function clustersDbscan(
   var nextClusteredId = 0;
   points.features.forEach((_, index) => {
     if (visited[index]) return;
+    visited[index] = true;
     const neighbors = regionQuery(index);
     if (neighbors.length >= minPoints) {
       const clusteredId = nextClusteredId;
       nextClusteredId++;
-      visited[index] = true;
+      isCore[index] = true;
       expandCluster(clusteredId, neighbors);
-    } else {
-      isnoise[index] = true;
     }
   });
 
@@ -191,7 +191,7 @@ function clustersDbscan(
     }
 
     if (clusterIds[index] >= 0) {
-      clusterPoint.properties.dbscan = isnoise[index] ? "edge" : "core";
+      clusterPoint.properties.dbscan = isCore[index] ? "core" : "edge";
       clusterPoint.properties.cluster = clusterIds[index];
     } else {
       clusterPoint.properties.dbscan = "noise";

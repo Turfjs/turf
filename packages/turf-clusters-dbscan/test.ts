@@ -189,3 +189,18 @@ test("clusters-dbscan -- respect units option", (t) => {
 
   t.end();
 });
+
+test("clusters-dbscan classifies border points independently of input order", (t) => {
+  for (const positions of [
+    [0.01, 0, 0.02],
+    [0, 0.01, 0.02],
+  ]) {
+    const points = featureCollection(positions.map((x) => point([x, 0])));
+    const result = clustersDbscan(points, 1.5, { minPoints: 3 });
+    t.deepEqual(
+      result.features.map((f) => f.properties.dbscan),
+      positions.map((x) => (x === 0.01 ? "core" : "edge"))
+    );
+  }
+  t.end();
+});

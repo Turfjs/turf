@@ -330,8 +330,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -447,8 +447,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -499,8 +499,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -512,8 +512,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 0,
-        "dbscan": "core",
-        "marker-color": "#0000ff",
+        "dbscan": "edge",
+        "marker-color": "#000099",
         "marker-size": "small"
       },
       "geometry": {
@@ -1136,8 +1136,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -1344,8 +1344,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -1604,8 +1604,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 1,
-        "dbscan": "core",
-        "marker-color": "#6d00ff",
+        "dbscan": "edge",
+        "marker-color": "#410099",
         "marker-size": "small"
       },
       "geometry": {
@@ -1669,8 +1669,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 0,
-        "dbscan": "core",
-        "marker-color": "#0000ff",
+        "dbscan": "edge",
+        "marker-color": "#000099",
         "marker-size": "small"
       },
       "geometry": {
@@ -1890,8 +1890,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -2267,8 +2267,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -2501,8 +2501,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 6,
-        "dbscan": "core",
-        "marker-color": "#ff9200",
+        "dbscan": "edge",
+        "marker-color": "#995800",
         "marker-size": "small"
       },
       "geometry": {
@@ -2566,8 +2566,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 0,
-        "dbscan": "core",
-        "marker-color": "#0000ff",
+        "dbscan": "edge",
+        "marker-color": "#000099",
         "marker-size": "small"
       },
       "geometry": {
@@ -2644,8 +2644,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -3138,8 +3138,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 7,
-        "dbscan": "core",
-        "marker-color": "#ffff00",
+        "dbscan": "edge",
+        "marker-color": "#999900",
         "marker-size": "small"
       },
       "geometry": {
@@ -3203,8 +3203,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -3450,8 +3450,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 5,
-        "dbscan": "core",
-        "marker-color": "#ff2400",
+        "dbscan": "edge",
+        "marker-color": "#991600",
         "marker-size": "small"
       },
       "geometry": {
@@ -3970,8 +3970,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 5,
-        "dbscan": "core",
-        "marker-color": "#ff2400",
+        "dbscan": "edge",
+        "marker-color": "#991600",
         "marker-size": "small"
       },
       "geometry": {
@@ -4074,8 +4074,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -4308,8 +4308,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -5075,8 +5075,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 9,
-        "dbscan": "core",
-        "marker-color": "#24ff00",
+        "dbscan": "edge",
+        "marker-color": "#159900",
         "marker-size": "small"
       },
       "geometry": {
@@ -5218,8 +5218,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 2,
-        "dbscan": "core",
-        "marker-color": "#da00ff",
+        "dbscan": "edge",
+        "marker-color": "#820099",
         "marker-size": "small"
       },
       "geometry": {
@@ -5478,8 +5478,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 12,
-        "dbscan": "core",
-        "marker-color": "#00daff",
+        "dbscan": "edge",
+        "marker-color": "#008299",
         "marker-size": "small"
       },
       "geometry": {
@@ -5673,8 +5673,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 5,
-        "dbscan": "core",
-        "marker-color": "#ff2400",
+        "dbscan": "edge",
+        "marker-color": "#991600",
         "marker-size": "small"
       },
       "geometry": {
@@ -5686,8 +5686,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 3,
-        "dbscan": "core",
-        "marker-color": "#ff00b5",
+        "dbscan": "edge",
+        "marker-color": "#99006c",
         "marker-size": "small"
       },
       "geometry": {
@@ -5816,8 +5816,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 11,
-        "dbscan": "core",
-        "marker-color": "#00ffb7",
+        "dbscan": "edge",
+        "marker-color": "#00996e",
         "marker-size": "small"
       },
       "geometry": {
@@ -6089,8 +6089,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 5,
-        "dbscan": "core",
-        "marker-color": "#ff2400",
+        "dbscan": "edge",
+        "marker-color": "#991600",
         "marker-size": "small"
       },
       "geometry": {
@@ -6271,8 +6271,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 4,
-        "dbscan": "core",
-        "marker-color": "#ff0047",
+        "dbscan": "edge",
+        "marker-color": "#99002a",
         "marker-size": "small"
       },
       "geometry": {
@@ -6479,8 +6479,8 @@
       "type": "Feature",
       "properties": {
         "cluster": 7,
-        "dbscan": "core",
-        "marker-color": "#ffff00",
+        "dbscan": "edge",
+        "marker-color": "#999900",
         "marker-size": "small"
       },
       "geometry": {
