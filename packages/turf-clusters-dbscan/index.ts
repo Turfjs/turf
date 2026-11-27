@@ -102,10 +102,11 @@ function clustersDbscan(
   tree.load(
     points.features.map((point, index) => {
       var [x, y] = point.geometry.coordinates;
+      const longitude = wrapLongitude(x);
       return {
-        minX: x,
+        minX: longitude,
         minY: y,
-        maxX: x,
+        maxX: longitude,
         maxY: y,
         index: index,
       } as IndexedPoint;
@@ -132,21 +133,28 @@ function clustersDbscan(
       }
     })();
 
-    const minX = Math.max(x - lonDistanceInDegrees, -360.0);
-    const maxX = Math.min(x + lonDistanceInDegrees, 360.0);
+    const search = (minX: number, maxX: number) =>
+      tree.search({ minX, minY, maxX, maxY }) as IndexedPoint[];
 
-    // Calculate the bounding box for the region query
-    const bbox = { minX, minY, maxX, maxY };
-    return (tree.search(bbox) as ReadonlyArray<IndexedPoint>).filter(
-      (neighbor) => {
-        const neighborIndex = neighbor.index;
-        const neighborPoint = points.features[neighborIndex];
-        const distanceToNeighbor = distance(point, neighborPoint, {
-          units: options.units,
-        });
-        return distanceToNeighbor <= maxDistance;
-      }
-    );
+    const longitude = wrapLongitude(x);
+    let candidates: IndexedPoint[];
+    if (lonDistanceInDegrees >= 180) {
+      candidates = search(-180, 180);
+    } else {
+      const minX = longitude - lonDistanceInDegrees;
+      const maxX = longitude + lonDistanceInDegrees;
+      candidates = search(minX, maxX);
+      if (minX <= -180) candidates = candidates.concat(search(minX + 360, 180));
+      if (maxX >= 180) candidates = candidates.concat(search(-180, maxX - 360));
+    }
+    return candidates.filter((neighbor) => {
+      const neighborIndex = neighbor.index;
+      const neighborPoint = points.features[neighborIndex];
+      const distanceToNeighbor = distance(point, neighborPoint, {
+        units: options.units,
+      });
+      return distanceToNeighbor <= maxDistance;
+    });
   };
 
   // Function to expand a cluster
@@ -199,6 +207,12 @@ function clustersDbscan(
   });
 
   return points as FeatureCollection<Point, DbscanProps>;
+}
+
+// Keep the index and both sides of a wrapped search in the same longitude range.
+function wrapLongitude(lng: number): number {
+  if (lng >= -180 && lng <= 180) return lng;
+  return ((((lng + 180) % 360) + 360) % 360) - 180;
 }
 
 export { Dbscan, DbscanProps, clustersDbscan };
