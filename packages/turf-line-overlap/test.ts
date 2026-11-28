@@ -7,8 +7,65 @@ import { writeJsonFileSync } from "write-json-file";
 import { featureEach } from "@turf/meta";
 import { featureCollection, lineString } from "@turf/helpers";
 import { lineOverlap } from "./index.js";
+import { nearestPointOnLine } from "@turf/nearest-point-on-line";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+test("lineOverlap tolerance accounts for latitude", (t) => {
+  for (const latitude of [80, -80, 89.999, -89.999]) {
+    const polar = Math.abs(latitude) > 89;
+    const step = polar ? 0.0001 : 0.01;
+    const offset = polar ? 170 : 0.02;
+    const first = lineString([
+      [0, latitude],
+      [0, latitude + step],
+    ]);
+    const second = lineString([
+      [offset, latitude],
+      [offset, latitude + step],
+    ]);
+    for (const [a, b] of [
+      [first, second],
+      [second, first],
+    ]) {
+      for (const coordinate of b.geometry.coordinates) {
+        t.ok(
+          nearestPointOnLine(a, coordinate).properties.pointDistance! < 1,
+          "each endpoint is within the kilometer tolerance"
+        );
+      }
+      t.equal(
+        lineOverlap(a, b, { tolerance: 1 }).features.length,
+        1,
+        `find nearby segment at latitude ${latitude}`
+      );
+      t.equal(
+        lineOverlap(a, b).features.length,
+        0,
+        "zero tolerance still excludes parallel offsets"
+      );
+    }
+  }
+  const first = lineString([
+    [0, 0],
+    [0, 0.01],
+  ]);
+  const second = lineString([
+    [0.02, 0],
+    [0.02, 0.01],
+  ]);
+  t.equal(
+    lineOverlap(first, second, { tolerance: 1 }).features.length,
+    0,
+    "the equatorial gap exceeds one kilometer"
+  );
+  t.equal(
+    lineOverlap(first, second, { tolerance: 2.5 }).features.length,
+    1,
+    "a larger tolerance includes the equatorial gap"
+  );
+  t.end();
+});
 
 const directories = {
   in: path.join(__dirname, "test", "in") + path.sep,

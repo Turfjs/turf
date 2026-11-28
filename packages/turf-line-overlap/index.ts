@@ -15,7 +15,12 @@ import {
   GeoJsonProperties,
   BBox,
 } from "geojson";
-import { featureCollection, isObject, lengthToDegrees } from "@turf/helpers";
+import {
+  degreesToRadians,
+  featureCollection,
+  isObject,
+  lengthToDegrees,
+} from "@turf/helpers";
 import equal from "fast-deep-equal";
 
 /**
@@ -76,10 +81,17 @@ function lineOverlap<
     if (tolerance !== 0) {
       const toleranceDegrees = lengthToDegrees(tolerance, "kilometers");
       const bb = bbox(segment);
+      // Use the poleward edge so the longitude envelope contains the full tolerance.
+      const maxLatitude =
+        Math.max(Math.abs(bb[1]), Math.abs(bb[3])) + toleranceDegrees;
+      const reachesPole = maxLatitude >= 90;
+      const longitudeTolerance = reachesPole
+        ? 180
+        : toleranceDegrees / Math.cos(degreesToRadians(maxLatitude));
       search = [
-        bb[0] - toleranceDegrees,
+        reachesPole ? -180 : bb[0] - longitudeTolerance,
         bb[1] - toleranceDegrees,
-        bb[2] + toleranceDegrees,
+        reachesPole ? 180 : bb[2] + longitudeTolerance,
         bb[3] + toleranceDegrees,
       ];
     }
