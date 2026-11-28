@@ -62,6 +62,32 @@ test("turf-nearest-point-to-line", (t) => {
   t.end();
 });
 
+test("turf-nearest-point-to-line -- reusing a point collection", (t) => {
+  const sample = point([0, 0], { name: "station" });
+  const points = featureCollection([sample]);
+  const features = points.features;
+  const first = nearestPointToLine(
+    points,
+    lineString([
+      [0, 0],
+      [0, 1],
+    ])
+  );
+  const second = nearestPointToLine(
+    points,
+    lineString([
+      [1, -1],
+      [1, 1],
+    ])
+  );
+
+  t.equal(first.properties.dist, 0, "the station lies on the first line");
+  t.equal(round(second.properties.dist), 111, "the second line is 111 km away");
+  t.deepEqual(sample.properties, { name: "station" }, "input properties");
+  t.equal(points.features, features, "the input keeps its features array");
+  t.end();
+});
+
 test("turf-nearest-point-to-line -- throws", (t) => {
   const points = featureCollection([point([0, 0]), point([0, 1])]);
   const line = lineString([

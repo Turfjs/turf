@@ -4,7 +4,8 @@
   "description": "Returns the closest point, of a collection of points, to a line.",
   "author": "Turf Authors",
   "contributors": [
-    "Stefano Borghi <@stebogit>"
+    "Stefano Borghi <@stebogit>",
+    "xmsnmo444 <@xmsnmo444>"
   ],
   "license": "MIT",
   "bugs": {
