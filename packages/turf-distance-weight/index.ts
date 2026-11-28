@@ -18,10 +18,13 @@ function pNormDistance(
 ): number {
   const coordinate1 = getCoord(feature1);
   const coordinate2 = getCoord(feature2);
-  const xDiff = coordinate1[0] - coordinate2[0];
-  const yDiff = coordinate1[1] - coordinate2[1];
+  const xDiff = Math.abs(coordinate1[0] - coordinate2[0]);
+  const yDiff = Math.abs(coordinate1[1] - coordinate2[1]);
   if (p === 1) {
-    return Math.abs(xDiff) + Math.abs(yDiff);
+    return xDiff + yDiff;
+  }
+  if (p === Infinity) {
+    return Math.max(xDiff, yDiff);
   }
   return Math.pow(Math.pow(xDiff, p) + Math.pow(yDiff, p), 1 / p);
 }
