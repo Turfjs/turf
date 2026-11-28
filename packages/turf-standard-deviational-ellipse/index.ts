@@ -103,7 +103,7 @@ function standardDeviationalEllipse(
 
   featureEach(points, function (point) {
     // weightTerm or point.properties might be undefined, hence this check.
-    const weight = weightTerm ? point.properties?.[weightTerm] || 1 : 1;
+    const weight = weightTerm ? (point.properties?.[weightTerm] ?? 1) : 1;
     const deviation = getDeviations(getCoords(point), getCoords(meanCenter));
     xDeviationSquaredSum += Math.pow(deviation.x, 2) * weight;
     yDeviationSquaredSum += Math.pow(deviation.y, 2) * weight;
@@ -124,7 +124,7 @@ function standardDeviationalEllipse(
   let weightsum = 0;
   featureEach(points, function (point) {
     // weightTerm or point.properties might be undefined, hence this check.
-    const weight = weightTerm ? point.properties?.[weightTerm] || 1 : 1;
+    const weight = weightTerm ? (point.properties?.[weightTerm] ?? 1) : 1;
     const deviation = getDeviations(getCoords(point), getCoords(meanCenter));
     sigmaXsum +=
       Math.pow(
