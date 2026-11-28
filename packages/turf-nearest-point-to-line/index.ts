@@ -76,7 +76,7 @@ function nearestPointToLine<P = { dist: number; [key: string]: any }>(
    * 3. dist custom properties created by NearestPointToLine
    */
   if (pt) {
-    pt.properties = { ...{ dist }, ...pt.properties, ...properties };
+    return { ...pt, properties: { dist, ...pt.properties, ...properties } };
   }
   return pt;
 }
@@ -100,10 +100,12 @@ function normalize(points: any): FeatureCollection<Point> {
       });
       return { type: "FeatureCollection", features };
     case "FeatureCollection":
-      points.features = points.features.filter((feature: any) => {
-        return feature.geometry.type === "Point";
-      });
-      return points;
+      return {
+        ...points,
+        features: points.features.filter(
+          (feature: any) => feature.geometry.type === "Point"
+        ),
+      };
     default:
       throw new Error("points must be a Point Collection");
   }
