@@ -4,7 +4,8 @@
   "description": "Takes a collection of features and returns a standard deviational ellipse.",
   "author": "Turf Authors",
   "contributors": [
-    "Moacir P. de Sá Pereira <@muziejus>"
+    "Moacir P. de S\u00e1 Pereira <@muziejus>",
+    "Twiink <@Twiink>"
   ],
   "license": "MIT",
   "bugs": {

@@ -5,10 +5,48 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { writeJsonFileSync } from "write-json-file";
-import { featureCollection } from "@turf/helpers";
+import { featureCollection, point } from "@turf/helpers";
 import { standardDeviationalEllipse } from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+test("standardDeviationalEllipse excludes zero-weight points from its shape", (t) => {
+  const points = featureCollection(
+    [
+      [0, 0],
+      [4, 1],
+      [2, 5],
+      [8, 3],
+    ].map((coords) => point(coords, { weight: 1 }))
+  );
+  const expected = standardDeviationalEllipse(points, { weight: "weight" });
+  const withOutlier = featureCollection([
+    ...points.features,
+    point([90, 45], { weight: 0 }),
+  ]);
+  const actual = standardDeviationalEllipse(withOutlier, { weight: "weight" });
+  t.deepEqual(
+    actual.geometry,
+    expected.geometry,
+    "a zero-weight outlier does not change the ellipse"
+  );
+  const expectedStats = expected.properties!.standardDeviationalEllipse;
+  const actualStats = actual.properties!.standardDeviationalEllipse;
+  for (const key of ["semiMajorAxis", "semiMinorAxis", "angle"] as const) {
+    t.equal(actualStats[key], expectedStats[key], `${key} ignores zero weight`);
+  }
+
+  const missingWeight = featureCollection([
+    ...points.features,
+    point([90, 45]),
+  ]);
+  t.deepEqual(
+    standardDeviationalEllipse(missingWeight, { weight: "weight" }).geometry,
+    standardDeviationalEllipse(missingWeight).geometry,
+    "missing weights still default to one"
+  );
+  t.end();
+});
 
 test("turf-standard-deviational-ellipse", (t) => {
   glob
