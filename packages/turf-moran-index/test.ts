@@ -3,8 +3,31 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { loadJsonFileSync } from "load-json-file";
 import { moranIndex } from "./index.js";
+import { featureCollection, point } from "@turf/helpers";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+test("moranIndex forwards a zero decay exponent", (t) => {
+  const points = featureCollection(
+    [
+      [0, 0],
+      [1, 2],
+      [3, 4],
+      [7, 1],
+    ].map((coords, i) => point(coords, { value: i * i }))
+  );
+  for (const standardization of [false, true]) {
+    const options = { inputField: "value", standardization };
+    const actual = moranIndex(points, { ...options, alpha: 0 });
+    const uniform = moranIndex(points, { ...options, binary: true });
+    t.equal(
+      actual.moranIndex,
+      uniform.moranIndex,
+      `zero decay equals uniform weights, standardized=${standardization}`
+    );
+  }
+  t.end();
+});
 
 test("turf-moran-index", (t) => {
   const pointPath = path.join(__dirname, "test", "in", "point.json");

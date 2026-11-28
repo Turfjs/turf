@@ -62,7 +62,7 @@ function distanceWeight(
   const threshold = options.threshold || 10000;
   const p = options.p || 2;
   const binary = options.binary ?? false;
-  const alpha = options.alpha || -1;
+  const alpha = options.alpha ?? -1;
   const rowTransform = options.standardization ?? false;
 
   const features: Array<Feature<Point>> = [];

@@ -1,4 +1,4 @@
-import { point } from "@turf/helpers";
+import { featureCollection, point } from "@turf/helpers";
 
 import test from "tape";
 import path from "path";
@@ -7,6 +7,35 @@ import { loadJsonFileSync } from "load-json-file";
 import { distanceWeight, pNormDistance } from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+test("distanceWeight honors a zero decay exponent", (t) => {
+  const points = featureCollection([point([0, 0]), point([3, 4])]);
+  t.deepEqual(
+    distanceWeight(points, { alpha: 0 }),
+    [
+      [0, 1],
+      [1, 0],
+    ],
+    "zero decay gives constant weights"
+  );
+  t.deepEqual(
+    distanceWeight(points, { alpha: 0, threshold: 4 }),
+    [
+      [0, 0],
+      [0, 0],
+    ],
+    "the threshold still excludes distant points"
+  );
+  t.deepEqual(
+    distanceWeight(points),
+    [
+      [0, 0.2],
+      [0.2, 0],
+    ],
+    "omitting alpha still uses inverse distance"
+  );
+  t.end();
+});
 
 test("pNormDistance function", (t) => {
   t.equal(pNormDistance(point([2, 0]), point([0, 0]), 2), 2, "2-norm is ok");
