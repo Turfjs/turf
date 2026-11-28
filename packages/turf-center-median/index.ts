@@ -142,8 +142,7 @@ function findMedian(
     if (!isNumber(weight)) throw new Error("weight value must be a number");
     if (weight > 0) {
       centroidCount += 1;
-      var distanceFromCandidate =
-        weight * distance(theCentroid, candidateMedian);
+      var distanceFromCandidate = distance(theCentroid, candidateMedian);
       if (distanceFromCandidate === 0) distanceFromCandidate = 1;
       var k = weight / distanceFromCandidate;
       candidateXsum += theCentroid.geometry.coordinates[0] * k;
