@@ -8,10 +8,44 @@ import { center } from "@turf/center";
 import { truncate } from "@turf/truncate";
 import { centerMean } from "@turf/center-mean";
 import { centerOfMass } from "@turf/center-of-mass";
-import { featureCollection, round } from "@turf/helpers";
+import { featureCollection, point, round } from "@turf/helpers";
 import { centerMedian } from "./index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+test("centerMedian weights agree with repeated observations", (t) => {
+  const coordinates = [
+    [0, 0],
+    [4, 1],
+    [2, 5],
+    [8, 3],
+  ];
+  const weights = [1, 3, 5, 2];
+  const repeated = featureCollection(
+    coordinates.flatMap((coords, i) =>
+      Array.from({ length: weights[i] }, () => point(coords))
+    )
+  );
+  const options = { counter: 20, tolerance: 1e-8 };
+  const expected = centerMedian(repeated, options).geometry.coordinates;
+
+  for (const scale of [1, 0.5]) {
+    const weighted = featureCollection(
+      coordinates.map((coords, i) =>
+        point(coords, { population: weights[i] * scale })
+      )
+    );
+    const actual = centerMedian(weighted, { ...options, weight: "population" })
+      .geometry.coordinates;
+    for (let i = 0; i < 2; i++) {
+      t.ok(
+        Math.abs(actual[i] - expected[i]) < 1e-7,
+        `coordinate ${i}, weight scale ${scale}`
+      );
+    }
+  }
+  t.end();
+});
 
 test("turf-center-median", (t) => {
   glob
